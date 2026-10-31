@@ -509,15 +509,17 @@ export class EditorSession {
     return layout === null ? null : hitHandle(layout, x, y);
   }
 
-  /** Start dragging a handle of the selection's gizmo, pivoting on its first entity. */
-  beginDrag(mode: GizmoMode, handle: GizmoHandle, space: GizmoSpace, x: number, y: number): void {
+  /** Start dragging a handle of the selection's gizmo, pivoting on its first entity (`sizePx` as drawn: `gizmoLayout`'s). */
+  beginDrag(mode: GizmoMode, handle: GizmoHandle, space: GizmoSpace, x: number, y: number, sizePx = 100): void {
     this.#requireEdit('Dragging a gizmo');
     const ids = this.selection;
     if (ids.length === 0) fail('PP9635', 'beginDrag() needs a selection', { fix: 'Select an entity first (session.select([...])).' });
     for (const id of ids) this.#sourceFor(id, 'Dragging it');
     const view = this.#requireView('beginDrag()');
     const targets = ids.map((id) => ({ id, start: this.poseOf(id) }));
-    const drag = new GizmoDrag({ mode, handle, space, pose: targets[0]!.start, ray: view.ray(x, y), view });
+    const pose = targets[0]!.start;
+    const radius = view.pixelSize(pose.position) * sizePx;
+    const drag = new GizmoDrag({ mode, handle, space, pose, ray: view.ray(x, y), view, radius });
     this.#drag = { drag, targets, last: targets[0]!.start };
   }
 

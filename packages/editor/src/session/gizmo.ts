@@ -9,6 +9,13 @@
  *   scale      x / y / z: along a local axis uniform: all three           (scale is always local)
  *
  * In 2D the gizmo lives in the x/y plane: translate x, y, xy; rotate z; scale x, y, uniform.
+ *
+ * A rotate drag follows the grabbed point of its ring: the pointer ray meets the ring's
+ * plane and the angle is swept around the center. A ring seen almost edge-on (its plane
+ * within ~9° of the line of sight) can't be read that way — a pixel moves the hit meters,
+ * across the center or past the plane's horizon, so the turn flips or stalls — and its two
+ * halves overlap on screen. Such a ring turns by the pointer's motion along the screen
+ * tangent of its near side instead: the side facing the camera follows the drag.
  */
 
 import { fail, Quat, Vec3 } from '@parallax/runtime/core';
@@ -92,6 +99,22 @@ export interface GizmoDragInit {
   readonly ray: Ray;
   /** The view the drag happens in (its forward axis is the screen handles' normal). */
   readonly view: Pick<ScreenView, 'forward' | 'dimension'>;
+  /** The rings' radius in meters (`GizmoLayout.length`): how far an edge-on ring's grabbed side moves per radian. */
+  readonly radius?: number;
+}
+
+/** A rotate ring whose plane is nearer than this (|cos| of axis vs. line of sight) to edge-on turns by the screen tangent. */
+const EDGE_ON = 0.15;
+
+/** An edge-on ring's drag: pointer motion in the view plane along the near side's tangent. */
+interface TangentDrag {
+  /** The view plane through the center, which the pointer ray meets. */
+  readonly normal: Vec3;
+  readonly from: Vec3;
+  /** Unit direction, in the view plane, the near side moves on screen for a positive turn. */
+  readonly along: Vec3;
+  /** Meters that side moves in the view plane per radian. */
+  readonly perRadian: number;
 }
 
 /**
@@ -111,6 +134,7 @@ export class GizmoDrag {
   /** Rotation: degrees turned so far (accumulated, so a drag can turn past 180°). */
   #angle = 0;
   #prev: Vec3 | null = null;
+  #tangent: TangentDrag | null = null;
 
   constructor(init: GizmoDragInit) {
     const { mode, handle, pose } = init;
@@ -142,6 +166,7 @@ export class GizmoDrag {
     this.#line = line;
     this.#from = line !== null ? closestOnLine(pose.position, line, init.ray) : rayPlane(init.ray, pose.position, normal!);
     if (mode === 'rotate' && this.#from instanceof Vec3) this.#prev = this.#from.__sub__(pose.position);
+    if (mode === 'rotate' && handle !== 'screen') this.#tangent = edgeOnDrag(normal!, pose.position, init.ray, viewNormal, init.radius);
   }
 
   /** The pose for the pointer's ray now. */
@@ -153,6 +178,14 @@ export class GizmoDrag {
 
   #solve(ray: Ray, snap: Snap): Pose | null {
     const { position, rotation, scale } = this.start;
+    if (this.#tangent !== null) {
+      const t = this.#tangent;
+      const hit = rayPlane(ray, position, t.normal);
+      if (hit === null) return null;
+      this.#angle = (hit.__sub__(t.from).dot(t.along) / t.perRadian) * 180 / Math.PI;
+      const turned = axisAngle(this.#normal!, snapTo(this.#angle, snap.rotate));
+      return { position, rotation: turned.__mul__(rotation), scale };
+    }
     if (this.#from === null) return null;
     if (this.#line !== null) {
       const t = closestOnLine(position, this.#line, ray);
@@ -203,6 +236,26 @@ export class GizmoDrag {
   get degrees(): number {
     return this.#angle;
   }
+}
+
+/**
+ * The tangent drag of a rotate ring about `axis` seen nearly edge-on along `ray`, or null
+ * when the ring faces the camera enough for the plane hit to follow the pointer.
+ */
+function edgeOnDrag(axis: Vec3, center: Vec3, ray: Ray, viewNormal: Vec3, radius: number | undefined): TangentDrag | null {
+  const d = ray.direction;
+  if (Math.abs(axis.dot(d)) >= EDGE_ON) return null;
+  // The near side: the ring's in-plane direction toward the camera.
+  const toward = d.__sub__(axis.__mul__(axis.dot(d))).__mul__(-1);
+  if (toward.length() < 1e-9) return null;
+  const near = toward.normalized();
+  // A positive turn about `axis` moves `near` along axis × near (first order of axisAngle).
+  const tangent = axis.cross(near);
+  const onScreen = tangent.__sub__(viewNormal.__mul__(tangent.dot(viewNormal)));
+  const from = rayPlane(ray, center, viewNormal);
+  if (from === null || onScreen.length() < 1e-6) return null;
+  const r = radius !== undefined && radius > 0 ? radius : Math.max(from.__sub__(center).length(), 1e-6);
+  return { normal: viewNormal, from, along: onScreen.normalized(), perRadian: r * onScreen.length() };
 }
 
 // ── Handles on screen ──────────────────────────────────────────────────────────

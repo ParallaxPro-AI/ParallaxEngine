@@ -80,6 +80,72 @@ describe('GizmoDrag', () => {
     near(pose.rotation.rotate(Vec3.RIGHT), new Vec3(0, 0, -1));
   });
 
+  it('turns every ring the way it is dragged from any camera side, edge-on rings by their near side', () => {
+    // Cameras all around the gizmo (behind and below too), down to a few degrees off each
+    // ring's plane and exactly in it. Grab each ring on (or a few pixels off) its line and
+    // drag 10 px along its screen tangent: the ring's grabbed point — or, on a ring seen
+    // edge-on, its side facing the camera — must move that way on screen. The plane hit
+    // used alone turned near edge-on rings the wrong way or not at all.
+    const pose: Pose = { ...POSE, rotation: axisAngle(new Vec3(1, 2, 3).normalized(), 25) };
+    let checked = 0;
+    const wrong: string[] = [];
+    for (let az = 0; az < 360; az += 30) {
+      for (const el of [-60, -5, -2, 0, 2, 5, 30, 60]) {
+        const a = (az * Math.PI) / 180;
+        const e = (el * Math.PI) / 180;
+        const eye = new Vec3(Math.cos(e) * Math.sin(a), Math.sin(e), Math.cos(e) * Math.cos(a)).__mul__(8);
+        const cam = lookAt(eye, Vec3.ZERO);
+        for (const space of ['world', 'local'] as const) {
+          const layout = gizmoHandles(cam, pose, 'rotate', space, 100);
+          const axes = space === 'world' ? [Vec3.RIGHT, Vec3.UP, Vec3.FORWARD] : [Vec3.RIGHT, Vec3.UP, Vec3.FORWARD].map((v) => pose.rotation.rotate(v));
+          for (const [i, handle] of (['x', 'y', 'z'] as const).entries()) {
+            const axis = axes[i]!;
+            const [u, v] = handle === 'x' ? [axes[1]!, axes[2]!] : handle === 'y' ? [axes[2]!, axes[0]!] : [axes[0]!, axes[1]!];
+            const ring = layout.shapes.find((s) => s.handle === handle)!.points;
+            const n = ring.length / 2;
+            for (let k = 0; k < n; k += 6) {
+              const [px, py] = [ring[2 * k]!, ring[2 * k + 1]!];
+              let [tx, ty] = [ring[2 * ((k + 1) % n)]! - px, ring[2 * ((k + 1) % n) + 1]! - py];
+              const tl = Math.hypot(tx, ty);
+              if (tl < 1) continue;
+              [tx, ty] = [tx / tl, ty / tl];
+              for (const off of [0, 4, -4]) {
+                const [gx, gy] = [px - ty * off, py + tx * off];
+                const ray = cam.ray(gx, gy);
+                const drag = new GizmoDrag({ mode: 'rotate', handle, space, pose, ray, view: cam, radius: layout.length });
+                const turned = drag.update(cam.ray(gx + tx * 10, gy + ty * 10)).rotation.__mul__(pose.rotation.inverse());
+                const t = (k / n) * Math.PI * 2;
+                let follower = u.__mul__(Math.cos(t) * layout.length).__add__(v.__mul__(Math.sin(t) * layout.length));
+                if (Math.abs(axis.dot(ray.direction)) < 0.15) {
+                  const d = ray.direction;
+                  follower = d.__sub__(axis.__mul__(axis.dot(d))).normalized().__mul__(-layout.length);
+                }
+                const before = cam.project(follower)!;
+                const after = cam.project(turned.rotate(follower))!;
+                checked++;
+                if ((after.x - before.x) * tx + (after.y - before.y) * ty <= 0) wrong.push(`${space} ${handle} az ${az} el ${el} k ${k} off ${off}: ${drag.degrees.toFixed(1)}°`);
+              }
+            }
+          }
+        }
+      }
+    }
+    expect(checked).toBeGreaterThan(3000);
+    expect(wrong).toEqual([]);
+  });
+
+  it('turns a ring seen exactly edge-on (the camera in its plane) instead of ignoring the drag', () => {
+    // From straight ahead, the x ring is a vertical line on screen: dragging up its near half lifts the side facing the camera.
+    const cam = lookAt(new Vec3(0, 2, -8), Vec3.ZERO);
+    const layout = gizmoHandles(cam, POSE, 'rotate', 'world', 100);
+    const near = new Vec3(0, 0, -layout.length);
+    const p = cam.project(near)!;
+    const drag = new GizmoDrag({ mode: 'rotate', handle: 'x', space: 'world', pose: POSE, ray: cam.ray(p.x, p.y), view: cam, radius: layout.length });
+    const turned = drag.update(cam.ray(p.x, p.y - 20));
+    expect(Math.abs(drag.degrees)).toBeGreaterThan(5);
+    expect(turned.rotation.rotate(Vec3.FORWARD.__mul__(-1)).y).toBeGreaterThan(0);
+  });
+
   it('scales along a local axis by the distance ratio, and uniformly in the view plane', () => {
     const start = { ...POSE, scale: new Vec3(2, 1, 1) };
     const drag = new GizmoDrag({ mode: 'scale', handle: 'x', space: 'world', pose: start, ray: rayAt(view, new Vec3(1, 0, 0)), view });
