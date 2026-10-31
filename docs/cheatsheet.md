@@ -5,6 +5,10 @@ below belongs to one small working game ("Coin Hunt"): a library knight walks a
 field collecting library coins against a clock. Follow the links for depth;
 exact signatures are in the [API reference](reference/README.md).
 
+Making a 2D game? Data, events, input, systems, UI, timers and playtests work
+the same way. Read [2D games](#2d-games) at the end for what changes: sprites,
+the camera and effects.
+
 ## Command-line loop
 
 Run these from the engine checkout ([CLI reference](cli.md)):
@@ -376,10 +380,80 @@ Harness commands include `press`, `hold`, `move`, `click(Panel, "action")`,
 `advance`, `advance_until`, `until(Event)`, `is_open`, `panel_state` and
 `emitted`. See [testing](concepts/testing.md).
 
+## 2D games
+
+Start from `pnpm parallax new ../dodge --template arcade-2d` (or `blank-2d`, or a
+2D example with `--example`). The rest of this page applies, with these changes.
+See [2D games](concepts/visuals.md#2d-games) for depth.
+
+| | 3D | 2D |
+|---|---|---|
+| Mode and physics | `mode="3d"`, `plugins.physics3d()` | `mode="2d"`, `plugins.physics2d(gravity=-9.8)` |
+| Space | x/z ground, y up | x/y play plane, y up; `z` is only draw order |
+| Positions | `vec3(x, y, z)` | `vec2(x, y)`; `spawn(..., z=2)` or a prefab's `"z"` |
+| Drawn by | `model`, `shape` boxes and spheres | `sprite`, `shape` (`rect`, `circle`, `ring`, `polygon`), `tilemap`, `text_mesh` |
+| Art | library models | images in `assets/images/` (PNG or SVG) |
+| Camera | `orbit`, `first_person`, `follow`, `fixed` | `"mode": "orthographic"`; `fixed` with `fit`, or `follow` |
+| Effects | `Effect.*` built-ins and `.vfx.json` | `.vfx.json` only (`Effect.*` is an error) |
+| Colliders | `box`, `sphere`, `capsule` and more | `box`, `circle`, `capsule` |
+
+A player sprite with animations (`prefabs/hero.prefab.json`), drawn from SVGs
+in `assets/images/`:
+
+```json
+{
+  "z": 2,
+  "components": {
+    "sprite": {
+      "image": "images/hero_idle",
+      "size": [0.9, 1.2],
+      "animations": {
+        "idle": { "frames": ["images/hero_idle"], "fps": 1, "loop": true },
+        "run": { "frames": ["images/hero_run_0", "images/hero_run_1"], "fps": 10, "loop": true }
+      }
+    },
+    "rigidbody": { "kind": "dynamic", "lock_rotation": true },
+    "collider": { "shape": "box", "size": [0.8, 1.1] }
+  },
+  "tags": ["player"],
+  "behaviors": { "player": {} }
+}
+```
+
+```python
+sprite = self.entity.get(Sprite)
+sprite.play("run" if abs(stick.x) > 0.1 else "idle")
+sprite.flip_x = stick.x < 0                       # face the way you move
+```
+
+A 2D camera (`prefabs/camera.prefab.json`) that follows the player through a
+level wider than the screen:
+
+```json
+{ "components": { "camera": { "mode": "orthographic", "rig": "follow", "follow": "player", "size": 6, "smoothing": 0.15, "bounds": [[-20, -5], [20, 10]], "background": "#1b2236" } } }
+```
+
+Effects are files of the game. `assets/vfx/pop.vfx.json`:
+
+```json
+{ "burst": 24, "lifetime": 0.4, "speed": [1, 3], "spread": 360, "size": 0.12, "size_end": 0, "color": "#ffe08a", "color_end": "#ff8a3000", "blend": "additive" }
+```
+
+```python
+ctx.vfx.play(Assets.vfx.pop, at=coin.transform.position, color=gold)
+ctx.camera.main.shake(0.2, 0.2)
+ctx.time.hitstop(0.04)
+```
+
+A level of blocks is one `tilemap` with `"collide": true`, not many placed
+boxes. Draw a missing sprite as a small white SVG and tint it with the sprite's
+`color`. See [art for a 2D game](concepts/visuals.md#art-for-a-2d-game).
+
 ## Before writing it yourself
 
 The engine provides terrain, foliage, sky, weather, water, buildings from floor
 plans, race tracks, characters, vehicles, AI, HUD widgets, inventories and more.
-These features are data on a scene or prefab, not code to write. Scan the
+For 2D it provides sprites, tilemaps, grids, 2D physics, 2D lights and
+particles. These features are data on a scene or prefab, not code to write. Scan the
 [capability catalog](concepts/visuals.md#capability-catalog) before starting a
 system, and look up error codes in the [error catalog](errors/README.md).

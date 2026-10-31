@@ -52,6 +52,25 @@ request mentions to what provides it:
   save, HUD and menus) before writing your own. The examples show which
   plugins a game of each kind lists in `Game(plugins=[...])`.
 
+For a **2D game** (`mode="2d"`), terrain, foliage, sky, weather, water and
+library models don't draw. Read the 2D quality bar and the "2D games" section
+of `docs/concepts/visuals.md` instead, and plan with these:
+
+- **Characters, enemies, pickups and props**: `sprite`s with images. There is
+  no sprite library, so write a small SVG in `assets/images/` for each (drawn
+  white, tinted by the sprite's `color`), with an outline and details, in one
+  style across the game. Give characters `animations` and `flip_x`. Keep
+  plain `shape`s for pieces meant to be abstract.
+- **Levels**: a `tilemap` with `collide` for blocks and platforms; the
+  `grid()` plugin for boards and step-by-step movement.
+- **Background**: a camera `background` color plus a large backdrop sprite at
+  a low `z`; scrolling bands at different speeds for side-scrollers.
+- **Camera**: `"mode": "orthographic"`, with `fit` for one screen or
+  `"rig": "follow"` with `bounds` for a bigger level.
+- **Feel**: `.vfx.json` effects (the built-in `Effect.*` set is 3D only),
+  `camera.shake`, `ctx.time.hitstop`, tweens and sprite color flashes; 2D
+  `light`s and a `"post"` with bloom for glow and night.
+
 Keep the plan in your working notes and follow it.
 
 ## Choose the starting point
@@ -76,6 +95,7 @@ Use these local guides instead of inferring contracts from another engine:
 |---|---|
 | Most APIs, formats and commands in one place | `docs/cheatsheet.md` |
 | Engine capabilities and how to make a game look good | `docs/concepts/visuals.md` |
+| Sprites, tilemaps, 2D camera and 2D effects | `docs/concepts/visuals.md#2d-games` |
 | First game or project structure | `docs/concepts/project-layout.md` |
 | State, schemas, and tunables | `docs/concepts/data.md` |
 | Behaviors, systems, and events | `docs/concepts/logic.md` |
@@ -106,7 +126,8 @@ Investigate failures instead of weakening assertions to obtain a passing run.
 Look at the game, not just its tests: `pnpm parallax screenshot <game>`
 renders the running game to PNG files and reports page errors. Look at the
 images and fix what looks wrong or plain (shapes standing in for real
-objects, empty sky, flat untextured ground, missing effects) before you
+objects, empty sky, flat untextured ground, missing effects; in 2D, colored
+boxes for characters and an empty background) before you
 finish, and take another screenshot after a visual change.
 
 Do not use missing-asset options to present an incomplete game as verified.

@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 871,
+  "count": 875,
   "codes": [
     {
       "code": "PP1001",
@@ -1243,6 +1243,7 @@
         "\"{id}\": a built-in effect is written \"{BUILTIN_EFFECT_PREFIX}<name>\"",
         "\"{key}\" must name an image file under assets/ or a hosted image URL, got \"{value}\"",
         "\"{key}\": {problem}",
+        "Effect.{hit[1]} is a built-in 3D effect, which a 2D game doesn't have",
         "Only models have clips ({…})",
         "Scene \"{scene.id}\" skybox: {…}",
         "Scene \"{scene.id}\" weather: unknown sound \"{…}\"",
@@ -1298,7 +1299,8 @@
         "Write \"{form.handle}\" (\"<folder>/<name>\": no \"assets/\", no extension).",
         "Write \"{form.handle}\" (no \"assets/\", no extension).",
         "Write \"{form.handle}{…}\".",
-        "Write \"{problem.handle}\" (\"<folder>/<name>\": no \"assets/\", no extension)."
+        "Write \"{problem.handle}\" (\"<folder>/<name>\": no \"assets/\", no extension).",
+        "Write the effect as a file of this game, assets/vfx/{hit[1]}.vfx.json ({\"burst\": 24, \"lifetime\": 0.4, \"speed\": [1, 3], \"spread\": 360, \"size\": 0.12, \"size_end\": 0, \"color\": \"#ffe08a\", \"blend\": \"additive\"}), and play Assets.vfx.{hit[1]}. See docs/concepts/visuals.md#2d-effects-and-juice."
       ],
       "notes": [
         {
@@ -1311,6 +1313,7 @@
         "packages/check/src/code_checks.ts",
         "packages/check/src/context.ts",
         "packages/check/src/data_checks.ts",
+        "packages/check/src/look2d_checks.ts",
         "packages/check/src/model_checks.ts",
         "packages/check/src/nature_checks.ts",
         "packages/check/src/vfx_checks.ts",
@@ -2922,6 +2925,114 @@
         "packages/check/src/look_checks.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP2208"
+    },
+    {
+      "code": "PP2210",
+      "range": "PP2xxx",
+      "areas": [
+        "core"
+      ],
+      "listed_in": [],
+      "severity": [
+        "warning"
+      ],
+      "messages": [
+        "Everything in this 2D game is a plain colored shape ({…}{…}) and it draws no image"
+      ],
+      "fixes": [
+        "Draw the things that matter (the player, enemies, pickups, props) as sprites with images: write a small SVG in assets/images/<name>.svg (drawn white, tinted by the sprite's \"color\"), then \"sprite\": {\"image\": \"images/<name>\", \"size\": [w, h]}. Keep plain shapes for what is meant to be abstract (a board cell, a paddle). See docs/concepts/visuals.md#art-for-a-2d-game."
+      ],
+      "notes": [
+        {
+          "text": "the whole game is plain colored shapes: no image anywhere (sprite, shape texture,",
+          "source": "packages/check/src/look2d_checks.ts"
+        }
+      ],
+      "sources": [
+        "packages/check/src/look2d_checks.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP2210"
+    },
+    {
+      "code": "PP2211",
+      "range": "PP2xxx",
+      "areas": [
+        "core"
+      ],
+      "listed_in": [],
+      "severity": [
+        "warning"
+      ],
+      "messages": [
+        "Prefab \"{prefab.id}\" is a {word} drawn as a plain colored shape"
+      ],
+      "fixes": [
+        "Draw it as a sprite: write assets/images/{prefab.id}.svg (a silhouette with an outline and a face or details, drawn white and tinted by \"color\"), then \"sprite\": {\"image\": \"images/{prefab.id}\", \"size\": [w, h]}; add \"animations\" for its idle, move and hit frames. See docs/concepts/visuals.md#art-for-a-2d-game."
+      ],
+      "notes": [
+        {
+          "text": "a character (player, enemy, hero, ship…) drawn as a plain shape or an imageless",
+          "source": "packages/check/src/look2d_checks.ts"
+        }
+      ],
+      "sources": [
+        "packages/check/src/look2d_checks.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP2211"
+    },
+    {
+      "code": "PP2212",
+      "range": "PP2xxx",
+      "areas": [
+        "core"
+      ],
+      "listed_in": [],
+      "severity": [
+        "warning"
+      ],
+      "messages": [
+        "This 2D game plays no visual effect: no ctx.vfx call, particles emitter or .vfx.json file"
+      ],
+      "fixes": [
+        "Give the moments that matter an effect: write assets/vfx/<name>.vfx.json ({\"burst\": 24, \"lifetime\": 0.4, \"speed\": [1, 3], \"spread\": 360, \"size\": 0.12, \"size_end\": 0, \"color\": \"#ffe08a\", \"color_end\": \"#ff8a3000\", \"blend\": \"additive\"}) and play it with ctx.vfx.play(Assets.vfx.<name>, at=pos) on hits, pickups and merges; add camera shake or ctx.time.hitstop for big ones. The built-in Effect.* set is 3D only. See docs/concepts/visuals.md#2d-effects-and-juice."
+      ],
+      "notes": [
+        {
+          "text": "no effect anywhere — no ctx.vfx call, particles or .vfx.json file",
+          "source": "packages/check/src/look2d_checks.ts"
+        }
+      ],
+      "sources": [
+        "packages/check/src/look2d_checks.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP2212"
+    },
+    {
+      "code": "PP2213",
+      "range": "PP2xxx",
+      "areas": [
+        "core"
+      ],
+      "listed_in": [],
+      "severity": [
+        "warning"
+      ],
+      "messages": [
+        "No camera in this 2D game sets a \"background\" color, so the screen clears to the default"
+      ],
+      "fixes": [
+        "Give the camera a background that fits the setting: \"camera\": {\"mode\": \"orthographic\", ..., \"background\": \"#1b2236\"}, then fill the play area with a large sprite at a low \"z\" (a backdrop image) or scrolling layers. See docs/concepts/visuals.md#background-and-parallax-layers."
+      ],
+      "notes": [
+        {
+          "text": "no camera sets a background color, so the screen clears to the default",
+          "source": "packages/check/src/look2d_checks.ts"
+        }
+      ],
+      "sources": [
+        "packages/check/src/look2d_checks.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP2213"
     },
     {
       "code": "PP2550",
