@@ -175,6 +175,41 @@ describe('gizmo drags write back', () => {
     expect(code(() => ed.session.setPoses(new Map([[spawned, pose]])))).toBe('PP9629');
   });
 
+  it('a model entity turns the same way as a shape under the same ring drag, from above and edge-on', async () => {
+    const model = { format: 'parallax.model', version: 1, materials: { m: { color: [1, 1, 1] } },
+      parts: [{ name: 'post', position: [0, 1, 0], shape: 'box', size: [0.4, 2, 0.4], material: 'm' }] };
+    const turns: number[] = [];
+    for (const components of [{ shape: { kind: 'box' } }, { model: { model: 'models/post' } }]) {
+      const ed = await editor3d({ ...DATA_3D, 'assets/models/post.model.json': model, 'prefabs/thing.prefab.json': { components },
+        'scenes/main/scene.json': { entities: [
+          { prefab: 'camera', at: [0, 5, -10], rotation: [26.56505, 0, 0] },
+          { prefab: 'thing', id: 't', at: [0, 0, 0], rotation: [0, 40, 0] },
+        ] } });
+      const t = placed(ed, 't');
+      ed.session.select([t]);
+      // From above, then with the y ring seen nearly and exactly edge-on (the eye in its plane).
+      for (const eye of [new Vec3(2, 5, -10), new Vec3(2, 0.1, -10), new Vec3(2, 0, -10)]) {
+        ed.session.setCamera({ position: eye, rotation: Quat.look_rotation(eye.__mul__(-1)) });
+        ed.frame();
+        const view = ed.session.view()!;
+        const length = view.pixelSize(Vec3.ZERO) * 100;
+        // The ring's side facing the camera, grabbed 3 px above its line (within the hit
+        // tolerance) and dragged 30 px right: that side moves right.
+        const front = new Vec3(eye.x, 0, eye.z).normalized().__mul__(length);
+        const p = view.project(front)!;
+        ed.session.beginDrag('rotate', 'y', 'world', p.x, p.y - 3);
+        const pose = ed.session.dragTo(p.x + 30, p.y - 3);
+        ed.session.cancelDrag();
+        const turned = pose.rotation.__mul__(Quat.from_euler(new Vec3(0, 40, 0)).inverse());
+        expect(view.project(turned.rotate(front))!.x).toBeGreaterThan(p.x);
+        turns.push(pose.rotation.to_euler().y - 40);
+      }
+    }
+    // Shape and model: the same turns.
+    expect(turns.slice(3)).toEqual(turns.slice(0, 3).map((t) => expect.closeTo(t, 6)));
+    for (const turn of turns) expect(Math.abs(turn)).toBeGreaterThan(1);
+  });
+
   it('moving a prefab child edits the prefab, so every instance follows', async () => {
     const data = { ...DATA_3D, 'scenes/main/scene.json': { entities: [
       { prefab: 'camera', at: [0, 5, -10], rotation: [26.56505, 0, 0] },

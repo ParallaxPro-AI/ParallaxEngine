@@ -567,7 +567,7 @@ export class Viewport {
       if (editor.editing && editor.readOnly === null) {
         const handle = editor.run('Gizmo', () => session.handleAt(point.x, point.y, editor.gizmo.mode, editor.gizmo.space, GIZMO_PX)) ?? null;
         if (handle !== null) {
-          const began = editor.run('Drag', () => { session.beginDrag(editor.gizmo.mode, handle, editor.gizmo.space, point.x, point.y); return true; });
+          const began = editor.run('Drag', () => { session.beginDrag(editor.gizmo.mode, handle, editor.gizmo.space, point.x, point.y, GIZMO_PX); return true; });
           if (began === true) {
             capture();
             this.#gesture = { kind: 'gizmo' };
@@ -726,7 +726,7 @@ export class Viewport {
     if (editor.editing) {
       const handle = editor.run('Gizmo', () => session.handleAt(point.x, point.y, editor.gizmo.mode, editor.gizmo.space, GIZMO_PX * 1.4)) ?? null;
       if (handle !== null) {
-        const began = editor.run('Drag', () => { session.beginDrag(editor.gizmo.mode, handle, editor.gizmo.space, point.x, point.y); return true; });
+        const began = editor.run('Drag', () => { session.beginDrag(editor.gizmo.mode, handle, editor.gizmo.space, point.x, point.y, GIZMO_PX); return true; });
         if (began === true) this.#gesture = { kind: 'gizmo' };
         return true;
       }
