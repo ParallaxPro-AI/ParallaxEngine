@@ -38,7 +38,7 @@ project path is omitted. There is no export or publish command yet.
 | `new` | `--name TITLE` | Set the game's title |
 | `new` | `--example NAME` | Start from a copy of an [example game](examples.md) instead of a template |
 | `new` | `--list` | List templates and examples instead of creating a project |
-| `check`, `build`, `test`, `library list/search/add` | `--json` | Print a machine-readable report |
+| `check`, `build`, `test`, `screenshot`, `library list/search/add` | `--json` | Print a machine-readable report |
 | `check`, `build`, `edit` | `--no-asset-files` | Allow missing asset files; see [Assets](concepts/assets.md) |
 | `check`, `build`, `edit`, `test` | `--out DIR` | Choose the generated-output directory |
 | `check` | `--no-write` | Discard generated output; cannot be combined with `--out` |
@@ -62,6 +62,7 @@ project path is omitted. There is no export or publish command yet.
 | `library search` | `--keyword` | Match words only, without the embedding model |
 | `library add` | `--dry-run` | Preview files and setup steps without writing |
 | `library test` | `--keep` | Keep the temporary demo projects |
+| `library ...`, `edit` | `--library DIR` | Add another library root; repeat it for more. See [More library roots](#more-library-roots) |
 | `serve` | `--seed N` | Set the simulation seed |
 | `serve` | `--drain-seconds N` | Limit graceful shutdown; default 300 seconds |
 | `serve` | `--ticket-secret-env NAME`, `--match ID` | Require signed join tickets for a match; supply both |
@@ -140,6 +141,36 @@ The model downloads once (about 23 MB, to `.cache/` in the checkout), so the fir
 needs the network. The first search also builds the index if it is missing, which takes
 about half a minute; later searches reuse it. When pieces change, the next search embeds
 only those again. Without the model, or with `--keyword`, search matches words only.
+
+### Searching offline or from a read-only checkout
+
+Set `PARALLAX_CACHE_DIR` to a writable folder to move what search writes. The model then
+downloads to `$PARALLAX_CACHE_DIR/transformers/`, and the index is saved to
+`$PARALLAX_CACHE_DIR/library_index/`. Search still reads the checkout's
+`.cache/transformers/` and `shared_library/_index/` when the cache folder lacks them.
+So a read-only checkout works with no network if `pnpm parallax library index`
+already ran in it, which downloads the model and writes the index:
+
+- A model found on disk loads with downloads turned off, so it never reaches the network.
+  `PARALLAX_OFFLINE=1` turns downloads off even when no model is found; search then
+  matches words only.
+- If search can't save an index it had to refresh, for example because the folder is
+  read-only, it uses that index from memory and says so. Set `PARALLAX_CACHE_DIR` to
+  keep the refreshed index for later searches.
+
+### More library roots
+
+`--library DIR` (repeatable) and `PARALLAX_LIBRARY_PATH` add library roots after
+`shared_library/`. Separate the folders in `PARALLAX_LIBRARY_PATH` with `:`, or `;`
+on Windows. Each root has the same layout, `<category>/<piece>/piece.json`.
+`library list`, `search`, `index`, `add` and `test` read every root, and so does the
+asset library in `edit`. A piece may require pieces from any root.
+
+Piece ids are shared by all roots. When two roots have the same id, the earlier one
+wins, in this order: `shared_library/`, then the `--library` folders, then
+`PARALLAX_LIBRARY_PATH`. The later piece is skipped with a PP9590 warning. Extra roots
+can add pieces but cannot replace one. A root that does not exist is an error. The
+search index covers the pieces of every root.
 
 ## Output and exit codes
 

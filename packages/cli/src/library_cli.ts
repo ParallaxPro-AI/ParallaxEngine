@@ -7,6 +7,9 @@
  *   parallax library add  <piece> [<piece>…] <project> [--dry-run] [--json]
  *   parallax library test [<piece>…] [--filter TEXT] [--keep]
  *
+ * Every command takes `--library DIR` (repeatable): an extra library root after
+ * shared_library/, before PARALLAX_LIBRARY_PATH's (library.ts `libraryRoots`).
+ *
  * Exit codes: 0 ok, 1 errors (conflicts, failing playtests), 2 bad usage.
  */
 
@@ -14,9 +17,9 @@ import process from 'node:process';
 import { checkProject } from '@parallax/check';
 import { formatDiagnostic } from '@parallax/runtime/core';
 import type { Diagnostic } from '@parallax/runtime/core';
-import { applyAdd, formatList, isDirectory, listPieces, loadLibrary, planAdd, searchPieces } from './library.js';
+import { applyAdd, formatList, isDirectory, libraryRoots, listPieces, loadLibrary, planAdd, searchPieces } from './library.js';
 import type { Library } from './library.js';
-import { buildIndex, indexStatus, loadEmbedder, pieceText, rankByMeaning, readIndex } from './library_index.js';
+import { buildIndex, indexDirs, indexStatus, loadEmbedder, pieceText, rankByMeaning, readIndex } from './library_index.js';
 import { formatRun, runPiece } from './library_run.js';
 
 export const LIBRARY_USAGE = `Usage:
@@ -25,6 +28,8 @@ export const LIBRARY_USAGE = `Usage:
   parallax library index
   parallax library add  <piece> [<piece>...] <project> [--dry-run] [--json]
   parallax library test [<piece>...] [--filter TEXT] [--keep]
+Each takes --library DIR (repeatable): another library root, searched after shared_library/.
+PARALLAX_LIBRARY_PATH (folders separated by ':') adds roots after those.
 `;
 
 function print(diagnostics: readonly Diagnostic[]): void {
@@ -37,14 +42,30 @@ function usable(library: Library): boolean {
   return !library.diagnostics.some((d) => d.severity === 'error');
 }
 
-export async function libraryMain(argv: readonly string[], root?: string): Promise<number> {
-  const [command, ...rest] = argv;
+/** `--library DIR` pairs taken out of `argv`: the folders, and the other arguments; or the usage error. */
+export function libraryFlags(argv: readonly string[]): { dirs: string[]; rest: string[] } | string {
+  const dirs: string[] = [];
+  const rest: string[] = [];
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] !== '--library') { rest.push(argv[i]!); continue; }
+    const dir = argv[++i];
+    if (dir === undefined || dir.startsWith('--')) return '--library needs a folder';
+    dirs.push(dir);
+  }
+  return { dirs, rest };
+}
+
+/** `root`: the library's roots (tests); default shared_library/, `--library` folders, then PARALLAX_LIBRARY_PATH. */
+export async function libraryMain(argv: readonly string[], root?: string | readonly string[]): Promise<number> {
   const usage = (message?: string): number => {
     process.stderr.write(`${message !== undefined ? `${message}\n\n` : ''}${LIBRARY_USAGE}`);
     return 2;
   };
+  const parsed = libraryFlags(argv);
+  if (typeof parsed === 'string') return usage(parsed);
+  const [command, ...rest] = parsed.rest;
   const flags = new Set(rest.filter((a) => a.startsWith('--')));
-  const library = loadLibrary(root);
+  const library = loadLibrary(root ?? libraryRoots(parsed.dirs));
   switch (command) {
     case 'list': {
       const extra = rest.filter((a) => a !== '--json');
@@ -87,7 +108,13 @@ export async function libraryMain(argv: readonly string[], root?: string): Promi
             ? `(building the search index for ${stale} pieces; this happens once and takes about half a minute)\n`
             : `(updating the search index for ${stale} changed piece${stale === 1 ? '' : 's'})\n`);
         }
-        if (stale > 0 || status.restamp) index = (await buildIndex(library, embed, index)).index;
+        if (stale > 0 || status.restamp) {
+          const built = await buildIndex(library, embed, index);
+          index = built.index;
+          if (built.unsaved !== undefined) {
+            process.stderr.write(`(the search index could not be saved, so the next search reads it again: ${built.unsaved}; set PARALLAX_CACHE_DIR to a writable folder)\n`);
+          }
+        }
         found = rankByMeaning(library, index!, (await embed([query]))[0]!, query, scope);
       } else {
         if (!flags.has('--keyword')) process.stderr.write('(keyword search: the embedding model could not be loaded; it downloads once, so the first search needs the network)\n');
@@ -115,8 +142,13 @@ export async function libraryMain(argv: readonly string[], root?: string): Promi
         process.stderr.write('The embedding model could not be loaded (it downloads once, so the first run needs the network).\n');
         return 1;
       }
-      const { index, embedded } = await buildIndex(library, embed, readIndex(library.root));
-      process.stdout.write(`Search index: ${index.ids.length} pieces (${embedded} embedded now, the rest unchanged) in ${library.root}_index/\n`);
+      const into = indexDirs(library.root)[0]!;
+      const { index, embedded, unsaved } = await buildIndex(library, embed, readIndex(library.root), 64, into);
+      if (unsaved !== undefined) {
+        process.stderr.write(`The search index could not be saved to ${into}: ${unsaved}. Set PARALLAX_CACHE_DIR to a writable folder.\n`);
+        return 1;
+      }
+      process.stdout.write(`Search index: ${index.ids.length} pieces (${embedded} embedded now, the rest unchanged) in ${into}/\n`);
       return 0;
     }
     case 'add': {

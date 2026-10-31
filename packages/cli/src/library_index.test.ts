@@ -4,12 +4,12 @@
  * for the real one, so nothing is downloaded.
  */
 
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname } from 'node:path';
 import { afterEach, describe, expect, it } from 'vitest';
 import { loadLibrary } from './library.js';
-import { buildIndex, indexStatus, pieceText, rankByMeaning, readIndex } from './library_index.js';
+import { buildIndex, indexDirs, indexStatus, loadEmbedder, MODEL, modelDirs, pieceText, rankByMeaning, readIndex } from './library_index.js';
 
 const made: string[] = [];
 afterEach(() => {
@@ -105,5 +105,43 @@ describe('library search by meaning', () => {
     expect(indexStatus(loadLibrary(root), readIndex(root)!).stale).toEqual(['board']);
     writeFileSync(`${root}/_index/index.json`, JSON.stringify({ model: 'x', dims: 1, ids: [], hashes: [] }));
     expect(readIndex(root)).toBeUndefined();
+  });
+});
+
+describe('PARALLAX_CACHE_DIR and a read-only library', () => {
+  it('moves the model and the index into the cache, still reading the checkout\'s', () => {
+    expect(indexDirs('/lib/', {})).toEqual(['/lib/_index']);
+    expect(indexDirs('/lib', { PARALLAX_CACHE_DIR: '/cache' })).toEqual(['/cache/library_index', '/lib/_index']);
+    expect(modelDirs({})).toHaveLength(1);
+    expect(modelDirs({ PARALLAX_CACHE_DIR: '/cache' })[0]).toBe('/cache/transformers/');
+    expect(modelDirs({ PARALLAX_CACHE_DIR: '/cache' })[1]).toBe(modelDirs({})[0]);
+  });
+
+  it('reads a prebuilt index when the cache has none, and searches from memory when it cannot save', async () => {
+    const root = fixture();
+    await buildIndex(loadLibrary(root), embed);
+    const cache = mkdtempSync(`${tmpdir()}/parallax-cache-`);
+    made.push(cache);
+    const dirs = indexDirs(root, { PARALLAX_CACHE_DIR: cache });
+    expect(readIndex(root, dirs)?.ids).toEqual(['board', 'townsfolk', 'tree_pine']);
+    // A folder that can't be written (here: under a file) leaves the index in memory, usable.
+    writeFileSync(`${cache}/file`, '');
+    write(root, piece('sled', 'A wooden sled.'));
+    const library = loadLibrary(root);
+    const built = await buildIndex(library, embed, readIndex(root, dirs), 64, `${cache}/file/library_index`);
+    expect(built.unsaved).toBeDefined();
+    expect(built.index.ids).toContain('sled');
+    expect(rankByMeaning(library, built.index, (await embed(['board']))[0]!, 'board', { limit: 1 }).map((p) => p.id)).toEqual(['board']);
+    // Saved to the cache, it is read before the checkout's.
+    await buildIndex(library, embed, readIndex(root, dirs), 64, dirs[0]);
+    expect(readIndex(root, dirs)?.ids).toContain('sled');
+    expect(readIndex(root)?.ids).not.toContain('sled');
+  });
+
+  // (Skipped where the checkout already has the model downloaded: it would load.)
+  it.skipIf(existsSync(`${modelDirs({})[0]}/${MODEL}/config.json`))('PARALLAX_OFFLINE=1 with no model on disk loads none (keyword search), touching no network', async () => {
+    const cache = mkdtempSync(`${tmpdir()}/parallax-cache-`);
+    made.push(cache);
+    expect(await loadEmbedder({ PARALLAX_CACHE_DIR: cache, PARALLAX_OFFLINE: '1' })).toBeUndefined();
   });
 });

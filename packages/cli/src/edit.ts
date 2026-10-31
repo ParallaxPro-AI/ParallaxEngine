@@ -48,6 +48,8 @@ export interface EditOptions extends BuildOptions {
   readonly open?: boolean;
   /** Where progress goes (default stderr). */
   readonly log?: (line: string) => void;
+  /** The asset library's roots (default `libraryRoots()`: shared_library/ and PARALLAX_LIBRARY_PATH). */
+  readonly libraryRoots?: readonly string[];
 }
 
 export interface EditSession {
@@ -234,7 +236,7 @@ export async function edit(project: string, options: EditOptions = {}): Promise<
   const target = ASSET_CATALOG;
 
   let library: Library | undefined;
-  const pieces = (): Library => (library ??= loadLibrary());
+  const pieces = (): Library => (library ??= loadLibrary(options.libraryRoots));
   const data = (name: string): unknown => {
     if (name === 'projects') return { current: basename(projectDir), projects: siblingProjects(projectDir) };
     if (name === 'library') {

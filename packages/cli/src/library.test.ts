@@ -2,11 +2,13 @@ import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, 
 import { tmpdir } from 'node:os';
 import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { afterEach, describe, expect, it } from 'vitest';
+import process from 'node:process';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 import {
-  applyAdd, formatList, LIBRARY_DIR, listPieces, loadLibrary, missingPlugins, planAdd, RECORD_PATH, resolvePieces, searchPieces, withPlugins,
+  applyAdd, formatList, LIBRARY_DIR, libraryRoots, listPieces, loadLibrary, missingPlugins, planAdd, RECORD_PATH, readLibraryRecord, resolvePieces,
+  searchPieces, withPlugins,
 } from './library.js';
-import { libraryMain } from './library_cli.js';
+import { libraryFlags, libraryMain } from './library_cli.js';
 import { runPiece } from './library_run.js';
 
 const made: string[] = [];
@@ -229,6 +231,61 @@ describe('library search', () => {
   it('finds models in the shipped library', () => {
     expect(searchPieces(loadLibrary(), 'pine tree')[0]?.id).toBe('tree_pine');
     expect(searchPieces(loadLibrary(), 'bowling pin')[0]?.id).toBe('bowling_pin');
+  });
+});
+
+describe('extra library roots', () => {
+  it('are shared_library/, then --library folders, then PARALLAX_LIBRARY_PATH, each once', () => {
+    expect(libraryRoots([], {})).toEqual([LIBRARY_DIR]);
+    expect(libraryRoots([], { PARALLAX_LIBRARY_PATH: '' })).toEqual([LIBRARY_DIR]);
+    expect(libraryRoots(['/a', '/b'], { PARALLAX_LIBRARY_PATH: '/c::/a:/d' })).toEqual([LIBRARY_DIR, '/a', '/b', '/c', '/d']);
+    expect(libraryFlags(['list', '--library', '/a', '--json', '--library', 'b'])).toEqual({ dirs: ['/a', 'b'], rest: ['list', '--json'] });
+    expect(libraryFlags(['list', '--library'])).toBe('--library needs a folder');
+  });
+
+  it('add pieces after the first root; on an id clash the earlier root wins (a warning)', () => {
+    const first = fixture();
+    const second = temp('library-extra');
+    write(second, {
+      'ui/panel/piece.json': manifest('panel', { summary: 'Another panel.' }),
+      'ui/panel/files/game/lib/other_panel.py': 'OTHER = 1\n',
+      'ui/badge/piece.json': manifest('badge', { requires: ['panel'] }),
+      'ui/badge/files/game/lib/badge.py': 'BADGE = 1\n',
+    });
+    const library = loadLibrary([first, second]);
+    expect(library.root).toBe(first);
+    expect(library.roots).toEqual([first, second]);
+    expect(library.pieces.get('panel')!.root).toBe(first);
+    expect(library.pieces.get('badge')!.root).toBe(second);
+    expect(library.diagnostics.map((d) => `${d.code} ${d.severity}`)).toEqual(['PP9590 warning']);
+    expect(library.diagnostics[0]!.message).toContain(`${second}/ui/panel is skipped`);
+    // A piece from an extra root requires the first root's; the record names its own root.
+    const dir = project();
+    const plan = planAdd(library, dir, ['badge']);
+    expect(plan.diagnostics.filter((d) => d.severity === 'error')).toEqual([]);
+    applyAdd(dir, plan);
+    expect(readFileSync(`${dir}/game/lib/panel.py`, 'utf8')).toBe('PANEL = 1\n');
+    const record = readLibraryRecord(dir).record.pieces;
+    expect(record['badge']!.from).toBe(`${second.split('/').pop()}/ui/badge`);
+    expect(record['panel']!.from).toBe(`${first.split('/').pop()}/ui/panel`);
+  });
+
+  it('a missing root is an error; --library reaches every command', async () => {
+    expect(loadLibrary([fixture(), '/nonexistent/library']).diagnostics.map((d) => `${d.code} ${d.severity}`)).toEqual(['PP9590 error']);
+    const extra = temp('library-flag');
+    write(extra, { 'props/flag_piece/piece.json': manifest('flag_piece'), 'props/flag_piece/files/game/lib/flag_piece.py': 'F = 1\n' });
+    const out: string[] = [];
+    const stdout = vi.spyOn(process.stdout, 'write').mockImplementation((chunk) => { out.push(String(chunk)); return true; });
+    const stderr = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    try {
+      expect(await libraryMain(['search', 'flag_piece', '--keyword', '--json', '--library', extra])).toBe(0);
+      expect(await libraryMain(['list', '--library', '/nonexistent/library'])).toBe(1);
+      expect(await libraryMain(['list', '--library'])).toBe(2);
+    } finally {
+      stdout.mockRestore();
+      stderr.mockRestore();
+    }
+    expect((JSON.parse(out[0]!) as { pieces: { id: string }[] }).pieces[0]?.id).toBe('flag_piece');
   });
 });
 
