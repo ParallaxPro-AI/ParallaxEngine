@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mammoth"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9859, 3.8223, 5.7583],
+      "offset": [0, 1.9111, 1.0526]
+    }
+  }
+}

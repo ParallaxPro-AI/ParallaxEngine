@@ -1,0 +1,10 @@
+{
+  "id": "stone_furnace",
+  "summary": "A primitive survival smelting furnace: a 1.0 m square, 0.96 m tall body of dry-laid field stones bedded in bu… joints damp; sockets socket_fuel, socket_output.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_furnace or place \"prefab\": \"stone_furnace\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_furnace"]
+}

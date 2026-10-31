@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/horse_saddled"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8438, 1.9937, 2.6693],
+      "offset": [0, 0.9968, 0.2355]
+    }
+  }
+}

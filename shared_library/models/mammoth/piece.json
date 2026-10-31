@@ -1,0 +1,10 @@
+{
+  "id": "mammoth",
+  "summary": "An adult bull woolly mammoth (about 3.4 m at the shoulder hump) on the engine's quadruped_20 rig, so the buil… options coat, shag, tusks; sockets seat_driver, back, head_top.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mammoth or place \"prefab\": \"mammoth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mammoth"]
+}

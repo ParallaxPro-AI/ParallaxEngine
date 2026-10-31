@@ -1,0 +1,10 @@
+{
+  "id": "ankylosaur",
+  "summary": "An armoured club-tailed dinosaur, about 6 m nose to club and 1.75 m at the hips, on the engine's quadruped_20… options skin, plates; sockets back, seat_driver, head_top.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ankylosaur or place \"prefab\": \"ankylosaur\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ankylosaur"]
+}
