@@ -19,6 +19,7 @@ import { checkData } from './data_checks.js';
 import type { Declarations } from './declarations.js';
 import { extractDiagnostics, runExtract } from './extract.js';
 import { checkLook } from './look_checks.js';
+import { checkLook2d } from './look2d_checks.js';
 import { checkModels } from './model_checks.js';
 import { checkNature } from './nature_checks.js';
 import { checkHud } from './hud_checks.js';
@@ -81,6 +82,7 @@ export function checkFiles(files: ProjectTree, declarations: Declarations, optio
   checkEffects(ctx);
   checkVoxels(ctx);
   checkLook(ctx);
+  checkLook2d(ctx);
   const generated = generateProject(ctx);
   return summarize(ctx.out, declarations, generated);
 }

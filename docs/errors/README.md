@@ -11,7 +11,7 @@ PP2041  Unknown prefab "brik"
   Docs: https://parallaxpro.ai/docs/engine/errors/PP2041
 ```
 
-This index lists all 871 codes the engine's sources raise, grouped by range. The
+This index lists all 875 codes the engine's sources raise, grouped by range. The
 machine-readable form is [`catalog.json`](catalog.json): for each code, its range, the area that
 raises it, the message and fix texts found at its raise sites (interpolated values are written
 `{name}`), notes, and the source files. Search the sources for a code to find every place that
@@ -23,7 +23,7 @@ Regenerate after adding or changing a code: `python3 tools/gen_error_catalog.py`
 | Range | Meaning | Codes |
 |---|---|---|
 | [PP1xxx](#pp1xxx) | data files that don't parse or don't have the right shape (resource loader) | 16 |
-| [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 120 |
+| [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 124 |
 | [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 420 |
 | [PP4xxx](#pp4xxx) | declarations and types: `@component` / `@resource` / field schemas, actions, net declarations | 65 |
 | [PP5xxx](#pp5xxx) | values and conversions in core | 3 |
@@ -149,6 +149,10 @@ Project data that is well formed but wrong: names, references, assets, panels (a
 | PP2206 | core | {thing.what} is a {word} assembled from {…} |
 | PP2207 | core | Scene "{scene.id}" is outdoors on flat ground: "{ground.name}" is a {…} shape |
 | PP2208 | core | This game plays an explosion, but nothing in it blows up |
+| PP2210 | core | Everything in this 2D game is a plain colored shape ({…}{…}) and it draws no image |
+| PP2211 | core | Prefab "{prefab.id}" is a {word} drawn as a plain colored shape |
+| PP2212 | core | This 2D game plays no visual effect: no ctx.vfx call, particles emitter or .vfx.json file |
+| PP2213 | core | No camera in this 2D game sets a "background" color, so the screen clears to the default |
 | PP2550 | hud | Stat bar {key} "{path}" names no component "{component}" |
 | PP2551 | hud | {what} "{value}" is not a declared action |
 | PP2552 | hud | Stat bar {key} "{path}" reads "{component}", which this entity doesn't have |

@@ -10,6 +10,10 @@ engine capability.
 Each snippet passes `parallax check`. Full field lists are in the linked
 reference pages. The [cheatsheet](../cheatsheet.md) covers the code side.
 
+Making a 2D game? Read the [quality bar for a 2D game](#quality-bar-for-a-2d-game)
+and [2D games](#2d-games) instead. Most of the 3D sections below (terrain,
+foliage, sky, weather, water, models) don't draw in 2D.
+
 ## Quality bar for a 3D game
 
 Check the game against this list before calling it finished:
@@ -39,6 +43,38 @@ Check the game against this list before calling it finished:
   `sweep` or `track`.
 - [ ] **The world sounds alive.** Music plays, one-shots use `Synth` or recordings,
   and loops use `audio_source`. Weather, water and wind sound by themselves.
+
+## Quality bar for a 2D game
+
+A 2D game is drawn with sprites, shapes, tilemaps and particles. Check it
+against this list before calling it finished:
+
+- [ ] **Things are drawn, not just boxes.** The player, enemies, pickups and
+  props are `sprite`s with an image. When you have no image, write a small SVG
+  in `assets/images/` (see [art for a 2D game](#art-for-a-2d-game)). Keep plain
+  colored `shape`s for things meant to be abstract: a paddle, a board cell, a
+  number tile.
+- [ ] **Things that move are animated.** A character has sprite `animations`
+  (idle, run, jump, hit) and plays the right one. It faces where it's going
+  with `flip_x`.
+- [ ] **The background is chosen.** The camera sets a `background` color, and a
+  large backdrop sprite or scrolling layers at a low `z` fill the play area.
+  A side-scroller gets [parallax layers](#background-and-parallax-layers).
+- [ ] **Draw order is set on purpose.** Every prefab that overlaps others has a
+  top-level `"z"`: backdrop lowest, then the level, pickups, characters and
+  effects on top.
+- [ ] **Actions have feedback that fits them.** Hits, pickups, merges and deaths
+  play a `.vfx.json` effect (`ctx.vfx.play(Assets.vfx.<name>, at=...)`) and a
+  sound. Big moments add `camera.shake`, a short `ctx.time.hitstop` or a
+  tween. The built-in `Effect.*` set is 3D only.
+- [ ] **The level is a tilemap when it's a grid of blocks.** Platforms, walls
+  and floors come from one `tilemap` with `collide`, not dozens of placed boxes.
+- [ ] **The camera frames the play.** A fixed screen uses `fit`; a level wider
+  than the screen uses `"rig": "follow"` with `smoothing` and `bounds`.
+- [ ] **The image has a mood.** Glowing things use `"blend": "additive"`, and a
+  light `"post"` adds bloom and a vignette. Night or dungeon scenes use 2D
+  `light`s over a dark `ambient`.
+- [ ] **The game sounds alive.** Music plays, and every action has a sound.
 
 ## Feature map
 
@@ -553,6 +589,208 @@ graph (states, blends and transitions in prefab data) gives full control;
 
 See [assets](assets.md#sound-and-effects) and
 [`Synth`](../reference/parallax.md#synth).
+
+## 2D games
+
+A game with `Game(mode="2d")` draws with a 2D renderer. The play plane is x/y
+in meters, with **y up**. `z` is only draw order (higher draws on top), and a
+rotation is an angle in degrees. Start from `pnpm parallax new <dir> --template
+blank-2d` or `arcade-2d`, or from a 2D example (`auto_runner`, `bullet_hell`,
+`maze_chase`, `match_three`, `chess` and others in [examples](../examples.md)).
+
+| The game needs | Engine feature | Where it goes | Example game |
+|---|---|---|---|
+| Characters, enemies, pickups, props | [Sprites](#sprites-and-animation) | `sprite` component | `auto_runner`, `bullet_hell` |
+| Art you don't have | [SVG images](#art-for-a-2d-game) | `assets/images/<name>.svg` | `maze_chase`, `chess` |
+| Running, jumping, chomping | [Sprite animation](#sprites-and-animation) | `sprite.animations`, `Sprite.play` | `maze_chase`, `auto_runner` |
+| Abstract pieces: cells, tiles, paddles | [Shapes](#shapes-and-text) | `shape` with `rect`, `circle`, `ring`, `polygon` | `number_merge`, `tic_tac_toe` |
+| Platforms, walls, levels made of blocks | [Tilemaps](#tilemaps-and-grids) | `tilemap` component | none yet |
+| Boards and grid movement | [Grid](#tilemaps-and-grids) | `grid()`, `Grid`, `GridMover` | `chess`, `match_three`, `maze_chase` |
+| Sky color, backdrops, scrolling scenery | [Background](#background-and-parallax-layers) | camera `background`, low-`z` sprites | `auto_runner`, `chess` |
+| Framing a board or arena; following the player | [2D camera](#2d-camera) | `camera` component | `bullet_hell`, `match_three` (fixed `fit`); no follow example yet |
+| Bursts, sparks, petals, dust, trails | [2D effects](#2d-effects-and-juice) | `.vfx.json`, `ctx.vfx`, `particles` | `tic_tac_toe`, `number_merge`, `bullet_hell` |
+| Screen shake, hit-stop, tweens | [Juice](#2d-effects-and-juice) | `camera.shake`, `ctx.time.hitstop`, `move_to` | `bullet_hell`, `number_merge` |
+| Torches, night, glow | [2D light and post](#2d-light-and-post) | `light` component, scene `"post"` | none yet |
+| Falling, bouncing, colliding, triggers | 2D physics | `physics2d()`, `rigidbody`, `collider` (`box`, `circle`, `capsule`) ([ref](../reference/parallax.physics.md)) | `auto_runner` (triggers) |
+
+### Art for a 2D game
+
+There is no sprite library yet, so 2D art comes from image files you add to
+`assets/images/`. PNG and SVG both work. When you have no image, write an SVG:
+it's small, sharp at any size, and easy to edit. Draw it **white** and tint it
+with the sprite's `color`, so one file serves every color. `maze_chase` draws its
+hero from three SVGs like this one:
+
+```xml
+<!-- assets/images/gobbler_open.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <path d="M64 64 L115.40 29.33 A62 62 0 1 0 115.40 98.67 Z" fill="#fff"/>
+</svg>
+```
+
+Give a character more than a flat silhouette: an outline (`stroke`), an eye, a
+lighter top edge or a shadow underneath. Keep the art in one style across the
+game: the same outline width, the same palette and the same light direction.
+
+The 2D renderer always smooths images, so very small pixel-art images look soft
+when scaled up. Draw pixel art at its final size or use SVG `<rect>`s.
+
+### Sprites and animation
+
+A `sprite` draws an image (or a plain rect of `color` when it has none). `size`
+is in meters. A prefab's top-level `"z"` sets its draw order; there is no
+other sorting knob.
+
+```json
+{
+  "z": 2,
+  "components": {
+    "sprite": {
+      "image": "images/dot",
+      "size": [0.58, 0.58],
+      "color": "#ffe633",
+      "animations": {
+        "idle": { "frames": ["images/dot"], "fps": 1, "loop": true },
+        "chomp": { "frames": ["images/dot", "images/gobbler_half", "images/gobbler_open", "images/gobbler_half"], "fps": 14.3, "loop": true }
+      }
+    }
+  }
+}
+```
+
+Each frame is its own image; there is no sprite-sheet slicing. In code, switch
+with `entity.get(Sprite).play("chomp")` and face the way you move with
+`sprite.flip_x = velocity.x < 0`. Change `sprite.color` for a hit flash or a
+glow, and use `"blend": "additive"` on glows, lasers and magic so overlaps
+brighten. See [`Sprite`](../reference/parallax.md#sprite).
+
+### Shapes and text
+
+`shape` draws `rect` (with `corner_radius`), `circle` (`size` is the diameter),
+`ring` (`thickness`) and `polygon` (`points`). Any of them takes `stroke_width`
+and `stroke_color`, and `rect`, `circle` and `ring` take a `texture` image. The
+3D kinds (`box`, `sphere` and others) are an error in 2D.
+
+`text_mesh` writes text in the world, at the entity's `z`, with `[color=#hex]`
+and `[b]` markup. `number_merge` puts one on a rounded rect for its tiles, and
+its `tile_face` behavior sets the color and number:
+
+```json
+{
+  "z": 3,
+  "components": {
+    "shape": { "kind": "rect", "size": [0.956, 0.956], "corner_radius": 0.096 },
+    "text_mesh": { "size": 0.494 }
+  },
+  "behaviors": { "tile_face": {} }
+}
+```
+
+`ctx.ui.float_text` pops a number at a world point (`maze_chase` scores this way).
+
+### Tilemaps and grids
+
+A `tilemap` draws a level from rows of characters, and with `"collide": true`
+the `physics2d()` plugin gives its solid cells colliders. Edit `rows` at run
+time to dig or build.
+
+```json
+"tilemap": {
+  "tile_size": [1, 1], "collide": true,
+  "tiles": { "G": { "image": "images/grass" }, "d": { "image": "images/dirt" },
+             "~": { "color": "#3a7bd5", "solid": false } },
+  "rows": ["......GG", "GGGGG.dd", "dddddddd"]
+}
+```
+
+Rows go top first, and the entity's position is the map's bottom-left corner.
+`" "` and `"."` are empty. For boards and step-by-step movement, use the `grid()`
+plugin: `Grid.center(cell)`, `Grid.cell_at(point)` and a `grid_mover` that walks
+cell to cell ([ref](../reference/parallax.grid.md)).
+
+### Background and parallax layers
+
+Set the camera's `background` color in every 2D game. Then fill the screen
+with a large sprite at a low `z`. `chess` uses one backdrop image:
+
+```json
+{ "z": -3, "components": { "sprite": { "image": "images/backdrop", "size": [42.8, 24.0] } } }
+```
+
+The engine has no parallax-layer component. A side-scroller makes depth with a
+few sprite bands at different `z` that scroll at different speeds.
+`auto_runner` gives each band a small component of its own (`scrolls`, with a
+`factor` below 1 for far layers) and a system that moves and wraps them. Copy
+that pattern from `examples/auto_runner` (`game/components.py`,
+`prefabs/band_*.prefab.json`).
+
+### 2D camera
+
+A 2D camera must be `"mode": "orthographic"`. `size` is half the view height in
+meters. Use the `fixed` rig (the default) or `follow`; `orbit` and
+`first_person` are 3D only.
+
+```json
+{ "components": { "camera": { "mode": "orthographic", "fit": [[-4.8, -8], [4.8, 8]], "background": "#040805" } } }
+```
+
+`fit` keeps a rectangle (or `"grid"`) in view at any screen shape. For a level
+bigger than the screen, use `"rig": "follow"` with `"follow": "player"`,
+`smoothing`, `look_ahead` (x only) and `bounds` (which clamps the view's
+center). In code: `ctx.camera.main.shake(0.3, 0.25)` and
+`ctx.camera.main.zoom_to(4, seconds=0.5)`. `kick()` is 3D only.
+
+### 2D effects and juice
+
+The built-in `Effect.*` set is 3D only, so a 2D game writes its own effects as
+`assets/vfx/<name>.vfx.json`. `tic_tac_toe`'s burst when a mark lands:
+
+```json
+{"rate": 80, "duration": 0.45, "max": 28, "lifetime": 0.4, "speed": [1.4, 3.8], "direction": 90, "spread": 360, "drag": 3, "size": 0.14, "size_end": 0, "color": "#fff0b8e6", "color_end": "#99b8e600", "blend": "additive"}
+```
+
+2D keys: `burst`, `rate`, `duration`, `lifetime`, `speed`, `direction`,
+`spread`, `radius`, `gravity` (a number along y, or `[x, y]`), `drag`, `size`,
+`size_end`, `color`, `color_end`, `spin`, `shape` (`circle` or `square`),
+`image`, `blend` (`alpha` or `additive`), `haze` (a shockwave ripple), `max` and
+`extends`. 3D-only keys are ignored.
+
+```python
+ctx.vfx.play(Assets.vfx.fuse_burst, at=pos, color=light, color_end=tile)  # tinted per call
+ctx.vfx.beam(start, end, color=red, width=0.05)    # lasers and tracers
+ctx.vfx.trail(entity, color=gold, width=0.1)       # 2D trails take only color and width
+```
+
+For a continuous effect (pollen, rain, embers) put `"particles": {"effect":
+"vfx/pollen_far", "emitting": true}` on a prefab, as `bullet_hell` does.
+
+Juice that works in 2D: `camera.shake`, `ctx.time.hitstop(0.05)`,
+`ctx.time.ramp` for slow motion, the `move_to`, `rotate_to` and `scale_to`
+tweens on a transform, and changing `sprite.color`. `bullet_hell` sizes its
+shake to the moment (`game/systems/feedback.py`): small for a broken shield,
+big for a boss.
+
+`SurfaceFx`, `Outline`, `Decal`, `HeatHaze` shimmer, `Effect.*`,
+`ctx.vfx.lightning` and sky, fog, clouds and weather don't draw in 2D.
+
+### 2D light and post
+
+With no `light` in the scene, everything is drawn as authored. Add a point or
+spot `light` and the rest of the scene drops to the environment's `ambient`,
+so torches, lamps and glowing pickups light up a dark level. A 2D spot points
+along the entity's +x; a directional light raises the ambient.
+
+```json
+{
+  "environment": { "ambient": "#1a1c2c", "post": { "bloom": 0.8, "bloom_threshold": 0.7, "vignette": 0.4 } },
+  "entities": [
+    { "prefab": "torch", "at": [3, 1], "components": { "light": { "kind": "point", "color": "#ffb060", "intensity": 2, "range": 4 } } }
+  ]
+}
+```
+
+2D `post` draws `bloom` and `vignette` only. `bloom_threshold` is a drawn color
+from 0 to 1, so set it below 1 for bright things to glow.
 
 ## Performance with large scenes
 
