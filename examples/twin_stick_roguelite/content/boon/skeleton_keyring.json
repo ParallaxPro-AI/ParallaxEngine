@@ -1,0 +1,2 @@
+{ "name": "Skeleton Keyring", "blurb": "Start with a key — the first chest is free.",
+  "effect": "keys", "amount": 1, "costs": [45] }

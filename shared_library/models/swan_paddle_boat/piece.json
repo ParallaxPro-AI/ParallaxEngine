@@ -1,0 +1,10 @@
+{
+  "id": "swan_paddle_boat",
+  "summary": "A stylised two-seat swan pedal boat for a park lake: a plump lofted fibreglass body hollowed into a cockpit w… joints pedal_crank, tiller, paddle_wheel, rudder; options plumage, beak; sockets seat_driver, seat_pax_1, eye_point, waterline, socket_bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.swan_paddle_boat or place \"prefab\": \"swan_paddle_boat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:swan_paddle_boat"]
+}

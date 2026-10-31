@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kotatsu_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6712, 0.541, 1.6813],
+      "offset": [0.0036, 0.2705, -0.0018]
+    }
+  }
+}

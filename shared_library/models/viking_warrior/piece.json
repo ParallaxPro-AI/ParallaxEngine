@@ -1,0 +1,10 @@
+{
+  "id": "viking_warrior",
+  "summary": "A Norse raider on the canonical 17-bone humanoid rig: a conical iron helm with a nasal bar (no horns), a full… options skin, hair, tunic, headgear; sockets grip_r, grip_l, shield_back, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.viking_warrior or place \"prefab\": \"viking_warrior\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:viking_warrior"]
+}

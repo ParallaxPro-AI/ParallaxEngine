@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/traffic_cone",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.36,
+    0.818,
+    0.36
+   ],
+   "offset": [
+    0,
+    0.409,
+    0
+   ]
+  }
+ }
+}

@@ -1,0 +1,1 @@
+{ "extends": "camp", "components": { "camp": { "kind": "mana_font" }, "model": { "model": "models/camp_mana_font" } } }

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tuk_tuk"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 360,
+      "linear_damping": 0.06,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.54,
+        1.8545,
+        2.735
+      ],
+      "offset": [
+        0,
+        0.9272,
+        0.0175
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 15,
+      "steering": 36,
+      "grip": 5.5,
+      "turn_rate": 1.8
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.9272,
+        0.0175
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

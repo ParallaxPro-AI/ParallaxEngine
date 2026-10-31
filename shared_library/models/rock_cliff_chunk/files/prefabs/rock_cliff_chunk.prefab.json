@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rock_cliff_chunk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.2714, 4.6458, 2.7836],
+      "offset": [-0.0043, 2.3199, 0.1455]
+    }
+  }
+}

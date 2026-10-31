@@ -1,0 +1,10 @@
+{
+  "id": "stun_baton",
+  "summary": "A 0.6 m telescoping stun baton: a rounded butt cap with a lanyard ring, a finger-grooved rubber grip, a hand-… joints power_switch, extend; options arc, tip_colour; sockets arc, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.stun_baton or place \"prefab\": \"stun_baton\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:stun_baton"]
+}

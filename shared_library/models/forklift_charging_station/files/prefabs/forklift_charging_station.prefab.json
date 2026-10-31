@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/forklift_charging_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.75, 2.43, 0.8],
+      "offset": [-0.055, 1.215, 0.04]
+    }
+  }
+}

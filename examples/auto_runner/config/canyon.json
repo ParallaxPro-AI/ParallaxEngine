@@ -1,0 +1,36 @@
+{
+  "runner_x": -7.0,
+  "ground_y": -3.0,
+  "spawn_x": 13.0,
+  "despawn_x": -12.0,
+
+  "base_speed": 7.0,
+  "endless_speed_cap": 26.0,
+  "endless_ramp_per_100m": 0.6,
+
+  "min_react_time": 0.3,
+  "floor_distance": 6.0,
+  "seed_hazards": 3,
+  "pass_margin": 0.45,
+  "praise_seconds": 1.0,
+
+  "coin_value": 1,
+  "streak_step": 12,
+  "max_multiplier": 5,
+  "arc_count": 5,
+  "arc_span": 0.82,
+  "line_count": 4,
+  "line_spacing": 1.5,
+  "line_y": -2.55,
+  "duck_line_count": 4,
+  "duck_line_spacing": 1.4,
+  "duck_line_y": -2.6,
+
+  "goal_distance": 1000,
+  "gate_lead": 20.0,
+  "gate_y": 0.25,
+  "run_in": 4.0,
+
+  "hit_shake": 0.35,
+  "end_card_delay": 0.8
+}

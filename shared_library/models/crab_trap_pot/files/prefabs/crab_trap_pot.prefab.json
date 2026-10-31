@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crab_trap_pot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.646, 0.894, 0.644],
+      "offset": [0, 0.447, 0.001]
+    }
+  }
+}

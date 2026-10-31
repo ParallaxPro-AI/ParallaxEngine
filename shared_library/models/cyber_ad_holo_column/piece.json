@@ -1,0 +1,10 @@
+{
+  "id": "cyber_ad_holo_column",
+  "summary": "A cyberpunk street advertising column: an octagonal black kiosk 0.9 m across and 3.1 m tall (the proportions… joints holo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyber_ad_holo_column or place \"prefab\": \"cyber_ad_holo_column\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyber_ad_holo_column"]
+}

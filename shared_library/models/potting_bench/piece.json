@@ -1,0 +1,10 @@
+{
+  "id": "potting_bench",
+  "summary": "A freestanding timber potting bench: a slatted worktop at 0.9 m with a galvanised zinc tray on the left, a to… joints drawer; options finish, props; sockets socket_worktop, socket_stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.potting_bench or place \"prefab\": \"potting_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:potting_bench"]
+}

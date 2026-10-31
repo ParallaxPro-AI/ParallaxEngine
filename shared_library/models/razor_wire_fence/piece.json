@@ -1,0 +1,10 @@
+{
+  "id": "razor_wire_fence",
+  "summary": "One 3.0 m bay of flat-wrap razor wire fencing: barbed razor tape woven into a 0.40 m diamond lattice and clip… options finish, ends; sockets end_l, end_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.razor_wire_fence or place \"prefab\": \"razor_wire_fence\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:razor_wire_fence"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/armor_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7122, 1.9191, 0.52],
+      "offset": [0, 0.9596, 0]
+    }
+  }
+}

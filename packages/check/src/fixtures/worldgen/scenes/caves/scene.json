@@ -1,0 +1,6 @@
+{
+  "voxels": {"mode": "smooth", "y_range": [-16, 16], "render_distance": 1,
+             "generator": {"type": "landscape", "base_height": 2, "amplitude": 2, "strata": [{"block": "dirt", "depth": 2}, {"block": "stone"}],
+                           "caves": {"frequency": 0.08, "threshold": 0.7}}},
+  "entities": [{"prefab": "eye", "at": [0, 8, 0]}]
+}

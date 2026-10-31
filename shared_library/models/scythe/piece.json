@@ -1,0 +1,10 @@
+{
+  "id": "scythe",
+  "summary": "A 1.56 m mowing scythe: a gently bowed ash snath with an iron butt cap and two turned hand nibs on iron clamp… options blade_finish, snath_wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.scythe or place \"prefab\": \"scythe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:scythe"]
+}

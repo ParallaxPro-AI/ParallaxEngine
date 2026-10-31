@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cooler_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.67, 0.407, 0.427],
+      "offset": [0, 0.2015, 0.0045]
+    }
+  }
+}

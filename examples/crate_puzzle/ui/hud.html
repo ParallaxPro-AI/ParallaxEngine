@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="dockbot.css">
+<link rel="stylesheet" href="hud.css">
+<div class="hud">
+  <div class="corner l">
+    <div class="key"><i></i><span data-text="level"></span></div>
+    <div class="big"><b data-bind="level"></b><span>/<b data-bind="levels"></b></span></div>
+    <div class="name" data-bind="level_name"></div>
+  </div>
+
+  <div class="corner r">
+    <div class="key"><span data-text="moves"></span><i></i></div>
+    <div class="big" data-bind="moves"></div>
+    <div class="sub"><span data-text="pushes"></span> <span data-bind="pushes"></span> · <span data-text="shift"></span> <span data-bind="total"></span></div>
+    <div class="pill" data-class-done="all_docked"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square"><path d="M5 12l5 5 9-10"/></svg><span data-text="crates"></span> <b data-bind="crates"></b></div>
+  </div>
+
+  <button class="pause" data-action="pause" aria-label="Pause"><i></i><i></i></button>
+
+  <div class="intro" data-show="intro" data-class-odd="odd_level">
+    <i class="br tl"></i><i class="br tr"></i>
+    <div class="eyebrow"><span data-text="level"></span> <span data-bind="level"></span> / <span data-bind="levels"></span></div>
+    <div class="intro-title" data-bind="level_name"></div>
+    <div class="intro-sub" data-bind="level_hint"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="foot">
+    <div class="controls">
+      <button class="tool" data-action="undo" data-attr-disabled="no_undo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="square"><path d="M9 5L4 10l5 5"/><path d="M4 10h10a5 5 0 0 1 0 10h-4"/></svg><span data-text="undo"></span><span class="kbd">Z</span></button>
+      <button class="tool" data-action="redo" data-attr-disabled="no_redo"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="square"><path d="M15 5l5 5-5 5"/><path d="M20 10H10a5 5 0 0 0 0 10h4"/></svg><span data-text="redo"></span><span class="kbd">Y</span></button>
+      <button class="tool reset" data-action="reset"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="square"><path d="M20 12a8 8 0 0 1-14.3 4.9"/><path d="M4 12a8 8 0 0 1 14.3-4.9"/><path d="M19 3v5h-5"/><path d="M5 21v-5h5"/></svg><span data-text="reset"></span><span class="kbd">R</span></button>
+    </div>
+    <div class="hint first-only" data-class-first="first_level"><span class="desktop-only" data-text="hint_keys"></span><span class="mobile-only" data-text="hint_touch"></span></div>
+  </div>
+</div>

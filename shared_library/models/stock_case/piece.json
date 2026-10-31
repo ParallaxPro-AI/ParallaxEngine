@@ -1,0 +1,10 @@
+{
+  "id": "stock_case",
+  "summary": "ONE CASE OF STOCK — the shelf-ready unit a person carries from the cage to the shelf: a kraft tray with a tea… options contents, state; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stock_case or place \"prefab\": \"stock_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stock_case"]
+}

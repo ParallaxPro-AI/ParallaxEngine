@@ -1,0 +1,22 @@
+{
+  "number": 5,
+  "title": "The silent gatekeeper",
+  "summary": "A Gatekeeper bars the first hall of the ruins.",
+  "reward_xp": 200,
+  "reward_gold": 100,
+  "reward_items": [
+    "health_potion"
+  ],
+  "start": "duel",
+  "steps": {
+    "duel": {
+      "text": "Defeat the Gatekeeper in the first hall. Dodge his marked attacks.",
+      "verb": "defeat",
+      "target": "war_chief",
+      "marker": "beacon_gatekeeper",
+      "sets": [
+        "ironhold_done"
+      ]
+    }
+  }
+}

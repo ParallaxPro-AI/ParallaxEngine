@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": { "model": "models/chest" },
+    "collider": { "shape": "box", "size": [1.6, 1.4, 1.6], "trigger": true },
+    "pickup": { "gold": 45, "items": ["health_potion"], "xp": 5 }
+  }
+}

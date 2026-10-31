@@ -1,0 +1,10 @@
+{
+  "id": "apartment_lowrise",
+  "summary": "A three-storey red-brick apartment block: granite base course, brick quoined corners, a precast string course… joints entrance, entrance_r; options facade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.apartment_lowrise or place \"prefab\": \"apartment_lowrise\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:apartment_lowrise"]
+}

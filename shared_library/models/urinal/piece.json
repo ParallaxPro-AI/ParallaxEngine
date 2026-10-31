@@ -1,0 +1,10 @@
+{
+  "id": "urinal",
+  "summary": "A wall-style ceramic urinal: a rounded-front porcelain pod hollowed into an open basin with a drain and water… joints flush_button; sockets socket_drain.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.urinal or place \"prefab\": \"urinal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:urinal"]
+}

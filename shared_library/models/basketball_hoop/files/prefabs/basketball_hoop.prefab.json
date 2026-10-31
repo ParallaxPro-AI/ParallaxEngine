@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basketball_hoop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 3.953, 1.998],
+      "offset": [0, 1.975, 0.009]
+    }
+  }
+}

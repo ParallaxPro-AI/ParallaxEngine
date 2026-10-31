@@ -1,0 +1,10 @@
+{
+  "id": "holiday_tree",
+  "summary": "A stylized decorated evergreen: five faceted drooping tiers of green stacked on a trunk in a red stand bucket… options lights, bauble, topper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.holiday_tree or place \"prefab\": \"holiday_tree\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:holiday_tree"]
+}

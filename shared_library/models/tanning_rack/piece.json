@@ -1,0 +1,10 @@
+{
+  "id": "tanning_rack",
+  "summary": "A hide-tanning frame: two pole uprights and two crossbars rope-lashed into a square that leans back on a rear… options hide; sockets socket_hide.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tanning_rack or place \"prefab\": \"tanning_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tanning_rack"]
+}

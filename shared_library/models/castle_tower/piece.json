@@ -1,0 +1,10 @@
+{
+  "id": "castle_tower",
+  "summary": "A square castle wall tower, 5.0 m on plan 9.9 m to the merlon tops (14.4 m with the `roofed` top): battered r… options stone, banner, top; sockets roof, chamber, wall_west, wall_east.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.castle_tower or place \"prefab\": \"castle_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:castle_tower"]
+}

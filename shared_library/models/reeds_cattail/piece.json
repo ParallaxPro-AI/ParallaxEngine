@@ -1,0 +1,10 @@
+{
+  "id": "reeds_cattail",
+  "summary": "A clump of cattails (bulrush, Typha) as they grow at a pond or marsh edge: about 30 long strap leaves 1.1-1.7…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reeds_cattail or place \"prefab\": \"reeds_cattail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reeds_cattail"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cannon_deck_carriage",
+  "summary": "A naval long gun on a four-truck sea-service carriage: a blackened cast-iron 12-pounder (cascabel with breech… joints gun, truck_fl, truck_fr, truck_rl, truck_rr, quoin, …; options carriage, barrel; sockets loader, gun_captain, muzzle, vent.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cannon_deck_carriage or place \"prefab\": \"cannon_deck_carriage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cannon_deck_carriage"]
+}

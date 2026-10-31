@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_wax"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1251, 0.0742, 0.0762],
+      "offset": [0.0075, 0.035, 0]
+    }
+  }
+}

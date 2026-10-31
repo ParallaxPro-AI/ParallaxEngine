@@ -1,0 +1,10 @@
+{
+  "id": "breakfast_plate",
+  "summary": "A full cooked breakfast on a 30 cm glazed china plate with a blue rim band: two sunny-side-up fried eggs with… sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.breakfast_plate or place \"prefab\": \"breakfast_plate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:breakfast_plate"]
+}

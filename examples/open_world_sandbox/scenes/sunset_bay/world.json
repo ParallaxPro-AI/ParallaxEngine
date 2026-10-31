@@ -1,0 +1,8 @@
+{
+  "cell_size": 256,
+  "streaming": { "radius": 400 },
+  "layers": {
+    "base": {},
+    "job_runner": { "active_when": { "quest_active": "closing_window" } }
+  }
+}

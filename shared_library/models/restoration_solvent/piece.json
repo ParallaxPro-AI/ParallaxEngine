@@ -1,0 +1,10 @@
+{
+  "id": "restoration_solvent",
+  "summary": "A 0.145 m amber solvent bottle with a black screw cap, a plain paper label and a cotton swab standing in the…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_solvent or place \"prefab\": \"restoration_solvent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_solvent"]
+}

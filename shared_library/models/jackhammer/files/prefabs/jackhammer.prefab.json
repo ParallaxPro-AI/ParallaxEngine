@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jackhammer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.423, 0.96, 0.2072],
+      "offset": [0, 0.48, -0.0164]
+    }
+  }
+}

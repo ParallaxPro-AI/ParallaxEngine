@@ -1,0 +1,10 @@
+{
+  "id": "duty_free_stand",
+  "summary": "A double-sided airport duty-free fragrance island: a gloss-white lacquer plinth with a chrome trim line, lit… joints stock_door; options finish; sockets socket_shopper_front, socket_shopper_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.duty_free_stand or place \"prefab\": \"duty_free_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:duty_free_stand"]
+}

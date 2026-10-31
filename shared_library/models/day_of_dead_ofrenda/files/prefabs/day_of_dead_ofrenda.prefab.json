@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/day_of_dead_ofrenda"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.244, 1.8855, 0.8479],
+      "offset": [0, 0.9423, 0.0519]
+    }
+  }
+}

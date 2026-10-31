@@ -1,0 +1,10 @@
+{
+  "id": "tanker_truck",
+  "summary": "A rigid fuel tanker: the cab-over truck on a 8.4 m chassis carrying an elliptical three-compartment barrel wi… joints manhole_lid_0, manhole_lid_1, manhole_lid_2, handrail_l, handrail_r, cab_door_l, …; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_hose, socket_fill, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.tanker_truck or place \"prefab\": \"tanker_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:tanker_truck"]
+}

@@ -1,0 +1,10 @@
+{
+  "voice": "rival",
+  "trigger": "steal",
+  "lines": [
+    "Too slow!",
+    "Nice try!",
+    "Get outta here!",
+    "Mine now."
+  ]
+}

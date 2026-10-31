@@ -1,0 +1,10 @@
+{
+  "id": "cctv_camera",
+  "summary": "A wall-mounted bullet CCTV camera: a moulded escutcheon plate, a swept tubular arm, a PAN collar with a 3 mm… joints pan, tilt; options led, housing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cctv_camera or place \"prefab\": \"cctv_camera\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cctv_camera"]
+}

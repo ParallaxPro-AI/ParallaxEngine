@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/athlete_runner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5547, 1.8198, 0.333],
+      "offset": [0, 0.9099, 0.0407]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "rice_cooker",
+  "summary": "A 1.8 litre countertop rice cooker: a rounded soft-square body on a dark skirt, a removable stainless inner p… joints lid; options fill, finish; sockets socket_pot, steam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rice_cooker or place \"prefab\": \"rice_cooker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rice_cooker"]
+}

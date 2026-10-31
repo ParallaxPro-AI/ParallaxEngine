@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hammer"
+    },
+    "viewmodel_item": {
+      "hip": [0.15, -0.32, 0.28],
+      "hip_turn": [-14.323945, -20.053523, -34.377468],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.147, 0.0313, 0.3312],
+      "offset": [-0.0145, 0, 0.1644]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cargo_exosuit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.2591, 3.155, 2.2818],
+      "offset": [0, 1.5775, 0.1487]
+    }
+  }
+}

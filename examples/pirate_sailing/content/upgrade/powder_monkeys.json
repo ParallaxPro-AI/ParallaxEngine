@@ -1,0 +1,5 @@
+{
+  "name": "Powder Monkeys",
+  "blurb": "Broadsides reload 25% faster.",
+  "stat": "reload_cut", "amount": 0.25, "max_level": 3
+}

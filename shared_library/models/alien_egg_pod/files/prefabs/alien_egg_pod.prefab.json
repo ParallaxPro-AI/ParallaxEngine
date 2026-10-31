@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alien_egg_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9781, 1.27, 1.9577],
+      "offset": [-0.0402, 0.635, -0.0611]
+    }
+  }
+}

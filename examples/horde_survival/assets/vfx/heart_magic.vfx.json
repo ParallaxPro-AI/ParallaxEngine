@@ -1,0 +1,1 @@
+{ "extends": "effect/magic", "rate": 0, "burst": 26, "max": 36, "light": { "color": "#8aa8ff", "intensity": 3, "range": 4, "seconds": 0.6 } }

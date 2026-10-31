@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/construction_worker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.963, 0.35],
+      "offset": [0, 0.9805, 0.021]
+    }
+  }
+}

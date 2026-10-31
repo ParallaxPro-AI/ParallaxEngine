@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shop_awning"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.11, 1.0659, 2.2007],
+      "offset": [0, 0.5329, -0.0296]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "skyscraper_glass",
+  "summary": "A glass curtain-wall office skyscraper on a granite plaza: a 26 m square tower with 5 m radius rounded corner… joints revolving_door, side_door_l, side_door_r; options glass_tint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skyscraper_glass or place \"prefab\": \"skyscraper_glass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skyscraper_glass"]
+}

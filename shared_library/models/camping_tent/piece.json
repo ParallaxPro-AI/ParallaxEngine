@@ -1,0 +1,10 @@
+{
+  "id": "camping_tent",
+  "summary": "A two-person backpacking dome tent: a taut rain fly pulled over two crossing poles, its four panels sagging s… joints door; options fly_colour; sockets socket_door, socket_inside, socket_vestibule.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camping_tent or place \"prefab\": \"camping_tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camping_tent"]
+}

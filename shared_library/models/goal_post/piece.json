@@ -1,0 +1,10 @@
+{
+  "id": "goal_post",
+  "summary": "A sports goal: two white tubular uprights and a crossbar with a net slung behind, that billows on impact. joints net; options config; sockets socket_goal_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.goal_post or place \"prefab\": \"goal_post\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:goal_post"]
+}

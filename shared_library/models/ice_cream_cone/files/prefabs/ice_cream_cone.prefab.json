@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_cream_cone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.076, 0.1902, 0.076],
+      "offset": [0, 0.0951, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/noodle_table_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.56, 0.204, 0.32],
+      "offset": [0, 0.102, 0]
+    }
+  }
+}

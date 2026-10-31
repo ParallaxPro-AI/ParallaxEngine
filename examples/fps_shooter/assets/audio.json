@@ -1,0 +1,36 @@
+{
+ "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3": {
+  "volume": 0.28
+ },
+ "https://r2.parallaxpro.ai/assets/audio_music/22/43/2243ce599da7f8fca6e57f22acde8249b9258b5b1341e5957482ef79a90ddd14.mp3": {
+  "volume": 0.14
+ },
+ "sfx/dm_step": {
+  "volume": 0.45,
+  "pitch": [
+   0.94,
+   1.06
+  ]
+ },
+ "sfx/dm_mag_out": {
+  "volume": 0.45,
+  "pitch": [
+   0.94,
+   1.06
+  ]
+ },
+ "sfx/dm_mag_in": {
+  "volume": 0.45,
+  "pitch": [
+   0.94,
+   1.06
+  ]
+ },
+ "sfx/dm_bolt": {
+  "volume": 0.45,
+  "pitch": [
+   0.94,
+   1.06
+  ]
+ }
+}

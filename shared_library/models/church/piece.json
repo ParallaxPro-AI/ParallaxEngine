@@ -1,0 +1,10 @@
+{
+  "id": "church",
+  "summary": "A neighbourhood Gothic Revival parish church in grey-buff stone: a steep-gabled nave buttressed down both fla… options masonry; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.church or place \"prefab\": \"church\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:church"]
+}

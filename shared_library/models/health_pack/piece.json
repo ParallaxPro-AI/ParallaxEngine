@@ -1,0 +1,10 @@
+{
+  "id": "health_pack",
+  "summary": "A small first-aid case: an off-white shell on a metal foot band, a hinged lid with a red cross INSET into a m… joints lid, latches; sockets socket_contents.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.health_pack or place \"prefab\": \"health_pack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:health_pack"]
+}

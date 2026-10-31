@@ -1,0 +1,10 @@
+{
+  "id": "leather_glove",
+  "summary": "A single loose leather work glove lying palm-down: a stitched back panel, four splayed fingers, a thumb out t… sockets cuff_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.leather_glove or place \"prefab\": \"leather_glove\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:leather_glove"]
+}

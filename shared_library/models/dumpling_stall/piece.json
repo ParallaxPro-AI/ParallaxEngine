@@ -1,0 +1,10 @@
+{
+  "id": "dumpling_stall",
+  "summary": "A night-market dumpling stall: a timber post-and-rail frame on stone pads under a corrugated roof falling to… joints steamer_lid; options noren; sockets socket_vendor, socket_customer, socket_serve, steam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dumpling_stall or place \"prefab\": \"dumpling_stall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dumpling_stall"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "stapler_tape_set",
+  "summary": "Desk stationery pair: a full-strip office stapler (160 mm long, black with a chrome staple channel, anvil and… joints arm, tape_roll.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stapler_tape_set or place \"prefab\": \"stapler_tape_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stapler_tape_set"]
+}

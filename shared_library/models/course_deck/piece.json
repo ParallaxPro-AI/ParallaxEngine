@@ -1,0 +1,10 @@
+{
+  "id": "course_deck",
+  "summary": "A 3.6 m square suspended course platform: a diamond-plate deck inside a steel kerb, a lit reveal band running… options trim, surface.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.course_deck or place \"prefab\": \"course_deck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:course_deck"]
+}

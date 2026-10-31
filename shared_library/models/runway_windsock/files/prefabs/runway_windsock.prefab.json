@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/runway_windsock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1527, 6.986, 3.8449],
+      "offset": [0, 3.493, -1.4725]
+    }
+  }
+}

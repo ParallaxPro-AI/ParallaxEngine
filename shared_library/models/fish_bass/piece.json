@@ -1,0 +1,10 @@
+{
+  "id": "fish_bass",
+  "summary": "A largemouth bass, a catchable freshwater sport fish: 0.45 m snout to tail (a typical keeper; adults run 0.3-… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_bass or place \"prefab\": \"fish_bass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_bass"]
+}

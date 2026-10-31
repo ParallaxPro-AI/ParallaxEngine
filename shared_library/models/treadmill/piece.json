@@ -1,0 +1,10 @@
+{
+  "id": "treadmill",
+  "summary": "A motorised running treadmill: a running belt on a deck between side rails, a motor cover at the front, two u… joints incline, belt, console.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.treadmill or place \"prefab\": \"treadmill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:treadmill"]
+}

@@ -1,0 +1,10 @@
+{
+  "voice": "mate",
+  "trigger": "brick",
+  "lines": [
+    "Brick!",
+    "Air ball!",
+    "Off the iron!",
+    "Board it!"
+  ]
+}

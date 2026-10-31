@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tilled_soil_tile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.998, 0.1166, 1.0002],
+      "offset": [0, 0.0573, -0.0011]
+    }
+  }
+}

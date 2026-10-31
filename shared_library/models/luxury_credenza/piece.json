@@ -1,0 +1,10 @@
+{
+  "id": "luxury_credenza",
+  "summary": "Luxury credenza: a smoked-walnut sideboard with four reeded doors and slim brass bar pulls over a hollow two-… joints door_0_hinge, door_1_hinge, door_2_hinge, door_3_hinge; options styling, wood, metal, top; sockets surface_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_credenza or place \"prefab\": \"luxury_credenza\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_credenza"]
+}

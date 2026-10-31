@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/door_boards"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.087, 2.05, 0.0575],
+      "offset": [0.0021, 1.025, 0.0001]
+    }
+  }
+}

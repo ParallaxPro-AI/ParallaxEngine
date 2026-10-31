@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rail_track_switch"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "leaf_blower",
+  "summary": "A handheld petrol leaf blower: a crowned moulded engine/fan housing on a dark base pan with rubber feet, a re… joints throttle, pull_cord; options colour; sockets socket_grip, nozzle, exhaust.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.leaf_blower or place \"prefab\": \"leaf_blower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:leaf_blower"]
+}

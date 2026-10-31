@@ -1,0 +1,2 @@
+{ "name": "Searing Core", "desc": "Bolts pierce 1 more enemy.",
+  "icon": "pierce", "weight": 6, "max_stacks": 4, "effect": { "pierce_add": 1 } }

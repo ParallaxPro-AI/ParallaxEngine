@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chakram"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.2, 0.36],
+      "hip_turn": [5.729578, 14.323945, -11.459156],
+      "eye_relief": 0.24,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.0121, 0.3],
+      "offset": [0, 0.0025, 0]
+    }
+  }
+}

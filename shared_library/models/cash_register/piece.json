@@ -1,0 +1,10 @@
+{
+  "id": "cash_register",
+  "summary": "A shop-counter cash register: a heavy lower housing with a sliding cash drawer, a machine head carrying a ban… joints key_bank, drawer; options style; sockets socket_drawer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cash_register or place \"prefab\": \"cash_register\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cash_register"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/supply_cache"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0218, 0.483, 0.55],
+      "offset": [0, 0.2415, 0.003]
+    }
+  }
+}

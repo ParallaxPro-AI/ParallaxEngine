@@ -1,0 +1,22 @@
+{
+ "components": {
+  "model": {
+   "model": "models/checkpoint_sign",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    5.92,
+    1.47,
+    0.84
+   ],
+   "offset": [
+    0.0,
+    0.735,
+    0.16
+   ],
+   "layer": "world"
+  }
+ }
+}

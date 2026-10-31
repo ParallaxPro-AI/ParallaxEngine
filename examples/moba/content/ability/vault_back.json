@@ -1,0 +1,10 @@
+{
+  "name": "Vault Back",
+  "blurb": "Leap away from where you aim.",
+  "kind": "dash",
+  "cooldown": { "base": 12, "per_rank": -1.2 },
+  "mana": { "base": 45, "per_rank": 4 },
+  "dash": { "base": 7, "per_rank": 1.1 },
+  "dash_away": true,
+  "vfx": "vfx/blink"
+}

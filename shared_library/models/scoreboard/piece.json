@@ -1,0 +1,10 @@
+{
+  "id": "scoreboard",
+  "summary": "A free-standing two-post arena scoreboard, 2.44 m wide and 2.59 m to the top of its sun hood: a painted steel…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scoreboard or place \"prefab\": \"scoreboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scoreboard"]
+}

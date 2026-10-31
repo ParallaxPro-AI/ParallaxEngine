@@ -1,0 +1,10 @@
+{
+  "id": "binoculars",
+  "summary": "A pair of 8x42 porro-prism binoculars: two rubber-armoured telescopes whose wide objective barrels step in th… joints half_l, half_r, focus_wheel; options colour; sockets socket_eye, socket_strap_l, socket_strap_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.binoculars or place \"prefab\": \"binoculars\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:binoculars"]
+}

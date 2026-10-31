@@ -1,0 +1,10 @@
+{
+  "id": "weight_bench",
+  "summary": "An adjustable weight-training bench: padded seat + reclining backrest on a welded steel frame, with a barbell… joints backrest, rack; sockets socket_seat, socket_bar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.weight_bench or place \"prefab\": \"weight_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:weight_bench"]
+}

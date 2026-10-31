@@ -1,0 +1,10 @@
+{
+  "id": "self_balancing_scooter",
+  "summary": "A two-wheeled self-balancing board (a 'hoverboard'): two moulded foot halves joined at a centre pivot, each w… joints half_l, half_r, wheel_l, wheel_r; options shell_colour; sockets seat_stand, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.self_balancing_scooter or place \"prefab\": \"self_balancing_scooter\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:self_balancing_scooter"]
+}

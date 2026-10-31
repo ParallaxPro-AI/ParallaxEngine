@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kitchen_island"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.88, 1.0368, 1.1897],
+      "offset": [0, 0.5164, 0.0649]
+    }
+  }
+}

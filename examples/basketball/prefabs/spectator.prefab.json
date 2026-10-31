@@ -1,0 +1,19 @@
+{
+  "components": {
+    "model": {
+      "model": "models/civilian",
+      "options": {
+        "skin": "light",
+        "jacket": "teal",
+        "hair": "grey"
+      },
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/standing_applause"
+    }
+  },
+  "behaviors": {
+    "model_variety": {}
+  }
+}

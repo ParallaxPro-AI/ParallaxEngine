@@ -1,0 +1,10 @@
+{
+  "id": "back_bar_shelf",
+  "summary": "A 2 m pub back bar: a wood base cabinet with four raised-panel doors (joints `door_1`..`door_4`, real cavitie… joints door_1, door_2, door_3, door_4; options wood, stock; sockets counter_l, counter_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.back_bar_shelf or place \"prefab\": \"back_bar_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:back_bar_shelf"]
+}

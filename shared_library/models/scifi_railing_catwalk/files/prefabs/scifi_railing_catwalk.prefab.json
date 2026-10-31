@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scifi_railing_catwalk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.99, 1.37, 0.14],
+      "offset": [0, 0.685, 0]
+    }
+  }
+}

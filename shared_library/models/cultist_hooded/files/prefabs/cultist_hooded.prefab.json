@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cultist_hooded"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 2, 0.779],
+      "offset": [0, 1, 0.0408]
+    }
+  }
+}

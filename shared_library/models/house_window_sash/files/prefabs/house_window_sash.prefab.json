@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_window_sash"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.04, 1.24, 0.186],
+      "offset": [0, 0.618, 0.007]
+    }
+  }
+}

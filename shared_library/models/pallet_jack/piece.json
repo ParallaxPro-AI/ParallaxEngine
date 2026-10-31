@@ -1,0 +1,10 @@
+{
+  "id": "pallet_jack",
+  "summary": "A manual hydraulic pallet jack: two 1.15 m channel forks (540 mm overall) with lead-in tips, entry rollers an… joints lift, steer, steer_wheels, handle, control_lever; options paint; sockets pallet, grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pallet_jack or place \"prefab\": \"pallet_jack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pallet_jack"]
+}

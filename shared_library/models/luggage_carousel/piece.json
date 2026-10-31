@@ -1,0 +1,10 @@
+{
+  "id": "luggage_carousel",
+  "summary": "A 3 m straight section of a flat-plate baggage-claim carousel: rubber-topped slat plates running between stai… joints plates; options load; sockets socket_pickup, socket_belt.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luggage_carousel or place \"prefab\": \"luggage_carousel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luggage_carousel"]
+}

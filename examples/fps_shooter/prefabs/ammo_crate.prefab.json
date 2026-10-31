@@ -1,0 +1,33 @@
+{
+ "components": {
+  "shape": {
+   "kind": "box",
+   "size": [
+    0.7,
+    0.5,
+    0.7
+   ],
+   "color": "#f9e581",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "sphere",
+   "radius": 2.6,
+   "trigger": true,
+   "layer": "pickup",
+   "collides_with": [
+    "body"
+   ]
+  },
+  "marker": {
+   "icon": "diamond",
+   "label": "Supply",
+   "color": "#e6ba70"
+  }
+ },
+ "behaviors": {
+  "pickup": {
+   "kind": "ammo"
+  }
+ }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/blender"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.18, 0.425, 0.2245],
+      "offset": [0, 0.2125, -0.0147]
+    }
+  }
+}

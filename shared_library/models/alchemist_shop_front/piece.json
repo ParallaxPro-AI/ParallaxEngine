@@ -1,0 +1,10 @@
+{
+  "id": "alchemist_shop_front",
+  "summary": "A fantasy alchemist shop: a narrow two-storey town house, 6 m wide and 6.4 m deep (a real medieval burgage fr… joints door, hanging_sign.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alchemist_shop_front or place \"prefab\": \"alchemist_shop_front\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alchemist_shop_front"]
+}

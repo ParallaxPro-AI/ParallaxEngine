@@ -1,0 +1,10 @@
+{
+  "id": "halfling_villager",
+  "summary": "A rigged halfling villager on the canonical 17-bone humanoid rig at real halfling proportions (forked from `c… options skin, hair, waistcoat; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.halfling_villager or place \"prefab\": \"halfling_villager\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:halfling_villager"]
+}

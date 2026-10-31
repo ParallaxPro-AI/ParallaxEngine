@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lmg"
+    },
+    "viewmodel_item": {
+      "hip": [0.13, -0.31, 0.4],
+      "hip_turn": [2.864789, -2.291831, -2.864789],
+      "eye_relief": 0.14
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1373, 0.299, 1.063],
+      "offset": [-0.0197, 0.1495, -0.0015]
+    }
+  }
+}

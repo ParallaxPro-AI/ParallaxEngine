@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_resurfacer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 3500
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.23,
+        2.04,
+        4.98
+      ],
+      "offset": [
+        -0.045,
+        1.02,
+        -0.25
+      ]
+    },
+    "vehicle": {
+      "max_speed": 4.5,
+      "steering": 38,
+      "turn_rate": 1.4
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.045,
+        1.02,
+        -0.25
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

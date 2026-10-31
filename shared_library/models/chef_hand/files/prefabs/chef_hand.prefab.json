@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chef_hand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1054, 0.075, 0.1651],
+      "offset": [-0.0032, 0, -0.0075]
+    }
+  }
+}

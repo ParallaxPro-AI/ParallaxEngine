@@ -1,0 +1,10 @@
+{
+  "id": "supermarket",
+  "summary": "A discount big-box supermarket: a 42x34 m ribbed-metal shed on a dark plinth, a purple brand band under a ste… joints lane_register_drawer_0, lane_register_key_bank_0, lane_register_drawer_1, lane_register_key_bank_1, lane_register_drawer_2, lane_register_key_bank_2, …; options cladding_colour; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.supermarket or place \"prefab\": \"supermarket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:supermarket"]
+}

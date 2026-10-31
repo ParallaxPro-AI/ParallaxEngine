@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="game_over.css">
+<link rel="stylesheet" href="siege_theme.css">
+<div class="lib">
+<div class="go-overlay visible">
+  <div class="ambient-glow" data-class-victory="won" data-class-defeat="lost"></div>
+  <div class="go-title" data-class-victory="won" data-class-defeat="lost" data-bind="headline"></div>
+  <div class="go-line" data-class-victory="won" data-class-defeat="lost"></div>
+  <div class="go-score-area">
+    <div class="go-score-label" data-text="final_score"></div>
+    <div class="go-score-value" data-bind="score" data-format="int"></div>
+  </div>
+  <div class="go-stats" data-each="stats"><template><div class="go-stat"><div class="go-stat-val" data-bind="value"></div><div class="go-stat-label" data-bind="label"></div></div></template></div>
+  <div class="go-buttons">
+    <button class="go-btn primary" data-action="retry" data-text="play_again"></button>
+    <button class="go-btn" data-action="quit" data-text="main_menu"></button>
+  </div>
+</div>
+</div>

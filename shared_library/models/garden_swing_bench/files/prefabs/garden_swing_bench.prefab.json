@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garden_swing_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.26, 2.0766, 1.536],
+      "offset": [0, 1.0383, 0]
+    }
+  }
+}

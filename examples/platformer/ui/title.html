@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="sky.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+      .sht{position:fixed;inset:0;pointer-events:none}
+      .sht .title-card{position:absolute;display:flex;flex-direction:column;justify-content:center;pointer-events:auto;left:calc(5.5*var(--su));top:50%;margin-top:calc(-23.5*var(--su));width:calc(47*var(--su));height:calc(47*var(--su));padding:calc(4.25*var(--su)) calc(4.5*var(--su)) calc(3.25*var(--su));animation:sht-card-in var(--sh-dur-slow) var(--sh-ease-out) both}
+      @keyframes sht-card-in{from{opacity:0;transform:translateX(calc(-1.5*var(--su)))}}
+      .sht .wordmark{font-size:calc(10*var(--su));margin:calc(1.5*var(--su)) 0 calc(2*var(--su));line-height:.86;letter-spacing:-.025em}
+      .sht .wordmark .dot{color:var(--sh-marigold)}
+      .sht .lede{color:var(--sh-ink-2);font-weight:600;line-height:1.45;font-size:calc(1.75*var(--su));max-width:calc(32*var(--su))}
+      .sht .title-actions{display:flex;align-items:center;gap:calc(1.75*var(--su));margin-top:calc(2.75*var(--su))}
+      .sht .kbd-hint{display:flex;align-items:center;gap:calc(.6*var(--su));font-weight:700;color:var(--sh-sage-2);font-size:calc(1.1*var(--su))}
+      .sht .progress-line{display:flex;align-items:center;border-top:2px dashed var(--sh-line);font-weight:700;color:var(--sh-ink-2);margin-top:calc(2.75*var(--su));padding-top:calc(1.75*var(--su));gap:calc(1*var(--su));font-size:calc(1.25*var(--su))}
+      .sht .progress-line .sh-ico{color:var(--sh-sage);margin-right:.35em;vertical-align:-.12em}
+      .sht .pips{display:flex;gap:.35em}
+      .sht .pips i{width:.85em;height:.85em;border-radius:50%;box-shadow:inset 0 0 0 2px var(--sh-paper-edge)}
+      .sht .pips i.meadow{background:var(--sh-meadow);box-shadow:inset 0 0 0 2px var(--sh-meadow-ink)}
+      .sht .pips i.crystal{background:var(--sh-crystal);box-shadow:inset 0 0 0 2px var(--sh-crystal-ink)}
+      .sht .pips i.frost{background:var(--sh-frost);box-shadow:inset 0 0 0 2px var(--sh-frost-ink)}
+      .sht .pips i.ember{background:var(--sh-ember);box-shadow:inset 0 0 0 2px var(--sh-ember-ink)}
+      .sht[data-first="1"] .not-first,.sht:not([data-first="1"]) .only-first{display:none}
+      @media (pointer:coarse),(max-height:500px){
+        .sht .title-card{left:var(--sh-safe-l);top:var(--sh-safe-t);bottom:calc(var(--sh-safe-b) + 4px);margin-top:0;height:auto;width:calc(24*var(--su));padding:calc(1.25*var(--su)) calc(1.6*var(--su)) calc(1.1*var(--su));border-radius:var(--sh-r-lg)}
+        .sht .wordmark{font-size:calc(3.6*var(--su));margin:calc(.55*var(--su)) 0 calc(.7*var(--su))}
+        .sht .lede{font-size:calc(.95*var(--su));max-width:calc(20*var(--su))}
+        .sht .title-actions{margin-top:calc(1.1*var(--su))}
+        .sht .title-actions .sh-btn{--sh-btn-h:max(44px,calc(3*var(--su)));--sh-fs-btn:calc(1.15*var(--su));padding:0 1.3em}
+        .sht .progress-line{margin-top:calc(1*var(--su));padding-top:calc(.75*var(--su));gap:calc(.6*var(--su));font-size:calc(.8*var(--su))}
+      }
+    </style>
+<main class="sh-root sht" data-attr-data-first="first">
+  <section class="sh-paper title-card">
+    <p class="sh-eyebrow" data-text="title_eyebrow"></p>
+    <h1 class="sh-display wordmark"><span data-text="title_sky"></span><br /><span data-text="title_hopper"></span><span class="dot">.</span></h1>
+    <p class="lede" data-text="title_lede"></p>
+    <div class="title-actions">
+      <button class="sh-btn sh-btn--primary sh-btn--lg" data-action="start" data-key="Enter"><span data-text="title_start"></span> <span class="sh-arr">→</span></button>
+      <span class="kbd-hint sh-desk"><span class="sh-kbd">Enter</span> <span data-text="to_start"></span></span>
+    </div>
+    <p class="progress-line">
+      <span class="pips not-first" aria-hidden="true" data-each="worlds"><template><i data-attr-class="theme"></i></template></span>
+      <span class="not-first" data-bind="summary"></span>
+      <span class="only-first"><svg class="sh-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12.5l6-6 6 6M6 19l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/></svg> <span data-text="title_tip"></span></span>
+    </p>
+  </section>
+</main>

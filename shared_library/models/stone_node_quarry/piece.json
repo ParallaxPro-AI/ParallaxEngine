@@ -1,0 +1,10 @@
+{
+  "id": "stone_node_quarry",
+  "summary": "A harvestable quarry stone node: a ~1.8 m weathered granite outcrop worked into a quarry bench, with a flat q…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_node_quarry or place \"prefab\": \"stone_node_quarry\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_node_quarry"]
+}

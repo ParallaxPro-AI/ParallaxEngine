@@ -1,0 +1,5 @@
+{
+  "name": "Letter of Marque",
+  "blurb": "Bounties pay 50% more for every hull you sink.",
+  "stat": "bounty_bonus", "amount": 0.5, "max_level": 2
+}

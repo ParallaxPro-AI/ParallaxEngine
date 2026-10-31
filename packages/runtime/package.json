@@ -1,0 +1,53 @@
+{
+  "name": "@parallax/runtime",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The ParallaxEngine runtime: platform, core, resource, function (kernel + plugins) and api layers.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    "./api": "./src/api/index.ts",
+    "./boot": "./src/boot/index.ts",
+    "./core": "./src/core/index.ts",
+    "./kernel": "./src/function/kernel/index.ts",
+    "./platform": "./src/platform/index.ts",
+    "./plugins/ai": "./src/function/plugins/ai/index.ts",
+    "./plugins/audio": "./src/function/plugins/audio/index.ts",
+    "./plugins/characters": "./src/function/plugins/characters/index.ts",
+    "./plugins/input": "./src/function/plugins/input/index.ts",
+    "./plugins/net": "./src/function/plugins/net/index.ts",
+    "./plugins/render2d": "./src/function/plugins/render2d/index.ts",
+    "./plugins/render3d": "./src/function/plugins/render3d/index.ts",
+    "./plugins/models": "./src/function/plugins/models/index.ts",
+    "./plugins/story": "./src/function/plugins/story/index.ts",
+    "./plugins/cinematics": "./src/function/plugins/cinematics/index.ts",
+    "./plugins/visuals": "./src/function/plugins/visuals/index.ts",
+    "./plugins/ui": "./src/function/plugins/ui/index.ts",
+    "./pyrt": "./src/api/pyrt/index.ts",
+    "./resource": "./src/resource/index.ts",
+    "./plugins/terrain": "./src/function/plugins/terrain/index.ts",
+    "./plugins/foliage": "./src/function/plugins/foliage/index.ts",
+    "./plugins/wind": "./src/function/plugins/wind/index.ts",
+    "./plugins/procgen": "./src/function/plugins/procgen/index.ts",
+    "./plugins/city": "./src/function/plugins/city/index.ts",
+    "./plugins/water": "./src/function/plugins/water/index.ts",
+    "./plugins/weather": "./src/function/plugins/weather/index.ts",
+    "./plugins/environment": "./src/function/plugins/environment/index.ts",
+    "./plugins/voxels": "./src/function/plugins/voxels/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@dimforge/rapier2d-compat": "^0.19.3",
+    "@dimforge/rapier3d-compat": "^0.19.3"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

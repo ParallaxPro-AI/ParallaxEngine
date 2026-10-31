@@ -1,0 +1,10 @@
+{
+  "id": "office_block",
+  "summary": "An eight-storey curtain-wall office block on a granite colonnade podium: nine round granite columns with prec… joints door; options glass_tint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.office_block or place \"prefab\": \"office_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:office_block"]
+}

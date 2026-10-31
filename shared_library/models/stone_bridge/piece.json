@@ -1,0 +1,10 @@
+{
+  "id": "stone_bridge",
+  "summary": "A single-span humpback stone bridge, 9.2 m long and 2.5 m wide: a segmental arch 4.1 m across at ground level…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_bridge or place \"prefab\": \"stone_bridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_bridge"]
+}

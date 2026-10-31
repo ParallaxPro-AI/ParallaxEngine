@@ -1,0 +1,10 @@
+{
+  "id": "gorilla",
+  "summary": "A silverback gorilla on the engine's canonical humanoid_17 rig, ~1.78 m standing (crest top), arms ~2.7 m tip… options fur, saddle; sockets grip_r, grip_l, head_top, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gorilla or place \"prefab\": \"gorilla\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gorilla"]
+}

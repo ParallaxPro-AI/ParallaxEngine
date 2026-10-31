@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/desk_in_use"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3903, 0.4953, 0.8042],
+      "offset": [0.0071, 0.243, -0.0379]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "barks",
+  "summary": "NPC one-liners from content: lines by trigger (spotted, hurt, near, idle, or your own), per-speaker and global cooldowns, no immediate repeats, shown as a label over the speaker and announced as BarkSaid for subtitles.",
+  "version": "2026.10.23",
+  "setup": [
+    "List Barks in Game(systems=[...]) (and HurtBarks with the combat plugin); give speakers a \"barker\" component with their voice.",
+    "Write content/bark/*.json (voice, trigger, lines); emit BarkRequested(speaker=npc, trigger=\"spotted\") from AI; tune config/barks.json."
+  ],
+  "replaces": ["lib:gameplay/barks", "lib:subtitles"]
+}

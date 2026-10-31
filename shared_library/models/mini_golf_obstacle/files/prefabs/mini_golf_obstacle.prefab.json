@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mini_golf_obstacle"
+    }
+  }
+}

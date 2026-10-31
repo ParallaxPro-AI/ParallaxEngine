@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/log_pile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.43, 1.0279, 0.927],
+      "offset": [0.0048, 0.514, 0.0016]
+    }
+  }
+}

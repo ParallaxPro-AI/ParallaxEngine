@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sushi_conveyor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.15, 1.118, 1.4],
+      "offset": [0, 0.557, 0]
+    }
+  }
+}

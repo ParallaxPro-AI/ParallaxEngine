@@ -1,0 +1,10 @@
+{
+  "id": "bb_cliff_face",
+  "summary": "Layered sandstone sea cliff: broad irregular ledges and two eroded buttresses.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_cliff_face or place \"prefab\": \"bb_cliff_face\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_cliff_face"]
+}

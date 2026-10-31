@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_boat"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 5000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.2558, 3.8, 11.7765],
+      "offset": [0, 1.9, -0.3603]
+    }
+  }
+}

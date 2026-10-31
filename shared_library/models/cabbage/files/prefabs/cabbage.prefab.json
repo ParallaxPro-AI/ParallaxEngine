@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cabbage"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1.05,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2386, 0.1528, 0.1689],
+      "offset": [0.0006, 0.0765, 0.0035]
+    }
+  }
+}

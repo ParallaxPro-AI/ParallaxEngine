@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sashimi_slice"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0821, 0.0155, 0.055],
+      "offset": [-0.0026, 0.0078, -0.0013]
+    }
+  }
+}

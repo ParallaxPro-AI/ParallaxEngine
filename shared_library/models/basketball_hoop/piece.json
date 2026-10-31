@@ -1,0 +1,10 @@
+{
+  "id": "basketball_hoop",
+  "summary": "A portable adjustable-height basketball hoop: weighted base, upright pole, mounting arms, acrylic backboard w… joints height, backboard, breakaway_rim; sockets socket_rim_center.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basketball_hoop or place \"prefab\": \"basketball_hoop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basketball_hoop"]
+}

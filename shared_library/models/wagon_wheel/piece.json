@@ -1,0 +1,10 @@
+{
+  "id": "wagon_wheel",
+  "summary": "A 1.2 m wooden wagon wheel: twelve oval spokes in a barrel-shaped elm hub with iron bands and axle box, six s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wagon_wheel or place \"prefab\": \"wagon_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wagon_wheel"]
+}

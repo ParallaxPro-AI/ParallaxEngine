@@ -1,0 +1,10 @@
+{
+  "id": "farm_produce_stand",
+  "summary": "A roadside farm honesty stand: a timber counter with a raised back step, slatted crates of apples, potatoes… joints cash_box_lid; options finish, produce; sockets socket_counter, socket_coin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.farm_produce_stand or place \"prefab\": \"farm_produce_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:farm_produce_stand"]
+}

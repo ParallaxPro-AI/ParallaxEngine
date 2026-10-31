@@ -1,0 +1,14 @@
+{
+  "id": "crate",
+  "summary": "A wooden shipping crate with a prise-off plank lid, corner battens and a stencilled marking on the front. joints lid; options stencil, size, finish; sockets socket_contents.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.crate or place \"prefab\": \"crate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:crate"
+  ]
+}

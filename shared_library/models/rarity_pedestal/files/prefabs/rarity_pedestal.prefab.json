@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rarity_pedestal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8487, 1.175, 0.8487],
+      "offset": [0, 0.5875, 0]
+    }
+  }
+}

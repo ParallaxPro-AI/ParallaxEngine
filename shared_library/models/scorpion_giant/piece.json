@@ -1,0 +1,10 @@
+{
+  "id": "scorpion_giant",
+  "summary": "A giant desert scorpion enemy, fantasy scale: 2.6 m from pincer tips to tail and 1.5 m tall at the raised sti… joints tail_strike, pinch_l, pinch_r; options shell; sockets stinger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scorpion_giant or place \"prefab\": \"scorpion_giant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scorpion_giant"]
+}

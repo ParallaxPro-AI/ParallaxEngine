@@ -1,0 +1,9 @@
+{
+  "z": 0.5,
+  "components": {
+    "sprite": { "image": "https://r2.parallaxpro.ai/assets/image_sprite/92/5b/925b8ac284436f74f9cadf0ecd058da1c08fba65c098e4e34fd220603022f02e.png", "size": [0.55, 0.55], "color": "#ff4d9e" },
+    "drift": {},
+    "petal": {}
+  },
+  "pool": 240
+}

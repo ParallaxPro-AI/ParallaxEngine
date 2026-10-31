@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/noodle_bar_counter_neon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.7, 3.32, 2.638],
+      "offset": [0, 1.66, -0.169]
+    }
+  }
+}

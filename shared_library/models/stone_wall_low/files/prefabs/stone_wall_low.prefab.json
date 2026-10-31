@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stone_wall_low"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 0.9931, 0.7657],
+      "offset": [0, 0.4965, 0]
+    }
+  }
+}

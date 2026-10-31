@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/snake_enemy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9615, 0.2966, 3.9325],
+      "offset": [-0.0002, 0.152, -0.1125]
+    }
+  }
+}

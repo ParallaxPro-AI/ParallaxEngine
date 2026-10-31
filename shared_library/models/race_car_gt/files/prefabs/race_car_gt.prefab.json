@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/race_car_gt"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1250,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.17,
+        1.37,
+        4.4399
+      ],
+      "offset": [
+        0,
+        0.685,
+        -0.02
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 52,
+      "steering": 30,
+      "grip": 11,
+      "turn_rate": 2.2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.685,
+        -0.02
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

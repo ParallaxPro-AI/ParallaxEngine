@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_dresser"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 1.11, 0.4865],
+      "offset": [0, 0.555, 0.0032]
+    }
+  }
+}

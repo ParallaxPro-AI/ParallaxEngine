@@ -1,0 +1,10 @@
+{
+  "id": "bounce_house",
+  "summary": "A 4 x 4 m inflatable bouncy castle: a fat rounded floor with a contrasting jumping mat, four tower turrets wi… joints deflate, bounce; options main_colour, second_colour, accent_colour; sockets blower_inlet.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bounce_house or place \"prefab\": \"bounce_house\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bounce_house"]
+}

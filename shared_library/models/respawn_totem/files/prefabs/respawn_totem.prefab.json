@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/respawn_totem"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 2.595, 2],
+      "offset": [0, 1.2975, 0]
+    }
+  }
+}

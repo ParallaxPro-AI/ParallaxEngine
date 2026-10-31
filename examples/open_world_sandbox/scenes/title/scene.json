@@ -1,0 +1,366 @@
+{
+  "ui": ["title"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "environment": {
+    "sky": "atmosphere",
+    "time_of_day": 15.5,
+    "sun": {
+      "direction": [0.4, -0.7, 0.3],
+      "color": "#fff6e7",
+      "intensity": 3.2
+    },
+    "ambient": "#65656c"
+  },
+  "terrain": {
+    "size": [1400, 1150],
+    "base_height": 0,
+    "water_level": -1,
+    "layers": ["asphalt", "pavement", "grass", {"name": "road", "texture": "https://r2.parallaxpro.ai/assets/image_texture/99/b6/99b6f6bdfbd09279f3f550ac9593336df541aa2319537566eeb3e737d8512010.jpg", "tile": 6}],
+    "default_layer": "asphalt",
+    "paths": [
+      {
+        "paint": "pavement",
+        "points": [
+          [-470, -116.5],
+          [-160, -116.5]
+        ],
+        "width": 5,
+        "feather": 0.5
+      },
+      {
+        "paint": "road",
+        "points": [
+          [-470, -124],
+          [-340, -124],
+          [-300, -124],
+          [-150, -132],
+          [190, -150]
+        ],
+        "width": 12,
+        "feather": 1.5,
+        "flatten": true
+      },
+      {
+        "paint": "road",
+        "points": [
+          [-340, -124],
+          [-340, -40],
+          [-300, -10],
+          [-300, 110]
+        ],
+        "width": 10,
+        "feather": 1.5,
+        "flatten": true
+      },
+      {
+        "paint": "road",
+        "points": [
+          [-60, -64],
+          [-60, -160],
+          [-60, -255]
+        ],
+        "width": 10,
+        "feather": 1.5,
+        "flatten": true
+      }
+    ],
+    "paint": [
+      {
+        "layer": "asphalt",
+        "center": [-296, -99],
+        "size": [80, 56],
+        "feather": 0.5
+      },
+      {
+        "layer": "asphalt",
+        "center": [-190, -104],
+        "size": [60, 48],
+        "feather": 0.5
+      },
+      {
+        "layer": "asphalt",
+        "center": [-405, -104],
+        "size": [60, 48],
+        "feather": 0.5
+      },
+      {
+        "layer": "asphalt",
+        "center": [-300, 12],
+        "size": [60, 48],
+        "feather": 0.5
+      },
+      {
+        "layer": "asphalt",
+        "center": [-300, -104],
+        "size": [270, 28],
+        "feather": 0.5
+      },
+      {
+        "layer": "asphalt",
+        "center": [-300, -46],
+        "size": [26, 140],
+        "feather": 0.5
+      }
+    ]
+  },
+  "city": {
+    "seed": 20260713,
+    "style": "metropolis",
+    "area": {"center": [0, 0], "size": [1400, 1150]},
+    "ground": 0.03,
+    "downtown": [0.0, 46.0],
+    "drive": "right",
+    "roads": {
+      "block": [68, 68],
+      "major_every": 4
+    },
+    "buildings": {
+      "density": 0.5,
+      "interiors": 0.2
+    },
+    "districts": [
+      {
+        "name": "midtown_east",
+        "kind": "commercial",
+        "at": [182.0, -57.5],
+        "radius": 230
+      },
+      {
+        "name": "midtown_north",
+        "kind": "commercial",
+        "at": [-112.0, 195.5],
+        "radius": 218
+      },
+      {
+        "name": "old_town",
+        "kind": "commercial",
+        "at": [-210.0, -80.5],
+        "radius": 172
+      },
+      {
+        "name": "campus",
+        "kind": "commercial",
+        "at": [140.0, 322.0],
+        "radius": 196
+      },
+      {
+        "name": "eastside",
+        "kind": "residential",
+        "at": [308.0, 161.0],
+        "radius": 230
+      },
+      {
+        "name": "hill_suburb",
+        "kind": "suburban",
+        "at": [462.0, -138.0],
+        "radius": 322
+      },
+      {
+        "name": "the_flats",
+        "kind": "residential",
+        "at": [-392.0, -57.5],
+        "radius": 172
+      },
+      {
+        "name": "dockside",
+        "kind": "industrial",
+        "at": [-546.0, 69.0],
+        "radius": 218
+      },
+      {
+        "name": "ironworks",
+        "kind": "industrial",
+        "at": [-490.0, -368.0],
+        "radius": 218
+      },
+      {
+        "name": "shoreline",
+        "kind": "residential",
+        "at": [0.0, -494.5],
+        "radius": 253
+      },
+      {
+        "name": "north_fields",
+        "kind": "suburban",
+        "at": [0.0, 506.0],
+        "radius": 322
+      },
+      {
+        "name": "east_fields",
+        "kind": "suburban",
+        "at": [616.0, -460.0],
+        "radius": 345
+      },
+      {
+        "name": "west_fields",
+        "kind": "suburban",
+        "at": [-644.0, 391.0],
+        "radius": 368
+      },
+      {
+        "name": "north_edge_fields",
+        "kind": "suburban",
+        "at": [-308.0, 552.0],
+        "radius": 345
+      },
+      {
+        "name": "south_west_fields",
+        "kind": "suburban",
+        "at": [-658.0, -506.0],
+        "radius": 345
+      },
+      {
+        "name": "far_east_fields",
+        "kind": "suburban",
+        "at": [700.0, 161.0],
+        "radius": 368
+      },
+      {
+        "name": "airfield_fields",
+        "kind": "suburban",
+        "at": [-280.0, -276.0],
+        "radius": 230
+      },
+      {
+        "name": "central_park",
+        "kind": "park",
+        "at": [-84.0, 103.5],
+        "radius": 104
+      },
+      {
+        "name": "east_green",
+        "kind": "park",
+        "at": [336.0, 23.0],
+        "radius": 92
+      }
+    ],
+    "parks": 0.09,
+    "exclude": [
+      {"center": [-315, -100.5], "size": [330, 69]},
+      {"center": [-340, -85.5], "size": [14, 99]},
+      {"center": [-321, -25], "size": [52, 40]},
+      {"center": [-300, 12], "size": [64, 52]},
+      {"center": [-300, -46], "size": [30, 144]},
+      {"center": [-300, 55], "size": [14, 130]},
+      {"center": [-330, 40], "size": [34, 38]},
+      {"center": [-450, -180], "size": [40, 40]},
+      {"center": [25, -160], "size": [350, 200]}
+    ],
+    "props": {
+      "streetlight": "street_lamp",
+      "tree": "tree_birch",
+      "interior": ["sofa", "armchair", "coffee_table", "desk", "chair", "cash_register", "table", "floor_lamp", "shelf", "fridge", "wardrobe", "filing_cabinet"],
+      "radius": 140
+    },
+    "traffic": {
+      "cars": 0,
+      "prefabs": ["car", "car", "compact", "cab", "work_van", "suv", "pickup", "bus", "police_car"],
+      "radius": 160,
+      "spawn_min": 60
+    },
+    "pedestrians": {
+      "count": 0,
+      "prefabs": ["pedestrian_a", "pedestrian_b", "pedestrian_c", "pedestrian_d"],
+      "radius": 160,
+      "spawn_min": 45
+    },
+    "landmarks": [
+      {
+        "kind": "stadium",
+        "name": "the_bowl",
+        "at": [210.0, 138.0],
+        "size": [162, 128],
+        "height": 28
+      },
+      {
+        "kind": "park",
+        "name": "central_park",
+        "at": [-84.0, 103.5],
+        "size": [150, 120]
+      }
+    ]
+  },
+  "entities": [
+    {
+      "id": "title_camera",
+      "prefab": "still_camera",
+      "at": [-300, 6.5, -110],
+      "rotation": [0, 0, 0]
+    },
+    {
+      "prefab": "safehouse",
+      "at": [-299, 0, -94],
+      "rotation": [0, 180, 0]
+    },
+    {
+      "prefab": "supply_store",
+      "at": [-190, 0, -94],
+      "rotation": [0, 180, 0]
+    },
+    {
+      "prefab": "garage",
+      "at": [-405, 0, -93],
+      "rotation": [0, 180, 0]
+    },
+    {
+      "prefab": "spot",
+      "at": [-312, 0, -103],
+      "components": {
+        "model": {
+          "model": "models/sports_car",
+          "cast_shadows": true
+        }
+      },
+      "rotation": [0, 90, 0]
+    },
+    {
+      "prefab": "spot",
+      "at": [-287, 0, -96],
+      "components": {
+        "model": {
+          "model": "models/van",
+          "cast_shadows": true
+        }
+      },
+      "rotation": [0, 90, 0]
+    },
+    {
+      "prefab": "spot",
+      "at": [-407, 0, -116],
+      "components": {
+        "model": {
+          "model": "models/sedan",
+          "cast_shadows": true
+        }
+      },
+      "rotation": [0, -90, 0]
+    },
+    {
+      "prefab": "spot",
+      "at": [-395, 0, -116],
+      "components": {
+        "model": {
+          "model": "models/sedan",
+          "cast_shadows": true
+        }
+      },
+      "rotation": [0, -90, 0]
+    },
+    {
+      "prefab": "street_lamp",
+      "at": [-300, 0, -117.5]
+    },
+    {
+      "prefab": "street_lamp",
+      "at": [-274, 0, -117.5]
+    },
+    {
+      "prefab": "street_lamp",
+      "at": [-248, 0, -117.5]
+    },
+    {
+      "prefab": "street_lamp",
+      "at": [-222, 0, -117.5]
+    }
+  ]
+}

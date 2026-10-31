@@ -1,0 +1,4 @@
+{
+  "name": "Briar Hive", "animation": "briarhive", "hp": 5, "scale": 1.15, "score": 360,
+  "fire": "ring", "arms": 14, "spread": 0, "spin_step": 12.6, "petal_speed": 4.8
+}

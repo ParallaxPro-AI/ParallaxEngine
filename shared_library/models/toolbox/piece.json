@@ -1,0 +1,14 @@
+{
+  "id": "toolbox",
+  "summary": "A cantilever tool box: a red hollow body compartment with a central carry handle and two gull-wing… joints tray_l, tray_r; sockets socket_cavity.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.toolbox or place \"prefab\": \"toolbox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:toolbox"
+  ]
+}

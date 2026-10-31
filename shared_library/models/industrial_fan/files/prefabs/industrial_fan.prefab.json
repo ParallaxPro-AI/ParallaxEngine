@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/industrial_fan",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6,
+        1.6,
+        0.44
+      ],
+      "offset": [
+        0.0,
+        0.8,
+        0.0
+      ]
+    }
+  }
+}

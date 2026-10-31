@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bicycle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.583, 1.062, 1.72],
+      "offset": [0, 0.531, 0]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{ "burst": 40, "max": 60, "lifetime": [0.9, 2.2], "speed": [0.6, 2.5], "radius": 8, "spread": 70, "gravity": 0.3, "size": [0.5, 1.0], "size_end": 3.75, "flipbook": "smoke", "angle": [0, 360], "spin": [-57, 57], "soft": 0.4, "color": "#bc596cd9", "color_end": "#3f274500" }

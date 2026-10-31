@@ -1,0 +1,10 @@
+{
+  "id": "coin_pusher",
+  "summary": "A seaside penny-falls coin pusher: a lofted red pedestal with a coin door and a lit credit panel, a stainless… joints chute_head, prize_wheel, coin_door; options livery, marquee_art; sockets socket_topper, socket_tray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coin_pusher or place \"prefab\": \"coin_pusher\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coin_pusher"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "loom",
+  "summary": "A wooden four-treadle floor loom: a post-and-rail frame with a castle carrying two heddle shafts, an underslu… joints shaft_1, shaft_2, beater, shuttle, treadle_1, treadle_2, …; options cloth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.loom or place \"prefab\": \"loom\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:loom"]
+}

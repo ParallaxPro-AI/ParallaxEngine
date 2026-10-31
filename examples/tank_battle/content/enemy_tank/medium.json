@@ -1,0 +1,1 @@
+{ "name": "Medium tank", "prefab": "enemy_tank_medium", "role": "brawler", "health": 175, "armor": 5, "speed": 6, "damage": 25, "range": 40, "fire_interval": 3.0, "detect": 45, "ride": 0.8, "standoff": 0.6, "shell_speed": 40, "spread": 3.44, "score": 150 }

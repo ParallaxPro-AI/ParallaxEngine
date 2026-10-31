@@ -1,0 +1,10 @@
+{
+  "id": "candelabra_gothic",
+  "summary": "A floor-standing Gothic candelabra in blackened wrought iron: a tripod of scrolled legs on ball feet, a twist… options state; sockets socket_flame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.candelabra_gothic or place \"prefab\": \"candelabra_gothic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:candelabra_gothic"]
+}

@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="../dustline.css">
+<style>
+  /* Pickup waypoints as the template kit dresses lib:hud/objective_waypoints: square teal
+     chips with a brass hairline, the label in caps and the distance in brass; off screen,
+     a chip with the edge arrow. */
+  .root { position: absolute; inset: 0; pointer-events: none; }
+  .wp { position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: calc(8 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)) calc(6 * var(--u)) calc(10 * var(--u)); background: var(--dl-panel); box-shadow: inset 0 0 0 1px rgba(230,186,112,.28); font: 700 calc(13 * var(--u))/1 var(--dl-f-hud); letter-spacing: .16em; text-transform: uppercase; color: var(--dl-ink); white-space: nowrap; }
+  .wp .glyph { font-size: calc(12 * var(--u)); }
+  .wp .ds { font-variant-numeric: tabular-nums; letter-spacing: .04em; color: var(--dl-brass); }
+  .wp .arrow { display: none; font-size: calc(16 * var(--u)); color: var(--dl-brass); }
+  .wp:not(.on) { padding: calc(6 * var(--u)) calc(8 * var(--u)); }
+  .wp:not(.on) .arrow { display: block; }
+  .wp:not(.on) .name, .wp:not(.on) .glyph { display: none; }
+  @media (pointer: coarse) { .wp { font-size: calc(20 * var(--u)); padding: calc(8 * var(--u)) calc(16 * var(--u)); } .wp:not(.on) .arrow { font-size: calc(24 * var(--u)); } }
+</style>
+<div class="root" data-style-font-size="a11y.font" data-show="shown">
+  <div data-each="markers"><template>
+    <div class="wp" data-style-left="x" data-style-top="y" data-class-on="on_screen">
+      <span class="glyph" data-style-color="color" data-bind="glyph"></span>
+      <span class="arrow" data-style-transform="turn">▲</span>
+      <span class="name" data-bind="label"></span>
+      <span class="ds" data-bind="distance"></span>
+    </div>
+  </template></div>
+</div>

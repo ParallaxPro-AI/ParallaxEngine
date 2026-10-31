@@ -1,0 +1,20 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rifle"
+    },
+    "viewmodel_item": {
+      "hip": [
+        0.125,
+        -0.385,
+        0.41
+      ],
+      "hip_turn": [
+        1.432394,
+        -0.859437,
+        -1.432394
+      ],
+      "eye_relief": 0.24
+    }
+  }
+}

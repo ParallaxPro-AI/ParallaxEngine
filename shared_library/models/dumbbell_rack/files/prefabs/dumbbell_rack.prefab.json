@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dumbbell_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.89, 0.9381, 0.742],
+      "offset": [0, 0.4691, 0.0093]
+    }
+  }
+}

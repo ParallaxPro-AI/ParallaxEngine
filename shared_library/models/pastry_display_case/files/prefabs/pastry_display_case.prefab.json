@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pastry_display_case"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.21, 1.347, 0.818],
+      "offset": [0, 0.6715, 0.013]
+    }
+  }
+}

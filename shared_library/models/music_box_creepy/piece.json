@@ -1,0 +1,10 @@
+{
+  "id": "music_box_creepy",
+  "summary": "A creepy antique wind-up music box, 17 x 12 cm (a typical Victorian jewellery music box): the walnut case has… joints lid, dancer, key; options wood, lining; sockets socket_tune.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.music_box_creepy or place \"prefab\": \"music_box_creepy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:music_box_creepy"]
+}

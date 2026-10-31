@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rhino"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3699, 1.734, 3.7845],
+      "offset": [0, 0.863, 0.2434]
+    }
+  }
+}

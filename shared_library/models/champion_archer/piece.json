@@ -1,0 +1,10 @@
+{
+  "id": "champion_archer",
+  "summary": "A rigged ranged champion on the canonical 17-bone humanoid rig: light leather jerkin, high boots, a hood and… options team, trim, skin, hair, headgear; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.champion_archer or place \"prefab\": \"champion_archer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:champion_archer"]
+}

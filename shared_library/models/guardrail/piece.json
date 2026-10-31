@@ -1,0 +1,10 @@
+{
+  "id": "guardrail",
+  "summary": "A 4.0 m module of Armco crash barrier: a corrugated W-beam rail on two driven posts with timber-style blockou…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.guardrail or place \"prefab\": \"guardrail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:guardrail"]
+}

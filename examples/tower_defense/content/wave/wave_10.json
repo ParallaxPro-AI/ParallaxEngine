@@ -1,0 +1,1 @@
+{ "announce": "DRAGONS", "boss": true, "groups": [{ "enemy": "dragon", "count": 2 }, { "enemy": "skeleton", "count": 10 }, { "enemy": "goblin", "count": 15 }] }

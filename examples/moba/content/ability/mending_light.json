@@ -1,0 +1,9 @@
+{
+  "name": "Mending Light",
+  "blurb": "Restore your own health, on a long cooldown.",
+  "kind": "heal",
+  "cooldown": { "base": 12, "per_rank": -1.1 },
+  "mana": { "base": 40, "per_rank": 5 },
+  "heal": { "base": 100, "per_rank": 42 },
+  "vfx": "vfx/mending_light"
+}

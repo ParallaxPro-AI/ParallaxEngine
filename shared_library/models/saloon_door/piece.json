@@ -1,0 +1,10 @@
+{
+  "id": "saloon_door",
+  "summary": "A pair of western saloon (cafe / batwing) doors: two short louvered half-leaves hung in a wooden doorway on d… joints leaf_left, leaf_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saloon_door or place \"prefab\": \"saloon_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saloon_door"]
+}

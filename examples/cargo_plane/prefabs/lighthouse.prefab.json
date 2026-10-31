@@ -1,0 +1,62 @@
+{
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    7,
+    30,
+    7
+   ],
+   "offset": [
+    0,
+    15,
+    0
+   ],
+   "color": "#f2f2f2"
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    7,
+    30,
+    7
+   ],
+   "offset": [
+    0,
+    15,
+    0
+   ]
+  }
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    30,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "cone",
+     "size": [
+      8,
+      8,
+      8
+     ],
+     "offset": [
+      0,
+      4,
+      0
+     ],
+     "color": "#d93333"
+    },
+    "light": {
+     "kind": "point",
+     "color": "#fff2c0",
+     "intensity": 3,
+     "range": 60
+    }
+   }
+  }
+ ]
+}

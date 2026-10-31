@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rail_tank_car"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4, 4.83, 17.09],
+      "offset": [0, 2.411, 0]
+    }
+  }
+}

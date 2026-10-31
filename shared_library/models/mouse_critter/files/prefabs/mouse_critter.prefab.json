@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mouse_critter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.046, 0.0455, 0.1385],
+      "offset": [0, 0.0227, -0.0108]
+    }
+  }
+}

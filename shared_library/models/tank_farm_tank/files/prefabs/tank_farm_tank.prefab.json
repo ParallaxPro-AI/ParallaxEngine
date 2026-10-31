@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_farm_tank"
+    }
+  }
+}

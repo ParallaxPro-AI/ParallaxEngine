@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ray_gun_retro"
+    },
+    "viewmodel_item": {
+      "hip": [0.11, -0.21, 0.58],
+      "hip_turn": [0.859437, -1.432394, -1.432394],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0932, 0.1712, 0.3185],
+      "offset": [0, 0.0874, 0.0452]
+    }
+  }
+}

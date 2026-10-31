@@ -1,0 +1,10 @@
+{
+  "id": "market_hall",
+  "summary": "A covered market hall — the wet-market / produce-market type: a 38 x 24 m steel portal-frame shed on nine pai… options roof_cladding; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_hall or place \"prefab\": \"market_hall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_hall"]
+}

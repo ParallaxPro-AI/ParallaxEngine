@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/irrigation_sprinkler"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8816, 1.2526, 0.9774],
+      "offset": [0, 0.6263, -0.0053]
+    }
+  }
+}

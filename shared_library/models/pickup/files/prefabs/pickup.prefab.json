@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pickup",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.21,
+        1.9378,
+        5.725
+      ],
+      "offset": [
+        0.0,
+        0.9689,
+        -0.0175
+      ]
+    }
+  }
+}

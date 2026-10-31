@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toddler_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8118, 0.74, 1.4297],
+      "offset": [0, 0.37, 0]
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "ui": [
+    "fight_hud"
+  ],
+  "environment": {
+    "sky": "night",
+    "ambient": "#6f737c",
+    "sun": {
+      "color": "#ffffff",
+      "direction": [
+        0.2,
+        -0.6,
+        0.8
+      ],
+      "intensity": 1.0
+    },
+    "fog": {
+      "color": "#27273f",
+      "near": 20,
+      "far": 78
+    },
+    "post": {
+      "bloom": 0.025,
+      "contrast": 1.08,
+      "saturation": 1.05,
+      "vignette": 0.12
+    }
+  },
+  "entities": [
+    {
+      "id": "camera",
+      "prefab": "fight_camera",
+      "at": [
+        0,
+        2.5,
+        -7.225
+      ],
+      "rotation": [
+        10.2,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "stage_floor",
+      "at": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "stage_wall",
+      "at": [
+        -7.6,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "stage_wall",
+      "at": [
+        7.6,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "rim_light",
+      "at": [
+        -6,
+        3.5,
+        -4
+      ]
+    },
+    {
+      "prefab": "rim_light",
+      "at": [
+        6,
+        3.5,
+        -4
+      ],
+      "components": {
+        "light": {
+          "color": "#ff95db"
+        }
+      }
+    },
+    {
+      "id": "challenger",
+      "prefab": "challenger",
+      "at": [
+        -2.5,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ]
+    },
+    {
+      "id": "rival",
+      "prefab": "rival",
+      "at": [
+        2.5,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ]
+    },
+    {
+      "prefab": "stage_lamp",
+      "at": [
+        -7,
+        3.4,
+        -2.8
+      ]
+    },
+    {
+      "prefab": "stage_lamp",
+      "at": [
+        0,
+        3.4,
+        -2.8
+      ]
+    },
+    {
+      "prefab": "stage_lamp",
+      "at": [
+        7,
+        3.4,
+        -2.8
+      ]
+    },
+    {
+      "id": "crowd",
+      "prefab": "crowd",
+      "at": [
+        0,
+        2,
+        6
+      ]
+    }
+  ]
+}

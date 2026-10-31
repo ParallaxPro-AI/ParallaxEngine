@@ -1,0 +1,10 @@
+{
+  "id": "keyboard",
+  "summary": "A 49-key electronic music keyboard / synthesizer. joints keys, sliders, stand; sockets socket_rest.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.keyboard or place \"prefab\": \"keyboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:keyboard"]
+}

@@ -1,0 +1,87 @@
+<!-- Relic draft, ported from the template's hud/choice fork: TAKE A RELIC between gold rules,
+     the stage-cleared / run score / carrying line, and three faceted relic cards, each with
+     its glyph medallion in the relic's colour, name, description with the key phrase lit
+     (the short description on touch) and Take relic. Hover lifts and tints a card, focus
+     rings it cyan, press fills the medallion. A card sends `pick` with its relic id. -->
+<link rel="stylesheet" href="gem_kit.css">
+<style>
+  #pp-choice { --dg: clamp(28px, 5cqh, 56px); --fs-dt: clamp(40px, 6cqh, 64px); --fs-ds: clamp(15px, 1.8cqh, 18px); --rw: clamp(300px, 19cqw, 380px); --rg: clamp(20px, 1.8cqw, 36px); --md: clamp(84px, 11cqh, 124px); --fs-rn: clamp(21px, 2.5cqh, 27px); --fs-rd: clamp(15px, 1.75cqh, 18px); --rpad: clamp(24px, 3.6cqh, 40px) 28px clamp(20px, 3cqh, 30px); --rgap: clamp(12px, 1.9cqh, 20px); --rh: clamp(380px, 46cqh, 500px);
+    position: fixed; inset: 0; display: block; pointer-events: auto; }
+  .gcd-scroll { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; gap: var(--dg); padding: 20px calc(var(--gc-sa-r) + 20px) calc(var(--gc-sa-b) + 14px) calc(var(--gc-sa-l) + 20px); overflow-y: auto; overscroll-behavior: contain; }
+  .gcd-head { display: grid; justify-items: center; gap: 12px; text-align: center; animation: gc-rise .4s var(--gc-ease-out) both; flex-shrink: 0; }
+  .gcd-title { display: flex; align-items: center; gap: 22px; font: 700 var(--fs-dt)/1 var(--gc-font-display); letter-spacing: .16em; text-transform: uppercase; color: var(--gc-gold-soft); text-shadow: 0 0 24px rgba(255,214,131,.35); }
+  .gcd-title::before, .gcd-title::after { content: ""; width: clamp(36px, 5cqw, 96px); height: 5px; border-top: 1px solid rgba(255,214,131,.6); border-bottom: 1px solid rgba(255,214,131,.3); }
+  .gcd-sub { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 4px 14px; font-size: var(--fs-ds); font-weight: 600; color: var(--gc-ink-2); }
+  .gcd-sub > i { width: 5px; height: 5px; background: var(--gc-gold); transform: rotate(45deg); }
+  .gcd-sub b { color: var(--gc-ink); font-weight: 800; }
+  .gcd-carry { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .gcd-short { display: none; }
+  .gcd-cards { display: grid; grid-template-columns: repeat(var(--n, 3), var(--rw)); gap: var(--rg); flex-shrink: 0; }
+  .gc-root .gcd-relic { position: relative; display: block; height: var(--rh); text-align: center; color: inherit; --e1: rgba(232,181,234,.8); --e2: #4a3a86; --e3: rgba(137,220,217,.65); filter: var(--gc-shadow-panel); transition: transform .24s var(--gc-ease-out), opacity .3s; animation: gc-rise .5s var(--gc-ease-out) both; }
+  .gcd-relic:nth-child(2) { animation-delay: .08s; }
+  .gcd-relic:nth-child(3) { animation-delay: .16s; }
+  .gcd-relic .gc-facet { --c: 22px; height: 100%; z-index: 1; }
+  .gcd-relic::before, .gcd-relic::after { content: ""; position: absolute; --k: calc(22px + 2.9px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); opacity: 0; transition: opacity .15s; }
+  .gcd-relic::before { inset: -7px; background: var(--gc-cyan-bright); }
+  .gcd-relic::after { inset: -5.5px; --k: calc(22px + 2.3px); background: #0d0a27; }
+  .gcd-relic .gc-body { display: flex; flex-direction: column; align-items: center; gap: var(--rgap); padding: var(--rpad); }
+  .gcd-medal { --c: calc(var(--md) * .29); --k: var(--c); flex: none; width: var(--md); height: var(--md); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); padding: 1.5px; background: linear-gradient(160deg, var(--acc), rgba(102,80,135,.8)); display: grid; transition: filter .2s; }
+  .gcd-medal > div { --k: calc(var(--c) - .62px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: radial-gradient(circle at 50% 32%, color-mix(in oklab, var(--acc) 26%, #241b49), #120e30 75%); display: grid; place-items: center; color: var(--acc); transition: background .15s, color .15s; }
+  .gcd-medal .gc-glyph { width: 54%; height: 54%; }
+  .gcd-name { font: 700 var(--fs-rn)/1.12 var(--gc-font-display); letter-spacing: .1em; text-transform: uppercase; text-wrap: balance; }
+  .gcd-relic .gc-rule { max-width: 120px; }
+  .gcd-desc { font-size: var(--fs-rd); line-height: 1.45; color: var(--gc-ink-2); text-wrap: pretty; max-width: 28ch; }
+  .gcd-desc b { color: var(--acc); font-weight: 800; }
+  .gcd-desc.s { display: none; }
+  .gcd-take { margin-top: auto; display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 800; letter-spacing: .26em; text-transform: uppercase; color: var(--acc); opacity: .6; transition: opacity .2s, letter-spacing .2s; }
+  .gcd-take::before, .gcd-take::after { content: ""; width: 18px; height: 1px; background: currentColor; }
+  @media (hover: hover) {
+    .gcd-relic:hover { transform: translateY(-8px); --e1: var(--acc); --e2: color-mix(in oklab, var(--acc) 45%, #241b49); --e3: #fff; --e-in: color-mix(in oklab, var(--acc) 55%, transparent); }
+    .gcd-relic:hover .gcd-medal { filter: drop-shadow(0 0 14px var(--acc)); }
+    .gcd-relic:hover .gcd-take { opacity: 1; letter-spacing: .32em; }
+  }
+  .gc-root .gcd-relic:focus-visible { outline: none; --e1: var(--gc-cyan-bright); --e2: #2c6f86; --e3: var(--gc-cyan-bright); }
+  .gcd-relic:focus-visible::before, .gcd-relic:focus-visible::after { opacity: 1; }
+  .gcd-relic:active { transform: translateY(-2px) scale(.975); --e1: var(--acc); --e2: var(--acc); --e3: var(--acc); }
+  .gcd-relic:active .gcd-medal > div { background: var(--acc); --gc-glyph-ink: var(--gc-ink-on-gem); }
+  .gcd-cards.has-pick .gcd-relic:not(.is-picked) { opacity: .22; transform: scale(.95); }
+  .gcd-cards .gcd-relic.is-picked { transform: translateY(-14px) scale(1.03); --e1: var(--gc-gold-soft); --e2: var(--gc-gold-deep); --e3: #fff; }
+
+  @media (pointer: coarse) {
+    #pp-choice { --dg: 12px; --fs-dt: 22px; --fs-ds: 11px; --rw: minmax(0, 1fr); --rg: 10px; --md: 54px; --fs-rn: 14px; --fs-rd: 12px; --rpad: 16px 12px 14px; --rgap: 9px; --rh: auto; }
+    .gcd-scroll { justify-content: flex-start; padding-top: 14px; }
+    .gcd-head { gap: 6px; }
+    .gcd-sub .gc-chip { height: 22px; font-size: 10px; }
+    .gcd-long { display: none; }
+    .gcd-short { display: inline; }
+    .gcd-cards { width: 100%; max-width: 740px; }
+    .gcd-relic .gc-facet { --c: 14px; }
+    .gcd-relic .gc-rule, .gcd-take { display: none; }
+    .gcd-desc.l { display: none; }
+    .gcd-desc.s { display: block; }
+  }
+</style>
+<div class="gc-root" id="pp-choice">
+  <div class="gc-dim"></div>
+  <div class="gcd-scroll">
+    <header class="gcd-head">
+      <h1 class="gcd-title" data-text="draft_title"></h1>
+      <div class="gcd-sub">
+        <span><span data-text="stage"></span> <b data-bind="stage"></b> <span data-text="cleared"></span></span><i></i><span><span data-text="run"></span> <b data-bind="run_score"></b></span><i></i><span class="gcd-long" data-text="draft_stays"></span><span class="gcd-short" data-text="draft_kept"></span>
+        <i data-show="carrying"></i><span class="gcd-carry" data-show="carrying"><span class="gcd-long" data-text="carrying"></span><span class="gcd-carry" data-each="relics"><template><span class="gc-chip" data-attr-data-relic="id" data-attr-title="name"><i class="gc-glyph"></i><span data-bind="name"></span></span></template></span></span>
+      </div>
+    </header>
+    <div class="gcd-cards" role="group" data-each="offer">
+      <template>
+        <button class="gcd-relic" data-action="pick" data-attr-data-relic="relic"><div class="gc-facet"><div class="gc-body">
+          <div class="gcd-medal"><div><i class="gc-glyph"></i></div></div>
+          <h3 class="gcd-name" data-bind="name"></h3>
+          <div class="gc-rule"><i></i></div>
+          <p class="gcd-desc l"><span data-bind="desc.before"></span><b data-bind="desc.lit"></b><span data-bind="desc.after"></span></p>
+          <p class="gcd-desc s"><span data-bind="short.before"></span><b data-bind="short.lit"></b><span data-bind="short.after"></span></p>
+          <span class="gcd-take" data-text="take_relic"></span>
+        </div></div></button>
+      </template>
+    </div>
+  </div>
+</div>

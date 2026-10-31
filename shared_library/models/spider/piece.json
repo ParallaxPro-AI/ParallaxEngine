@@ -1,0 +1,10 @@
+{
+  "id": "spider",
+  "summary": "A giant spider enemy, 1.9 m leg span and 0.95 m tall at enemy scale (scale the placement ~0.05 for a house sp… joints fang_l, fang_r, abdomen_pitch, leg1_hip_l, leg1_lift_l, leg2_hip_l, …; options carapace, hair, markings, eyes; sockets mouth, back, spinneret.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spider or place \"prefab\": \"spider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spider"]
+}

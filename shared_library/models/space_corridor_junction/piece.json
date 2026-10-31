@@ -1,0 +1,10 @@
+{
+  "id": "space_corridor_junction",
+  "summary": "A 4 x 4 m sci-fi corridor junction tile matching space_corridor_straight: two octagonal pressure tubes crosse… options layout; sockets socket_arm_front, socket_arm_back, socket_arm_left, socket_arm_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_corridor_junction or place \"prefab\": \"space_corridor_junction\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_corridor_junction"]
+}

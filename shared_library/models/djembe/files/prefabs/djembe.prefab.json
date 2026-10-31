@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/djembe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.371, 0.6045, 0.371],
+      "offset": [0, 0.3023, 0]
+    }
+  }
+}

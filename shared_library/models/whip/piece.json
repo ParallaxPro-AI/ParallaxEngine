@@ -1,0 +1,10 @@
+{
+  "id": "whip",
+  "summary": "A plaited leather bullwhip lying COILED on the ground: a 25 cm plaited handle with a turk's-head butt knob, a… options leather; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.whip or place \"prefab\": \"whip\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:whip"]
+}

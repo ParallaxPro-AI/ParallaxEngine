@@ -1,0 +1,10 @@
+{
+  "id": "lean_to_shelter",
+  "summary": "A bushcraft lean-to: a ridge pole lashed into two forked uprights, eleven rafter poles leaning back to the gr… sockets socket_sleep, seat_0, socket_fire.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lean_to_shelter or place \"prefab\": \"lean_to_shelter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lean_to_shelter"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "stegosaurus",
+  "summary": "A plated stegosaur on the engine's quadruped_20 rig: about 7.9 m snout to tail tip, the back arching to its h… options skin; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stegosaurus or place \"prefab\": \"stegosaurus\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stegosaurus"]
+}

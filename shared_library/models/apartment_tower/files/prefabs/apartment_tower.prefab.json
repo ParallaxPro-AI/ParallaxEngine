@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/apartment_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [27.26, 63.59, 27.93],
+      "offset": [0, 31.795, 0.335]
+    }
+  }
+}

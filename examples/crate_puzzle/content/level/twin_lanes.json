@@ -1,0 +1,13 @@
+{
+  "number": 3,
+  "name": "Twin Lanes",
+  "hint": "Two crates. Clear one, then circle round.",
+  "rows": [
+    "########",
+    "#      #",
+    "# @$ . #",
+    "#  $ . #",
+    "#      #",
+    "########"
+  ]
+}

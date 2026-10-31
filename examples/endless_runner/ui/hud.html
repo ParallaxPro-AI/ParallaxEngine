@@ -1,0 +1,245 @@
+<link rel="stylesheet" href="street.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .cg-root { pointer-events: none; overflow: hidden; }
+  .cgh { position: fixed; inset: 0; pointer-events: none; transition: opacity .35s ease; --acc: var(--cg-market); --gc: var(--cg-seafoam); }
+  .cgh.dim { opacity: .6; }
+  .cgh .m { display: none; }
+  .vig { position: absolute; inset: 0; box-shadow: inset 0 0 calc(var(--cg-u) * 220) calc(var(--cg-u) * 40) rgba(255,50,50,.55); opacity: 0; }
+  .cgh.closing .vig { animation: cg-vig .7s ease-in-out infinite; }
+
+  .d-top { position: absolute; left: var(--cg-sl); top: var(--cg-st); display: flex; gap: calc(var(--cg-u) * 16); align-items: flex-start; }
+  .route { width: calc(var(--cg-u) * 410); padding: calc(var(--cg-u) * 20) calc(var(--cg-u) * 24) calc(var(--cg-u) * 18); }
+  .route-h { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--cg-u) * 12); }
+  .dname { font-size: calc(var(--cg-u) * 32); letter-spacing: .04em; color: var(--acc); white-space: nowrap; }
+  .dnum { font-size: calc(var(--cg-u) * 20); color: var(--cg-ink-muted); }
+  .route-n { display: flex; align-items: baseline; gap: calc(var(--cg-u) * 18); margin-top: calc(var(--cg-u) * 6); white-space: nowrap; }
+  .dist { font-size: calc(var(--cg-u) * 76); }
+  .dist small, .m-dist small { font-size: .55em; color: var(--cg-seafoam); }
+  .pts { font: 600 calc(var(--cg-u) * 26)/1 var(--cg-font-num); color: var(--cg-ink-2); }
+  .prog { position: relative; height: calc(var(--cg-u) * 12); margin-top: calc(var(--cg-u) * 14); background: rgba(3,16,21,.75); border-radius: calc(var(--cg-u) * 6); overflow: hidden; }
+  .prog > i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--acc); border-radius: inherit; transition: width .25s linear, background .3s; }
+  .prog > b { position: absolute; top: 0; bottom: 0; width: calc(var(--cg-u) * 3); background: rgba(255,246,222,.7); }
+  .prog-l { position: relative; height: calc(var(--cg-u) * 22); margin-top: calc(var(--cg-u) * 6); font: 600 calc(var(--cg-u) * 18)/1 var(--cg-font-num); color: rgba(255,246,222,.72); }
+  .prog-l span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+  .prog-l span.end { right: 0; transform: none; color: var(--cg-gold); }
+  .money { width: calc(var(--cg-u) * 200); padding: calc(var(--cg-u) * 18) calc(var(--cg-u) * 22) calc(var(--cg-u) * 16); border-color: rgba(255,218,120,.5); display: flex; flex-direction: column; gap: calc(var(--cg-u) * 4); }
+  .money-n { display: flex; align-items: center; gap: calc(var(--cg-u) * 12); }
+  .money-n svg { width: calc(var(--cg-u) * 48); height: calc(var(--cg-u) * 48); }
+  .coins { font-size: calc(var(--cg-u) * 64); color: var(--cg-gold-hi); }
+  .combo { font-size: calc(var(--cg-u) * 22); letter-spacing: .16em; color: var(--cg-ink-2); }
+  .combo b { font-size: calc(var(--cg-u) * 26); color: var(--cg-gold); }
+
+  .d-buffs { position: absolute; left: var(--cg-sl); top: calc(var(--cg-st) + calc(var(--cg-u) * 244)); display: flex; gap: calc(var(--cg-u) * 12); flex-wrap: wrap; width: calc(var(--cg-u) * 960); }
+  .pill { position: relative; overflow: hidden; display: none; align-items: center; gap: calc(var(--cg-u) * 10); padding: calc(var(--cg-u) * 8) calc(var(--cg-u) * 18) calc(var(--cg-u) * 8) calc(var(--cg-u) * 8); background: rgba(16,46,59,.88); border: calc(var(--cg-u) * 2) solid var(--bc); border-radius: 999px; animation: cg-fade .2s ease both; }
+  .pill.on { display: flex; }
+  .pill .ic { width: calc(var(--cg-u) * 38); height: calc(var(--cg-u) * 38); border-radius: 50%; background: var(--bc); display: grid; place-items: center; font: 800 calc(var(--cg-u) * 22)/1 var(--cg-font-num); color: var(--cg-teal-900); }
+  .pill .ic svg { width: calc(var(--cg-u) * 22); height: calc(var(--cg-u) * 22); }
+  .pill .t { font: 700 calc(var(--cg-u) * 24)/1 var(--cg-font-num); letter-spacing: .06em; white-space: nowrap; }
+  .pill .t em { font-style: normal; color: var(--bc); }
+  .pill .bar { position: absolute; left: 0; bottom: 0; height: calc(var(--cg-u) * 4); background: var(--bc); transition: width .3s linear; }
+
+  .d-guard { position: absolute; left: 50%; top: var(--cg-st); transform: translateX(-50%); width: calc(var(--cg-u) * 560); padding: calc(var(--cg-u) * 16) calc(var(--cg-u) * 24) calc(var(--cg-u) * 14); background: rgba(16,46,59,.9); border: calc(var(--cg-u) * 3) solid var(--gc); border-radius: calc(var(--cg-u) * 20); box-shadow: 0 calc(var(--cg-u) * 6) 0 rgba(4,20,26,.7); transition: border-color .2s; }
+  .cgh.closing .d-guard { animation: cg-pulse .7s ease-in-out infinite; }
+  .g-h { display: flex; justify-content: space-between; align-items: center; }
+  .g-l { display: flex; align-items: center; gap: calc(var(--cg-u) * 12); }
+  .g-dot { width: calc(var(--cg-u) * 16); height: calc(var(--cg-u) * 16); border-radius: 50%; background: var(--cg-danger); box-shadow: 0 0 0 calc(var(--cg-u) * 4) rgba(255,90,78,.25); animation: cg-blink 1s infinite; }
+  .g-label { font-size: calc(var(--cg-u) * 32); letter-spacing: .04em; color: var(--gc); white-space: nowrap; }
+  .g-gap { display: flex; align-items: baseline; gap: calc(var(--cg-u) * 8); }
+  .g-gap .cg-caps { font-size: calc(var(--cg-u) * 20); font-weight: 600; color: var(--cg-ink-muted); }
+  .g-v { font-size: calc(var(--cg-u) * 52); color: var(--gc); }
+  .g-v small { font-size: calc(var(--cg-u) * 30); }
+  .g-bar { position: relative; height: calc(var(--cg-u) * 20); margin-top: calc(var(--cg-u) * 10); background: rgba(3,16,21,.8); border-radius: calc(var(--cg-u) * 10); overflow: hidden; }
+  .g-bust { position: absolute; right: 0; top: 0; bottom: 0; width: 15%; background: repeating-linear-gradient(135deg, rgba(255,77,77,.5) 0 calc(var(--cg-u) * 6), rgba(255,77,77,.2) calc(var(--cg-u) * 6) calc(var(--cg-u) * 12)); }
+  .g-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: calc(var(--cg-u) * 10); background: var(--gb, var(--cg-seafoam)); transition: width .25s ease-out; }
+  .g-leg { display: flex; justify-content: space-between; margin-top: calc(var(--cg-u) * 6); font: 600 calc(var(--cg-u) * 18)/1 var(--cg-font-num); letter-spacing: .1em; color: rgba(255,246,222,.72); white-space: nowrap; }
+  .g-leg span:last-child { color: #ff8a80; }
+
+  .d-pause { position: absolute; right: var(--cg-sr); top: var(--cg-st); display: flex; flex-direction: column; align-items: center; gap: calc(var(--cg-u) * 10); }
+  .cg-root .pbtn { width: calc(var(--cg-u) * 84); height: calc(var(--cg-u) * 84); border-radius: calc(var(--cg-u) * 20); background: rgba(16,46,59,.9); border: calc(var(--cg-u) * 2) solid rgba(141,219,208,.45); box-shadow: 0 calc(var(--cg-u) * 6) 0 rgba(4,20,26,.7); display: flex; align-items: center; justify-content: center; gap: calc(var(--cg-u) * 12); }
+  .cg-root .pbtn:hover { background: #1b4a5a; border-color: var(--cg-seafoam); }
+  .pbtn i { width: calc(var(--cg-u) * 10); height: calc(var(--cg-u) * 34); border-radius: calc(var(--cg-u) * 3); background: var(--cg-ink); }
+
+  .toasts { position: absolute; right: var(--cg-sr); top: calc(var(--cg-st) + calc(var(--cg-u) * 160)); display: flex; flex-direction: column; gap: calc(var(--cg-u) * 12); align-items: flex-end; }
+  .toast { display: flex; align-items: center; gap: calc(var(--cg-u) * 14); padding: calc(var(--cg-u) * 12) calc(var(--cg-u) * 22) calc(var(--cg-u) * 12) calc(var(--cg-u) * 12); background: var(--tc); color: var(--cg-ink-on-mint); border-radius: calc(var(--cg-u) * 16); box-shadow: 0 calc(var(--cg-u) * 6) 0 rgba(4,20,26,.6); transform: rotate(var(--tr)) scale(.6); opacity: 0; transition: transform .28s var(--cg-pop), opacity .2s; }
+  .toast.in { transform: rotate(var(--tr)); opacity: 1; }
+  .toast .ti { width: calc(var(--cg-u) * 48); height: calc(var(--cg-u) * 48); border-radius: calc(var(--cg-u) * 12); background: var(--cg-ink-on-mint); display: grid; place-items: center; color: var(--tc); font: 800 calc(var(--cg-u) * 24)/1 var(--cg-font-num); }
+  .toast .ti svg { width: calc(var(--cg-u) * 28); height: calc(var(--cg-u) * 28); }
+  .toast .tt { font-size: calc(var(--cg-u) * 32); white-space: nowrap; }
+  .toast .ts { font-size: calc(var(--cg-u) * 18); font-weight: 600; margin-top: calc(var(--cg-u) * 4); white-space: nowrap; }
+
+  .banner { position: absolute; left: 50%; top: calc(var(--cg-st) + calc(var(--cg-u) * 156)); display: flex; flex-direction: column; align-items: center; transform: translateX(-50%) rotate(-2deg) translateY(calc(var(--cg-u) * -30)); opacity: 0; transition: transform .35s var(--cg-pop), opacity .25s; --bacc: var(--acc); }
+  .banner.in { transform: translateX(-50%) rotate(-2deg); opacity: 1; }
+  .b-k { padding: calc(var(--cg-u) * 6) calc(var(--cg-u) * 18); background: var(--cg-teal-900); border: calc(var(--cg-u) * 2) solid var(--bacc); border-radius: calc(var(--cg-u) * 8); font-size: calc(var(--cg-u) * 22); letter-spacing: .2em; color: var(--cg-ink); }
+  .b-n { margin-top: calc(var(--cg-u) * 8); padding: calc(var(--cg-u) * 2) calc(var(--cg-u) * 48) calc(var(--cg-u) * 10); background: var(--bacc); clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%); font-size: calc(var(--cg-u) * 112); line-height: 1.05; color: var(--cg-ink); text-shadow: calc(var(--cg-u) * 5) calc(var(--cg-u) * 5) 0 var(--cg-teal-700); letter-spacing: .02em; white-space: nowrap; }
+  .b-s { margin-top: calc(var(--cg-u) * 10); padding: calc(var(--cg-u) * 8) calc(var(--cg-u) * 22); background: rgba(16,46,59,.9); border-radius: calc(var(--cg-u) * 10); font-size: calc(var(--cg-u) * 26); font-weight: 600; font-style: italic; color: var(--cg-ink-2); white-space: nowrap; }
+  .b-s:empty { display: none; }
+
+  .goal { position: absolute; left: var(--cg-sl); bottom: var(--cg-sb); width: calc(var(--cg-u) * 470); padding: calc(var(--cg-u) * 18) calc(var(--cg-u) * 22); background: rgba(16,46,59,.88); border: calc(var(--cg-u) * 2) solid var(--gl); border-radius: calc(var(--cg-u) * 20); box-shadow: 0 calc(var(--cg-u) * 6) 0 rgba(4,20,26,.7); display: flex; gap: calc(var(--cg-u) * 16); align-items: center; --gl: var(--cg-gold); }
+  .goal.done { --gl: var(--cg-mint); }
+  .goal-i { flex: none; width: calc(var(--cg-u) * 56); height: calc(var(--cg-u) * 56); border-radius: 50%; background: var(--gl); display: grid; place-items: center; }
+  .goal-i svg { width: calc(var(--cg-u) * 32); height: calc(var(--cg-u) * 32); }
+  .goal-i .ok, .goal.done .goal-i .open { display: none; }
+  .goal.done .goal-i .ok { display: block; }
+  .goal-b { flex: 1; min-width: 0; }
+  .goal-t { font: 800 calc(var(--cg-u) * 24)/1.1 var(--cg-font-num); letter-spacing: .12em; color: var(--gl); white-space: nowrap; }
+  .goal-l { font-size: calc(var(--cg-u) * 22); font-weight: 600; margin-top: calc(var(--cg-u) * 2); color: var(--cg-ink-2); white-space: nowrap; }
+  .goal-s { display: flex; gap: calc(var(--cg-u) * 6); margin-top: calc(var(--cg-u) * 10); }
+  .goal.done .goal-s { display: none; }
+  .goal-s i { flex: 1; height: calc(var(--cg-u) * 8); border-radius: calc(var(--cg-u) * 4); background: rgba(255,246,222,.2); overflow: hidden; position: relative; }
+  .goal-s i:first-child { flex: 3; }
+  .goal-s i.on { background: var(--cg-gold); }
+  .goal-s i b { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--cg-gold); }
+  .goal .short { display: none; }
+
+  .coach { position: absolute; left: 50%; bottom: var(--cg-sb); transform: translateX(-50%); display: none; align-items: center; gap: calc(var(--cg-u) * 22); padding: calc(var(--cg-u) * 18) calc(var(--cg-u) * 30) calc(var(--cg-u) * 18) calc(var(--cg-u) * 22); background: rgba(16,46,59,.92); border: calc(var(--cg-u) * 3) solid var(--cg-yellow); border-radius: calc(var(--cg-u) * 22); box-shadow: 0 calc(var(--cg-u) * 8) 0 rgba(4,20,26,.75); animation: cg-fade .25s ease both; }
+  .coach.on { display: flex; }
+  .cgh.dim .coach.on { display: none; }
+  .c-keys { display: flex; gap: calc(var(--cg-u) * 8); }
+  .c-keys .cg-kbd { min-width: calc(var(--cg-u) * 60); height: calc(var(--cg-u) * 60); border-radius: calc(var(--cg-u) * 12); font-size: calc(var(--cg-u) * 34); box-shadow: 0 calc(var(--cg-u) * 5) 0 var(--cg-seafoam); }
+  .c-arrows { display: none; }
+  .c-t { font-size: calc(var(--cg-u) * 40); color: var(--cg-yellow-hi); white-space: nowrap; }
+  .c-x { font-size: calc(var(--cg-u) * 24); font-weight: 600; margin-top: calc(var(--cg-u) * 6); color: var(--cg-ink-2); white-space: nowrap; }
+  .c-keys > span, .c-arrows > span { display: contents; }
+  .c-t .m-only { display: none; }
+  .c-step { align-self: flex-start; font-size: calc(var(--cg-u) * 20); color: rgba(255,246,222,.72); letter-spacing: .12em; }
+
+  @media (pointer: coarse) {
+    .cgh .d { display: none; }
+    .cgh .m { display: flex; }
+    .vig { box-shadow: inset 0 0 calc(var(--cg-u) * 90) calc(var(--cg-u) * 16) rgba(255,50,50,.55); }
+
+    .m-strip { position: absolute; left: var(--cg-sl); right: var(--cg-sr); top: var(--cg-st); height: calc(var(--cg-u) * 44); gap: calc(var(--cg-u) * 8); align-items: center; }
+    .m-card { flex: 1; min-width: 0; height: calc(var(--cg-u) * 44); padding: 0 calc(var(--cg-u) * 12); background: rgba(16,46,59,.88); border: 1.5px solid rgba(141,219,208,.3); border-radius: calc(var(--cg-u) * 14); display: flex; align-items: center; gap: calc(var(--cg-u) * 12); }
+    .m-dn { display: flex; flex-direction: column; line-height: 1; min-width: 0; }
+    .m-dn .dname { font-size: calc(var(--cg-u) * 15); }
+    .m-dn .cg-caps { font-size: calc(var(--cg-u) * 12); font-weight: 600; letter-spacing: .06em; margin-top: calc(var(--cg-u) * 3); color: rgba(255,246,222,.8); }
+    .m-dist { font-size: calc(var(--cg-u) * 28); white-space: nowrap; }
+    .m-card .prog { flex: 1; min-width: calc(var(--cg-u) * 60); height: calc(var(--cg-u) * 6); margin: 0; border-radius: calc(var(--cg-u) * 3); }
+    .m-card .prog > b { width: calc(var(--cg-u) * 2); }
+    .m-goal { font: 700 calc(var(--cg-u) * 12)/1 var(--cg-font-num); color: var(--cg-gold); white-space: nowrap; }
+    .m-div { width: 1px; align-self: stretch; margin: calc(var(--cg-u) * 8) 0; background: rgba(141,219,208,.3); }
+    .m-coins { display: flex; align-items: center; gap: calc(var(--cg-u) * 6); }
+    .m-coins svg { width: calc(var(--cg-u) * 20); height: calc(var(--cg-u) * 20); }
+    .m-coins .coins { font-size: calc(var(--cg-u) * 26); }
+    .m-x { padding: calc(var(--cg-u) * 2) calc(var(--cg-u) * 6); border-radius: calc(var(--cg-u) * 6); background: var(--cg-gold); color: var(--cg-teal-900); font: 800 calc(var(--cg-u) * 15)/1.1 var(--cg-font-num); }
+    .cg-root .pbtn { flex: none; width: max(44px, calc(var(--cg-u) * 44)); height: max(44px, calc(var(--cg-u) * 44)); border-radius: calc(var(--cg-u) * 14); border-width: 1.5px; box-shadow: none; gap: calc(var(--cg-u) * 6); }
+    .cg-root .pbtn:active { background: #1b4a5a; transform: scale(.94); }
+    .pbtn i { width: calc(var(--cg-u) * 5); height: calc(var(--cg-u) * 18); border-radius: calc(var(--cg-u) * 2); }
+
+    .m-guard { position: absolute; left: var(--cg-sl); right: var(--cg-sr); top: calc(var(--cg-st) + calc(var(--cg-u) * 50)); height: calc(var(--cg-u) * 16); border-radius: calc(var(--cg-u) * 8); background: rgba(3,16,21,.85); overflow: hidden; border: 1px solid var(--gm); --gm: rgba(141,219,208,.5); }
+    .cgh.build .m-guard { --gm: var(--cg-gold); }
+    .cgh.closing .m-guard { --gm: var(--cg-danger); animation: cg-pulse-m .7s ease-in-out infinite; }
+    .m-guard .g-bust { background: repeating-linear-gradient(135deg, rgba(255,77,77,.5) 0 calc(var(--cg-u) * 4), rgba(255,77,77,.2) calc(var(--cg-u) * 4) calc(var(--cg-u) * 8)); }
+    .m-guard .g-fill { border-radius: 0; opacity: .9; background: var(--gbm, #4f9e95); }
+    .m-gt { position: absolute; inset: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 calc(var(--cg-u) * 8); font: 800 calc(var(--cg-u) * 12)/1 var(--cg-font-num); letter-spacing: .1em; color: var(--cg-ink); text-shadow: 0 1px 2px #041218; white-space: nowrap; }
+
+    .m-buffs { position: absolute; left: var(--cg-sl); top: calc(var(--cg-st) + calc(var(--cg-u) * 74)); gap: calc(var(--cg-u) * 6); }
+    .ring { position: relative; width: calc(var(--cg-u) * 38); height: calc(var(--cg-u) * 38); display: none; }
+    .ring.on { display: block; }
+    .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+    .ring .rt { position: absolute; inset: 0; display: grid; place-items: center; font: 800 calc(var(--cg-u) * 12)/1 var(--cg-font-num); color: var(--bc); }
+    .ring .rn { position: absolute; left: 50%; bottom: calc(var(--cg-u) * -6); transform: translateX(-50%); padding: 0 calc(var(--cg-u) * 4); border-radius: calc(var(--cg-u) * 4); background: var(--cg-teal-900); font: 700 calc(var(--cg-u) * 11)/1.2 var(--cg-font-num); color: var(--cg-ink); white-space: nowrap; }
+
+    .goal { left: auto; right: var(--cg-sr); bottom: auto; top: calc(var(--cg-st) + calc(var(--cg-u) * 74)); width: auto; height: calc(var(--cg-u) * 28); padding: 0 calc(var(--cg-u) * 12) 0 calc(var(--cg-u) * 6); gap: calc(var(--cg-u) * 6); border-width: 1.5px; border-radius: calc(var(--cg-u) * 14); box-shadow: none; display: none; }
+    .goal.flash { display: flex; animation: cg-fade .2s ease both; }
+    .goal-i { width: calc(var(--cg-u) * 18); height: calc(var(--cg-u) * 18); }
+    .goal-i svg { width: calc(var(--cg-u) * 12); height: calc(var(--cg-u) * 12); }
+    .goal-b { display: flex; gap: calc(var(--cg-u) * 6); align-items: baseline; }
+    .goal-t { font: 700 calc(var(--cg-u) * 13)/1 var(--cg-font-num); letter-spacing: .04em; }
+    .goal-l { font: 700 calc(var(--cg-u) * 13)/1 var(--cg-font-num); letter-spacing: .04em; margin: 0; }
+    .goal-s, .goal .long { display: none; }
+    .goal .short { display: inline; }
+
+    .toasts { top: calc(var(--cg-st) + calc(var(--cg-u) * 110)); gap: calc(var(--cg-u) * 6); }
+    .toast { gap: calc(var(--cg-u) * 8); padding: calc(var(--cg-u) * 6) calc(var(--cg-u) * 12) calc(var(--cg-u) * 6) calc(var(--cg-u) * 6); border-radius: calc(var(--cg-u) * 10); box-shadow: none; }
+    .toast .ti { width: calc(var(--cg-u) * 24); height: calc(var(--cg-u) * 24); border-radius: calc(var(--cg-u) * 6); font-size: calc(var(--cg-u) * 12); }
+    .toast .ti svg { width: calc(var(--cg-u) * 14); height: calc(var(--cg-u) * 14); }
+    .toast .tt { font-size: calc(var(--cg-u) * 16); }
+    .toast .ts { display: none; }
+
+    .banner { top: calc(var(--cg-st) + calc(var(--cg-u) * 90)); }
+    .b-k { padding: calc(var(--cg-u) * 2) calc(var(--cg-u) * 10); border-width: 1px; border-radius: calc(var(--cg-u) * 5); font-size: calc(var(--cg-u) * 12); }
+    .b-n { margin-top: calc(var(--cg-u) * 4); padding: 0 calc(var(--cg-u) * 24) calc(var(--cg-u) * 4); font-size: calc(var(--cg-u) * 48); line-height: 1.08; text-shadow: calc(var(--cg-u) * 3) calc(var(--cg-u) * 3) 0 var(--cg-teal-700); }
+    .b-s { margin-top: calc(var(--cg-u) * 6); padding: calc(var(--cg-u) * 4) calc(var(--cg-u) * 12); border-radius: calc(var(--cg-u) * 8); font-size: calc(var(--cg-u) * 13); }
+
+    .coach { bottom: auto; top: calc(var(--cg-st) + calc(var(--cg-u) * 124)); flex-direction: column; gap: calc(var(--cg-u) * 8); padding: 0; background: none; border: 0; box-shadow: none; }
+    .c-keys, .c-step { display: none; }
+    .c-arrows { display: flex; gap: calc(var(--cg-u) * 28); align-items: center; height: calc(var(--cg-u) * 56); }
+    .c-arrows i { width: calc(var(--cg-u) * 56); height: calc(var(--cg-u) * 56); border-radius: 50%; background: var(--cg-yellow); box-shadow: 0 calc(var(--cg-u) * 4) 0 var(--cg-btn-shadow); display: grid; place-items: center; }
+    .c-arrows i::after { content: ''; width: calc(var(--cg-u) * 16); height: calc(var(--cg-u) * 16); border-top: calc(var(--cg-u) * 5) solid var(--cg-teal-900); border-right: calc(var(--cg-u) * 5) solid var(--cg-teal-900); transform: var(--rot); }
+    .c-arrows i.l { --rot: rotate(-135deg) translate(-2px, -2px); animation: cg-nudge-l 1s ease-in-out infinite; }
+    .c-arrows i.r { --rot: rotate(45deg) translate(-2px, 2px); animation: cg-nudge-r 1s ease-in-out infinite; }
+    .c-arrows i.u { --rot: rotate(-45deg) translate(-2px, 3px); animation: cg-nudge-u 1s ease-in-out infinite; }
+    .c-arrows i.dn { --rot: rotate(135deg) translate(-2px, 3px); animation: cg-nudge-d 1s ease-in-out infinite; }
+    .c-box { padding: calc(var(--cg-u) * 8) calc(var(--cg-u) * 18); border-radius: calc(var(--cg-u) * 14); background: rgba(16,46,59,.92); border: calc(var(--cg-u) * 2) solid var(--cg-yellow); text-align: center; }
+    .c-t { font-size: calc(var(--cg-u) * 28); }
+    .c-t .d-only { display: none; }
+    .c-t .m-only { display: inline; }
+    .c-x { font-size: calc(var(--cg-u) * 13); margin-top: calc(var(--cg-u) * 4); }
+  }
+</style>
+<div class="cgh cg-root" data-class-closing="closing" data-class-build="build" data-class-dim="counting" data-style---acc="district_tint" data-style---gc="guard_color" data-style---gb="guard_bar" data-style---gbm="guard_bar_mobile">
+  <div class="vig"></div>
+  <div class="d-top d">
+    <div class="route cg-glass">
+      <div class="route-h"><span class="dname cg-display" data-bind="district"></span><span class="dnum cg-caps" data-bind="district_number"></span></div>
+      <div class="route-n"><span class="dist cg-num"><span data-bind="distance"></span><small>m</small></span><span class="pts"><span data-bind="score"></span> <span data-text="points"></span></span></div>
+      <div class="prog"><i data-style-width="progress_pct"></i></div>
+      <div class="prog-l"><span class="end" data-bind="goal"></span></div>
+    </div>
+    <div class="money cg-glass">
+      <div class="money-n"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span class="coins cg-num" data-bind="coins"></span></div>
+      <div class="combo cg-caps"><span data-text="coins_caps"></span> · <b>×<span data-bind="combo"></span></b></div>
+    </div>
+  </div>
+  <div class="d-buffs d">
+    <div class="pill on" data-show="shields" style="--bc:#8ddbd0"><span class="ic"><svg viewBox="0 0 24 24"><path d="M12 2l8 3v6c0 5-3.5 9-8 11-4.5-2-8-6-8-11V5z" fill="#102e3b"/></svg></span><span class="t"><span data-text="buff_shield"></span> <em>×<span data-bind="shields"></span></em></span></div>
+    <span data-each="buffs"><template><div class="pill on" data-style---bc="color"><span class="ic" data-bind="glyph"></span><span class="t"><span data-bind="name"></span> <em><span data-bind="left"></span>s</em></span><span class="bar" data-style-width="fill_pct"></span></div></template></span>
+  </div>
+  <div class="d-guard d">
+    <div class="g-h">
+      <div class="g-l"><span class="g-dot"></span><span class="g-label cg-display" data-bind="guard_label"></span></div>
+      <div class="g-gap"><span class="cg-caps" data-text="gap"></span><span class="g-v cg-num"><span data-bind="gap"></span><small>m</small></span></div>
+    </div>
+    <div class="g-bar"><span class="g-bust" data-style-width="bust_pct"></span><span class="g-fill" data-style-width="danger_pct"></span></div>
+    <div class="g-leg"><span><span data-text="safe"></span> · <span data-bind="gap_max"></span> m</span><span data-text="guard"></span><span><span data-bind="catch"></span> m · <span data-text="busted_word"></span></span></div>
+  </div>
+  <div class="d-pause d">
+    <button class="pbtn" data-action="pause" aria-label="Pause"><i></i><i></i></button>
+    <span class="cg-kbd">P</span>
+  </div>
+  <div class="goal" data-class-done="goal_done">
+    <span class="goal-i"><svg class="open" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#102e3b" stroke-width="2.5"/><circle cx="12" cy="12" r="4" fill="#102e3b"/></svg><svg class="ok" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5" fill="none" stroke="#102e3b" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <div class="goal-b">
+      <div class="goal-t"><span class="long" data-bind="goal_title"></span><span class="short" data-bind="goal_title_short"></span></div>
+      <div class="goal-l"><span class="long" data-bind="goal_line"></span><span class="short" data-bind="goal_line_short"></span></div>
+      <div class="goal-s"><i><b data-style-width="goal_fill"></b></i><i data-class-on="goal_pip_1"></i><i data-class-on="goal_pip_2"></i><i data-class-on="goal_pip_3"></i></div>
+    </div>
+  </div>
+
+  <div class="coach" data-class-on="coach_on">
+    <div class="c-keys"><span data-each="coach_keys"><template><span class="cg-kbd" data-bind="key"></span></template></span></div>
+    <div class="c-arrows"><span data-each="coach_arrows"><template><i data-class-l="l" data-class-r="r" data-class-u="u" data-class-dn="dn"></i></template></span></div>
+    <div class="c-box"><div class="c-t cg-display"><span class="d-only" data-bind="coach_title"></span><span class="m-only" data-bind="coach_title_touch"></span></div><div class="c-x" data-bind="coach_line"></div></div>
+    <div class="c-step cg-caps"><span data-bind="coach_step"></span>/3</div>
+  </div>
+
+  <div class="m-strip m">
+    <div class="m-card">
+      <div class="m-dn"><span class="dname cg-display" data-bind="district"></span><span class="cg-caps"><span data-bind="score"></span> PTS</span></div>
+      <span class="m-dist cg-num"><span data-bind="distance"></span><small>m</small></span>
+      <div class="prog"><i data-style-width="progress_pct"></i></div>
+      <span class="m-goal" data-bind="goal"></span>
+      <span class="m-div"></span>
+      <div class="m-coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span class="coins cg-num" data-bind="coins"></span><span class="m-x">×<span data-bind="combo"></span></span></div>
+    </div>
+    <button class="pbtn" data-action="pause" aria-label="Pause"><i></i><i></i></button>
+  </div>
+  <div class="m-guard m">
+    <span class="g-bust" data-style-width="bust_pct"></span><span class="g-fill" data-style-width="danger_pct"></span>
+    <div class="m-gt"><span data-bind="guard_label"></span><span><span data-text="gap"></span> <span data-bind="gap"></span>m</span></div>
+  </div>
+</div>

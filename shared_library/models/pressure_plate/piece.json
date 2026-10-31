@@ -1,0 +1,10 @@
+{
+  "id": "pressure_plate",
+  "summary": "A square trap/puzzle pressure plate: a metal step-plate set in a framed housing that SINKS straight down when… joints plate; options mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pressure_plate or place \"prefab\": \"pressure_plate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pressure_plate"]
+}

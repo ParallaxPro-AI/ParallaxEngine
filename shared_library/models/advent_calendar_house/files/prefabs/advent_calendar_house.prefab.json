@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/advent_calendar_house"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.45, 0.6491, 0.15],
+      "offset": [0, 0.3246, 0]
+    }
+  }
+}

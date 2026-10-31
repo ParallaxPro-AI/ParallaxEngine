@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_visor_helm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.284, 0.343, 0.29],
+      "offset": [0, 1.7165, 0.001]
+    }
+  }
+}

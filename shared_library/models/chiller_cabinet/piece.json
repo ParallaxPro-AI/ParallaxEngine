@@ -1,0 +1,14 @@
+{
+  "id": "chiller_cabinet",
+  "summary": "A glazed multideck chiller cabinet, stocked and lit: a stainless carcass open between two side cheeks,… joints leaf_0, leaf_1.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.chiller_cabinet or place \"prefab\": \"chiller_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:chiller_cabinet"
+  ]
+}

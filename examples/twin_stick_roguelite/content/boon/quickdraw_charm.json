@@ -1,0 +1,2 @@
+{ "name": "Quickdraw Charm", "blurb": "Your shards start faster.",
+  "effect": "fire_interval", "amount": -0.025, "costs": [55, 120] }

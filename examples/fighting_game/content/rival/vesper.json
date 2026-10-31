@@ -1,0 +1,12 @@
+{
+  "name": "Vesper",
+  "role": "THE SKY WATCHER",
+  "taunt": "She watches the air. Win your space on the ground.",
+  "style": "antiair",
+  "walk_speed": 3.5,
+  "spacing": 1.4,
+  "block_chance": 0.42,
+  "reaction": 0.28,
+  "cadence": 0.85,
+  "kit": "violet"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chips_bag",
+  "summary": "A stood-up foil snack packet — crimped at both ends, pillowed in the middle, with a printed front panel and a… joints mouth_front, mouth_back; options flavour; sockets socket_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chips_bag or place \"prefab\": \"chips_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chips_bag"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "revolving_door",
+  "summary": "A four-wing revolving door: four glass leaves on a central vertical spindle, inside a cylindrical glass drum… joints spindle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.revolving_door or place \"prefab\": \"revolving_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:revolving_door"]
+}

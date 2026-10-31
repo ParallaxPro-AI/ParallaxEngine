@@ -1,0 +1,8 @@
+{
+  "name": "Lurker", "prefab": "lurker",
+  "hp": 6, "contact_damage": 1, "move_speed": 3.6, "lunge_speed": 2.4,
+  "tactics": [
+    { "within": 6.5, "move": "lunge" },
+    { "move": "chase" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "upstream_eelgrass",
+  "summary": "Curved ribbon blades of river eelgrass, rooted at y=0.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.upstream_eelgrass or place \"prefab\": \"upstream_eelgrass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:upstream_eelgrass"]
+}

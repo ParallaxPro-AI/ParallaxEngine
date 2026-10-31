@@ -1,0 +1,10 @@
+{
+  "id": "handcuffs",
+  "summary": "A pair of steel chain handcuffs lying flat: each cuff is a double strand of two cheek plates with a lock box… joints cuff_l_arm, cuff_r_arm; options finish, key; sockets grip, socket_wrist_l, socket_wrist_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.handcuffs or place \"prefab\": \"handcuffs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:handcuffs"]
+}

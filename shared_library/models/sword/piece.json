@@ -1,0 +1,14 @@
+{
+  "id": "sword",
+  "summary": "A one-handed medieval arming sword stood point-up: a lofted double-edged steel blade with a central spine,… options blade, hilt, scabbard.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.sword or place \"prefab\": \"sword\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:sword"
+  ]
+}

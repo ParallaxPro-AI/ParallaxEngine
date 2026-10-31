@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basic_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.52, 0.96, 2.12],
+      "offset": [0, 0.48, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tire_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9522, 0.7263, 0.6297],
+      "offset": [0.0009, 0.3631, 0.0032]
+    }
+  }
+}

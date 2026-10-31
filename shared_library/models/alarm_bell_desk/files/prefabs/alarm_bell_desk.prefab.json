@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alarm_bell_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1437, 0.1705, 0.0676],
+      "offset": [0, 0.0852, -0.0003]
+    }
+  }
+}

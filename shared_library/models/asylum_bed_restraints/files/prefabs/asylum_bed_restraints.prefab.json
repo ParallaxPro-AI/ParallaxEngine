@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/asylum_bed_restraints"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.05, 1.125, 0.974],
+      "offset": [0, 0.5625, 0]
+    }
+  }
+}

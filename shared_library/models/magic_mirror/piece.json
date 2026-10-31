@@ -1,0 +1,10 @@
+{
+  "id": "magic_mirror",
+  "summary": "A freestanding enchanted mirror: a tall oval gilded frame with a bevelled moulding, an inner bead, a crest wi… joints mirror_tilt; options glow; sockets socket_glass, glass_face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magic_mirror or place \"prefab\": \"magic_mirror\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magic_mirror"]
+}

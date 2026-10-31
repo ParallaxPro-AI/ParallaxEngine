@@ -1,0 +1,10 @@
+{
+  "id": "pets_rabbit",
+  "summary": "Little Paw House stylized rabbit. sockets head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pets_rabbit or place \"prefab\": \"pets_rabbit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pets_rabbit"]
+}

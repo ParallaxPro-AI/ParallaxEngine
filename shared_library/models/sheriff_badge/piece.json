@@ -1,0 +1,10 @@
+{
+  "id": "sheriff_badge",
+  "summary": "A lawman's six-point star badge, about 8 cm across: a bevelled brass star with ball tips on every point, a ra…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sheriff_badge or place \"prefab\": \"sheriff_badge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sheriff_badge"]
+}

@@ -1,0 +1,8 @@
+{
+  "id": "humanoid_locomotion",
+  "summary": "Humanoid walk, run, carry-walk, two standing idles and a fall, as authored clips any humanoid model plays (retargeted).",
+  "version": "2026.10.23",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.walk_cycle) or \"clip\": \"clips/walk_cycle\" in an animation graph. They retarget onto any humanoid skeleton by bone name."
+  ]
+}

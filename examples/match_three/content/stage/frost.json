@@ -1,0 +1,15 @@
+{
+  "depth": 2, "name": "Frost Line", "hint": "Crust in the middle. Break all of it.",
+  "target": 3200, "moves": 22, "gem_kinds": 5,
+  "crust": [
+    "........",
+    "........",
+    "........",
+    "...##...",
+    "...##...",
+    "........",
+    "........",
+    "........"
+  ],
+  "crust_layers": 1
+}

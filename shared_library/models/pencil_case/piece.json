@@ -1,0 +1,10 @@
+{
+  "id": "pencil_case",
+  "summary": "A soft zippered fabric pencil case, standing on its long edge like a small tent-fold wall on the desk.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pencil_case or place \"prefab\": \"pencil_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pencil_case"]
+}

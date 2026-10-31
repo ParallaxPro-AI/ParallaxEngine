@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hurdle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.232, 0.763, 0.71],
+      "offset": [0, 0.3815, 0]
+    }
+  }
+}

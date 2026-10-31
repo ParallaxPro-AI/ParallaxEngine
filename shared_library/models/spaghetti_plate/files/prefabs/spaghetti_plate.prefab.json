@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spaghetti_plate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2724, 0.0658, 0.2724],
+      "offset": [0, 0.0329, 0]
+    }
+  }
+}

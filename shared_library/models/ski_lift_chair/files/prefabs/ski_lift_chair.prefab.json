@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ski_lift_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.09, 3.252, 0.9864],
+      "offset": [0, 1.629, 0.0018]
+    }
+  }
+}

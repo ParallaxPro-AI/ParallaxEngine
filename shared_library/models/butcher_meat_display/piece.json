@@ -1,0 +1,10 @@
+{
+  "id": "butcher_meat_display",
+  "summary": "A butcher's serve-over meat counter: a stainless refrigerated base with a burgundy BUTCHER face panel, bumper… joints door_l, door_r; options body.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.butcher_meat_display or place \"prefab\": \"butcher_meat_display\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:butcher_meat_display"]
+}

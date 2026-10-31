@@ -1,0 +1,18 @@
+{
+  "id": "save_slots",
+  "summary": "Save / load menu over the save plugin: a few named slots with the scene, play time and label the save plugin keeps for each (ctx.save.info), Save (in playable scenes), Load and Delete; open it from a pause or title button with open_panel(SaveSlots).",
+  "version": "2026.10.23",
+  "requires": [
+    "ui_theme",
+    "scene_tags"
+  ],
+  "plugins": [
+    "save"
+  ],
+  "setup": [
+    "Add a button whose action is open_panel(SaveSlots) to your pause or title panel; name the slots in config/save_slots.json."
+  ],
+  "replaces": [
+    "lib:ui/save_slots"
+  ]
+}

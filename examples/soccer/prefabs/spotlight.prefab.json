@@ -1,0 +1,41 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spotlight",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.447,
+        0.495,
+        0.56
+      ],
+      "offset": [
+        0,
+        0.2475,
+        0.02
+      ]
+    }
+  },
+  "behaviors": {
+    "model_ambient": {
+      "motions": [
+        {
+          "joint": "pan",
+          "mode": "oscillate",
+          "period": 7,
+          "low": -112.0,
+          "high": 112.0
+        },
+        {
+          "joint": "tilt",
+          "mode": "oscillate",
+          "period": 9,
+          "low": 6.0,
+          "high": 42.0
+        }
+      ]
+    }
+  }
+}

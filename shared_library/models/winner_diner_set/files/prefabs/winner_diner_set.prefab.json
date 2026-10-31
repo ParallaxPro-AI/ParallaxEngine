@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/winner_diner_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [17, 6, 5.495],
+      "offset": [0, 3, 0]
+    }
+  }
+}

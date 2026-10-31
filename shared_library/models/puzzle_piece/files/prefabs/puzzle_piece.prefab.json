@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/puzzle_piece"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.248, 0.248, 0.062],
+      "offset": [0, 0.124, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "spider_bot",
+  "summary": "A six-legged spider robot, near-future security / recon drone: a lens-shaped light-grey armoured hull with a… joints head, leg0_hip_l, leg1_hip_l, leg2_hip_l, leg0_hip_r, leg1_hip_r, …; sockets socket_eye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spider_bot or place \"prefab\": \"spider_bot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spider_bot"]
+}

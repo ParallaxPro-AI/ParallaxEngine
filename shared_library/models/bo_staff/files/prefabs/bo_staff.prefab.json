@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bo_staff"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.36, -0.6],
+      "hip_turn": [-10.31324, -22.918312, -31.512679],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0375, 0.0371, 1.8],
+      "offset": [0, 0.0158, 0.9]
+    }
+  }
+}

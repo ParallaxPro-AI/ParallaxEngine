@@ -1,0 +1,10 @@
+{
+  "id": "circular_saw",
+  "summary": "A 7-1/4 inch cordless sidewinder circular saw: a 184 mm carbide-tipped blade on the right under a cast upper… joints depth, lower_guard, blade, trigger; options housing; sockets socket_grip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.circular_saw or place \"prefab\": \"circular_saw\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:circular_saw"]
+}

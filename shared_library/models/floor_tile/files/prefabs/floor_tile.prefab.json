@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/floor_tile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6015, 0.0525, 0.6015],
+      "offset": [0.0008, 0.0262, -0.0008]
+    }
+  }
+}

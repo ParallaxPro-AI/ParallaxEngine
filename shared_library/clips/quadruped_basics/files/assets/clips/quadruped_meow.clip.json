@@ -1,0 +1,10 @@
+{
+  "rig": "quadruped", "duration": 0.7, "loop": false,
+  "events": [{"time":0.24,"name":"vocalize"}],
+  "keys": [
+    {"time":0,"ease":"linear","pose":{"Neck":[0,0,0],"Head":[0,0,0],"Spine2":[0,0,0],"Tail1":[0,0,0]}},
+    {"time":0.24,"pose":{"Neck":[-18,0,0],"Head":[-14.85,2.14,-8.28],"Spine2":[-8,0,0],"Tail1":[12,0,0]}},
+    {"time":0.46,"pose":{"Neck":[-18,0,0],"Head":[-11.88,-1.69,8.18],"Spine2":[-8,0,0],"Tail1":[12,0,0]}},
+    {"time":0.7,"pose":{"Neck":[0,0,0],"Head":[0,0,0],"Spine2":[0,0,0],"Tail1":[0,0,0]}}
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ufo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.2405, 4.4, 9.38],
+      "offset": [0, 2.2, 0]
+    }
+  }
+}

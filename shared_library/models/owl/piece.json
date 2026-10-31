@@ -1,0 +1,10 @@
+{
+  "id": "owl",
+  "summary": "A perched horned owl (0.6 m to the ear tufts) standing on its talons. joints wing_l, wing_r, head_turn, head_tilt; options plumage, disc, eyes, tufts; sockets talons, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.owl or place \"prefab\": \"owl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:owl"]
+}

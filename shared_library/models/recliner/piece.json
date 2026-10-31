@@ -1,0 +1,10 @@
+{
+  "id": "recliner",
+  "summary": "An overstuffed reclining armchair: pillow-top rolled arms, a three-tier pillow back, a deep seat cushion on a… joints recline, lever, footrest_extend, footrest; options upholstery; sockets socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.recliner or place \"prefab\": \"recliner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:recliner"]
+}

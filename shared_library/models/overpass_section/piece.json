@@ -1,0 +1,10 @@
+{
+  "id": "overpass_section",
+  "summary": "A 12 m elevated road section from the ROAD_KIT: a 12 m wide prestressed concrete deck (four 1.05 m I-beams un…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.overpass_section or place \"prefab\": \"overpass_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:overpass_section"]
+}

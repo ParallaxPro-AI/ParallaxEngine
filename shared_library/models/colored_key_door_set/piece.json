@@ -1,0 +1,10 @@
+{
+  "id": "colored_key_door_set",
+  "summary": "A coloured key-and-door set for platformer and dungeon puzzles: a 1.2 x 2.1 m plank door in a chunky grey sto… joints door_leaf; options color.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.colored_key_door_set or place \"prefab\": \"colored_key_door_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:colored_key_door_set"]
+}

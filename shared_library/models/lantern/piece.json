@@ -1,0 +1,14 @@
+{
+  "id": "lantern",
+  "summary": "A square coach lantern: brass frame with four glass panes, a pyramidal vented roof and a bail carry handle. joints carry_handle, glass_door; options element, finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.lantern or place \"prefab\": \"lantern\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:lantern"
+  ]
+}

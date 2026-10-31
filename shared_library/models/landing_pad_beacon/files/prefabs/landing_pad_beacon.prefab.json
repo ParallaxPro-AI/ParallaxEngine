@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/landing_pad_beacon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.81, 2.205, 0.52],
+      "offset": [0, 1.1025, 0]
+    }
+  }
+}

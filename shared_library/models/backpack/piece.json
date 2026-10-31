@@ -1,0 +1,10 @@
+{
+  "id": "backpack",
+  "summary": "A top-loading fabric backpack: main body, a front zip pocket, two padded shoulder straps and a grab handle on… joints flap, buckles; options colour; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.backpack or place \"prefab\": \"backpack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:backpack"]
+}

@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="twofold.css">
+<style>
+  /* The template's title card (its 2048-tile theme over the old engine's menu kit). */
+  @keyframes menu-in { from { opacity: 0; transform: translateY(calc(12 * var(--u))); } to { opacity: 1; transform: none; } }
+  .scene { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+           padding: clamp(calc(16 * var(--u)), calc(76.8 * var(--u)), calc(40 * var(--u))); pointer-events: none; animation: menu-in 0.5s ease forwards; }
+  .panel {
+    pointer-events: auto; box-sizing: border-box; width: min(calc(460 * var(--u)), calc(calc(1920 * var(--u)) - calc(40 * var(--u))));
+    max-height: calc(calc(1080 * var(--u)) - calc(32 * var(--u))); overflow-y: auto; padding: calc(40 * var(--u)) calc(38 * var(--u)) calc(34 * var(--u)); text-align: center;
+    border-radius: calc(16 * var(--u)); border: calc(1 * var(--u)) solid rgba(237, 194, 46, 0.35);
+    background: linear-gradient(180deg, rgba(38, 30, 18, 0.92), rgba(20, 16, 10, 0.94));
+    color: var(--ink); font-family: var(--mono);
+    box-shadow: 0 calc(24 * var(--u)) calc(70 * var(--u)) rgba(0, 0, 0, 0.55), 0 0 calc(50 * var(--u)) rgba(237, 194, 46, 0.16), inset 0 calc(1 * var(--u)) 0 rgba(255, 235, 190, 0.08);
+    backdrop-filter: blur(calc(6 * var(--u))); -webkit-backdrop-filter: blur(calc(6 * var(--u)));
+  }
+  .tag { display: inline-block; padding: calc(5 * var(--u)) calc(12 * var(--u)); border: calc(1 * var(--u)) solid rgba(237, 194, 46, 0.4); border-radius: calc(20 * var(--u));
+         color: var(--gold); font-size: calc(10 * var(--u)); font-weight: 700; letter-spacing: calc(4 * var(--u)); text-transform: uppercase; }
+  .game-title {
+    margin: calc(22 * var(--u)) 0 0; font-size: clamp(calc(46 * var(--u)), calc(230.4 * var(--u)), calc(72 * var(--u))); font-weight: 900; line-height: 0.92;
+    letter-spacing: calc(2 * var(--u)); text-transform: uppercase;
+    background: linear-gradient(135deg, #f2b179 0%, #edc22e 55%, #f67c5f 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 calc(22 * var(--u)) rgba(237, 194, 46, 0.4));
+  }
+  .rule { width: calc(70 * var(--u)); height: calc(2 * var(--u)); margin: calc(22 * var(--u)) auto; border-radius: calc(1 * var(--u));
+          background: linear-gradient(90deg, transparent, #edc22e, #f67c5f, transparent); }
+  .hint { max-width: calc(340 * var(--u)); margin: 0 auto; color: rgba(247, 236, 216, 0.72); font-size: calc(13 * var(--u)); line-height: 1.5; }
+  .best { margin-top: calc(20 * var(--u)); font-size: calc(12 * var(--u)); letter-spacing: calc(3 * var(--u)); text-transform: uppercase; color: rgba(247, 236, 216, 0.7); }
+  .best b { color: var(--gold); font-size: calc(18 * var(--u)); letter-spacing: calc(1 * var(--u)); }
+  .play {
+    display: inline-flex; align-items: center; justify-content: center; min-width: calc(220 * var(--u)); margin-top: calc(26 * var(--u));
+    padding: calc(16 * var(--u)) calc(24 * var(--u)); font-family: inherit; font-size: calc(16 * var(--u)); font-weight: 900; letter-spacing: calc(4 * var(--u));
+    text-transform: uppercase; cursor: pointer; border-radius: calc(12 * var(--u)); border: calc(2 * var(--u)) solid transparent;
+    background: linear-gradient(135deg, #f2b179, #edc22e); color: #2b1f06;
+    box-shadow: 0 calc(10 * var(--u)) calc(28 * var(--u)) rgba(0, 0, 0, 0.4), 0 0 calc(22 * var(--u)) rgba(237, 194, 46, 0.28);
+    transition: transform .09s ease, filter .09s ease, box-shadow .09s ease;
+  }
+  .play:hover { transform: translateY(-2px); filter: brightness(1.08);
+                box-shadow: 0 calc(12 * var(--u)) calc(34 * var(--u)) rgba(0, 0, 0, 0.45), 0 0 calc(34 * var(--u)) rgba(237, 194, 46, 0.5); }
+  .play:active { transform: translateY(0); }
+  @media (max-width: 640px) {
+    .panel { padding: calc(32 * var(--u)) calc(24 * var(--u)) calc(28 * var(--u)); }
+    .play { width: 100%; min-width: 0; }
+  }
+</style>
+<div class="view">
+<div class="scene">
+  <main class="panel">
+    <div class="tag" data-text="title_tag"></div>
+    <h1 class="game-title" data-text="title"></h1>
+    <div class="rule"></div>
+    <p class="hint"><span data-text="tagline_start"></span><span class="desktop-only"><span data-text="tagline_keys_by"></span><b data-text="tagline_keys"></b></span><span class="mobile-only"><span data-text="tagline_touch_by"></span><b data-text="tagline_touch"></b></span><span data-text="tagline_rule"></span><b data-bind="target"></b><span data-text="tagline_end"></span></p>
+    <div class="best" data-show="has_best"><span data-text="best"></span> <b data-bind="best_score"></b><span data-show="has_best_tile"> · <span data-text="best_tile"></span> <span data-bind="best_tile"></span></span></div>
+    <button class="play" data-action="play" data-text="play"></button>
+  </main>
+</div>
+</div>

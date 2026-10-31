@@ -1,0 +1,16 @@
+{
+  "id": "hatchback",
+  "summary": "A small five-door hatchback: the saloon's cockpit and hardware on a 3.9 m body with no boot — the… joints door_fl, door_fr, door_rl, door_rr, wheel_f_l_roll …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1 …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.hatchback or place \"prefab\": \"hatchback\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:hatchback"
+  ]
+}

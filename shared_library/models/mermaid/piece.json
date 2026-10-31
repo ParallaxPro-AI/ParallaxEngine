@@ -1,0 +1,10 @@
+{
+  "id": "mermaid",
+  "summary": "A mermaid on the shared humanoid_17 rig: a woman's upper body (face, long flowing hair falling down the back… options tail, fins, skin, hair; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mermaid or place \"prefab\": \"mermaid\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mermaid"]
+}

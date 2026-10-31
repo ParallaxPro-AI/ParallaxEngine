@@ -1,0 +1,10 @@
+{
+  "id": "flame_jet",
+  "summary": "A floor flame-jet trap: a bolted diamond-plate floor plate carrying a finned, turned steel burner nozzle with… options state; sockets flame_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flame_jet or place \"prefab\": \"flame_jet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flame_jet"]
+}

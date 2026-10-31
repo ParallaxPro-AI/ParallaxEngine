@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_shuttle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [23.8, 23.57, 49.7],
+      "offset": [0, 3.315, 2.05]
+    }
+  }
+}

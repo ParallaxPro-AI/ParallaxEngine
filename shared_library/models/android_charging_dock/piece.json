@@ -1,0 +1,10 @@
+{
+  "id": "android_charging_dock",
+  "summary": "A 2.25 m upright android charging cradle: a dock slab with a raked lip and two lit footprint outlines, a tall… joints clamp_l, clamp_r; options glow, paint; sockets socket_occupant.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.android_charging_dock or place \"prefab\": \"android_charging_dock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:android_charging_dock"]
+}

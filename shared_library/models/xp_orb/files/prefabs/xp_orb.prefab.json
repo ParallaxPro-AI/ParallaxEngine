@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/xp_orb"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.265, 0.265, 0.24],
+      "offset": [0, 0.1325, 0]
+    }
+  }
+}

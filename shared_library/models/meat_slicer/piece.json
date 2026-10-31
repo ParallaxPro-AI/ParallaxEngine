@@ -1,0 +1,10 @@
+{
+  "id": "meat_slicer",
+  "summary": "A countertop deli meat slicer: a rounded cast-aluminium base on rubber feet with a motor column and bell, a 3… joints thickness_knob, carriage, food_pusher; options finish; sockets slice_out.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.meat_slicer or place \"prefab\": \"meat_slicer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:meat_slicer"]
+}

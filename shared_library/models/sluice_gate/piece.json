@@ -1,0 +1,10 @@
+{
+  "id": "sluice_gate",
+  "summary": "A stone sluice gate across a 1.2 m water channel: two coursed masonry piers with full-height guide grooves ho… joints gate_lift, handwheel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sluice_gate or place \"prefab\": \"sluice_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sluice_gate"]
+}

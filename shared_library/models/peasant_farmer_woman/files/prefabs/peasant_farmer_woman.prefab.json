@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/peasant_farmer_woman"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7077, 1.713, 0.6179],
+      "offset": [0, 0.8565, 0.017]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "jigsaw_puzzle_table",
+  "summary": "An oak table with a jigsaw puzzle in progress: a 10 x 7 grid of interlocking pieces (tabs and blanks) forming…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jigsaw_puzzle_table or place \"prefab\": \"jigsaw_puzzle_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jigsaw_puzzle_table"]
+}

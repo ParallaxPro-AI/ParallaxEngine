@@ -1,0 +1,10 @@
+{
+  "id": "rope_barrier",
+  "summary": "A museum / VIP rope barrier: two polished brass stanchions on weighted domed bases with ball finials, and a p… options rope_color, metal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rope_barrier or place \"prefab\": \"rope_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rope_barrier"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "exit_sign",
+  "summary": "An illuminated emergency EXIT sign: a white moulded box housing with a glowing legend panel, raised lit EXIT… options mount, arrow, legend.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.exit_sign or place \"prefab\": \"exit_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:exit_sign"]
+}

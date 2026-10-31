@@ -1,0 +1,10 @@
+{
+  "id": "bb_fish_tang",
+  "summary": "Low-poly fish tang with a tapered body, forked tail, dorsal and paired pectoral fins.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_fish_tang or place \"prefab\": \"bb_fish_tang\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_fish_tang"]
+}

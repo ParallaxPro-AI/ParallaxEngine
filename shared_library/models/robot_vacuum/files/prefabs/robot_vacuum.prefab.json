@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/robot_vacuum"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4014, 0.1232, 0.3583],
+      "offset": [0.0223, 0.0611, 0.0031]
+    }
+  }
+}

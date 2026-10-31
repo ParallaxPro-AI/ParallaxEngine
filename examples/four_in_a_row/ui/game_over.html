@@ -1,0 +1,77 @@
+<!-- Result card: You win / You lose / Draw in the amber, teal or ink mood, the four-disc win line,
+     both disc counts, the streak echo and Play Again / Main Menu. -->
+<link rel="stylesheet" href="dropline.css">
+<style>
+  .go { position: fixed; inset: 0; z-index: 240; pointer-events: auto; --mood: var(--dl-gold); --mood-line: rgba(255,180,84,.5); }
+  .go.is-loss { --mood: var(--dl-teal); --mood-line: rgba(95,211,198,.42); }
+  .go.is-draw { --mood: var(--dl-ink); --mood-line: var(--dl-line-strong); }
+  .go-mood { position: fixed; inset: 0; background: radial-gradient(42% 58% at 50% 50%, rgba(255,180,84,.26), transparent 70%); animation: dl-fade var(--dl-dur-slow) var(--dl-ease) both; }
+  .go.is-loss .dl-scrim { background: rgba(3,10,20,.72); }
+  .go.is-loss .go-mood { background: radial-gradient(42% 58% at 50% 50%, rgba(23,184,166,.16), transparent 70%); }
+  .go.is-draw .go-mood { background: radial-gradient(42% 58% at 50% 50%, rgba(127,166,230,.12), transparent 70%); }
+  .go-card { width: min(calc(680 * var(--dl-u)), calc(100cqw - 24px)); padding: calc(46 * var(--dl-u)) calc(56 * var(--dl-u)) calc(52 * var(--dl-u)); text-align: center; display: flex; flex-direction: column; align-items: center; border-color: var(--mood-line); }
+  .go-eyebrow { font-size: calc(13 * var(--dl-u)); color: var(--dl-peri-muted); margin-bottom: calc(24 * var(--dl-u)); }
+  .go-line { position: relative; display: flex; gap: calc(14 * var(--dl-u)); margin-bottom: calc(26 * var(--dl-u)); }
+  .go-line .dl-disc { width: calc(40 * var(--dl-u)); height: calc(40 * var(--dl-u)); animation: dl-drop .46s var(--dl-ease) both; }
+  .go-line .dl-disc:nth-child(2) { animation-delay: .08s; }
+  .go-line .dl-disc:nth-child(3) { animation-delay: .16s; }
+  .go-line .dl-disc:nth-child(4) { animation-delay: .24s; }
+  .go-bar { position: absolute; top: 50%; left: calc(20 * var(--dl-u)); right: calc(20 * var(--dl-u)); height: calc(6 * var(--dl-u)); margin-top: calc(-3 * var(--dl-u)); border-radius: 4px; background: var(--mood); box-shadow: 0 0 14px var(--mood); transform-origin: left; animation: dl-bar .42s .5s var(--dl-ease) both; }
+  .go.is-draw .go-bar { display: none; }
+  .go.is-draw .go-line .dl-disc { opacity: .6; }
+  .go-title { color: var(--mood); font-size: calc(148 * var(--dl-u)); line-height: .86; font-weight: 700; letter-spacing: var(--dl-track-title); text-transform: uppercase; margin-bottom: calc(16 * var(--dl-u)); text-shadow: 0 0 calc(48 * var(--dl-u)) rgba(255,180,84,.45); white-space: nowrap; }
+  .go.is-loss .go-title { text-shadow: 0 0 calc(40 * var(--dl-u)) rgba(95,211,198,.25); }
+  .go.is-draw .go-title { text-shadow: none; }
+  .go-sub { font-size: calc(24 * var(--dl-u)); color: var(--dl-ink-2); margin-bottom: calc(30 * var(--dl-u)); }
+  .go-statswrap { width: 100%; padding: calc(18 * var(--dl-u)) 0; border-top: 1px solid var(--dl-line); border-bottom: 1px solid var(--dl-line); margin-bottom: calc(30 * var(--dl-u)); display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--dl-u)); }
+  .go-stats { display: flex; justify-content: center; align-items: center; gap: calc(12 * var(--dl-u)); font-size: calc(16 * var(--dl-u)); color: var(--dl-ink-2); white-space: nowrap; }
+  .go-stats b { font-weight: 700; }
+  .go-stats .am { color: var(--dl-amber); }
+  .go-stats .te { color: var(--dl-teal); }
+  .go-dot { color: var(--dl-peri-muted); }
+  .go-streak { font-size: calc(13 * var(--dl-u)); color: var(--mood); }
+  .go-streak em { font-style: normal; font-weight: 700; }
+  .go-streak b { font-weight: 700; }
+  .go-dot.is-m, .go-stats .go-streak { display: none; }
+  .go-actions { display: grid; grid-template-columns: 1fr 1fr; gap: calc(14 * var(--dl-u)); width: 100%; }
+
+  @container ((max-height: 500px) and (orientation: landscape)) or ((orientation: portrait) and (max-width: 600px)) {
+    .go-card { width: min(calc(560 * var(--dl-u)), calc(100cqw - 24px)); padding: calc(22 * var(--dl-u)) calc(32 * var(--dl-u)) calc(26 * var(--dl-u)); }
+    .go-eyebrow { font-size: calc(11 * var(--dl-u)); margin-bottom: calc(12 * var(--dl-u)); }
+    .go-line { gap: calc(8 * var(--dl-u)); margin-bottom: calc(12 * var(--dl-u)); }
+    .go-line .dl-disc { width: calc(22 * var(--dl-u)); height: calc(22 * var(--dl-u)); }
+    .go-bar { left: calc(11 * var(--dl-u)); right: calc(11 * var(--dl-u)); height: calc(4 * var(--dl-u)); margin-top: calc(-2 * var(--dl-u)); }
+    .go-title { font-size: calc(76 * var(--dl-u)); line-height: .88; margin-bottom: calc(8 * var(--dl-u)); }
+    .go-sub { font-size: calc(16 * var(--dl-u)); margin-bottom: calc(14 * var(--dl-u)); }
+    .go-statswrap { display: contents; }
+    .go-stats { gap: calc(8 * var(--dl-u)); font-size: calc(12 * var(--dl-u)); width: 100%; padding: calc(10 * var(--dl-u)) 0; border-top: 1px solid var(--dl-line); border-bottom: 1px solid var(--dl-line); margin-bottom: calc(16 * var(--dl-u)); }
+    .go-dot.is-m, .go-stats .go-streak { display: inline; }
+    .go-statswrap > .go-streak { display: none; }
+    .go-streak { font-size: inherit; }
+    .go-actions { gap: calc(10 * var(--dl-u)); }
+  }
+  @container (orientation: portrait) and (max-width: 600px) {
+    .go-stats { flex-wrap: wrap; white-space: normal; }
+    .go-actions { grid-template-columns: 1fr; }
+  }
+</style>
+<div class="dl-root go" data-class-is-loss="loss" data-class-is-draw="draw">
+  <div class="dl-scrim"></div>
+  <div class="go-mood"></div>
+  <div class="dl-layer">
+    <main class="dl-card dl-modal dl-enter go-card" role="dialog" aria-modal="true">
+      <p class="go-eyebrow dl-mono" data-text="match_over"></p>
+      <div class="go-line" aria-hidden="true"><span style="display: contents" data-each="line"><template><i class="dl-disc" data-class-a="amber" data-class-t="teal"></i></template></span><span class="go-bar"></span></div>
+      <h1 class="go-title" data-bind="title"></h1>
+      <p class="go-sub" data-bind="line_text"></p>
+      <div class="go-statswrap">
+        <div class="go-stats dl-mono"><span><span data-text="your_discs"></span> <b class="am" data-bind="you"></b></span><span class="go-dot">·</span><span><span data-text="teal_discs"></span> <b class="te" data-bind="them"></b></span><span class="go-dot is-m">·</span><span class="go-streak go-streak-m"><span data-bind="streak"></span><em data-show="streak_up"> +1</em> · <span data-text="best_label"></span> <b data-bind="best_streak"></b></span></div>
+        <span class="go-streak dl-mono"><span data-bind="streak"></span><em data-show="streak_up"> +1</em> · <span data-text="best_label"></span> <b data-bind="best_streak"></b></span>
+      </div>
+      <div class="go-actions">
+        <button class="dl-btn dl-btn-primary" data-action="play_again"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4"/></svg><span data-text="play_again"></span></button>
+        <button class="dl-btn dl-btn-ghost" data-action="quit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span data-text="main_menu"></span></button>
+      </div>
+    </main>
+  </div>
+</div>

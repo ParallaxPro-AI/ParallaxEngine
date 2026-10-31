@@ -1,0 +1,10 @@
+{
+  "id": "service_run",
+  "summary": "A suspended building-services run: a galvanised ladder cable tray with rungs and a filled cable bundle, two c… options run.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.service_run or place \"prefab\": \"service_run\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:service_run"]
+}

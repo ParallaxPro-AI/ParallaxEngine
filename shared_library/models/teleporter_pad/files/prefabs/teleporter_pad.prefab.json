@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/teleporter_pad"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.2, 0.5199, 2.2],
+      "offset": [0, 0.2585, 0]
+    }
+  }
+}

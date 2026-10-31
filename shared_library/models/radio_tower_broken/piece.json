@@ -1,0 +1,10 @@
+{
+  "id": "radio_tower_broken",
+  "summary": "A broken red-and-white steel lattice radio mast: the lower 9 m still stands on its concrete pad, banded red a… joints hut_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.radio_tower_broken or place \"prefab\": \"radio_tower_broken\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:radio_tower_broken"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bb_ghost_ship_small",
+  "summary": "Two-masted jade-sailed ghost brig.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_ghost_ship_small or place \"prefab\": \"bb_ghost_ship_small\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_ghost_ship_small"]
+}

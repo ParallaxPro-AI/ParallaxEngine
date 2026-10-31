@@ -1,0 +1,125 @@
+<!-- The shared order rail, ported from the template's hud/kitchen_orders: paper order tickets
+     clipped to a steel rail along the bottom centre on desktop (ticket number, payout, recipe
+     dots, draining countdown bar + seconds), the STOVES row above it (cooking blue filling,
+     ready gold with the burn countdown draining, burnt charcoal), the ORDERS plate with the
+     combo pill and the one-shot Missed! flash. On touch the tickets shrink to paper chips
+     top-right (max 4) and the stoves stack top-left under the score. -->
+<link rel="stylesheet" href="kitchen_kit.css">
+<style>
+  .kro { position: fixed; left: 50%; bottom: calc(var(--kr-u) * 22); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(var(--kr-u) * 16); pointer-events: none; z-index: 7; }
+  .kro-stoves { display: none; align-items: center; gap: calc(var(--kr-u) * 10); }
+  .kro-stoves.on { display: flex; }
+  .kro-stoves > * { flex: none; }
+  .kro-scap { margin-right: calc(var(--kr-u) * 6); white-space: nowrap; padding: calc(var(--kr-u) * 8) calc(var(--kr-u) * 14); border-radius: 999px; background: var(--kr-glass); font: 800 calc(var(--kr-u) * 13)/1.2 var(--kr-font-body); letter-spacing: .2em; text-transform: uppercase; color: var(--kr-cream); }
+  .kro-pots { display: flex; align-items: center; gap: calc(var(--kr-u) * 10); }
+  .kro-stove { display: flex; align-items: center; gap: calc(var(--kr-u) * 10); padding: calc(var(--kr-u) * 7) calc(var(--kr-u) * 16) calc(var(--kr-u) * 7) calc(var(--kr-u) * 7); border-radius: 999px; --c: var(--kr-cooking); }
+  .kro-stove .ico { flex: none; width: calc(var(--kr-u) * 32); height: calc(var(--kr-u) * 32); border-radius: 50%; display: grid; place-items: center; background: var(--c); color: #14110e; }
+  .kro-stove .ico svg { width: calc(var(--kr-u) * 20); height: calc(var(--kr-u) * 20); display: block; }
+  .kro-stove .lbl { font: 800 calc(var(--kr-u) * 16)/1.2 var(--kr-font-body); white-space: nowrap; color: #cfe2ff; }
+  .kro-stove .kr-bar { width: calc(var(--kr-u) * 84); height: calc(var(--kr-u) * 7); }
+  .kro-stove.cooking .kr-bar > i { background: var(--kr-cooking); animation: kr-cook 3s linear infinite; }
+  .kro-stove.ready { --c: var(--kr-ready); border-color: rgba(255,227,138,.5); }
+  .kro-stove.ready .lbl { color: var(--kr-ready); }
+  .kro-stove.ready .kr-bar > i { background: linear-gradient(90deg, var(--kr-bar-bad), var(--kr-ready) 60%); }
+  .kro-stove.burnt { --c: #2a1f1b; background: var(--kr-burnt); border-color: rgba(0,0,0,.3); }
+  .kro-stove.burnt .lbl { color: #f5d8cc; }
+  .kro-stove.burnt .ico { color: #ff9b7a; }
+  .kro-rail { display: flex; align-items: flex-start; gap: calc(var(--kr-u) * 14); }
+  .kro-head { display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--kr-u) * 10); padding: calc(var(--kr-u) * 14) calc(var(--kr-u) * 16); min-width: calc(var(--kr-u) * 150); }
+  .kro-cap { font: 400 calc(var(--kr-u) * 26)/1 var(--kr-font-display); letter-spacing: .06em; color: var(--kr-cream); }
+  .kro-combo { display: none; white-space: nowrap; align-items: center; font: 400 calc(var(--kr-u) * 22)/1 var(--kr-font-display); background: var(--kr-mustard); color: var(--kr-ink); padding: calc(var(--kr-u) * 7) calc(var(--kr-u) * 14) calc(var(--kr-u) * 6); border-radius: 999px; box-shadow: inset 0 calc(var(--kr-u) * -3) 0 rgba(0,0,0,.16), 0 calc(var(--kr-u) * 3) 0 rgba(0,0,0,.35); }
+  .kro-combo.on { display: inline-flex; }
+  .kro-missed { display: none; white-space: nowrap; align-items: center; font: 400 calc(var(--kr-u) * 20)/1 var(--kr-font-display); background: var(--kr-bar-bad); color: #fff; padding: calc(var(--kr-u) * 7) calc(var(--kr-u) * 14) calc(var(--kr-u) * 6); border-radius: 999px; transform: rotate(-4deg); }
+  .kro-missed.on { display: inline-flex; animation: kr-flash 2.4s var(--kr-ease-out) forwards; }
+  .kro-body { display: flex; flex-direction: column; padding-top: calc(var(--kr-u) * 6); min-width: calc(var(--kr-u) * 428); }
+  .kro-tickets { display: flex; gap: calc(var(--kr-u) * 14); align-items: flex-start; padding: 0 calc(var(--kr-u) * 14); margin-top: calc(var(--kr-u) * -4); filter: drop-shadow(0 calc(var(--kr-u) * 10) calc(var(--kr-u) * 12) rgba(0,0,0,.45)); }
+  .kro-tk { position: relative; padding-top: calc(var(--kr-u) * 6); flex: none; }
+  .kro-tk.in { animation: kr-tk-in .4s var(--kr-ease-pop) both; }
+  .kro-tk.served { animation: kr-tk-served .35s var(--kr-ease-out) forwards; }
+  .kro-tk.missed { animation: kr-tk-missed .7s ease-in forwards; }
+  .kro-clip { position: absolute; top: calc(var(--kr-u) * -6); left: 50%; width: calc(var(--kr-u) * 36); height: calc(var(--kr-u) * 16); transform: translateX(-50%); border-radius: calc(var(--kr-u) * 3); background: linear-gradient(var(--kr-steel-hi), var(--kr-steel-lo)); box-shadow: 0 calc(var(--kr-u) * 2) calc(var(--kr-u) * 2) rgba(0,0,0,.4); z-index: 2; }
+  .kro-ticket { position: relative; width: calc(var(--kr-u) * 200); padding: calc(var(--kr-u) * 16) calc(var(--kr-u) * 14) calc(var(--kr-u) * 18); color: var(--kr-ink); background: linear-gradient(var(--kr-paper), var(--kr-paper-shade));
+    -webkit-mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(var(--kr-u) * 12) 100%;
+    mask: conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) 50% / calc(var(--kr-u) * 12) 100%; }
+  .kro-tk.urgent .kro-ticket { animation: kr-shake 1.2s infinite; }
+  .kro-top { display: flex; justify-content: space-between; font: 700 calc(var(--kr-u) * 12)/1.2 var(--kr-font-mono); color: var(--kr-ink-faint); letter-spacing: .04em; padding-bottom: calc(var(--kr-u) * 6); border-bottom: 1.5px dashed rgba(31,23,18,.2); }
+  .kro-top b { color: var(--kr-rail-800); }
+  .kro-name { font: 400 calc(var(--kr-u) * 23)/1.1 var(--kr-font-display); margin: calc(var(--kr-u) * 8) 0 calc(var(--kr-u) * 6); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .kro-recipe { display: flex; align-items: center; gap: calc(var(--kr-u) * 5); font: 700 calc(var(--kr-u) * 12)/1.2 var(--kr-font-body); color: var(--kr-ink-soft); margin-bottom: calc(var(--kr-u) * 10); }
+  .kro-recipe i { width: calc(var(--kr-u) * 12); height: calc(var(--kr-u) * 12); border-radius: 50%; background: var(--c); box-shadow: inset 0 calc(var(--kr-u) * -2) 0 rgba(0,0,0,.2); flex: none; }
+  .kro-dots { display: contents; }
+  .kro-recipe em { font-style: normal; margin-left: calc(var(--kr-u) * 3); white-space: nowrap; }
+  .kro-time { display: flex; align-items: center; gap: calc(var(--kr-u) * 8); }
+  .kro-time .kr-bar { flex: 1; }
+  .kro-time span { font: 800 calc(var(--kr-u) * 13)/1 var(--kr-font-mono); min-width: calc(var(--kr-u) * 26); text-align: right; }
+  .kro-verb { display: inline; }
+  @media (pointer: coarse) {
+    .kro { display: contents; }
+    .kro-stoves { position: fixed; left: var(--kr-safe-l); top: calc(var(--kr-u) * 62); flex-direction: column; align-items: flex-start; gap: calc(var(--kr-u) * 5); z-index: 6; }
+    .kro-scap { display: none; }
+    .kro-pots { flex-direction: column; align-items: flex-start; gap: calc(var(--kr-u) * 5); }
+    .kro-stove { gap: calc(var(--kr-u) * 6); padding: calc(var(--kr-u) * 3) calc(var(--kr-u) * 10) calc(var(--kr-u) * 3) calc(var(--kr-u) * 3); }
+    .kro-stove .ico { width: calc(var(--kr-u) * 22); height: calc(var(--kr-u) * 22); }
+    .kro-stove .ico svg { width: calc(var(--kr-u) * 14); height: calc(var(--kr-u) * 14); }
+    .kro-stove .lbl { font-size: max(10px, calc(var(--kr-u) * 11)); }
+    .kro-stove .kr-bar { width: calc(var(--kr-u) * 40); height: calc(var(--kr-u) * 4); }
+    .kro-verb { display: none; }
+    .kro-rail { position: fixed; right: var(--kr-safe-r); top: calc(var(--kr-u) * 60); width: calc(var(--kr-u) * 104); flex-direction: column; align-items: stretch; gap: calc(var(--kr-u) * 5); z-index: 6; }
+    .kro-head { position: relative; flex-direction: row; justify-content: space-between; align-items: center; gap: calc(var(--kr-u) * 4); padding: 0; min-width: 0; background: none; border: 0; box-shadow: none; }
+    .kro-cap { display: none; }
+    .kro-combo { font-size: calc(var(--kr-u) * 12); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 8) calc(var(--kr-u) * 3); }
+    .kro-missed { position: absolute; right: calc(100% + calc(var(--kr-u) * 6)); top: 0; font-size: calc(var(--kr-u) * 11); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 7) calc(var(--kr-u) * 3); }
+    .kro-body { padding-top: 0; min-width: 0; }
+    .kro-body .kr-steel { display: none; }
+    .kro-tickets { flex-direction: column; align-items: stretch; gap: calc(var(--kr-u) * 5); padding: 0; margin-top: 0; filter: none; }
+    .kro-tk { padding-top: 0; }
+    .kro-tk:nth-child(n+5) { display: none; }
+    .kro-clip { top: 50%; left: calc(var(--kr-u) * -3); width: calc(var(--kr-u) * 7); height: calc(var(--kr-u) * 16); transform: translateY(-50%); border-radius: 2px; background: linear-gradient(90deg, var(--kr-steel-hi), var(--kr-steel-lo)); }
+    .kro-ticket { width: auto; padding: calc(var(--kr-u) * 5) calc(var(--kr-u) * 8) calc(var(--kr-u) * 6) calc(var(--kr-u) * 12); border-radius: calc(var(--kr-u) * 5); box-shadow: 0 2px 0 rgba(0,0,0,.06), 0 calc(var(--kr-u) * 10) calc(var(--kr-u) * 18) rgba(0,0,0,.32); -webkit-mask: none; mask: none; }
+    .kro-tk.urgent .kro-ticket { animation: none; }
+    .kro-tk.urgent { animation: kr-shake 1.2s infinite; }
+    .kro-tk.in { animation-name: kr-fade; }
+    .kro-top, .kro-recipe, .kro-time span { display: none; }
+    .kro-name { font-size: max(11px, calc(var(--kr-u) * 12)); margin: 0 0 calc(var(--kr-u) * 4); }
+    .kro-time .kr-bar { height: calc(var(--kr-u) * 4); }
+  }
+</style>
+<div class="kr-root">
+  <div class="kro">
+    <div class="kro-stoves" data-class-on="has_pots">
+      <span class="kro-scap" data-text="stoves"></span>
+      <div class="kro-pots" data-each="pots">
+        <template>
+          <div class="kro-stove kr-glass" data-class-cooking="cooking" data-class-ready="ready" data-class-burnt="burnt">
+            <span class="ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="4" y="9" width="16" height="10" rx="3"/><rect x="1.5" y="10" width="4" height="2.4" rx="1.2"/><rect x="18.5" y="10" width="4" height="2.4" rx="1.2"/><rect x="6" y="5.5" width="12" height="2.5" rx="1.25"/></svg></span>
+            <span class="lbl"><span class="kro-verb" data-bind="verb"></span><span data-bind="label"></span></span>
+            <div class="kr-bar on-dark" data-hide="burnt"><i data-style-width="fill"></i></div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div class="kro-rail">
+      <div class="kro-head kr-glass">
+        <span class="kro-cap" data-text="orders"></span>
+        <span class="kro-combo" data-class-on="on_streak" data-bind="streak"></span>
+        <span class="kro-missed" data-class-on="missed" data-text="missed"></span>
+      </div>
+      <div class="kro-body">
+        <div class="kr-steel"></div>
+        <div class="kro-tickets" data-each="tickets">
+          <template>
+            <div class="kro-tk in" data-class-urgent="urgent">
+              <span class="kro-clip"></span>
+              <div class="kro-ticket">
+                <div class="kro-top"><span data-bind="number"></span><b data-bind="points"></b></div>
+                <div class="kro-name" data-bind="dish"></div>
+                <div class="kro-recipe"><span class="kro-dots" data-each="dots"><template><i data-style-background="color"></i></template></span><em data-bind="method"></em></div>
+                <div class="kro-time"><div class="kr-bar" data-class-is-ok="ok" data-class-is-warn="warn" data-class-is-bad="bad"><i data-style-width="fill"></i></div><span data-bind="seconds"></span></div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

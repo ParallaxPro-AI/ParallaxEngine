@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/laptop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.33, 0.224, 0.236],
+      "offset": [0, 0.112, -0.0005]
+    }
+  }
+}

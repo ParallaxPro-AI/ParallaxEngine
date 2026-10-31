@@ -1,0 +1,10 @@
+{
+  "id": "rowing_machine",
+  "summary": "An air-resistance indoor rower: a 1.74 m aluminium monorail on a steel frame, a spoked fan cage at the front… joints flywheel, damper, seat, strap, handle; options accent; sockets socket_seat, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rowing_machine or place \"prefab\": \"rowing_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rowing_machine"]
+}

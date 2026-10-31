@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/folding_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 0.7415, 1.46],
+      "offset": [0, 0.3693, 0]
+    }
+  }
+}

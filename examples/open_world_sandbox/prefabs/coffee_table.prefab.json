@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/coffee_table", "cast_shadows": true }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [
+        3.6,
+        0.7,
+        3.2
+      ],
+      "color": [
+        0.86,
+        0.72,
+        0.32
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.6,
+        0.7,
+        3.2
+      ]
+    },
+    "rigidbody": {
+      "kind": "kinematic"
+    }
+  },
+  "behaviors": {
+    "moving_platform": {
+      "axis": "x",
+      "range": 3.5,
+      "speed": 1.35
+    }
+  }
+}

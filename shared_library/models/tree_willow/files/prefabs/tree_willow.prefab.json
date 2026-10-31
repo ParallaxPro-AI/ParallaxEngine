@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_willow"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.3417, 8.4286, 9.1963],
+      "offset": [-0.0106, 4.2133, -0.0677]
+    }
+  }
+}

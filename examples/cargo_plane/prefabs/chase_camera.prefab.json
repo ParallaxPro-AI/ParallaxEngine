@@ -1,0 +1,25 @@
+{
+ "components": {
+  "camera": {
+   "rig": "follow",
+   "mode": "perspective",
+   "fov": 68,
+   "smoothing": 0.25,
+   "pitch_limits": [-60, 20]
+  }
+ },
+ "behaviors": {
+  "chase_camera": {
+   "walk_offset": [
+    0,
+    1.6,
+    -7
+   ],
+   "plane_offset": [
+    0,
+    6.3,
+    -18
+   ]
+  }
+ }
+}

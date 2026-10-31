@@ -1,0 +1,10 @@
+{
+  "id": "water_mill",
+  "summary": "A two-storey stone water mill, 7 x 6 m: rubble walls with dressed quoins, a string course and stone lintels a… joints door, wheel; sockets socket_door_outside, spill, splash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_mill or place \"prefab\": \"water_mill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_mill"]
+}

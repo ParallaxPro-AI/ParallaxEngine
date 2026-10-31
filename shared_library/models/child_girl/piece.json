@@ -1,0 +1,10 @@
+{
+  "id": "child_girl",
+  "summary": "A rigged eight-year-old girl on the canonical 17-bone humanoid rig at real child proportions (forked from `co… options skin, hair, dress; sockets eye_point, grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.child_girl or place \"prefab\": \"child_girl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:child_girl"]
+}

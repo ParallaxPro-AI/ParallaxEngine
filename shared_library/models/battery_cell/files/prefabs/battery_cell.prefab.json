@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/battery_cell"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.148, 0.322, 0.148],
+      "offset": [0, 0.161, 0]
+    }
+  }
+}

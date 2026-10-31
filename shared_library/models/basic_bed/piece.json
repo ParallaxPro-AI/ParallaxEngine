@@ -1,0 +1,10 @@
+{
+  "id": "basic_bed",
+  "summary": "A budget flat-pack double bed from the 'basic' apartment set, made up: a light pine frame with a slatted head… options duvet, throw; sockets head_l, head_r, seat_edge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_bed or place \"prefab\": \"basic_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_bed"]
+}

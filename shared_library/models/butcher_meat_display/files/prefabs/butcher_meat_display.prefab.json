@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/butcher_meat_display"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.01, 1.342, 1.0705],
+      "offset": [0, 0.669, -0.0103]
+    }
+  }
+}

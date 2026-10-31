@@ -1,0 +1,13 @@
+{
+  "name": "The Chapel Idol", "prefab": "chapel_idol", "boss": true,
+  "hp": 220, "contact_damage": 2, "move_speed": 1.0, "standoff": 4.5, "enrage_below": 0.35,
+  "shot": "boss_bolt", "shot_cooldown": 1.8, "burst_count": 7, "burst_spread": 52,
+  "summon": "husk", "summon_count": 3, "summon_cooldown": 7,
+  "tactics": [
+    { "wounded": true, "move": "hold", "attack": "summon" },
+    { "wounded": true, "move": "strafe", "attack": "burst" },
+    { "within": 4, "move": "retreat", "attack": "burst" },
+    { "within": 18, "move": "standoff", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

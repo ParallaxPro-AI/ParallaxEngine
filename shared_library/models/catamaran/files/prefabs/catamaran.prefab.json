@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/catamaran"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.57, 17.6, 11.792],
+      "offset": [0, 8.8, 0.026]
+    }
+  }
+}

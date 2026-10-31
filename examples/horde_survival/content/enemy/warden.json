@@ -1,0 +1,1 @@
+{ "name": "Ash Warden", "prefab": "warden", "hp": 420, "damage": 26, "move_speed": 2.2, "xp": 28, "score": 250, "heart_chance": 1.0 }

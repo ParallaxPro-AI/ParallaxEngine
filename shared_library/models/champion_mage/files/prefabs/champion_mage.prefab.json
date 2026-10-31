@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/champion_mage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 1.8384, 0.6312],
+      "offset": [0, 0.9192, 0.0028]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"extends": "effect/magic", "burst": 24, "max": 34, "rate": 0, "lifetime": [0.35, 0.85], "speed": [0.8, 2.2], "size": [0.1, 0.25], "size_end": 0.035, "color": "#ffe62ef2", "color_end": "#ffb80d00", "radius": 0.35, "light": null}

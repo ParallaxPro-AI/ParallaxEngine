@@ -1,0 +1,4 @@
+{
+  "extends": "pedestrian_c",
+  "behaviors": { "pedestrian": { "wander_radius": 2, "pause": 6 } }
+}

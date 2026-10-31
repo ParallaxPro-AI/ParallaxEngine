@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_helm_crusader",
+  "summary": "A flat-topped crusader great helm (13th-century barrel helm): a riveted steel barrel with a flat crown plate… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_helm_crusader or place \"prefab\": \"garment_head_helm_crusader\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_helm_crusader"]
+}

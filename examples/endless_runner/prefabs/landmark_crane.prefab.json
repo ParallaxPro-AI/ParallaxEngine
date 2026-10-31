@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crane",
+      "cast_shadows": true
+    }
+  },
+  "pool": 4
+}

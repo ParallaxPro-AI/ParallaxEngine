@@ -1,0 +1,22 @@
+{
+ "components": {
+  "model": {
+   "model": "models/shop_counter",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    1.85,
+    1.2386,
+    0.684
+   ],
+   "offset": [
+    0.0,
+    0.6193,
+    0.002
+   ],
+   "layer": "world"
+  }
+ }
+}

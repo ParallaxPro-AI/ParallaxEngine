@@ -1,0 +1,10 @@
+{
+  "id": "beehive",
+  "summary": "A Langstroth beehive: a wooden stand with a landing board and entrance slot, two stacked hollow boxes showing… joints boxes, lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.beehive or place \"prefab\": \"beehive\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:beehive"]
+}

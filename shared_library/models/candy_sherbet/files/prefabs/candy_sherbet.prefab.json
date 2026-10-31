@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/candy_sherbet"
+    },
+    "viewmodel_item": {
+      "hip": [0.23, -0.34, 0.79],
+      "hip_turn": [1.432394, 4.010705, -3.437747],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.136, 0.3445, 0.417],
+      "offset": [0, 0.1673, -0.0125]
+    }
+  }
+}

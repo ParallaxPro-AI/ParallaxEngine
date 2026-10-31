@@ -1,0 +1,2 @@
+{ "name": "Burnt Food", "stage": 0, "task": "Bin the burnt food", "hint": "nobody is eating that \u2014 find the bin",
+  "carry_shape": "box", "carry_color": "#6f6965", "carry_size": [0.36, 0.2, 0.36] }

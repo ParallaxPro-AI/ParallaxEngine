@@ -1,0 +1,10 @@
+{
+  "id": "red_dot_sight",
+  "summary": "A tubed red-dot (reflex) sight, 0.134 m long: a 30 mm-class matte-black housing with a long flared front suns… joints elevation, windage, brightness, qd_lever; sockets socket_mount, socket_eyepiece.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.red_dot_sight or place \"prefab\": \"red_dot_sight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:red_dot_sight"]
+}

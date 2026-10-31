@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cyber_megacorp_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [40.9, 164.7, 46.05],
+      "offset": [0, 82.35, 2.575]
+    }
+  }
+}

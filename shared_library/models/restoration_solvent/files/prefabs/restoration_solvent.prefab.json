@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_solvent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0462, 0.142, 0.0426],
+      "offset": [0.0019, 0.071, 0]
+    }
+  }
+}

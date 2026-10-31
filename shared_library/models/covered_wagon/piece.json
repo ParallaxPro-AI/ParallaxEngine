@@ -1,0 +1,10 @@
+{
+  "id": "covered_wagon",
+  "summary": "A Conestoga covered wagon WITHOUT the team: a boat-shaped bed whose floor sags in the middle and whose ends r… joints end_gate, spin_rear_l, spin_rear_r, front_axle, spin_front_l, spin_front_r, …; options bed_paint, canvas_colour, load; sockets socket_hitch, seat_driver, socket_cargo, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.covered_wagon or place \"prefab\": \"covered_wagon\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:covered_wagon"]
+}

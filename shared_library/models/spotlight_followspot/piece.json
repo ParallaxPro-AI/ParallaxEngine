@@ -1,0 +1,10 @@
+{
+  "id": "spotlight_followspot",
+  "summary": "A theatre follow spot on a rolling tripod stand: a long black lens barrel with a glowing front lens and bezel… joints pan, tilt, gel_0, gel_1, gel_2, gel_3, …; options gel; sockets operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spotlight_followspot or place \"prefab\": \"spotlight_followspot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spotlight_followspot"]
+}

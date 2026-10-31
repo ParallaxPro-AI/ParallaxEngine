@@ -1,0 +1,10 @@
+{
+  "id": "fishing_net_rack",
+  "summary": "A harbour net-drying rack: two trestles of peeled poles (crossed, lashed and spread at the knee, standing on… options net, gear; sockets mender.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fishing_net_rack or place \"prefab\": \"fishing_net_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fishing_net_rack"]
+}

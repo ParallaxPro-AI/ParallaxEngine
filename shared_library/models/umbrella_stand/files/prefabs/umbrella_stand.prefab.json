@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/umbrella_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.25, 0.9435, 0.25],
+      "offset": [0, 0.4708, 0]
+    }
+  }
+}

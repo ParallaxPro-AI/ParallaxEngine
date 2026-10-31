@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_chunk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8375, 1.0191, 1.4131],
+      "offset": [0.0845, 0.5075, -0.0059]
+    }
+  }
+}

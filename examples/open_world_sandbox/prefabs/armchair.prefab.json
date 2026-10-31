@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/armchair", "cast_shadows": true }
+  }
+}

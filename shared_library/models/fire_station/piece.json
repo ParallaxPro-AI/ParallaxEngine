@@ -1,0 +1,10 @@
+{
+  "id": "fire_station",
+  "summary": "A two-storey city fire station. joints hut_door; options brickwork; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fire_station or place \"prefab\": \"fire_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fire_station"]
+}

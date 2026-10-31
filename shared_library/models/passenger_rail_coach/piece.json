@@ -1,0 +1,10 @@
+{
+  "id": "passenger_rail_coach",
+  "summary": "A classic mid-century steel passenger coach at standard gauge (1.435 m), 23 m over the body: a lofted body wi… joints door_lf, door_lr, door_rf, door_rr, bogie_f_axle_0, bogie_f_axle_1, …; options livery; sockets socket_coupler_front, socket_coupler_rear, seat_passenger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.passenger_rail_coach or place \"prefab\": \"passenger_rail_coach\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:passenger_rail_coach"]
+}

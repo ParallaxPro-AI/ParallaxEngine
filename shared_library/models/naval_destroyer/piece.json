@@ -1,0 +1,10 @@
+{
+  "id": "naval_destroyer",
+  "summary": "A generic modern guided-missile destroyer: a 150 m haze-grey hull with a raked, flared bow, a bow sonar dome… joints search_radar, gun_turret, gun_elevation; sockets waterline, eye_point, seat_driver, helipad.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.naval_destroyer or place \"prefab\": \"naval_destroyer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:naval_destroyer"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "landing_pad_beacon",
+  "summary": "A 2.2 m landing-pad marker pylon: a bolted footing and plinth with a lit guide strip, a tapering square post… joints beacon; options signal, guide.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.landing_pad_beacon or place \"prefab\": \"landing_pad_beacon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:landing_pad_beacon"]
+}

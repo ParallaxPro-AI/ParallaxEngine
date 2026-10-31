@@ -1,0 +1,10 @@
+{
+  "id": "container_ship",
+  "summary": "A 160 m feeder container ship: a flared bow, a flush weather deck carrying four bays of stacked boxes three h… sockets eye_point, waterline, seat_driver, seat_crew_1, seat_crew_2, seat_crew_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.container_ship or place \"prefab\": \"container_ship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:container_ship"]
+}

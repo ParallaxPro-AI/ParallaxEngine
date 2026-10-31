@@ -1,0 +1,10 @@
+{
+  "id": "hatch",
+  "summary": "A round watertight access hatch: a raised coaming ring, a heavy circular lid that hinges up on the back rim… joints lid, wheel; options mounting.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hatch or place \"prefab\": \"hatch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hatch"]
+}

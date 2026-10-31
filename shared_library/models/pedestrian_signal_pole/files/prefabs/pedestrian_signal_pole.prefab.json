@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pedestrian_signal_pole"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.34, 3.1, 0.5592],
+      "offset": [0, 1.55, 0.0296]
+    }
+  }
+}

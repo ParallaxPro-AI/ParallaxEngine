@@ -1,0 +1,10 @@
+{
+  "id": "manor_house",
+  "summary": "A late-medieval H-plan manor house, about 20 x 11 m on plan and 10.6 m to the ridges (the hall-and-cross-wing… joints door; sockets socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.manor_house or place \"prefab\": \"manor_house\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:manor_house"]
+}

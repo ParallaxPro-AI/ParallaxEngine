@@ -1,0 +1,41 @@
+{
+  "pieces": {
+    "humanoid_combat": {
+      "from": "shared_library/clips/humanoid_combat",
+      "version": "2026.10.23",
+      "sha": "8c85615f93e45bf33d38df8a7caf9966c94d07d4061320a839ca2c13ee0d7f16",
+      "files": {
+        "assets/clips/bow_shot.clip.json": "d343e8f35ac0295f298bfffa14a8d0e97e0d4c0c71b915b603a93eeb1af77b2f",
+        "assets/clips/cast_forward.clip.json": "253c96c07a94fd8139fcd94649a19b76ae7de7316b7ed1b0b37c7db47929e84d",
+        "assets/clips/cast_overhead.clip.json": "0b45b1467437caee5ea66476714c8f9ceae24dc57c1282f8a552f96ff5c95f56",
+        "assets/clips/channel_cast.clip.json": "5b336affae1f4f6dd93f7412cd8b45cf68f1b58a52c61aaf72c0f8ee57e26659",
+        "assets/clips/cleave_swing.clip.json": "e4215e90b34a54e41a4c7e9e43d2ace106dcbe3d066d2dfd2a39fd8c4671cf98",
+        "assets/clips/downed_breathing.clip.json": "ff5ebf4fb3c142534ddfa219e46826cb0da6aefbbfe703b30fe45a4a0e1f5b61",
+        "assets/clips/evade_leap.clip.json": "8898b7a5c1b216753703e2d8232ae8b8cd09d2dd51323ba5f41cc83aecf5cef8",
+        "assets/clips/evade_recover.clip.json": "0aff4783d68bbbe03920522a3159686a8a589b023fb5b48474b09e1cd49778ce",
+        "assets/clips/get_up_back.clip.json": "25d70ee6ed40fe9d2a2cc74fb0d2c5dc660fdf031ef0e62b21e63f1a5f2e4576",
+        "assets/clips/get_up_front.clip.json": "c7c8b2b11ffdf5309410c4f9a7a019443c9a008d22d05ed6d5a55d67edbe6ceb",
+        "assets/clips/ground_slam.clip.json": "4453149660dfd8a691979569ab5af1d74ca9e54b3fa4eaeb498f5a0c0447da06",
+        "assets/clips/guard_stance.clip.json": "828e5c52d4ad2e2870e6eef38ee15e9c42d175d1bfb1b82fa3787afcc8aa3d13",
+        "assets/clips/overhead_swing.clip.json": "73398e71a4e8fdcb71225ea5535c20a6d40082b95132ba9e9e3f2cf026c59397",
+        "assets/clips/recall_channel.clip.json": "46b3375198300c9ca7d9c8286dbef4cc8f7c782f1710b5b16c6f5ccb7c9076b2",
+        "assets/clips/thrust_lunge.clip.json": "768c56e6b8749c9a10a2b34f38ca291290661a6dbca11fd365340ba1bc4fbfb5"
+      },
+      "text": {}
+    },
+    "humanoid_locomotion": {
+      "from": "shared_library/clips/humanoid_locomotion",
+      "version": "2026.10.23",
+      "sha": "e864b1171ebc5699b1bd8738f413c1eb07cf8af32f15fb3a62a6445bfbef8a52",
+      "files": {
+        "assets/clips/carry_walk.clip.json": "7d1a5446fb966111beab14751a73c20f00faa250651b8a7cc4085c23facf0399",
+        "assets/clips/human_fall.clip.json": "ab65de5627533fa7a9d85fd1a6e961e34c42d6d38308160b6663e93a36035883",
+        "assets/clips/run_cycle.clip.json": "68582aebb7c08dfc44b633fb166a7d89960e5591adfb2a232de26784c4bad243",
+        "assets/clips/stand_idle.clip.json": "04b3895e48aa5bde478abe1426844ceb8e3ebbf3f752adfa56c41a52be76bbfd",
+        "assets/clips/stand_idle_left.clip.json": "9423c2ffa815baf84c8088458ca64ab221fd7c7eaaa801a367930a4abed69029",
+        "assets/clips/walk_cycle.clip.json": "5f21442def2327494bb733ba1f045ca18d4179625586aff64aef49ee4482c817"
+      },
+      "text": {}
+    }
+  }
+}

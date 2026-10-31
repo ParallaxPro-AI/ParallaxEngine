@@ -1,0 +1,1 @@
+{"duration":8,"seed":242,"gain":0.3,"layers":[{"wave":"sine","freq":65.4,"sustain":1,"decay":0,"attack":0.4,"release":0.4,"gain":1,"lfo_depth":0.95,"lfo_hz":2},{"wave":"noise","sustain":1,"decay":0,"attack":0.6,"release":0.6,"gain":0.22,"lfo_depth":0.9,"lfo_hz":4,"filter":{"type":"bandpass","freq":5200,"q":1.2}}]}

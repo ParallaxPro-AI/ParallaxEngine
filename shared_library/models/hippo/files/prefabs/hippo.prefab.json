@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hippo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7796, 1.5379, 4.1139],
+      "offset": [0, 0.765, 0.1042]
+    }
+  }
+}

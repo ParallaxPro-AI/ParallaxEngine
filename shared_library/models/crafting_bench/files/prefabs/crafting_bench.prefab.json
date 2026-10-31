@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crafting_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9909, 1.5126, 0.7989],
+      "offset": [0.0546, 0.754, 0.0044]
+    }
+  }
+}

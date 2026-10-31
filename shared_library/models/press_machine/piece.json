@@ -1,0 +1,10 @@
+{
+  "id": "press_machine",
+  "summary": "A straight-side power press: a heavy cast base carrying a bolster and lower die, two painted uprights spanned… joints ram; sockets socket_die.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.press_machine or place \"prefab\": \"press_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:press_machine"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/biplane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.2, 2.7596, 6.508],
+      "offset": [0, 1.3795, 0.086]
+    }
+  }
+}

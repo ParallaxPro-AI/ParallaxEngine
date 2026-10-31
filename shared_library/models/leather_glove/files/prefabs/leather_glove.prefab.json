@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/leather_glove"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.16,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1278, 0.098, 0.312],
+      "offset": [0, 0.0475, 0]
+    }
+  }
+}

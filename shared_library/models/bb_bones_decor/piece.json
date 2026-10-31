@@ -1,0 +1,10 @@
+{
+  "id": "bb_bones_decor",
+  "summary": "Beached leviathan rib cage: six pairs of tapering ribs along a segmented spine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_bones_decor or place \"prefab\": \"bb_bones_decor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_bones_decor"]
+}

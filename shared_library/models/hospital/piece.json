@@ -1,0 +1,10 @@
+{
+  "id": "hospital",
+  "summary": "A mid-size city hospital: a six-storey pale-precast ward block of strictly regular window bays over spandrel… options cladding; sockets eye_point, eye_room2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hospital or place \"prefab\": \"hospital\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hospital"]
+}

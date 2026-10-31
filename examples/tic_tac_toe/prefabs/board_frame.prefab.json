@@ -1,0 +1,6 @@
+{
+  "z": -2,
+  "components": {
+    "sprite": { "image": "images/board_frame", "size": [3.6, 3.6] }
+  }
+}

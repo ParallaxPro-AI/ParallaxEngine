@@ -1,0 +1,61 @@
+<!-- The end card in two moods: victory (gold lantern wash) or the fall of Sundermere (bruised violet
+     with ember accents); the stats count up. Script-free. -->
+<link rel="stylesheet" href="sundermere.css">
+<style>
+.go-bg { position: fixed; inset: 0; background: rgba(6,10,11,.62); box-shadow: inset 0 0 calc(260 * var(--u)) rgba(0,0,0,.8); animation: sm-fade .4s ease-out both; }
+.go-wash { position: fixed; inset: 0; background: radial-gradient(circle calc(700 * var(--u)) at 50% 42%, rgba(255,196,110,.2) 0%, rgba(255,196,110,0) 100%); }
+.go-root.lose .go-wash { background: radial-gradient(circle calc(760 * var(--u)) at 50% 40%, rgba(110,60,150,.32) 0%, rgba(60,20,40,.2) 60%, rgba(0,0,0,.3) 100%); }
+.go { position: fixed; left: 50%; top: 50%; width: calc(980 * var(--u)); max-width: calc(100cqw - 32px); display: flex; flex-direction: column; align-items: center; text-align: center; transform: translate(-50%, -50%); --acc: #e0c48c; --eb: #d9bf80; --sb: rgba(224,196,140,.4); --dv: rgba(214,187,120,.22); --tg: 0 0 50px rgba(255,196,110,.35); }
+.go-root.lose .go { --acc: #e8743a; --eb: #f0a070; --sb: rgba(168,120,210,.4); --dv: rgba(168,120,210,.25); --tg: 0 0 50px rgba(138,90,168,.5); }
+.go-eb { font: 600 calc(13 * var(--u))/1 var(--sm-font-ui); letter-spacing: .32em; color: var(--eb); }
+.go-rule { display: flex; align-items: center; gap: calc(12 * var(--u)); margin: calc(22 * var(--u)) 0 calc(26 * var(--u)); }
+.go-rule > i { width: calc(90 * var(--u)); height: 1px; }
+.go-rule > i:first-child { background: linear-gradient(90deg, rgba(217,191,128,0), var(--acc)); }
+.go-rule > i:last-child { background: linear-gradient(90deg, var(--acc), rgba(217,191,128,0)); }
+.go-rule > b { width: calc(8 * var(--u)); height: calc(8 * var(--u)); transform: rotate(45deg); background: var(--acc); box-shadow: 0 0 14px var(--acc); }
+.go-title { font: 600 calc(84 * var(--u))/1 var(--sm-font-display); text-shadow: var(--tg); animation: go-up .6s var(--sm-ease) both; }
+@keyframes go-up { from { opacity: 0; transform: translateY(calc(14 * var(--sm-u))); } to { opacity: 1; transform: none; } }
+.sm-root .go-line { margin-top: calc(22 * var(--u)); max-width: calc(720 * var(--u)); font: 400 calc(27 * var(--u))/1.4 var(--sm-font-speech); color: rgba(244,239,220,.84); text-wrap: pretty; animation: go-up .6s .1s var(--sm-ease) both; }
+.go-stats { margin-top: calc(52 * var(--u)); display: flex; border: 1px solid var(--sb); border-radius: calc(10 * var(--u)); background: linear-gradient(180deg, rgba(15,27,31,.88), rgba(21,34,35,.82)); overflow: hidden; }
+.go-stats:empty { display: none; }
+.go-st { min-width: calc(210 * var(--u)); padding: calc(24 * var(--u)) calc(34 * var(--u)); border-left: 1px solid var(--dv); }
+.go-st:first-child { border-left-color: transparent; }
+.go-st strong { display: block; font: 600 calc(44 * var(--u))/1 var(--sm-font-ui); color: var(--sm-ink); }
+.go-st span { display: block; margin-top: calc(12 * var(--u)); font: 600 calc(11 * var(--u))/1 var(--sm-font-ui); letter-spacing: .24em; text-transform: uppercase; color: var(--eb); }
+.go-btns { margin-top: calc(52 * var(--u)); display: flex; gap: calc(16 * var(--u)); }
+.sm-root .go-btns .sm-btn { height: calc(62 * var(--u)); padding: 0 calc(38 * var(--u)); font-size: calc(19 * var(--u)); }
+.sm-root .go-btns .sm-btn.ghost { padding: 0 calc(34 * var(--u)); font-size: calc(18 * var(--u)); border-color: rgba(224,196,140,.5); background: rgba(15,27,31,.6); }
+@container (max-height: 500px) {
+  .go-bg { box-shadow: inset 0 0 calc(120 * var(--u)) rgba(0,0,0,.8); }
+  .go-wash { background: radial-gradient(circle calc(360 * var(--u)) at 50% 40%, rgba(255,196,110,.2) 0%, rgba(255,196,110,0) 100%); }
+  .go-root.lose .go-wash { background: radial-gradient(circle calc(400 * var(--u)) at 50% 40%, rgba(110,60,150,.32) 0%, rgba(60,20,40,.2) 60%, rgba(0,0,0,.3) 100%); }
+  .go { width: calc(680 * var(--u)); --tg: 0 0 30px rgba(255,196,110,.35); }
+  .go-root.lose .go { --tg: 0 0 30px rgba(138,90,168,.5); }
+  .go-eb { font-size: calc(11 * var(--u)); letter-spacing: .3em; }
+  .go-rule { display: none; }
+  .go-title { margin-top: calc(12 * var(--u)); font-size: calc(40 * var(--u)); }
+  .sm-root .go-line { margin-top: calc(10 * var(--u)); font-size: calc(18 * var(--u)); line-height: 1.35; }
+  .go-stats { margin-top: calc(20 * var(--u)); border-radius: calc(8 * var(--u)); }
+  .go-st { min-width: calc(120 * var(--u)); padding: calc(12 * var(--u)) calc(18 * var(--u)); }
+  .go-st strong { font-size: calc(26 * var(--u)); }
+  .go-st span { margin-top: calc(7 * var(--u)); font-size: calc(9.5 * var(--u)); letter-spacing: .2em; }
+  .go-btns { margin-top: calc(22 * var(--u)); gap: calc(10 * var(--u)); }
+  .sm-root .go-btns .sm-btn { height: max(44px, calc(48 * var(--u))); padding: 0 calc(24 * var(--u)); font-size: calc(15 * var(--u)); letter-spacing: .05em; }
+  .sm-root .go-btns .sm-btn.ghost { padding: 0 calc(22 * var(--u)); font-size: calc(15 * var(--u)); }
+}
+</style>
+<div class="sm-root go-root" data-class-lose="lost">
+  <div class="go-bg"></div>
+  <div class="go-wash"></div>
+  <main class="go">
+    <div class="go-eb" data-bind="eyebrow"></div>
+    <div class="go-rule"><i></i><b></b><i></i></div>
+    <h1 class="go-title" data-bind="title"></h1>
+    <p class="go-line" data-bind="story"></p>
+    <div class="go-stats" data-each="stats"><template><div class="go-st"><strong data-bind="value" data-count="0.8"></strong><span data-bind="label"></span></div></template></div>
+    <div class="go-btns">
+      <button class="sm-btn" data-action="play_again" data-text="walk_again"></button>
+      <button class="sm-btn ghost" data-action="main_menu" data-text="main_menu"></button>
+    </div>
+  </main>
+</div>

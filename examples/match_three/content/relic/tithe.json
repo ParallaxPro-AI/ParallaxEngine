@@ -1,0 +1,7 @@
+{
+  "name": "Cutter's Tithe",
+  "description": "Forging a special gem refunds the move that made it.",
+  "short": "Forging a special gem refunds its move.",
+  "highlight": "refunds",
+  "refund_on_special": true
+}

@@ -1,0 +1,5 @@
+{
+  "name": "Bilge Pumps",
+  "blurb": "The hull mends itself at +2 per second.",
+  "stat": "hull_regen", "amount": 2, "max_level": 2
+}

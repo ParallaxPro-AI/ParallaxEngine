@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/slide"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.72, 1.9115, 2.9975],
+      "offset": [0, 0.9543, 0.0487]
+    }
+  }
+}

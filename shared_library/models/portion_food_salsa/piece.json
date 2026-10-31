@@ -1,0 +1,10 @@
+{
+  "id": "portion_food_salsa",
+  "summary": "A spoonful of salsa with individually modelled pieces, ready to portion on a tortilla.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portion_food_salsa or place \"prefab\": \"portion_food_salsa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portion_food_salsa"]
+}

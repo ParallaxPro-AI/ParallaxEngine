@@ -1,0 +1,10 @@
+{
+  "id": "plasma_conduit",
+  "summary": "A 2.0 m modular sci-fi plasma conduit: a glowing plasma core inside a translucent containment sleeve, a two-s… joints flow; options plasma; sockets end_neg, end_pos.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.plasma_conduit or place \"prefab\": \"plasma_conduit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:plasma_conduit"]
+}

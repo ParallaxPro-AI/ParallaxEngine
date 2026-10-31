@@ -1,0 +1,4 @@
+{
+  "number": 1, "name": "First Sprouts", "act": 1, "guardian": "bloomling", "flight": "sway", "count": 5,
+  "speed": 0.90, "amp": 3.2, "freq": 1.10, "fire_rate": 0, "hp_mul": 1.0, "drop_chance": 0.0
+}

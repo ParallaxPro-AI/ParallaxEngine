@@ -1,0 +1,10 @@
+{
+  "id": "harpoon_gun",
+  "summary": "A pneumatic harpoon gun, 0.85 m: an anodised aluminium air barrel with a rubber butt cap and charging valve… joints trigger, safety, reel, harpoon; options barrel_colour; sockets socket_muzzle, spear_tip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.harpoon_gun or place \"prefab\": \"harpoon_gun\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:harpoon_gun"]
+}

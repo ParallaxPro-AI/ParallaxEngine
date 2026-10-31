@@ -1,0 +1,12 @@
+{
+  "name": "Mend",
+  "locked_hint": "Mend is not yet known.",
+  "slot": 2,
+  "form": "mend",
+  "mana_cost": 25,
+  "cooldown": 8,
+  "heal": 50,
+  "effect": "vfx/mend",
+  "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg",
+  "volume": 0.35
+}

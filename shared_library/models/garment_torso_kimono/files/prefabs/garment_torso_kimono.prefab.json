@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_kimono"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 1.482, 0.4551],
+      "offset": [0, 0.841, -0.0255]
+    }
+  }
+}

@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="twofold.css">
+<style>
+  /* The template's result card (the shared result kit) with this game's fields: title in the
+     win/lose accent, subtitle, score, NEW BEST, best tile, best line, New Game / Menu. */
+  .modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; padding: calc(12 * var(--u));
+           background: rgba(4, 6, 12, 0.55); font-family: ui-rounded, "Segoe UI", system-ui, sans-serif; color: #fff;
+           -webkit-font-smoothing: antialiased; }
+  .card { --accent: #ff6b5e; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); width: min(calc(640 * var(--u)), calc(1804.8 * var(--u)));
+          max-height: calc(calc(1080 * var(--u)) - calc(32 * var(--u))); overflow-y: auto; padding: calc(28 * var(--u)) calc(40 * var(--u)) calc(24 * var(--u)); border-radius: calc(16 * var(--u)); text-align: center;
+          background: rgba(12, 14, 22, 0.93); border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.08); box-shadow: 0 calc(24 * var(--u)) calc(70 * var(--u)) rgba(0, 0, 0, 0.6); }
+  .card.won { --accent: #7ed957; }
+  .title { margin: 0; font-size: calc(38 * var(--u)); font-weight: 900; line-height: 1.1; color: var(--accent); }
+  .sub { margin: 0; font-size: calc(26 * var(--u)); opacity: 0.72; max-width: calc(540 * var(--u)); }
+  .score { margin-top: calc(4 * var(--u)); font-size: calc(50 * var(--u)); font-weight: 900; line-height: 1; }
+  .score-label { font-size: calc(22 * var(--u)); font-weight: 700; letter-spacing: calc(2 * var(--u)); text-transform: uppercase; color: rgba(255, 255, 255, 0.5); }
+  .newbest { font-size: calc(22 * var(--u)); font-weight: 900; letter-spacing: calc(3 * var(--u)); text-transform: uppercase; color: #08300f;
+             background: #c6f76a; border-radius: calc(20 * var(--u)); padding: calc(3 * var(--u)) calc(12 * var(--u)); }
+  .stats { display: flex; gap: calc(22 * var(--u)); margin-top: calc(10 * var(--u)); justify-content: center; }
+  .stat { display: flex; flex-direction: column; gap: calc(2 * var(--u)); }
+  .stat b { font-size: calc(26 * var(--u)); font-weight: 900; color: #9fd8ff; }
+  .stat span { font-size: calc(22 * var(--u)); letter-spacing: calc(2 * var(--u)); opacity: 0.6; text-transform: uppercase; }
+  .best { font-size: calc(26 * var(--u)); letter-spacing: calc(1 * var(--u)); opacity: 0.65; text-transform: uppercase; }
+  .actions { display: flex; gap: calc(10 * var(--u)); margin-top: calc(16 * var(--u)); flex-wrap: wrap; justify-content: center; width: 100%; }
+  .btn { padding: calc(12 * var(--u)) calc(30 * var(--u)); min-height: calc(88 * var(--u)); border: 0; border-radius: calc(10 * var(--u)); font: 800 calc(26 * var(--u)) system-ui, sans-serif; cursor: pointer;
+         background: var(--accent); color: #221c00; transition: filter 0.15s ease, transform 0.1s ease; }
+  .btn:hover { filter: brightness(1.08); }
+  .btn:active { transform: translateY(calc(1 * var(--u))); }
+  .btn.ghost { background: transparent; color: rgba(255, 255, 255, 0.72); box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(255, 255, 255, 0.24); }
+  .btn.ghost:hover { background: rgba(255, 255, 255, 0.08); }
+  @media (pointer: coarse) {
+    .card { padding: calc(24 * var(--u)); }
+    .score { font-size: calc(40 * var(--u)); }
+  }
+</style>
+<div class="view">
+<div class="modal">
+  <div class="card" data-class-won="won">
+    <h1 class="title" data-bind="title"></h1>
+    <p class="sub" data-bind="subtitle"></p>
+    <div class="score" data-bind="score"></div>
+    <div class="score-label" data-text="score"></div>
+    <div class="newbest" data-show="new_best" data-text="new_best"></div>
+    <div class="stats"><div class="stat"><b data-bind="highest"></b><span data-text="best_tile"></span></div></div>
+    <div class="best"><span data-text="best"></span> <span data-bind="best"></span></div>
+    <div class="actions">
+      <button class="btn" data-action="retry" data-text="new_game"></button>
+      <button class="btn ghost" data-action="quit" data-text="menu"></button>
+    </div>
+  </div>
+</div>
+</div>

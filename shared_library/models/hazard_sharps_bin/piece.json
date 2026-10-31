@@ -1,0 +1,10 @@
+{
+  "id": "hazard_sharps_bin",
+  "summary": "A clinical sharps disposal bin: a tapered yellow moulded tub with stiffening ribs, a snap-on coloured lid wit… joints flap; options lid; sockets drop_in.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hazard_sharps_bin or place \"prefab\": \"hazard_sharps_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hazard_sharps_bin"]
+}

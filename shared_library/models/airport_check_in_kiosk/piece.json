@@ -1,0 +1,10 @@
+{
+  "id": "airport_check_in_kiosk",
+  "summary": "A freestanding airport self-service check-in kiosk: one lofted white shell with a slim waist and a flared hea… joints service_door; options shell_colour, accent; sockets socket_user, socket_passport.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airport_check_in_kiosk or place \"prefab\": \"airport_check_in_kiosk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airport_check_in_kiosk"]
+}

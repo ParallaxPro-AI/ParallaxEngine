@@ -1,0 +1,1 @@
+{"extends": "pedestrian", "components": {"model": {"model": "models/pedestrian", "options": {"skin": "tan", "jacket": "navy", "hair": "brown", "headwear": "cap", "top": "open"}, "cast_shadows": true}}}

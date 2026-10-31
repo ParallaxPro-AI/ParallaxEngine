@@ -1,0 +1,10 @@
+{
+  "id": "burger",
+  "summary": "A stacked cheeseburger — sesame-top bun, melted cheese drooping past the patty's edge, a ruffled lettuce leaf…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.burger or place \"prefab\": \"burger\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:burger"]
+}

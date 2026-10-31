@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/radio_tower_broken"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [17.4083, 10.3871, 5.8318],
+      "offset": [0.0042, 5.1936, -0.0001]
+    }
+  }
+}

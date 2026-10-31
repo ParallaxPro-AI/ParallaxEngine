@@ -1,0 +1,10 @@
+{
+  "id": "speed_camera",
+  "summary": "A roadside fixed speed camera: a galvanised pole on a bolted concrete pad with black/white reflective bands a… joints housing, rear_door; options housing, flash; sockets socket_flash, socket_lens.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.speed_camera or place \"prefab\": \"speed_camera\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:speed_camera"]
+}

@@ -1,0 +1,20 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/85/c2/85c2cfce1ad6def21310f536f3afd1713584064fb517969fc8014d0d209e4d43.glb",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "sphere",
+      "radius": 1.6,
+      "trigger": true,
+      "layer": "pickup",
+      "collides_with": [
+        "keeper"
+      ]
+    }
+  },
+  "behaviors": {
+    "locked_chest": {}
+  }
+}

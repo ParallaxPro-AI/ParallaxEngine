@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_anchor_decor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7959, 0.09, 0.8783],
+      "offset": [0, 0.045, 0.0559]
+    }
+  }
+}

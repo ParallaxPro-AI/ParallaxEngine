@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bloody_operating_tray"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5519, 1.018, 0.672],
+      "offset": [0, 0.509, 0.002]
+    }
+  }
+}

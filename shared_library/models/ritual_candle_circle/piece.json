@@ -1,0 +1,10 @@
+{
+  "id": "ritual_candle_circle",
+  "summary": "A summoning circle on the floor, 2.2 m across: a ragged smudge of soot with a chalked double ring, a five-poi… options state, chalk_colour; sockets socket_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ritual_candle_circle or place \"prefab\": \"ritual_candle_circle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ritual_candle_circle"]
+}

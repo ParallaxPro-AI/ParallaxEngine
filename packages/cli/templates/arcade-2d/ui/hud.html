@@ -1,0 +1,14 @@
+<link rel="stylesheet" href="style.css">
+<style>
+  .top { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); text-align: center; }
+  .scores { display: flex; gap: 22px; justify-content: center; margin-top: 6px; }
+  .scores b { display: block; font-size: 22px; }
+</style>
+<div class="top">
+  <div class="label" data-text="game_title"></div>
+  <div class="scores">
+    <div><b data-bind="score"></b><span class="label" data-text="score"></span></div>
+    <div><b data-bind="best"></b><span class="label" data-text="best"></span></div>
+  </div>
+  <p class="label" data-text="move_hint"></p>
+</div>

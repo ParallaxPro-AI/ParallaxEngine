@@ -1,0 +1,10 @@
+{
+  "id": "scroll_rolled_sealed",
+  "summary": "A rolled parchment scroll lying on its side, sealed: a 24 cm sheet wound nine turns into a 42 mm roll with a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scroll_rolled_sealed or place \"prefab\": \"scroll_rolled_sealed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scroll_rolled_sealed"]
+}

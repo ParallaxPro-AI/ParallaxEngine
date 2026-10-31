@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/floor_lamp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7987, 1.78, 0.8685],
+      "offset": [0, 0.89, -0.0142]
+    }
+  }
+}

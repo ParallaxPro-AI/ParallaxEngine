@@ -1,0 +1,10 @@
+{
+  "id": "tilled_soil_tile",
+  "summary": "A 1 x 1 m farming-sim tile of freshly tilled soil: two hilled planting ridges (0.33 m wide at the foot, 0.11…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tilled_soil_tile or place \"prefab\": \"tilled_soil_tile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tilled_soil_tile"]
+}

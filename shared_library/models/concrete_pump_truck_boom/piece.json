@@ -1,0 +1,10 @@
+{
+  "id": "concrete_pump_truck_boom",
+  "summary": "A truck-mounted concrete boom pump on the 6x4 cab-over chassis: a slewing turret (`slew`) behind the cab carr… joints cab_tilt, door_l, door_r, slew, boom_1, boom_2, …; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_load, exhaust_0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.concrete_pump_truck_boom or place \"prefab\": \"concrete_pump_truck_boom\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:concrete_pump_truck_boom"]
+}

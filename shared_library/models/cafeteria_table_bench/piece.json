@@ -1,0 +1,10 @@
+{
+  "id": "cafeteria_table_bench",
+  "summary": "A mobile school-cafeteria table with attached bench seats: a 2.44 m laminate top and two laminate benches, al… options top, benches; sockets seat_f0, seat_b0, place_f0, place_b0, seat_f1, seat_b1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cafeteria_table_bench or place \"prefab\": \"cafeteria_table_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cafeteria_table_bench"]
+}

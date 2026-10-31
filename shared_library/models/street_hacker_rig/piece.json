@@ -1,0 +1,10 @@
+{
+  "id": "street_hacker_rig",
+  "summary": "A makeshift street hacker workstation: a salvaged door (knob still on) laid across two stacks of plastic brea… options glow, rgb, crate_colour; sockets seat_0.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_hacker_rig or place \"prefab\": \"street_hacker_rig\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_hacker_rig"]
+}

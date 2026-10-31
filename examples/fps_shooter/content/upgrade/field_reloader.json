@@ -1,0 +1,1 @@
+{ "name": "Field Reloader", "description": "Every frag feeds you 3 sniper rounds. Keep the long gun fed.", "icon": "⌖", "ammo_on_kill": [{ "weapon": "sniper", "rounds": 3 }] }

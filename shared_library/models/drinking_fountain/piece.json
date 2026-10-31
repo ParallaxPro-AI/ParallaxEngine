@@ -1,0 +1,10 @@
+{
+  "id": "drinking_fountain",
+  "summary": "An outdoor pedestal drinking fountain: a painted cast-iron fluted column on a concrete pad, a stainless dishe… joints button; options colour, water, extras; sockets spout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drinking_fountain or place \"prefab\": \"drinking_fountain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drinking_fountain"]
+}

@@ -1,0 +1,5 @@
+{
+  "components": { "model": { "model": "models/tower_arrow" }, "side": { "side": "defenders" } },
+  "tags": ["tower"],
+  "behaviors": { "tower_turret": { "muzzle_height": 3.4 } }
+}

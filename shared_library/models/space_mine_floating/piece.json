@@ -1,0 +1,10 @@
+{
+  "id": "space_mine_floating",
+  "summary": "A floating spiked space proximity mine for a space shooter, about 1.1 m wide and 1.4 m tall across the spike… joints spinner; sockets socket_core.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_mine_floating or place \"prefab\": \"space_mine_floating\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_mine_floating"]
+}

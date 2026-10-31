@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "circle", "size": [0.6, 0.6, 0.6], "color": "#88ccff80" } },
+  "behaviors": { "ghost_playback": {} }
+}

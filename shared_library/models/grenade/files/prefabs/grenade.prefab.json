@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grenade"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.15, 0.35],
+      "hip_turn": [6.875494, 11.459156, -6.875494],
+      "eye_relief": 0.2,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.076, 0.1115, 0.084],
+      "offset": [0, 0.0542, 0.004]
+    }
+  }
+}

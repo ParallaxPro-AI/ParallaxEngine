@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_courier_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.404, 0.533, 0.6195],
+      "offset": [0, 1.3465, -0.1432]
+    }
+  }
+}

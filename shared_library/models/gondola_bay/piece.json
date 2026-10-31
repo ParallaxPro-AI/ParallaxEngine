@@ -1,0 +1,10 @@
+{
+  "id": "gondola_bay",
+  "summary": "ONE EMPTY retail gondola bay, 1.05 m wide — the shelf a game STOCKS rather than one that arrives full. sockets socket_header.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gondola_bay or place \"prefab\": \"gondola_bay\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gondola_bay"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cubicle_desk_l_shaped",
+  "summary": "An L-shaped open-plan cubicle workstation: a 1.6 x 0.75 m main run with a 0.6 m return on the left reaching 1… joints ped_drawer_1, ped_drawer_2, ped_drawer_3; options screens, top, fabric; sockets socket_desktop, socket_return, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cubicle_desk_l_shaped or place \"prefab\": \"cubicle_desk_l_shaped\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cubicle_desk_l_shaped"]
+}

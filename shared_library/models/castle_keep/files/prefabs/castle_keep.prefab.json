@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/castle_keep"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [22.7, 26.15, 23.4],
+      "offset": [0, 13.075, -0.65]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/robot_grunt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.67, 1.8595, 0.376],
+      "offset": [0, 0.9297, -0.054]
+    }
+  }
+}

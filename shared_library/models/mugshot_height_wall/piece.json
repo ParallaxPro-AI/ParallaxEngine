@@ -1,0 +1,10 @@
+{
+  "id": "mugshot_height_wall",
+  "summary": "A police booking / mugshot backdrop: a 1.5 x 2.3 m wall board with aluminium edge trim and a dark skirting, r… options board, placard; sockets socket_subject, socket_camera, socket_placard.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mugshot_height_wall or place \"prefab\": \"mugshot_height_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mugshot_height_wall"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "holo_billboard",
+  "summary": "A pole-mounted holographic billboard: a concrete footing and anchored gunmetal pole with a service cabinet (`… joints cabinet_door; options hologram, scanline.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.holo_billboard or place \"prefab\": \"holo_billboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:holo_billboard"]
+}

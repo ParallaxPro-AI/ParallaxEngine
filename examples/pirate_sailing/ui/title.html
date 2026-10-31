@@ -1,0 +1,120 @@
+<!-- Ported from the template: Buccaneer Bay title screen - the captain's log card: compass eyebrow, Pirata One title, the three-sea route chart, the career ledger and the Set Sail / Sail With a Crew doors. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .bbt-scene { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5,12,14,.35); pointer-events: auto; font-family: var(--bb-ui); color: var(--bb-cream); }
+  .bbt-card { position: relative; width: calc(1120 * var(--u)); max-width: calc(100cqw - calc(48 * var(--u))); padding: calc(44 * var(--u)) calc(72 * var(--u)) calc(48 * var(--u)); display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--bb-mahogany); border: 2px solid var(--bb-gold); border-radius: calc(6 * var(--u)); outline: 1px solid var(--bb-gold-soft); outline-offset: calc(-12 * var(--u)); box-shadow: 0 calc(30 * var(--u)) calc(80 * var(--u)) rgba(0,0,0,.55); animation: bbt-in 420ms cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes bbt-in { from { opacity: 0; transform: translateY(calc(18 * var(--u))); } to { opacity: 1; transform: none; } }
+  .bbt-main, .bbt-side { display: contents; }
+  .bbt-eyebrow { display: flex; align-items: center; gap: calc(12 * var(--u)); font: 400 calc(20 * var(--u)) var(--bb-sc); letter-spacing: .22em; color: var(--bb-muted); }
+  .bbt-eyebrow svg { width: calc(24 * var(--u)); height: calc(24 * var(--u)); color: var(--bb-gold-num); flex: none; }
+  .bbt-eyebrow .sep { color: var(--bb-brass-line); }
+  .bbt-title { margin: calc(14 * var(--u)) 0 0; font: 400 calc(150 * var(--u))/.92 var(--bb-display); letter-spacing: .03em; color: var(--bb-gold); text-shadow: 0 calc(4 * var(--u)) 0 #451a03, 0 0 calc(36 * var(--u)) rgba(252,211,77,.22); white-space: nowrap; }
+  .bbt-sub { margin-top: calc(10 * var(--u)); font: italic 400 calc(30 * var(--u)) var(--bb-serif); color: var(--bb-cream); }
+  .bbt-chart { margin-top: calc(28 * var(--u)); width: 100%; height: calc(214 * var(--u)); border: 1px solid rgba(185,139,74,.55); border-radius: calc(4 * var(--u)); background: rgba(9,40,44,.55); overflow: hidden; }
+  .bbt-chart svg { display: block; width: 100%; height: 100%; }
+  .bbt-chart .route { animation: bbt-route 2.4s linear infinite; }
+  @keyframes bbt-route { to { stroke-dashoffset: -26; } }
+  .bbt-chart .boat { animation: bbt-bob 3.2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes bbt-bob { 0%,100% { transform: translate(calc(266 * var(--u)),calc(40 * var(--u))) rotate(-2deg); } 50% { transform: translate(calc(266 * var(--u)),calc(44 * var(--u))) rotate(2deg); } }
+  .bbt-chart .names-m { display: none; }
+  .bbt-note { margin-top: calc(22 * var(--u)); max-width: calc(760 * var(--u)); font: 400 calc(23 * var(--u))/1.4 var(--bb-serif); color: var(--bb-muted); text-wrap: pretty; }
+  .bbt-ledger { margin-top: calc(26 * var(--u)); width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--bb-brass-line); border-bottom: 1px solid var(--bb-brass-line); }
+  .bbt-led { padding: calc(14 * var(--u)) 0; display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+  .bbt-led + .bbt-led { border-left: 1px solid rgba(138,106,42,.6); }
+  .bbt-led span { font: 400 calc(17 * var(--u)) var(--bb-sc); letter-spacing: .14em; color: var(--bb-muted); }
+  .bbt-led b { font: 600 calc(36 * var(--u))/1.25 var(--bb-ui); color: var(--bb-gold-num); font-variant-numeric: tabular-nums; }
+  .bbt-led b.leg { font: 400 calc(34 * var(--u))/1.25 var(--bb-serif); }
+  .bbt-crew { margin-top: calc(20 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); font: 400 calc(19 * var(--u)) var(--bb-sc); letter-spacing: .14em; color: var(--bb-good); }
+  .bbt-crew i { width: calc(9 * var(--u)); height: calc(9 * var(--u)); border-radius: 50%; background: var(--bb-good); box-shadow: 0 0 calc(10 * var(--u)) var(--bb-good); animation: bbt-pulse 1.8s ease-in-out infinite; }
+  @keyframes bbt-pulse { 50% { opacity: .45; } }
+  .bbt-doors { margin-top: calc(18 * var(--u)); display: flex; gap: calc(22 * var(--u)); align-items: stretch; }
+  .bbt-btn { width: calc(320 * var(--u)); height: calc(80 * var(--u)); padding: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; border-radius: calc(4 * var(--u)); cursor: pointer; pointer-events: auto; font: 400 calc(32 * var(--u)) var(--bb-sc); letter-spacing: .08em; transition: background 140ms, box-shadow 140ms, transform 90ms; }
+  .bbt-btn.primary { background: var(--bb-teal); border: 2px solid var(--bb-gold); color: var(--bb-cream-ink); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-teal-deep), 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4); }
+  .bbt-btn.primary:hover { background: var(--bb-teal-hi); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-teal-deep), var(--bb-glow); }
+  .bbt-btn.secondary { background: var(--bb-wood); border: 2px solid var(--bb-brass); color: var(--bb-cream); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-wood-deep), 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4); }
+  .bbt-btn.secondary:hover { background: var(--bb-wood-hi); }
+  .bbt-btn:active { transform: translateY(calc(4 * var(--u))); box-shadow: 0 2px 0 var(--bb-wood-deep), var(--bb-glow); }
+  .bbt-btn.primary:active { box-shadow: 0 2px 0 var(--bb-teal-deep), var(--bb-glow); }
+  .bbt-btn .lbl { font-size: calc(27 * var(--u)); letter-spacing: .06em; }
+  .bbt-btn .sub { font: 400 calc(14 * var(--u)) var(--bb-ui); letter-spacing: 0; color: var(--bb-muted); }
+
+  @media (pointer: coarse) {
+    .bbt-scene { padding: calc(24 * var(--u)); align-items: stretch; }
+    .bbt-card { width: 100%; max-width: none; padding: calc(32 * var(--u)) calc(44 * var(--u)); display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: calc(48 * var(--u)); align-items: stretch; text-align: left; outline-offset: calc(-16 * var(--u)); }
+    .bbt-main { display: flex; flex-direction: column; min-width: 0; }
+    .bbt-side { display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+    .bbt-eyebrow { gap: calc(16 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: .2em; }
+    .bbt-eyebrow svg { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+    .bbt-title { margin-top: calc(12 * var(--u)); font-size: calc(124 * var(--u)); line-height: .95; letter-spacing: .02em; text-shadow: 0 calc(4 * var(--u)) 0 #451a03; }
+    .bbt-sub { margin-top: calc(8 * var(--u)); font-size: calc(34 * var(--u)); }
+    .bbt-chart { margin-top: calc(20 * var(--u)); height: calc(208 * var(--u)); }
+    .bbt-chart .names { display: none; }
+    .bbt-chart .names-m { display: inline; }
+    .bbt-chart .route { stroke-width: calc(5 * var(--u)); stroke-dasharray: 3 16; }
+    .bbt-note { margin-top: calc(20 * var(--u)); max-width: none; font-size: calc(28 * var(--u)); line-height: 1.35; }
+    .bbt-ledger { margin-top: 0; display: flex; flex-direction: column; border-bottom: 0; }
+    .bbt-led { padding: calc(14 * var(--u)) 0; flex-direction: row; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(138,106,42,.6); }
+    .bbt-led:last-child { border-bottom-color: var(--bb-brass-line); }
+    .bbt-led + .bbt-led { border-left: 0; }
+    .bbt-led span { font-size: calc(28 * var(--u)); letter-spacing: .12em; }
+    .bbt-led b { font-size: calc(40 * var(--u)); }
+    .bbt-led b.leg { font-size: calc(38 * var(--u)); }
+    .bbt-crew { margin-top: 0; gap: calc(16 * var(--u)); font-size: calc(28 * var(--u)); }
+    .bbt-crew i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    .bbt-doors { margin-top: 0; flex-direction: column; gap: calc(20 * var(--u)); }
+    .bbt-btn { width: 100%; height: calc(112 * var(--u)); font-size: calc(48 * var(--u)); box-shadow: 0 calc(8 * var(--u)) 0 var(--bb-teal-deep); }
+    .bbt-btn.secondary { height: calc(116 * var(--u)); box-shadow: 0 calc(8 * var(--u)) 0 var(--bb-wood-deep); }
+    .bbt-btn .lbl { font-size: calc(40 * var(--u)); letter-spacing: .05em; }
+    .bbt-btn .sub { font-size: calc(24 * var(--u)); }
+    .bbt-btn:active { transform: translateY(calc(4 * var(--u))); }
+  }
+</style>
+<div class="bbt-scene">
+  <main class="bbt-card">
+    <div class="bbt-main">
+      <div class="bbt-eyebrow">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 4l3 8-3 8-3-8z" fill="currentColor"/><circle cx="12" cy="12" r="1.5" fill="#451a03"/></svg>
+        <span>Captain Log</span><span class="sep">/</span><span>High Seas</span>
+      </div>
+      <h1 class="bbt-title">BUCCANEER BAY</h1>
+      <div class="bbt-sub">Gold in the hold or bones on the reef</div>
+      <div class="bbt-chart" aria-hidden="true">
+        <svg viewBox="0 0 976 214" preserveAspectRatio="xMidYMid meet">
+          <path class="route" d="M96 140 C 230 30, 360 40, 480 108 S 720 196, 880 70" fill="none" stroke="#f0c473" stroke-width="3" stroke-dasharray="2 11" stroke-linecap="round"/>
+          <ellipse cx="96" cy="146" rx="62" ry="22" fill="#2fb3a3" opacity=".35"/>
+          <ellipse cx="96" cy="146" rx="38" ry="13" fill="#e9cf8f"/>
+          <ellipse cx="88" cy="143" rx="18" ry="7" fill="#6f8f3a"/>
+          <ellipse cx="480" cy="112" rx="64" ry="22" fill="#163d47" opacity=".9"/>
+          <ellipse cx="480" cy="112" rx="30" ry="10" fill="#7d6a4a"/>
+          <ellipse cx="506" cy="120" rx="10" ry="4" fill="#7d6a4a"/>
+          <ellipse cx="880" cy="74" rx="60" ry="20" fill="#0a1a1d"/>
+          <ellipse cx="880" cy="74" rx="36" ry="12" fill="#4a3a28"/>
+          <circle cx="880" cy="70" r="5" fill="#f5e6b8"/>
+          <g class="boat" transform="translate(266,40)"><path d="M0 24h38l-7 9H7z" fill="#3f2d1e" stroke="#b98b4a" stroke-width="1.5"/><path d="M19 0v24" stroke="#f5e6b8" stroke-width="2"/><path d="M21 2l13 18H21z" fill="#fff7ed"/><path d="M17 6L6 20h11z" fill="#f5e6b8"/></g>
+          <g class="names-m" font-family="IM Fell English SC, serif" font-size="28" fill="#f5e6b8" text-anchor="middle"><text x="110" y="200">Buccaneer Bay</text><text x="480" y="170">Storm Reef</text><text x="860" y="130">Skull Cove</text></g>
+          <g class="names" font-family="IM Fell English SC, serif" font-size="17" fill="#f5e6b8" text-anchor="middle">
+            <text x="96" y="192">I · Buccaneer Bay</text><text x="480" y="160">II · Storm Reef</text><text x="880" y="118">III · Skull Cove</text>
+          </g>
+          <g class="names" font-family="Inter, sans-serif" font-size="13" fill="#c4b38d" text-anchor="middle">
+            <text x="96" y="208">300 gold</text><text x="480" y="176">480 gold</text><text x="880" y="134">700 gold</text>
+          </g>
+        </svg>
+      </div>
+      <p class="bbt-note">Three legs. Three seas. Fill the hold before the glass runs out — or feed the fish.</p>
+    </div>
+    <div class="bbt-side">
+      <div class="bbt-ledger" id="ledger">
+        <div class="bbt-led"><span>Career gold</span><b data-bind="career_gold"></b></div>
+        <div class="bbt-led"><span>Voyages won</span><b data-bind="voyages_won"></b></div>
+        <div class="bbt-led"><span>Furthest leg</span><b class="leg" data-bind="furthest"></b></div>
+      </div>
+      <div class="bbt-crew"><i></i>Crew aboard</div>
+      <div class="bbt-doors">
+        <button class="bbt-btn primary" data-action="set_sail" data-key="Enter">Set Sail</button>
+        <button class="bbt-btn secondary" data-hide="in_room" data-action="sail_with_crew"><span class="lbl">Sail With a Crew</span><span class="sub">Co-op · one purse, one crew</span></button>
+        <button class="bbt-btn secondary" data-show="can_start" data-action="start_crew"><span class="lbl" data-text="crew_start"></span><span class="sub" data-bind="room_line"></span></button>
+        <button class="bbt-btn secondary" data-show="waiting" data-action="leave_crew"><span class="lbl" data-text="crew_waiting"></span><span class="sub" data-bind="room_line"></span></button>
+      </div>
+    </div>
+  </main>
+</div>

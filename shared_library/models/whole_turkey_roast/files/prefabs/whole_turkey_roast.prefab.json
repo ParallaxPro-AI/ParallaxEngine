@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/whole_turkey_roast"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4, 0.18, 0.54],
+      "offset": [0, 0.09, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "fuel_canister",
+  "summary": "A 20-litre military-pattern jerrycan: a pressed steel body with the X-rib stamped into both large faces, the… sockets socket_spout, socket_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fuel_canister or place \"prefab\": \"fuel_canister\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fuel_canister"]
+}

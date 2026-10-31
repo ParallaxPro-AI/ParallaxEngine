@@ -1,0 +1,10 @@
+{
+  "id": "feed_sack",
+  "summary": "A filled 25 kg sack of animal feed lying flat: a woven sack body swelling to 17 cm in the middle and pinching… options sack_cloth, grade_band; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.feed_sack or place \"prefab\": \"feed_sack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:feed_sack"]
+}

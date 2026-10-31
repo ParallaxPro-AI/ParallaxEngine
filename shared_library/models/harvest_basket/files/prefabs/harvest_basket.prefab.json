@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/harvest_basket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5697, 0.364, 0.454],
+      "offset": [0.0174, 0.182, 0]
+    }
+  }
+}

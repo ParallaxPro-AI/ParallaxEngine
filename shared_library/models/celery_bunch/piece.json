@@ -1,0 +1,10 @@
+{
+  "id": "celery_bunch",
+  "summary": "A bunch of celery: seven ribbed stalks fanning out of a trimmed white base, banded with an elastic tie, toppe… sockets snap_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.celery_bunch or place \"prefab\": \"celery_bunch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:celery_bunch"]
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/watermelon"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 6.5,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2524, 0.2527, 0.3791],
+      "offset": [0, 0.1249, -0.0083]
+    }
+  }
+}

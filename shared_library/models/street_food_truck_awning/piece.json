@@ -1,0 +1,10 @@
+{
+  "id": "street_food_truck_awning",
+  "summary": "A free-standing food-truck side canopy: four aluminium posts on weighted feet carry a red-and-white striped c… joints ledge, side_blind; options stripe, extras; sockets socket_truck_flank, socket_queue, socket_ledge_l, socket_ledge_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_food_truck_awning or place \"prefab\": \"street_food_truck_awning\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_food_truck_awning"]
+}

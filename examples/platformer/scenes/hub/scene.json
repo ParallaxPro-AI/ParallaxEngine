@@ -1,0 +1,14 @@
+{
+  "ui": ["title_screen"],
+  "environment": {"ambient": "#c0c8d9", "time_of_day": 10, "sun": {"direction": [-0.49, -0.849, 0.196], "color": "#fffcef", "intensity": 3.0}, "fog": {"color": "#d3e5ed", "density": 0.0008}, "post": {"exposure": 1.04, "contrast": 1.03, "temperature": 0.1, "bloom": 0.018, "vignette": 0.06}},
+  "entities": [
+    {"prefab": "sun_fill_meadow"},
+    { "prefab": "hub_camera", "at": [4, 10, -20], "rotation": [24, 0, 0] },
+    { "prefab": "backdrop_meadow", "at": [12, 1, 45] },
+    { "prefab": "island_meadow", "at": [7, 2, 0], "scale": [1.4, 1, 1.2] },
+    { "prefab": "tree_fruit", "at": [3, 2.15, 2.3], "scale": [1.2, 1.2, 1.2] },
+    { "prefab": "windmill", "at": [6, 2, 3], "scale": [0.6, 0.6, 0.6] },
+    { "prefab": "hub_bunny", "at": [8, 2.15, 0], "rotation": [0, 180, 0] },
+    { "prefab": "sky_gate", "at": [11, 2.1, 1.8] }
+  ]
+}

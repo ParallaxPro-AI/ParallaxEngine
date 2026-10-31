@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/xylophone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.189, 0.8842, 0.8],
+      "offset": [0, 0.4421, 0]
+    }
+  }
+}

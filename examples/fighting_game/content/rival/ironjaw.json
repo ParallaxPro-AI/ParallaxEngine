@@ -1,0 +1,16 @@
+{
+  "name": "Ironjaw",
+  "role": "THE ARMOURED HEAVY",
+  "taunt": "Light hits cannot stop his heavy wind-up. Make it miss.",
+  "style": "armour",
+  "walk_speed": 3.5,
+  "spacing": 1.4,
+  "block_chance": 0.32,
+  "reaction": 0.34,
+  "cadence": 0.85,
+  "armoured_move": "heavy",
+  "armour_absorbs": [
+    "jab"
+  ],
+  "kit": "amber"
+}

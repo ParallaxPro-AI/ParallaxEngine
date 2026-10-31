@@ -1,0 +1,10 @@
+{
+  "id": "house_door_front",
+  "summary": "A craftsman-style house front door in its frame, made to fill the HOUSE kit's 1.0 x 2.1 m door opening (house… joints door; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_door_front or place \"prefab\": \"house_door_front\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_door_front"]
+}

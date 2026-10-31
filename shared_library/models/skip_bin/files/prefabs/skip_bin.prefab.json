@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skip_bin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.71, 1.246, 2.0047],
+      "offset": [0, 0.623, 0]
+    }
+  }
+}

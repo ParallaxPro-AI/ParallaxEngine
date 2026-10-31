@@ -1,0 +1,10 @@
+{
+  "id": "morgue_drawer_bank",
+  "summary": "A stainless-steel mortuary cold-chamber bank: three by three square insulated doors with gasket seals, lever… joints drawer_0_0, drawer_0_1, drawer_0_2, drawer_1_0, drawer_1_1, drawer_1_2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.morgue_drawer_bank or place \"prefab\": \"morgue_drawer_bank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:morgue_drawer_bank"]
+}

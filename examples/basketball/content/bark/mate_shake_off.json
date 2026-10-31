@@ -1,0 +1,10 @@
+{
+  "voice": "mate",
+  "trigger": "shake_off",
+  "lines": [
+    "Shake it off.",
+    "My bad, my bad!",
+    "Pick it up, run it back!",
+    "Hands up on D!"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/moose"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0156, 2.2828, 2.7167],
+      "offset": [0, 1.1414, 0.3954]
+    }
+  }
+}

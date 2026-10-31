@@ -1,0 +1,31 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elder"
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.4,
+      "height": 1.8,
+      "offset": [
+        0,
+        0.9,
+        0
+      ]
+    },
+    "nameplate": {
+      "text": "Elder Mirelle",
+      "health": false,
+      "shown": false
+    },
+    "talkable": {
+      "dialogue": "elder_mirelle"
+    }
+  },
+  "tags": [
+    "npc"
+  ]
+}

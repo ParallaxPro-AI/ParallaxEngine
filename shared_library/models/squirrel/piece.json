@@ -1,0 +1,10 @@
+{
+  "id": "squirrel",
+  "summary": "A tree squirrel (0.27 m nose to rump, the bushy tail rising to 0.32 m) on the engine's quadruped_20 rig, so t… options coat, tail, tufts; sockets hands, mouth, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.squirrel or place \"prefab\": \"squirrel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:squirrel"]
+}

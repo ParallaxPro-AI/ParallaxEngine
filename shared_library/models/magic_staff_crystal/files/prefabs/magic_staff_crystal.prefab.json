@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magic_staff_crystal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1876, 1.74, 0.1876],
+      "offset": [0, 0.87, 0]
+    }
+  }
+}

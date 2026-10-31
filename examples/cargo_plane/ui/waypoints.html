@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="sky_freight.css">
+<style>
+  /* The template's beacon markers (flight_hud's sfh-wps): a bobbing diamond with its label
+     and a fading stem on screen, an edge arrow with its distance off it. Amber for the
+     pickup (icon "diamond"), green for the drop-off (icon "flag"). */
+  .sfh-wps { position: fixed; inset: 0; pointer-events: none; }
+  .sfh-wp b { text-transform: uppercase; }
+  .sfh-wp { position: absolute; width: 0; height: 0; --wc: var(--sf-pickup); --wg: rgba(255,190,46,.6); --wf: rgba(255,190,46,.25); --wb: rgba(255,190,46,.5); }
+  .sfh-wp[data-kind="flag"] { --wc: var(--sf-good); --wg: rgba(46,224,106,.6); --wf: rgba(46,224,106,.25); --wb: rgba(46,224,106,.5); }
+  .sfh-wp-on { position: absolute; left: 0; top: 0; animation: sf-bob 2.6s ease-in-out infinite; }
+  .sfh-wp-box { position: absolute; left: 0; bottom: calc(var(--u) * 22); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 2); padding: calc(var(--u) * 6) calc(var(--u) * 12); white-space: nowrap; background: var(--sf-glass); border: calc(var(--u) * 1) solid var(--wb); border-radius: calc(var(--u) * 6); }
+  .sfh-wp-box b { font: 700 calc(var(--u) * 12)/1.2 var(--sf-f-mono); letter-spacing: .18em; color: var(--wc); }
+  .sfh-wp-box span { font: 600 calc(var(--u) * 16)/1.2 var(--sf-f-hud); }
+  .sfh-wp-dia { position: absolute; left: calc(var(--u) * -10); top: calc(var(--u) * -10); width: calc(var(--u) * 20); height: calc(var(--u) * 20); transform: rotate(45deg); border: calc(var(--u) * 2.5) solid var(--wc); background: var(--wf); box-shadow: 0 0 calc(var(--u) * 18) var(--wg); }
+  .sfh-wp-stem { position: absolute; left: calc(var(--u) * -1); top: calc(var(--u) * 14); width: calc(var(--u) * 2); height: calc(var(--u) * 80); background: linear-gradient(var(--wc), transparent); }
+  .sfh-wp-off { position: absolute; left: 0; top: 0; }
+  .sfh-wp-arrow { position: absolute; left: calc(var(--u) * -14); top: calc(var(--u) * -20); width: 0; height: 0; border-left: calc(var(--u) * 14) solid transparent; border-right: calc(var(--u) * 14) solid transparent; border-bottom: calc(var(--u) * 20) solid var(--wc); filter: drop-shadow(0 0 calc(var(--u) * 8) var(--wg)); transform-origin: calc(var(--u) * 14) calc(var(--u) * 20); }
+  .sfh-wp-chip { position: absolute; left: 0; top: calc(var(--u) * 34); transform: translateX(-50%); white-space: nowrap; padding: calc(var(--u) * 4) calc(var(--u) * 10); background: var(--sf-glass); border: calc(var(--u) * 1) solid var(--wb); border-radius: calc(var(--u) * 6); font: 600 calc(var(--u) * 15)/1.2 var(--sf-f-hud); }
+  .sfh-wp-chip b { font: 700 calc(var(--u) * 12)/1 var(--sf-f-mono); letter-spacing: .14em; color: var(--wc); margin-right: calc(var(--u) * 6); }
+
+
+  .sfh-wp.on .sfh-wp-off, .sfh-wp:not(.on) .sfh-wp-on { display: none; }
+  @media (pointer: coarse) {
+    .sfh-wp-box { bottom: calc(var(--u) * 30); flex-direction: row; gap: calc(var(--u) * 10); padding: calc(var(--u) * 6) calc(var(--u) * 16); border-radius: calc(var(--u) * 10); }
+    .sfh-wp-box b { font-size: calc(var(--u) * 22); letter-spacing: .06em; }
+    .sfh-wp-box span { font-size: calc(var(--u) * 22); }
+    .sfh-wp-dia { left: calc(var(--u) * -12); top: calc(var(--u) * -12); width: calc(var(--u) * 24); height: calc(var(--u) * 24); border-width: calc(var(--u) * 4); box-shadow: none; }
+    .sfh-wp-stem { display: none; }
+    .sfh-wp-arrow { left: calc(var(--u) * -18); top: calc(var(--u) * -26); border-left-width: calc(var(--u) * 18); border-right-width: calc(var(--u) * 18); border-bottom-width: calc(var(--u) * 26); transform-origin: calc(var(--u) * 18) calc(var(--u) * 26); }
+    .sfh-wp-chip { padding: calc(var(--u) * 6) calc(var(--u) * 16); border-radius: calc(var(--u) * 10); font-size: calc(var(--u) * 22); }
+    .sfh-wp-chip b { font-size: calc(var(--u) * 22); letter-spacing: .06em; }
+  }
+</style>
+<div class="sfh-wps sf-root" data-show="shown" data-each="markers">
+  <template>
+    <div class="sfh-wp" data-attr-data-kind="icon" data-class-on="on_screen" data-style-left="x" data-style-top="y">
+      <div class="sfh-wp-on"><div class="sfh-wp-box"><b data-bind="label"></b><span data-bind="distance"></span></div><div class="sfh-wp-dia"></div><div class="sfh-wp-stem"></div></div>
+      <div class="sfh-wp-off"><div class="sfh-wp-arrow" data-style-transform="turn"></div><div class="sfh-wp-chip"><b data-bind="label"></b><span data-bind="distance"></span></div></div>
+    </div>
+  </template>
+</div>

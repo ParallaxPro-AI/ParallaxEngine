@@ -1,0 +1,10 @@
+{
+  "id": "leather_hide_roll",
+  "summary": "A tanned deer hide rolled up for storage or trade: a soft, lumpy roll 0.50 m long and 12-13 cm thick (a rolle…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.leather_hide_roll or place \"prefab\": \"leather_hide_roll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:leather_hide_roll"]
+}

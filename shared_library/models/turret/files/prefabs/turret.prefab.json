@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/turret"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3915, 1.22, 2.165],
+      "offset": [0.0757, 0.61, 0.1375]
+    }
+  }
+}

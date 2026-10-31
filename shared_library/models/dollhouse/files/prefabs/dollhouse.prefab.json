@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dollhouse"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.89, 1.1385, 0.5064],
+      "offset": [0, 0.5693, 0.0138]
+    }
+  }
+}

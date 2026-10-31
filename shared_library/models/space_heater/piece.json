@@ -1,0 +1,10 @@
+{
+  "id": "space_heater",
+  "summary": "A 0.56 m freestanding radiant bar heater: a rounded enamelled housing on a wide foot, a recessed polished ref… joints thermostat, selector; options power, colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_heater or place \"prefab\": \"space_heater\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_heater"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hay_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.97, 2.8176, 4.05],
+      "offset": [0, 1.4088, 0]
+    }
+  }
+}

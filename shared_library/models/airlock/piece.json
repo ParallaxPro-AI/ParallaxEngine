@@ -1,0 +1,10 @@
+{
+  "id": "airlock",
+  "summary": "A heavy sci-fi airlock: a thick pressure bulkhead with two bi-parting sliding leaves that retract into the si… joints leaf_left, leaf_right, beacon; sockets socket_threshold.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airlock or place \"prefab\": \"airlock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airlock"]
+}

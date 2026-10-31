@@ -1,0 +1,10 @@
+{
+  "id": "fireplace_mantel_stone",
+  "summary": "A rustic stone fireplace: a stacked-ledgestone chimney breast with a segmental-arched firebox, dressed-stone… options state, stone, decor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fireplace_mantel_stone or place \"prefab\": \"fireplace_mantel_stone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fireplace_mantel_stone"]
+}

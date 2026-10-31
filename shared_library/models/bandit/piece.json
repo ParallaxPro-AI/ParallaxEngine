@@ -1,0 +1,10 @@
+{
+  "id": "bandit",
+  "summary": "A HUMAN RAIDER - the generic melee-or-ranged enemy for a fantasy or post-apocalyptic game. options cloth, scarf, skin, hair, hood; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bandit or place \"prefab\": \"bandit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bandit"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wall_ac_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8, 0.2845, 0.209],
+      "offset": [0, 0.1422, 0.0045]
+    }
+  }
+}

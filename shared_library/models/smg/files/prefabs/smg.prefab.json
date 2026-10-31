@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/smg"
+    },
+    "viewmodel_item": {
+      "hip": [0.0897, -0.3147, 0.3874],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.13
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.066, 0.269, 0.669],
+      "offset": [-0.006, 0.1345, 0.0055]
+    }
+  }
+}

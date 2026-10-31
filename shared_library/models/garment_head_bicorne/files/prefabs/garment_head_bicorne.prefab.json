@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_bicorne"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4496, 0.2163, 0.269],
+      "offset": [0, 1.8761, -0.025]
+    }
+  }
+}

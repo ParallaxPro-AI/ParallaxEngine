@@ -1,0 +1,10 @@
+{
+  "id": "crib",
+  "summary": "A wooden baby crib (cot): four corner posts, solid end panels with a rolled top rail, slatted long sides of s… joints front_side, mobile_hub; options mobile, finish, bedding; sockets socket_baby.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crib or place \"prefab\": \"crib\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crib"]
+}

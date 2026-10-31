@@ -1,0 +1,2 @@
+{ "name": "Swift Shard", "blurb": "Shards fly further, faster.",
+  "relic": true, "effect": "shard_speed", "amount": 3, "mesh": "cone", "color": "#99ffcc" }

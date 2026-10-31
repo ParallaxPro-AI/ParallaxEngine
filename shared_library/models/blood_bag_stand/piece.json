@@ -1,0 +1,10 @@
+{
+  "id": "blood_bag_stand",
+  "summary": "A blood transfusion stand: a four-legged castored base (two braked castors), polished stainless pole with a h… joints castor_0_roll, castor_1_roll, castor_2_roll, castor_3_roll, height; options bags; sockets hook_0, hook_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blood_bag_stand or place \"prefab\": \"blood_bag_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blood_bag_stand"]
+}

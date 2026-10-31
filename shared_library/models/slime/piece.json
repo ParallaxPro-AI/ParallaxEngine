@@ -1,0 +1,10 @@
+{
+  "id": "slime",
+  "summary": "The classic RPG slime: a 0.79 m wide, 0.53 m tall glossy jelly drop with a teardrop peak, a dark nucleus, a p… joints squash, bulge, eyes, mouth; options gel, core; sockets head_top, inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.slime or place \"prefab\": \"slime\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:slime"]
+}

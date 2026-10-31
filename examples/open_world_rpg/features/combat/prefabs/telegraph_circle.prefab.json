@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [1, 0.02, 1], "color": "#e23a2c70", "emissive": "#ff5c46", "cast_shadows": false }
+  },
+  "tags": ["telegraph"],
+  "pool": 24
+}

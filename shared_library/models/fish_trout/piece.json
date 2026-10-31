@@ -1,0 +1,10 @@
+{
+  "id": "fish_trout",
+  "summary": "A rainbow trout, a catchable freshwater game fish: 0.50 m snout to tail (a good stream or lake catch; adults… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_trout or place \"prefab\": \"fish_trout\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_trout"]
+}

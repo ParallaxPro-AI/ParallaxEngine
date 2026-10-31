@@ -1,0 +1,10 @@
+{
+  "id": "concierge_podium",
+  "summary": "A grand-hotel concierge podium, 1.2 m wide: a bow-fronted mahogany case on a black-marble plinth with brass s… joints cupboard_door; options wood, metal, leather, top, accessories; sockets staff_spot, guest_spot, top_surface.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.concierge_podium or place \"prefab\": \"concierge_podium\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:concierge_podium"]
+}

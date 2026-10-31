@@ -1,0 +1,5 @@
+{
+  "components": { "shape": { "kind": "sphere", "size": [0.18, 0.18, 0.18], "color": "#f2eb8c", "emissive": "#f2eb8c" } },
+  "behaviors": { "shot_flight": { "speed": 42, "arc_height": 0 } },
+  "pool": 64
+}

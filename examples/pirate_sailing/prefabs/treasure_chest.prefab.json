@@ -1,0 +1,7 @@
+{
+  "tags": ["treasure"],
+  "components": {
+    "model": { "model": "models/treasure_chest_gold" },
+    "light": { "kind": "point", "color": "#ffc83d", "intensity": 1.2, "range": 8 }
+  }
+}

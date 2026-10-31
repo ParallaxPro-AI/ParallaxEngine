@@ -1,0 +1,10 @@
+{
+  "id": "toy_rc_bolt",
+  "summary": "An 82 mm die-cast radio-controlled buggy at 1:64 — orange body, a low wedge nose, an open cockpit with a roll… joints steer_l_l, spin_front_l_l, steer_l_r, spin_front_l_r, spin_rear_l_l, spin_rear_l_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toy_rc_bolt or place \"prefab\": \"toy_rc_bolt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toy_rc_bolt"]
+}

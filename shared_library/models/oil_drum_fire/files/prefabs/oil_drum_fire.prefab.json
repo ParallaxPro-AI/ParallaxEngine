@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/oil_drum_fire"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8319, 1.3904, 0.8319],
+      "offset": [0, 0.6952, 0]
+    }
+  }
+}

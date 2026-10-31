@@ -1,0 +1,10 @@
+{
+  "id": "barrier_water_filled",
+  "summary": "A 2.0 m rotomoulded plastic water-filled road barrier: a safety-shape section with moulded recess panels, a s… options colour, strips.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.barrier_water_filled or place \"prefab\": \"barrier_water_filled\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:barrier_water_filled"]
+}

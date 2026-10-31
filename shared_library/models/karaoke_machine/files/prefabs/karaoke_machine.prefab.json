@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/karaoke_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.52, 1.51, 0.4615],
+      "offset": [0, 0.755, 0.0013]
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "format": "parallax.model",
+  "version": 1,
+  "source": "hand-written demo model (library props demos)",
+  "materials": {
+    "body": { "color": "#8a8f99", "metallic": 0.2, "roughness": 0.6 },
+    "paint": { "color": "#c0392b", "metallic": 0.1, "roughness": 0.4 },
+    "blade": { "color": "#dddddd", "metallic": 0.6, "roughness": 0.3 }
+  },
+  "parts": [
+    { "name": "base", "parent": null, "shape": "box", "size": [1, 1, 1], "material": "body", "position": [0, 0.5, 0] },
+    { "name": "panel", "parent": "base", "shape": "box", "size": [0.9, 0.1, 0.9], "material": "paint", "position": [0, 0.55, 0] },
+    { "name": "fan", "parent": "base", "shape": "cylinder", "size": [0.8, 0.05, 0.8], "material": "blade", "position": [0, 0.62, 0] },
+    { "name": "lid", "parent": "base", "shape": "box", "size": [1, 0.08, 1], "material": "body", "position": [0, 0.7, 0] },
+    { "name": "hatch", "parent": "base", "shape": "box", "size": [0.5, 0.6, 0.05], "material": "paint", "position": [0, 0, 0.52] },
+    { "name": "antenna", "parent": "base", "shape": "cylinder", "size": [0.05, 0.6, 0.05], "material": "body", "position": [0.4, 0.8, 0.4] },
+    { "name": "dish", "parent": "base", "shape": "sphere", "size": [0.3, 0.1, 0.3], "material": "body", "position": [-0.4, 0.8, 0.4], "hidden": true }
+  ],
+  "joints": [
+    { "name": "fan", "part": "fan", "type": "hinge", "axis": [0, 1, 0] },
+    { "name": "lid", "part": "lid", "type": "slider", "kind": "aperture", "axis": [0, 1, 0], "limits": [0, 0.3], "duration": 0.4 },
+    { "name": "hatch", "part": "hatch", "type": "hinge", "kind": "aperture", "axis": [0, 1, 0], "limits": [0, 100], "duration": 0.5 }
+  ],
+  "sockets": [{ "name": "top", "parent": "base", "position": [0, 0.8, 0] }],
+  "options": [
+    { "name": "paint", "default": "red", "materials": ["paint"], "choices": { "red": { "color": "#c0392b" }, "blue": { "color": "#2c6bd1" }, "green": { "color": "#2f9e57" } } },
+    { "name": "topper", "default": "antenna", "parts": ["antenna", "dish"], "choices": { "antenna": ["antenna"], "dish": ["dish"] } }
+  ]
+}

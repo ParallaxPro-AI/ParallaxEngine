@@ -1,0 +1,10 @@
+{
+  "id": "toy_train_set",
+  "summary": "A floor toy train set: an oval loop of track (steel rails on wooden sleepers) with a small station platform a… options engine_paint, coach_paint, station.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toy_train_set or place \"prefab\": \"toy_train_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toy_train_set"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bus_stop",
+  "summary": "A roadside bus stop. joints seat, timetable; options config; sockets socket_bench.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bus_stop or place \"prefab\": \"bus_stop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bus_stop"]
+}

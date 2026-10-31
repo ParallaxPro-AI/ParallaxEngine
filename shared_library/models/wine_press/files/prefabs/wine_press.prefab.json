@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wine_press"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.56, 2, 1.642],
+      "offset": [0, 1, -0.069]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.5, 0.75, 0.5], "offset": [0, 0.4, 0], "color": "#a6ccd1" },
+    "collider": { "shape": "box", "size": [0.6, 1.0, 0.3], "offset": [0, 0.5, 0] },
+    "marker": { "icon": "grave" },
+    "inventory": { "size": 36 }
+  },
+  "tags": ["usable"],
+  "behaviors": { "grave": {} }
+}

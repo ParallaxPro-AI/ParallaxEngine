@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="prism.css">
+<style>
+  .psp { width: calc(var(--u) * 640); max-width: calc(100cqw - 32px); padding: calc(var(--u) * 56) calc(var(--u) * 60); display: flex; flex-direction: column; gap: calc(var(--u) * 28); animation: ps-pop var(--ps-dur) var(--ps-ease) both; pointer-events: auto; }
+  .psp-title { font-size: calc(var(--u) * 104); font-weight: 800; letter-spacing: .12em; line-height: .9; }
+  .psp-hint { display: flex; align-items: center; flex-wrap: wrap; gap: calc(var(--u) * 10); font-size: var(--fs-sm); color: var(--ps-ink-2); }
+  .psp-stack { display: flex; flex-direction: column; gap: calc(var(--u) * 14); }
+  .psp-stack .ps-btn { width: 100%; }
+  .psp-rule { height: 1px; background: var(--ps-line-3); }
+  .psp-setting { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 16); }
+  .psp-seg { display: flex; }
+  .ps-root .psp-opt { height: var(--btn-h); min-width: calc(var(--u) * 124); border: 2px solid #fff; background: #000; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+  .ps-root .psp-opt + .psp-opt { margin-left: -2px; }
+  .ps-root .psp-opt:hover { color: var(--ps-accent); }
+  .ps-root .psp-opt[aria-pressed="true"] { background: #fff; color: #000; }
+  .psp-m { display: none; }
+
+  @media (pointer: coarse) {
+    .psp { width: calc(var(--u) * 500); max-width: calc(100cqw - 24px); max-height: calc(100cqh - 16px); overflow-y: auto; padding: calc(var(--u) * 22) calc(var(--u) * 26); gap: calc(var(--u) * 14); }
+    .psp-title { font-size: calc(var(--u) * 38); }
+    .psp-hint { font-size: var(--fs-xs); }
+    .psp-stack { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 10); }
+    .ps-root .psp-opt { min-width: calc(var(--u) * 76); font-size: var(--fs-2xs); }
+    .ps-root .psp-opt:hover { color: inherit; }
+    .ps-root .psp-opt[aria-pressed="true"] { color: #000; }
+    .psp-d { display: none; }
+    .psp-m { display: flex; }
+  }
+</style>
+<div class="ps-root">
+  <div class="ps-scrim"></div>
+  <div class="ps-center">
+    <section class="ps-panel psp" role="dialog">
+      <h1 class="psp-title" data-text="paused"></h1>
+      <p class="psp-hint psp-d"><span data-text="pause_press"></span> <span class="ps-key">P</span> <span data-text="pause_to_resume"></span></p>
+      <p class="psp-hint psp-m" data-text="pause_hint_touch"></p>
+      <div class="psp-stack">
+        <button class="ps-btn ps-btn--primary" data-action="resume" data-text="resume"></button>
+        <button class="ps-btn" data-action="quit" data-text="quit_run"></button>
+      </div>
+      <div class="psp-rule"></div>
+      <span class="ps-label psp-d" data-text="settings"></span>
+      <div class="psp-setting">
+        <span class="ps-label" data-text="graphics"></span>
+        <div class="psp-seg" role="group" data-each="qualities">
+          <template><button class="psp-opt" data-action="quality" data-attr-aria-pressed="pressed" data-bind="label"></button></template>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

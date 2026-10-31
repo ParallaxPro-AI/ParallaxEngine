@@ -1,0 +1,10 @@
+{
+  "id": "king_prawn",
+  "summary": "Curled cooked king prawn with ten tapered coral shell segments, ivory shell bands, split tail fan and fine an…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.king_prawn or place \"prefab\": \"king_prawn\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:king_prawn"]
+}

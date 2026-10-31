@@ -1,0 +1,10 @@
+{
+  "id": "who_hit_blindfold",
+  "summary": "Soft red blindfold for the hot-seat contestant, attached to the who_hit_contestant headwear socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.who_hit_blindfold or place \"prefab\": \"who_hit_blindfold\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:who_hit_blindfold"]
+}

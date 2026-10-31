@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cultivator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.06, 1.3301, 2.41],
+      "offset": [0, 0.665, -0.055]
+    }
+  }
+}

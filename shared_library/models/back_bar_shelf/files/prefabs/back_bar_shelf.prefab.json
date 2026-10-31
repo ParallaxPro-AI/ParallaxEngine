@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/back_bar_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.06, 2.308, 0.56],
+      "offset": [0, 1.152, 0.018]
+    }
+  }
+}

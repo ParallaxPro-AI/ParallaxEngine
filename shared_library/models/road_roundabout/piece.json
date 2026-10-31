@@ -1,0 +1,10 @@
+{
+  "id": "road_roundabout",
+  "summary": "A 24 m roundabout supertile from the ROAD_KIT (a 2 x 2 tile block): a 6.5 m circulatory carriageway round a k…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_roundabout or place \"prefab\": \"road_roundabout\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_roundabout"]
+}

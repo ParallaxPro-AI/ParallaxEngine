@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/raised_garden_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.824, 1.0788, 0.924],
+      "offset": [0, 0.5394, 0]
+    }
+  }
+}

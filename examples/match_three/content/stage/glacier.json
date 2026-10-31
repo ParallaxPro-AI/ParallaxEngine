@@ -1,0 +1,15 @@
+{
+  "depth": 5, "name": "Glacier Heart", "hint": "A frozen cross out to the walls. Line gems earn their keep.",
+  "target": 3800, "moves": 24, "gem_kinds": 6,
+  "crust": [
+    "...##...",
+    "...##...",
+    "........",
+    "#......#",
+    "#......#",
+    "........",
+    "........",
+    "........"
+  ],
+  "crust_layers": 2
+}

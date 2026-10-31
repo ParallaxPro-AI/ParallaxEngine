@@ -1,0 +1,10 @@
+{
+  "id": "escape_room_safe_combo",
+  "summary": "A vintage combination safe for an escape room: a deep-green enamelled steel body with rolled edges on four tu… joints door, dial, handle; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.escape_room_safe_combo or place \"prefab\": \"escape_room_safe_combo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:escape_room_safe_combo"]
+}

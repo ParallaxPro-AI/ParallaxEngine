@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/library_book_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.931, 1.02, 0.47],
+      "offset": [0.0305, 0.51, 0]
+    }
+  }
+}

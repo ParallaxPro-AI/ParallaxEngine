@@ -1,0 +1,4 @@
+{
+  "number": 8, "name": "Bramble Gate", "act": 3, "guardian": "bramblewell", "flight": "vee", "count": 4,
+  "speed": 0.55, "amp": 1.4, "freq": 0.60, "fire_rate": 1.9, "hp_mul": 1.0, "drop_chance": 0.75
+}

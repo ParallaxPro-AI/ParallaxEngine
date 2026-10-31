@@ -1,0 +1,13 @@
+{
+  "name": "Sunwash Flats",
+  "subtitle": "hop the rocks",
+  "from_distance": 0,
+  "speed_cap": 11.0,
+  "speed_ramp": 0.42,
+  "gap_scale": 1.35,
+  "air_chance": 0.0,
+  "coin_chance": 0.55,
+  "sky": [0.99, 0.85, 0.62],
+  "ground": [0.62, 0.34, 0.18],
+  "weights": {"rock": 10}
+}

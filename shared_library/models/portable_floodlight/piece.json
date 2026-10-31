@@ -1,0 +1,10 @@
+{
+  "id": "portable_floodlight",
+  "summary": "A trailer-mounted mobile lighting tower: a single-axle trailer with an A-frame drawbar, coupling head and joc… joints service_door, mast, mast_telescope, mast_telescope_top, lamp_head; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portable_floodlight or place \"prefab\": \"portable_floodlight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portable_floodlight"]
+}

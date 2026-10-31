@@ -1,0 +1,10 @@
+{
+  "id": "toilet_cubicle",
+  "summary": "A public-restroom toilet cubicle, 0.93 m wide and 1.5 m deep: laminate side and back panels raised 150 mm off… joints door, latch, toilet_cistern, toilet_flush_lever, toilet_seat, toilet_lid; options panels, occupancy, back_panel; sockets seat_toilet, socket_coat_hook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toilet_cubicle or place \"prefab\": \"toilet_cubicle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toilet_cubicle"]
+}

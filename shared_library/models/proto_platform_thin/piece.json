@@ -1,0 +1,10 @@
+{
+  "id": "proto_platform_thin",
+  "summary": "A thin greybox prototype platform: a 4 x 0.25 x 4 m level-design floor slab with a 0.25 m grid on every face… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_platform_thin or place \"prefab\": \"proto_platform_thin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_platform_thin"]
+}

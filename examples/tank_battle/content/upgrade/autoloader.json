@@ -1,0 +1,1 @@
+{ "name": "Autoloader", "description": "Reload takes 40% less time.", "icon": "⟳", "reload_mul": 0.6 }

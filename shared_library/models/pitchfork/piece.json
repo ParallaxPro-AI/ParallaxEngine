@@ -1,0 +1,10 @@
+{
+  "id": "pitchfork",
+  "summary": "A long-handled three-tine hay fork, 1.58 m: a straight ash shaft with a rounded butt into a forged steel ferr… options shaft_wood, tine_finish; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.pitchfork or place \"prefab\": \"pitchfork\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:pitchfork"]
+}

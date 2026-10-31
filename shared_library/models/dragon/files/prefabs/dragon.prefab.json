@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dragon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.4748, 5.7073, 11.7912],
+      "offset": [0, 2.8574, -0.9557]
+    }
+  }
+}

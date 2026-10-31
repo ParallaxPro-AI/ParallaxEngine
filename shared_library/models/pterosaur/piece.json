@@ -1,0 +1,10 @@
+{
+  "id": "pterosaur",
+  "summary": "A large crested pterosaur in flight, wings spread to a 6 m span: a small furred body, a long neck, a long poi… joints wing_flap_l, wing_tip_l, wing_flap_r, wing_tip_r, head; options membrane, crest; sockets back, feet.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pterosaur or place \"prefab\": \"pterosaur\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pterosaur"]
+}

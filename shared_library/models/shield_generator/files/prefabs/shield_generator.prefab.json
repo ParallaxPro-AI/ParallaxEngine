@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shield_generator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.796, 3.065, 1.796],
+      "offset": [0, 1.5325, 0]
+    }
+  }
+}

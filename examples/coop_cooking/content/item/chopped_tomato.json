@@ -1,0 +1,2 @@
+{ "name": "Chopped Tomato", "stage": 3, "task": "Soup it, plate it, or serve it", "hint": "stove \u00b7 plating station \u00b7 delivery window",
+  "carry_shape": "box", "carry_color": "#f9b395", "carry_size": [0.36, 0.14, 0.36] }

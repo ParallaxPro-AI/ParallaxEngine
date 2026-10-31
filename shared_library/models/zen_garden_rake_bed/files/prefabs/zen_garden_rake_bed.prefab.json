@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/zen_garden_rake_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 0.6251, 2],
+      "offset": [0, 0.3126, 0]
+    }
+  }
+}

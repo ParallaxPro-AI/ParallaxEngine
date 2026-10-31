@@ -1,0 +1,13 @@
+{
+  "components": {
+    "water_body": {
+      "kind": "ocean",
+      "waves": "calm",
+      "density": 1025,
+      "color": "#1c3f69",
+      "shallow_color": "#4f94b5",
+      "ripple": 0.7,
+      "calm_distance": 800
+    }
+  }
+}

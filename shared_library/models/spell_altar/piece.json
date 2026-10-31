@@ -1,0 +1,14 @@
+{
+  "id": "spell_altar",
+  "summary": "A stone spell altar: a stepped dark-stone pedestal topped by a floating faceted arcane crystal, encircled… joints runes, ring_a, ring_b; sockets socket_offering.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.spell_altar or place \"prefab\": \"spell_altar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:spell_altar"
+  ]
+}

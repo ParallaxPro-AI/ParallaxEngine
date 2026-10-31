@@ -1,0 +1,10 @@
+{
+  "id": "bathroom_scale",
+  "summary": "A digital bathroom scale: a 300 mm square tempered-glass platform with radiused corners on a slim grey chassi… joints platform; options glass, display; sockets socket_stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bathroom_scale or place \"prefab\": \"bathroom_scale\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bathroom_scale"]
+}

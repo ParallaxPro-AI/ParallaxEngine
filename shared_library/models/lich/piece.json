@@ -1,0 +1,10 @@
+{
+  "id": "lich",
+  "summary": "A rigged lich - an undead sorcerer-king - on the canonical 17-bone humanoid rig (forked from `cowboy`/`civili… options magic; sockets eye_point, grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lich or place \"prefab\": \"lich\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lich"]
+}

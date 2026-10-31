@@ -1,0 +1,26 @@
+{
+  "extends": "fighter",
+  "tags": [
+    "rival"
+  ],
+  "behaviors": {
+    "rival_brain": {},
+    "fighter_motion": {},
+    "fighter_stun": {},
+    "fighter_moves": {},
+    "fighter_animation": {},
+    "health_trail": {}
+  },
+  "components": {
+    "model": {
+      "model": "models/bruiser",
+      "options": {
+        "skin": "olive",
+        "kit": "crimson",
+        "trim": "ink",
+        "hair": "black"
+      },
+      "cast_shadows": true
+    }
+  }
+}

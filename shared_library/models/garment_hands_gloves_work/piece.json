@@ -1,0 +1,10 @@
+{
+  "id": "garment_hands_gloves_work",
+  "summary": "A work glove: a padded back-of-hand shell, a knitted wrist cuff, and five separate digits so a hand holding s… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_hands_gloves_work or place \"prefab\": \"garment_hands_gloves_work\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_hands_gloves_work"]
+}

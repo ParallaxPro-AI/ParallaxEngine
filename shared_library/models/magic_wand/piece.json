@@ -1,0 +1,10 @@
+{
+  "id": "magic_wand",
+  "summary": "A handheld magic wand stood tip-up: a turned dark-wood handle wrapped by a spiralling metal wire, a metal pom… options focus, fittings, tip; sockets socket_grip, socket_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magic_wand or place \"prefab\": \"magic_wand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magic_wand"]
+}

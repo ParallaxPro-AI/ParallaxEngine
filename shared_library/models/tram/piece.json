@@ -1,0 +1,10 @@
+{
+  "id": "tram",
+  "summary": "A 14 m single-section bidirectional city tram (streetcar): a crowned, tumblehome body swept along its length… joints door_lf_a, door_lf_b, door_lr_a, door_lr_b, door_rf_a, door_rf_b, …; options livery, accent, destination; sockets socket_coupler_front, socket_coupler_rear, eye_point, seat_driver, pantograph_contact.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tram or place \"prefab\": \"tram\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tram"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/heart_pickup"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.339, 0.3166, 0.1502],
+      "offset": [0, 0.1582, 0]
+    }
+  }
+}

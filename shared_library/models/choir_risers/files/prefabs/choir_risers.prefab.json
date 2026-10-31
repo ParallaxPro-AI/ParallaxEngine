@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/choir_risers"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.806, 1.404, 1.351],
+      "offset": [0, 0.702, 0.0005]
+    }
+  }
+}

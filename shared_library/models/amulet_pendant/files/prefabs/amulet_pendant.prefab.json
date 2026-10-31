@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/amulet_pendant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0715, 0.0104, 0.1175],
+      "offset": [0, 0.0047, 0]
+    }
+  }
+}

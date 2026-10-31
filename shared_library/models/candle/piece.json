@@ -1,0 +1,14 @@
+{
+  "id": "candle",
+  "summary": "A turned candlestick with a wax candle in it: dish base, baluster stem, socket, hardened drips over the… options state, finish; sockets socket_flame.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.candle or place \"prefab\": \"candle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:candle"
+  ]
+}

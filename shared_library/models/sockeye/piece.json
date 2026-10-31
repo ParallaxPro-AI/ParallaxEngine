@@ -1,0 +1,10 @@
+{
+  "id": "sockeye",
+  "summary": "An adult sockeye salmon in spawning condition, 0.62 m nose to tail-fork. joints body_flex, tail_beat, hump_pivot, jaw_pivot; options phase, phase_head, eye, fins.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sockeye or place \"prefab\": \"sockeye\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sockeye"]
+}

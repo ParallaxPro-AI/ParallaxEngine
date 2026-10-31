@@ -1,0 +1,10 @@
+{
+  "id": "apartment_tower",
+  "summary": "A twenty-storey residential tower: a granite double-height podium with four lit lobby windows under a 340 mm… joints entrance, entrance_r; options facade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.apartment_tower or place \"prefab\": \"apartment_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:apartment_tower"]
+}

@@ -1,0 +1,134 @@
+<!-- Ported from the template: Court Clash scoreboard strip - series chip, YOU score, quarter / LED game clock / LIVE-BREAK pill, the opposing crew's score in its colour and the shot clock box (red at 5 or under), the team-tinted play banner that drops in under it, the desktop P Pause hint and the touch-only pause plate -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  body { margin: 0; background: transparent; pointer-events: none; overflow: hidden; }
+  .ccs-sb { position: fixed; top: var(--cc-safe-t); left: 50%; transform: translateX(-50%); display: flex; height: calc(var(--u) * 88); background: var(--cc-plate); clip-path: var(--cc-cut-md); box-shadow: inset 0 0 0 1px var(--cc-line-faint); white-space: nowrap; }
+  .ccs-sb[hidden] { display: none; }
+  .ccs-sb > div { display: flex; align-items: center; }
+  .ccs-series { flex-direction: column; justify-content: center; gap: calc(var(--u) * 6); padding: 0 calc(var(--u) * 22); background: var(--cc-asphalt-700); }
+  .ccs-series .cc-num { font-size: calc(var(--u) * 28); }
+  .ccs-series b { color: var(--cc-accent); font-weight: 600; }
+  .ccs-series .m { display: none; }
+  .ccs-team { position: relative; gap: calc(var(--u) * 20); padding: 0 calc(var(--u) * 28); }
+  .ccs-team::before { content: ""; position: absolute; top: 0; bottom: 0; width: calc(var(--u) * 6); background: var(--c); }
+  .ccs-team.home { --c: var(--cc-home); padding-left: calc(var(--u) * 34); }
+  .ccs-team.home::before { left: 0; }
+  .ccs-team.away { --c: var(--cc-away); padding-right: calc(var(--u) * 34); }
+  .ccs-team.away::before { right: 0; }
+  .ccs-name { font-size: calc(var(--u) * 34); color: var(--c); padding-top: calc(var(--u) * 4); }
+  .ccs-name .m { display: none; }
+  .ccs-score { font-size: calc(var(--u) * 60); }
+  .ccs-score.bump { animation: ccs-bump 360ms var(--cc-ease-snap); }
+  @keyframes ccs-bump { 40% { transform: scale(1.18); color: var(--c); } }
+  .ccs-mid { flex-direction: column; justify-content: center; gap: calc(var(--u) * 5); padding: 0 calc(var(--u) * 24); min-width: calc(var(--u) * 156); background: var(--cc-asphalt-950); }
+  .ccs-q { font-size: calc(var(--u) * 15); color: var(--cc-chalk-dim); }
+  .ccs-q i { font-style: normal; color: var(--cc-chalk-mute); }
+  .ccs-time { font-size: calc(var(--u) * 38); }
+  .ccs-pill { position: relative; font: 700 max(9px, calc(var(--u) * 10))/1 var(--cc-font-body); letter-spacing: .16em; padding: calc(var(--u) * 4) calc(var(--u) * 8) calc(var(--u) * 4) calc(var(--u) * 18); border-radius: 999px; background: rgba(63,220,124,.14); color: var(--cc-live); }
+  .ccs-pill::before { content: ""; position: absolute; left: calc(var(--u) * 7); top: 50%; width: calc(var(--u) * 6); height: calc(var(--u) * 6); margin-top: calc(var(--u) * -3); border-radius: 50%; background: currentColor; }
+  .ccs-pill.break { background: rgba(255,182,39,.16); color: var(--cc-led); }
+  .ccs-shot { flex-direction: column; justify-content: center; gap: calc(var(--u) * 5); padding: 0 calc(var(--u) * 22); min-width: calc(var(--u) * 100); background: var(--cc-asphalt-700); }
+  .ccs-shot .cc-num { font-size: calc(var(--u) * 38); color: var(--cc-led); text-shadow: var(--cc-glow-led); }
+  .ccs-shot.urgent { background: var(--cc-danger); }
+  .ccs-shot.urgent .cc-eyebrow, .ccs-shot.urgent .cc-num { color: #fff; text-shadow: none; }
+  .ccs-shot.urgent .cc-num { animation: cc-tick .5s steps(1) infinite; }
+
+  .ccs-banner { position: fixed; left: 50%; top: calc(var(--cc-safe-t) + var(--u) * 104); display: flex; align-items: baseline; gap: calc(var(--u) * 18); padding: calc(var(--u) * 14) calc(var(--u) * 32) calc(var(--u) * 10); background: var(--tint, var(--cc-home)); color: var(--cc-asphalt-800); clip-path: var(--cc-cut-md); white-space: nowrap; transform: translateX(-50%); opacity: 0; visibility: hidden; }
+  .ccs-banner.on { visibility: visible; opacity: 1; animation: ccs-in var(--cc-dur-slow) var(--cc-ease-snap) both; }
+  .ccs-banner.out { visibility: visible; opacity: 0; transition: opacity 200ms ease-out; }
+  .ccs-bmain { font-size: calc(var(--u) * 52); }
+  .ccs-bsub { font: 700 max(10px, calc(var(--u) * 16))/1 var(--cc-font-body); letter-spacing: .06em; text-transform: uppercase; }
+  @keyframes ccs-in { from { transform: translate(-50%, calc(var(--u) * -12)) scaleX(.7); opacity: 0; } to { transform: translateX(-50%); opacity: 1; } }
+
+  .ccs-hint { position: fixed; top: calc(var(--u) * 40); right: var(--cc-safe); display: flex; align-items: center; gap: calc(var(--u) * 10); font: 600 max(10px, calc(var(--u) * 13))/1 var(--cc-font-body); letter-spacing: .1em; text-transform: uppercase; color: var(--cc-chalk-dim); text-shadow: 0 1px 3px rgba(0,0,0,.55); }
+  .ccs-pause { display: none; }
+
+  @media (pointer: coarse) {
+    .ccs-sb { height: calc(var(--u) * 48); clip-path: var(--cc-cut-sm); }
+    .ccs-series { padding: 0 calc(var(--u) * 10); }
+    .ccs-series .cc-num { font-size: calc(var(--u) * 16); }
+    .ccs-series .cc-eyebrow { display: none; }
+    .ccs-series .m { display: inline; }
+    .ccs-team { gap: calc(var(--u) * 10); padding: 0 calc(var(--u) * 12); }
+    .ccs-team::before { width: calc(var(--u) * 4); }
+    .ccs-team.home { padding-left: calc(var(--u) * 16); }
+    .ccs-team.away { padding-right: calc(var(--u) * 16); }
+    .ccs-name { font-size: calc(var(--u) * 21); padding-top: calc(var(--u) * 2); }
+    .ccs-name .d { display: none; }
+    .ccs-name .m { display: inline; }
+    .ccs-score { font-size: calc(var(--u) * 30); }
+    .ccs-mid { min-width: calc(var(--u) * 66); padding: 0 calc(var(--u) * 10); gap: calc(var(--u) * 2); }
+    .ccs-q { font-size: calc(var(--u) * 11); }
+    .ccs-time { font-size: calc(var(--u) * 21); }
+    .ccs-pill { display: none; }
+    .ccs-shot { min-width: calc(var(--u) * 50); padding: 0 calc(var(--u) * 10); gap: calc(var(--u) * 3); }
+    .ccs-shot .cc-eyebrow { font-size: 9px; }
+    .ccs-shot .cc-num { font-size: calc(var(--u) * 21); }
+    .ccs-banner { top: calc(var(--cc-safe-t) + var(--u) * 56); padding: calc(var(--u) * 8) calc(var(--u) * 18) calc(var(--u) * 5); gap: calc(var(--u) * 10); clip-path: var(--cc-cut-sm); }
+    .ccs-bmain { font-size: calc(var(--u) * 26); }
+    .ccs-bsub { font-size: 11px; }
+    .ccs-hint { display: none; }
+    .cc-root .ccs-pause { position: fixed; top: max(env(safe-area-inset-top), calc(var(--u) * 10)); right: var(--cc-safe); width: 44px; height: 44px; display: grid; place-items: center; border-radius: 12px; background: rgba(20,22,27,.82); color: var(--cc-chalk); box-shadow: inset 0 0 0 2px rgba(242,240,234,.55); pointer-events: auto; transition: transform 80ms; }
+    .cc-root .ccs-pause:active { transform: scale(.94); background: rgba(242,240,234,.18); box-shadow: inset 0 0 0 2px var(--cc-chalk); }
+    .ccs-pause svg { width: 18px; height: 18px; display: block; }
+  }
+  body { margin: 0; background: transparent; pointer-events: none; overflow: hidden; }
+  .ccp { position: fixed; left: var(--cc-safe); bottom: calc(var(--u) * 40); width: calc(var(--u) * 380); padding: calc(var(--u) * 20) calc(var(--u) * 22); display: flex; flex-direction: column; gap: calc(var(--u) * 14); --tc: var(--cc-home); }
+  .ccp[hidden] { display: none; }
+  .ccp-head { display: flex; justify-content: space-between; align-items: center; }
+  .ccp-state { font: 700 max(9px, calc(var(--u) * 11))/1 var(--cc-font-body); letter-spacing: .16em; padding: calc(var(--u) * 6) calc(var(--u) * 9); background: var(--tc); color: var(--cc-asphalt-800); clip-path: var(--cc-cut-xs); }
+  .ccp-state.loose, .ccp-state.flight { background: var(--cc-accent); }
+  .ccp-state.loose { animation: cc-tick .9s steps(1) infinite; }
+  .ccp-name { font-size: calc(var(--u) * 40); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ccp-team { display: flex; align-items: center; gap: calc(var(--u) * 8); font: 600 max(10px, calc(var(--u) * 13))/1 var(--cc-font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--cc-chalk-dim); margin-top: calc(var(--u) * -6); }
+  .ccp-pip { width: calc(var(--u) * 10); height: calc(var(--u) * 10); border-radius: 50%; background: var(--tc); flex: none; }
+  .ccp-stam { display: grid; grid-template-columns: auto 1fr auto; gap: calc(var(--u) * 12); align-items: center; }
+  .ccp-bar { position: relative; height: calc(var(--u) * 10); background: var(--cc-asphalt-500); clip-path: var(--cc-cut-xs); }
+  .ccp-bar i { position: absolute; inset: 0 auto 0 0; width: var(--v, 100%); background: var(--cc-accent); transition: width 120ms linear; }
+  .ccp-bar.low i { background: var(--cc-danger); }
+  .ccp-stam b { font-size: max(11px, calc(var(--u) * 15)); }
+  .ccp-prompts { list-style: none; display: flex; flex-direction: column; gap: calc(var(--u) * 10); padding-top: calc(var(--u) * 14); border-top: 1px solid var(--cc-line-faint); }
+  .ccp-prompts li { display: flex; align-items: center; gap: calc(var(--u) * 12); font-size: max(11px, calc(var(--u) * 15)); font-weight: 500; transition: opacity var(--cc-dur-fast); }
+  .ccp-prompts li.off { opacity: .38; }
+  .ccp-prompts .m { display: none; }
+
+  @media (pointer: coarse) {
+    .ccp { left: var(--cc-safe); top: calc(var(--u) * 12); bottom: auto; width: calc(var(--u) * 192); padding: calc(var(--u) * 10) calc(var(--u) * 12) calc(var(--u) * 11); gap: calc(var(--u) * 7); clip-path: var(--cc-cut-sm); }
+    .ccp-state { font-size: 9px; padding: calc(var(--u) * 4) calc(var(--u) * 6); }
+    .ccp-name { font-size: calc(var(--u) * 21); }
+    .ccp-team { font-size: 10px; margin-top: calc(var(--u) * -3); }
+    .ccp-pip { width: calc(var(--u) * 7); height: calc(var(--u) * 7); }
+    .ccp-stam { gap: calc(var(--u) * 8); }
+    .ccp-stam .cc-eyebrow { font-size: 9px; }
+    .ccp-bar { height: calc(var(--u) * 6); }
+    .ccp-stam b { font-size: 12px; }
+    .ccp-prompts { gap: calc(var(--u) * 5); padding-top: calc(var(--u) * 7); }
+    .ccp-prompts li { display: block; font-size: 11px; line-height: 1.25; }
+    .ccp-prompts .d { display: none; }
+    .ccp-prompts .m { display: inline; }
+    .ccp-prompts b { color: var(--cc-accent); font-weight: 700; }
+  }
+</style>
+<div class="cc-root">
+  <header class="ccs-sb">
+    <div class="ccs-series"><span class="cc-eyebrow">Game</span><span class="cc-num"><span class="m">G</span><b data-bind="stage"></b>/<span data-bind="stages"></span></span></div>
+    <div class="ccs-team home" data-style---c="home_color"><span class="ccs-name cc-display">You</span><span class="ccs-score cc-num" data-bind="home_score"></span></div>
+    <div class="ccs-mid"><span class="ccs-q cc-num"><span data-bind="period"></span><i data-show="regulation"> / <span data-bind="quarters"></span></i></span><span class="ccs-time cc-num cc-led" data-bind="clock"></span><span class="ccs-pill" data-class-break="intermission" data-bind="phase"></span></div>
+    <div class="ccs-team away" data-style---c="crew_color"><span class="ccs-score cc-num" data-bind="away_score"></span><span class="ccs-name cc-display"><span class="d" data-bind="crew"></span><span class="m" data-bind="crew_abbr"></span></span></div>
+    <div class="ccs-shot" data-class-urgent="shot_urgent"><span class="cc-eyebrow" data-text="shot_clock_label"></span><span class="cc-num" data-bind="shot_clock"></span></div>
+  </header>
+  <div class="ccs-banner" data-class-on="banner_on" data-style---tint="banner_tint"><span class="ccs-bmain cc-display" data-bind="banner"></span><span class="ccs-bsub" data-show="banner_sub" data-bind="banner_sub"></span></div>
+  <div class="ccs-hint d-only"><span class="cc-kbd">P</span>Pause</div>
+  <button class="ccs-pause" data-action="pause" aria-label="Pause"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+</div>
+<section class="cc-root cc-plate ccp">
+  <div class="ccp-head"><span class="cc-eyebrow">Possession</span><span class="ccp-state" data-class-loose="loose" data-class-flight="flight" data-bind="possession_state"></span></div>
+  <div class="ccp-name cc-display" data-bind="carrier"></div>
+  <div class="ccp-team"><i class="ccp-pip" data-style-background="possession_color"></i><span data-bind="possession"></span></div>
+  <div class="ccp-stam"><span class="cc-eyebrow" data-text="stamina"></span><div class="ccp-bar" data-class-low="stamina_low"><i data-style-width="stamina_width"></i></div><b class="cc-num" data-bind="stamina"></b></div>
+  <ul class="ccp-prompts">
+    <li data-class-off="no_shoot"><span class="d"><span class="cc-kbd">Space</span></span><span class="d">Hold to Shoot</span><span class="m">Hold <b>Shoot</b>, release on green</span></li>
+    <li data-class-off="no_pass"><span class="d"><span class="cc-kbd">F</span></span><span class="d">Mate is open</span><span class="m">Mate is open &mdash; tap <b>Pass</b></span></li>
+    <li data-class-off="no_steal"><span class="d"><span class="cc-kbd">E</span></span><span class="d">Steal Ball</span><span class="m">Tap <b>Steal</b></span></li>
+  </ul>
+</section>

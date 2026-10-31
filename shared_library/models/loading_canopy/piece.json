@@ -1,0 +1,10 @@
+{
+  "id": "loading_canopy",
+  "summary": "An 8 m two-bay loading-dock canopy: a 1.2 m concrete loading platform with a yellow-painted safety edge, two… joints lip_l, lip_r; options frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.loading_canopy or place \"prefab\": \"loading_canopy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:loading_canopy"]
+}

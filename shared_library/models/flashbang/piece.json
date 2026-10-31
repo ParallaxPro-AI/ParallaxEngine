@@ -1,0 +1,10 @@
+{
+  "id": "flashbang",
+  "summary": "A stun grenade (flashbang), 0.137 m: an olive-drab perforated steel tube, 44 mm across, with three staggered… joints lever, pin; sockets socket_top, flash, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.flashbang or place \"prefab\": \"flashbang\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:flashbang"]
+}

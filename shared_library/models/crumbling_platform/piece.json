@@ -1,0 +1,10 @@
+{
+  "id": "crumbling_platform",
+  "summary": "A cracked stone platform tile for platformer and dungeon games: a 2 m square slab of eight worn, irregular st… options state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crumbling_platform or place \"prefab\": \"crumbling_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crumbling_platform"]
+}

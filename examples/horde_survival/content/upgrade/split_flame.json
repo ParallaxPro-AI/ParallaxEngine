@@ -1,0 +1,1 @@
+{"name": "Split Flame", "desc": "+1 bolt per volley (each seeks its own target).", "icon": "fork", "weight": 6, "max_stacks": 5, "effect": {"bolts_add": 1}}

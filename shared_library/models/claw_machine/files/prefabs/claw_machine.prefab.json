@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/claw_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.906, 1.87, 1.038],
+      "offset": [0, 0.935, 0.066]
+    }
+  }
+}

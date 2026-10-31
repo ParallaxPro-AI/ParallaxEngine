@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/recliner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.988, 1.1664, 0.94],
+      "offset": [0, 0.5832, 0.025]
+    }
+  }
+}

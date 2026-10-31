@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_bun"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1832, 0.273, 0.2193],
+      "offset": [-0.0001, 1.7911, -0.0152]
+    }
+  }
+}

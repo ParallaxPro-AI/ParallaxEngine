@@ -1,0 +1,10 @@
+{
+  "id": "eagle",
+  "summary": "A large eagle standing upright on yellow taloned feet, origin at the bottom-centre, beak facing -Z. joints head_turn; options pose, head, tail.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.eagle or place \"prefab\": \"eagle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:eagle"]
+}

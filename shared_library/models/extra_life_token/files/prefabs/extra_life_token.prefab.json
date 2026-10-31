@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/extra_life_token"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.3, 0.043],
+      "offset": [0, 0.15, 0]
+    }
+  }
+}

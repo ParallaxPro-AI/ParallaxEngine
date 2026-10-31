@@ -1,0 +1,10 @@
+{
+  "id": "mimic_chest",
+  "summary": "A monster disguised as a treasure chest: an iron-banded plank coffer with a barrel lid, brass lock plate and… joints jaw, hasp, tongue, tongue_mid, tongue_tip; options style; sockets maw.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mimic_chest or place \"prefab\": \"mimic_chest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mimic_chest"]
+}

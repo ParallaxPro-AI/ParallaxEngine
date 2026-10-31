@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elevator_call_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.16, 0.44, 0.0222],
+      "offset": [0, 0.22, 0.0021]
+    }
+  }
+}

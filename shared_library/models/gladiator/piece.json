@@ -1,0 +1,10 @@
+{
+  "id": "gladiator",
+  "summary": "An arena gladiator on the canonical 17-bone humanoid rig: a bronze galea with a broad brim, a grilled visor a… options skin, hair, plume, headgear, shield; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gladiator or place \"prefab\": \"gladiator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gladiator"]
+}

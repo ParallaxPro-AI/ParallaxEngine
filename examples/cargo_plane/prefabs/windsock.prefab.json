@@ -1,0 +1,43 @@
+{
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    0.5,
+    12,
+    0.5
+   ],
+   "offset": [
+    0,
+    6,
+    0
+   ],
+   "color": "#ccccd1"
+  }
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    11,
+    1.8
+   ],
+   "rotation": [
+    90,
+    0,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "cone",
+     "size": [
+      2.4,
+      5,
+      2.4
+     ],
+     "color": "#f2801f"
+    }
+   }
+  }
+ ]
+}

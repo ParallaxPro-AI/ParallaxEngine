@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="hud_kit.css">
+<link rel="stylesheet" href="controls.css">
+<div data-slot="top-center">
+  <div id="duel"><span data-bind="duel"></span></div>
+  <div id="board">
+    <span class="you" data-bind="player_points"></span>
+    <span class="sep">—</span>
+    <span class="them" data-bind="rival_points"></span>
+  </div>
+  <div id="rival"><span data-bind="rival"></span>
+    <span class="dim">· <span data-bind="first_to"></span></span></div>
+</div>
+
+<div data-slot="top-left">
+  <div class="stat"><span class="k" data-text="score"></span><b data-bind="score"></b></div>
+  <div class="stat dim"><span class="k" data-text="best"></span><b data-bind="best"></b></div>
+  <div class="stat rally"><span class="k" data-text="rally"></span><b data-bind="rally"></b></div>
+</div>
+
+<div data-slot="top-right">
+  <div class="k" data-text="perks"></div>
+  <div id="perks" data-bind="perks"></div>
+  <div id="shield" data-show="shield_ready" data-text="shield_ready"></div>
+</div>
+
+<div data-slot="bottom-right">
+  <div class="k charge-k" data-text="smash"></div>
+  <div class="pp-bar chargebar"><div class="pp-bar-fill" data-style-width="charge_pct"></div></div>
+</div>
+<div id="pp-controls" class="on bottom-left stack desktop-only">
+  <div class="ctrl-row"><span class="ctrl-cap key">W ↑</span><span class="ctrl-lbl" data-text="legend_up"></span></div>
+  <div class="ctrl-row"><span class="ctrl-cap key">S ↓</span><span class="ctrl-lbl" data-text="legend_down"></span></div>
+  <div class="ctrl-row"><span class="ctrl-cap key">SPACE</span><span class="ctrl-lbl" data-text="legend_smash"></span></div>
+  <div class="ctrl-row"><span class="ctrl-cap key">P</span><span class="ctrl-lbl" data-text="pause"></span></div>
+</div>
+<button class="pause-plate" data-action="pause" aria-label="Pause">II</button>
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1) x uiScale 2; --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: calc(2 * min(100cqw / 1920, 100cqh / 1080, 1px)); }
+
+    /* Touch only: the old engine's control tray carried the pause button on phones. */
+    .pause-plate { display: none; }
+    @media (pointer: coarse) {
+      .pause-plate { display: block; position: fixed; top: var(--pp-edge); right: var(--pp-edge); margin-top: calc(120 * var(--u)); width: calc(44 * var(--u)); height: calc(44 * var(--u));
+        pointer-events: auto; font: 900 calc(16 * var(--u))/1 ui-monospace, monospace; color: var(--pp-ink); background: rgba(10, 14, 20, 0.55);
+        border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.10); border-radius: calc(10 * var(--u)); }
+    }
+    #duel { font: 700 calc(11 * var(--u))/1 ui-monospace, monospace; letter-spacing: calc(3 * var(--u)); color: var(--pp-muted); text-align: center; }
+    #board { font: 700 calc(40 * var(--u))/1 ui-monospace, monospace; color: var(--pp-ink); display: flex; gap: calc(18 * var(--u)); align-items: baseline; justify-content: center; margin-top: calc(5 * var(--u)); }
+    #board .you { color: #6fb7ff; }
+    #board .them { color: #ff7a7a; }
+    .sep { opacity: .35; }
+    #rival { margin-top: calc(5 * var(--u)); text-align: center; font: 700 calc(12 * var(--u))/1 ui-monospace, monospace; letter-spacing: calc(2 * var(--u)); color: var(--pp-ink); }
+    /* The template's rival names and stat keys are written in capitals. */
+    #rival > span:first-child, .k { text-transform: uppercase; }
+    #rival .dim { color: var(--pp-muted); font-weight: 600; letter-spacing: calc(1 * var(--u)); }
+
+    /* Scrim behind each readout: the pale court washed the --pp-ink/--pp-muted
+       text out, so back every slot with a blurred dark panel (the shrink-to-fit
+       slots hug their content). Cosmetic only — the kit still owns each anchor. */
+    [data-slot="top-left"], [data-slot="top-center"], [data-slot="top-right"], [data-slot="bottom-right"] {
+        background: rgba(10, 14, 20, 0.55); border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.10);
+        border-radius: calc(10 * var(--u)); padding: calc(8 * var(--u)) calc(12 * var(--u));
+    }
+
+    .stat { display: flex; gap: calc(8 * var(--u)); align-items: baseline; font: 700 calc(16 * var(--u))/1.5 ui-monospace, monospace; color: var(--pp-ink); }
+    .stat.dim, .stat.dim b { color: var(--pp-muted); font-size: calc(13 * var(--u)); }
+    .stat.rally b { color: #ffd166; }
+    .k { font-size: calc(10 * var(--u)); font-weight: 700; letter-spacing: calc(2 * var(--u)); color: var(--pp-muted); }
+
+    #perks { max-width: calc(240 * var(--u)); font: 700 calc(11 * var(--u))/1.5 ui-monospace, monospace; color: #9ee7c8; text-align: right; }
+    #shield { margin-top: calc(4 * var(--u)); font: 700 calc(10 * var(--u))/1 ui-monospace, monospace; letter-spacing: calc(1 * var(--u)); color: #6fb7ff; text-align: right; }
+
+    .charge-k { text-align: right; margin-bottom: calc(4 * var(--u)); }
+    .chargebar { width: calc(130 * var(--u)); height: calc(8 * var(--u)); }
+
+    /* Touch sizing is authored in PANEL px: a responsive panel on a coarse
+       pointer is rendered at scale 0.5, so every number here lands at HALF its
+       value in device px (28px label -> 14 device px). The old block shrank the
+       text instead of growing it — 9px perks read as 4.5 device px — because it
+       was written when this bundle was still on the 1920px design-width
+       downscale and never re-measured. Grow, don't shrink.
+       The bottom-right SMASH meter needs no manual lift: the kit already gives
+       [data-slot="bottom-right"] `bottom: calc(var(--pp-edge) + var(--pp-rail-h))`
+       on a coarse pointer, and --pp-rail-h is the measured height of the SMASH
+       button under it. */
+    @media (pointer: coarse) {
+      #duel { font-size: calc(19 * var(--u)); letter-spacing: calc(5 * var(--u)); }
+      #board { font-size: calc(52 * var(--u)); gap: calc(26 * var(--u)); }
+      #rival { font-size: calc(20 * var(--u)); letter-spacing: calc(3 * var(--u)); }
+      .stat { font-size: calc(27 * var(--u)); gap: calc(12 * var(--u)); }
+      .stat.dim, .stat.dim b { font-size: calc(22 * var(--u)); }
+      .k { font-size: calc(17 * var(--u)); letter-spacing: calc(3 * var(--u)); }
+      #perks { max-width: calc(230 * var(--u)); font-size: calc(16 * var(--u)); }
+      #shield { font-size: calc(16 * var(--u)); }
+      .chargebar { width: calc(170 * var(--u)); height: calc(14 * var(--u)); }
+    }
+  </style>

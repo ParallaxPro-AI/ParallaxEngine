@@ -1,0 +1,10 @@
+{
+  "id": "luxury_armchair",
+  "summary": "Luxury tub lounge chair in caramel velvet on a polished brass swivel base: a rounded barrel shell, a taller i… joints swivel; options fabric, pillow, metal; sockets seat_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_armchair or place \"prefab\": \"luxury_armchair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_armchair"]
+}

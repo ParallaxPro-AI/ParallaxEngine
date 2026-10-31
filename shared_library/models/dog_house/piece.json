@@ -1,0 +1,10 @@
+{
+  "id": "dog_house",
+  "summary": "A backyard wooden dog house: a hollow clapboard body with a gable front and an arched doorway trimmed in whit… options roof, walls; sockets socket_bed, socket_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dog_house or place \"prefab\": \"dog_house\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dog_house"]
+}

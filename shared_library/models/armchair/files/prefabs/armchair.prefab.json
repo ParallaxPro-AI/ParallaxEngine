@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/armchair",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.82,
+        1.0515,
+        0.84
+      ],
+      "offset": [
+        0.0,
+        0.5258,
+        0.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stage_truss"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.3, 3.34, 0.6292],
+      "offset": [0, 1.67, 0.0146]
+    }
+  }
+}

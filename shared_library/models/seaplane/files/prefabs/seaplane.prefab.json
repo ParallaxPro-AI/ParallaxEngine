@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/seaplane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [11.2, 4.59, 8.838],
+      "offset": [0, 2.295, -0.539]
+    }
+  }
+}

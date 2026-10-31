@@ -1,0 +1,10 @@
+{
+  "id": "bicycle",
+  "summary": "A two-wheeled bicycle: diamond frame, fork + handlebars that steer, two wheels that roll, a crankset with ped… joints steering, wheel_front, wheel_rear, pedals, chain; options style; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bicycle or place \"prefab\": \"bicycle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bicycle"]
+}

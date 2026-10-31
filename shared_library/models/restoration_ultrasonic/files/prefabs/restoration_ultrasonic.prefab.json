@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_ultrasonic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.19, 0.091, 0.1568],
+      "offset": [0, 0.0455, 0.0054]
+    }
+  }
+}

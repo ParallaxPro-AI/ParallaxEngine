@@ -1,0 +1,10 @@
+{
+  "id": "climbing_wall_panel",
+  "summary": "A modular 1.22 x 2.44 m indoor climbing-wall panel: an 18 mm ply sheet with textured paint and a 200 mm T-nut… options holds, route_a_colour, route_b_colour; sockets socket_start, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.climbing_wall_panel or place \"prefab\": \"climbing_wall_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:climbing_wall_panel"]
+}

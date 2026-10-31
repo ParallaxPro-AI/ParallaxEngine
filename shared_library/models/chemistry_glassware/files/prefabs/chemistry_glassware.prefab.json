@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chemistry_glassware"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.578, 0.272, 0.2175],
+      "offset": [0.017, 0.136, -0.0063]
+    }
+  }
+}

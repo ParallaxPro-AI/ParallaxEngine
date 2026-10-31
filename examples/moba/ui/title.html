@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's title_screens/moba panel: the arena behind a left-to-right navy scrim,
+     the blue/white/red lane crest, LANE SIEGE in Cinzel, the faction tagline and the
+     Rajdhani chamfer plates over a status line. */
+  .lst { position: fixed; inset: 0; pointer-events: none; overflow: hidden; white-space: nowrap; }
+  .lst-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(7,11,20,.92) 0%, rgba(7,11,20,.7) 38%, rgba(7,11,20,0) 70%); animation: ls-fade 420ms var(--ls-ease) both; }
+  .lst-wrap { position: absolute; left: clamp(calc(64 * var(--u)), 8cqw, calc(160 * var(--u))); top: 50%; transform: translateY(-50%); width: calc(560 * var(--u)); display: flex; flex-direction: column; gap: calc(40 * var(--u)); animation: lst-in 520ms var(--ls-ease) both; }
+  @keyframes lst-in { from { opacity: 0; transform: translate(calc(-16 * var(--u)), -50%); } to { opacity: 1; transform: translate(0, -50%); } }
+  .lst-brand { display: flex; flex-direction: column; gap: calc(14 * var(--u)); }
+  .lst-crest { width: calc(88 * var(--u)); height: calc(64 * var(--u)); display: block; }
+  .lst-title { margin: 0; font: 800 calc(96 * var(--u))/.95 var(--ls-display); letter-spacing: .04em; color: var(--ls-ink); text-shadow: 0 calc(4 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.6); }
+  .lst-tag { font: 600 calc(20 * var(--u))/1 var(--ls-ui); letter-spacing: .32em; text-transform: uppercase; color: var(--ls-ink2); }
+  .lst-actions { width: calc(420 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .lst-actions .ls-btn { height: calc(60 * var(--u)); justify-content: space-between; padding: 0 calc(28 * var(--u)); font-size: calc(21 * var(--u)); }
+  .lst-actions .ls-btn.is-primary { height: calc(72 * var(--u)); font-size: calc(26 * var(--u)); }
+  .lst-actions .ls-btn small { font: 500 calc(14 * var(--u))/1 var(--ls-num); letter-spacing: 0; text-transform: none; color: var(--ls-ink3); }
+  .lst-actions .ls-btn.is-primary small { color: #fff; opacity: .8; }
+  .lst-status { min-height: calc(44 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); padding: 0 calc(4 * var(--u)); font: 600 calc(17 * var(--u))/1.3 var(--ls-ui); letter-spacing: .02em; color: var(--ls-ink2); white-space: normal; }
+  .lst-status i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); flex: none; border-radius: 50%; background: var(--ls-ink2); }
+  .lst-foot { position: absolute; left: clamp(calc(64 * var(--u)), 8cqw, calc(160 * var(--u))); bottom: calc(28 * var(--u)); display: flex; gap: calc(24 * var(--u)); font: 500 calc(13 * var(--u))/1 var(--ls-num); color: var(--ls-ink3); }
+  .lst-meta { display: none; }
+  @media (pointer: coarse) {
+    .lst-scrim { background: linear-gradient(90deg, rgba(7,11,20,.9) 0%, rgba(7,11,20,.55) 50%, rgba(7,11,20,.9) 100%); }
+    .lst-wrap { left: 0; right: 0; top: 0; bottom: 0; transform: none; width: auto; flex-direction: row; align-items: center; justify-content: space-between; gap: calc(48 * var(--u)); padding: calc(48 * var(--u)) max(calc(56 * var(--u)), calc(env(safe-area-inset-right) * 2)) calc(48 * var(--u)) max(calc(56 * var(--u)), calc(env(safe-area-inset-left) * 2)); animation: ls-fade 420ms var(--ls-ease) both; }
+    .lst-brand { gap: calc(20 * var(--u)); }
+    .lst-crest { width: calc(120 * var(--u)); height: calc(88 * var(--u)); }
+    .lst-title { font-size: calc(112 * var(--u)); }
+    .lst-tag { font-size: calc(24 * var(--u)); letter-spacing: .26em; }
+    .lst-actions { width: calc(640 * var(--u)); flex: none; gap: calc(16 * var(--u)); }
+    .lst-actions .ls-btn { height: calc(96 * var(--u)); justify-content: center; font-size: calc(34 * var(--u)); }
+    .lst-actions .ls-btn.is-primary { height: calc(112 * var(--u)); font-size: calc(40 * var(--u)); }
+    .lst-actions .ls-btn small { display: none; }
+    .lst-status { min-height: calc(72 * var(--u)); gap: calc(16 * var(--u)); font-size: calc(28 * var(--u)); }
+    .lst-status i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    .lst-foot { display: none; }
+    .lst-meta { display: block; margin-top: calc(12 * var(--u)); font: 500 calc(22 * var(--u))/1 var(--ls-num); color: var(--ls-ink3); }
+  }
+</style>
+<div class="ls-root lst">
+  <div class="lst-scrim"></div>
+  <div class="lst-wrap">
+    <div class="lst-brand">
+      <img class="lst-crest" alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2088%2064'%3E%3Cpath%20d='M24%204%20L44%2032%20L24%2060%20L4%2032%20Z'%20fill='%23338cf2'/%3E%3Cpath%20d='M64%204%20L84%2032%20L64%2060%20L44%2032%20Z'%20fill='%23f24d4d'/%3E%3Cpath%20d='M44%206%20L56%2032%20L44%2058%20L32%2032%20Z'%20fill='%23eef3fa'/%3E%3C/svg%3E">
+      <h1 class="lst-title"><span data-text="title_word_1"></span><br><span data-text="title_word_2"></span></h1>
+      <div class="lst-tag"><span data-bind="blue_name"></span> · <span data-bind="red_name"></span></div>
+      <div class="lst-meta" data-text="title_meta"></div>
+    </div>
+    <div class="lst-actions">
+      <button class="ls-btn is-primary" data-action="find_match"><span data-text="title_find_match"></span><small data-text="title_find_match_sub"></small></button>
+      <button class="ls-btn" data-action="custom_match"><span data-text="title_custom_match"></span><small data-text="title_custom_match_sub"></small></button>
+      <button class="ls-btn" id="btn-play" data-action="training"><span data-text="title_training"></span><small data-text="title_training_sub"></small></button>
+      <div class="lst-status"><i></i><span data-text="title_ready"></span></div>
+    </div>
+  </div>
+  <div class="lst-foot"><span data-text="title_meta"></span><span data-text="title_server"></span></div>
+</div>

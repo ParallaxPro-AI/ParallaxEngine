@@ -1,0 +1,12 @@
+{
+  "components": {
+    "collider": { "shape": "box", "size": [2400, 600, 2400], "trigger": true },
+    "environment_zone": {
+      "fog_density": 0.018,
+      "fog_color": "#3a4650",
+      "ambient": "#2b3138",
+      "sky_tint": "#4a5560",
+      "blend": 8
+    }
+  }
+}

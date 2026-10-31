@@ -1,0 +1,14 @@
+{
+  "number": 1,
+  "title": "The last safe light",
+  "summary": "The elder of Sundermere has been expecting you.",
+  "reward_xp": 30,
+  "reward_gold": 30,
+  "start": "meet",
+  "steps": {
+    "meet": {
+      "text": "Meet Elder Mirelle beside the village fountain.",
+      "verb": "talk", "target": "elder_mirelle", "marker": "beacon_elder", "sets": ["welcome_hero_done"]
+    }
+  }
+}

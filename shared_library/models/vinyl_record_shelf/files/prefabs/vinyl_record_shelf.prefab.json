@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vinyl_record_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8, 1.1495, 0.4],
+      "offset": [0, 0.5747, 0]
+    }
+  }
+}

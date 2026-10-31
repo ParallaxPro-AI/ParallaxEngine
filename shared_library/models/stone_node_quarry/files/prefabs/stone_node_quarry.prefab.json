@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stone_node_quarry"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4272, 0.895, 1.8682],
+      "offset": [0, 0.4475, 0.0003]
+    }
+  }
+}

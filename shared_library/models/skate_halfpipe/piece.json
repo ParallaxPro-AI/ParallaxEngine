@@ -1,0 +1,10 @@
+{
+  "id": "skate_halfpipe",
+  "summary": "A wooden skateboard / BMX halfpipe: two 1.8 m transitions on a 2.4 m radius facing each other across a 2.4 m… options skirt_colour, surface; sockets socket_deck_b, socket_lip_b, socket_deck_f, socket_lip_f, socket_flat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skate_halfpipe or place \"prefab\": \"skate_halfpipe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skate_halfpipe"]
+}

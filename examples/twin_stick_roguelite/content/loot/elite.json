@@ -1,0 +1,7 @@
+{ "rolls": 1, "drops": [
+  { "item": "coin", "weight": 30, "count": [3, 7] },
+  { "item": "key", "weight": 20 },
+  { "item": "heart", "weight": 20 },
+  { "item": "bomb", "weight": 15 },
+  { "item": "iron_shard", "weight": 15 }
+] }

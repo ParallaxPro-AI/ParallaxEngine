@@ -1,0 +1,13 @@
+{
+  "name": "Vulture Ridge",
+  "subtitle": "keep your head down",
+  "from_distance": 340,
+  "speed_cap": 15.5,
+  "speed_ramp": 0.5,
+  "gap_scale": 1.1,
+  "air_chance": 0.22,
+  "coin_chance": 0.62,
+  "sky": [0.96, 0.7, 0.47],
+  "ground": [0.55, 0.292, 0.162],
+  "weights": {"rock": 7, "cactus": 4, "boulder": 4, "bramble": 2, "bird": 4}
+}

@@ -1,0 +1,10 @@
+{
+  "id": "accent_cabinet_curio",
+  "summary": "A traditional curio display cabinet: a hardwood case on turned bun feet with a base moulding, a full-width dr… joints door_l, door_r, drawer; options wood, display.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.accent_cabinet_curio or place \"prefab\": \"accent_cabinet_curio\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:accent_cabinet_curio"]
+}

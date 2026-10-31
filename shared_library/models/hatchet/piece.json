@@ -1,0 +1,10 @@
+{
+  "id": "hatchet",
+  "summary": "A one-handed camp hatchet, 0.40 m overall (real hatchets run 0.33-0.40 m with a 0.5-0.7 kg head): an oval hic… options head_finish, haft_wood; sockets edge, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.hatchet or place \"prefab\": \"hatchet\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:hatchet"]
+}

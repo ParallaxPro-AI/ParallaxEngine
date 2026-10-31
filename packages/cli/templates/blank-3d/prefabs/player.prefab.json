@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [1, 1, 1], "color": "#4d8cff" }
+  },
+  "behaviors": {
+    "player": { "speed": 6, "reach": 9 }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hollow_king"
+    },
+    "nav_agent": {
+      "speed": 2.6,
+      "radius": 0.9
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.9,
+      "height": 3.0,
+      "offset": [
+        0,
+        1.5,
+        0
+      ]
+    },
+    "health": {
+      "current": 1100,
+      "max": 1100
+    },
+    "threat": {},
+    "nameplate": {
+      "text": "Malakar, the Hollow King",
+      "offset": [
+        0,
+        2.6,
+        0
+      ],
+      "range": 35,
+      "color": "#e2584a"
+    },
+    "affinity": {
+      "multipliers": {
+        "arcane": 1.5,
+        "frost": 0.5,
+        "physical": 0.8
+      }
+    },
+    "bounty": {
+      "gold_min": 600,
+      "gold_max": 900,
+      "xp": 1200,
+      "loot": "champion",
+      "gear_chance": 0
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    }
+  },
+  "tags": [
+    "hostile",
+    "boss"
+  ],
+  "behaviors": {
+    "encounter_enemy": {
+      "attacks": [
+        "gatekeeper_cleave",
+        "hollow_crash",
+        "gatekeeper_slam"
+      ],
+      "damage": 38,
+      "reach": 4.5,
+      "poise": 0.5,
+      "enrage_below": 0.5,
+      "enraged_recover": 0.8
+    }
+  }
+}

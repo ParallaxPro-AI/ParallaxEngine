@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/turtle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4236, 0.2398, 0.6092],
+      "offset": [0.0023, 0.1199, 0.0381]
+    }
+  }
+}

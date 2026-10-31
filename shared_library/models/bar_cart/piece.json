@@ -1,0 +1,10 @@
+{
+  "id": "bar_cart",
+  "summary": "A mid-century two-tier bar cart: a polished brass tube frame with a bent push handle at one end and two large… joints wheels, wheels_b; options frame, trays, decor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bar_cart or place \"prefab\": \"bar_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bar_cart"]
+}

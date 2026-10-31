@@ -1,0 +1,5 @@
+{
+  "number": 5, "name": "Apex Rally", "tagline": "The last paddle. It does not miss twice.",
+  "color": "#ff9595",
+  "speed": 13.0, "aim_error": 0.25, "reaction_time": 0.14, "predict": 1.0, "ball_speed_scale": 1.25
+}

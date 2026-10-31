@@ -1,0 +1,98 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's hud/item_shop dialog: "Field Supplies" with the gold balance, a
+     category rail, cards (icon, name, category · tier, price with the undiscounted cost
+     struck, stat lines, blurb, the components it builds from) and the inventory strip.
+     The rail filters with radio inputs (no script). */
+  .lss { white-space: nowrap; }
+  .lss-scrim { position: fixed; inset: 0; background: var(--ls-scrim); pointer-events: auto; animation: ls-fade 220ms var(--ls-ease) both; }
+  .lss-box { position: fixed; left: 50%; top: 50%; transform: translate(-50%,-50%); width: min(calc(1320 * var(--u)), calc(100cqw - calc(64 * var(--u)))); height: min(calc(860 * var(--u)), calc(100cqh - calc(48 * var(--u)))); display: grid; grid-template-rows: auto minmax(0,1fr) auto; background: var(--ls-panel-solid); box-shadow: var(--ls-elev); border-radius: var(--ls-r2); overflow: hidden; pointer-events: auto; animation: lss-in 220ms var(--ls-ease) both; }
+  @keyframes lss-in { from { opacity: 0; transform: translate(-50%,-48%); } to { opacity: 1; transform: translate(-50%,-50%); } }
+  .lss-hd { display: flex; align-items: center; gap: calc(20 * var(--u)); padding: calc(18 * var(--u)) calc(24 * var(--u)); border-bottom: calc(1 * var(--u)) solid var(--ls-line); background: linear-gradient(180deg, var(--ls-panel2), var(--ls-panel-solid)); }
+  .lss-hd h2 { margin: 0; font: 700 calc(30 * var(--u))/1 var(--ls-display); letter-spacing: .04em; }
+  .lss-hd .sub { font: 600 calc(14 * var(--u))/1 var(--ls-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--ls-ink3); }
+  .lss-bal { margin-left: auto; height: calc(40 * var(--u)); padding: 0 calc(16 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); border-radius: calc(999 * var(--u)); background: rgba(242,193,78,.1); box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(242,193,78,.45); font: 700 calc(18 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-gold); }
+  .lss-bal img { width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
+  .ls-root .lss-close { height: calc(40 * var(--u)); padding: 0 calc(16 * var(--u)); border-radius: var(--ls-r2); background: var(--ls-panel3); box-shadow: var(--ls-bevel); font: 700 calc(14 * var(--u))/1 var(--ls-ui); letter-spacing: .12em; text-transform: uppercase; }
+  .lss-body { display: grid; grid-template-columns: calc(200 * var(--u)) minmax(0,1fr); min-height: 0; }
+  .lss-cats { display: flex; flex-direction: column; gap: calc(4 * var(--u)); padding: calc(16 * var(--u)) calc(12 * var(--u)); border-right: calc(1 * var(--u)) solid var(--ls-line); }
+  .lss-cats input { display: none; }
+  .lss-cat { height: calc(44 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); padding: 0 calc(12 * var(--u)); border-radius: calc(4 * var(--u)); color: var(--ls-ink2); font: 700 calc(16 * var(--u))/1 var(--ls-ui); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; pointer-events: auto; }
+  .lss-cat i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); transform: rotate(45deg); background: var(--c); }
+  .lss-cat em { margin-left: auto; font: 500 calc(13 * var(--u))/1 var(--ls-num); font-style: normal; color: var(--ls-ink3); }
+  .lss-cats input:checked + .lss-cat { background: var(--ls-panel3); box-shadow: var(--ls-bevel), inset calc(3 * var(--u)) 0 0 var(--c); color: var(--ls-ink); }
+  .lss-list { overflow: auto; padding: calc(16 * var(--u)) calc(20 * var(--u)); display: grid; grid-template-columns: repeat(auto-fill, minmax(calc(270 * var(--u)), 1fr)); gap: calc(12 * var(--u)); align-content: start; pointer-events: auto; }
+  .lss:has(#cat-attack:checked) .lss-card:not(.attack),
+  .lss:has(#cat-arcane:checked) .lss-card:not(.arcane),
+  .lss:has(#cat-guard:checked) .lss-card:not(.guard),
+  .lss:has(#cat-swift:checked) .lss-card:not(.swift),
+  .lss:has(#cat-relic:checked) .lss-card:not(.relic) { display: none; }
+  .lss-card { display: flex; flex-direction: column; gap: calc(10 * var(--u)); padding: calc(14 * var(--u)); border-radius: var(--ls-r2); background: var(--ls-panel2); box-shadow: var(--ls-bevel); white-space: normal; }
+  .lss-card.poor { opacity: .55; }
+  .lss-top { display: flex; gap: calc(12 * var(--u)); align-items: center; }
+  .lss-ico { width: calc(48 * var(--u)); height: calc(48 * var(--u)); flex: none; display: grid; place-items: center; border-radius: calc(4 * var(--u)); background: rgba(0,0,0,.35); box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--c); }
+  .lss-ico img { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+  .lss-nm { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+  .lss-nm b { font: 700 calc(19 * var(--u))/1 var(--ls-ui); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lss-nm span { font: 700 calc(11 * var(--u))/1 var(--ls-ui); letter-spacing: .18em; text-transform: uppercase; color: var(--c); }
+  .lss-pr { display: flex; flex-direction: column; align-items: flex-end; gap: calc(3 * var(--u)); font-family: var(--ls-num); font-variant-numeric: tabular-nums; }
+  .lss-pr b { font-size: calc(17 * var(--u)); color: var(--ls-gold); }
+  .lss-pr s { font-size: calc(12 * var(--u)); color: var(--ls-ink3); }
+  .lss-st { display: flex; flex-direction: column; gap: calc(3 * var(--u)); font: 600 calc(15 * var(--u))/1.2 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-hp); }
+  .lss-bl { font: 500 calc(14 * var(--u))/1.3 var(--ls-ui); color: var(--ls-ink2); }
+  .lss-from { display: flex; gap: calc(6 * var(--u)); flex-wrap: wrap; align-items: center; font: 600 calc(12 * var(--u))/1 var(--ls-ui); color: var(--ls-ink3); }
+  .lss-from > span:first-child { letter-spacing: .14em; text-transform: uppercase; }
+  .lss-from .f { padding: calc(4 * var(--u)) calc(8 * var(--u)); border-radius: calc(999 * var(--u)); background: rgba(255,255,255,.05); color: var(--ls-ink2); font-size: calc(13 * var(--u)); }
+  .lss-from .f.own { background: rgba(56,191,120,.16); color: var(--ls-hp); }
+  .ls-root .lss-buy { margin-top: auto; height: calc(42 * var(--u)); border-radius: calc(4 * var(--u)); background: var(--ls-primary); color: #fff; box-shadow: var(--ls-bevel); font: 700 calc(15 * var(--u))/1 var(--ls-ui); letter-spacing: .1em; text-transform: uppercase; }
+  .ls-root .lss-buy:disabled { background: rgba(255,255,255,.04); color: var(--ls-ink3); cursor: default; }
+  .lss-ft { display: flex; align-items: center; gap: calc(20 * var(--u)); padding: calc(14 * var(--u)) calc(24 * var(--u)); border-top: calc(1 * var(--u)) solid var(--ls-line); background: var(--ls-panel2); }
+  .lss-inv { display: flex; gap: calc(6 * var(--u)); }
+  .lss-slot { width: calc(44 * var(--u)); height: calc(44 * var(--u)); display: grid; place-items: center; border-radius: calc(4 * var(--u)); background: rgba(0,0,0,.35); box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--ls-line); }
+  .lss-slot.full { box-shadow: var(--ls-bevel); }
+  .lss-slot img { width: calc(22 * var(--u)); height: calc(22 * var(--u)); }
+  .lss-mid { flex: 1; min-width: 0; font: 600 calc(15 * var(--u))/1.2 var(--ls-ui); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .lss-tip { font: 500 calc(13 * var(--u))/1.3 var(--ls-ui); color: var(--ls-ink3); max-width: calc(260 * var(--u)); text-align: right; white-space: normal; }
+</style>
+<div class="ls-root lss">
+  <div class="lss-scrim"></div>
+  <section class="lss-box">
+    <div class="lss-hd">
+      <h2 data-text="shop_title"></h2><span class="sub" data-text="shop_sub"></span>
+      <span class="lss-bal"><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2014%2014'%3E%3Ccircle%20cx='7'%20cy='7'%20r='6'%20fill='%23f2c14e'/%3E%3Ccircle%20cx='7'%20cy='7'%20r='3.4'%20fill='none'%20stroke='%23b8862a'%20stroke-width='1.5'/%3E%3C/svg%3E"><span data-bind="balance"></span></span>
+      <button class="lss-close" data-action="close" data-text="shop_close"></button>
+    </div>
+    <div class="lss-body">
+      <div class="lss-cats">
+        <input type="radio" name="cat" id="cat-all" checked><label class="lss-cat" for="cat-all" style="--c:#aebbd0"><i></i><span data-text="cat_all"></span><em data-bind="count_all"></em></label>
+        <input type="radio" name="cat" id="cat-attack"><label class="lss-cat" for="cat-attack" style="--c:#e8835a"><i></i><span data-text="cat_attack"></span><em data-bind="count_attack"></em></label>
+        <input type="radio" name="cat" id="cat-arcane"><label class="lss-cat" for="cat-arcane" style="--c:#a283f0"><i></i><span data-text="cat_arcane"></span><em data-bind="count_arcane"></em></label>
+        <input type="radio" name="cat" id="cat-guard"><label class="lss-cat" for="cat-guard" style="--c:#5fb8a6"><i></i><span data-text="cat_guard"></span><em data-bind="count_guard"></em></label>
+        <input type="radio" name="cat" id="cat-swift"><label class="lss-cat" for="cat-swift" style="--c:#86c95a"><i></i><span data-text="cat_swift"></span><em data-bind="count_swift"></em></label>
+        <input type="radio" name="cat" id="cat-relic"><label class="lss-cat" for="cat-relic" style="--c:#e2b84a"><i></i><span data-text="cat_relic"></span><em data-bind="count_relic"></em></label>
+      </div>
+      <div class="lss-list" data-each="items">
+        <template>
+          <article class="lss-card" data-class-poor="too_expensive" data-class-attack="is_attack" data-class-arcane="is_arcane" data-class-guard="is_guard" data-class-swift="is_swift" data-class-relic="is_relic" data-style---c="color">
+            <div class="lss-top">
+              <div class="lss-ico"><img alt="" data-attr-src="glyph_img"></div>
+              <div class="lss-nm"><b data-bind="name"></b><span data-bind="kind"></span></div>
+              <div class="lss-pr"><b data-bind="price_text"></b><s data-bind="cost_text"></s></div>
+            </div>
+            <div class="lss-st" data-each="stat_lines"><template><span data-bind="text"></span></template></div>
+            <span class="lss-bl" data-bind="blurb"></span>
+            <div class="lss-from" data-show="builds_from"><span data-text="shop_from"></span><span data-each="builds_from"><template><span class="f" data-class-own="own"><span data-bind="name"></span><span data-show="own"> ✓</span></span></template></span></div>
+            <button class="lss-buy" data-action="buy" data-attr-disabled="too_expensive" data-bind="buy_label"></button>
+          </article>
+        </template>
+      </div>
+    </div>
+    <div class="lss-ft">
+      <div class="lss-inv" data-each="slots">
+        <template><div class="lss-slot" data-class-full="full"><img alt="" data-show="full" data-attr-src="glyph_img"></div></template>
+      </div>
+      <div class="lss-mid" data-bind="inventory"></div>
+      <span class="lss-tip" data-text="shop_tip"></span>
+    </div>
+  </section>
+</div>

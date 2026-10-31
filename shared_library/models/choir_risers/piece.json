@@ -1,0 +1,10 @@
+{
+  "id": "choir_risers",
+  "summary": "A three-step portable choir riser, 1.8 m wide: carpeted plywood decks 0.2, 0.4 and 0.6 m up, aluminium step n… joints back_rail; options carpet; sockets stand_0_0, stand_0_1, stand_0_2, stand_0_3, stand_1_0, stand_1_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.choir_risers or place \"prefab\": \"choir_risers\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:choir_risers"]
+}

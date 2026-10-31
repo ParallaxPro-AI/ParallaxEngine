@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/dock_long", "cast_shadows": true },
+    "collider": { "shape": "mesh" }
+  }
+}

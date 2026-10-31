@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fire_alarm_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.48, 1.91, 0.48],
+      "offset": [0, 0.955, 0]
+    }
+  }
+}

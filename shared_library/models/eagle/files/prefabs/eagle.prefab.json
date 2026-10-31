@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/eagle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.1433, 0.9902, 0.7352],
+      "offset": [0, 0.4943, -0.0238]
+    }
+  }
+}

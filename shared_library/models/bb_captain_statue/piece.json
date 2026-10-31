@@ -1,0 +1,10 @@
+{
+  "id": "bb_captain_statue",
+  "summary": "Bronze pirate captain monument with long coat, tricorn hat and sword on a stone plinth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_captain_statue or place \"prefab\": \"bb_captain_statue\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_captain_statue"]
+}

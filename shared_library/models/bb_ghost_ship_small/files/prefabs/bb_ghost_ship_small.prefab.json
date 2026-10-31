@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_ghost_ship_small"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.56, 3.89, 5.5896],
+      "offset": [0, 1.945, 0.2148]
+    }
+  }
+}

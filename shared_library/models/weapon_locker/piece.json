@@ -1,0 +1,10 @@
+{
+  "id": "weapon_locker",
+  "summary": "A generic military armoury locker: a welded steel cabinet on a pale galvanised plinth with two hinged doors (… joints door_l, door_r; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.weapon_locker or place \"prefab\": \"weapon_locker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:weapon_locker"]
+}

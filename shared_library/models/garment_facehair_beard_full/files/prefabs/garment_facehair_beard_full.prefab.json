@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_facehair_beard_full"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1814, 0.2026, 0.1477],
+      "offset": [0.0002, 1.6624, 0.0296]
+    }
+  }
+}

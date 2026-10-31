@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cargo_plane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [40.48, 11.76, 30.35],
+      "offset": [0, 5.88, -0.125]
+    }
+  }
+}

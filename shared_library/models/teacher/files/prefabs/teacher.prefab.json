@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/teacher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.699, 0.3032],
+      "offset": [0, 0.8495, -0.0131]
+    }
+  }
+}

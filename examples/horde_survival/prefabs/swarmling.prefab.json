@@ -1,0 +1,1 @@
+{ "extends": "foe", "pool": 260, "scale": [0.7771, 0.7771, 0.7771], "components": { "model": { "model": "models/swarmling", "cast_shadows": true }, "animator": { "default_clip": "clips/walk_cycle" } } }

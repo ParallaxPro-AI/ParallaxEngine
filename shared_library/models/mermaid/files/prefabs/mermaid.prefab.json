@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mermaid"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.6977, 0.5191],
+      "offset": [0, 0.8502, -0.0846]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hand_truck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.602, 1.2205, 0.4751],
+      "offset": [0, 0.6102, -0.0175]
+    }
+  }
+}

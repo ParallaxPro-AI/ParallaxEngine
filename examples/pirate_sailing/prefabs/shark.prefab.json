@@ -1,0 +1,26 @@
+{
+  "tags": ["shark"],
+  "replicate_transform": true,
+  "components": {
+    "model": { "model": "models/shark_patrol", "cast_shadows": true },
+    "collider": { "shape": "capsule", "radius": 0.6, "height": 4.5, "offset": [0, 0.3, 0] },
+    "health": { "current": 40, "max": 40 },
+    "health_bar": { "offset": [0, 2, 0], "color": "#a3261b" },
+    "side": { "side": "side_sea" },
+    "bounty": { "gold": 30 }
+  },
+  "behaviors": {
+    "sea_monster": {
+      "sight": 14,
+      "reach": 4,
+      "damage": 8,
+      "lash_every": 0.7,
+      "hidden_depth": -0.45,
+      "surfaced_height": -0.2,
+      "rise_time": 1,
+      "lash_time": 0.6,
+      "sink_time": 1,
+      "rest_time": 4
+    }
+  }
+}

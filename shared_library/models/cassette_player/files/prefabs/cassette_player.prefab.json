@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cassette_player"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5015, 0.2765, 0.1306],
+      "offset": [0.0008, 0.1383, 0.0017]
+    }
+  }
+}

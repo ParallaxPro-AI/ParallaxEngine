@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/table_saw"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.28, 1.0268, 0.8746],
+      "offset": [0, 0.5134, 0.0573]
+    }
+  }
+}

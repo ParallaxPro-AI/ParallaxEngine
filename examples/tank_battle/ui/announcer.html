@@ -1,0 +1,70 @@
+<!-- Ported from the template: Armor Assault announcer band — full-width smoked band with style-coloured edge rules, a kicker line, an Anton headline and a sub line; WAVE gets a 3-2-1 countdown ring, the boss phase gets hazard-stripe rules and the ARMORED / BREACHED / ENRAGED track. Driven by the Announcer component (hud_update.announce { n, text, sub, style, hold, size }). -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { pointer-events: none; overflow: hidden; font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif); color: #e8e8e8; }
+  .band { position: fixed; left: 0; right: 0; top: calc(320 * var(--u)); height: calc(300 * var(--u)); opacity: 0; transform-origin: 50% 50%; --ac: #22d3ee; --bg: rgba(5,10,8,.78); }
+  .band.in { animation: aaBandIn .3s cubic-bezier(.2,.7,.2,1) forwards; }
+  .band.out { animation: aaBandOut .3s ease-in forwards; }
+  @keyframes aaBandIn { from { opacity: 0; transform: scaleY(.6) scaleX(1.08); } to { opacity: 1; transform: scaleY(1) scaleX(1); } }
+  @keyframes aaBandOut { from { opacity: 1; transform: scaleY(1); } to { opacity: 0; transform: scaleY(1); } }
+  .bg { position: absolute; inset: 0; background: linear-gradient(90deg, transparent, var(--bg) 22%, var(--bg) 78%, transparent); }
+  .rule { position: absolute; left: 15%; right: 15%; height: 2px; background: var(--ac); }
+  .rule.t { top: 0; } .rule.b { bottom: 0; }
+  .band.danger { --bg: rgba(30,4,4,.82); }
+  .band.danger .rule { height: calc(3 * var(--u)); background: repeating-linear-gradient(-45deg, #ef4444 0 calc(12 * var(--u)), #1a0505 calc(12 * var(--u)) calc(24 * var(--u))); }
+  .row { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; gap: calc(56 * var(--u)); }
+  .col { display: flex; flex-direction: column; align-items: center; text-align: center; max-width: 86vw; }
+  .kick { font-weight: 700; font-size: calc(22 * var(--u)); letter-spacing: .5em; color: var(--ac); white-space: nowrap; }
+  .kick:empty { display: none; }
+  .track { display: flex; align-items: center; gap: calc(14 * var(--u)); font-weight: 700; font-size: calc(20 * var(--u)); letter-spacing: .36em; white-space: nowrap; }
+  .track .p { color: #888; } .track .cur { color: #ef4444; } .track .next { color: rgba(232,232,232,.35); }
+  .head { font-family: var(--aa-font-display, 'Anton', Impact, sans-serif); font-size: calc(150 * var(--u)); line-height: 1.05; letter-spacing: .04em; color: var(--hc, #e8e8e8); white-space: nowrap; text-transform: uppercase; }
+  .band.warn .head { font-size: calc(180 * var(--u)); }
+  .band.danger .head { font-size: calc(170 * var(--u)); }
+  .band.sm .head { font-size: calc(72 * var(--u)); }
+  .sub { display: flex; align-items: center; gap: calc(12 * var(--u)); font-weight: 600; font-size: calc(28 * var(--u)); letter-spacing: .14em; color: #c9cbc9; }
+  .band.success .sub, .band.danger .sub { color: #e8e8e8; }
+  .sub svg { width: calc(12 * var(--u)); height: calc(24 * var(--u)); display: none; }
+  .band.success .sub svg { display: block; }
+  .ring { position: relative; width: calc(132 * var(--u)); height: calc(132 * var(--u)); flex: none; display: none; }
+  .ring.on { display: block; }
+  .ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .ring .arc { stroke-dasharray: 364.4; stroke-dashoffset: 0; }
+  .ring .arc.run { animation: aaRing 1s linear forwards; }
+  @keyframes aaRing { from { stroke-dashoffset: 0; } to { stroke-dashoffset: 364.4; } }
+  .ring .d { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 800; font-size: calc(60 * var(--u)); }
+  @media (pointer: coarse) {
+    .band { top: calc(192 * var(--u)); height: calc(300 * var(--u)); }
+    .bg { background: linear-gradient(90deg, transparent, var(--bg) 18%, var(--bg) 82%, transparent); }
+    .rule { left: 12%; right: 12%; height: calc(4 * var(--u)); }
+    .band.danger .rule { height: calc(6 * var(--u)); background: repeating-linear-gradient(-45deg, #ef4444 0 calc(16 * var(--u)), #1a0505 calc(16 * var(--u)) calc(32 * var(--u))); }
+    .row { gap: calc(48 * var(--u)); }
+    .kick { font-size: calc(24 * var(--u)); letter-spacing: .44em; }
+    .track { gap: calc(16 * var(--u)); font-size: calc(22 * var(--u)); letter-spacing: .3em; }
+    .head { font-size: calc(144 * var(--u)); }
+    .band.warn .head { font-size: calc(176 * var(--u)); }
+    .band.danger .head { font-size: calc(160 * var(--u)); }
+    .band.sm .head { font-size: calc(64 * var(--u)); }
+    .sub { font-size: calc(30 * var(--u)); letter-spacing: .1em; }
+    .ring { width: calc(128 * var(--u)); height: calc(128 * var(--u)); }
+    .ring .d { font-size: calc(60 * var(--u)); }
+  }
+.ring .arc { stroke-dasharray: 364.4; transition: none; }
+</style>
+<div class="band" data-attr-class="band_class" data-attr-style="band_style">
+  <div class="bg"></div>
+  <div class="rule t"></div>
+  <div class="rule b"></div>
+  <div class="row">
+    <div class="col">
+      <div class="kick" data-bind="kick"></div>
+      <div class="head" data-bind="text"></div>
+      <div class="sub" data-show="sub"><svg viewBox="0 0 10 20"><rect x="1" y="6" width="8" height="13" fill="#22c55e"></rect><polygon points="1,6 5,0 9,6" fill="#22c55e"></polygon></svg><span data-bind="sub"></span></div>
+    </div>
+    <div class="ring" data-class-on="countdown">
+      <svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="58" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="6"></circle><circle class="arc" cx="66" cy="66" r="58" fill="none" stroke="#22d3ee" stroke-width="6" data-attr-stroke-dashoffset="arc_offset"></circle></svg>
+      <div class="d" data-bind="digit"></div>
+    </div>
+  </div>
+</div>

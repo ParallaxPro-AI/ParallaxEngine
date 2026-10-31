@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="sky.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+      .shr{position:fixed;inset:0;display:grid;place-items:center}
+      .shr .res-card{position:relative;overflow:visible;width:calc(62*var(--su));animation:sh-rise var(--sh-dur-slow) var(--sh-ease-spring) both}
+      .shr .band{position:relative;background:var(--sh-meadow);border-radius:var(--sh-r-xl) var(--sh-r-xl) 0 0;padding:calc(2.75*var(--su)) calc(3.5*var(--su)) calc(4.75*var(--su));text-align:center}
+      .shr .band .sh-eyebrow{color:var(--sh-meadow-ink)}
+      .shr[data-world="crystal"] .band{background:var(--sh-crystal)}.shr[data-world="crystal"] .band .sh-eyebrow{color:var(--sh-crystal-ink)}
+      .shr[data-world="frost"] .band{background:var(--sh-frost)}.shr[data-world="frost"] .band .sh-eyebrow{color:var(--sh-frost-ink)}
+      .shr[data-world="ember"] .band{background:var(--sh-ember)}.shr[data-world="ember"] .band .sh-eyebrow{color:var(--sh-ember-ink)}
+      .shr[data-outcome="lose"] .band{background:var(--sh-paper-2)}.shr[data-outcome="lose"] .band .sh-eyebrow{color:var(--sh-sage)}
+      .shr .res-title{line-height:1.02;font-size:calc(4.5*var(--su));margin-top:calc(.75*var(--su))}
+      .shr .big-stars{position:absolute;left:0;right:0;top:calc(100% - 3.6*var(--su));display:flex;justify-content:center;align-items:flex-end;gap:calc(1.25*var(--su))}
+      .shr .big-stars .sh-star{width:calc(6.25*var(--su));height:calc(6.25*var(--su));filter:drop-shadow(0 calc(.25*var(--su)) 0 var(--sh-gold-edge));animation:shr-star-pop .55s var(--sh-ease-spring) both}
+      .shr .big-stars .s2{width:calc(7.5*var(--su));height:calc(7.5*var(--su));margin-bottom:calc(.75*var(--su));animation-delay:.18s}
+      .shr .big-stars .s3{animation-delay:.36s}
+      .shr .big-stars .sh-star.off{filter:drop-shadow(0 calc(.25*var(--su)) 0 var(--sh-paper-edge));animation-name:none}
+      @keyframes shr-star-pop{0%{opacity:0;transform:scale(.2) rotate(-30deg)}100%{opacity:1;transform:none}}
+      .shr ..sh-root{padding:calc(5.65*var(--su)) calc(3.5*var(--su)) calc(2.5*var(--su))}
+      .shr .caption{text-align:center;color:var(--sh-sage-2);font-weight:700;font-size:calc(1.15*var(--su));margin-top:calc(.9*var(--su))}
+      .shr .cells{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:calc(1*var(--su));margin-top:calc(2*var(--su))}
+      .shr .cell{background:var(--sh-paper-2);border-radius:var(--sh-r-md);text-align:center;display:flex;flex-direction:column;justify-content:center;padding:calc(1.25*var(--su)) calc(1*var(--su)) calc(1.2*var(--su));gap:calc(.55*var(--su))}
+      .shr .cell-label{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--sh-sage);font-size:calc(.85*var(--su))}
+      .shr .cell-label.pos{color:var(--sh-marigold-ink)}
+      .shr .cell-val{font-family:var(--sh-font-display);font-weight:600;line-height:1;color:var(--sh-ink);font-variant-numeric:tabular-nums;font-size:calc(3.25*var(--su))}
+      .shr .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:calc(1*var(--su));margin-top:calc(2.25*var(--su))}
+      .shr .foot{display:flex;justify-content:center;margin-top:calc(1.25*var(--su))}
+      .shr .best{display:inline-flex;align-items:center;border-radius:999px;font-weight:800;gap:calc(.5*var(--su));padding:calc(.55*var(--su)) calc(1.2*var(--su));font-size:calc(1.15*var(--su))}
+      .shr .best .sh-ico{width:calc(1.3*var(--su));height:calc(1.3*var(--su))}
+      .shr .best--new{background:#fdf0c9;color:var(--sh-marigold-ink);box-shadow:inset 0 0 0 2px #f3d98f}
+      .shr .best--old{color:var(--sh-sage-2)}
+      .shr .foot{flex-wrap:wrap;gap:calc(.75*var(--su))}
+      .shr .medal{display:inline-flex;align-items:center;gap:calc(.55*var(--su));border-radius:999px;font-weight:800;padding:calc(.55*var(--su)) calc(1.2*var(--su));font-size:calc(1.15*var(--su));background:var(--sh-paper-2);color:var(--sh-sage-2)}
+      .shr .medal i{width:calc(1.3*var(--su));height:calc(1.3*var(--su));border-radius:50%;background:#aab4b0;box-shadow:inset 0 0 0 calc(.18*var(--su)) rgba(22,63,67,.35)}
+      .shr .medal[data-tier="gold"] i{background:#f6be4f}.shr .medal[data-tier="silver"] i{background:#cfd6d6}.shr .medal[data-tier="bronze"] i{background:#c9803f}
+
+      .shr .band-text{display:block}
+      .shr [hidden]{display:none!important}
+      .shr .caption-touch{display:none}
+      @media (pointer:coarse),(max-height:500px){
+        .shr .res-card{width:calc(40*var(--su));max-width:calc(100cqw - var(--sh-safe-l) - var(--sh-safe-r));margin-bottom:calc(var(--sh-safe-b) - var(--sh-safe-t));border-radius:var(--sh-r-lg)}
+        .shr .band{display:flex;align-items:center;justify-content:space-between;gap:calc(1*var(--su));padding:calc(.95*var(--su)) calc(1.4*var(--su)) calc(.9*var(--su));border-radius:var(--sh-r-lg) var(--sh-r-lg) 0 0;text-align:left}
+        .shr .res-title{font-size:calc(1.75*var(--su));margin-top:calc(.3*var(--su))}
+        .shr .big-stars{position:static;gap:calc(.3*var(--su));flex:none}
+        .shr .big-stars .sh-star{width:calc(2.5*var(--su));height:calc(2.5*var(--su));filter:drop-shadow(0 calc(.15*var(--su)) 0 var(--sh-gold-edge))}
+        .shr .big-stars .s2{width:calc(3*var(--su));height:calc(3*var(--su));margin-bottom:calc(.35*var(--su))}
+        .shr .big-stars .sh-star.off{filter:drop-shadow(0 calc(.15*var(--su)) 0 var(--sh-paper-edge))}
+        .shr ..sh-root{padding:calc(.8*var(--su)) calc(1.4*var(--su)) calc(.9*var(--su))}
+        .shr .caption-desk{display:none}
+        .shr .caption-touch{display:block;font-size:calc(.7*var(--su));margin-top:calc(.55*var(--su))}
+        .shr .cells{gap:calc(.5*var(--su));margin-top:0}
+        .shr .cell{padding:calc(.55*var(--su)) calc(.4*var(--su)) calc(.6*var(--su));gap:calc(.3*var(--su));border-radius:var(--sh-r-sm)}
+        .shr .cell-label{font-size:calc(.58*var(--su));letter-spacing:.08em}
+        .shr .cell-val{font-size:calc(1.5*var(--su))}
+        .shr .actions{gap:calc(.55*var(--su));margin-top:calc(.8*var(--su));flex-wrap:nowrap}
+        .shr .actions .sh-btn{padding:0 1.1em}
+        .shr .foot{margin-top:calc(.15*var(--su))}
+        .shr .best{gap:calc(.35*var(--su));padding:calc(.25*var(--su)) calc(.7*var(--su));font-size:calc(.75*var(--su))}
+        .shr .best .sh-ico{width:calc(.9*var(--su));height:calc(.9*var(--su))}
+      }
+    </style>
+<div class="sh-root shr" data-attr-data-outcome="outcome" data-attr-data-world="theme">
+  <div class="sh-scrim"></div>
+  <section class="sh-paper res-card" role="dialog">
+    <div class="band">
+      <div class="band-text"><p class="sh-eyebrow" data-bind="tag"></p><h1 class="sh-display res-title" data-bind="title"></h1></div>
+      <div class="big-stars" data-each="stars"><template><svg class="sh-ico sh-star" data-attr-class="cls" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg></template></div>
+    </div>
+    <div class="body">
+      <p class="caption caption-desk" data-text="results_caption"></p>
+      <div class="cells" data-each="stats"><template><div class="cell"><span class="cell-label" data-class-pos="positive" data-bind="label"></span><span class="cell-val" data-bind="value"></span></div></template></div>
+      <p class="caption caption-touch" data-text="results_caption"></p>
+      <div class="actions">
+        <button class="sh-btn sh-btn--primary" data-action="next" data-show="has_next" data-key="Enter"><span data-text="results_next"></span> <span class="sh-arr">→</span></button>
+        <button class="sh-btn" data-action="replay" data-class-sh-btn--primary="replay_primary" data-text="results_replay"></button>
+        <button class="sh-btn" data-action="quit" data-class-sh-btn--primary="atlas_primary" data-text="sky_atlas"></button>
+      </div>
+      <div class="foot"><span class="best best--new" data-show="new_best"><svg class="sh-ico sh-star" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg> <span data-text="results_new_best"></span> <span data-bind="best"></span></span><span class="best best--old" data-hide="new_best"><span data-text="results_best_score"></span> <span data-bind="best"></span></span></div>
+    </div>
+  </section>
+</div>

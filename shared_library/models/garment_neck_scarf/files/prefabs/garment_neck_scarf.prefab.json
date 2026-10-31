@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_neck_scarf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3054, 0.417, 0.3246],
+      "offset": [0.0029, 1.4213, -0.0052]
+    }
+  }
+}

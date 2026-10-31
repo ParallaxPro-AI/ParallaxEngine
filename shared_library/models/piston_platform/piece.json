@@ -1,0 +1,10 @@
+{
+  "id": "piston_platform",
+  "summary": "A hydraulic piston platform: a bolted base plate carries a fixed cylinder housing, and a polished ram telesco… joints extend; sockets socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.piston_platform or place \"prefab\": \"piston_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:piston_platform"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crew_jelly"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.39, 1.645, 0.508],
+      "offset": [0, 0.8225, 0.009]
+    }
+  }
+}

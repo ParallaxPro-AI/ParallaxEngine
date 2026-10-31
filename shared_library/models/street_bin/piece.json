@@ -1,0 +1,14 @@
+{
+  "id": "street_bin",
+  "summary": "A cast dark-green cylindrical public litter bin on a heavy foot, with a hooded front chute. joints flap, liner; sockets socket_contents.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.street_bin or place \"prefab\": \"street_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:street_bin"
+  ]
+}

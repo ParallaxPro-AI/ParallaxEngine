@@ -1,0 +1,10 @@
+{
+  "id": "shop_awning",
+  "summary": "A 3 m retractable folding-arm shop awning for a storefront or cafe: a wall-mounted cassette with three bracke… joints canopy, front_bar, arm_l, fore_l, arm_r, fore_r; options stripes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shop_awning or place \"prefab\": \"shop_awning\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shop_awning"]
+}

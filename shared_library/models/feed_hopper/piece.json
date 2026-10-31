@@ -1,0 +1,10 @@
+{
+  "id": "feed_hopper",
+  "summary": "A galvanised gravity feed hopper on four legs: a cylindrical bin body with a conical funnel bottom, a peaked… joints hatch, chute; sockets socket_outlet.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.feed_hopper or place \"prefab\": \"feed_hopper\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:feed_hopper"]
+}

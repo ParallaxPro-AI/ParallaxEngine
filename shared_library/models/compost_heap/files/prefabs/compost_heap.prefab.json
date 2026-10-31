@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/compost_heap"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2491, 1.3923, 1.2113],
+      "offset": [0.0041, 0.6921, 0.0377]
+    }
+  }
+}

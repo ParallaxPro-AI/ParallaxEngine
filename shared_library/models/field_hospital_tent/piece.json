@@ -1,0 +1,10 @@
+{
+  "id": "field_hospital_tent",
+  "summary": "A field hospital tent: a 5.5 x 7 m arched frame shelter in tan fabric with five raised rib covers, red crosse… joints door_l, door_r; options fabric; sockets entrance, cot_0, cot_1, cot_2, cot_3, medic.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.field_hospital_tent or place \"prefab\": \"field_hospital_tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:field_hospital_tent"]
+}

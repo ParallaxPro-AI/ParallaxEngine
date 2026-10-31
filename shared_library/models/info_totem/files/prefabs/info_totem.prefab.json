@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/info_totem"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.66, 1.95, 0.3],
+      "offset": [0, 0.975, 0]
+    }
+  }
+}

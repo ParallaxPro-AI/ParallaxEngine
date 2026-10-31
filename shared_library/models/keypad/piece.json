@@ -1,0 +1,10 @@
+{
+  "id": "keypad",
+  "summary": "A security / door-entry keypad: a metal faceplate carrying a tilt-adjustable LCD and a 4x3 grid of twelve pre… joints display, key_0, key_1, key_2, key_3, key_4, …; sockets socket_face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.keypad or place \"prefab\": \"keypad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:keypad"]
+}

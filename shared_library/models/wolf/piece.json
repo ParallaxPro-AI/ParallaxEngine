@@ -1,0 +1,10 @@
+{
+  "id": "wolf",
+  "summary": "A grey timber wolf on the engine's quadruped_20 rig: long wedge skull with bared teeth, upright triangular ea… options coat; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wolf or place \"prefab\": \"wolf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wolf"]
+}

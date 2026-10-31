@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/compass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.056, 0.0182, 0.0816],
+      "offset": [0, 0.0091, 0]
+    }
+  }
+}

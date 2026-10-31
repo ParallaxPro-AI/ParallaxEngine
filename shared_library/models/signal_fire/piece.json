@@ -1,0 +1,10 @@
+{
+  "id": "signal_fire",
+  "summary": "A tall signal-fire beacon: a log-cabin crib of twelve courses of bark logs tapering up from a dressed stone p… options state; sockets socket_light, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.signal_fire or place \"prefab\": \"signal_fire\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:signal_fire"]
+}

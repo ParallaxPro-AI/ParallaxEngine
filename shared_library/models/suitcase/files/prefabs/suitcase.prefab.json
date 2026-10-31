@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/suitcase",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.363,
+        0.565,
+        0.259
+      ],
+      "offset": [
+        0.0,
+        0.2825,
+        0.013
+      ]
+    }
+  }
+}

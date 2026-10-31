@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coral_branch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5125, 0.4541, 0.5336],
+      "offset": [0.001, 0.2271, 0.01]
+    }
+  }
+}

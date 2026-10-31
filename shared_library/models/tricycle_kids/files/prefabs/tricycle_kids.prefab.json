@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tricycle_kids"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.526, 0.6659, 0.7141],
+      "offset": [0, 0.3329, -0.0079]
+    }
+  }
+}

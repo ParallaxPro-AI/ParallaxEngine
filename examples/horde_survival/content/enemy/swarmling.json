@@ -1,0 +1,1 @@
+{ "name": "Swarmling", "prefab": "swarmling", "hp": 10, "damage": 6, "move_speed": 4.2, "xp": 1, "score": 10, "heart_chance": 0.012 }

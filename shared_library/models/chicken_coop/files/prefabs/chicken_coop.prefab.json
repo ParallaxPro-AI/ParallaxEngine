@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chicken_coop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3739, 1.315, 1.0515],
+      "offset": [0.1, 0.6575, -0.0008]
+    }
+  }
+}

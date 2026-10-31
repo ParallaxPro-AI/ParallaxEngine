@@ -1,0 +1,10 @@
+{
+  "id": "fish_legendary_glowing",
+  "summary": "An original legendary fish, the rare glowing trophy catch of a fishing game: 1.2 m snout to tail tips, a long… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; options glow, glow_soft, glow_rays; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_legendary_glowing or place \"prefab\": \"fish_legendary_glowing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_legendary_glowing"]
+}

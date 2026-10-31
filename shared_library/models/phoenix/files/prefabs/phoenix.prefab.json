@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/phoenix"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0959, 1.3811, 1.5194],
+      "offset": [0, 0.6902, -0.2827]
+    }
+  }
+}

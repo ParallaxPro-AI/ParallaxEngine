@@ -1,0 +1,43 @@
+<!-- The photo viewfinder, dressed like the template kit's photo_viewfinder rules (code/ui/hud/sb_kit.html over
+     lib:photo_viewfinder): corner brackets, a rule-of-thirds grid, the amber "Focus locked" reticle, the
+     PHOTO title with the zoom and shot count, and the round shutter with the gallery count. -->
+<link rel="stylesheet" href="../../../ui/sunset_bay.css">
+<style>
+  .vf { position: fixed; inset: 0; pointer-events: none; font-family: var(--sb-font); color: var(--sb-ink); }
+  .vf .vig { position: absolute; inset: 0; box-shadow: inset 0 0 calc(160 * var(--sb-u)) calc(30 * var(--sb-u)) rgba(0,0,0,.4); }
+  .brk { position: absolute; width: calc(72 * var(--sb-u)); height: calc(72 * var(--sb-u)); border: calc(3 * var(--sb-u)) solid var(--sb-ink); }
+  .brk.tl { top: calc(44 * var(--sb-u)); left: calc(56 * var(--sb-u)); border-right: none; border-bottom: none; }
+  .brk.tr { top: calc(44 * var(--sb-u)); right: calc(56 * var(--sb-u)); border-left: none; border-bottom: none; }
+  .brk.bl { bottom: calc(40 * var(--sb-u)); left: calc(56 * var(--sb-u)); border-right: none; border-top: none; }
+  .brk.br { bottom: calc(40 * var(--sb-u)); right: calc(56 * var(--sb-u)); border-left: none; border-top: none; }
+  .grid { position: absolute; inset: 0; }
+  .grid i { position: absolute; background: rgba(244,239,230,.26); }
+  .grid i.v { top: 0; bottom: 0; width: 1px; } .grid i.v1 { left: 33.33%; } .grid i.v2 { left: 66.66%; }
+  .grid i.h { left: 0; right: 0; height: 1px; } .grid i.h1 { top: 33.33%; } .grid i.h2 { top: 66.66%; }
+  .reticle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: calc(96 * var(--sb-u)); height: calc(96 * var(--sb-u)); border: 2px solid var(--sb-amber); border-radius: calc(12 * var(--sb-u)); box-shadow: 0 0 0 1px rgba(0,0,0,.3); }
+  .reticle::before { content: ''; position: absolute; left: 50%; top: 50%; width: calc(6 * var(--sb-u)); height: calc(6 * var(--sb-u)); margin: calc(-3 * var(--sb-u)); border-radius: 50%; background: var(--sb-amber); }
+  .reticle span { position: absolute; top: calc(100% + calc(10 * var(--sb-u))); left: 50%; transform: translateX(-50%); font: 700 calc(12 * var(--sb-u))/1 var(--sb-font); letter-spacing: .14em; text-transform: uppercase; color: var(--sb-amber); white-space: nowrap; }
+  .top { position: absolute; top: calc(68 * var(--sb-u)); left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: calc(12 * var(--sb-u)); font: 400 calc(32 * var(--sb-u))/1 var(--sb-font-display); letter-spacing: .06em; text-transform: uppercase; text-shadow: var(--sb-sh-text); white-space: nowrap; }
+  .count { font: 700 calc(16 * var(--sb-u))/1 var(--sb-font); letter-spacing: 0; text-transform: none; padding: calc(8 * var(--sb-u)) calc(12 * var(--sb-u)); border-radius: calc(8 * var(--sb-u)); background: rgba(13,29,38,.7); }
+  .hint { position: absolute; left: 0; right: 0; bottom: calc(200 * var(--sb-u)); text-align: center; font: 500 calc(14 * var(--sb-u))/1 var(--sb-font); color: var(--sb-ink-2); text-shadow: 0 1px calc(3 * var(--sb-u)) rgba(0,0,0,.8); }
+  .bottom { position: absolute; left: 0; right: 0; bottom: calc(68 * var(--sb-u)); display: flex; justify-content: center; }
+  .shutter { position: relative; width: calc(92 * var(--sb-u)); height: calc(92 * var(--sb-u)); border-radius: 50%; background: var(--sb-ink); box-shadow: 0 0 0 calc(6 * var(--sb-u)) rgba(13,29,38,.6), 0 0 0 calc(10 * var(--sb-u)) var(--sb-ink); }
+  .gallery-count { position: absolute; top: calc(-14 * var(--sb-u)); right: calc(-14 * var(--sb-u)); min-width: calc(28 * var(--sb-u)); height: calc(28 * var(--sb-u)); padding: 0 calc(8 * var(--sb-u)); border-radius: calc(14 * var(--sb-u)); display: grid; place-items: center; background: var(--sb-amber); color: var(--sb-panel); font: 800 calc(14 * var(--sb-u))/1 var(--sb-font); }
+  @media (pointer: coarse) {
+    .brk { width: calc(56 * var(--sb-u)); height: calc(56 * var(--sb-u)); border-width: calc(4 * var(--sb-u)); }
+    .brk.tl, .brk.tr { top: calc(20 * var(--sb-u)); } .brk.bl, .brk.br { bottom: calc(42 * var(--sb-u)); }
+    .top { top: calc(40 * var(--sb-u)); } .count { font-size: calc(22 * var(--sb-u)); } .hint { display: none; }
+    .bottom { bottom: calc(40 * var(--sb-u)); }
+    .shutter { width: calc(120 * var(--sb-u)); height: calc(120 * var(--sb-u)); box-shadow: 0 0 0 calc(8 * var(--sb-u)) rgba(13,29,38,.6), 0 0 0 calc(12 * var(--sb-u)) var(--sb-ink); }
+    .reticle { width: calc(100 * var(--sb-u)); height: calc(100 * var(--sb-u)); } .reticle span { font-size: calc(18 * var(--sb-u)); }
+  }
+</style>
+<div class="vf">
+  <div class="vig"></div>
+  <div class="brk tl"></div><div class="brk tr"></div><div class="brk bl"></div><div class="brk br"></div>
+  <div class="grid"><i class="v v1"></i><i class="v v2"></i><i class="h h1"></i><i class="h h2"></i></div>
+  <div class="reticle"><span data-text="focus_locked"></span></div>
+  <div class="top"><span data-text="photo"></span><span class="count"><span data-bind="zoom"></span>× · <span data-bind="shots"></span> <span data-text="photos_taken"></span></span></div>
+  <p class="hint" data-text="viewfinder_hint"></p>
+  <div class="bottom"><div class="shutter"><span class="gallery-count" data-bind="shots"></span></div></div>
+</div>

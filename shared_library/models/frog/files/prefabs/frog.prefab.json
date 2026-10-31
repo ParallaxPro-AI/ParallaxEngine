@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/frog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.26, 0.1185, 0.244],
+      "offset": [0, 0.06, 0.034]
+    }
+  }
+}

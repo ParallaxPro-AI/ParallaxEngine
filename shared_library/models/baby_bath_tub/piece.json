@@ -1,0 +1,10 @@
+{
+  "id": "baby_bath_tub",
+  "summary": "A moulded plastic baby bath tub: flared rounded-rectangle shell with a rolled lip, a reclined backrest and hi… joints drain; options color, insert.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baby_bath_tub or place \"prefab\": \"baby_bath_tub\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baby_bath_tub"]
+}

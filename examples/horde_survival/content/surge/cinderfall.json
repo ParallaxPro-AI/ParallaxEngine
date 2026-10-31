@@ -1,0 +1,2 @@
+{ "name": "CINDERFALL", "at_second": 45, "interval": 2.0, "hp_scale": 1.25, "speed_scale": 1.05,
+  "groups": { "swarmling": 10, "spitter": 1 } }

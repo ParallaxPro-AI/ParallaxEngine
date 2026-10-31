@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/xray_lightbox"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.84, 0.52, 0.116],
+      "offset": [0, 0.26, 0]
+    }
+  }
+}

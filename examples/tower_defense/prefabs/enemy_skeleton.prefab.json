@@ -1,0 +1,1 @@
+{"extends": "invader", "components": {"model": {"model": "https://r2.parallaxpro.ai/assets/model_character/54/b0/54b064f42a74db5a254b2d26151d61945633052a7a17e7e5d5f3561bbab7d2aa.glb", "cast_shadows": true}, "animator": {"default_clip": "SkeletonArmature|SkeletonArmature|Skeleton_Running"}}}

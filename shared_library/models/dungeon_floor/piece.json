@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_floor",
+  "summary": "A 4 x 4 m flagstone floor tile from the DUNGEON_KIT: staggered rows of chamfered, slightly uneven stone flags… options detail, stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_floor or place \"prefab\": \"dungeon_floor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_floor"]
+}

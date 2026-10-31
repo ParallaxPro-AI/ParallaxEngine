@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cordless_drill_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.406, 0.1133, 0.3546],
+      "offset": [0, 0.0566, 0.0153]
+    }
+  }
+}

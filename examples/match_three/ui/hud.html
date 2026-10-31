@@ -1,0 +1,181 @@
+<!-- Board HUD, ported from the template's hud/board_hud: the faceted progress card (stage pips,
+     stage name and hint, score / target, cut-crystal bar with its gold target-met state) and
+     the Carrying relic chips on the left of the board; the Turns card (moves with a coral
+     low-moves pulse, crust left) with Hint and Pause on the right; and the escalating gold
+     cascade callout (x2 bare, x3 plate, x4 sparkles, x6 rays) over the board's bottom edge. -->
+<link rel="stylesheet" href="gem_kit.css">
+<style>
+  .gch { --board: min(100cqh, 100cqw); --top: 6cqh; --gap: clamp(28px, 2.6cqw, 52px); --edge: 24px; --cardw: clamp(220px, 13cqw, 262px); --pad: clamp(16px, 1.15cqw, 22px); --g: 12px; --fs-stage: clamp(22px, 1.45cqw, 29px); --fs-sub: clamp(13px, .8cqw, 15px); --fs-score: clamp(26px, 1.75cqw, 34px); --fs-target: clamp(14px, .85cqw, 17px); --fs-small: 12px; --fs-moves: clamp(58px, 4.1cqw, 80px); --fs-moves-l: clamp(13px, .8cqw, 15px); --fs-ice: clamp(18px, 1.15cqw, 22px); --sqh: clamp(56px, 3.5cqw, 66px); --cmul: 1;
+    position: fixed; inset: 0; display: grid; grid-template-columns: minmax(0, 1fr) var(--board) minmax(0, 1fr); column-gap: var(--gap); align-items: start; padding: var(--top) calc(var(--gc-sa-r) + var(--edge)) calc(var(--gc-sa-b) + 8px) calc(var(--gc-sa-l) + var(--edge)); pointer-events: none; user-select: none; -webkit-user-select: none; }
+  .gch-mid { height: 100%; }
+  .gch-side { display: flex; flex-direction: column; gap: 14px; min-width: 0; height: 100%; }
+  .gch-side.l { align-items: flex-end; }
+  .gch-side.r { align-items: flex-start; }
+  .gch-card { width: 100%; max-width: var(--cardw); filter: var(--gc-shadow-panel); }
+  .gch-pad { padding: var(--pad); display: flex; flex-direction: column; gap: var(--g); }
+  .gch-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+  .gch-row > .gc-lbl { white-space: nowrap; }
+  .gch-pips { display: flex; gap: 5px; flex-shrink: 0; }
+  .gch-pips i { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid var(--gc-ink-3); }
+  .gch-pips i.on { background: var(--gc-cyan); border-color: var(--gc-cyan); }
+  .gch-pips i.cur { background: var(--gc-orchid); border-color: var(--gc-orchid); box-shadow: 0 0 8px var(--gc-orchid); }
+  .gch-name { font-family: var(--gc-font-display); font-weight: 700; font-size: var(--fs-stage); line-height: 1.05; letter-spacing: .06em; text-transform: uppercase; text-wrap: balance; }
+  .gch-sub { font-size: var(--fs-sub); line-height: 1.4; color: var(--gc-ink-2); text-wrap: pretty; }
+  .gch-sub:empty { display: none; }
+  .gch-score { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+  .gch-score b { font-size: var(--fs-score); font-weight: 800; letter-spacing: -.01em; line-height: 1; }
+  .gch-score > span { font-size: var(--fs-target); font-weight: 700; color: var(--gc-ink-3); }
+  .gch-togo { font-size: var(--fs-small); color: var(--gc-ink-3); font-weight: 700; }
+  .gch-bar { --c: 6px; --k: var(--c); height: var(--barh, 14px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: rgba(232,181,234,.4); padding: 1px; }
+  .gch-track { position: relative; height: 100%; --k: calc(var(--c) - .42px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: #0b0922; overflow: hidden; }
+  .gch-fill { position: absolute; inset: 0 auto 0 0; width: 0; background: linear-gradient(90deg, var(--gc-cyan), var(--gc-orchid)); box-shadow: 0 0 12px rgba(208,144,255,.6); transition: width .7s var(--gc-ease-out), background .3s; }
+  .gch-fill::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.2) 0 5px, transparent 5px 13px); }
+  .gch-met { display: none; align-items: center; gap: 6px; font-size: var(--fs-small); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gc-gold); }
+  .gch-met svg { width: 14px; height: 14px; flex: none; }
+  .gch-met span { color: var(--gc-ice); letter-spacing: .06em; }
+  .gch.is-met .gch-togo { visibility: hidden; }
+  .gch.is-met .gch-met { display: flex; }
+  .gch.is-met .gch-fill { background: linear-gradient(90deg, var(--gc-gold-deep), var(--gc-gold) 60%, var(--gc-gold-soft)); box-shadow: 0 0 14px rgba(255,214,131,.7); }
+  .gch.is-met .gch-prog { --e3: var(--gc-gold); --e-in: rgba(255,214,131,.35); }
+  .gch.is-met .gch-ice { animation: gch-ice-call 1.6s ease-in-out infinite; }
+  .gch-carry { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: var(--cardw); }
+  .gch-carry .gc-chip.is-icon { display: none; }
+  .gch-moves { display: flex; align-items: baseline; gap: 8px; }
+  .gch-moves b { font-size: var(--fs-moves); font-weight: 800; line-height: .9; letter-spacing: -.03em; }
+  .gch-moves span { font-size: var(--fs-moves-l); font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--gc-ink-2); }
+  .gch.is-low .gch-moves b { color: var(--gc-coral); animation: gch-low 1.4s ease-in-out infinite; }
+  .gch.is-low .gch-moves span { color: var(--gc-coral); }
+  .gch.is-low .gch-turns { --e1: #ffd2c6; --e2: #8a4660; --e3: var(--gc-coral); --e-in: rgba(255,165,143,.35); }
+  @keyframes gch-low { 0%, 100% { color: var(--gc-coral); text-shadow: 0 0 0 rgba(255,165,143,0); } 50% { color: #ffc6b8; text-shadow: var(--gc-glow-coral); } }
+  @keyframes gch-ice-call { 0%, 100% { text-shadow: none; } 50% { text-shadow: 0 0 14px rgba(166,234,255,.8); } }
+  .gch-ice { display: flex; align-items: center; gap: 8px; color: var(--gc-ice); font-weight: 800; font-size: var(--fs-ice); line-height: 1; }
+  .gch-ice svg { width: 1.05em; height: 1.05em; }
+  .gch-ice em { font-style: normal; font-weight: 800; font-size: .6em; letter-spacing: .16em; text-transform: uppercase; color: rgba(166,234,255,.8); }
+  .gch.no-ice .gch-ice { display: none; }
+  .gch-sqs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; width: 100%; }
+  .gch-sqs.out { display: none; }
+  .gc-root .gch-sq { --c: 9px; --k: var(--c); position: relative; height: var(--sqh); min-width: 44px; clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: rgba(208,144,255,.62); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: transform .12s, filter .12s; }
+  .gch-sq::before { content: ""; position: absolute; inset: 1px; --k: calc(var(--c) - .42px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: linear-gradient(180deg, #30265f 0 50%, #241b4d 50%); }
+  .gch-sq > * { position: relative; }
+  .gch-sq svg { width: 22px; height: 22px; color: var(--gc-ink); }
+  .gch-sq.hint svg { color: var(--gc-gold); filter: drop-shadow(0 0 6px rgba(255,214,131,.6)); }
+  .gch-sq .t { font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gc-ink-2); }
+  .gch-sq .gc-key { position: absolute; top: 5px; right: 6px; min-width: 18px; height: 18px; font-size: 10px; padding: 0 4px; }
+  .gch-sq:active { transform: translateY(1px) scale(.97); }
+  .gch-sq:active::before { background: #1a1440; }
+  .gc-root .gch-sq:focus-visible { outline: none; background: var(--gc-cyan-bright); }
+  @media (hover: hover) { .gch-sq:hover { filter: brightness(1.18); transform: translateY(-1px); } }
+
+  .gch-combo { position: absolute; left: 50%; bottom: calc(var(--gc-sa-b) + 14px); transform: translateX(-50%) scale(var(--cmul)); transform-origin: 50% 100%; pointer-events: none; z-index: 3; transition: opacity .6s ease-out; }
+  .gch-combo.is-off { opacity: 0; }
+  .gch-combo.is-gone { display: none; }
+  .gch-combo .core { position: relative; display: grid; justify-items: center; animation: gc-pop var(--pop-d, .42s) var(--gc-ease-pop) both; }
+  .gch-combo .plate { --c: 14px; --k: var(--c); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); padding: 1.5px; background: linear-gradient(180deg, var(--gc-gold-soft), var(--gc-gold-deep)); }
+  .gch-combo .pin { --k: calc(var(--c) - .6px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); padding: 4px 26px 8px; background: linear-gradient(180deg, rgba(64,44,40,.94), rgba(26,18,48,.95)); }
+  .gch-combo .x { display: flex; align-items: baseline; font-weight: 800; font-size: var(--cfs, 64px); line-height: 1; color: var(--gc-gold); text-shadow: var(--gc-glow-gold); letter-spacing: -.02em; }
+  .gch-combo .x small { font-size: .55em; margin-right: .05em; font-weight: 700; }
+  .gch-combo .clbl { margin-top: 8px; font: 700 14px/1 var(--gc-font-display); letter-spacing: .42em; padding-left: .42em; text-transform: uppercase; color: var(--gc-gold-soft); text-shadow: 0 1px 6px rgba(0,0,0,.7); white-space: nowrap; }
+  .gch-combo .rays { display: none; position: absolute; left: 50%; top: 50%; width: 360px; height: 360px; margin: -180px 0 0 -180px; border-radius: 50%; background: repeating-conic-gradient(rgba(255,220,159,.3) 0 5deg, transparent 5deg 20deg); -webkit-mask: radial-gradient(closest-side, #000 25%, transparent 100%); mask: radial-gradient(closest-side, #000 25%, transparent 100%); animation: gc-spin 10s linear infinite; }
+  .gch-combo .gc-sp { display: none; }
+  .gch-combo .s1 { left: -22px; top: 6px; }
+  .gch-combo .s2 { right: -26px; top: -10px; width: 16px; height: 16px; animation-delay: .3s; }
+  .gch-combo .s3 { right: -12px; bottom: 18px; animation-delay: .7s; }
+  .gch-combo .s4 { left: -8px; bottom: -4px; width: 9px; height: 9px; animation-delay: 1s; }
+  .gch-combo.t2 { --cfs: 50px; }
+  .gch-combo.t2 .plate, .gch-combo.t2 .pin { background: none; }
+  .gch-combo.t2 .clbl { display: none; }
+  .gch-combo.t3 { --cfs: 64px; }
+  .gch-combo.t4 { --cfs: 80px; --pop-d: .5s; }
+  .gch-combo.t4 .core { filter: drop-shadow(0 0 16px rgba(255,214,131,.5)); }
+  .gch-combo.t4 .plate { background: linear-gradient(180deg, #fff3d1, var(--gc-gold) 45%, var(--gc-gold-deep)); }
+  .gch-combo.t4 .gc-sp, .gch-combo.t6 .gc-sp, .gch-combo.t6 .rays { display: block; }
+  .gch-combo.t6 { --cfs: 104px; --pop-d: .62s; }
+  .gch-combo.t6 .core { filter: drop-shadow(0 0 24px rgba(208,144,255,.65)) drop-shadow(0 0 8px rgba(255,214,131,.7)); }
+  .gch-combo.t6 .plate { background: linear-gradient(180deg, #fff, var(--gc-gold) 40%, var(--gc-orchid)); }
+  .gch-combo.t6 .pin { background: linear-gradient(180deg, rgba(74,40,84,.95), rgba(26,18,48,.95)); }
+  .gch-combo.t6 .x { background: linear-gradient(180deg, #fff 0 36%, #ffeac0 36% 60%, var(--gc-gold) 60%); -webkit-background-clip: text; background-clip: text; color: transparent; text-shadow: none; }
+  .gch-combo.t6 .clbl { color: #fff; font-size: 15px; }
+
+  @media (pointer: coarse) {
+    .gch { --top: 8px; --gap: 12px; --edge: 10px; --cardw: 196px; --pad: 12px; --g: 7px; --fs-stage: 17px; --fs-sub: 11.5px; --fs-score: 22px; --fs-target: 12px; --fs-small: 11px; --fs-moves: 46px; --fs-moves-l: 11px; --fs-ice: 16px; --sqh: 48px; --cmul: .58; --lbl: 10.5px; padding-bottom: calc(var(--gc-sa-b) + 8px); }
+    .gch .gc-facet { --c: 11px; }
+    .gch-sub { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .gch-bar { --barh: 10px; --c: 4px; }
+    .gch-carry { margin-top: auto; }
+    .gch-carry .gc-chip.is-name { display: none; }
+    .gch-carry .gc-chip.is-icon { display: inline-flex; }
+    .gch-sqs.in { display: none; }
+    .gch-sqs.out { display: grid; grid-template-columns: 1fr; margin-top: auto; max-width: var(--cardw); }
+    .gch-sqs.out .gch-sq { flex-direction: row; gap: 10px; }
+    .gch-combo { bottom: calc(var(--gc-sa-b) + 8px); }
+  }
+  @container (orientation: portrait) {
+    .gch { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 10px; }
+    .gch-mid { display: none; }
+    .gch-side { height: auto; }
+    .gch-carry, .gch-sqs.out { margin-top: 0; }
+  }
+</style>
+<div class="gc-root gch" data-class-is-met="met" data-class-is-low="low" data-class-no-ice="no_ice">
+  <aside class="gch-side l">
+    <section class="gc-facet gch-card gch-prog"><div class="gc-body gch-pad">
+      <div class="gch-row"><span class="gc-lbl"><span data-text="stage"></span> <b data-bind="stage"></b> / <span data-bind="stages"></span></span><span class="gch-pips" data-each="pips"><template><i data-class-on="on" data-class-cur="cur"></i></template></span></div>
+      <h2 class="gch-name" data-bind="stage_name"></h2>
+      <p class="gch-sub" data-bind="stage_sub"></p>
+      <div class="gc-rule"><i></i></div>
+      <div class="gch-row"><span class="gc-lbl" data-text="score"></span><span class="gch-togo"><span data-bind="to_go"></span> <span data-text="to_go"></span></span></div>
+      <div class="gch-score"><b data-bind="score"></b><span>/ <span data-bind="target"></span></span></div>
+      <div class="gch-bar" role="progressbar"><div class="gch-track"><div class="gch-fill" data-style-width="fill"></div></div></div>
+      <div class="gch-met"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg><span data-bind="met_label"></span></div>
+    </div></section>
+    <div class="gch-carry" data-show="carrying"><span class="gc-lbl" data-text="carrying"></span><div class="gc-chips" data-each="relics"><template><span class="gc-chip is-name" data-attr-data-relic="id" data-attr-title="name"><i class="gc-glyph"></i><span data-bind="name"></span></span><span class="gc-chip is-icon" data-attr-data-relic="id" data-attr-title="name"><i class="gc-glyph"></i></span></template></div></div>
+  </aside>
+  <div class="gch-mid"></div>
+  <aside class="gch-side r">
+    <section class="gc-facet gch-card gch-turns"><div class="gc-body gch-pad">
+      <span class="gc-lbl" data-text="turns"></span>
+      <div class="gch-moves"><b data-bind="moves"></b><span data-bind="moves_word"></span></div>
+      <div class="gch-ice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 2v20M3.3 7l17.4 10M3.3 17l17.4-10M9 3.6l3 2.4 3-2.4M9 20.4l3-2.4 3 2.4"/></svg><span data-bind="ice"></span><em data-text="ice_left"></em></div>
+      <div class="gch-sqs in">
+        <button class="gch-sq hint" data-action="hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 L14.3 9.7 L23 12 L14.3 14.3 L12 23 L9.7 14.3 L1 12 L9.7 9.7Z" fill="currentColor"/></svg><span class="t" data-text="hint"></span></button>
+        <button class="gch-sq pause" data-action="pause"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4" width="4.5" height="16" fill="currentColor"/><rect x="14" y="4" width="4.5" height="16" fill="currentColor"/></svg><span class="t" data-text="pause"></span><span class="gc-key">P</span></button>
+      </div>
+    </div></section>
+    <div class="gch-sqs out">
+      <button class="gch-sq hint" data-action="hint"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 L14.3 9.7 L23 12 L14.3 14.3 L12 23 L9.7 14.3 L1 12 L9.7 9.7Z" fill="currentColor"/></svg><span class="t" data-text="hint"></span></button>
+      <button class="gch-sq pause" data-action="pause"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5.5" y="4" width="4.5" height="16" fill="currentColor"/><rect x="14" y="4" width="4.5" height="16" fill="currentColor"/></svg><span class="t" data-text="pause"></span></button>
+    </div>
+  </aside>
+  <div class="gch-combo is-gone" id="gch-combo" aria-live="polite"><div class="rays"></div><div class="core"><div class="plate"><div class="pin"><span class="x"><small>&times;</small><b id="gch-combo-n">2</b></span></div></div><div class="clbl" id="gch-combo-l"></div><i class="gc-sp s1"></i><i class="gc-sp s2"></i><i class="gc-sp s3"></i><i class="gc-sp s4"></i></div></div>
+</div>
+<script>
+  // The cascade callout pops in at each new tier and lingers 0.6 s (0.9 s on touch) after
+  // the cascade ends, then fades: presentation timing the bindings can't express.
+  (function () {
+    var combo = document.getElementById('gch-combo');
+    var last = 1, offTimer = 0, goneTimer = 0;
+    function coarse() { return window.matchMedia && window.matchMedia('(pointer: coarse)').matches; }
+    parallax.on_state(function (s) {
+      var n = Number(s && s.combo) || 0;
+      if (n >= 2) {
+        clearTimeout(offTimer); clearTimeout(goneTimer); offTimer = goneTimer = 0;
+        var t = n >= 6 ? 6 : n >= 4 ? 4 : n;
+        if (n !== last || combo.classList.contains('is-gone') || combo.classList.contains('is-off')) {
+          combo.className = 'gch-combo t' + t;
+          document.getElementById('gch-combo-n').textContent = String(n);
+          document.getElementById('gch-combo-l').textContent = t >= 6 ? s.grand_cascade : s.cascade;
+          var core = combo.querySelector('.core');
+          core.style.animation = 'none'; void core.offsetWidth; core.style.animation = '';
+        }
+        last = n;
+        return;
+      }
+      last = 1;
+      if (combo.classList.contains('is-gone') || offTimer) return;
+      offTimer = setTimeout(function () {
+        combo.classList.add('is-off');
+        goneTimer = setTimeout(function () { combo.classList.add('is-gone'); offTimer = 0; }, 620);
+      }, coarse() ? 900 : 600);
+    });
+  })();
+</script>

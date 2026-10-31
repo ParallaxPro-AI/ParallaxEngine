@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hay_bale"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9968, 0.369, 0.464],
+      "offset": [0.0042, 0.1825, 0]
+    }
+  }
+}

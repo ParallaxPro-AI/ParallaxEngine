@@ -1,0 +1,10 @@
+{
+  "id": "ukulele",
+  "summary": "A soprano ukulele stood upright on its lower bout: a lofted mahogany figure-8 body 60 mm deep with a cream-bo… joints peg_0, peg_1, peg_2, peg_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ukulele or place \"prefab\": \"ukulele\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ukulele"]
+}

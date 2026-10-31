@@ -1,0 +1,10 @@
+{
+  "id": "fantasy_bridge_covered",
+  "summary": "A fantasy covered timber bridge: a 16 m crossing (two 5.9 m bays, the scale of a real village covered bridge)… joints lantern_l, lantern_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fantasy_bridge_covered or place \"prefab\": \"fantasy_bridge_covered\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fantasy_bridge_covered"]
+}

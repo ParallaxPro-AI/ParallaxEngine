@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/projector"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.309, 0.129, 0.29],
+      "offset": [-0.0045, 0.0645, 0]
+    }
+  }
+}

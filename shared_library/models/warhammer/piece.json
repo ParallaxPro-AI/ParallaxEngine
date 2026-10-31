@@ -1,0 +1,10 @@
+{
+  "id": "warhammer",
+  "summary": "A 0.84 m medieval war hammer: an oval hardwood haft with an iron butt knob and a spiral-ridged leather grip… options head_finish, haft_wood, back; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.warhammer or place \"prefab\": \"warhammer\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:warhammer"]
+}

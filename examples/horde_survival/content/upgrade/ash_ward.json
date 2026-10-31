@@ -1,0 +1,2 @@
+{ "name": "Ash Ward", "desc": "+0.14s of mercy after a hit lands.",
+  "icon": "shield", "weight": 5, "max_stacks": 3, "effect": { "mercy_add": 0.14 } }

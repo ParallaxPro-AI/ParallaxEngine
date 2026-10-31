@@ -1,0 +1,10 @@
+{
+  "id": "build_wall_wood",
+  "summary": "A base-building timber wall module, 4 x 3 m: a stud frame of sill plate, top plate, six studs, a mid rail and… options tier; sockets socket_join_left, socket_join_right, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.build_wall_wood or place \"prefab\": \"build_wall_wood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:build_wall_wood"]
+}

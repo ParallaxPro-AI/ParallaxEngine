@@ -1,0 +1,10 @@
+{
+  "id": "photocopier",
+  "summary": "A floor-standing office photocopier / multifunction printer: a base cabinet of three sliding paper trays, a p… joints lid, side_door, tray_0, tray_1, tray_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.photocopier or place \"prefab\": \"photocopier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:photocopier"]
+}

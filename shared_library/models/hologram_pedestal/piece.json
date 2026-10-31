@@ -1,0 +1,10 @@
+{
+  "id": "hologram_pedestal",
+  "summary": "A 1.7 m sci-fi hologram projector: a stepped round plinth with a lit ring, a waisted column with four lit fin… joints display; options subject, holo_beam, holo, holo_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hologram_pedestal or place \"prefab\": \"hologram_pedestal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hologram_pedestal"]
+}

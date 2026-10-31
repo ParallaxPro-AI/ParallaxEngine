@@ -1,0 +1,10 @@
+{
+  "id": "saloon_bar_counter",
+  "summary": "A wild-west saloon bar: a 3.6 m polished walnut-topped counter whose customer face is a die of raised panels… joints bar_flap, bar_gate; options wood, rail, stock; sockets serve_0, serve_1, serve_2, serve_3, socket_bartender.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saloon_bar_counter or place \"prefab\": \"saloon_bar_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saloon_bar_counter"]
+}

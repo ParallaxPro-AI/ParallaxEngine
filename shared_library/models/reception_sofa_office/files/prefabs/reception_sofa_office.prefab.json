@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/reception_sofa_office"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9, 0.76, 0.76],
+      "offset": [0, 0.38, 0]
+    }
+  }
+}

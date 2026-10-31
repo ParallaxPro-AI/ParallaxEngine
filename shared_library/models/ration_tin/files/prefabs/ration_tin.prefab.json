@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ration_tin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0784, 0.108, 0.0784],
+      "offset": [0, 0.054, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garage_shelving_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.226, 2.0815, 0.466],
+      "offset": [0, 1.0408, 0]
+    }
+  }
+}

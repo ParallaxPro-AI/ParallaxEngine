@@ -1,0 +1,5 @@
+{
+  "z": 4,
+  "components": {"sprite": {"image": "images/bot", "size": [0.86, 0.86], "color": "#f2f7ff"}},
+  "tags": ["bot"]
+}

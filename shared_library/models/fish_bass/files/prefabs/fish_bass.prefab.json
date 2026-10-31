@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_bass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1004, 0.1815, 0.4542],
+      "offset": [0, 0.0935, -0.0009]
+    }
+  }
+}

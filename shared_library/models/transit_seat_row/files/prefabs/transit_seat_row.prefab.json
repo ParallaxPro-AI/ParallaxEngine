@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/transit_seat_row"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.06, 0.9606, 0.48],
+      "offset": [0, 0.4803, 0]
+    }
+  }
+}

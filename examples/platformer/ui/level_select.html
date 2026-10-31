@@ -1,0 +1,104 @@
+<link rel="stylesheet" href="sky.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+      .sha{position:fixed;inset:0}
+      .sha .atlas-sheet{position:absolute;display:flex;flex-direction:column;inset:calc(3.5*var(--su)) calc(4.5*var(--su));padding:calc(3.25*var(--su)) calc(3.5*var(--su)) calc(2.25*var(--su));gap:calc(2.25*var(--su))}
+      .sha .atlas-head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(1*var(--su))}
+      .sha .h1{font-size:calc(4.25*var(--su));margin-top:calc(.6*var(--su))}
+      .sha .head-actions{display:flex;align-items:center;gap:calc(1.25*var(--su))}
+      .sha .campaign-chip{display:flex;align-items:center;gap:calc(.5*var(--su));font-weight:800;font-size:calc(1.2*var(--su));color:var(--sh-ink-2);margin-right:calc(.75*var(--su))}
+      .sha .campaign-chip .sh-ico{width:calc(1.5*var(--su));height:calc(1.5*var(--su))}
+      .sha .mode-toggle .sh-ico{width:1.1em;height:1.1em;margin-right:.15em}
+      .sha .mode-toggle>span{display:inline-flex;align-items:center;gap:.25em}
+      .sha .dest-grid{flex:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));min-height:0;gap:calc(1.5*var(--su))}
+      .sha .dest{position:relative;appearance:none;border:0;cursor:pointer;pointer-events:auto;text-align:left;display:flex;flex-direction:column;background:var(--tint);color:var(--sh-ink);border-radius:var(--sh-r-lg);box-shadow:inset 0 calc(-.3*var(--su)) 0 var(--edge);transition:transform var(--sh-dur-med) var(--sh-ease-spring),box-shadow var(--sh-dur-med);padding:calc(1.6*var(--su)) calc(1.75*var(--su)) calc(1.5*var(--su));gap:calc(.5*var(--su));font-family:var(--sh-font-body);font-weight:600;margin:0;min-height:0}
+      .sha .dest>span{display:block}
+      .sha .dest--meadow{--tint:var(--sh-meadow);--edge:var(--sh-meadow-edge);--tink:var(--sh-meadow-ink)}
+      .sha .dest--crystal{--tint:var(--sh-crystal);--edge:var(--sh-crystal-edge);--tink:var(--sh-crystal-ink)}
+      .sha .dest--frost{--tint:var(--sh-frost);--edge:var(--sh-frost-edge);--tink:var(--sh-frost-ink)}
+      .sha .dest--ember{--tint:var(--sh-ember);--edge:var(--sh-ember-edge);--tink:var(--sh-ember-ink)}
+      .sha .dest-top{display:flex!important;justify-content:space-between;align-items:center;gap:calc(.5*var(--su))}
+      .sha .dest-kicker{font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--tink);font-size:calc(.9*var(--su))}
+      .sha .dest-par{font-weight:800;color:var(--tink);background:rgba(255,252,240,.6);border-radius:999px;font-size:calc(.95*var(--su));padding:calc(.35*var(--su)) calc(.75*var(--su));white-space:nowrap}
+      .sha[data-mode="challenge"] .dest-par{background:var(--sh-ink-2);color:var(--sh-paper)}
+      .sha .dest-numeral{font-family:var(--sh-font-display);font-weight:600;line-height:.9;color:var(--tink);opacity:.9;letter-spacing:-.03em;font-size:calc(9*var(--su));margin:calc(1*var(--su)) 0 auto}
+      .sha .dest-world{font-weight:800;color:var(--tink);text-transform:uppercase;letter-spacing:.12em;font-size:calc(.85*var(--su));margin-top:calc(1.5*var(--su))}
+      .sha .dest-name{font-family:var(--sh-font-display);font-weight:600;line-height:1.05;color:var(--sh-ink);font-size:calc(2.6*var(--su))}
+      .sha .dest-tag{color:var(--sh-ink-2);line-height:1.4;font-size:calc(1.15*var(--su));min-height:calc(3.3*var(--su))}
+      .sha .dest-foot{display:flex!important;align-items:center;border-top:2px dashed rgba(22,63,67,.16);gap:calc(1*var(--su));padding-top:calc(1.15*var(--su));margin-top:calc(1*var(--su))}
+      .sha .stars{display:flex}
+      .sha .dest-foot .stars .sh-ico{width:calc(1.75*var(--su));height:calc(1.75*var(--su))}
+      .sha .dest-meta{font-weight:700;color:var(--sh-ink-2);line-height:1.3;font-size:calc(1*var(--su))}
+      .sha .dest-go{position:absolute;font-family:var(--sh-font-display);font-weight:600;background:var(--sh-marigold);color:var(--sh-ink);border-radius:999px;box-shadow:0 3px 0 var(--sh-marigold-edge);opacity:0;transform:translateY(calc(.4*var(--su))) scale(.9);transition:opacity var(--sh-dur-fast),transform var(--sh-dur-med) var(--sh-ease-spring);right:calc(1.5*var(--su));top:calc(7.5*var(--su));font-size:calc(1.25*var(--su));padding:calc(.65*var(--su)) calc(1.1*var(--su));white-space:nowrap}
+      .sha .dest--complete{box-shadow:inset 0 0 0 3px var(--sh-gold),inset 0 calc(-.3*var(--su)) 0 var(--edge)}
+      .sha .dest:hover,.sha .dest.is-focus,.sha .dest:focus-visible{outline:none;transform:translateY(calc(-.5*var(--su)));box-shadow:inset 0 0 0 3px var(--sh-ink-2),0 calc(.5*var(--su)) 0 var(--edge),0 calc(1.5*var(--su)) calc(2*var(--su)) calc(-1*var(--su)) rgba(10,30,32,.45)}
+      .sha .dest:hover .dest-go,.sha .dest.is-focus .dest-go,.sha .dest:focus-visible .dest-go{opacity:1;transform:none}
+      .sha .dest-ribbon{position:absolute;display:flex!important;align-items:center;gap:.35em;background:var(--sh-gold);color:var(--sh-ink);font-family:var(--sh-font-display);font-weight:600;border-radius:999px;box-shadow:0 3px 0 var(--sh-gold-edge);top:calc(-1*var(--su));right:calc(1.5*var(--su));font-size:calc(1.1*var(--su));padding:calc(.45*var(--su)) calc(1*var(--su)) calc(.45*var(--su)) calc(.75*var(--su))}
+      .sha .dest-ribbon .sh-ico{width:calc(1.2*var(--su));height:calc(1.2*var(--su))}
+      .sha .dest-ribbon .sh-star polygon{fill:var(--sh-paper);stroke:var(--sh-paper)}
+      .sha .atlas-foot{display:flex;align-items:center;justify-content:space-between;gap:calc(1*var(--su));padding-top:calc(.25*var(--su))}
+      .sha .mode-note{color:var(--sh-ink-2);font-weight:700;font-size:calc(1.3*var(--su))}
+      .sha .foot-right{display:flex;align-items:center;gap:calc(2*var(--su))}
+      .sha .keys{display:flex;align-items:center;gap:calc(.5*var(--su));font-size:calc(1.05*var(--su));font-weight:700;color:var(--sh-sage-2);white-space:nowrap}
+      .sha .medals-touch{display:flex;align-items:center;gap:calc(.3*var(--su))}
+      .sha[data-mode="challenge"] .not-challenge,.sha:not([data-mode="challenge"]) .only-challenge{display:none!important}
+      @media (pointer:coarse),(max-height:500px){
+        .sha .atlas-sheet{inset:var(--sh-safe-t) var(--sh-safe-r) var(--sh-safe-b) var(--sh-safe-l);padding:calc(.85*var(--su)) calc(1*var(--su)) calc(.7*var(--su));gap:calc(.7*var(--su));border-radius:var(--sh-r-lg)}
+        .sha .atlas-head{align-items:center}
+        .sha .h1{font-size:calc(1.6*var(--su));margin-top:calc(.15*var(--su))}
+        .sha .head-actions{gap:calc(.6*var(--su))}
+        .sha .head-actions .sh-btn{padding:0 1em}
+        .sha .dest-grid{gap:calc(.6*var(--su))}
+        .sha .dest{padding:calc(.7*var(--su)) calc(.75*var(--su)) calc(.65*var(--su));gap:calc(.2*var(--su));border-radius:var(--sh-r-md)}
+        .sha .dest-kicker{font-size:calc(.58*var(--su))}
+        .sha .dest-numeral{font-size:calc(2.9*var(--su));margin:calc(.35*var(--su)) 0 auto}
+        .sha .dest-world,.sha .dest-tag,.sha .dest-top .dest-par{display:none!important}
+        .sha .dest-name{font-size:calc(1.08*var(--su));margin-top:calc(.3*var(--su))}
+        .sha .dest-par.touch-par{display:block;align-self:flex-start;font-size:calc(.62*var(--su));padding:calc(.2*var(--su)) calc(.5*var(--su));margin-top:calc(.25*var(--su))}
+        .sha .dest-foot{flex-direction:column;align-items:flex-start!important;gap:calc(.3*var(--su));padding-top:calc(.45*var(--su));margin-top:calc(.45*var(--su))}
+        .sha .dest-foot .stars .sh-ico{width:calc(1*var(--su));height:calc(1*var(--su))}
+        .sha .dest-meta{font-size:calc(.66*var(--su))}
+        .sha .dest-go{right:calc(.6*var(--su));top:calc(2.2*var(--su));font-size:calc(.75*var(--su));padding:calc(.35*var(--su)) calc(.6*var(--su))}
+        .sha .dest-ribbon{top:calc(-.55*var(--su));right:calc(.6*var(--su));padding:calc(.3*var(--su))}
+        .sha .dest-ribbon .rb-text{display:none}
+        .sha .dest-ribbon .sh-ico{width:calc(.85*var(--su));height:calc(.85*var(--su))}
+        .sha .mode-note{font-size:calc(.75*var(--su))}
+        .sha .medals-touch .sh-ico{width:1.1em;height:1.1em}
+      }
+      @media (min-height:501px) and (not (pointer:coarse)){.sha .dest-par.touch-par{display:none}}
+      .sha .dest-ribbon[hidden]{display:none!important}
+    </style>
+<main class="sh-root sha" data-attr-data-mode="mode">
+  <section class="sh-paper atlas-sheet">
+    <header class="atlas-head">
+      <div><p class="sh-eyebrow" data-text="atlas_eyebrow"></p><h1 class="sh-display h1" data-text="atlas_title"></h1></div>
+      <div class="head-actions">
+        <span class="campaign-chip sh-desk"><svg class="sh-ico sh-star" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg><span data-bind="medals"></span></span>
+        <button class="sh-btn mode-toggle sh-touch" data-action="mode"><span class="not-challenge"><svg class="sh-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8.2a3.8 3.8 0 1 0 0 7.6c3.2 0 6.8-7.6 10-7.6a3.8 3.8 0 1 1 0 7.6c-3.2 0-6.8-7.6-10-7.6Z" fill="none" stroke="#488482" stroke-width="2.4" stroke-linecap="round"/></svg> <span data-text="mode_explore"></span> · <u data-text="change"></u></span><span class="only-challenge"><svg class="sh-ico sh-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4Z" stroke-width="1.8" stroke-linejoin="round"/></svg> <span data-text="mode_challenge"></span> · <u data-text="change"></u></span></button>
+        <button class="sh-btn" data-action="back" data-key="KeyP" data-text="back"></button>
+      </div>
+    </header>
+    <div class="dest-grid" data-each="levels">
+      <template>
+        <button class="dest" data-action="play" data-key="Digit{index1}" data-attr-data-theme="theme" data-class-dest--meadow="meadow" data-class-dest--crystal="crystal" data-class-dest--frost="frost" data-class-dest--ember="ember" data-class-dest--complete="complete">
+          <span class="dest-ribbon" data-show="complete"><svg class="sh-ico sh-star" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg><span class="rb-text" data-text="all_medals"></span></span>
+          <span class="dest-top"><span class="dest-kicker" data-bind="kicker"></span><span class="dest-par" data-bind="par"></span></span>
+          <span class="dest-numeral" aria-hidden="true" data-bind="numeral"></span><span class="dest-world" data-bind="world"></span><span class="dest-name" data-bind="name"></span>
+          <span class="dest-tag" data-bind="subtitle"></span><span class="dest-par touch-par" data-bind="par"></span>
+          <span class="dest-foot"><span class="stars"><span data-each="stars"><template><svg class="sh-ico sh-star " data-class-off="off" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg></template></span></span><span class="dest-meta" data-bind="meta"></span></span>
+          <span class="dest-go"><span data-text="hop_in"></span> <span class="sh-arr">→</span></span>
+        </button>
+      </template>
+    </div>
+    <footer class="atlas-foot">
+      <p class="mode-note"><span class="not-challenge" data-text="mode_explore_note"></span><span class="only-challenge" data-text="mode_challenge_note"></span></p>
+      <div class="foot-right sh-desk">
+        <span class="keys"><span class="sh-kbd">1</span>–<span class="sh-kbd">4</span> <span data-text="hop_in_keys"></span> · <span class="sh-kbd">P</span> <span data-text="back_word"></span></span>
+        <button class="sh-btn mode-toggle" data-action="mode"><span class="not-challenge"><svg class="sh-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8.2a3.8 3.8 0 1 0 0 7.6c3.2 0 6.8-7.6 10-7.6a3.8 3.8 0 1 1 0 7.6c-3.2 0-6.8-7.6-10-7.6Z" fill="none" stroke="#488482" stroke-width="2.4" stroke-linecap="round"/></svg> <span data-text="mode_explore"></span> · <u data-text="change"></u></span><span class="only-challenge"><svg class="sh-ico sh-heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-7.5-10.4A4.2 4.2 0 0 1 12 7.6a4.2 4.2 0 0 1 7.5 2.5c0 5.8-7.5 10.4-7.5 10.4Z" stroke-width="1.8" stroke-linejoin="round"/></svg> <span data-text="mode_challenge"></span> · <u data-text="change"></u></span></button>
+      </div>
+      <span class="mode-note medals-touch sh-touch"><svg class="sh-ico sh-star" viewBox="0 0 24 24" aria-hidden="true"><polygon points="12,2.6 14.85,8.7 21.4,9.4 16.5,13.9 17.85,20.4 12,17.1 6.15,20.4 7.5,13.9 2.6,9.4 9.15,8.7" stroke-width="1.8" stroke-linejoin="round"/></svg><span data-bind="medals_short"></span></span>
+    </footer>
+  </section>
+</main>

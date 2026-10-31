@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": { "model": "models/sky_gate" },
+    "collider": { "shape": "box", "size": [3, 5, 3], "trigger": true }
+  },
+  "tags": ["goal"]
+}

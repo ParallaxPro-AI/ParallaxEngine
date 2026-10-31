@@ -1,0 +1,10 @@
+{
+  "id": "outhouse",
+  "summary": "A frontier wooden privy 1.2 m square and 2.2 m tall: weathered board-and-batten walls with rails, corner post… joints door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.outhouse or place \"prefab\": \"outhouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:outhouse"]
+}

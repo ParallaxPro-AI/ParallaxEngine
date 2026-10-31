@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_gold_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 0.58, 0.62],
+      "offset": [0, 0.29, 0]
+    }
+  }
+}

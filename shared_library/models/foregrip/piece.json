@@ -1,0 +1,10 @@
+{
+  "id": "foregrip",
+  "summary": "A vertical foregrip for a rifle's bottom rail, 0.12 m tall: a black polymer grip with three finger grooves on… joints qd_lever, end_cap; sockets socket_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.foregrip or place \"prefab\": \"foregrip\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:foregrip"]
+}

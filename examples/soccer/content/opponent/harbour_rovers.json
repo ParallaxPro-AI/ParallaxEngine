@@ -1,0 +1,8 @@
+{
+  "name": "Harbour Rovers",
+  "stage": "Opening Round",
+  "scout_report": "Slow out of the blocks. Press them high and they panic.",
+  "shirt": "#eda089", "kit": "red", "half_seconds": 75, "accuracy": 0.45,
+  "speed_mul": 0.86, "kick_mul": 0.85, "keeper_speed_mul": 0.85,
+  "press_radius": 16, "shot_range_bonus": 2
+}

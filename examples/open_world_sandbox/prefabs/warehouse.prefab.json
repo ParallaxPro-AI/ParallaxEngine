@@ -1,0 +1,10 @@
+{
+  "components": {
+    "model": {
+      "model": "models/warehouse"
+    },
+    "collider": {
+      "shape": "mesh"
+    }
+  }
+}

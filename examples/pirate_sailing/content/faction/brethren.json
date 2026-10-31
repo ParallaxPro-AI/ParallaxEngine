@@ -1,0 +1,54 @@
+{
+  "number": 3,
+  "name": "Brethren of the Coast",
+  "start": 0,
+  "min": -100,
+  "max": 100,
+  "rivals": [
+    {
+      "faction": "crown",
+      "share": 0.5
+    }
+  ],
+  "ranks": [
+    {
+      "at": -100,
+      "name": "Cast Out",
+      "perk": -0.2,
+      "hostile": true
+    },
+    {
+      "at": -60,
+      "name": "Scorned",
+      "perk": -0.12,
+      "hostile": true
+    },
+    {
+      "at": -20,
+      "name": "Landlubber",
+      "perk": -0.06
+    },
+    {
+      "at": 0,
+      "name": "Deckhand",
+      "perk": 0
+    },
+    {
+      "at": 25,
+      "name": "Buccaneer",
+      "perk": 0.08
+    },
+    {
+      "at": 55,
+      "name": "Quartermaster",
+      "perk": 0.16
+    },
+    {
+      "at": 85,
+      "name": "Pirate King",
+      "perk": 0.25
+    }
+  ],
+  "perk_label": "Hoards",
+  "perk_kind": "pct"
+}

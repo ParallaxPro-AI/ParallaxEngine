@@ -1,0 +1,1 @@
+{ "burst": 48, "max": 80, "lifetime": [0.32, 0.68], "speed": [3.5, 9.5], "spread": 360, "drag": 2.0, "size": 0.5, "size_end": 0, "color": "#ccff99", "color_end": "#e6599900", "image": "https://r2.parallaxpro.ai/assets/image_sprite/59/02/5902da3a324cad0a4b5a88ce1e3c9cc18fee50922c358ce93d8c9f1ad7708f0a.png", "blend": "additive" }

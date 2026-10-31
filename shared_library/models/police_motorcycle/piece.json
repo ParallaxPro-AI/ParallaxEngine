@@ -1,0 +1,10 @@
+{
+  "id": "police_motorcycle",
+  "summary": "A police patrol motorcycle: the library motorbike's tubular frame, twin engine, sport fairing and steering fr… joints steer, wheel_front, wheel_rear, kickstand, pannier_l_lid, pannier_r_lid; options livery, kit; sockets seat_driver, seat_pax_1, socket_rider, socket_pillion.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.police_motorcycle or place \"prefab\": \"police_motorcycle\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:police_motorcycle"]
+}

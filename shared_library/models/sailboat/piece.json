@@ -1,0 +1,14 @@
+{
+  "id": "sailboat",
+  "summary": "A small keelboat sloop: a lofted fin-keel hull with a cut-in cockpit and a coachroof, a deck-stepped mast… joints boom, rudder, winch_l, winch_r.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.sailboat or place \"prefab\": \"sailboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:sailboat"
+  ]
+}

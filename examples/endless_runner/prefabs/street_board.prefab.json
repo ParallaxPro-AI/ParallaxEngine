@@ -1,0 +1,8 @@
+{
+  "components": {
+    "model": {
+      "model": "models/board",
+      "cast_shadows": true
+    }
+  }
+}

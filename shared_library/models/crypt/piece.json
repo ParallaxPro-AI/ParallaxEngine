@@ -1,0 +1,10 @@
+{
+  "id": "crypt",
+  "summary": "A small stone mausoleum you can walk into: a dark stepped podium, pale ashlar walls with corner pilasters, a… joints door; options stone, door_finish, finial; sockets interior, bier, entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crypt or place \"prefab\": \"crypt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crypt"]
+}

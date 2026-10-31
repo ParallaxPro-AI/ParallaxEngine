@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cafeteria_table_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.44, 0.7416, 1.36],
+      "offset": [0, 0.3708, 0]
+    }
+  }
+}

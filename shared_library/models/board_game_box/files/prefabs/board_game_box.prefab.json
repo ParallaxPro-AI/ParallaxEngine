@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/board_game_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2988, 0.0769, 0.2979],
+      "offset": [0, 0.0384, 0.0004]
+    }
+  }
+}

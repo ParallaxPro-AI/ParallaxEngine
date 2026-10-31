@@ -1,0 +1,10 @@
+{
+  "id": "champion_mage",
+  "summary": "A rigged caster champion on the canonical 17-bone humanoid rig: a floor-length flared robe, bell sleeves and… options team, trim, skin, hair, headgear; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.champion_mage or place \"prefab\": \"champion_mage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:champion_mage"]
+}

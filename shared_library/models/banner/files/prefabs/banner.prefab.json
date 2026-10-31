@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/banner",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.86,
+        2.72,
+        0.114
+      ],
+      "offset": [
+        0.0,
+        1.36,
+        0.007
+      ]
+    }
+  }
+}

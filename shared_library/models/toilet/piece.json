@@ -1,0 +1,10 @@
+{
+  "id": "toilet",
+  "summary": "A ceramic toilet: lofted bowl + pedestal, close-coupled cistern with a removable tank lid and a chrome flush… joints lid, seat, flush_lever, cistern; options type.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toilet or place \"prefab\": \"toilet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toilet"]
+}

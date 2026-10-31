@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/houseplant_monstera"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5004, 1.5131, 1.4865],
+      "offset": [-0.0423, 0.7565, -0.0813]
+    }
+  }
+}

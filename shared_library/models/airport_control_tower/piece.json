@@ -1,0 +1,10 @@
+{
+  "id": "airport_control_tower",
+  "summary": "An airport control tower about 39 m tall: a 14 x 10 m base block with a glazed entrance, canopy and CONTROL T… joints radar, chair_n_0_lift, chair_n_0_swivel, chair_n_1_lift, chair_n_1_swivel, chair_n_2_lift, …; options accent; sockets socket_entrance, socket_cab, socket_lift, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airport_control_tower or place \"prefab\": \"airport_control_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airport_control_tower"]
+}

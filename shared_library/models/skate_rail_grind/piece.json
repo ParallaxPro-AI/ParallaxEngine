@@ -1,0 +1,10 @@
+{
+  "id": "skate_rail_grind",
+  "summary": "A portable 3 m skatepark flat bar: a 2 in square powder-coated tube with a grind-polished steel top strip, bl… joints rail; options rail; sockets socket_rail_start, socket_rail_mid, socket_rail_end.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skate_rail_grind or place \"prefab\": \"skate_rail_grind\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skate_rail_grind"]
+}

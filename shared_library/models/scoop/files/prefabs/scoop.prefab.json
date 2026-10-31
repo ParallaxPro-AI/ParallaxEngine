@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scoop"
+    },
+    "viewmodel_item": {
+      "hip": [0.24, -0.3, 0.52],
+      "hip_turn": [2.864789, 5.729578, -3.437747],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.11, 0.1107, 0.3902],
+      "offset": [0, 0.0614, -0.0458]
+    }
+  }
+}

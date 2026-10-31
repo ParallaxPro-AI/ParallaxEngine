@@ -1,0 +1,10 @@
+{
+  "id": "smartphone",
+  "summary": "A generic slab smartphone: a black body, a dim backlit screen inset on the front (-Z) face, a small rear came…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.smartphone or place \"prefab\": \"smartphone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:smartphone"]
+}

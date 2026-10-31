@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/salad_bar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.82, 1.562, 1.089],
+      "offset": [0, 0.779, 0.0255]
+    }
+  }
+}

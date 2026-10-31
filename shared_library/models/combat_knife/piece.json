@@ -1,0 +1,10 @@
+{
+  "id": "combat_knife",
+  "summary": "A 0.30 m fighting knife: a 174 mm clip-point blade with a saber grind, a fuller cut down both flats, jimping… options sheath, finish; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.combat_knife or place \"prefab\": \"combat_knife\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:combat_knife"]
+}

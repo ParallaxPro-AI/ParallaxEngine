@@ -1,0 +1,10 @@
+{
+  "id": "socket_set_case",
+  "summary": "A mechanic's socket set in a hard moulded case, shown open: a flat red case with a rear piano hinge, two chro… joints lid, latch_l, latch_r, handle, reverse_lever; options case; sockets socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.socket_set_case or place \"prefab\": \"socket_set_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:socket_set_case"]
+}

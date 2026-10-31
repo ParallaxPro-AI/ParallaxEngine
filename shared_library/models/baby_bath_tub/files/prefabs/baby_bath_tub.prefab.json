@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baby_bath_tub"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.904, 0.259, 0.51],
+      "offset": [0, 0.1295, 0]
+    }
+  }
+}

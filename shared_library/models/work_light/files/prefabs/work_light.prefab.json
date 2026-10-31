@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/work_light"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8373, 1.78, 0.8373],
+      "offset": [0.0552, 0.89, -0.0552]
+    }
+  }
+}

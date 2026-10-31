@@ -1,0 +1,2 @@
+{ "name": "Quickened Nova", "desc": "Ember Nova cools down 22% faster.",
+  "icon": "clock", "weight": 6, "max_stacks": 4, "effect": { "nova_cooldown_mul": 0.78 } }

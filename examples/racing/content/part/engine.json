@@ -1,0 +1,10 @@
+{
+  "order": 1,
+  "name": "Engine",
+  "blurb": "Torque and top speed. Wins the long straights; does nothing for your braking point.",
+  "tiers": [
+    { "name": "Stock", "blurb": "Factory tune." },
+    { "name": "Ported", "blurb": "+9% torque, +4% top speed.", "price": 1200, "torque": 1.09, "top_speed": 1.04 },
+    { "name": "Turbo", "blurb": "+20% torque, +9% top speed.", "price": 2800, "torque": 1.2, "top_speed": 1.09 }
+  ]
+}

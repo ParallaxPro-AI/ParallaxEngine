@@ -1,0 +1,10 @@
+{
+  "id": "soldering_station",
+  "summary": "A temperature-controlled soldering station on the bench: a grey control unit with a lit red temperature reado… joints temp_knob, power; options unit; sockets socket_iron_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.soldering_station or place \"prefab\": \"soldering_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:soldering_station"]
+}

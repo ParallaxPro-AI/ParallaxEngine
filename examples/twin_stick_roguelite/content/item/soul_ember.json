@@ -1,0 +1,2 @@
+{ "name": "Soul Ember", "blurb": "You move like something hunted.",
+  "relic": true, "effect": "move_speed", "amount": 0.7, "mesh": "sphere", "color": "#ffa633" }

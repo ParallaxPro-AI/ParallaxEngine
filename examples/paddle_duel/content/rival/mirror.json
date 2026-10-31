@@ -1,0 +1,5 @@
+{
+  "number": 3, "name": "Mirror Core", "tagline": "It copies your angle back at you, a little faster.",
+  "color": "#b3e7ff",
+  "speed": 9.6, "aim_error": 0.8, "reaction_time": 0.22, "predict": 0.5, "ball_speed_scale": 1.08
+}

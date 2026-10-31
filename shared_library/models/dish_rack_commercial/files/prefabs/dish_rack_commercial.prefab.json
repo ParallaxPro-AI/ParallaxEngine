@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dish_rack_commercial"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.232, 1.802, 0.51],
+      "offset": [0, 0.901, -0.005]
+    }
+  }
+}

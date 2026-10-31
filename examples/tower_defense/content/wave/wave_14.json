@@ -1,0 +1,1 @@
+{ "announce": "TWIN DRAGONS", "boss": true, "groups": [{ "enemy": "dragon", "count": 3 }, { "enemy": "ogre", "count": 4 }, { "enemy": "wraith", "count": 10 }] }

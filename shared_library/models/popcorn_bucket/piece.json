@@ -1,0 +1,10 @@
+{
+  "id": "popcorn_bucket",
+  "summary": "A tall paper popcorn tub, 21 cm across the rim, with alternating red and white vertical stripes, a rolled rim… options fill, stripes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.popcorn_bucket or place \"prefab\": \"popcorn_bucket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:popcorn_bucket"]
+}

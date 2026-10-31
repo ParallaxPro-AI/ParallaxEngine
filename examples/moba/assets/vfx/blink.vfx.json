@@ -1,0 +1,1 @@
+{"extends": "effect/sparkle", "burst": 18, "max": 18, "radius": 0.9, "speed": [2, 8], "lifetime": [0.25, 0.7], "size": [0.16, 0.256], "size_end": 0.056, "color": "#8cd9ff", "color_end": "#546c8000", "light": {"color": "#8cd9ff", "intensity": 6, "range": 7, "seconds": 0.13}}

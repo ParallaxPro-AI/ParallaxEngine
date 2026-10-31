@@ -1,0 +1,10 @@
+{
+  "ui": ["hud"],
+  "environment": { "ambient": "#80808c" },
+  "entities": [
+    { "prefab": "camera", "at": [0, 12, -12], "rotation": [45, 0, 0] },
+    { "prefab": "sun", "rotation": [50, 30, 0] },
+    { "prefab": "ground", "at": [0, 0, 0] },
+    { "id": "player", "prefab": "player", "at": [0, 0.5, 0] }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/naval_destroyer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9000000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [20, 47.25, 152],
+      "offset": [0, 23.625, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "football_goal_full",
+  "summary": "A full-size regulation football (soccer) goal: 7.32 x 2.44 m inside, 120 mm white aluminium posts and crossba… options net; sockets socket_goal_centre, socket_goalkeeper, socket_penalty_spot, socket_crossbar_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.football_goal_full or place \"prefab\": \"football_goal_full\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:football_goal_full"]
+}

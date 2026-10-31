@@ -1,0 +1,10 @@
+{
+  "id": "greenhouse_shelf_seedlings",
+  "summary": "A three-tier timber greenhouse staging shelf of young plants: slatted shelves on four legs with rails, bearer…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.greenhouse_shelf_seedlings or place \"prefab\": \"greenhouse_shelf_seedlings\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:greenhouse_shelf_seedlings"]
+}

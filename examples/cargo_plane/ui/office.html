@@ -1,0 +1,187 @@
+<link rel="stylesheet" href="sky_freight.css">
+<style>
+  .sfo { position: fixed; inset: 0; pointer-events: auto; display: flex; align-items: center; justify-content: center; font-family: var(--sf-f-mono); color: var(--sf-paper-ink); }
+  .sfo-scrim { position: fixed; inset: 0; background: var(--sf-scrim); animation: sf-fade 200ms ease both; }
+  .sfo-paper { position: relative; width: calc(var(--u) * 1120); max-height: calc(100cqh - calc(var(--u) * 48)); padding: calc(var(--u) * 36) calc(var(--u) * 40) calc(var(--u) * 30); display: flex; flex-direction: column; gap: calc(var(--u) * 22); background: repeating-linear-gradient(180deg, transparent 0 calc(var(--u) * 31), var(--sf-paper-rule) calc(var(--u) * 31) calc(var(--u) * 32)), var(--sf-paper); border-radius: calc(var(--u) * 6); box-shadow: var(--sf-shadow-paper); }
+  .sfo-in { animation: sf-sheet-up 220ms ease-out both; }
+  .sfo-head { flex: none; display: flex; justify-content: space-between; align-items: flex-end; gap: calc(var(--u) * 24); padding-bottom: calc(var(--u) * 18); border-bottom: calc(var(--u) * 2) solid var(--sf-paper-ink); }
+  .sfo-id { display: flex; flex-direction: column; gap: calc(var(--u) * 6); min-width: 0; }
+  .sfo-kick { font-size: calc(var(--u) * 12); letter-spacing: .24em; text-transform: uppercase; color: rgba(18,35,61,.65); }
+  .sfo-id h1 { margin: 0; font: 700 calc(var(--u) * 42)/1 var(--sf-f-mono); letter-spacing: -.02em; }
+  .sfo-sub { font-size: calc(var(--u) * 16); color: rgba(18,35,61,.8); white-space: nowrap; }
+  .sfo-stats { display: flex; gap: calc(var(--u) * 10); }
+  .sfo-stat { display: flex; flex-direction: column; gap: calc(var(--u) * 4); padding: calc(var(--u) * 10) calc(var(--u) * 16); border: calc(var(--u) * 1) solid rgba(18,35,61,.3); border-radius: calc(var(--u) * 4); background: var(--sf-paper-card); }
+  .sfo-stat span { font-size: calc(var(--u) * 11); letter-spacing: .18em; color: rgba(18,35,61,.65); }
+  .sfo-stat b { font: 700 calc(var(--u) * 22)/1.1 var(--sf-f-mono); white-space: nowrap; }
+  .sfo-stat.bank b { color: var(--sf-good-ink); }
+  .sfo-stat.rank b { color: var(--sf-info-ink); }
+  .sfo-close { display: none; }
+  .sfo-bar { flex: none; display: flex; align-items: center; gap: calc(var(--u) * 18); }
+  .sfo-tabs { display: none; }
+  .sfo-loan { flex: 1; display: flex; align-items: center; gap: calc(var(--u) * 18); min-width: 0; }
+  .sfo-loan > span { font-size: calc(var(--u) * 12); letter-spacing: .2em; font-weight: 600; white-space: nowrap; }
+  .sfo-track { flex: 1; height: calc(var(--u) * 14); border: calc(var(--u) * 1.5) solid var(--sf-paper-ink); border-radius: calc(var(--u) * 3); padding: calc(var(--u) * 2); }
+  .sfo-track i { display: block; height: 100%; width: 0; border-radius: calc(var(--u) * 1); background: repeating-linear-gradient(135deg, #13803d 0 calc(var(--u) * 6), #1a9a4b calc(var(--u) * 6) calc(var(--u) * 12)); transition: width .3s ease; }
+  .sfo-loan b { font: 700 calc(var(--u) * 18)/1 var(--sf-f-mono); white-space: nowrap; }
+  .sfo-loan b span { font-weight: 500; color: rgba(18,35,61,.6); }
+  .sfo-cols { flex: 1 1 auto; min-height: 0; overflow-y: auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: calc(var(--u) * 32); align-items: start; padding-right: calc(var(--u) * 4); }
+  .sfo-col { display: flex; flex-direction: column; gap: calc(var(--u) * 12); }
+  .sfo-col-h { display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 12); }
+  .sfo-col-h b { font-size: calc(var(--u) * 13); letter-spacing: .22em; }
+  .sfo-col-h span { font-size: calc(var(--u) * 12); color: rgba(18,35,61,.6); }
+  .sfo-list { display: flex; flex-direction: column; gap: calc(var(--u) * 12); }
+  .sfo-card { display: flex; flex-direction: column; gap: calc(var(--u) * 9); width: 100%; margin: 0; text-align: left; padding: calc(var(--u) * 14) calc(var(--u) * 16); border-radius: calc(var(--u) * 6); background: rgba(255,250,240,.7); border: calc(var(--u) * 1) solid var(--sf-paper-line); color: var(--sf-paper-ink); font: inherit; cursor: pointer; pointer-events: auto; touch-action: manipulation; transition: border-color .12s ease, background .12s ease; }
+  .sfo-card:hover { background: var(--sf-paper-card); border-color: rgba(18,35,61,.5); }
+  .sfo-card.on { background: var(--sf-paper-card); border: calc(var(--u) * 2) solid var(--sf-paper-ink); padding: calc(var(--u) * 13) calc(var(--u) * 15); }
+  .sfo-card.hangar { background: var(--sf-paper-card); cursor: default; }
+  .sfo-card.dim { opacity: .55; }
+  .sfo-top { display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 12); }
+  .sfo-name { font: 700 calc(var(--u) * 20)/1.2 var(--sf-f-mono); }
+  .sfo-pay { font: 700 calc(var(--u) * 24)/1 var(--sf-f-mono); color: var(--sf-good-ink); white-space: nowrap; }
+  .sfo-card.hangar .sfo-name { font-size: calc(var(--u) * 19); }
+  .sfo-card.hangar .sfo-pay { font-size: calc(var(--u) * 22); color: var(--sf-paper-ink); }
+  .sfo-card.hangar .sfo-pay.no { color: var(--sf-bad-ink); }
+  .sfo-chips { display: flex; flex-wrap: wrap; gap: calc(var(--u) * 6); }
+  .sfo-chip { font: 600 calc(var(--u) * 12)/1.2 var(--sf-f-mono); padding: calc(var(--u) * 3) calc(var(--u) * 8); border-radius: calc(var(--u) * 3); border: calc(var(--u) * 1) solid rgba(18,35,61,.35); }
+  .sfo-chip.urgent { font-weight: 700; border-color: var(--sf-bad-ink); color: var(--sf-bad-ink); }
+  .sfo-chip.fragile { font-weight: 700; border-color: var(--sf-pickup-ink); color: var(--sf-pickup-ink); }
+  .sfo-chip.heavy { font-weight: 700; border-color: var(--sf-info-ink); color: var(--sf-info-ink); }
+  .sfo-chip.manifest { font-weight: 700; border-color: var(--sf-paper-ink); background: var(--sf-paper-ink); color: var(--sf-paper); animation: sf-chip-stamp 120ms ease-out both; }
+  .sfo-blurb { font-size: calc(var(--u) * 14); line-height: 1.5; color: rgba(18,35,61,.78); text-wrap: pretty; }
+  .sfo-act { display: flex; justify-content: flex-end; }
+  .sfo-buy { margin: 0; border: none; border-radius: calc(var(--u) * 4); background: var(--sf-paper-ink); color: var(--sf-paper); font: 700 calc(var(--u) * 14)/1 var(--sf-f-mono); letter-spacing: .06em; padding: calc(var(--u) * 8) calc(var(--u) * 16); cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+  .sfo-buy:hover { background: var(--sf-paper-ink-hi); }
+  .sfo-short { font: 600 calc(var(--u) * 13)/1 var(--sf-f-mono); color: var(--sf-bad-ink); padding: calc(var(--u) * 8) 0; }
+  .sfo-capped { font: 700 calc(var(--u) * 14)/1 var(--sf-f-mono); letter-spacing: .22em; padding: calc(var(--u) * 4) calc(var(--u) * 12); border: calc(var(--u) * 2) solid var(--sf-paper-ink); transform: rotate(-2deg); }
+  .sfo-hold { display: flex; flex-direction: column; gap: calc(var(--u) * 14); padding: calc(var(--u) * 28) calc(var(--u) * 26); border: calc(var(--u) * 2) dashed rgba(18,35,61,.45); border-radius: calc(var(--u) * 6); background: var(--sf-paper-card); }
+  .sfo-hold-tag { align-self: flex-start; font: 700 calc(var(--u) * 12)/1 var(--sf-f-mono); letter-spacing: .2em; padding: calc(var(--u) * 4) calc(var(--u) * 10); border: calc(var(--u) * 2) solid var(--sf-good-ink); color: var(--sf-good-ink); transform: rotate(-2deg); }
+  .sfo-hold p { margin: 0; font-size: calc(var(--u) * 20); line-height: 1.55; text-wrap: pretty; }
+  .sfo-hold span { font-size: calc(var(--u) * 14); color: rgba(18,35,61,.65); }
+  .sfo-empty { padding: calc(var(--u) * 18); border: calc(var(--u) * 1) dashed rgba(18,35,61,.35); border-radius: calc(var(--u) * 6); font-size: calc(var(--u) * 14); color: rgba(18,35,61,.75); }
+  .sfo-mhint { display: none; }
+  .sfo-foot { flex: none; display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 24); padding-top: calc(var(--u) * 16); border-top: calc(var(--u) * 1) dashed rgba(18,35,61,.4); }
+  .sfo-foot > span { font-size: calc(var(--u) * 14); color: rgba(18,35,61,.75); text-wrap: pretty; }
+  .sfo-back { display: flex; align-items: center; gap: calc(var(--u) * 12); flex: none; white-space: nowrap; margin: 0; border: none; border-radius: calc(var(--u) * 6); background: var(--sf-paper-ink); color: var(--sf-paper); font: 700 calc(var(--u) * 16)/1 var(--sf-f-mono); padding: calc(var(--u) * 10) calc(var(--u) * 18) calc(var(--u) * 10) calc(var(--u) * 10); cursor: pointer; pointer-events: auto; }
+  .sfo-back:hover { background: var(--sf-paper-ink-hi); }
+  .sfo-back i { display: flex; align-items: center; justify-content: center; width: calc(var(--u) * 28); height: calc(var(--u) * 28); border-radius: calc(var(--u) * 4); background: var(--sf-paper); color: var(--sf-paper-ink); font-style: normal; }
+  @media (pointer: coarse) {
+    .sfo-scrim { display: none; }
+    .sfo-paper { position: absolute; left: 0; top: 0; right: 0; bottom: 0; width: auto; max-height: none; padding: 0; gap: 0; border-radius: 0; background: repeating-linear-gradient(180deg, transparent 0 calc(var(--u) * 47), var(--sf-paper-rule) calc(var(--u) * 47) calc(var(--u) * 48)), var(--sf-paper); box-shadow: none; }
+    .sfo-head { align-items: center; gap: calc(var(--u) * 28); padding: calc(var(--u) * 16) calc(var(--u) * 16) calc(var(--u) * 16) calc(var(--u) * 88); border-bottom-width: calc(var(--u) * 4); }
+    .sfo-kick { display: none; }
+    .sfo-id { gap: calc(var(--u) * 4); }
+    .sfo-id h1 { font-size: calc(var(--u) * 40); }
+    .sfo-sub { font-size: calc(var(--u) * 22); }
+    .sfo-stats { flex: 1; justify-content: flex-end; gap: calc(var(--u) * 12); }
+    .sfo-stat { padding: calc(var(--u) * 8) calc(var(--u) * 18); gap: calc(var(--u) * 2); border-width: calc(var(--u) * 2); }
+    .sfo-stat span { font-size: calc(var(--u) * 16); letter-spacing: .16em; }
+    .sfo-stat b { font-size: calc(var(--u) * 28); }
+    .sfo-stat.rank { display: none; }
+    .sfo-close { display: flex; flex: none; align-items: center; justify-content: center; width: calc(var(--u) * 88); height: calc(var(--u) * 88); margin: 0; padding: 0; border: none; border-radius: calc(var(--u) * 12); background: var(--sf-paper-ink); color: var(--sf-paper); cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+    .sfo-close svg { width: calc(var(--u) * 36); height: calc(var(--u) * 36); }
+    .sfo-bar { gap: calc(var(--u) * 32); padding: calc(var(--u) * 16) calc(var(--u) * 24) calc(var(--u) * 16) calc(var(--u) * 88); }
+    .sfo-loan { gap: calc(var(--u) * 20); }
+    .sfo-loan > span { font-size: calc(var(--u) * 18); letter-spacing: .16em; }
+    .sfo-track { height: calc(var(--u) * 20); border-width: calc(var(--u) * 3); padding: calc(var(--u) * 2); }
+    .sfo-track i { background: #13803d; }
+    .sfo-loan b { font-size: calc(var(--u) * 24); }
+    .sfo-loan b span { font-weight: 700; color: inherit; }
+    .sfo-cols { display: block; padding: calc(var(--u) * 4) calc(var(--u) * 24) calc(var(--u) * 24) calc(var(--u) * 88); overflow-y: auto; -webkit-overflow-scrolling: touch; touch-action: pan-y; }
+    .sfo-col + .sfo-col { margin-top: calc(var(--u) * 24); }
+    .sfo-list { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 16); }
+    .sfo-card { gap: calc(var(--u) * 12); padding: calc(var(--u) * 20) calc(var(--u) * 24); border-width: calc(var(--u) * 2); border-radius: calc(var(--u) * 12); }
+    .sfo-card.on { border-width: calc(var(--u) * 4); padding: calc(var(--u) * 18) calc(var(--u) * 22); }
+    .sfo-name, .sfo-card.hangar .sfo-name { font-size: calc(var(--u) * 28); }
+    .sfo-pay { font-size: calc(var(--u) * 32); }
+    .sfo-card.hangar .sfo-pay { font-size: calc(var(--u) * 30); }
+    .sfo-chips { gap: calc(var(--u) * 8); }
+    .sfo-chip { font-size: calc(var(--u) * 20); padding: calc(var(--u) * 4) calc(var(--u) * 12); border-width: calc(var(--u) * 2); border-radius: calc(var(--u) * 6); }
+    .sfo-blurb { font-size: calc(var(--u) * 22); line-height: 1.45; }
+    .sfo-act { justify-content: stretch; }
+    .sfo-buy { width: 100%; height: calc(var(--u) * 72); padding: 0; font-size: calc(var(--u) * 24); border-radius: calc(var(--u) * 8); }
+    .sfo-short { font-size: calc(var(--u) * 22); padding: 0; }
+    .sfo-capped { font-size: calc(var(--u) * 22); padding: calc(var(--u) * 6) calc(var(--u) * 20); border-width: calc(var(--u) * 4); }
+    .sfo-act:has(.sfo-capped) { justify-content: flex-start; }
+    .sfo-hold { gap: calc(var(--u) * 16); padding: calc(var(--u) * 36); border-width: calc(var(--u) * 4); border-radius: calc(var(--u) * 12); }
+    .sfo-hold-tag { font-size: calc(var(--u) * 20); padding: calc(var(--u) * 6) calc(var(--u) * 16); border-width: calc(var(--u) * 4); }
+    .sfo-hold p { font-size: calc(var(--u) * 30); }
+    .sfo-hold span { font-size: calc(var(--u) * 22); }
+    .sfo-empty { font-size: calc(var(--u) * 22); padding: calc(var(--u) * 24); border-width: calc(var(--u) * 2); border-radius: calc(var(--u) * 12); }
+    .sfo-mhint { display: flex; align-items: center; padding: calc(var(--u) * 20) calc(var(--u) * 24); border: calc(var(--u) * 2) dashed rgba(18,35,61,.35); border-radius: calc(var(--u) * 12); font-size: calc(var(--u) * 22); line-height: 1.5; color: rgba(18,35,61,.75); }
+    .sfo-foot { display: none; }
+  }
+  .sfo-loan b .sfo-loan-bank { font-weight: 700; color: inherit; }
+  .sfo-card[data-parallax-hover] { background: var(--sf-paper-card); border-color: rgba(18,35,61,.5); }
+  .sfo-buy[data-parallax-hover], .sfo-back[data-parallax-hover] { background: var(--sf-paper-ink-hi); }
+</style>
+<div class="sfo sf-root">
+  <div class="sfo-scrim"></div>
+  <div class="sfo-paper sfo-in">
+    <div class="sfo-head">
+      <div class="sfo-id">
+        <span class="sfo-kick" data-bind="kicker"></span>
+        <h1 data-text="depot_office"></h1>
+        <span class="sfo-sub" data-bind="standing"></span>
+      </div>
+      <div class="sfo-stats">
+        <div class="sfo-stat bank"><span data-text="office_bank"></span><b data-bind="bank"></b></div>
+        <div class="sfo-stat rank"><span data-text="office_rank"></span><b data-bind="rank"></b></div>
+        <div class="sfo-stat"><span data-text="office_airframes"></span><b data-bind="frames"></b></div>
+      </div>
+      <button class="sfo-close" data-action="close" aria-label="close"><svg class="sf-i" viewBox="0 0 18 18"><path d="M4 4l10 10M14 4L4 14" stroke-width="2.2"/></svg></button>
+    </div>
+    <div class="sfo-bar">
+      <div class="sfo-loan"><span data-text="airfield_loan"></span><div class="sfo-track"><i data-style-width="loan_pct"></i></div><b><span class="sfo-loan-bank" data-bind="loan_bank"></span> <span data-bind="loan_of"></span></b></div>
+    </div>
+    <div class="sfo-cols">
+      <div class="sfo-col board">
+        <div class="sfo-col-h"><b data-text="contract_board"></b><span data-bind="gate"></span></div>
+        <div class="sfo-list">
+          <div class="sfo-hold" data-show="loaded">
+            <span class="sfo-hold-tag" data-text="in_the_hold"></span>
+            <p><span data-text="hold_full"></span> <b data-bind="hold_cargo"></b><span data-text="hold_fly_to"></span> <b data-bind="hold_to"></b> <span data-text="hold_before"></span></p>
+            <span data-bind="hold_meta"></span>
+          </div>
+          <div class="sfo-empty" data-show="empty" data-text="board_empty"></div>
+          <div class="sfo-list" data-each="offers">
+            <template>
+              <button class="sfo-card" data-class-on="signed" data-action="take">
+                <div class="sfo-top"><span class="sfo-name" data-bind="cargo"></span><span class="sfo-pay" data-bind="pay"></span></div>
+                <div class="sfo-chips">
+                  <span class="sfo-chip" data-bind="route"></span>
+                  <span class="sfo-chip" data-bind="deadline"></span>
+                  <span class="sfo-chip urgent" data-show="urgent" data-text="urgent"></span>
+                  <span class="sfo-chip fragile" data-show="fragile" data-text="fragile"></span>
+                  <span class="sfo-chip manifest" data-show="signed" data-text="on_the_manifest"></span>
+                </div>
+                <span class="sfo-blurb" data-bind="blurb"></span>
+              </button>
+            </template>
+          </div>
+        </div>
+      </div>
+      <div class="sfo-col hangar">
+        <div class="sfo-col-h"><b data-text="hangar"></b><span data-text="paid_from_bank"></span></div>
+        <div class="sfo-list" data-each="upgrades">
+          <template>
+            <div class="sfo-card hangar" data-class-dim="dim">
+              <div class="sfo-top"><span class="sfo-name" data-bind="name"></span><span class="sfo-pay" data-class-no="dim" data-bind="price"></span></div>
+              <div class="sfo-chips"><span class="sfo-chip" data-bind="effect"></span><span class="sfo-chip" data-bind="tier"></span></div>
+              <span class="sfo-blurb" data-bind="blurb"></span>
+              <div class="sfo-act">
+                <span class="sfo-capped" data-show="capped" data-bind="capped"></span>
+                <button class="sfo-buy" data-show="afford" data-action="buy" data-bind="buy_label"></button>
+                <span class="sfo-short" data-show="short" data-bind="short"></span>
+              </div>
+            </div>
+          </template>
+        </div>
+        <div class="sfo-mhint" data-text="hangar_hint"></div>
+      </div>
+    </div>
+    <div class="sfo-foot">
+      <span data-text="hangar_hint"></span>
+      <button class="sfo-back" data-action="close" data-key="KeyB"><i>B</i><span data-text="back_to_apron"></span></button>
+    </div>
+  </div>
+</div>

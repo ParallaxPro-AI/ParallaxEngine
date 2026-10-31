@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pit_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.79, 2.1777, 0.5],
+      "offset": [0, 1.0889, 0]
+    }
+  }
+}

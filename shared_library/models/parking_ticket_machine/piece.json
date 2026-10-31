@@ -1,0 +1,10 @@
+{
+  "id": "parking_ticket_machine",
+  "summary": "A solar-powered pay-and-display parking ticket machine: a powder-coated head cabinet on a narrow pedestal and… joints service_door; options body, ticket; sockets socket_ticket, socket_card, socket_coin, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parking_ticket_machine or place \"prefab\": \"parking_ticket_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parking_ticket_machine"]
+}

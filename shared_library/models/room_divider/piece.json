@@ -1,0 +1,10 @@
+{
+  "id": "room_divider",
+  "summary": "A folding room-divider screen: framed panels linked edge-to-edge by hinges that fold accordion-style. joints panel_2, panel_3, panel_4; options panel_count, infill.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.room_divider or place \"prefab\": \"room_divider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:room_divider"]
+}

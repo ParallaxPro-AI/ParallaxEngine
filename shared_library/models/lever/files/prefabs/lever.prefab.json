@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lever"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 1.5306, 0.29],
+      "offset": [0, 0.7653, -0.005]
+    }
+  }
+}

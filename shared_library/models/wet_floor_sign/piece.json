@@ -1,0 +1,10 @@
+{
+  "id": "wet_floor_sign",
+  "summary": "A folding A-frame caution sign of moulded yellow plastic: two tapered leaves with rounded shoulders and a car… joints fold; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wet_floor_sign or place \"prefab\": \"wet_floor_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wet_floor_sign"]
+}

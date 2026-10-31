@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alchemy_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.25, 0.75],
+      "offset": [0, 0.625, 0]
+    }
+  }
+}

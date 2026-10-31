@@ -1,0 +1,14 @@
+{
+  "id": "pipe_run",
+  "summary": "A floor-mounted industrial pipe run: one horizontal steel main line on two saddle supports, with two gate… joints valve_wheel_l, valve_wheel_r; options finish, fittings.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.pipe_run or place \"prefab\": \"pipe_run\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:pipe_run"
+  ]
+}

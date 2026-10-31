@@ -1,0 +1,10 @@
+{
+  "id": "hockey_puck",
+  "summary": "A regulation ice-hockey puck: vulcanised black rubber disc 76.2 mm (3 in) across and 25.4 mm (1 in) thick, wi… options print.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hockey_puck or place \"prefab\": \"hockey_puck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hockey_puck"]
+}

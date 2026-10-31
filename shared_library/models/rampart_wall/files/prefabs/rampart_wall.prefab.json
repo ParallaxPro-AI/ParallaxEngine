@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rampart_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6, 6.5, 2.8],
+      "offset": [0, 3.25, 0]
+    }
+  }
+}

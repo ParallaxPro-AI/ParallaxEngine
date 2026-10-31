@@ -1,0 +1,7 @@
+{
+  "extends": "thorn",
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.3, 0.3, 0.3], "color": "#cbf3ff", "emissive": "#bcffff", "roughness": 0.2, "cast_shadows": false }
+  },
+  "behaviors": { "thorn": { "speed": 9, "impact": "vfx/rime_hit", "trail": "#00ffff" } }
+}

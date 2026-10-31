@@ -1,0 +1,33 @@
+{
+  "components": {
+    "model": { "model": "models/champ_warrior" },
+    "animator": {},
+    "nav_agent": { "speed": 8, "radius": 0.5, "stopping_distance": 0.3 },
+    "collider": { "shape": "capsule", "radius": 0.5, "height": 1.9, "layer": "unit" },
+    "health": { "destroy_on_death": false },
+    "health_bar": { "offset": [0, 2.6, 0], "color": "#ffffff", "ally_color": "#338ff2", "enemy_color": "#f24d4d" },
+    "status_effects": {},
+    "sight": { "radius": 13 },
+    "hero": {},
+    "orders": {},
+    "attacker": {},
+    "stats": {},
+    "animations": {},
+    "mana": {},
+    "progression": {},
+    "ability_book": {},
+    "wallet": {},
+    "items": {},
+    "ward_kit": {},
+    "minimap": { "range": 76, "rotate": false, "shape": "square" },
+    "hurt_feedback": { "flash": 0.45, "shake": 0, "direction": false, "low_health": 0.25 }
+  },
+  "behaviors": {
+    "player_orders": {},
+    "player_command": {},
+    "hero_motor": { "arrive_within": 0.5 },
+    "basic_attack": { "windup_fraction": 0.28, "max_windup": 0.34 },
+    "ability_caster": {},
+    "recall": { "move_tolerance": 0.4 }
+  }
+}

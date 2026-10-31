@@ -1,0 +1,2 @@
+{ "name": "Worn Tread", "blurb": "Somebody else walked the lane in these first.",
+  "icon": "boot", "category": "swift", "tier": 1, "cost": 200, "stats": { "move_speed": 0.35 } }

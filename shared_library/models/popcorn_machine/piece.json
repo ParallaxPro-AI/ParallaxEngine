@@ -1,0 +1,10 @@
+{
+  "id": "popcorn_machine",
+  "summary": "A vintage popcorn cart: a red storage base with cream bands and a vendor-side door (`base_door`) on two spoke… joints wheel_l, wheel_r, base_door, door_l, door_r, kettle; options body.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.popcorn_machine or place \"prefab\": \"popcorn_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:popcorn_machine"]
+}

@@ -1,0 +1,3 @@
+{ "name": "Crystal Lantern", "order": 22, "category": "build", "station": "workbench",
+  "inputs": [{ "item": "crystal_shard", "count": 1 }, { "item": "glass", "count": 2 }],
+  "output": { "item": "crystal_lamp", "count": 1 } }

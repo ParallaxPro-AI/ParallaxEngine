@@ -1,0 +1,16 @@
+{
+  "name": "Longshot",
+  "blurb": "ULTIMATE. An arrow that crosses the map.",
+  "kind": "skillshot",
+  "ultimate": true,
+  "max_rank": 3,
+  "cooldown": { "base": 42, "per_rank": -7 },
+  "mana": { "base": 90, "per_rank": 10 },
+  "damage": { "base": 230, "per_rank": 120 },
+  "damage_kind": "physical",
+  "range": { "base": 34, "per_rank": 5 },
+  "width": 1.6,
+  "animation": "attack",
+  "cast_vfx": "vfx/bolt_shot",
+  "vfx": "vfx/bolt"
+}

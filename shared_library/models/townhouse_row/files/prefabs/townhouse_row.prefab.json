@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/townhouse_row"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [25.7, 12.03, 11.42],
+      "offset": [0, 6.015, 0.255]
+    }
+  }
+}

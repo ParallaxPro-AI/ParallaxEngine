@@ -1,0 +1,10 @@
+{
+  "id": "pot_rack_hanging",
+  "summary": "A ceiling-hung forged iron pot rack: a stadium-shaped rail with cross bars, a centre spine and scroll rings… options frame_finish; sockets ceiling_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pot_rack_hanging or place \"prefab\": \"pot_rack_hanging\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pot_rack_hanging"]
+}

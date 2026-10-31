@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "models/box_truck",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        3.575,
+        8.69
+      ],
+      "offset": [
+        0.0,
+        1.7875,
+        -0.065
+      ]
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 7500
+    },
+    "vehicle": {
+      "kind": "car",
+      "max_speed": 30,
+      "steering": 28,
+      "acceleration": 5.6,
+      "braking": 6.9
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.0,
+        1.7875,
+        -0.065
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

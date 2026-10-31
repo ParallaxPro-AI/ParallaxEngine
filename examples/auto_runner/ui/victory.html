@@ -1,0 +1,82 @@
+<!-- Ported from the template: Canyon Dash win card - The Far Rim, a slow sunburst behind a cream poster card, the whole-canyon distance, coins collected, the Endless unlock (or rim count) banner and Run Endless / Run It Again / Menu. endless_run is read twice on purpose: the flow transitions on it and dash_director subscribes to it to flip the next run to Endless. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cdv[data-slot] { overflow: hidden; background: radial-gradient(circle at 50% 50%, rgba(220,115,55,.85), rgba(113,56,41,.85) 55%, rgba(29,20,12,.92) 90%); }
+  .cdv[data-slot] > .cdv-card { overflow: visible; max-height: none; }
+  .cdv-rays { position: absolute; left: 50%; top: 50%; width: calc(2600 * var(--u)); height: calc(2600 * var(--u)); max-height: none; margin: calc(-1300 * var(--u)) 0 0 calc(-1300 * var(--u)); border-radius: 50%; overflow: visible; pointer-events: none; background: repeating-conic-gradient(rgba(255,201,121,.32) 0deg 9deg, rgba(255,201,121,0) 9deg 18deg); -webkit-mask-image: radial-gradient(circle, #000 12%, transparent 58%); mask-image: radial-gradient(circle, #000 12%, transparent 58%); animation: cdv-spin 90s linear infinite; }
+  @keyframes cdv-spin { to { transform: rotate(360deg); } }
+  .cdv-card { width: calc(900 * var(--u)); padding: calc(40 * var(--u)) calc(56 * var(--u)) calc(48 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(20 * var(--u)); animation: cd-pop 220ms ease-out both; }
+  .cdv-lead, .cdv-side { display: contents; }
+  .cdv-tag { font-size: calc(22 * var(--u)); font-weight: 900; letter-spacing: calc(5 * var(--u)); text-transform: uppercase; color: var(--cd-cream); background: var(--cd-rust); border-radius: calc(999 * var(--u)); padding: calc(6 * var(--u)) calc(22 * var(--u)); }
+  .cdv-title { font: 400 calc(150 * var(--u))/1 var(--cd-font-display); letter-spacing: calc(4 * var(--u)); text-transform: uppercase; color: var(--cd-orange); transform: rotate(-3deg) skewX(-8deg); text-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-rust-dark); white-space: nowrap; }
+  .cdv-dist { display: flex; align-items: baseline; gap: calc(14 * var(--u)); }
+  .cdv-dist b { font: 400 calc(64 * var(--u))/1.1 var(--cd-font-display); }
+  .cdv-dist span { font-size: calc(28 * var(--u)); font-weight: 700; font-style: italic; color: var(--cd-brown-soft); }
+  .cdv-coins { width: 100%; box-sizing: border-box; background: var(--cd-brown); border-radius: calc(6 * var(--u)); padding: calc(16 * var(--u)) calc(28 * var(--u)); display: flex; justify-content: space-between; align-items: center; }
+  .cdv-coins span { display: flex; align-items: center; gap: calc(14 * var(--u)); font-size: calc(26 * var(--u)); font-weight: 800; color: var(--cd-cream); }
+  .cdv-coins svg { width: calc(36 * var(--u)); height: calc(36 * var(--u)); }
+  .cdv-coins b { font: 400 calc(44 * var(--u))/1.2 var(--cd-font-display); color: var(--cd-gold); }
+  .cdv-unlock { position: relative; width: calc(100% + calc(80 * var(--u))); box-sizing: border-box; display: flex; justify-content: center; align-items: baseline; gap: calc(16 * var(--u)); padding: calc(12 * var(--u)) 0; isolation: isolate; animation: cdv-slide 360ms cubic-bezier(.2,.9,.3,1) 400ms both; }
+  .cdv-unlock::before { content: ''; position: absolute; inset: 0; z-index: -1; transform: skewX(-10deg); background: var(--cd-orange); border: calc(5 * var(--u)) solid var(--cd-rust-dark); box-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-brown); }
+  @keyframes cdv-slide { from { opacity: 0; transform: translateX(calc(-120 * var(--u))); } to { opacity: 1; transform: none; } }
+  .cdv-unlock b { font: 400 calc(46 * var(--u))/1.2 var(--cd-font-display); letter-spacing: calc(3 * var(--u)); color: var(--cd-cream); text-shadow: calc(3 * var(--u)) calc(3 * var(--u)) 0 var(--cd-rust-dark); }
+  .cdv-unlock span { font-size: calc(26 * var(--u)); font-weight: 800; font-style: italic; color: var(--cd-cream); }
+  .cdv-unlock span:empty { display: none; }
+  .cdv-actions { width: 100%; display: grid; grid-template-columns: 1.5fr 1fr .7fr; gap: calc(24 * var(--u)); margin-top: calc(10 * var(--u)); }
+  .cdv-actions .cd-skew { padding: calc(6 * var(--u)) 0; font-size: calc(36 * var(--u)); line-height: 1.3; letter-spacing: 2px; }
+  .cdv-actions .cd-skew.is-primary { font-size: calc(50 * var(--u)); letter-spacing: calc(3 * var(--u)); line-height: 1.25; }
+
+  @media (pointer: coarse) {
+    .cdv-rays { width: calc(1400 * var(--u)); height: calc(1400 * var(--u)); margin: calc(-700 * var(--u)) 0 0 calc(-700 * var(--u)); }
+    .cdv-card { width: calc(1480 * var(--u)); max-width: 100%; padding: calc(28 * var(--u)) calc(44 * var(--u)) calc(40 * var(--u)); gap: calc(24 * var(--u)); align-items: stretch; }
+    .cdv-cols { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: calc(40 * var(--u)); align-items: center; }
+    .cdv-lead, .cdv-side { display: flex; flex-direction: column; }
+    .cdv-lead { align-items: flex-start; gap: calc(8 * var(--u)); }
+    .cdv-side { gap: calc(20 * var(--u)); }
+    .cdv-tag { font-size: calc(22 * var(--u)); letter-spacing: calc(6 * var(--u)); padding: calc(6 * var(--u)) calc(24 * var(--u)); }
+    .cdv-title { font-size: calc(124 * var(--u)); line-height: 1.05; transform: skewX(-8deg); text-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-rust-dark); }
+    .cdv-dist { gap: calc(16 * var(--u)); }
+    .cdv-dist b { font-size: calc(56 * var(--u)); }
+    .cdv-dist span { font-size: calc(26 * var(--u)); }
+    .cdv-coins { padding: calc(16 * var(--u)) calc(28 * var(--u)); border-radius: calc(10 * var(--u)); }
+    .cdv-coins span { font-size: calc(28 * var(--u)); }
+    .cdv-coins svg { display: none; }
+    .cdv-coins b { font-size: calc(52 * var(--u)); }
+    .cdv-unlock { width: 100%; flex-direction: column; align-items: center; gap: 0; padding: calc(12 * var(--u)) calc(24 * var(--u)); }
+    .cdv-unlock::before { border-width: calc(6 * var(--u)); box-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-brown); }
+    .cdv-unlock b { font-size: calc(44 * var(--u)); letter-spacing: calc(4 * var(--u)); text-shadow: none; }
+    .cdv-unlock span { font-size: calc(24 * var(--u)); }
+    .cdv-actions { grid-template-columns: 1.5fr 1.1fr .8fr; gap: calc(32 * var(--u)); margin-top: 0; }
+    .cdv-actions .cd-skew { min-height: calc(104 * var(--u)); padding: 0; font-size: calc(40 * var(--u)); }
+    .cdv-actions .cd-skew.is-primary { font-size: calc(52 * var(--u)); }
+  }
+  .cdv-cols { display: contents; }
+  @media (pointer: coarse) { .cdv-cols { display: grid; } }
+  @media (prefers-reduced-motion: reduce) {
+    .cdv-rays, .cdv-card, .cdv-unlock { animation: none; }
+  }
+</style>
+<div class="cdv">
+  <div class="cdv-rays" aria-hidden="true"></div>
+  <div class="cd-card cdv-card">
+    <div class="cdv-cols">
+      <div class="cdv-lead">
+        <div class="cdv-tag">The Far Rim</div>
+        <div class="cdv-title" data-text="over_won"></div>
+        <div class="cdv-dist"><b data-bind="distance"></b><span>— the whole canyon, end to end</span></div>
+      </div>
+      <div class="cdv-side">
+        <div class="cdv-coins">
+          <span><svg class="cd-coin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="#ffcf49" stroke="#713829" stroke-width="4"/><circle cx="26" cy="26" r="13" fill="none" stroke="#d99a1e" stroke-width="3"/></svg>Coins collected</span>
+          <b data-bind="coins"></b>
+        </div>
+        <div class="cdv-unlock"><b>ENDLESS MODE UNLOCKED</b><span>— no rim, no ceiling</span></div>
+      </div>
+    </div>
+    <div class="cdv-actions">
+      <button class="cd-skew is-primary" data-action="endless" data-endless="true" data-text="over_endless"></button>
+      <button class="cd-skew" data-action="retry" data-key="Enter" data-text="over_retry_won"></button>
+      <button class="cd-skew" data-action="quit" data-text="over_quit"></button>
+    </div>
+  </div>
+</div>

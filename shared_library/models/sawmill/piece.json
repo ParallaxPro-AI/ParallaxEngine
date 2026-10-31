@@ -1,0 +1,10 @@
+{
+  "id": "sawmill",
+  "summary": "A rail-served steam-age sawmill: a 16 x 8 m open timber post-and-truss shed under a corrugated iron gable roo… joints carriage, saw; options roof; sockets siding, lumber_pickup.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sawmill or place \"prefab\": \"sawmill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sawmill"]
+}

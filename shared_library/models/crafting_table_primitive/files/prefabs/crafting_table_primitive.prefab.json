@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crafting_table_primitive"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3235, 1.3277, 0.7328],
+      "offset": [0, 0.6612, -0.0331]
+    }
+  }
+}

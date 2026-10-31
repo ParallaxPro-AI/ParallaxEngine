@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/cc/0e/cc0ef7ccbdd098b3c31e1d149efaf2d41ac543323754e8446c910be340d67611.glb",
+      "cast_shadows": true
+    },
+    "animator": {},
+    "character": {
+      "walk_speed": 6,
+      "acceleration": 1000,
+      "radius": 0.4,
+      "height": 1.6
+    },
+    "chef": {
+      "reach": 3.2
+    }
+  },
+  "behaviors": {
+    "chef_look": {},
+    "chef_movement": {},
+    "chef_hands": {},
+    "carried_item": {}
+  },
+  "children": [
+    {
+      "name": "carried",
+      "at": [
+        0,
+        1.7,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "box",
+          "size": [
+            0.3,
+            0.3,
+            0.3
+          ],
+          "cast_shadows": false
+        }
+      }
+    }
+  ]
+}

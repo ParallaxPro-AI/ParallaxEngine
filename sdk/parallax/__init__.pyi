@@ -1,0 +1,2871 @@
+"""Parallax SDK — the public authoring API for games that run on ParallaxEngine.
+
+This is a typed stub (signatures and docs, no implementation). Game code is written
+in Parallax Python (a CPython-exact subset) against these names.
+
+Concepts:
+  data       component, tag, resource, config, content, record
+  world      prefabs + scenes (JSON files), assets (files)
+  logic      behavior, system, event, task
+  interface  actions, ui
+
+Rules the API is built around:
+  - State lives in components (per entity), resources (game-wide), and declared
+    `state()` fields on behaviors. Systems have no fields. Tunables live in config,
+    content and params.
+  - Logic talks to other logic only through events and that shared state.
+  - Acting on ONE entity → a method on its engine component
+    (`e.get(Rigidbody).impulse(v)`). Asking about the WORLD → a `ctx` namespace
+    (`ctx.physics.raycast(...)`). Components you define are data only.
+  - Derive, don't toggle: panels, action sets, markers and sounds follow state
+    through declarations (`when=`, `active_when`, components), not open/close pairs.
+  - One way per job.
+  - Event fields name the parties one way: `entity` is the entity it happened to,
+    `source` who or what caused it, `target` any other party (`Died.source` the
+    killer, `Interacted.source` the interactor, `TriggerEntered.target` the visitor,
+    `Landed.target` the ground). Declare your own events the same way.
+
+Semantics worth knowing:
+  - `entity.destroy()` makes `alive` False and removes the entity from queries
+    immediately; the entity is torn down at the end of the phase (so a `Died`
+    handler can still read its transform). Children are destroyed with their parent.
+  - `entity.add(C(...))` replaces an existing component of that type.
+  - Order is always defined: within a phase, systems run in feature order then
+    `Game(systems=[...])` order, then behaviors in spawn order. Event handlers run in
+    that same order.
+  - `SceneLoaded` is delivered after every `start()` of the new scene.
+  - `when=` on a system or behavior gates the WHOLE unit — update hooks and event
+    handlers — and is evaluated right before each hook and each handler (so a handler
+    that ends the round stops a second one in the same frame). A handler that must run
+    regardless says `@on(E, always=True)`. A `when=` that gates nothing is check
+    warning PP4230. A gated behavior's update hooks don't run, so countdowns written as
+    `x -= dt` (and `Timer.tick(dt)`) pause too — use deadlines (`ctx.time.now`) for
+    real time.
+  - Scope by scene with `scenes=` on systems, panels, action sets and features. It
+    takes scene refs or scene tags (`"tags": ["level"]` in scene.json).
+  - Loading scenes: code calls `ctx.scenes.load(Scenes.x, ...)` / `ctx.scenes.reload(...)`;
+    `load_scene(...)` / `reload_scene(...)` are only values in a panel's `actions` dict
+    (a function action calls `ctx.scenes.load`, it doesn't return `load_scene`).
+  - Restarting: `new_run=True` (`reload_scene(new_run=True, init=[...])`) restarts a
+    run; `ctx.reset(R)` is for a new round inside the same scene. Only resources carry
+    state across a scene load (components belong to entities, which a load recreates).
+  - `ctx.time.now` is game time since the session began: it keeps counting across scene
+    loads, so deadlines stay valid in kept resources. A clock for "seconds into this
+    scene / level / run" is `ctx.time.scene_time` (0 at every scene load).
+  - Seed deadline fields in `start()` (`self.launch_at = ctx.time.now + 1`); a deadline
+    of 0 is already due.
+  - Waiting has one blessed tool per job:
+      gameplay timing (respawns, fuses, round clocks) → a deadline: a float field
+        compared with `ctx.time.now` (`if ctx.time.now >= self.respawn_at`). Saved,
+        and it keeps counting while a `when=` gate pauses the unit.
+      a sequence of waits (cutscene beats, an AI turn, intro → fight) → a task:
+        `ctx.run(fn)` with `await task.seconds(...)` / `task.until(Event)`.
+      a cooldown or delay ticked by its owner → a `Timer` record
+        (`Timer.cooldown(d)` starts ready, `Timer.delay(d)` must elapse first).
+    `ctx.time.after/every` are shorthand for a one-step task (cosmetic follow-ups).
+  - Lifetimes: a behavior's timers/tasks end with its entity; a system's end with the
+    scene (systems declared without `scenes=` restart their tasks on each scene
+    load). Running timers and tasks are not saved — for a wait that must survive a
+    save, store a deadline (`respawn_at: float = state(0)`) or a `Timer` record.
+  - Units: meters, seconds, degrees.
+"""
+
+from enum import Enum
+from typing import (
+    Any, Awaitable, Callable, Generic, Iterator, Literal, Sequence, TypeVar, overload,
+)
+
+import parallax.ai
+import parallax.combat
+import parallax.destruction
+import parallax.grid
+import parallax.hud
+import parallax.nav
+import parallax.net
+import parallax.physics
+import parallax.save
+import parallax.story
+import parallax.terrain
+import parallax.foliage
+import parallax.wind
+import parallax.water
+import parallax.weather
+import parallax.voxels
+import parallax.city
+import parallax.voice
+import parallax.chat
+import parallax.cinematics
+import parallax.economy
+import parallax.spawning
+import parallax.payments
+from parallax.values import Cell
+
+T = TypeVar("T")
+C = TypeVar("C")
+C1 = TypeVar("C1")
+C2 = TypeVar("C2")
+C3 = TypeVar("C3")
+C4 = TypeVar("C4")
+E = TypeVar("E")
+R = TypeVar("R")
+V = TypeVar("V", float, "Vec2", "Vec3", "Color")
+
+Keep = Literal["scene", "run", "session", "profile"]
+Replicate = bool | Literal["all", "owner", "team"]
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Math (immutable value types)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Vec2:
+    """Immutable 2D vector. `v.x = 1` raises PP3020 with the fix; write
+    `t.position = t.position.with_x(1)` or `t.position += vec2(1, 0)`."""
+    x: float
+    y: float
+    ZERO: Vec2
+    ONE: Vec2
+    UP: Vec2
+    DOWN: Vec2
+    LEFT: Vec2
+    RIGHT: Vec2
+    def __init__(self, x: float = 0, y: float = 0) -> None: ...
+    def __add__(self, o: Vec2) -> Vec2: ...
+    def __sub__(self, o: Vec2) -> Vec2: ...
+    def __mul__(self, s: float) -> Vec2: ...
+    def __rmul__(self, s: float) -> Vec2: ...
+    def __truediv__(self, s: float) -> Vec2: ...
+    def __neg__(self) -> Vec2: ...
+    def __eq__(self, o: object) -> bool:
+        """Exact component equality. Use `is_close` for float tolerance."""
+    def __hash__(self) -> int: ...
+    def is_close(self, o: Vec2, tolerance: float = 1e-4) -> bool: ...
+    def length(self) -> float: ...
+    def length_squared(self) -> float: ...
+    def normalized(self) -> Vec2: ...
+    def dot(self, o: Vec2) -> float: ...
+    def cross(self, o: Vec2) -> float: ...
+    def distance_to(self, o: Vec2) -> float: ...
+    def angle(self) -> float:
+        """Degrees counter-clockwise from +x."""
+    def rotated(self, degrees: float) -> Vec2: ...
+    def lerp(self, o: Vec2, t: float) -> Vec2: ...
+    def with_x(self, x: float) -> Vec2: ...
+    def with_y(self, y: float) -> Vec2: ...
+    def to_vec3(self, z: float = 0) -> Vec3:
+        """(x, y, z) — for 2D games."""
+    def to_ground(self, y: float = 0) -> Vec3:
+        """(self.x, y, self.y) — a 2D stick/plane vector onto the 3D ground plane (x, z),
+        at height `y`."""
+    @staticmethod
+    def from_angle(degrees: float, length: float = 1) -> Vec2: ...
+
+
+class Vec3:
+    """Immutable 3D vector. +y is up, +z is forward. Same mutation rule as Vec2."""
+    x: float
+    y: float
+    z: float
+    ZERO: Vec3
+    ONE: Vec3
+    UP: Vec3
+    DOWN: Vec3
+    LEFT: Vec3
+    RIGHT: Vec3
+    FORWARD: Vec3
+    BACK: Vec3
+    def __init__(self, x: float = 0, y: float = 0, z: float = 0) -> None: ...
+    def __add__(self, o: Vec3) -> Vec3: ...
+    def __sub__(self, o: Vec3) -> Vec3: ...
+    def __mul__(self, s: float) -> Vec3: ...
+    def __rmul__(self, s: float) -> Vec3: ...
+    def __truediv__(self, s: float) -> Vec3: ...
+    def __neg__(self) -> Vec3: ...
+    def __eq__(self, o: object) -> bool: ...
+    def __hash__(self) -> int: ...
+    def is_close(self, o: Vec3, tolerance: float = 1e-4) -> bool: ...
+    def length(self) -> float: ...
+    def length_squared(self) -> float: ...
+    def normalized(self) -> Vec3: ...
+    def dot(self, o: Vec3) -> float: ...
+    def cross(self, o: Vec3) -> Vec3: ...
+    def distance_to(self, o: Vec3) -> float: ...
+    def lerp(self, o: Vec3, t: float) -> Vec3: ...
+    def flat(self) -> Vec3:
+        """Same vector with y = 0 (ground-plane direction)."""
+    def rotated_y(self, degrees: float) -> Vec3:
+        """Rotate around the up axis (yaw)."""
+    def with_x(self, x: float) -> Vec3: ...
+    def with_y(self, y: float) -> Vec3: ...
+    def with_z(self, z: float) -> Vec3: ...
+    def xy(self) -> Vec2: ...
+    def xz(self) -> Vec2: ...
+    @staticmethod
+    def from_yaw_pitch(yaw_deg: float, pitch_deg: float = 0, length: float = 1) -> Vec3:
+        """Direction from yaw (around +y, 0 = +z) and pitch (up positive)."""
+
+
+class Quat:
+    """Rotation. Prefer `Transform.euler` / `Transform.angle` in game code."""
+    IDENTITY: Quat
+    @staticmethod
+    def from_euler(degrees: Vec3) -> Quat: ...
+    @staticmethod
+    def look_rotation(forward: Vec3, up: Vec3 = ...) -> Quat: ...
+    def to_euler(self) -> Vec3: ...
+    def __mul__(self, o: Quat) -> Quat: ...
+    def rotate(self, v: Vec3) -> Vec3: ...
+    def slerp(self, o: Quat, t: float) -> Quat: ...
+
+
+class Color:
+    def __init__(self, r: float, g: float, b: float, a: float = 1) -> None: ...
+    @staticmethod
+    def hex(value: str) -> Color: ...
+    def with_alpha(self, a: float) -> Color: ...
+    def lerp(self, o: Color, t: float) -> Color: ...
+    def __eq__(self, o: object) -> bool: ...
+    WHITE: Color
+    BLACK: Color
+    RED: Color
+    GREEN: Color
+    BLUE: Color
+    YELLOW: Color
+    CLEAR: Color
+
+
+def vec2(x: float = 0, y: float = 0) -> Vec2: ...
+def vec3(x: float = 0, y: float = 0, z: float = 0) -> Vec3: ...
+def clamp(value: float, lo: float, hi: float) -> float: ...
+def lerp(a: float, b: float, t: float) -> float: ...
+def inverse_lerp(a: float, b: float, value: float) -> float: ...
+def remap(value: float, from_lo: float, from_hi: float, to_lo: float, to_hi: float) -> float: ...
+def move_toward(current: float, target: float, max_step: float) -> float: ...
+def approach(current: Vec3, target: Vec3, max_step: float) -> Vec3: ...
+def deg(radians: float) -> float:
+    """Radians → degrees. Use when a `math` trig result feeds an angle."""
+def rad(degrees: float) -> float: ...
+def angle_between(a: Vec2 | Vec3, b: Vec2 | Vec3) -> float:
+    """Unsigned angle in degrees."""
+def angle_to(origin: Vec2, target: Vec2) -> float:
+    """Heading in degrees from origin to target (2D)."""
+def heading_to(origin: Vec3, target: Vec3) -> float:
+    """Yaw in degrees from origin to target on the ground plane (3D)."""
+def rotate_toward(current_deg: float, target_deg: float, max_step_deg: float) -> float:
+    """Turn an angle toward another by at most max_step, taking the short way."""
+def wrap_angle(degrees: float) -> float:
+    """Wrap to (-180, 180]."""
+def noise2d(x: float, y: float, *, seed: int = 0, octaves: int = 1, scale: float = 1) -> float:
+    """Smooth value noise in -1..1 (terrain, heat fields, wobble)."""
+def scatter(center: Vec3 | Vec2, radius: float, count: int, *, min_spacing: float = 0) -> list[Vec3]:
+    """Up to `count` random points in a disc around `center` (uses the seeded `random`).
+    Returns fewer when `min_spacing` makes `count` impossible — never overlaps."""
+
+Ease = Literal[
+    "linear", "in_quad", "out_quad", "in_out_quad", "in_cubic", "out_cubic",
+    "in_out_cubic", "in_back", "out_back", "in_out_back", "in_elastic", "out_elastic",
+    "in_out_elastic", "out_bounce",
+]
+"""The engine's easing curves, shared by `ease`, tweens, Model joint moves, cinematic keys
+and clip keys. `back` curves overshoot about 10% (in: before the start, out: past the end,
+in_out: both); `elastic` ones ring."""
+def ease(kind: Ease, t: float) -> float: ...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Schema: field / param / state, records, enums
+# ─────────────────────────────────────────────────────────────────────────────
+
+def field(
+    default: T = ...,
+    *,
+    min: float | None = None,
+    max: float | None = None,
+    unit: str | None = None,
+    choices: Sequence[T] | None = None,
+    doc: str | None = None,
+    keep: Keep | None = None,
+    replicate: Replicate = False,
+    modifiable: bool = False,
+) -> T:
+    """Declare a field on a component, resource, config, content, record or event class.
+
+    Field types: bool, int, float, str, Vec2, Vec3, Color, Entity, Tag, any *Ref,
+    a `@record` class, a str-valued `Enum` (stored by VALUE: `class Ring(Enum):
+    BULL = "bull"` → `"bull"` in JSON), `Localized`, `Handle` (resources only; not
+    saved), and list/dict/tuple/`X | None` of those. List and dict defaults are copied
+    per instance (`field([])` is safe).
+
+    min/max are checked (PP4103) on the default and on authored data (prefab, scene,
+    config, content JSON) only. Values assigned or passed in code (`C(hp=-5)`,
+    `c.hp -= 10`) are not checked or clamped — clamp them yourself. On a `modifiable`
+    field the effective value is clamped (below).
+
+    modifiable=True lets modifiers stack on the field (perks, buffs, status effects):
+    `entity.modify(Component, "field", ...)` for components, `ctx.modify(Resource,
+    "field", ...)` for resources. Rules:
+      - reading the field gives the effective value; assigning sets the base;
+        `entity.base(Component, "field")` / `ctx.base(Resource, "field")` read the base
+      - effective = (base + Σadd) × Πmultiply, then clamped to the field's min/max;
+        int fields round to nearest
+      - a modifier key is scoped to (component, field): one key ("haste") may modify
+        several fields, and re-using it on the same field replaces it
+      - `stack=True` adds a permanent, keyless modifier (each call accumulates)
+      - raising `Health.max` keeps the current health fraction
+    Engine components already mark their tunable stats modifiable (Character speeds,
+    Vehicle speeds/grip/braking, Health.max/armor, NavAgent.speed, GridMover.speed).
+    Transform takes no modifiers (PP3005): assign `transform.scale` or tween it with
+    `scale_to()`.
+
+    keep (resources only — entities never outlive a scene load) — how long the value
+    lives (default: the resource's `keep=`, else "run"):
+      "scene"    reset on every scene load
+      "run"      (default) survives scene loads; cleared by `new_run=True` / New Game;
+                 included in slot saves
+      "session"  survives retries and New Game; never written to disk
+                 (difficulty or mode chosen this session)
+      "profile"  saved on the device forever (best scores, unlocks)
+
+    replicate (net plugin) — True/"all": every client; "owner": only the owning
+    player; "team": the owner's teammates (by Side).
+    """
+
+def param(
+    default: T = ...,
+    *,
+    min: float | None = None,
+    max: float | None = None,
+    unit: str | None = None,
+    choices: Sequence[T] | None = None,
+    doc: str | None = None,
+) -> T:
+    """A behavior setting, configured per prefab under `"behaviors": {"<behavior id>": {...}}`
+    (same name), per instance under `"params"` and `spawn(params=...)` in the same shape.
+    Read-only at runtime. Unknown or mistyped params are check errors."""
+
+def state(default: T = ..., *, doc: str | None = None) -> T:
+    """A behavior's runtime state (cooldowns, targets, phases). Included in saves,
+    snapshots and rollback.
+
+    Every attribute a behavior assigns must be declared as `param()` or `state()`;
+    assigning an undeclared `self.x` is check error PP4221. A `Handle` may be held in
+    state but is not saved: after a restore it is inactive. Behavior state is not
+    replicated (behaviors run on the server); keep a value clients need in a component
+    field with `replicate=`."""
+
+def record(cls: type[T]) -> type[T]:
+    """A nested value type usable as a field type in content, config, resources,
+    components and events (waves, upgrade levels, recipe ingredients):
+
+    @record
+    class Ingredient:
+        item: ContentRef[ItemDef]
+        count: int = field(1)
+
+    Use `@record`, not `@dataclass` (whose `field` clashes with `parallax.field`).
+    Python `Enum` classes are field types too."""
+
+
+@record
+class Timer:
+    """A saveable countdown for `state()` fields and resources: the helper for cooldowns
+    and delays that must survive a save. Build one with a constructor that says how it
+    starts:
+
+    reload: Timer = state(Timer.cooldown(0.5))   # ready at once; restart() after use
+    fuse: Timer = state(Timer.delay(3))          # fires once 3 s have elapsed
+    wave: Timer = field(Timer.delay(10, repeat=True))
+
+    def update(self, ctx, dt):
+        self.reload.tick(dt)
+        if self.reload.done and ctx.input.held(Controls.fire):
+            self.reload.restart()
+            ...
+
+    `tick` only advances when called, so a timer pauses with its unit (`when=`, frozen
+    time). For plain gameplay timing prefer a deadline on `ctx.time.now`; for a sequence
+    of waits use `ctx.run`."""
+    duration: float
+    remaining: float
+    repeat: bool
+    def __init__(self, duration: float, *, start_done: bool, repeat: bool = False) -> None:
+        """`start_done` is required (whether a timer starts ready is never implicit);
+        `Timer.cooldown(d)` and `Timer.delay(d)` are the usual spellings."""
+    @staticmethod
+    def cooldown(duration: float) -> Timer:
+        """Starts done: `done` is True and `tick` returns False until `restart()`."""
+    @staticmethod
+    def delay(duration: float, *, repeat: bool = False) -> Timer:
+        """Starts full: `tick` returns True once `duration` has elapsed (every period if
+        `repeat`)."""
+    def tick(self, dt: float) -> bool:
+        """Advance by dt. Returns True exactly once when it reaches zero (and once per
+        period if `repeat`). A done, non-repeating timer returns False until restarted."""
+    def restart(self, duration: float | None = None) -> None: ...
+    @property
+    def done(self) -> bool: ...
+    @property
+    def progress(self) -> float:
+        """0 → 1."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# References to things defined in data files (handles produced by codegen)
+# ─────────────────────────────────────────────────────────────────────────────
+
+class PrefabRef:
+    """A prefab file. `project.Prefabs.<name>`; in typed fields annotate `PrefabRef`
+    and write the prefab id in JSON."""
+    id: str
+    def __eq__(self, o: object) -> bool: ...
+    def __hash__(self) -> int: ...
+
+class SceneRef:
+    id: str
+    def __eq__(self, o: object) -> bool: ...
+
+class AssetRef:
+    """Any file under assets/. `project.Assets.sfx.hit`, `Assets.models.knight`…"""
+    path: str
+
+class SoundRef(AssetRef):
+    """Default volume/pitch per sound live in assets/audio.json (checked). A sound may be a
+    recording (`assets/sfx/hit.ogg`) or described as data: a built-in `Synth.<name>`, or the
+    game's `assets/sfx/<name>.synth.json` (then `Assets.sfx.<name>` names it as usual)."""
+class MusicRef(AssetRef): ...
+class ImageRef(AssetRef): ...
+class ModelRef(AssetRef): ...
+class EffectRef(AssetRef):
+    """A particle/VFX definition (assets/vfx/*.vfx.json), or a built-in one (`Effect`)."""
+
+class Effect:
+    """Built-in 3D effects, ready to use without a file: `ctx.vfx.play(Effect.explosion,
+    at=hit)`, `Particles(effect=Effect.fire)`; in JSON, `"effect/fire"` (as `Synth.<name>` is
+    `"synth/<name>"`). Tune one by writing a .vfx.json file that `"extends": "effect/<name>"`
+    and overrides keys (a `"sound"`, `"color"`, sizes…). Tuned at scale 1 for a human-sized
+    world; `play(scale=)` resizes."""
+    explosion: EffectRef
+    """A flipbook fireball, flying sparks, rising lit smoke, a dust ring, a flash of light, a
+    shockwave haze and a camera kick (one-shot)."""
+    fire: EffectRef
+    """A steady flame with a flickering light and heat shimmer (continuous)."""
+    smoke: EffectRef
+    """A rising column of soft, sunlit smoke (continuous)."""
+    sparks: EffectRef
+    """Hot sparks that streak, fall and cool (one-shot): grinding, hits on metal."""
+    embers: EffectRef
+    """Glowing motes drifting up off a fire (continuous)."""
+    magic: EffectRef
+    """Swirling arcane motes with a soft light (continuous): auras, portals; tint with `color=`."""
+    muzzle_flash: EffectRef
+    """A gun's flash along `direction`, with a flash of light and a wisp of smoke (one-shot)."""
+    impact: EffectRef
+    """Debris dust, sparks and chips off a surface along `direction` (its normal) (one-shot)."""
+    dust: EffectRef
+    """Low, lit dust kicked up by feet and wheels (continuous)."""
+    sparkle: EffectRef
+    """A pickup's twinkle with a little light (one-shot)."""
+
+class ClipRef:
+    """An animation clip: one of a model's (`Assets.models.knight.clips.run`), or an
+    authored one (`Assets.clips.shield_bash`, from assets/clips/shield_bash.clip.json).
+    In JSON: "run" (the entity's own model), "models/anims#run" (another
+    model's, retargeted) or "clips/shield_bash".
+
+    An authored clip file (`assets/clips/<name>.clip.json`) is motion written as data:
+
+        {"rig": "humanoid",                  # or "quadruped" (required)
+         "duration": 0.6,                    # seconds above 0 (required)
+         "loop": false,                      # default false; checked, but NOT used by playback: looping is
+                                             # Animator.play(loop=...) / a state's "loop"
+         "events": [{"time": 0.3, "name": "hit"}],   # heard as AnimationEvent
+         "keys": [
+           {"time": 0,   "pose": {"RightArm": [0, 0, -80]}},
+           {"time": 0.2, "ease": "out", "root": {"y": -0.05, "z": 0.06}, "pose": {"Spine": [10, -20, 0]}},
+           {"time": 0.6, "pose": {"RightArm": [0, 0, -80], "Spine": [0, 0, 0]}}]}
+
+    - a pose is a bone's rotation from the rig's bind pose, Euler degrees [x, y, z] as
+      `Quat.from_euler` (yaw y, then pitch x, then roll z).
+    - a bone some key names is animated: it eases into each key by that key's "ease"
+      ("smooth" default; "linear", "in", "out", "step", or any `Ease`) and holds before
+      its first key and after its last. A bone no key names is left to the layers below.
+    - "root" moves the whole body: meters on x/y/z (hips at 1 m; scaled to the playing
+      character's hip height) and degrees on "yaw". On the humanoid rig a key whose root
+      drops (y < 0) and that poses no leg bone bends the legs to keep the feet planted.
+    - rigs face +z, +x on their right, y up; the humanoid's T-pose has arms along ±x
+      (arm down at the side: LeftArm [0, 0, 90], RightArm [0, 0, -90]; arm forward:
+      LeftArm [0, 90, 0], RightArm [0, -90, 0]; lean forward: Spine [20, 0, 0]).
+    The clip is retargeted onto whichever character plays it."""
+    name: str
+
+class ContentRef(Generic[T]):
+    """A content entry: `Content.enemy.slime`. `.data` is the typed, read-only entry.
+    In JSON and panel actions an entry is written by id; it's converted and checked."""
+    id: str
+    @property
+    def data(self) -> T: ...
+    def as_kind(self, kind: type[R]) -> ContentRef[R]:
+        """View a built-in-kind entry as your subclass: `event.quest.as_kind(Chapter).data.reward_gold`."""
+    def __eq__(self, o: object) -> bool: ...
+    def __hash__(self) -> int: ...
+
+class EntityRef:
+    """Stable id of an entity placed in a scene file (`"id": "paddle"`).
+    In code: `project.Placed.paddle`; resolve with `ctx.world.placed(ref)`."""
+    id: str
+
+class TextRef:
+    """A localized string key from locale/<lang>.json: `project.Text.score_label`."""
+    key: str
+
+class Localized(TextRef):
+    """Field type for player-facing text in content/config. Write the source-language
+    text INLINE in the JSON (`"name": "Slime"`, also inside lists and records). The
+    toolchain extracts it into locale/<lang>.json for translators, keyed by JSON path
+    (`enemy.slime.name`). Items in a list are keyed by their `id` field when they have
+    one (`stage.forest.waves.boss.title`), else by position — the checker warns when
+    reordering an id-less list would re-key existing translations. Identical strings share
+    one translation. Optional text: annotate `Localized | None`. Display with `ctx.text(...)`."""
+
+class WorldLayerRef:
+    """A layer declared in a scene's world.json: `project.WorldLayers.act2_fire`."""
+    id: str
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Data definitions
+# ─────────────────────────────────────────────────────────────────────────────
+
+def component(id: str) -> Callable[[type[T]], type[T]]:
+    """Per-entity data you define. Annotated class body = schema. No methods.
+
+    @component("lane")
+    class Lane:
+        index: int = field(0)
+    """
+
+def resource(id: str, *, keep: Keep = "run") -> Callable[[type[T]], type[T]]:
+    """Game-wide typed singleton you mutate at runtime. `ctx.get(Score)`.
+    `keep=` sets the default lifetime of every field (`@resource("career", keep="profile")`);
+    a field's own `keep=` overrides it."""
+
+def config(id: str) -> Callable[[type[T]], type[T]]:
+    """Game-wide tunables, one typed document at config/<id>.json. Read-only at
+    runtime; readable from systems, behaviors and panels with `ctx.config(Rules)`.
+    The home for numbers that would otherwise be magic constants in a system."""
+
+def content(kind: str, *, order: str | None = None) -> Callable[[type[T]], type[T]]:
+    """A content registry: one JSON file per entry in content/<kind>/<id>.json.
+    Read-only at runtime. `order` names an int/float field that sorts the registry
+    (otherwise entries sort by id).
+
+    Built-in kinds (quest, block, status_effect) can be extended by subclassing with
+    the same kind id: `@content("quest", order="chapter") class Chapter(QuestDef):
+    reward_gold: int = field(0)` — entries then carry both the plugin's and your fields."""
+
+def event(id: str, *, target: str | None = None) -> Callable[[type[T]], type[T]]:
+    """A typed message. Past-tense names. Construct to emit: `ctx.emit(RoundWon(stage=3))`.
+    Name its Entity fields by the module rule: `entity` it happened to, `source` who
+    caused it, `target` any other party.
+
+    target -- name of an Entity field (normally "entity"). A *targeted* event reaches
+              behaviors only on that entity (and every system). Untargeted events reach
+              every subscriber.
+    """
+
+class Tag:
+    id: str
+    def __eq__(self, o: object) -> bool: ...
+    def __hash__(self) -> int: ...
+
+def tag(id: str) -> Tag:
+    """A data-less marker: what kind of thing this is (enemy, pickup), a side (team_red),
+    a damage kind (fire), or a kind of scene (`"tags": ["level"]` in scene.json, used
+    by `scenes=`). Many per entity. Prefab/scene files use the id."""
+
+
+class ContentList(Generic[T]):
+    """A content registry's entries, in registry order."""
+    def __iter__(self) -> Iterator[ContentRef[T]]: ...
+    def __len__(self) -> int: ...
+    def __getitem__(self, index: int) -> ContentRef[T]: ...
+    def get(self, id: str) -> ContentRef[T]:
+        """Raises PP2050 with the known ids if absent."""
+    def where(self, predicate: Callable[[T], bool]) -> list[ContentRef[T]]: ...
+    def first(self, predicate: Callable[[T], bool] | None = None) -> ContentRef[T] | None: ...
+    def index(self, ref: ContentRef[T]) -> int: ...
+    def next(self, ref: ContentRef[T]) -> ContentRef[T] | None:
+        """The entry after `ref` in registry order (next level, next stage)."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Entities and the transform
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Transform:
+    """Built into every entity as `entity.transform` (not a component you add).
+
+    3D axes are left-handed: +x right, +y up, +z forward (`forward` of an unrotated
+    entity is `Vec3(0, 0, 1)`). Positive yaw turns forward toward +x (clockwise seen from
+    above); a positive Euler x tips forward down (the rotation math's sign — every *pitch*
+    the API names, `Camera.pitch`, `Camera.kick`, `Vec3.from_yaw_pitch`, `Vehicle.fly`,
+    viewmodel turns and `Recoil.pitch`, is positive UP). A single-number rotation
+    (`spawn(rotation=90)`, `rotate_to(90)`, a scene's `"rotation": 90`) is a yaw in 3D and
+    an angle in 2D. Data from right-handed, -z-forward tools
+    (most glTF scenes' world placement, three.js-style coordinates) mirrors z."""
+    position: Vec3
+    """World position. 2D games use x/y; z is draw order. Assigning a Vec2 keeps z."""
+    local_position: Vec3
+    rotation: Quat
+    euler: Vec3
+    """World rotation in degrees (pitch, yaw, roll)."""
+    local_euler: Vec3
+    angle: float
+    """2D rotation in degrees (counter-clockwise)."""
+    local_angle: float
+    scale: Vec3
+    """Assigning a float sets a uniform scale."""
+    @property
+    def forward(self) -> Vec3: ...
+    @property
+    def right(self) -> Vec3: ...
+    @property
+    def up(self) -> Vec3: ...
+    def to_world(self, local_point: Vec3) -> Vec3: ...
+    def to_local(self, world_point: Vec3) -> Vec3: ...
+    def look_at(self, target: Vec3, up: Vec3 = ...) -> None: ...
+    def move_to(self, target: Vec3 | Vec2, seconds: float, *, ease: Ease = "in_out_quad") -> Handle:
+        """Tween the position. Replaces any running move tween on this entity."""
+    def rotate_to(self, target: Vec3 | float, seconds: float, *, ease: Ease = "in_out_quad") -> Handle:
+        """Tween to euler degrees (a Vec3), or a number: in 3D a yaw (pitch and roll kept,
+        the short way round), in 2D an angle."""
+    def scale_to(self, target: Vec3 | float, seconds: float, *, ease: Ease = "out_back") -> Handle:
+        """Tween the scale; a float is uniform."""
+
+
+class Entity:
+    """A generational handle to one live entity. Using a destroyed entity raises PP3002."""
+    @property
+    def alive(self) -> bool: ...
+    @property
+    def name(self) -> str: ...
+    @property
+    def prefab(self) -> PrefabRef | None: ...
+    @property
+    def transform(self) -> Transform: ...
+    @property
+    def parent(self) -> Entity | None: ...
+    @property
+    def children(self) -> Sequence[Entity]: ...
+    @property
+    def owner(self) -> Player | None:
+        """The player who controls this entity (local_players / net), else None."""
+    visible: bool
+
+    def get(self, kind: type[C]) -> C:
+        """The component. Raises PP3001 (naming the prefab and the fix) if absent."""
+    def try_get(self, kind: type[C]) -> C | None: ...
+    def has(self, kind: type[Any] | Tag) -> bool: ...
+    def add(self, component: C) -> C:
+        """Attach a component. The fields passed to its constructor merge into the entity's
+        component of that type (as `spawn(components=...)` merges over the prefab's); its other
+        fields keep their values. An entity without one gets it, other fields defaulted.
+        Returns the entity's component."""
+    def remove(self, kind: type[Any] | Tag) -> None: ...
+    def tag(self, t: Tag) -> None: ...
+    def untag(self, t: Tag) -> None: ...
+    def modify(self, kind: type[Any], field: str, *, multiply: float = 1, add: float = 0,
+               key: str | None = None, seconds: float | None = None, stack: bool = False) -> None:
+        """Modify a `modifiable` field (see `field(modifiable=...)` for the exact rules):
+        `e.modify(Character, "walk_speed", multiply=1.2, key="haste", seconds=5)` or a
+        permanent upgrade `e.modify(Health, "max", add=10, stack=True)`. Pass `key` or
+        `stack=True`. Saved; timed ones expire by themselves. Field names are checked."""
+    def unmodify(self, key: str) -> None:
+        """Remove every modifier with this key, on every field."""
+    def base(self, kind: type[Any], field: str) -> float: ...
+    def child(self, name: str) -> Entity:
+        """A direct child by the name it has in the prefab's "children" (children only need
+        a "name" when code looks them up; names are unique per prefab). Raises PP3012 if absent."""
+    def attach(self, child: Entity, *, socket: str | None = None, keep_world: bool = False) -> None:
+        """Parent `child` to this entity (optionally to a named bone/socket)."""
+    def detach(self) -> None: ...
+    def destroy(self, *, after: float = 0) -> None:
+        """See module docs for exact semantics. Emits `Destroyed`."""
+    def __eq__(self, other: object) -> bool: ...
+    def __hash__(self) -> int: ...
+
+
+class Query(Generic[T]):
+    """Rows matching a query. With components: `(entity, *components)` tuples in the
+    order requested. With only tags: plain entities. Destroyed entities never appear."""
+    def __iter__(self) -> Iterator[T]: ...
+    def first(self) -> T | None: ...
+    def single(self) -> T:
+        """The only row. Raises PP3010 if there are zero or several."""
+    def count(self) -> int: ...
+    def where(self, predicate: Callable[..., bool]) -> Query[T]:
+        """Filter with the row unpacked: `.where(lambda e, lane: lane.index == 3)`."""
+    def near(self, point: Vec3 | Vec2, radius: float) -> Query[T]:
+        """Rows whose entity *position* is within radius (a linear scan of the rows,
+        not spatially indexed). For collider shapes use `ctx.physics.overlap`."""
+    def by_distance(self, point: Vec3 | Vec2) -> list[T]:
+        """All rows, nearest first."""
+    @overload
+    def nearest(self, point: Vec3 | Vec2) -> T | None: ...
+    @overload
+    def nearest(self, point: Vec3 | Vec2, count: int) -> list[T]: ...
+    def entities(self) -> list[Entity]: ...
+    def to_list(self) -> list[T]: ...
+
+
+TagFilter = Tag | Sequence[Tag]
+Without = Sequence[type[Any] | Tag]
+
+class World:
+    def spawn(
+        self,
+        prefab: PrefabRef,
+        *,
+        at: Vec3 | Vec2 | None = None,
+        rotation: Vec3 | float | None = None,
+        scale: Vec3 | float | None = None,
+        z: float | None = None,
+        parent: Entity | None = None,
+        name: str | None = None,
+        owner: Player | None = None,
+        components: Sequence[Any] = (),
+        tags: Sequence[Tag] = (),
+        params: dict[str, dict[str, Any]] | None = None,
+    ) -> Entity:
+        """Create an entity from a prefab (taken from its pool if it declares one; a
+        pooled entity is reset to the prefab exactly as if newly spawned). In 2D games
+        draw order comes from the prefab's `"z"` (or `z=`), never from `at` — a Vec3
+        `at` uses only x and y.
+        rotation   -- euler degrees (a Vec3), or a number: in 3D a yaw about +y
+                      (`rotation=90` faces +x), in 2D an angle
+        owner      -- the player who controls it (input + replication ownership)
+        components -- typed component instances that override or extend the prefab's
+        params     -- behavior param overrides keyed by behavior id"""
+
+    @overload
+    def query(self, *, tagged: TagFilter, without: Without = ()) -> Query[Entity]: ...
+    @overload
+    def query(self, c1: type[C1], *, tagged: TagFilter = (), without: Without = ()) -> Query[tuple[Entity, C1]]: ...
+    @overload
+    def query(self, c1: type[C1], c2: type[C2], *, tagged: TagFilter = (), without: Without = ()) -> Query[tuple[Entity, C1, C2]]: ...
+    @overload
+    def query(self, c1: type[C1], c2: type[C2], c3: type[C3], *, tagged: TagFilter = (), without: Without = ()) -> Query[tuple[Entity, C1, C2, C3]]: ...
+    @overload
+    def query(self, c1: type[C1], c2: type[C2], c3: type[C3], c4: type[C4], *, tagged: TagFilter = (), without: Without = ()) -> Query[tuple[Entity, C1, C2, C3, C4]]: ...
+
+    def named(self, name: str) -> Entity | None:
+        """The first live entity (spawn order) named `name` — `spawn(name=...)`, else its
+        placement id — or None. For names computed at run time (`f"lane_{i}"`); prefer
+        `placed(Placed.x)` for authored ones (checked). There are no numeric entity ids:
+        an `Entity` is its own id — hashable, `==`, storable in fields, events and saves,
+        with `alive` once it may be gone."""
+    def placed(self, ref: EntityRef) -> Entity:
+        """An entity placed in the loaded scene with a stable id. Raises PP3011 if its
+        region isn't loaded (see `placement` for unloaded regions)."""
+    def placement(self, ref: EntityRef) -> Placement:
+        """Authored data of a placed entity, available even when its region is unloaded."""
+    def layer(self, ref: WorldLayerRef) -> WorldLayer:
+        """A world layer (open worlds). Prefer declarative `active_when` in world.json."""
+
+
+class Placement:
+    ref: EntityRef
+    position: Vec3
+    prefab: PrefabRef
+    @property
+    def loaded(self) -> Entity | None: ...
+
+
+class WorldLayer:
+    @property
+    def state(self) -> Literal["unloaded", "loaded", "active"]: ...
+    def activate(self) -> None: ...
+    def deactivate(self) -> None: ...
+    def unload(self) -> None: ...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Engine components: data plus methods that act on their entity
+# ─────────────────────────────────────────────────────────────────────────────
+
+class EngineComponent:
+    """Base of every component the engine and its plugins provide."""
+    @property
+    def entity(self) -> Entity: ...
+
+
+@component("sprite")
+class Sprite(EngineComponent):
+    """A 2D image. `animations` (in the prefab) maps names to frame lists:
+    {"run": {"frames": ["run_0.png", "run_1.png"], "fps": 12, "loop": true}}.
+    Draw order is `transform.position.z` (higher on top). Prefabs set a default with a
+    top-level `"z": 2`; there is no second ordering knob."""
+    image: ImageRef | None = ...
+    size: Vec2 = ...
+    color: Color = ...
+    offset: Vec2 = ...
+    flip_x: bool = ...
+    flip_y: bool = ...
+    blend: Literal["normal", "additive"] = ...
+    """How it combines with what is under it: "normal" (default) paints over; "additive"
+    adds its colors, so overlaps glow toward white and black pixels vanish (glows, lasers,
+    muzzle flashes, magic)."""
+    def play(self, animation: str, *, restart: bool = False) -> None:
+        """Animation names are checked against this prefab's `animations`."""
+    @property
+    def animation(self) -> str | None: ...
+
+@record
+class Tile:
+    """One `Tilemap.tiles` entry: how its character draws, and whether it blocks."""
+    image: ImageRef | None = None
+    color: Color = ...
+    solid: bool = True
+
+@component("tilemap")
+class Tilemap(EngineComponent):
+    """2D level geometry as a character grid. The entity's position plus `offset` is the
+    map's bottom-left corner; cell (col, row) spans `tile_size`, rows top first:
+
+        "tilemap": {"tile_size": [1, 1], "collide": true,
+                    "tiles": {"G": {"image": "images/grass"}, "d": {"image": "images/dirt"},
+                              "~": {"color": "#3a7bd5", "solid": false}},
+                    "rows": ["......GG", "GGGGG.dd", "dddddddd"]}
+
+    " " and "." are empty; any other character must be a `tiles` key (PP3615). Every cell
+    is drawn (image tinted by color, else a colored rect) at the entity's z. With
+    `collide`, the physics2d plugin gives solid cells static colliders (one box per run of
+    adjacent cells in a row, on `layer`); they are rebuilt when the fields change, so
+    `rows` edits (digging, building) take effect next step."""
+    tile_size: Vec2 = ...
+    offset: Vec2 = ...
+    """The bottom-left corner relative to the entity (default (0, 0))."""
+    rows: list[str] = ...
+    tiles: dict[str, Tile] = ...
+    collide: bool = False
+    layer: str = "default"
+    friction: float = 0.5
+
+@component("shape")
+class Shape(EngineComponent):
+    """A primitive mesh (3D) or vector shape (2D) — the quick way to build without assets.
+
+    2D kinds: `rect` (`corner_radius` rounds it), `circle` (`size` is the diameter; an
+    ellipse when width and height differ), `ring` (a circle's outline band `thickness`
+    meters wide) and `polygon` (`points`, scaled by `size`). Any 2D kind can carry an
+    outline: `stroke_width` meters of `stroke_color`, centered on its edge.
+
+        Shape(kind="polygon", points=[Vec2(-1, 0), Vec2(1, 0), Vec2(0, 2)], color=Color.hex("#6a5"))
+        Shape(kind="ring", size=Vec3(3, 3, 1), thickness=0.2, color=Color.WHITE)
+        Shape(kind="rect", size=Vec3(2, 1, 1), corner_radius=0.2, stroke_width=0.05)"""
+    kind: Literal["box", "sphere", "capsule", "cylinder", "cone", "plane", "circle", "rect", "polygon", "ring"] = ...
+    size: Vec3 = ...
+    offset: Vec3 = ...
+    color: Color = ...
+    emissive: Color = ...
+    emissive_strength: float = ...
+    """3D: multiplies `emissive` (default 1, no upper limit). Above 1 the shape glows
+    brighter than white and blooms with the scene's "post" `bloom`: `emissive=Color.hex("#ff6020"),
+    emissive_strength=4` for lava, neon or a hot engine nozzle."""
+    metallic: float = ...
+    """3D: 0 (default) dielectric to 1 metal."""
+    roughness: float = ...
+    """3D: 0 mirror-smooth to 1 matte (default 0.5)."""
+    texture: ImageRef | None = ...
+    """3D: an image multiplied by `color`. A model document's material takes these same
+    names and defaults (`texture`, `normal_map`, `normal_strength`, `emissive`,
+    `emissive_strength`, `metallic`, `roughness`), and its parts the same 3D kinds."""
+    uv_scale: Vec2 = ...
+    """3D: texture repeats along u and v (default `Vec2(1, 1)`), for `texture` and
+    `normal_map` alike: `Vec2(8, 8)` tiles a floor's planks eight times each way."""
+    normal_map: ImageRef | None = ...
+    """3D: a tangent-space normal map (OpenGL/glTF convention, green up), tiled like
+    `texture`; it adds surface detail (bricks, planks, scales) without geometry."""
+    normal_strength: float = ...
+    """How strongly `normal_map` bends the surface (default 1; 0 flattens it)."""
+    cast_shadows: bool = ...
+    points: list[Vec2] = ...
+    """`polygon`: the outline's corners in order (at least 3), local meters times `size`."""
+    thickness: float = ...
+    """`ring`: the band's width in meters, inward from the outer edge (default 0.1)."""
+    corner_radius: float = ...
+    """`rect`: rounded-corner radius in meters (clamped to half the shorter side)."""
+    stroke_width: float = ...
+    """2D outline width in meters; 0 (default) draws none."""
+    stroke_color: Color = ...
+
+@record
+class JointMotion:
+    """A timed joint move in progress (`Model.joint_motion`, written by `pose(seconds=)`,
+    `open`, `close`): from `start_value` to the joint's `Model.joints` value, eased by
+    `ease` over `seconds` from game time `start_time`."""
+    start_value: float
+    start_time: float
+    seconds: float
+    ease: Ease
+
+@component("model")
+class Model(EngineComponent):
+    """A 3D model: a glTF file (`assets/models/knight.glb`) or a model document
+    (`assets/models/kart.model.json`) — named parts, materials, a skeleton, and the model's own
+    controls: joints (hinges, sliders, scale joints), sockets and options.
+
+    The look and pose are this component's data, keyed by the names the model declares
+    (`parallax check` checks them): set them in a prefab or through the methods below, and
+    they save, replicate and replay with the entity.
+
+        kart.get(Model).pose("steer_l", -20)              # degrees about the joint's axis
+        door.get(Model).open("door")                      # to its upper limit, over its duration
+        car.get(Model).set_option("paint", "red")
+        car.get(Model).set_color("body", Color.hex("#1e90ff"))
+        soldier.attach(rifle, socket="grip_r")            # rides the hand bone
+        muzzle = rifle.get(Model).socket_position("muzzle")
+
+    A glTF model has no joints or options; its parts are its named nodes and its sockets
+    any node (bone) by name.
+
+    Every model faces +z (the entity's forward) with no setting: a glTF file is read as
+    glTF specifies (front toward +z); a ParallaxPro asset-store file
+    (`https://r2.parallaxpro.ai/assets/...`), whose root wrapper node marked
+    `extras.parallaxproBakedFacing` turned it to face -z, is turned back on load (statics
+    and skinned characters alike); model documents are exported facing +z. Only a file
+    authored some other way needs `rotation_offset`.
+
+    glTF materials follow the glTF spec with one exception: a material that leaves out
+    `metallicFactor` or `roughnessFactor` reads as metallic 0 and roughness 0.5 (not the
+    spec's 1), so an exporter's omitted defaults don't make a plain prop look like polished
+    metal. Factors the file sets are used as given. MASK and OPAQUE materials ignore the
+    base color factor's alpha (MASK cuts on the texture's alpha); only BLEND uses it."""
+    model: ModelRef = ...
+    offset: Vec3 = ...
+    rotation_offset: Vec3 = ...
+    """Euler degrees (like `Transform.rotation`) that turn the model about its own origin
+    before `offset`: corrects a file authored facing another axis in data, so the entity's
+    +z stays its forward (`Vec3(0, 180, 0)` for a plain glTF that faces -z,
+    `Vec3(-90, 0, 0)` for a z-up export). Asset-store files and model documents already
+    face +z and need none. Drawing, sockets, IK and mesh/convex colliders all follow it."""
+    scale: float = ...
+    """Uniform size multiplier about the model's own origin (default 1; above 0), applied
+    before `rotation_offset` and `offset` (which stays in the entity's meters): fits a file
+    authored at another size in data, `0.01` for a centimeter export. Unlike
+    `Transform.scale` it leaves the entity's children and its primitive colliders alone;
+    drawing, sockets, IK, root motion and mesh/convex colliders follow it."""
+    tint: Color = ...
+    cast_shadows: bool = ...
+    joints: dict[str, float] = ...
+    """Joint → value in the joint's units (hinge degrees, slider meters, scale factor),
+    clamped to its limits. Unlisted joints sit at the model's default."""
+    joint_motion: dict[str, JointMotion] = ...
+    """Timed moves in progress. Read-only by convention."""
+    options: dict[str, str] = ...
+    """Option → choice (`{"paint": "red"}`). Unlisted options show their default."""
+    parts: dict[str, bool] = ...
+    """Part → shown. Overrides the model's defaults and part-set options; a hidden part
+    hides everything under it."""
+    colors: dict[str, Color] = ...
+    """Material → base color (team colors, liveries). Like every engine-component dict
+    field, it reads as a new dict each time (`colors["body"]`, `colors.get(...)`,
+    `colors.items()`): change it with `set_color` or by assigning a whole dict."""
+
+    def pose(self, joint: str, value: float, *, seconds: float = 0, ease: Ease = "in_out_quad") -> None:
+        """Move a joint to `value` (its units; clamped to its limits), at once or eased over
+        `seconds` (the same curves as `math.ease`). PP2121 names the model's joints when
+        `joint` isn't one."""
+    def joint(self, joint: str) -> float:
+        """The joint's value now (partway through a timed move)."""
+    def open(self, joint: str, *, seconds: float | None = None, ease: Ease = "in_out_quad") -> None:
+        """Move a joint to its upper limit, over its authored duration by default."""
+    def close(self, joint: str, *, seconds: float | None = None, ease: Ease = "in_out_quad") -> None:
+        """Move a joint to its lower limit."""
+    def set_option(self, option: str, choice: str) -> None: ...
+    def option(self, option: str) -> str: ...
+    def joint_names(self) -> list[str]:
+        """The joints the model declares, in file order (`[]` for a glTF model). Pair with
+        `limits` to drive any model's joints from data."""
+    def limits(self, joint: str) -> tuple[float, float] | None:
+        """The joint's (low, high) in its units; `open` moves to high, `close` to low.
+        None for a hinge that turns freely. PP2121 when `joint` isn't one."""
+    def option_names(self) -> list[str]:
+        """The options the model declares (`"paint"`, `"outfit"`, …), in file order."""
+    def choices(self, option: str) -> list[str]:
+        """The option's choices, in file order: `random.choice(model.choices("skin"))`.
+        PP2123 when `option` isn't one."""
+    def show_part(self, part: str, shown: bool = True) -> None: ...
+    def set_color(self, material: str, color: Color) -> None: ...
+    def socket_position(self, socket: str) -> Vec3:
+        """World position of a socket, posed now (animation and joints): a declared socket
+        or any part, bone or node by name. PP2122 when the model has no such socket."""
+    def socket_rotation(self, socket: str) -> Quat:
+        """World rotation of a socket; its forward (+z) is where a muzzle or exhaust points."""
+    def sockets(self, *, kind: str | None = None) -> list[str]:
+        """Socket names: those of a `kind` ("exhaust", "muzzle", …), or every name `attach`
+        takes (declared sockets first)."""
+
+@component("socket")
+class Socket(EngineComponent):
+    """Keeps this entity on a socket of its parent's Model. Added by
+    `parent.attach(child, socket="grip_r")` (or written on a prefab child); every frame the
+    entity's position and rotation become the socket's, posed — its scale stays its own.
+    `detach()` removes it. A declared socket's `accepts` and `limit` are checked when
+    attaching: the child's model must `provide` an accepted tag."""
+    name: str = ...
+
+@component("animator")
+class Animator(EngineComponent):
+    """Skeletal animation for a Model: clips played from code, or an animation graph.
+
+    Without a graph the animator has one layer, "base", and plays what `play()` /
+    `play_once()` say. With one (prefab data; `parallax check` reads it all):
+
+        "animator": {
+          "params": {"speed": 0, "grounded": true, "jump": "trigger"},
+          "layers": [
+            {"name": "base",
+             "states": {
+               "move": {"blend": {"param": "speed", "clips": [
+                          {"at": 0, "clip": "idle"}, {"at": 2, "clip": "walk"}, {"at": 6, "clip": "run"}]}},
+               "air":  {"clip": "fall"},
+               "land": {"clip": "land", "loop": false}},
+             "transitions": [
+               {"from": "*",    "to": "air",  "when": ["jump"], "fade": 0.1},
+               {"from": "move", "to": "air",  "when": ["not grounded"]},
+               {"from": "air",  "to": "land", "when": ["grounded"], "fade": 0.05},
+               {"from": "land", "to": "move", "exit": 1}]},
+            {"name": "upper", "mask": ["Spine2"]},
+            {"name": "breathe", "blend": "additive", "weight": 0.5, "states": {"b": {"clip": "breathe"}}}],
+          "events": {"walk": [{"time": 0.1, "name": "footstep"}, {"time": 0.6, "name": "footstep"}]},
+          "ik": {"feet": {"speed_param": "speed", "grounded_param": "grounded"}}
+        }
+
+    - params: a number, true/false, or "trigger" (true for the next update, used up by
+      the transition it fires). Set them with `set_param` / `trigger`.
+    - layers, bottom to top; the first is the base. A layer with states runs a state
+      machine (it starts in "entry", default the first state); one without is an action
+      layer that plays only what code tells it (`play_once(..., layer="upper")`). "mask":
+      bones whose subtrees the layer drives (default all); "blend": "override" or
+      "additive" (adds the clip's change from its first frame); "weight" 0-1.
+    - a state plays one clip, or blends several by one param (1D) or two ("params":
+      ["x", "y"], "at": [x, y]); blended clips share one phase, so feet stay in step.
+      "loop" (default true), "speed", "speed_param" (a number param scaling its rate).
+    - transitions fire when every "when" condition holds ("speed > 0.5", "grounded",
+      "not grounded", "jump", "aiming == true") and, with "exit", once the state is that
+      far through (0-1; 1 waits for a one-shot to end, or a loop's cycle). "from": "*"
+      is any state. "fade": crossfade seconds (default 0.2). The first that holds wins.
+    - events: markers per clip, heard as `AnimationEvent` when playback crosses them.
+      Authored clips carry their own.
+    - ik: "limbs" (name -> {"bones": [upper, middle, end], "pole": [x, y, z]}; built in:
+      left_hand, right_hand, left_foot, right_foot), "feet" (plant the feet on the
+      ground under them: needs physics3d; "max_drop", "max_step", "speed_param" +
+      "fade": [full, off], "grounded_param", "ground": layers) and "look" ("bones",
+      "max_angle") for `look_at`.
+
+    Bone names match exactly, else rig-neutrally ("mixamorig:LeftUpLeg" = "LeftUpLeg" =
+    "thigh_l"). Clips of other models and authored clips are retargeted from their own
+    bind pose onto this model's.
+    """
+    default_clip: ClipRef | None = ...
+    """The base layer's first loop (an animator without states)."""
+    speed: float = ...
+    """Playback rate of every layer."""
+    root_motion: Literal["off", "transform", "character"] = ...
+    """With "transform" the root bone's horizontal travel and heading move the entity;
+    with "character" they are collected instead: a Character on the entity takes them
+    itself every step and moves through its controller (walls, steps and gravity still
+    apply; `move()` only steers and faces), so code does nothing. Without a Character,
+    read them with `take_root_motion()` and move the entity yourself (each call empties
+    the collection; calling it on a Character's entity steals that travel)."""
+    root_bone: str | None = ...
+    """The bone root motion reads; None: Hips / pelvis, else the skeleton's first joint."""
+    def play(self, clip: ClipRef, *, fade: float = 0.2, loop: bool = True, speed: float = 1, layer: str = "base") -> None:
+        """Crossfade a layer without states to a clip. Playing the current clip is a no-op;
+        at another `speed` it changes its rate in place, keeping its phase."""
+    def play_once(self, clip: ClipRef, *, fade: float = 0.1, speed: float = 1, layer: str = "base") -> None:
+        """Play to the end, emit ClipFinished, then return: to the loop before it, to the
+        layer's state machine, or (an action layer) to nothing. A state machine waits."""
+    def stop(self, *, layer: str = "base", fade: float = 0.2) -> None:
+        """Fade a layer without states out to nothing (the layers below show)."""
+    def set_param(self, name: str, value: float | bool) -> None:
+        """Set a number or true/false param declared in `params`."""
+    def trigger(self, name: str) -> None:
+        """Set a trigger param for the next update."""
+    def param(self, name: str) -> float | bool: ...
+    def has_param(self, name: str, kind: Literal["number", "bool", "trigger"] | None = None) -> bool:
+        """Whether the animator declares `name` (of that kind): shared code driving many rigs
+        checks before `trigger()` / `set_param()`, which raise on unknown names."""
+    def set_layer_weight(self, layer: str, weight: float, *, fade: float = 0) -> None:
+        """Fade a layer's weight (0-1) over `fade` seconds."""
+    def reach(self, limb: str, target: Vec3 | Entity | None, *, weight: float = 1, rotation: Quat | bool | None = None) -> None:
+        """Bend a limb (two-bone IK) so its end reaches a world point or entity; None lets go.
+        `rotation` also turns the end bone (a hand on a grip): a world rotation, or True for
+        the target entity's own; the hand then sits as the rig was modelled holding it when
+        the rotation is the character's facing."""
+    def set_morph(self, target: str, value: float | None, *, fade: float = 0) -> None:
+        """Drive a morph target (blend shape: a smile, a blink) to `value` over the clips'
+        weights, easing in over `fade` seconds; None hands it back to the clips."""
+    def look_at(self, target: Vec3 | Entity | None, *, weight: float = 1) -> None:
+        """Turn the "look" bones (default the head) toward a point or entity; None stops."""
+    def take_root_motion(self) -> RootMotion:
+        """Root travel collected since the last call ("character" root motion). A Character
+        on the entity already takes it each step; call this only without one."""
+    @property
+    def clip(self) -> ClipRef | None:
+        """The base layer's clip now (a blend: its heaviest)."""
+    @property
+    def state(self) -> str | None:
+        """The base layer's state (None without states)."""
+    def state_of(self, layer: str) -> str | None: ...
+
+class RootMotion:
+    """Root bone travel: world meters (`offset`) and degrees of turn about +y (`turn`)."""
+    offset: Vec3
+    turn: float
+
+@component("light")
+class Light(EngineComponent):
+    """3D: any number of point/spot lights (clustered; the nearest `Settings.quality` allows
+    are shaded); the brightest directional light with shadows is the sun (else the
+    environment's), and other directional lights are shadowless fills. Intensity is radiance:
+    a white surface facing an intensity-1 light reflects 1/π of it. 2D: point and spot lights pool
+    over the environment's ambient (a scene without lights is drawn as authored); a
+    directional light raises the ambient. A 2D spot points along the entity's +x."""
+    kind: Literal["point", "spot", "directional"] = ...
+    color: Color = ...
+    intensity: float = ...
+    range: float = ...
+    angle: float = ...
+    """Spot cone angle in degrees: the outer edge, where the light reaches zero."""
+    inner_angle: float | None = ...
+    """Spot: full angle in degrees of the fully lit core (≤ angle); the light fades smoothly from
+    it to `angle` (a stage spotlight: `angle=40, inner_angle=30`; a soft torch: `inner_angle=0`).
+    None: a soft outer 20% in 3D, a hard edge in 2D."""
+    shadows: bool = ...
+    """3D shadow map. The sun always gets cascades; point/spot lights get one within the
+    quality's budget, nearest first (low: none; a point light costs six spot lights)."""
+    when: Literal["always", "night", "day"] = ...
+    """When it shines, by the environment's `time_of_day` (as `is_night`): "night" lamps,
+    lanterns and windows fade in over dusk and out at dawn; "day" the reverse. With a day
+    cycle (`day_length`) street lights switch themselves on: `Light(intensity=2, when="night")`."""
+
+@component("particles")
+class Particles(EngineComponent):
+    """A continuous emitter (smoke, exhaust, fire). One-shot bursts: `ctx.vfx.play`. In 3D
+    an effect's light glows and its sound loops while it emits."""
+    effect: EffectRef = ...
+    emitting: bool = ...
+    rate_scale: float = ...
+
+@component("text_mesh")
+class TextMesh(EngineComponent):
+    """Text rendered in the world. Supports `[color=#888]…[/color]` and `[b]…[/b]` spans."""
+    text: str = ...
+    size: float = ...
+    color: Color = ...
+    face_camera: bool = ...
+
+@component("audio_source")
+class AudioSource(EngineComponent):
+    """A sound that plays while the component exists and `playing` is true (engines,
+    ambience, alarms) — derived from data, saved with the entity. One-shots: `ctx.audio.play`."""
+    sound: SoundRef = ...
+    playing: bool = ...
+    loop: bool = ...
+    volume: float = ...
+    pitch: float = ...
+    spatial: bool = ...
+
+@component("audio_listener")
+class AudioListener(EngineComponent):
+    """How the player hears: put it on the camera (or any entity — that entity then is the
+    listener). Without one: stereo, no Doppler, no occlusion."""
+    panning: Literal["stereo", "hrtf"] = ...
+    """hrtf: positional sounds are rendered binaurally (best on headphones)."""
+    doppler: float = ...
+    """0 = off, 1 = physical: a passing car's pitch drops as it goes by."""
+    occlusion: bool = ...
+    """3D with physics: sounds behind solid colliders are muffled."""
+    duck_level: float = ...
+    """The music's level while a `play(..., duck=True)` sound plays (0.35)."""
+    duck_release: float = ...
+    """Seconds the music takes to come back after it."""
+
+@component("reverb_zone")
+class ReverbZone(EngineComponent):
+    """A sphere of reverb around this entity (a cave, a hall): the listener inside `radius`
+    hears `preset` at `mix`, faded in over the outer `blend` meters. Overlapping zones: the
+    strongest wins, then the higher `priority`."""
+    preset: Literal["room", "hall", "cave", "arena", "forest", "underwater"] = ...
+    mix: float = ...
+    radius: float = ...
+    blend: float = ...
+    priority: int = ...
+
+@component("marker")
+class Marker(EngineComponent):
+    """An off-screen-aware objective marker on this entity while the component exists
+    and `shown` is true. Add/remove it (or set `shown`) — no handles to keep.
+    Drawn by `hud()` (its markers, compass and minimap panels; the distance shown reads in
+    `hud(units=)`: "640 m", "1.2 km"); a game without it gets a
+    `check` warning (PP2553). Core declares it so quests and gameplay can set it without
+    depending on the HUD."""
+    icon: str = ...
+    label: Localized | None = ...
+    shown: bool = ...
+    color: Color = ...
+
+@component("world_bar")
+class WorldBar(EngineComponent):
+    """A world-space 0..1 gauge over an entity (charge meters, capture progress).
+    Set `value` from game logic. Health uses `combat.HealthBar` instead."""
+    value: float = ...
+    offset: Vec3 = ...
+    color: Color = ...
+    bands: list[tuple[float, float, Color]] = ...
+    """Coloured ranges drawn on the bar (shot-meter sweet spots)."""
+    shown: bool = ...
+
+@component("player_start")
+class PlayerStart(EngineComponent):
+    """Where a player seat (local or online) spawns. `seat=-1` = any seat."""
+    seat: int = ...
+
+@component("environment_zone")
+class EnvironmentZone(EngineComponent):
+    """Overrides scene environment settings (fog, ambient, sky tint) while the camera is
+    inside this entity's trigger collider; blends over `blend` seconds."""
+    fog_density: float | None = ...
+    fog_color: Color | None = ...
+    ambient: Color | None = ...
+    sky_tint: Color | None = ...
+    blend: float = ...
+
+@component("outline")
+class Outline(EngineComponent):
+    """A selection outline around the entity's 3D meshes while the component exists
+    (targets, pickups, team ESP): add/remove it, no handles to keep.
+    `entity.add(Outline(color=Color.RED, through_walls=True, fill=0.3))`."""
+    color: Color = ...
+    width: float = ...
+    """Pixels (0: fill only)."""
+    through_walls: bool = ...
+    """Visible behind other surfaces too (x-ray)."""
+    fill: float = ...
+    """0..1: the silhouette tinted with `color` (glow); 0 = outline only."""
+
+@record
+class LodLevel:
+    """One level of detail: from `distance` meters on, draw `model` (None: nothing)."""
+    distance: float
+    model: ModelRef | None = None
+
+@component("lod")
+class Lod(EngineComponent):
+    """Distance bands for the entity's Model (and Shape): `levels` swap in coarser models
+    farther away, past `impostor` meters a baked impostor of the last model is drawn (one
+    camera-facing quad: forests and crowds of props), and past `cull` nothing (None: the
+    quality's view distance, fogged so the edge never shows). Distances are measured from
+    the nearest camera and scaled by the quality (low switches at half the distance); each
+    switch cross-fades over `fade` × its distance, so nothing pops.
+    `Lod(levels=[LodLevel(distance=40, model=Assets.models.tree_low)], impostor=120)`."""
+    levels: list[LodLevel] = ...
+    impostor: float | None = ...
+    cull: float | None = ...
+    fade: float = ...
+
+@component("static_mesh")
+class StaticMesh(EngineComponent):
+    """The entity and everything under it never move (level geometry, props): their meshes
+    are merged into world chunks of `chunk` meters per material — a few draws instead of
+    hundreds. Moving one re-merges its chunk (allowed, but not every frame)."""
+    chunk: float = ...
+
+@component("decal")
+class Decal(EngineComponent):
+    """An image projected onto whatever surfaces lie inside a box (scorch marks, blood,
+    posters, road paint): `size` x wide, y deep (along the entity's down axis), z tall; the
+    image's top is the box's +z side. `angle_fade` (degrees) keeps it off steep walls.
+    Later `order`s draw over earlier ones."""
+    image: ImageRef = ...
+    size: Vec3 = ...
+    color: Color = ...
+    angle_fade: float = ...
+    order: int = ...
+
+@component("render_texture")
+class RenderTexture(EngineComponent):
+    """On a camera: it draws into the texture `name` (`width` × `height`, `fps` times a
+    second; 0 = every frame) instead of a player's screen — security cameras, rear-view
+    mirrors in cars, a TV showing another room. Show it with `Monitor(feed=name)`."""
+    name: str = ...
+    width: int = ...
+    height: int = ...
+    fps: float = ...
+
+@component("monitor")
+class Monitor(EngineComponent):
+    """Shows a RenderTexture on the entity's Shape (or its Model's `material`, None: all of
+    them) as a glowing screen, `brightness` 0..1."""
+    feed: str = ...
+    brightness: float = ...
+    material: str | None = ...
+
+@component("mirror")
+class Mirror(EngineComponent):
+    """A planar mirror: the entity's flat Shape (plane, rect, circle) or Model reflects the
+    scene for the first player's view. The mirror's plane is the entity's up axis through its
+    origin (turn the entity to face a room). `resolution` is the reflection's pixels per
+    screen pixel; `tint` colors it."""
+    resolution: float = ...
+    tint: Color = ...
+
+@component("surface_fx")
+class SurfaceFx(EngineComponent):
+    """Stylized effects on the entity's Shape or Model (3D), every one off at 0:
+
+      rim        a fresnel glow on the silhouette (`rim_color`, thinner as `rim_power` grows):
+                 pickups, selected units, ghosts
+      dissolve   0 whole .. 1 gone: the surface burns away through noise with a glowing
+                 `dissolve_color` band (`dissolve_edge` wide, `dissolve_glow` bright, holes
+                 `dissolve_scale` per meter); animate it with `dissolve_to`
+      hologram   0..1 of a see-through projection in `hologram_color`: fresnel edge,
+                 `hologram_lines` scanlines per meter, `hologram_flicker`; casts no shadow
+      scroll     texture repeats per second along u, v (conveyors, lava, waterfalls, screens)
+      triplanar  the base texture projected along the world axes every this many meters
+                 instead of the mesh's uvs (rocks, cliffs, stretched generated meshes)
+      flash()    a hit flash: the surface pops to `flash_color` and fades over `flash_seconds`
+
+    `material` limits it to one Model material (None: all of them). Dissolving surfaces cast
+    no shadow while the dissolve is above 0.
+    `@on(Damaged) def hit(self, e): e.entity.get(SurfaceFx).flash(Color.WHITE)`;
+    `fx.dissolve_to(1, seconds=0.8); self.entity.destroy(after=0.8)`."""
+    rim: float = ...
+    rim_color: Color = ...
+    rim_power: float = ...
+    dissolve: float = ...
+    dissolve_color: Color = ...
+    dissolve_glow: float = ...
+    dissolve_edge: float = ...
+    dissolve_scale: float = ...
+    dissolve_from: float = ...
+    dissolve_at: float = ...
+    dissolve_seconds: float = ...
+    hologram: float = ...
+    hologram_color: Color = ...
+    hologram_lines: float = ...
+    hologram_flicker: float = ...
+    scroll: Vec2 = ...
+    triplanar: float = ...
+    flash_color: Color = ...
+    flash_strength: float = ...
+    flash_seconds: float = ...
+    flash_at: float | None = ...
+    material: str | None = ...
+    @property
+    def dissolved(self) -> float:
+        """The dissolve drawn now (part way through a `dissolve_to`)."""
+    def flash(self, color: Color | None = None, *, seconds: float | None = None,
+              strength: float | None = None) -> None:
+        """A hit flash: `strength` (0..1) of `color` fading out over `seconds` (None: keep
+        the component's `flash_*` fields)."""
+    def dissolve_to(self, amount: float, seconds: float = 1.0) -> None:
+        """Move `dissolve` to `amount` (0 whole, 1 gone) over `seconds`, from where it is now."""
+
+@component("heat_haze")
+class HeatHaze(EngineComponent):
+    """The image around the entity bends like air over a fire (3D): a steady shimmer
+    `radius` meters around a point `height` above the entity, `strength` 0..1 (0: none),
+    and `pulse()` a shockwave ring growing to `pulse_radius` over `pulse_seconds`
+    (explosions). At most 4 hazes are drawn per frame, the strongest. In 2D, `pulse()`
+    bends the image in the same growing ring (the steady shimmer is 3D only)."""
+    radius: float = ...
+    strength: float = ...
+    height: float = ...
+    pulse_radius: float = ...
+    pulse_seconds: float = ...
+    pulse_strength: float = ...
+    pulse_at: float | None = ...
+    def pulse(self, radius: float | None = None, *, seconds: float | None = None,
+              strength: float | None = None) -> None:
+        """Start a shockwave ring (None: the component's `pulse_*` fields)."""
+
+@component("depth_of_field")
+class DepthOfField(EngineComponent):
+    """On a camera (3D): what is nearer or farther than `focus_distance` blurs, the blur
+    growing until `focus_range` meters away, where it reaches `max_blur` (a radius in
+    pixels at 1080p, scaled to the view; 0: off). Pull focus by changing `focus_distance`
+    (a tween, or a cinematic's "focus" track). Drawn on WebGPU and WebGL2; softer at low
+    quality."""
+    focus_distance: float = ...
+    focus_range: float = ...
+    max_blur: float = ...
+
+@component("fog_overlay")
+class FogOverlay(EngineComponent):
+    """On a camera: the fog of war of `team` (a tag id; the ai plugin's fog, Vision on
+    units) laid over the ground in this view: clear where the team sees now, `explored`
+    where it has seen, `unexplored` elsewhere."""
+    team: str = ...
+    unexplored: Color = ...
+    explored: Color = ...
+
+@event("clip_finished", target="entity")
+class ClipFinished:
+    """A `play_once` clip played to its end."""
+    entity: Entity
+    clip: ClipRef
+
+@event("animation_event", target="entity")
+class AnimationEvent:
+    """Playback crossed a clip marker (`events` in the animator, or an authored clip's):
+    footsteps, hit frames. Fired by each layer's heaviest clip, once per crossing."""
+    entity: Entity
+    name: str
+    clip: ClipRef
+    time: float
+    """The marker's time in the clip (seconds)."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Engine events (ordinary events; same mechanism games use)
+# ─────────────────────────────────────────────────────────────────────────────
+
+@event("spawned", target="entity")
+class Spawned:
+    entity: Entity
+
+@event("destroyed", target="entity")
+class Destroyed:
+    entity: Entity
+    unloaded: bool
+    """True when removed by a scene/region unload rather than destroy()."""
+
+@event("collided", target="entity")
+class Collided:
+    """Emitted once per participant, so each side's behaviors see it."""
+    entity: Entity
+    target: Entity
+    """The other participant."""
+    point: Vec3
+    normal: Vec3
+    impulse: float
+
+@event("collision_ended", target="entity")
+class CollisionEnded:
+    entity: Entity
+    target: Entity
+
+@event("trigger_entered", target="entity")
+class TriggerEntered:
+    entity: Entity
+    """The trigger's entity."""
+    target: Entity
+    """What entered it."""
+
+@event("trigger_exited", target="entity")
+class TriggerExited:
+    entity: Entity
+    target: Entity
+
+@event("scene_loaded")
+class SceneLoaded:
+    scene: SceneRef
+    new_run: bool
+    """True when the load started a new run (retry/New Game: `new_run=True`)."""
+
+@event("beat")
+class Beat:
+    """The beat clock (`ctx.audio.music(..., bpm=)`, `set_tempo`) passed a whole beat;
+    delivered at the start of the frame it falls in, so the frame's logic hears it."""
+    beat: int
+    """Beats since beat 0."""
+    bar: int
+    beat_in_bar: int
+    """0-based: 0 is the downbeat."""
+
+@event("day_changed")
+class DayChanged:
+    day: int
+
+@event("panel_opened")
+class PanelOpened:
+    panel: type[Panel]
+
+@event("panel_closed")
+class PanelClosed:
+    panel: type[Panel]
+
+@event("panel_action")
+class PanelAction:
+    """A panel action ran (a button, a data-key shortcut, a test click) — after its own
+    command applied, the same frame. Disabled actions (`@action(when=...)` false) don't
+    emit. This is how a game reacts to a copied library panel without editing it:
+
+        @on(PanelAction, where=lambda e: e.panel is GameOverPanel and e.action == "retry")
+        def retried(self, ctx, event): ctx.get(Stats).retries += 1
+    """
+    panel: type[Panel]
+    action: str
+    seat: int
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Logic: behaviors, systems, tasks
+# ─────────────────────────────────────────────────────────────────────────────
+
+TickRate = Literal["frame", "significance"] | float
+
+class Behavior:
+    """Logic for one kind of entity. Attached by id in prefab files.
+
+    Hooks (all optional; a misspelled hook-like name is check error PP4210):
+      start(ctx)                 after the whole spawn batch exists; once per entity
+      update(ctx, dt)
+      fixed_update(ctx, dt)      fixed timestep, before physics
+      late_update(ctx, dt)       after physics/animation (cameras, aim from rendered pose)
+      end(ctx)                   the entity is being destroyed or unloaded
+    plus `@on(Event)` methods.
+
+    Fields: `param()` (configured per prefab) and `state()` (runtime, saved). Nothing else.
+    """
+    entity: Entity
+    def start(self, ctx: Context) -> None: ...
+    def update(self, ctx: Context, dt: float) -> None: ...
+    def fixed_update(self, ctx: Context, dt: float) -> None: ...
+    def late_update(self, ctx: Context, dt: float) -> None: ...
+    def end(self, ctx: Context) -> None: ...
+
+
+class System:
+    """Logic for the whole game. Listed in `Game(systems=[...])` or a Feature.
+    Systems have NO fields — state lives in resources, tunables in config."""
+    def start(self, ctx: Context) -> None:
+        """Runs when the system comes into existence: game start, or each load of one
+        of its `scenes=`."""
+    def update(self, ctx: Context, dt: float) -> None: ...
+    def fixed_update(self, ctx: Context, dt: float) -> None: ...
+    def late_update(self, ctx: Context, dt: float) -> None: ...
+
+
+SceneScope = Sequence[SceneRef | Tag]
+
+def behavior(
+    id: str,
+    *,
+    requires: Sequence[type[Any]] = (),
+    tick: TickRate = "frame",
+    when: Callable[[Context], bool] | None = None,
+) -> Callable[[type[T]], type[T]]:
+    """Register a Behavior subclass. `requires`: components the entity must have when
+    it spawns (checked at spawn, so components supplied by `spawn(components=)` count).
+    `tick`: "frame", a rate in Hz, or "significance" (less often when far/off-screen).
+    `when`: run condition for the whole behavior (hooks and handlers)."""
+
+def system(
+    id: str,
+    *,
+    scenes: SceneScope = (),
+    when: Callable[[Context], bool] | None = None,
+    after: Sequence[type[System]] = (),
+    runs_while_frozen: bool = False,
+    runs_on: Literal["server", "client", "everywhere"] = "server",
+) -> Callable[[type[T]], type[T]]:
+    """Register a System subclass.
+
+    scenes -- scene refs or scene tags; the system exists only while a matching scene
+              is loaded (its hooks, handlers, timers and tasks). Empty = the feature's
+              `scenes=`, else every scene.
+    when   -- run condition for the whole system: update hooks and event handlers,
+              evaluated right before each. For game phases:
+              `lambda ctx: ctx.get(Match).phase is Phase.PLAYING`. Handlers that must
+              run regardless: `@on(E, always=True)`.
+    runs_on -- only matters with the net plugin."""
+
+def on(
+    event_type: type[E],
+    *,
+    when: Callable[[Context], bool] | None = None,
+    where: Callable[[Context, E], bool] | Callable[[E], bool] | None = None,
+    always: bool = False,
+) -> Callable[[Callable[[Any, Context, E], None]], Callable[[Any, Context, E], None]]:
+    """Mark a behavior/system method as an event handler: `def f(self, ctx, event)`.
+    when   -- an extra context condition (on top of the unit's `when=`)
+    where  -- a filter on the event, `(event)` or `(ctx, event)`:
+              `@on(TriggerEntered, where=lambda e: e.target.has(Ball))`
+    always -- run even while the unit's `when=` is false (the event that starts a phase)."""
+
+
+class Task:
+    """Handle passed to an async task. Waits use game time and respect freezing.
+    Tasks are not saved: on restore from a save/snapshot they are not running."""
+    async def seconds(self, s: float) -> None: ...
+    async def frames(self, n: int) -> None: ...
+    async def until(self, event_type: type[E], where: Callable[[E], bool] | None = None) -> E: ...
+    async def until_true(self, condition: Callable[[], bool]) -> None: ...
+    async def all(self, *handles: Handle) -> None:
+        """Wait for every tween/timer/task handle to finish."""
+    async def any(self, *handles: Handle) -> int:
+        """Wait for the first; returns its index."""
+
+class Handle:
+    """A timer, tween or task. Cancelled automatically when its owner dies."""
+    def cancel(self) -> None: ...
+    @property
+    def active(self) -> bool: ...
+    async def wait(self) -> None:
+        """Await completion inside a task."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Time
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Time:
+    @property
+    def dt(self) -> float: ...
+    @property
+    def now(self) -> float:
+        """Game time in seconds since the session began (stops while frozen). It keeps
+        counting across scene loads, so deadlines (`ready_at = ctx.time.now + 2`) stay
+        valid in resources that outlive a scene."""
+    @property
+    def scene_time(self) -> float:
+        """Game seconds since the current scene loaded (0 at every load, reload and
+        `new_run=True`; stops while frozen) — a level or run clock."""
+    @property
+    def real_now(self) -> float: ...
+    @property
+    def frame(self) -> int: ...
+    scale: float
+    """Global time scale (slow motion). 1 = normal."""
+    @property
+    def frozen(self) -> bool: ...
+    def after(self, seconds: float, fn: Callable[[], None]) -> Handle: ...
+    def every(self, seconds: float, fn: Callable[[], None]) -> Handle: ...
+    def hitstop(self, seconds: float) -> None:
+        """Freeze simulation briefly for impact feel."""
+    def ramp(self, scale: float, seconds: float, ease: Ease = "in_out_quad") -> Handle:
+        """Ease `scale` to a new value over `seconds` of REAL time — slow motion in and out,
+        bullet time; a ramp to 0 still finishes. A new ramp starts from where the last one
+        got to; assigning `scale` cancels it. Saved in snapshots."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Input: actions
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Button:
+    """A digital action."""
+class Axis1:
+    """A -1..1 analog action."""
+class Axis2:
+    """A 2D analog action (move, look). A mouse-look binding makes the engine lock the
+    pointer whenever gameplay input is live."""
+
+class Binding:
+    def __or__(self, o: Binding) -> Binding: ...
+
+Keys = str | tuple[str, ...]
+"""One key code ("Space", "KeyE", "Enter", "ShiftLeft", "Digit1", "ArrowUp") or a tuple of
+alternatives (("ArrowUp", "KeyW")). Names are checked."""
+
+class keys:
+    WASD: Binding
+    ARROWS: Binding
+    AD: Binding
+    WS: Binding
+    LEFT_RIGHT: Binding
+    UP_DOWN: Binding
+    @staticmethod
+    def composite(*, up: Keys, left: Keys, down: Keys, right: Keys) -> Binding:
+        """Any four keys as a 2D axis (IJKL, numpad)."""
+
+class gamepad:
+    LEFT_STICK: Binding
+    RIGHT_STICK: Binding
+    LEFT_STICK_X: Binding
+    LEFT_STICK_Y: Binding
+    RIGHT_STICK_X: Binding
+    RIGHT_STICK_Y: Binding
+    DPAD: Binding
+    DPAD_UP: Binding
+    DPAD_DOWN: Binding
+    DPAD_LEFT: Binding
+    DPAD_RIGHT: Binding
+    SOUTH: Binding
+    EAST: Binding
+    WEST: Binding
+    NORTH: Binding
+    LEFT_SHOULDER: Binding
+    RIGHT_SHOULDER: Binding
+    LEFT_TRIGGER: Binding
+    RIGHT_TRIGGER: Binding
+    START: Binding
+    SELECT: Binding
+
+class mouse:
+    DELTA: Binding
+    WHEEL: Binding
+    LEFT: Binding
+    RIGHT: Binding
+
+TouchZone = Literal["primary", "actions", "left", "pedals", "hotbar", "system"]
+"""Where a touch button sits; the engine owns the geometry and scales it to the screen.
+  primary  the big button under the right thumb (unset: the first action button)
+  actions  arcs around the primary (the default)
+  left     a row under the left thumb, above its stick
+  pedals   tall buttons in the bottom-right corner
+  hotbar   a strip along the bottom centre
+  system   small buttons in the top-right corner (pause, map)"""
+
+class touch:
+    """On-screen touch controls, drawn by the engine only on touch screens and only while
+    their action set is live (none while a modal panel is open). An action may bind several.
+
+    Drawn: `joystick`, `button`, `dpad`, `stepper`, `pedals`, `steer`, and the slots of
+    `hotbar` / `toggle_group` (for `button_group`). Gestures on the play area (fingers not
+    on a control): `TAP`, `DOUBLE_TAP`, `LONG_PRESS`, `swipe`, `DRAG`, `LOOK`, `PINCH`,
+    `SCROLL`. `stick_edge` reads a joystick pushed to its rim.
+
+    `Actions.touch_preset` fills these in for every action declared without one; `NONE`
+    opts an action out."""
+    @staticmethod
+    def joystick(side: Literal["left", "right"], *, fixed: bool = False) -> Binding:
+        """A stick for an Axis2 (or an Axis1's x). Floating by default: its base jumps to
+        where the thumb lands on that side's lower part. `fixed=True`: it stays drawn at its
+        rest point and reads the finger's offset from there (a flight attitude stick)."""
+    @staticmethod
+    def button(
+        label: str,
+        *,
+        icon: str | None = None,
+        zone: TouchZone | None = None,
+        toggle: bool = False,
+        hold: float | None = None,
+        visible_when: Callable[[Context], bool] | None = None,
+        enabled_when: Callable[[Context], bool] | None = None,
+        relabel: Callable[[Context], str | tuple[str | None, str | None] | None] | None = None,
+        cooldown: Callable[[Context], float] | None = None,
+        size: float | None = None,
+        at: tuple[float, float] | None = None,
+        ring: Color | None = None,
+    ) -> Binding:
+        """`label` is a locale key when it matches one.
+        icon          a glyph name ("target", "chevrons_up", "pause", "bomb", "shield"…, any
+                      spelling or common alias), an emoji, or "auto" (picked from the label)
+        toggle        a tap latches the button held, the next tap releases it (crouch, aim)
+        hold          seconds the game wants it held: a fill shows the hold's progress
+        visible_when  asked every frame; False hides it (and it reads as released)
+        enabled_when  asked every frame; False greys it out and swallows presses
+        relabel       asked every frame: a label, (label, icon), or None for the declared ones
+        cooldown      asked every frame: 0..1 of a recharge still to go, drawn as a sweep
+        size          0.5..2 times its zone's button size
+        at            (x, y): pinned with its centre there, each 0..1 of the screen's safe area
+                      (x from the left, y from the top), out of its zone's flow; the zone still
+                      sets its default size and look ("primary" draws it in the accent)
+        ring          its border colour (the skin's `stroke` for the rest)"""
+    @staticmethod
+    def swipe(direction: Literal["up", "down", "left", "right"] | None = None) -> Binding:
+        """One direction (Button), or all four as a 2D axis (Axis2) when no direction."""
+    @staticmethod
+    def dpad(direction: Literal["up", "down", "left", "right"] | None = None) -> Binding:
+        """An on-screen d-pad (Axis2), or one of its directions (Button)."""
+    @staticmethod
+    def stepper(minus: str = "−", plus: str = "+", *, zone: TouchZone | None = None) -> Binding:
+        """A −/+ pair for an Axis1: -1 while minus is held, +1 while plus is (zoom, gear,
+        throttle). Sits in the left row unless `zone=` says otherwise."""
+    @staticmethod
+    def pedals(brake: str = "Brake", gas: str = "Gas") -> Binding:
+        """Two tall pedals in the bottom-right corner for an Axis1: brake -1, gas +1."""
+    @staticmethod
+    def steer() -> Binding:
+        """A steering wheel under the left thumb for an Axis1: drag sideways, -1..1, self-centring."""
+    @staticmethod
+    def stick_edge(side: Literal["left", "right"]) -> Binding:
+        """A Button held while that side's joystick is pushed to its rim (sprint with no button)."""
+    @staticmethod
+    def hotbar(*labels: str | None, selected_when: Callable[[Context], int | None] | None = None) -> TouchGroup:
+        """A `button_group`'s slots as a strip along the bottom, one label per slot (None: no
+        button for that slot). `selected_when` returns the slot to highlight."""
+    @staticmethod
+    def toggle_group(*labels: str | None, selected_when: Callable[[Context], int | None] | None = None) -> TouchGroup:
+        """A `button_group`'s slots as one segmented control (build / fight, weapon modes); the
+        chosen segment stays lit: `selected_when`'s slot, else the last one pressed."""
+    DRAG: Binding
+    """Axis2: pixels a finger moved on the play area this frame (+y up)."""
+    TAP: Binding
+    """Button: a short touch on the play area (`ctx.input.pointer` is where)."""
+    LOOK: Binding
+    """Axis2: as DRAG, for fingers that land on the right half (camera look)."""
+    DOUBLE_TAP: Binding
+    """Button: two quick taps in the same spot (dash, dodge)."""
+    LONG_PRESS: Binding
+    """Button: a finger held still on the play area (pressed once, held until it lifts):
+    the touch right-click (an order at `ctx.input.pointer`)."""
+    PINCH: Binding
+    """Axis1: two fingers spreading (+) or closing (−), in wheel notches: bind it beside
+    `mouse.WHEEL` for zoom."""
+    SCROLL: Binding
+    """Axis1: two fingers moving up (+) or down (−), in wheel notches."""
+    NONE: Binding
+    """No touch control for this action, not even one `Actions.touch_preset` would add."""
+
+class TouchGroup:
+    """The touch buttons of a `button_group`: `touch.hotbar(...)` or `touch.toggle_group(...)`."""
+
+class TouchSkin:
+    """The look of the touch controls: `Actions.touch_skin = TouchSkin(...)`. The
+    highest-priority live set with a skin decides (a vehicle set can bring its own).
+    Unset fields keep the engine's look."""
+    def __init__(
+        self,
+        *,
+        fill: Color | None = None,
+        stroke: Color | None = None,
+        ink: Color | None = None,
+        pressed: Color | None = None,
+        accent: Color | None = None,
+        joystick_base: Color | None = None,
+        joystick_knob: Color | None = None,
+        shape: Literal["circle", "rounded", "square"] | None = None,
+        opacity: float | None = None,
+        scale: float | None = None,
+        stroke_width: float | None = None,
+        blur: float | None = None,
+        press_scale: float | None = None,
+        font: str | None = None,
+    ) -> None:
+        """ink: labels and icons; pressed: a held button's fill; accent: the primary button
+        and a selected segment; joystick_base / joystick_knob: a stick's fills (the knob
+        defaults to `pressed`); opacity 0.2..1; scale 0.6..1.6 (control size); stroke_width:
+        the ring in pixels, 0..8 (default 2); blur: frosted glass behind the controls, pixels
+        0..24; press_scale: a held button's size, 0.8..1.2 (0.92 squashes, 1.08 pops).
+        font: a CSS font-family list. A family a panel declares with `@font-face` is used by
+        its name (`font="Bangers, sans-serif"` after ui/hud.css declares Bangers) once that
+        panel has been shown; the engine's "Inter" and "Cinzel" always work."""
+
+def button(
+    *,
+    keyboard: Keys | Binding | None = None,
+    gamepad: Binding | None = None,
+    mouse: Binding | None = None,
+    touch: Binding | None = None,
+    repeat: tuple[float, float] | None = None,
+) -> Button:
+    """repeat=(delay, interval): while held, `pressed()` is also true after `delay` and
+    every `interval` (grid cursors, menus)."""
+def axis1(*, negative: Keys | None = None, positive: Keys | None = None,
+          gamepad: Binding | None = None, mouse: Binding | None = None,
+          touch: Binding | None = None) -> Axis1:
+    """-1..1 from two keys, a stick axis or a trigger pair (`gamepad.LEFT_TRIGGER | gamepad.RIGHT_TRIGGER`
+    reads left as -1, right as +1)."""
+def axis2(*, keyboard: Binding | None = None, gamepad: Binding | None = None,
+          mouse: Binding | None = None, touch: Binding | None = None,
+          repeat: tuple[float, float] | None = None) -> Axis2:
+    """`repeat` applies to `pressed_direction` while the direction is held."""
+
+class ButtonGroup:
+    """N buttons read as one action (hotbars, weapon slots, draft picks)."""
+    def __len__(self) -> int: ...
+
+def button_group(*, keyboard: Sequence[Keys | None], gamepad: Sequence[Binding | None] = (),
+                 touch_labels: Sequence[str | None] = (), touch: TouchGroup | Binding | None = None) -> ButtonGroup:
+    """Gameplay hotkeys: `button_group(keyboard=("Digit1", "Digit2", "Digit3"))`, read
+    with `ctx.input.pressed_index(group)`; `None` leaves a slot unbound on that device
+    (`touch_labels=(None, None, "Grenade")`: only the third slot gets a touch button, in
+    the action cluster). `touch=touch.hotbar(...)` / `touch.toggle_group(...)` draw the
+    slots as a strip instead (not with touch_labels); `touch=touch.NONE`: none at all.
+    (For shortcuts on panel buttons use `data-key` instead — one rule: hotkeys that
+    exist without a panel are a button_group; keys for a panel's buttons are data-key.)"""
+
+class Actions:
+    """Subclass and declare actions as class attributes:
+
+    class Controls(Actions):
+        move = axis2(keyboard=keys.WASD, gamepad=gamepad.LEFT_STICK, touch=touch.joystick("left"))
+        jump = button(keyboard="Space", gamepad=gamepad.SOUTH, touch=touch.button("Jump"))
+
+    An action set is live while `active_when` returns True (default: always). When
+    several live sets bind the same input, the higher `priority` wins. There is no
+    push/pop: a vehicle set declares `active_when = lambda ctx, owner: ...` and
+    switches on and off by itself.
+
+    For per-seat controls, subclass and override the same action names
+    (`class Player2Controls(Controls): move = axis2(keyboard=keys.ARROWS)`).
+
+    Touch controls are generated from these declarations. Code never reads raw keys.
+    Players can remap any action from the built-in settings panel.
+
+    One line gives a set a genre's touch scheme: `touch_preset = "fps"` fills in a touch
+    control for every action declared without one, from its other bindings, and places
+    the buttons. Each set has its own, so an on-foot set and a driving set switch layouts
+    with their `active_when`.
+    """
+    priority: int = 0
+    scenes: SceneScope = ()
+    """Scene refs or scene tags where this set exists (empty = everywhere)."""
+    touch_preset: Literal["fps", "tps", "topdown", "platformer", "sidescroller", "racer", "flight", "rts", "click", "custom"] | None = None
+    """What each preset fills in (an action's own `touch=` always wins; `touch.NONE` opts out):
+      movement axis2 (keys, left stick)  left joystick; rts / click: DRAG
+      a second movement axis2            right joystick (twin-stick aim)
+      look axis2 (mouse delta)           fps / tps: LOOK; flight: fixed right joystick;
+                                         topdown: DRAG; others: none
+      axis1                              racer: steering → steer(), throttle → pedals();
+                                         platformer / sidescroller: left/right → ◀ ▶ stepper;
+                                         mouse wheel → PINCH (rts, click, topdown) or a stepper
+      button on mouse left               the primary button; rts / click: TAP
+      button on mouse right              a button; rts / click: LONG_PRESS
+      Shift (fps, tps)                   stick_edge("left"): push the stick to sprint
+      P / Tab / Start / Select           a button in the system tray (never bind Escape: PP4242)
+      anything else                      a button labelled from the action's name, icon "auto";
+                                         the Space action is primary when nothing is on mouse left
+      button_group                       a hotbar, one slot per key ("Digit1" → "1")
+    "custom" (or None) fills in nothing. Inherited by subclasses."""
+    touch_skin: TouchSkin | None = None
+    """The touch controls' look while this set is live (the highest-priority one wins)."""
+    touch_keyboard: bool = True
+    """False: while this set is live, reading `ctx.input.text` never opens the phone's keyboard —
+    for a game that draws its own touch keyboard (a panel of key buttons). Touch controls are
+    only those the set declares (`touch=`, `touch_preset`), so a set with neither draws none."""
+    @staticmethod
+    def active_when(ctx: Context, owner: Entity | None) -> bool:
+        """`owner` is the entity whose behavior reads input (None for systems)."""
+
+class Pointer:
+    """Mouse or primary touch, for clicking/tapping things in the world. Clicks that
+    land on a UI panel never reach the world or mouse-bound actions. A world click on an
+    entity is consumed by that entity (`pointer.over`) unless no code reads it that
+    frame; only unconsumed clicks reach mouse-bound actions."""
+    @property
+    def screen(self) -> Vec2: ...
+    @property
+    def world(self) -> Vec3:
+        """Point under the pointer: in 3D on the terrain where the pointer's ray meets it, else
+        on the ground plane (y = 0); in 2D on the play plane."""
+    @property
+    def over(self) -> Entity | None:
+        """The topmost entity with a collider under the pointer."""
+    @property
+    def pressed(self) -> bool: ...
+    @property
+    def held(self) -> bool: ...
+    @property
+    def released(self) -> bool: ...
+    @property
+    def moved(self) -> bool: ...
+    @property
+    def drag(self) -> Vec2:
+        """Screen-space movement this frame while held."""
+    def consume(self) -> None:
+        """Mark this frame's click as handled so mouse-bound actions don't also fire
+        (done automatically when code reads `over` on a pressed frame)."""
+
+class Input:
+    """In a behavior on a player-owned entity, reads that player's input. `pressed()`
+    is true for the whole frame, including the first fixed_update of that frame."""
+    def pressed(self, action: Button) -> bool: ...
+    def released(self, action: Button) -> bool: ...
+    def held(self, action: Button) -> bool: ...
+    def value(self, action: Axis1) -> float: ...
+    def axis(self, action: Axis2) -> Vec2: ...
+    def pressed_index(self, group: ButtonGroup) -> int | None:
+        """Which button of the group went down this frame (0-based), if any."""
+    @overload
+    def pressed_direction(self, action: Axis2) -> Vec2 | None:
+        """A unit up/down/left/right the frame a stick, d-pad, swipe or key composite
+        crosses into that direction (one per flick; obeys the action's `repeat`)."""
+    @overload
+    def pressed_direction(self, action: Axis1) -> int | None:
+        """-1 or +1 on the frame the axis crosses into that direction (lane changes)."""
+    def pressed_step(self, action: Axis2) -> Cell | None:
+        """Same as pressed_direction, as a grid step (Cell.UP is row - 1)."""
+    @property
+    def pointer(self) -> Pointer: ...
+    @property
+    def text(self) -> str:
+        """Characters typed this frame. On touch devices the phone's keyboard is shown while a
+        panel or system reads text — unless a live action set says `touch_keyboard = False`
+        (the game draws its own keyboard)."""
+    @property
+    def device(self) -> Literal["keyboard", "gamepad", "touch"]: ...
+    def rumble(self, strength: float, seconds: float) -> None:
+        """Vibrate the current player's gamepad / phone."""
+    def rumble_pattern(self, pattern: Sequence[tuple[float, float]]) -> None:
+        """A haptic pattern: pulses one after another, each (strength 0..1, seconds), strength 0 a
+        pause (1..32 pulses). `rumble_pattern([(1, 0.04), (0, 0.06), (0.5, 0.1)])`: a sharp tap, a
+        gap, a softer buzz — a keystroke, a miss. Phones vibrate on/off (no strength)."""
+    def controls(self, action: Button | Axis1 | Axis2 | ButtonGroup | None = None) -> list[ControlBinding]:
+        """The remappable bindings (every action's keyboard key and gamepad button, in
+        declaration order), or one action's, as a controls menu lists them — remaps
+        included. The built-in SettingsPanel shows exactly these."""
+    def rebind(self, slot: str) -> None:
+        """Wait for the player's next key (a keyboard slot) or gamepad button (a gamepad
+        slot): it becomes the slot's binding, saved in Settings.controls with the profile.
+        Escape cancels; a new rebind replaces one under way. Panels ignore keys while it
+        waits; gameplay input doesn't, so rebind from a modal panel:
+
+            def rebind(ctx, slot: str):
+                ctx.input.rebind(slot)
+
+            @ui("controls", html="ui/controls.html", modal=True, layer="menu")
+            class ControlsMenu(Panel):
+                actions = {"rebind": rebind, "back": close_panel()}
+                def state(self, ctx):
+                    return {"rows": ctx.input.controls(), "waiting": ctx.input.rebinding is not None}
+
+        with `<ul data-each="rows"><template><li><span data-bind="label"></span>
+        <button data-action="rebind" data-bind="binding"></button></li></template></ul>`
+        (the clicked row's `slot` fills the parameter)."""
+    @property
+    def rebinding(self) -> str | None:
+        """The slot waiting for its key, or None."""
+    def cancel_rebind(self) -> None: ...
+    def reset_controls(self, slot: str | None = None) -> None:
+        """One slot, or every slot, back to the binding the game declared."""
+
+class ControlBinding:
+    """One remappable binding (`ctx.input.controls()`); in a panel, `{row.label}` etc."""
+    slot: str
+    """What `rebind` / `reset_controls` take: "Controls.jump:key", "Controls.jump:pad",
+    "Controls.move:up" (an axis2's key composite), "Controls.slots.2:key" (a button_group slot)."""
+    label: str
+    """The action in words: "Jump", "Move up"; "Driving: Brake" when the game has several sets."""
+    action: str
+    """"<ActionSet>.<action>"."""
+    device: Literal["keyboard", "gamepad"]
+    binding: str
+    """In effect now, in words: "W", "Space", "A / ✕"."""
+    code: str
+    """In effect now, as a code: "KeyW", "south"."""
+    changed: bool
+    """Remapped away from the declared binding."""
+    capturing: bool
+    """Waiting for its key (`rebind`)."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# UI
+# ─────────────────────────────────────────────────────────────────────────────
+
+class PanelCommand:
+    """A built-in action usable as a value in `Panel.actions`, or returned from a
+    function action (`return close_panel()`)."""
+
+def close_panel() -> PanelCommand:
+    """Close the panel the button is in."""
+def open_panel(panel: type[Panel]) -> PanelCommand: ...
+def reload_scene(*, new_run: bool = False, init: Sequence[Any] = (),
+                 seed: int | None = None) -> PanelCommand:
+    """A panel-action VALUE (`actions = {"retry": reload_scene(new_run=True)}`). In code —
+    a function action included — call `ctx.scenes.reload(...)` instead."""
+def load_scene(scene: SceneRef, *, new_run: bool = False, init: Sequence[Any] = (),
+               seed: int | None = None) -> PanelCommand:
+    """A panel-action VALUE (`actions = {"quit": load_scene(Scenes.title)}`). In code — a
+    function action included — call `ctx.scenes.load(...)` instead."""
+
+F = TypeVar("F", bound=Callable[..., Any])
+
+def action(*, when: Callable[[Context], bool] | None = None) -> Callable[[F], F]:
+    """Optional decorator for a function panel action: `when=` disables the action (and
+    greys its buttons) while false. Parameters typed as an Enum or Literal are validated
+    against the clicked element's data. A function action may return close_panel() or
+    open_panel(P); to change scene it calls ctx.scenes.load / reload (returning
+    load_scene(...) is an error).
+    Tasks it starts belong to the panel's scene. In net games every function action
+    runs on the server for the clicking player (it is an RPC). Convention: define
+    actions in the module that declares the panel (ui.py), or the feature's ui module."""
+
+class Panel:
+    """An HTML panel bound to game state.
+
+    @ui("hud", html="ui/hud.html")
+    class Hud(Panel):
+        actions = {"pause": open_panel(PauseMenu)}
+        def state(self, ctx): return {"score": ctx.get(Score).value, "cards": [...]}
+
+    `actions` values:
+      - a PanelCommand (close_panel, open_panel, reload_scene, load_scene)
+      - a function `def start(ctx, level: ContentRef[LevelDef]) -> PanelCommand | None` —
+        its typed parameters are filled from `data-*` attributes / the clicked list item
+        (anything computed: load the chosen level, pick a card, New Game); see `action`.
+        It loads scenes with `ctx.scenes.load(...)` and may return close_panel() /
+        open_panel(P), never load_scene(...) / reload_scene(...)
+      - an `@rpc` function (net games; same parameter filling, runs on the server)
+      - an event class (fields filled the same way) when several systems must react
+
+    HTML vocabulary (every key is checked against `state()`):
+      data-bind="score"            text content (dotted paths: "player.hp")
+      data-format="int|percent|time|bar|pips"
+      data-count="0.6"             with data-bind: a number counts up (or down) to each new
+                                   value over that many seconds, eased (score count-ups)
+      data-text="score_label"      localized string (Text key)
+      data-show="key" / data-hide  visible when truthy / falsy
+      data-class-<name>="key"      toggle a CSS class
+      data-attr-<name>="key"       set an attribute (src, value, disabled…); SVG names keep
+                                   their case (viewBox). A model in a panel: state() returns
+                                   `ctx.vfx.portrait(entity).data_url`, `<img data-attr-src=…>`
+      data-style-<prop>="key"      set one CSS property from a string ("42%", "#ff0",
+                                   "rotate(30deg)"); None or "" removes it. Positions and
+                                   colours computed in state(): data-style-left="x"
+      data-each="cards"            repeat the child <template> per list item; inside it,
+                                   keys are relative to the item
+      data-action="pick"           send an action; inside data-each the item's fields
+                                   are the payload
+      data-key="Digit1"            keyboard shortcut for that action (works in menus);
+                                   "Digit{index1}" inside data-each (1-based item index)
+      data-format="bar"            a filled bar (value 0..1); "pips" draws `value` of
+                                   `data-max` pips
+      <template src="ui/slot.html"> share a template file between panels
+      <icon name="coin">           a built-in 24px icon (an inline svg, 1em, the text's
+                                   colour; label="Gold" names it for screen readers).
+                                   Names: blade aegis bow staff hammer fist spark burst
+                                   bolt flame frost venom mend curse coin gem ingot boot
+                                   ring amulet tome flask cloak lens tower keep obelisk
+                                   ward banner skull beast crosshair pin search close
+                                   check lock plus chevron star timer person swords
+    Fonts: panels default to Inter (`var(--parallax-font)`); Cinzel is the display face
+    (`var(--parallax-font-display)`, or class="parallax-display"). Both ship with the
+    engine (no network); restyle with `:root { --parallax-font: ... }`.
+    Right-to-left languages (ar, he, fa, ur…): the UI gets dir="rtl" and lang, so use
+    logical CSS (margin-inline-start, inset-inline-end) or :dir(rtl) to mirror.
+    Panel JS: `parallax.on_state(fn)`, `parallax.action(name, payload)`.
+    """
+    actions: dict[str, Any]
+    @property
+    def subject(self) -> Entity | None:
+        """The entity the panel is about, when opened with `ctx.ui.open(P, subject=e)`
+        (this chest, this shopkeeper). Closing happens automatically if it's destroyed."""
+    def state(self, ctx: Context) -> dict[str, Any]: ...
+
+def ui(
+    id: str,
+    *,
+    html: str,
+    modal: bool = False,
+    layer: Literal["hud", "menu", "overlay"] = "hud",
+    scenes: SceneScope = (),
+    when: Callable[[Context], bool] | None = None,
+    delay: float | Callable[[Context], float] = 0,
+    toggle_with: Button | None = None,
+    while_held: Button | None = None,
+    cursor: Cursor | None = None,
+    scale: Literal["viewport", "design", "none"] = "viewport",
+) -> Callable[[type[T]], type[T]]:
+    """Register a Panel. How it opens — pick one:
+      when=        open exactly while the condition holds (game over, draft, death screen)
+      toggle_with= the action opens it and, while open, closes it (pause, inventory)
+      while_held=  open while the action is held (scoreboard)
+      (none)       listed in a scene's "ui", or opened by `open_panel` / `ctx.ui.open`
+
+    scenes=: the panel (and its toggle key) exists only in matching scenes / scene tags.
+    delay=: with `when=`, open this many seconds (or `delay(ctx)`, e.g. from config) after
+    the condition becomes true, to let the last move finish before a result card freezes
+    the game. The game keeps running during the delay; `when=` is re-checked at opening.
+
+    modal=True: while any modal is open, gameplay actions are muted and the cursor is
+    free; without the net plugin, simulation time also freezes. Modals stack; a
+    `toggle_with` key closes only its own panel when it's on top. Modals close on scene
+    load. `close_panel()` on a `when=` panel is a check error (it follows its condition).
+    Subclass `PlayerPanel` for one instance per seat.
+
+    In a mouse-look game the pointer stays locked under a modal and the engine draws a
+    virtual cursor over the panels (see `Cursor`); mouse-look resumes with no click when
+    the modal closes. cursor=: the cursor's look while this panel is open (over the
+    game's `Game(cursor=...)`).
+
+    Panel CSS measures the game view, not the page: `vh` / `vw` / `vmin` / `vmax` and
+    `@media` width / height / aspect-ratio / orientation queries are the game view's
+    (or the seat's viewport for a PlayerPanel), in the editor as in a full-screen game.
+    scale=: how the panel's CSS pixels map onto the screen. The panel is laid out on
+    (width / s) x (height / s) CSS pixels and shrunk by s, so `vh` / `vw` still span the
+    view while pixel sizes shrink; s is never above 1.
+      "viewport"  1:1, until the view is smaller than 1280 x 720 (844 x 390 on a touch
+                  screen): then laid out at that minimum and shrunk to fit, so a small
+                  editor view or a portrait phone shows the whole layout (default)
+      "design"    a 1920 x 1080 design canvas shrunk to fit: min(w/1920, h/1080, 1); on a
+                  touch screen a 1688 x 780 canvas at 0.5 at most (smaller on a smaller
+                  screen; a portrait phone keeps the canvas's area)
+      "none"      always 1:1"""
+
+class Cursor:
+    """The look of the cursor the engine draws — only the look: when it shows and where
+    it is are derived. `Game(cursor=...)` for the whole game, `@ui(cursor=...)` while that
+    panel is open (the newest open panel with one wins).
+
+    Over a modal panel in a mouse-look game (one whose in-scope actions read mouse delta)
+    the pointer stays locked and the engine draws this cursor, moved by the mouse; it
+    presses, drags (sliders), scrolls and hovers what it is over. So it does wherever the
+    cursor is free under a lock an editor's Play took (see `Game(pointer_lock=...)`).
+    Elsewhere the OS cursor is the cursor, unless `show_in_menus=True` draws this one in its place (a themed
+    pointer for a menu-driven game). Touch screens never show it.
+
+      visual   "ring" (default: the engine's white ring), "dot", "crosshair", "image"
+               (`image=`, a project path such as "assets/ui/cursor.png" or an .svg), or
+               "system": no drawn cursor — a mouse-look game's modals unlock the pointer
+               and show the OS cursor instead
+      size     pixels of the cursor's box (4..256, default 24)
+      color    ring / dot / crosshair color (default white)
+      hotspot  the click point, (x, y) fractions of the box from its top-left:
+               (0.5, 0.5) for a centred ring (default), (0, 0) for an arrow image
+
+    Panel CSS: the control under the virtual cursor carries `data-parallax-hover`
+    (script can't set `:hover`), so style `button:hover, button[data-parallax-hover]`."""
+    def __init__(
+        self,
+        visual: Literal["ring", "dot", "crosshair", "image", "system"] = "ring",
+        *,
+        size: float = 24,
+        color: Color | None = None,
+        image: str | ImageRef | None = None,
+        hotspot: tuple[float, float] = (0.5, 0.5),
+        show_in_menus: bool = False,
+    ) -> None:
+        """`Cursor(image="assets/ui/sword.png", size=32, hotspot=(0, 0))` alone means visual="image"."""
+    visual: str
+    size: float
+    show_in_menus: bool
+
+class PlayerPanel(Panel):
+    """A panel drawn once per seat in that seat's viewport (split screen, or each
+    online client's own HUD)."""
+    def state(self, ctx: Context, player: Player) -> dict[str, Any]: ...  # type: ignore[override]
+
+class SettingsPanel(Panel):
+    """Built-in options menu: volume buses, graphics quality, language, mouse/stick look
+    sensitivity, invert look, control remapping. `open_panel(SettingsPanel)`."""
+
+class FloatStyle:
+    """How `ctx.ui.float_text` looks and moves. Keep one per kind of pop as a module constant:
+    `HIT = FloatStyle(size=28, color=Color.hex("#ff4040"), outline=Color.hex("#000"), pop=1.6,
+    rise=70, seconds=0.8)`, then `ctx.ui.float_text(f"-{n}", at, style=HIT)`."""
+    def __init__(
+        self,
+        *,
+        size: float = 20,
+        font: str | None = None,
+        color: Color | None = None,
+        outline: Color | None = None,
+        outline_width: float = 2,
+        bold: bool = True,
+        pop: float = 1,
+        end_scale: float = 1,
+        rise: float = 40,
+        seconds: float = 1,
+    ) -> None:
+        """size: CSS pixels (6..200); font: a CSS font-family the page loads; color: the fill
+        (None: white); outline: a stroke of `outline_width` pixels behind the glyphs.
+        The size curve: it starts at `pop` × size (1.6 = a punchy hit), settles to 1× within the
+        first fifth of its life, and ends at `end_scale` × (0.5 shrinks away). It rises `rise`
+        pixels (negative sinks) over `seconds`, fading out."""
+    size: float
+    rise: float
+    seconds: float
+
+class UiApi:
+    def open(self, panel: type[Panel], *, subject: Entity | None = None) -> None:
+        """For panels opened by game events (a shop when touching a shopkeeper).
+        Prefer `when=` / `toggle_with=` where they fit."""
+    def close(self, panel: type[Panel]) -> None: ...
+    def is_open(self, panel: type[Panel]) -> bool: ...
+    def toast(self, text: str | TextRef, *, seconds: float = 2, to: Player | None = None) -> None:
+        """Text with arguments: format it first, `toast(ctx.text(Text.wave, n=3))` — one
+        way to fill arguments everywhere. `to=None` = every local seat.
+        The game's look for toasts, announcements, floating text and labels: `ui/feedback.html`
+        (optional). Its styles style `.toast`, `.announce`, `.title`, `.subtitle`, `.float`,
+        `.label`; a `<template data-feedback="toast">` (bound to {text}) or
+        `"announce"` ({title, subtitle}) replaces that item's markup, bound like a panel."""
+    def announce(self, title: str | TextRef, subtitle: str | TextRef | None = None, *,
+                 seconds: float = 2, to: Player | None = None) -> None: ...
+    def float_text(self, text: str, at: Vec3 | Vec2, *, color: Color | None = None,
+                   style: FloatStyle | None = None, to: Player | None = None) -> None:
+        """Text that pops off a world point and fades (damage numbers, "+50"): `style=` its look
+        and motion (`FloatStyle`); `color=` overrides the style's fill for this one (a crit)."""
+    def flash(self, entity: Entity, *, color: Color = ..., seconds: float = 0.1) -> None: ...
+    def label(self, entity: Entity, text: str | TextRef, *, offset: Vec3 = ...,
+              kind: str | None = None) -> Handle:
+        """A world-space label following an entity (name tags, prompts, "YOU" / "PASS" tags).
+        `kind="you"` adds that CSS class: `ui/feedback.html` styles `.label.you`."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Camera, scenes, environment, audio, VFX, debug, settings
+# ─────────────────────────────────────────────────────────────────────────────
+
+@component("camera")
+class Camera(EngineComponent):
+    """The view. A 3D camera looks along its transform's +z (left-handed: +x right, +y
+    up), so an unrotated camera at `Vec3(0, 5, -10)` faces the origin's side of the world;
+    every camera pitch (`pitch`, `pitch_limits`, `kick(pitch=)`) is positive looking UP, so
+    a camera looking down at its target has a negative pitch (`-30`). (A Transform's Euler
+    x is the opposite: positive tips forward down.) A 2D camera looks down -z onto the
+    x/y plane."""
+    rig: Literal["fixed", "follow", "orbit", "first_person"] = ...
+    """fixed: stays where placed. follow: trails `follow` at `offset`. orbit: around
+    `follow`, driven by a look action. first_person: at the follow entity's eye, yaw
+    and pitch from a look action (the owner's body yaw follows)."""
+    mode: Literal["perspective", "orthographic"] = ...
+    fov: float = ...
+    size: float = ...
+    """Half-height in meters of the visible area (orthographic)."""
+    follow: Entity | list[Entity] | None = ...
+    """One target, or several (framed together, weighted by `follow_weights`). In JSON,
+    `"follow": "local_player"` follows the viewing seat's own entity (net and split screen)."""
+    follow_weights: list[float] = ...
+    pitch: float = ...
+    """Fixed pitch in degrees for follow rigs; initial pitch for orbit/first_person.
+    Positive looks up: `-25` looks down on the target. None (default): a follow rig looks
+    straight at its target."""
+    pitch_limits: tuple[float, float] = ...
+    """(low, high) clamp for orbit/first_person look, degrees, positive up (default
+    (-80, 80))."""
+    offset: Vec3 = ...
+    world_offset: bool = ...
+    smoothing: float = ...
+    look_ahead: float = ...
+    """Meters a follow rig leads its focus in the direction its (first) target last moved
+    horizontally: x in 2D, the ground plane in 3D (a side-scroller shows more of what is
+    ahead). The lead holds while the target stands still; 0 (default): no lead."""
+    look_ahead_smoothing: float = ...
+    """Seconds: how slowly the lead swings round when the target turns (default 0.6)."""
+    fit: tuple[Vec2, Vec2] | None = ...
+    """(min corner, max corner) of a world rectangle kept fully visible at any aspect
+    ratio (boards in portrait). Or `"fit": "grid"` in JSON to fit the scene's Grid
+    (ignored in scenes without one)."""
+    fit_margin: float = ...
+    """Extra meters around `fit` (frames, drop lanes, HUD room)."""
+    min_visible: Vec2 | None = ...
+    """(width, height) in meters that stay in view at any aspect ratio — 2D or 3D (a
+    court on a portrait phone). Orthographic widens `size`; perspective widens `fov`
+    (never narrows it) so the area fits at `focus_distance`."""
+    focus_distance: float | None = ...
+    """Meters from the camera at which `min_visible` is measured (perspective). None: the
+    distance to the follow/orbit focus; a fixed camera must give one."""
+    bounds: tuple[Vec2, Vec2] | None = ...
+    background: Color | None = ...
+    """Clear colour (None = the scene's sky)."""
+    viewport: tuple[float, float, float, float] = ...
+    def shake(self, intensity: float = 0.3, seconds: float = 0.25) -> None: ...
+    def kick(self, pitch: float, yaw: float = 0, *, recover: float = 0.15,
+             accumulate: bool = False) -> None:
+        """Offset the view (recoil) and ease back over `recover` seconds: `pitch` > 0 kicks
+        the view up, `yaw` > 0 to the right. Works with orbit/first_person rigs.
+        `accumulate=True` adds to the view permanently
+        (climbing recoil the player must pull down)."""
+    def zoom_to(self, size_or_fov: float, seconds: float = 0.3) -> Handle: ...
+    def screen_to_world(self, screen: Vec2) -> Vec3: ...
+    def world_to_screen(self, point: Vec3) -> Vec2 | None: ...
+    def ray(self, screen: Vec2 | None = None) -> tuple[Vec3, Vec3]:
+        """(origin, direction) through a screen point (default: center)."""
+    def relative(self, stick: Vec2) -> Vec3:
+        """A 2D move stick → ground-plane world direction relative to this camera."""
+    def capture(self) -> ImageRef:
+        """Screenshot this camera (photo modes)."""
+
+class CameraApi:
+    @property
+    def main(self) -> Camera:
+        """The active camera — for the current player's seat in split screen.
+        `.entity` gives its entity."""
+    def for_player(self, player: Player) -> Camera: ...
+    def use(self, camera: Entity) -> None:
+        """Make another camera entity the active one (cutscenes)."""
+
+class ScenesApi:
+    def current_is(self, scene_or_tag: SceneRef | Tag) -> bool:
+        """Whether the loaded scene is this one (`Scenes.arena`) or carries this scene
+        Tag. The one way to ask which scene is loaded; to find content for it:
+        `ctx.content(LevelDef).first(lambda d: ctx.scenes.current_is(d.scene))`."""
+    def load(self, scene: SceneRef, *, new_run: bool = False,
+             init: Sequence[Any] = (), seed: int | None = None) -> None:
+        """Replace the current scene (end of frame). The way code loads a scene
+        (`load_scene(...)` is only a panel-action value).
+        new_run=True -- start a new run: restore every keep="run"/"scene" field to its
+                        default, and run-level facts, quests, world layers and voxel
+                        edits (retry, New Game).
+        init         -- resource instances applied after the reset (`init=[Run(level=3)]`).
+        seed         -- seed for `random` and `ctx.seed` (default: new random seed).
+        Panels listed in the scene's "ui" open; modals and other panels close.
+        `ctx.time.scene_time` restarts at 0; `ctx.time.now` keeps counting."""
+    def reload(self, *, new_run: bool = False, init: Sequence[Any] = (),
+               seed: int | None = None) -> None:
+        """Load the current scene again (same arguments as `load`)."""
+
+class EnvironmentApi:
+    """Scene-wide look. `time_of_day`, `day` and fog/sky/post overrides are saved (keep="run"); on a server,
+    changes reach every client. Defaults come from the scene's "environment" block:
+    {"sky": "clear_day", "time_of_day": 14.5, "fog": {"density": 0.01, "color": "#a0b0c0", "volumetric": 0.5},
+     "ambient": "#404858", "sun": {"intensity": 1.2}, "post": {"preset": "cinematic", "bloom": 0.3}}.
+
+    "post" keys (all optional; a preset is a bundle of them, keys you set win):
+      preset               cyberpunk_neon, warm, cool, noir, vintage, vivid, cinematic, horror,
+                           dreamy, retro, comic, toon, underwater, night_vision
+      exposure             brightness multiplier on the tone-mapped image, before contrast (1)
+      bloom, bloom_threshold   glow strength (0.1) and the brightness where it starts (1, which
+                               3D reads as linear 0.5: the sun and bright highlights glow)
+      saturation, contrast, tint   color grade (1, 1, white)
+      temperature          white balance -1 cool .. 1 warm (0)
+      grain                0..1 animated film grain (0)
+      vignette             0..1 corner darkening (0)
+      2D draws bloom and vignette only: bloom_threshold is the drawn color 0..1 there, so set
+      one below 1 to glow (`{"bloom": 0.8, "bloom_threshold": 0.7, "vignette": 0.4}`)
+      chromatic_aberration red/blue fringes, fraction of the image, 0..0.05 (0)
+      ambient_occlusion    contact shadows strength (1)        — medium/high quality
+      reflections          screen-space reflections (true)     — high quality
+      god_rays             light shafts from the sun (0)       — medium/high quality
+      antialias            FXAA (true; never with stylize pixelate)
+      stylize              the stylization effects, together:
+                           {"pixelate": 4, "posterize": 6, "toon": 3, "edges": 1.5, "edge_color": "#000"}
+        pixelate, posterize  screen pixels per image pixel (1); levels per channel (0 = off)
+        toon, edges, edge_color   cel bands of light (0); ink line px (0); ink color (black)
+    "debug": {"wireframe": true, "wire_color": "#00ff66", "wire_background": null} draws every
+    mesh and the terrain as triangle edges (wire_color None: each surface's; wire_background
+    None: the sky) — a debug view, over whatever the post resolves to.
+    fog "volumetric" (0..1) scatters sunlight through the sun's shadows — high quality.
+    fog "height_falloff" (1/m, with "density") thins the fog with height above "height" (world y,
+    default 0): ground mist, valleys filling with fog; the sky's haze band follows it.
+    "skybox": "https://r2.parallaxpro.ai/assets/…/sky.jpg" (or "assets/images/sky.jpg", or
+    {"texture": ..., "rotation": 90, "intensity": 1}) draws an equirectangular (2:1) panorama
+    as the sky and lights reflections from it; rotation turns it (compass degrees).
+
+    "sky": "atmosphere" is physically based: Rayleigh and Mie scattering through the air at
+    the sun's position (blue noon, red sunsets, dark nights with stars, distant hills hazed
+    by aerial perspective); "atmosphere": {"haze": 1, "sun_size": 1} tunes its air (haze 0
+    crisp .. 4 hazy). The sky's light also lights reflections (the environment cube).
+    "clouds": {"coverage": 0.4, "density": 0.6, "height": 1500, "thickness": 800,
+    "scale": 2500, "speed": 6, "direction": 60} is a drifting cloud layer (meters, m/s,
+    compass degrees it drifts toward). "weather" names the weather (parallax.weather;
+    needs weather())."""
+    time_of_day: float
+    """Hours 0–24; drives sun, sky and ambient if the scene enables a day cycle."""
+    day_length: float
+    """Real seconds per in-game day (0 = time doesn't advance)."""
+    day: int
+    """Days elapsed since the run started (day cycles). `DayChanged` fires at dawn."""
+    def fog(self, density: float | None = None, *, near: float | None = None,
+            far: float | None = None, color: Color | None = None, volumetric: float | None = None,
+            height_falloff: float | None = None, height: float | None = None, seconds: float = 1) -> None:
+        """Exponential (density) or linear (near/far meters) fog; `volumetric` 0..1 light shafts;
+        `height_falloff` (1/m) thins exponential fog above `height` (world y)."""
+    def sky(self, preset: str, *, seconds: float = 1) -> None:
+        """Blend to a sky preset: "clear_day", "atmosphere", "sunset", "dusk" or "night".
+        Grey, rainy and stormy skies are weather (`ctx.weather.set("storm")`)."""
+    def clouds(self, coverage: float | None = None, *, density: float | None = None, speed: float | None = None,
+               direction: float | None = None, seconds: float = 1) -> None:
+        """Change the drifting cloud layer (keys as in the scene's "clouds"); clouds(0) clears the sky."""
+    cloud_cover: float
+    """0..1 of the sky covered now, weather included (read-only)."""
+    def post(self, preset: str | None = None, *, seconds: float = 0, exposure: float = ...,
+             bloom: float = ..., bloom_threshold: float = ..., saturation: float = ..., contrast: float = ...,
+             tint: Color = ..., temperature: float = ..., grain: float = ..., vignette: float = ...,
+             chromatic_aberration: float = ..., ambient_occlusion: float = ..., reflections: bool = ...,
+             god_rays: float = ..., antialias: bool = ...,
+             stylize: dict[str, float | Color] = ...) -> None:
+        """Change post-processing (keys as in the scene's "post"). A preset replaces the scene's
+        look; settings alone override it; `post()` with nothing returns to the scene's.
+        Numbers blend over `seconds`: `ctx.environment.post("night_vision", seconds=0.3)`,
+        `ctx.environment.post(stylize={"pixelate": 4, "posterize": 6})`."""
+    @property
+    def is_night(self) -> bool: ...
+
+class AudioApi:
+    """Sounds, music and the beat. Sounds are files or data (`Synth.*`, `.synth.json`);
+    music can be layered by intensity and carry a beat clock; at most `max_voices` sounds are
+    heard at once (audio.json `priority` decides who gives way, `limit` caps one sound); and
+    the world sounds like itself (`ambience`). Everything is decided deterministically by the
+    engine and recorded in playtests."""
+    def play(self, sound: SoundRef, *, at: Vec3 | Entity | None = None,
+             volume: float = 1, pitch: float = 1, to: Player | None = None, duck: bool = False,
+             quantize: Literal["beat", "bar"] | float | None = None) -> None:
+        """One-shot sound. Volume multiplies the default in assets/audio.json. In a
+        networked game, a call on the server plays on the relevant clients (positional
+        sounds: clients in range; `to=` one player). Loops: `AudioSource`.
+        `duck=True` (dialogue, announcer lines): the music dips while it plays.
+        `quantize="beat"` / `"bar"` / n beats: start on the beat clock's next boundary
+        (sample-accurate; PP3514 without a clock)."""
+    def music(self, track: MusicRef | None, *, fade: float = 1.0, volume: float = 1.0, layers: list[MusicLayer] = [],
+              bpm: float | None = None, beats_per_bar: int = 4, offset: float = 0.0) -> None:
+        """Override the scene's "music" until the next scene load (None fades out).
+        `layers=`: stems that play sample-locked with the track, each heard once
+        `intensity` reaches its `at` (adaptive music; give them the track's length).
+        `volume=` multiplies its audio.json volume (a scene's own music: `"music_volume"` in
+        scene.json), so one hosted track plays at different levels per scene.
+        `bpm=`: start the beat clock with the track — beat 0 is `offset` seconds into it;
+        `Beat` fires every beat. Music without `bpm` stops the clock.
+        While the game is paused (a modal panel froze time; not a hitstop) the music holds
+        where it is and resumes from there, its beat clock with it. A track whose audio.json
+        entry says `"pauses": false` keeps playing (a pause-menu-safe bed)."""
+    intensity: float
+    """0..1 (read; set with `set_intensity`, or assign for a 1 s fade): which layers of the
+    music are heard. Kept across music changes."""
+    def set_group(self, name: str, *, volume: float | None = None, mute: bool | None = None) -> None:
+        """A mix group's level: every sound whose assets/audio.json entry says `"group": name`
+        (one-shots, AudioSource loops, music) is heard at `volume` × its own, or not at all
+        while muted — playing ones follow at once. `set_group("voice", volume=0.6)`, a
+        "Mute music" toggle: `set_group("score", mute=True)`. Saved in snapshots; the player's
+        Settings volumes (master/music/sfx) still apply on top. PP3517 for a group no sound has."""
+    def group_volume(self, name: str) -> float:
+        """The group's volume as set (1 by default; muting leaves it)."""
+    def group_muted(self, name: str) -> bool: ...
+    def set_intensity(self, value: float, *, fade: float = 1.0) -> None:
+        """Layers it turns on or off fade in/out over `fade` seconds."""
+    def set_tempo(self, bpm: float, *, beats_per_bar: int | None = None) -> None:
+        """The beat clock's tempo from now on (beats stay continuous); with no clock running,
+        start one at beat 0 now (a metronome without music)."""
+    beat: float | None
+    """The beat clock's beat now, fractional (negative before beat 0); None without a clock.
+    Read-only, like `bar` and `bpm`."""
+    bar: int | None
+    bpm: float | None
+    def time_to(self, grid: Literal["beat", "bar"] | float) -> float:
+        """Seconds until the clock's next beat / bar / n-beat boundary (a rhythm game's timing window)."""
+    ambience: bool
+    """True (default): the world's own sounds, synthesized — rain as heavy as it falls and
+    wind as strong as it blows (the weather and wind plugins), a thunderclap at each
+    `Thunder`, rivers babbling from their nearest point, lakes lapping, the sea's surf (the
+    water plugin). A scene whose weather names `"sounds"` plays those instead of the
+    synthesized rain/thunder. False: silent, the game plays its own."""
+    max_voices: int
+    """At most this many sounds are heard at once (default 32; music is not counted). Past
+    it, a one-shot replaces a weaker one or is not started, and loops (AudioSource, ambience)
+    go silent — still running — until room frees. Ranked by the sound's audio.json
+    `"priority"` (default 64, higher kept), then how loud it is heard, then age."""
+    impact_sounds: bool
+    """True (default): a physics surface material's `sound` plays at each `Impact`, louder
+    the harder the hit, at most 3 of one sound per 0.1 s. False: the game plays its own."""
+    def preload(self, *sounds: SoundRef | MusicRef, bank: str | None = None) -> None:
+        """Fetch and decode a group of sounds ahead: these sounds, plus every sound whose
+        assets/audio.json entry has `"bank": <bank>` (a level's or a boss fight's). Every sound
+        is preloaded at start; use `unload` to free a bank and this to bring it back."""
+    def unload(self, *sounds: SoundRef | MusicRef, bank: str | None = None) -> None:
+        """Free these sounds' (and the bank's) decoded audio; playing one later loads it again (late)."""
+
+class MusicLayer:
+    """A stem of layered music: `MusicLayer(Assets.music.drums, at=0.4)` is heard once the
+    intensity reaches `at`, at `volume` × its audio.json volume."""
+    track: MusicRef
+    at: float
+    volume: float
+    def __init__(self, track: MusicRef, at: float = 0.5, *, volume: float = 1.0) -> None: ...
+
+class Synth:
+    """Built-in synthesized sounds (no file): `ctx.audio.play(Synth.hit_metal, at=p)`, or an
+    AudioSource's `sound`. A game's own: `assets/sfx/<name>.synth.json` (or assets/music/),
+    named `Assets.sfx.<name>`; `{"preset": "hit_metal", "gain": 0.6}` starts from one of
+    these (its keys merged over the preset's). Every key, with its default (any other key,
+    or a bad value, is PP3513 when the game loads):
+
+        {"duration": 0.3,          # seconds, 0.005-20 (required)
+         "gain": 0.9,              # level after normalization, 0-4
+         "normalize": true,        # false: skip peak normalization (a quieter-than-full sound)
+         "seed": 1,                # noise seed: same spec + seed = same samples
+         "layers": [{              # 1-24, summed (required)
+           "wave": "sine",         # sine | square | saw | triangle | noise (required)
+           "freq": 440,            # Hz at the start (noise ignores it)
+           "freq_end": None,       # glide to this by the layer's end (default: no glide)
+           "sweep": "exponential", # or "linear": the shape of both glides
+           "gain": 1,              # before normalization
+           "delay": 0,             # seconds before it starts
+           "length": None,         # seconds it lasts (default: the rest of the sound)
+           "attack": 0.005, "decay": None, "sustain": 0, "release": 0,
+                                   # ADSR seconds; decay default: the rest of the layer;
+                                   # sustain is a 0-1 level
+           "decay_curve": 0,       # extra exponential decay (higher: snappier)
+           "detune_cents": 0,      # a second oscillator this far off (thickness; may be < 0)
+           "ring_hz": 0,           # ring modulation (metal, bells)
+           "lfo_depth": 0, "lfo_hz": 0,   # tremolo, depth 0-1
+           "drive": 1,             # soft-clip; above 1 adds grit
+           "filter": {"type": "lowpass",  # lowpass | highpass | bandpass | notch | peaking
+                                          # | lowshelf | highshelf (required)
+                      "freq": 2000,       # Hz, above 0 (required)
+                      "freq_end": None, "sweep": "exponential",
+                      "q": 0.707, "gain_db": 0}}]}   # gain_db: peaking and shelf filters
+
+    Numbers other than detune_cents must be at least 0. (None above: leave the key out.)"""
+    ui_click: SoundRef
+    ui_confirm: SoundRef
+    ui_deny: SoundRef
+    ui_hover: SoundRef
+    ui_open: SoundRef
+    ui_close: SoundRef
+    ui_purchase: SoundRef
+    hit_metal: SoundRef
+    hit_flesh: SoundRef
+    hit_stone: SoundRef
+    hit_wood: SoundRef
+    boom: SoundRef
+    whoosh: SoundRef
+    dash: SoundRef
+    footstep_soft: SoundRef
+    footstep_hard: SoundRef
+    splash: SoundRef
+    cast_charge: SoundRef
+    cast_release: SoundRef
+    zap: SoundRef
+    shield_up: SoundRef
+    shield_break: SoundRef
+    heal: SoundRef
+    pickup: SoundRef
+    level_up: SoundRef
+    sting_low: SoundRef
+    sting_high: SoundRef
+    bell: SoundRef
+    alert: SoundRef
+    tick: SoundRef
+    motor_car: SoundRef
+    """Motor beds loop seamlessly (2 s); move `AudioSource.pitch` with the engine's speed."""
+    motor_boat: SoundRef
+    motor_propeller: SoundRef
+    motor_rotor: SoundRef
+    bed_air: SoundRef
+    """Ambience beds loop seamlessly: open air, a deep room, a thicket."""
+    bed_deep: SoundRef
+    bed_thicket: SoundRef
+    rain: SoundRef
+    wind: SoundRef
+    thunder: SoundRef
+    river: SoundRef
+    surf: SoundRef
+    lake: SoundRef
+
+class VfxApi:
+    """Effects. A file in assets/vfx/ describes one (`Assets.vfx.<name>`); `Effect` has
+    ready-made 3D ones ("effect/<name>" in data). One .vfx.json schema serves 2D and 3D
+    (a 2D game ignores the 3D-only keys). Beyond the emission keys (burst, rate, lifetime, speed, spread,
+    gravity, size, color…), a 3D .vfx.json can set its look — `"blend": "additive"` (glows
+    and blooms), `"flipbook": "fire" | "smoke"` (animated sheets), `"image"` + `"frames"`
+    (your own sheet), `"shape": "glow" | "ring"`, `"facing": "velocity"` + `"stretch"`
+    (streaking sparks) or `"up"` (flat on the ground), `"lit"` (sunlit smoke), `"soft"`
+    (meters of fade where it meets the scene), `"intensity"`, `"turbulence"`, `"fade_in"` —
+    and what plays with it: `"light"`, `"sound"`, `"shake"` (cameras nearby), `"haze"`
+    (heat shimmer or a shockwave ring), `"children"` (more effects, with `"delay"`),
+    `"on_death"` (an effect where each particle dies), `"extends"` (a base effect).
+    A 2D .vfx.json can set `"blend": "additive"` (overlaps glow: fire, sparks, magic),
+    `"gravity": [x, y]` (a sideways pull; a number is along y) and `"haze": {"radius": 2,
+    "strength": 0.5, "ring": 0.3, "seconds": 0.5}` (a one-shot's shockwave ripple)."""
+    def play(self, effect: EffectRef, *, at: Vec3 | Vec2 | Entity,
+             color: Color | None = None, color_end: Color | None = None, scale: float = 1,
+             direction: Vec3 | None = None, count: int | None = None) -> None:
+        """One-shot effect (with its children, light, sound and camera shake). Forwarded to
+        relevant clients when called on a server.
+        `color=` tints the particles (start and end, each keeping the effect's alpha);
+        `color_end=` is the colour they fade to instead (its alpha × the effect's end alpha),
+        so `color=gold, color_end=red` runs gold to red; children follow both.
+        `count=`: about this many particles from the effect itself (its burst and rate scaled
+        to it; children keep their own): a bigger pop for a bigger match."""
+    def beam(self, start: Vec3, end: Vec3, *, color: Color | None = None, width: float = 0.05,
+             seconds: float = 0.1, intensity: float = 1) -> None:
+        """A short-lived line effect (tracers, lasers). 3D: a white-hot core in a glow of its
+        color, fading out; `intensity` above 1 blooms."""
+    def lightning(self, start: Vec3, end: Vec3, *, color: Color | None = None, width: float = 0.08,
+                  seconds: float = 0.25, branches: int = 3) -> None:
+        """3D: a jagged, forking bolt from start to end, re-struck many times a second while it
+        shows (storms, tesla coils, chain lightning). Forwarded like `play`."""
+    def trail(self, entity: Entity, *, color: Color | None = None, width: float = 0.1,
+              seconds: float = 0.3, glow: bool = False) -> Handle:
+        """A ribbon behind the entity until cancelled or it is destroyed. 3D: `seconds` of its
+        path, tapering and fading to the tail; `glow=True` adds light (energy, tracers)."""
+    def photo(self, *, width: int = 1280, height: int = 720, camera: Entity | None = None) -> Photo:
+        """3D: the last frame seen from a camera (default: the main one) at a size, read
+        back from the GPU (`Photo.ready` a frame or two later): photo modes, galleries."""
+    def portrait(self, subject: Entity | ModelRef, *, width: int = 256, height: int = 256, yaw: float = 25,
+                 pitch: float = 10, background: Color | None = None) -> Photo:
+        """3D: an entity's Model as it looks now (pose, options, colors), or a model at rest,
+        alone in a studio light, framed by its bounds — HUD portraits, item icons. The
+        background is transparent unless a color is given."""
+
+class Photo:
+    """An image read back from the renderer."""
+    width: int
+    height: int
+    ready: bool
+    """True once the pixels are back (a frame or two after asking)."""
+    data_url: str | None
+    """A PNG data URL a UI image can show, once ready."""
+    error: str | None
+
+class DebugApi:
+    """Visible only in development builds and playtests; stripped from release."""
+    def line(self, a: Vec3 | Vec2, b: Vec3 | Vec2, *, color: Color = ..., seconds: float = 0) -> None: ...
+    def sphere(self, center: Vec3 | Vec2, radius: float, *, color: Color = ..., seconds: float = 0) -> None: ...
+    def box(self, center: Vec3 | Vec2, size: Vec3 | Vec2, *, color: Color = ..., seconds: float = 0) -> None: ...
+    def text(self, at: Vec3 | Vec2, text: str, *, seconds: float = 0) -> None: ...
+    def watch(self, label: str, value: object) -> None: ...
+
+@resource("settings")
+class Settings:
+    """Built-in, keep="profile". Edited through SettingsPanel; readable by games."""
+    master_volume: float = ...
+    music_volume: float = ...
+    sfx_volume: float = ...
+    quality: Literal["low", "medium", "high"] = ...
+    """Render quality ladder (3D): low = one sun cascade, no point/spot shadows or
+    screen-space passes (phones); medium = 3 cascades, AO at half resolution, god rays;
+    high = 4 cascades, full AO, reflections, volumetric fog, volumetric clouds, more lights.
+    Below high, clouds are a flat noise layer on the sky dome."""
+    language: str = ...
+    mouse_sensitivity: float = ...
+    stick_sensitivity: float = ...
+    invert_look: bool = ...
+    controls: dict[str, str] = ...
+    """Remapped bindings set in SettingsPanel, e.g. `"Controls.jump:key": "KeyJ"` or
+    `"Controls.jump:pad"` (keyboard keys and gamepad buttons only). Written by SettingsPanel
+    and `ctx.input.rebind` / `reset_controls`; read it as rows with `ctx.input.controls()`."""
+    reduced_motion: bool = ...
+    """Accessibility: no camera shake from HUD feedback, softer flashes, no pulsing HUD."""
+    high_contrast: bool = ...
+    """Accessibility: solid backgrounds and outlines on HUD widgets."""
+    text_scale: float = ...
+    """Accessibility: HUD text size, 0.75–2."""
+    colorblind: Literal["none", "protanopia", "deuteranopia", "tritanopia"] = ...
+    """Accessibility: colour-vision mode (the HUD's safe palette; the renderers' colour filter)."""
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Players
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Player:
+    """A seat: local split-screen or online. `ctx.players` lists them."""
+    id: str
+    name: str
+    index: int
+    """0-based seat number."""
+    @property
+    def local(self) -> bool: ...
+    @property
+    def entity(self) -> Entity | None: ...
+    def __eq__(self, o: object) -> bool: ...
+    def __hash__(self) -> int: ...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Context — passed to every hook
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Context:
+    """Stable for the whole game; safe to use from tasks and closures across frames."""
+    world: World
+    time: Time
+    input: Input
+    camera: CameraApi
+    scenes: ScenesApi
+    environment: EnvironmentApi
+    ui: UiApi
+    audio: AudioApi
+    vfx: VfxApi
+    debug: DebugApi
+
+    # World-level plugin namespaces (present only when the game includes the plugin).
+    physics: parallax.physics.PhysicsApi     # physics2d() / physics3d()
+    combat: parallax.combat.CombatApi        # combat()
+    nav: parallax.nav.NavApi                 # nav()
+    story: parallax.story.StoryApi           # story()
+    net: parallax.net.NetApi                 # net()
+    save: parallax.save.SaveApi              # save()
+    terrain: parallax.terrain.TerrainApi     # terrain()
+    foliage: parallax.foliage.FoliageApi     # foliage()
+    wind: parallax.wind.WindApi              # wind()
+    water: parallax.water.WaterApi           # water()
+    weather: parallax.weather.WeatherApi     # weather()
+    voxels: parallax.voxels.VoxelsApi        # voxels()
+    city: parallax.city.CityApi              # city()
+    destruction: parallax.destruction.DestructionApi  # destruction()
+    hud: parallax.hud.HudApi                 # hud()
+    economy: parallax.economy.EconomyApi     # economy()
+    cinematics: parallax.cinematics.CinematicsApi  # cinematics()
+    ai: parallax.ai.AiApi                    # ai()
+    voice: parallax.voice.VoiceApi           # voice()
+    chat: parallax.chat.ChatApi              # chat()
+    payments: parallax.payments.PaymentsApi  # payments()
+
+    @property
+    def players(self) -> list[Player]:
+        """Seats in play (one in single-player)."""
+    @property
+    def seed(self) -> int:
+        """The seed of the current scene load."""
+    def get(self, resource: type[R], *, player: Player | None = None) -> R:
+        """The live resource instance; mutate its fields directly. There is one instance
+        per game, even on a server: `player=` only checks that the player is in the
+        game (PP3013) and returns that same shared instance (no per-player storage)."""
+    def modify(self, resource: type[Any], field: str, *, multiply: float = 1, add: float = 0,
+               key: str | None = None, seconds: float | None = None, stack: bool = False) -> None:
+        """Modifiers on a resource's `modifiable` field (same rules as Entity.modify)."""
+    def base(self, resource: type[Any], field: str) -> float: ...
+    def config(self, kind: type[T]) -> T:
+        """The read-only config document."""
+    def content(self, kind: type[T]) -> ContentList[T]: ...
+    def reset(self, *resources: type[Any]) -> None:
+        """Restore these resources to their declared defaults."""
+    def emit(self, event: object) -> None: ...
+    def text(self, key: TextRef, **args: object) -> str:
+        """Localized string in the player's language, with {named} args filled in."""
+    def run(self, fn: Callable[[Context, Task], Awaitable[None]]) -> Handle:
+        """Start an async task `async def f(ctx, task)` owned by the caller."""
+    def tween(self, start: V, end: V, seconds: float, on_update: Callable[[V], None],
+              *, ease: Ease = "linear") -> Handle: ...
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Game, features, plugins
+# ─────────────────────────────────────────────────────────────────────────────
+
+class Plugin:
+    id: str
+
+class Feature:
+    """A folder that bundles a slice of a big game. The checker enforces `requires` for
+    Python imports AND for ids referenced from its JSON (prefabs, content, scenes)."""
+    def __init__(
+        self,
+        id: str,
+        *,
+        requires: Sequence[str] = (),
+        systems: Sequence[type[System]] = (),
+        scenes: SceneScope = (),
+        doc: str | None = None,
+    ) -> None:
+        """`scenes=` is the default scope of every system, panel and action set in the
+        feature (each may still declare its own)."""
+
+class Game:
+    def __init__(
+        self,
+        *,
+        id: str,
+        title: str,
+        sdk: str,
+        start_scene: SceneRef,
+        mode: Literal["2d", "3d"],
+        plugins: Sequence[Plugin] = (),
+        features: Sequence[Feature] = (),
+        systems: Sequence[type[System]] = (),
+        languages: Sequence[str] = ("en",),
+        save_version: int = 1,
+        cursor: Cursor | None = None,
+        pointer_lock: bool = True,
+    ) -> None:
+        """The single entry point (game/main.py, a module variable named `game`).
+        Run order: features' systems in feature order, then `systems` in list order.
+        cursor=: the look of the cursor the engine draws (`Cursor`); default the engine ring.
+        pointer_lock=: on a desktop, an editor's Play locks the pointer to the game view at
+        once, and wherever the game wants a cursor (menus, a board, a HUD button) the engine
+        draws its virtual cursor (`Cursor`), moved by the mouse, until Escape frees it; a
+        click on the game view locks it again. `pointer_lock=False` opts out: the game keeps
+        the OS cursor (a mouse-look scene still locks on a press, as anywhere)."""
+
+def migration(*, from_version: int, to_version: int) -> Callable[[Callable[[SaveData], None]], Callable[[SaveData], None]]: ...
+
+class SaveData:
+    """What a migration sees. Shapes are the JSON forms of the declared fields (a
+    Timer is {"duration", "remaining", "repeat"})."""
+    version: int
+    resources: dict[str, dict[str, Any]]
+    entities: dict[str, dict[str, Any]]
+    facts: dict[str, Any]
+    quests: dict[str, dict[str, Any]]
+    """quest id → {"status", "active_steps", "completed_steps", "progress"}."""
+    environment: dict[str, Any]

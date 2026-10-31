@@ -1,0 +1,10 @@
+{
+  "name": "The Black Chapel", "tint": "#d9f2ff",
+  "rooms": 10, "loops": 0.18, "has_gauntlet": true, "locked_chests": 2, "locks": 2,
+  "enemy_hp_mult": 1.9, "boss_hp_mult": 1.45, "shop_price_mult": 1.6, "elite_chance": 0.42,
+  "squads": {
+    "combat": { "husk": 2, "lurker": 3, "spitter": 3 },
+    "gauntlet": { "brute": 2, "lurker": 4 },
+    "boss": { "chapel_idol": 1 }
+  }
+}

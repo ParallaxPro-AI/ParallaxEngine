@@ -1,0 +1,10 @@
+{
+  "id": "guard_booth",
+  "summary": "A 2.4 m square security hut on a concrete base: off-white insulated panel walls, a window band across the fro… joints camera_pan; options wall_colour; sockets socket_guard, socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.guard_booth or place \"prefab\": \"guard_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:guard_booth"]
+}

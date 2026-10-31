@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/halfling_villager"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0827, 1.1493, 0.4007],
+      "offset": [0, 0.5746, 0.0085]
+    }
+  }
+}

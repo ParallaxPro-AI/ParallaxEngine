@@ -1,0 +1,3 @@
+{ "name": "Smelt Iron", "order": 15, "category": "tools", "station": "furnace", "seconds": 12,
+  "inputs": [{ "item": "iron_ore", "count": 1 }, { "item": "coal_ore", "count": 1 }],
+  "output": { "item": "iron_ingot", "count": 1 } }

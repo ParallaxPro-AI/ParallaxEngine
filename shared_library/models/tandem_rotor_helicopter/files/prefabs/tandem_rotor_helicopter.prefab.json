@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tandem_rotor_helicopter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [16.4606, 6.34, 29.82],
+      "offset": [0, 3.17, -0.2]
+    }
+  }
+}

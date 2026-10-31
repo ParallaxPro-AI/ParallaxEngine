@@ -1,0 +1,10 @@
+{
+  "id": "portal_gate",
+  "summary": "A walk-through portal gate: a 3.2 m ring of dressed stone with iron bands and nine protruding rune blocks who… joints portal_field, swirl_front, swirl_back; options energy, swirl_colour, rune_colour; sockets socket_portal, portal_front, portal_back, arrive.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portal_gate or place \"prefab\": \"portal_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portal_gate"]
+}

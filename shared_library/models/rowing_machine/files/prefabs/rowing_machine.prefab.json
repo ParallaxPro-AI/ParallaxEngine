@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rowing_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.64, 1.2278, 2.3119],
+      "offset": [0, 0.6139, 0.0179]
+    }
+  }
+}

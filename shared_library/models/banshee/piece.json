@@ -1,0 +1,10 @@
+{
+  "id": "banshee",
+  "summary": "A BANSHEE, the wailing spirit of folklore: a gaunt spectral woman about 1.85 m to the crown (a tall woman's h… options mist; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.banshee or place \"prefab\": \"banshee\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:banshee"]
+}

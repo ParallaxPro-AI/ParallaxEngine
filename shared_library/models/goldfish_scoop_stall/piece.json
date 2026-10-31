@@ -1,0 +1,10 @@
+{
+  "id": "goldfish_scoop_stall",
+  "summary": "A festival goldfish-scooping stall (kingyo-sukui): a shallow blue fibreglass tub with a rolled lip on timber… options stripe; sockets seat_player_l, seat_player_r, socket_vendor, socket_catch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.goldfish_scoop_stall or place \"prefab\": \"goldfish_scoop_stall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:goldfish_scoop_stall"]
+}

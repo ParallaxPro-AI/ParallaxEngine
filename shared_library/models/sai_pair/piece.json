@@ -1,0 +1,10 @@
+{
+  "id": "sai_pair",
+  "summary": "A matched pair of sai: each a 0.52 m octagonal steel shaft with two forward-curving side prongs on a forged g… options count, finish, wrap; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.sai_pair or place \"prefab\": \"sai_pair\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:sai_pair"]
+}

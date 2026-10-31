@@ -1,0 +1,10 @@
+{
+  "id": "cotton_candy_cart",
+  "summary": "A carnival candyfloss cart: a pastel cabinet with white trim, inset DESSERT sign panels, two spoked wheels, t… options body, stripe; sockets socket_vendor, socket_customer, socket_serve.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cotton_candy_cart or place \"prefab\": \"cotton_candy_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cotton_candy_cart"]
+}

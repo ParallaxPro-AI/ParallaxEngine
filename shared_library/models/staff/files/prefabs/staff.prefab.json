@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/staff",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.1656,
+        1.7089,
+        0.1932
+      ],
+      "offset": [
+        0.0,
+        0.8544,
+        -0.0138
+      ]
+    }
+  }
+}

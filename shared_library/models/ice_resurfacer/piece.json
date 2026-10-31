@@ -1,0 +1,10 @@
+{
+  "id": "ice_resurfacer",
+  "summary": "An ice-rink resurfacing machine, about 4.8 m long: a low rounded hull on four rink tyres, an open-air driver'… joints snow_tank, conditioner; options paint; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.ice_resurfacer or place \"prefab\": \"ice_resurfacer\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:ice_resurfacer"]
+}

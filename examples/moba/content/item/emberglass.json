@@ -1,0 +1,2 @@
+{ "name": "Emberglass", "blurb": "Fired once, in the forge under the blue terrace. Never cooled.",
+  "icon": "flame", "category": "arcane", "tier": 2, "cost": 1180, "stats": { "ability_power": 58, "max_mana": 120 }, "builds_from": ["dim_crystal"] }

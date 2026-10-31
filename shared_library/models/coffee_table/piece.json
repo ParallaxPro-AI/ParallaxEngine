@@ -1,0 +1,10 @@
+{
+  "id": "coffee_table",
+  "summary": "A living-room coffee table with a lift-top mechanism: the whole top panel rises up and forward on a single di… joints lift_top; options finish; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffee_table or place \"prefab\": \"coffee_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffee_table"]
+}

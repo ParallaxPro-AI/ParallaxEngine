@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boarding_gate_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0542, 2.61, 2.1262],
+      "offset": [-0.0555, 1.305, -0.0569]
+    }
+  }
+}

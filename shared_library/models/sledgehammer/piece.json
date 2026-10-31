@@ -1,0 +1,10 @@
+{
+  "id": "sledgehammer",
+  "summary": "An 8 lb double-face sledgehammer, 0.90 m: a long oval hickory handle with a flared butt knob, a forged square… options grip, handle_finish, head_finish; sockets socket_grip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.sledgehammer or place \"prefab\": \"sledgehammer\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:sledgehammer"]
+}

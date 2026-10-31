@@ -1,0 +1,5 @@
+{
+  "name": "Grappling Nets",
+  "blurb": "+3 to the range you can scoop loot from.",
+  "stat": "pickup_radius", "amount": 3, "max_level": 2
+}

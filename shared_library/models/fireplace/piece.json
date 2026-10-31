@@ -1,0 +1,10 @@
+{
+  "id": "fireplace",
+  "summary": "A chimneypiece: moulded jambs, a lintel and a projecting mantel shelf over a recessed firebox with a cast-iro… options state, finish; sockets socket_fire, socket_mantel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fireplace or place \"prefab\": \"fireplace\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fireplace"]
+}

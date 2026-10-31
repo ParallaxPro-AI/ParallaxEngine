@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/holiday_tree"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.28, 2.055, 1.28],
+      "offset": [0, 1.0275, 0]
+    }
+  }
+}

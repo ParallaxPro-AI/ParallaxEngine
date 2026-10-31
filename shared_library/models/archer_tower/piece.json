@@ -1,0 +1,10 @@
+{
+  "id": "archer_tower",
+  "summary": "A tower-defense archer tower on the set's common 2.4 m stone footing: a braced timber trestle, a planked deck… joints turret_yaw, barrel_pitch; options tier, banner; sockets socket_muzzle, socket_top, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.archer_tower or place \"prefab\": \"archer_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:archer_tower"]
+}

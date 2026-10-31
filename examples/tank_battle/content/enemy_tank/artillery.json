@@ -1,0 +1,1 @@
+{ "name": "Artillery", "prefab": "enemy_tank_artillery", "role": "sniper", "health": 140, "armor": 8, "speed": 3, "damage": 55, "range": 78, "fire_interval": 6.0, "detect": 80, "ride": 0.85, "standoff": 0.95, "shell_speed": 22, "spread": 6.3, "score": 200 }

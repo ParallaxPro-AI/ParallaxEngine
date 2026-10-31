@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hedge_block"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.19, 1.4299, 0.8587],
+      "offset": [0, 0.715, 0.0024]
+    }
+  }
+}

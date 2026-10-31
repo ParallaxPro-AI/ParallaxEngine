@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/river_bear"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9394, 1.2149, 2.0814],
+      "offset": [0.0053, 0.6089, -0.0707]
+    }
+  }
+}

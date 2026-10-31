@@ -1,0 +1,32 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/68/6e/686e4cd01e63d93f831ce94e8e324ee4a3488a966bf3aeae9bb6b06e473f927d.glb",
+      "cast_shadows": true,
+      "colors": {
+        "Black": "#ffffff",
+        "White": "#ffffff",
+        "LightMetal": "#ffffff",
+        "DarkMetal": "#ffffff",
+        "Glass": "#ffffff"
+      }
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    },
+    "station": {
+      "kind": "stove"
+    },
+    "pot": {}
+  },
+  "scale": [
+    2.2,
+    1.5,
+    1.6
+  ]
+}

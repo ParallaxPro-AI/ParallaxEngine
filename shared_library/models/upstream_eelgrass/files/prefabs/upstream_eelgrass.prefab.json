@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/upstream_eelgrass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8763, 1.37, 0.8057],
+      "offset": [0.0103, 0.685, 0.0025]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/candelabra_gothic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.612, 1.864, 0.612],
+      "offset": [0, 0.932, 0]
+    }
+  }
+}

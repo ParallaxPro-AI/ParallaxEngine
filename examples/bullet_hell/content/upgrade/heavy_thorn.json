@@ -1,0 +1,1 @@
+{ "name": "Heavy Thorn", "description": "+0.5 damage per spark.", "stat": "spark_damage", "add": 0.5, "max_stacks": 4 }

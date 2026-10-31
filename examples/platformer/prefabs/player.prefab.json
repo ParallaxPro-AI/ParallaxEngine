@@ -1,0 +1,112 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/dd/a0/dda01b24866ddd07e5c3c8ed5d5d4701cce716db1546e3dc71d0b277e7185c7f.glb",
+      "cast_shadows": true
+    },
+    "animator": {
+      "params": {
+        "speed": 0,
+        "grounded": true,
+        "dashing": false
+      },
+      "layers": [
+        {
+          "name": "base",
+          "states": {
+            "move": {
+              "blend": {
+                "param": "speed",
+                "clips": [
+                  {
+                    "at": 0,
+                    "clip": "Idle"
+                  },
+                  {
+                    "at": 8,
+                    "clip": "Run"
+                  }
+                ]
+              }
+            },
+            "air": {
+              "clip": "Jump_Idle"
+            },
+            "dash": {
+              "clip": "Run",
+              "speed": 1.6
+            }
+          },
+          "transitions": [
+            {
+              "from": "*",
+              "to": "dash",
+              "when": [
+                "dashing"
+              ],
+              "fade": 0.05
+            },
+            {
+              "from": "dash",
+              "to": "move",
+              "when": [
+                "not dashing",
+                "grounded"
+              ],
+              "fade": 0.1
+            },
+            {
+              "from": "dash",
+              "to": "air",
+              "when": [
+                "not dashing",
+                "not grounded"
+              ],
+              "fade": 0.1
+            },
+            {
+              "from": "move",
+              "to": "air",
+              "when": [
+                "not grounded"
+              ],
+              "fade": 0.1
+            },
+            {
+              "from": "air",
+              "to": "move",
+              "when": [
+                "grounded"
+              ],
+              "fade": 0.08
+            }
+          ]
+        }
+      ]
+    },
+    "character": {
+      "mode": "3d",
+      "lock_axes": [
+        "z"
+      ],
+      "walk_speed": 8,
+      "run_speed": 8,
+      "acceleration": 60,
+      "jump_height": 2.3,
+      "air_control": 0.85,
+      "air_jumps": 1,
+      "radius": 0.4,
+      "height": 1.6
+    }
+  },
+  "tags": [
+    "player"
+  ],
+  "behaviors": {
+    "hero_control": {
+      "jump_buffer": 0.15,
+      "dash_speed": 12,
+      "dash_seconds": 0.2
+    }
+  }
+}

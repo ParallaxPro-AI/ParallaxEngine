@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_window_shutters"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.074, 1.2, 0.0655],
+      "offset": [0, 0.6, 0.0047]
+    }
+  }
+}

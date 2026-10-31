@@ -1,0 +1,14 @@
+{
+  "id": "fence_panel",
+  "summary": "A two-bay boundary fence run on three posts: a fixed infill panel and a matching swing-gate bay hung off… joints gate; options style.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fence_panel or place \"prefab\": \"fence_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fence_panel"
+  ]
+}

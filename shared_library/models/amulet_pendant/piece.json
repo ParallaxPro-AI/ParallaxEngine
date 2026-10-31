@@ -1,0 +1,10 @@
+{
+  "id": "amulet_pendant",
+  "summary": "A magic amulet dropped on the ground: a gold star-and-oval medallion (34 x 42 mm oval, 58 x 66 mm across the…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.amulet_pendant or place \"prefab\": \"amulet_pendant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:amulet_pendant"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bread_slicer",
+  "summary": "A floor-standing gravity-feed bakery bread slicer: an enamel housing on a caster stand with an open bay (bag… joints pusher, hood, crumb_drawer; options finish; sockets output_tray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bread_slicer or place \"prefab\": \"bread_slicer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bread_slicer"]
+}

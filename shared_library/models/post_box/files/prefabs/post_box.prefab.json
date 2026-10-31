@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/post_box",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.66,
+        1.38,
+        0.725
+      ],
+      "offset": [
+        0.0,
+        0.69,
+        0.0325
+      ]
+    }
+  }
+}

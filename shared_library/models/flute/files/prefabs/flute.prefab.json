@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flute"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.67, 0.025, 0.0344],
+      "offset": [0, 0.0126, -0.0013]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grand_piano"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.536, 1.2643, 2.293],
+      "offset": [0, 0.6321, 0.0185]
+    }
+  }
+}

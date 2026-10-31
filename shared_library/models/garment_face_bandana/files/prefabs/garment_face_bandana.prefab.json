@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_face_bandana"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.211, 0.2535, 0.2588],
+      "offset": [0, 1.6146, -0.0154]
+    }
+  }
+}

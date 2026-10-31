@@ -1,0 +1,10 @@
+{
+  "id": "printer",
+  "summary": "A desktop printer / office multi-function device. joints paper_tray, lid, output_tray; options config; sockets socket_output.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.printer or place \"prefab\": \"printer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:printer"]
+}

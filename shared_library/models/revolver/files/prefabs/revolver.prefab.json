@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/revolver"
+    },
+    "viewmodel_item": {
+      "hip": [0.0987, -0.2347, 0.4431],
+      "hip_turn": [-2.864789, -3.781521, -6.589015],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.04, 0.1333, 0.2532],
+      "offset": [0, 0.0668, -0.0026]
+    }
+  }
+}

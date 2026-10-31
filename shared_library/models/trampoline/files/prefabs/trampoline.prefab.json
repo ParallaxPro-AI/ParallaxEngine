@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trampoline"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.56, 0.751, 3.9934],
+      "offset": [0, 0.3755, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "noodle_stall",
+  "summary": "A night-market street noodle stall: a red-painted cart with a stainless counter on castors, two steaming stoc… joints pot_1_lid, pot_2_lid, case_door; options paint, awning, stools, sign; sockets seat_1, seat_2, seat_3, ledge_top, steam_1, steam_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.noodle_stall or place \"prefab\": \"noodle_stall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:noodle_stall"]
+}

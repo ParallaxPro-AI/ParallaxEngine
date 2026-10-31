@@ -1,0 +1,10 @@
+{
+  "id": "transmission_pylon",
+  "summary": "A 41 m galvanised-steel lattice transmission tower for a double-circuit high-voltage line: four battered angl… options finish, insulators; sockets socket_line_low_l, socket_line_low_r, socket_line_mid_l, socket_line_mid_r, socket_line_high_l, socket_line_high_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.transmission_pylon or place \"prefab\": \"transmission_pylon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:transmission_pylon"]
+}

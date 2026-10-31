@@ -1,0 +1,10 @@
+{
+  "id": "tandoor_oven",
+  "summary": "A restaurant tandoor: a square stainless cabinet on four casters housing a clay pot whose rolled lip rises th… joints lid, ash_door; options casing; sockets mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tandoor_oven or place \"prefab\": \"tandoor_oven\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tandoor_oven"]
+}

@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="theme.css">
+<style>
+  .lib-radial { position: fixed; left: 50%; top: 50%; width: 22em; height: 22em; transform: translate(-50%, -50%);
+                border-radius: 50%; background: var(--lib-panel); border: 1px solid var(--lib-line); }
+  .lib-radial .slot { position: absolute; transform: translate(-50%, -50%); display: grid; justify-items: center; gap: 0.2em; pointer-events: auto; }
+  .lib-radial .slot.lit { border-color: var(--lib-accent); color: var(--lib-accent); }
+  .lib-radial .icon { font-size: 1.8em; }
+  .lib-radial .current { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-weight: 700; }
+</style>
+<div class="lib-hud">
+  <div class="lib-radial">
+    <div data-each="slots">
+      <template>
+        <button class="lib-button slot" data-action="pick" data-class-lit="lit" data-style-left="x" data-style-top="y">
+          <span class="icon" data-bind="icon"></span><span data-bind="label"></span>
+        </button>
+      </template>
+    </div>
+    <div class="current" data-bind="current"></div>
+  </div>
+</div>

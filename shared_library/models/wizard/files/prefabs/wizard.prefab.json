@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wizard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.65, 2.045, 0.6354],
+      "offset": [0, 1.0225, -0.0128]
+    }
+  }
+}

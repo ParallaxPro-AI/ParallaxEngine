@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gurney"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.69, 1.135, 2.05],
+      "offset": [0, 0.5675, 0]
+    }
+  }
+}

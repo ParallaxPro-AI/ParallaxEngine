@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/greenhouse_shelf_seedlings"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 1.3298, 0.531],
+      "offset": [0, 0.6649, -0.0055]
+    }
+  }
+}

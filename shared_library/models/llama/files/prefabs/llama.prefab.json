@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/llama"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5157, 1.9827, 1.6221],
+      "offset": [0, 0.9907, 0.0717]
+    }
+  }
+}

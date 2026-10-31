@@ -1,0 +1,10 @@
+{
+  "id": "road_work_sign",
+  "summary": "A portable roadworks warning sign: a 0.9 m orange diamond with a black border and lettering, braced behind an… joints panel_fold, sway; options message, flags, sheeting; sockets socket_lamp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_work_sign or place \"prefab\": \"road_work_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_work_sign"]
+}

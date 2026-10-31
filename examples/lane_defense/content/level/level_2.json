@@ -1,0 +1,17 @@
+{
+  "number": 2,
+  "title": "Room to grow",
+  "subtitle": "Build an economy",
+  "hint": "Plant a Pollen Bloom at the back. It grows pollen for more defenders.",
+  "reward": "Barkshell + irrigation",
+  "lanes": [1, 2, 3],
+  "cards": ["pollenbloom", "thornspitter"],
+  "start_pollen": 350,
+  "buildup": 14,
+  "interval": 23,
+  "waves": [
+    { "husks": ["shambler", "shambler"] },
+    { "husks": ["shambler", "shambler", "shambler"] },
+    { "husks": ["shambler", "shambler", "shambler", "shambler"] }
+  ]
+}

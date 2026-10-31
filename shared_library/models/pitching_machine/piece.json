@@ -1,0 +1,10 @@
+{
+  "id": "pitching_machine",
+  "summary": "A two-wheel baseball / softball pitching machine on a tripod: three splayed legs with rubber feet and braces… joints head_pan, head_tilt, wheel_l, wheel_r; options guard; sockets socket_release, socket_operator, release.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pitching_machine or place \"prefab\": \"pitching_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pitching_machine"]
+}

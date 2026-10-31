@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/seagull"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1509, 0.3223, 0.5678],
+      "offset": [0.001, 0.1615, -0.0329]
+    }
+  }
+}

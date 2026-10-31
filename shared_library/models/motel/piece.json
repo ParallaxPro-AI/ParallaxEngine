@@ -1,0 +1,10 @@
+{
+  "id": "motel",
+  "summary": "A two-storey L-shaped roadside motel, 21.7 x 16 m: a main wing of three guest rooms plus a corner office (gro… options facade_colour, door_colour; sockets socket_office_desk, socket_reception, socket_stair_foot, socket_lot, eye_point, eye_room2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.motel or place \"prefab\": \"motel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:motel"]
+}

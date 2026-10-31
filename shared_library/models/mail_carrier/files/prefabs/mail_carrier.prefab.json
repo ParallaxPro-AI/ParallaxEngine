@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mail_carrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.72, 0.4307],
+      "offset": [0, 0.86, -0.0263]
+    }
+  }
+}

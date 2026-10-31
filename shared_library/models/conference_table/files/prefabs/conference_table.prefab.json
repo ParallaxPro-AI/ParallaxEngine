@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/conference_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 0.7535, 1.2],
+      "offset": [0, 0.3757, 0]
+    }
+  }
+}

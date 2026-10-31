@@ -1,0 +1,10 @@
+{
+  "id": "water_butt",
+  "summary": "A domestic rainwater butt on a low stand, with a hinged lid, a brass tap near the base, a moulded rib pattern… joints lid; options fill, finish; sockets tap, lid_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_butt or place \"prefab\": \"water_butt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_butt"]
+}

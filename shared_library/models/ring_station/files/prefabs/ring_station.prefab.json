@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ring_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [44.74, 14.24, 44.74],
+      "offset": [0, 0.02, 0]
+    }
+  }
+}

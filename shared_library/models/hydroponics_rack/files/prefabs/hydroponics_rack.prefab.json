@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hydroponics_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.666, 2.13, 0.65],
+      "offset": [0.018, 1.065, 0]
+    }
+  }
+}

@@ -1,0 +1,3 @@
+{ "name": "Stone Axe", "order": 4, "category": "tools", "station": "workbench",
+  "inputs": [{ "item": "stone", "count": 3 }, { "item": "wood_log", "count": 2 }],
+  "output": { "item": "stone_axe", "count": 1 } }

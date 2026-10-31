@@ -1,0 +1,10 @@
+{
+  "id": "roller_conveyor",
+  "summary": "A modular powered roller conveyor line: two channel side frames on splayed leg sets, a bed of free-spinning r… joints roller_0, roller_1, roller_2, roller_3, roller_4, roller_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roller_conveyor or place \"prefab\": \"roller_conveyor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roller_conveyor"]
+}

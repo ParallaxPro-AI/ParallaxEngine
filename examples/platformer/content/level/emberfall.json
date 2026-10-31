@@ -1,0 +1,11 @@
+{
+  "name": "Cinderworks",
+  "world": "Ember",
+  "theme": "ember",
+  "subtitle": "Read the machinery. Find a moment to leap.",
+  "scene": "level_emberfall",
+  "order": 4,
+  "length": 135,
+  "par_time": 90,
+  "sections": ["The warm welcome", "Pendulum yard", "Cinder crossing", "The last sky gate"]
+}

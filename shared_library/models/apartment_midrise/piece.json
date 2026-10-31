@@ -1,0 +1,10 @@
+{
+  "id": "apartment_midrise",
+  "summary": "A seven-storey rendered apartment block over a shop frontage: granite base course and piers, four lit shopfro… joints entrance, entrance_r; options facade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.apartment_midrise or place \"prefab\": \"apartment_midrise\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:apartment_midrise"]
+}

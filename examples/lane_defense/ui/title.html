@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="garden.css">
+<div class="ld-root" id="garden-menu" data-class-ld-reduced="reduced_motion">
+  <div class="hero">
+    <div class="portraits">
+      <div class="medal"><i class="ld-a-bloom"></i></div>
+      <div class="medal big"><i class="ld-a-thorn"></i></div>
+      <div class="medal"><i class="ld-a-bark"></i></div>
+    </div>
+    <h1><span class="name" data-text="game_title"></span><span>.</span></h1>
+    <p class="tagline" data-text="tagline"></p>
+  </div>
+  <div class="ld-paper panel">
+    <div class="head">
+      <span class="ld-eyebrow" data-text="choose_garden"></span>
+      <span class="chapter"><span class="long" data-text="chapter_title"></span><span class="short" data-text="chapter_short"></span></span>
+    </div>
+    <div class="levels" data-each="levels">
+      <template>
+        <button class="node" data-action="choose_level" data-class-sel="selected" data-class-starred="starred"
+                data-class-locked="locked" data-attr-disabled="locked">
+          <span class="badge" data-bind="badge"></span>
+          <span class="ntext">
+            <span class="ntitle" data-bind="title"></span>
+            <span class="cap">
+              <svg class="lock" data-show="locked" viewBox="0 0 12 14" aria-hidden="true"><rect x="1" y="6" width="10" height="7.5" rx="2" fill="#4a6150"/><path d="M3.5 6V4.2a2.5 2.5 0 0 1 5 0V6" stroke="#4a6150" stroke-width="1.8" fill="none"/></svg>
+              <span data-bind="cap"></span>
+            </span>
+          </span>
+        </button>
+      </template>
+    </div>
+    <div class="rule"></div>
+    <div class="sel-row">
+      <div class="sel-block">
+        <span class="ld-eyebrow gold" data-bind="selected.number"></span>
+        <h2 data-bind="selected.title"></h2>
+        <p class="sub" data-bind="selected.subtitle"></p>
+      </div>
+      <div class="reward">
+        <span class="ico"><i data-show="selected.reward_art" data-attr-class="selected.reward_art"></i><span data-hide="selected.reward_art">✿</span></span>
+        <span><span data-bind="selected.reward_label"></span>: <strong data-bind="selected.reward"></strong></span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="ld-primary" data-action="start"><span data-text="play"></span> <span>→</span></button>
+      <button class="ld-outline" data-action="continue" data-show="can_continue" data-text="continue_garden"></button>
+      <button class="how-open" data-action="toggle_how" data-text="how_to_play"></button>
+    </div>
+    <div class="how">
+      <button class="how-toggle" data-action="toggle_how"><span data-text="how_to_play"></span><b><span data-show="how_open">–</span><span data-hide="how_open">+</span></b></button>
+      <div class="how-body" data-show="how_open">
+        <div class="how-head"><span class="ld-eyebrow" data-text="how_to_play"></span><button class="how-close" data-action="toggle_how" aria-label="Close how to play">×</button></div>
+        <p class="lead" data-text="how_lead"></p>
+        <div class="keys">
+          <span><kbd>1–7</kbd><span data-text="how_choose"></span></span>
+          <span><kbd data-text="how_arrows_key"></kbd><span data-text="how_plant"></span></span>
+          <span><kbd>W</kbd><span data-text="how_irrigate"></span></span>
+          <span><kbd>P</kbd><span data-text="how_pause"></span></span>
+        </div>
+        <p class="touch-line" data-text="how_touch"></p>
+        <p class="how-reward"><span data-bind="selected.reward_label"></span>: <strong data-bind="selected.reward"></strong></p>
+        <p class="guide" data-text="how_guide"></p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "color": "#c4aa86",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "scale": [
+    0.1,
+    1.4,
+    0.1
+  ]
+}

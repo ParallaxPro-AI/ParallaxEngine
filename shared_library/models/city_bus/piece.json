@@ -1,0 +1,10 @@
+{
+  "id": "city_bus",
+  "summary": "A 12 m two-door low-floor transit bus. joints door_front, door_front_fold, door_rear, door_rear_fold; options type; sockets eye_point, socket_driver, socket_front_door, socket_rear_door, seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.city_bus or place \"prefab\": \"city_bus\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:city_bus"]
+}

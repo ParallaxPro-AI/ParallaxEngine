@@ -1,0 +1,10 @@
+{
+  "id": "radiator",
+  "summary": "A wall-hung hydronic radiator with a turning thermostatic valve (TRV) and a runtime panel/column body style. joints thermostat_valve; options style, finish; sockets socket_wall.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.radiator or place \"prefab\": \"radiator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:radiator"]
+}

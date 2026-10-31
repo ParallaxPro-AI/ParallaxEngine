@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tycoon_upgrader_conveyor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.08, 2.18, 2.54],
+      "offset": [0, 1.09, 0]
+    }
+  }
+}

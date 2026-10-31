@@ -1,0 +1,8 @@
+{
+  "id": "humanoid_sports",
+  "summary": "Humanoid basketball clips: jump shot, set shot, ball handling, dribble, defensive stance, rebound and layup, with release markers.",
+  "version": "2026.10.23",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.ball_handle) or \"clip\": \"clips/jump_shot\" in an animation graph. They retarget onto any humanoid skeleton by bone name."
+  ]
+}

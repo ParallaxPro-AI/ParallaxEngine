@@ -1,0 +1,10 @@
+{
+  "id": "rocking_horse",
+  "summary": "A child's painted wooden rocking horse on two curved runners: a rounded barrel body, arched neck and head wit… joints rock; options coat, mane, saddle; sockets seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rocking_horse or place \"prefab\": \"rocking_horse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rocking_horse"]
+}

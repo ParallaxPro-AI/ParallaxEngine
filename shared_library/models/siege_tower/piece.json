@@ -1,0 +1,10 @@
+{
+  "id": "siege_tower",
+  "summary": "A 10.5 m wheeled siege tower: a three-storey timber frame on a heavy chassis with four iron-tyred plank wheel… joints axle_front, axle_rear, ramp; options cladding, banner, banner_color.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.siege_tower or place \"prefab\": \"siege_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:siege_tower"]
+}

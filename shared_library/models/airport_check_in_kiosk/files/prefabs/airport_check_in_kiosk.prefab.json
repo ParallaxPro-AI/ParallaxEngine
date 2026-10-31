@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/airport_check_in_kiosk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 1.84, 0.59],
+      "offset": [0, 0.92, 0.015]
+    }
+  }
+}

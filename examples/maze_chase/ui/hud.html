@@ -1,0 +1,180 @@
+<!-- Cabinet HUD: score / best / pips on the left; level, depth meter, Stalker pace, life orbs
+     and the STALKERS VULNERABLE fright timer on the right; the READY splash; the desktop key
+     hint; the touch-only pause chip and swipe hint. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ggh { position: fixed; inset: 0; pointer-events: none; }
+  .ggh-side { --ggh-w: min(calc(360 * var(--gg-u)), calc(var(--gg-band) - 48 * var(--gg-u))); position: absolute; top: 50%; transform: translateY(-50%); width: var(--ggh-w); display: flex; flex-direction: column; gap: calc(48 * var(--gg-u)); }
+  .ggh-side.l { left: max(16px, calc(var(--gg-band) - var(--ggh-w) - 60 * var(--gg-u))); }
+  .ggh-side.r { right: max(16px, calc(var(--gg-band) - var(--ggh-w) - 60 * var(--gg-u))); align-items: flex-end; text-align: right; }
+  .ggh-grp { display: flex; flex-direction: column; gap: calc(16 * var(--gg-u)); align-self: stretch; }
+  .ggh-side.r .ggh-grp { align-items: flex-end; }
+  .ggh-top { display: flex; align-items: center; gap: calc(10 * var(--gg-u)); align-self: stretch; }
+  .ggh-top .gg-lbl { flex: 1; }
+  .ggh-score { font-size: var(--gg-fs-score); white-space: nowrap; }
+  .ggh-sub { font: 500 var(--gg-fs-sub)/1.4 var(--gg-font-mono); color: var(--gg-ink-2); letter-spacing: .06em; white-space: nowrap; text-transform: uppercase; }
+  .ggh-sub b { color: var(--gg-ink); font-weight: 700; }
+  .ggh-lvname { font-size: var(--gg-fs-level); white-space: nowrap; text-transform: uppercase; }
+  .ggh-depth { display: flex; gap: calc(6 * var(--gg-u)); align-self: stretch; }
+  .ggh-depth i { flex: 1; height: calc(8 * var(--gg-u)); border-radius: 2px; box-shadow: inset 0 0 0 1px var(--gg-line-strong); }
+  .ggh-depth i.done { background: rgba(127,220,255,.35); box-shadow: none; }
+  .ggh-depth i.now { background: var(--gg-cyan); box-shadow: 0 0 calc(12 * var(--gg-u)) rgba(127,220,255,.6); }
+  .ggh-lives { display: flex; gap: calc(14 * var(--gg-u)); }
+  .ggh-orb { width: calc(40 * var(--gg-u)); height: calc(40 * var(--gg-u)); border-radius: 50%; background: var(--gg-orb); box-shadow: 0 0 calc(16 * var(--gg-u)) rgba(255,206,51,.55), inset calc(-3 * var(--gg-u)) calc(-4 * var(--gg-u)) calc(6 * var(--gg-u)) rgba(150,90,0,.4); transition: all .35s var(--gg-ease-out); }
+  .ggh-orb.lost { background: transparent; box-shadow: inset 0 0 0 2px rgba(255,210,74,.28); transform: scale(.82); }
+  .ggh-fright { display: flex; flex-direction: column; gap: calc(10 * var(--gg-u)); align-self: stretch; align-items: flex-end; opacity: 0; transition: opacity .2s; }
+  .ggh.is-fright .ggh-fright { opacity: 1; }
+  .ggh-badge { font: 700 calc(15 * var(--gg-u))/1 var(--gg-font-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--gg-peri); padding: calc(11 * var(--gg-u)) calc(14 * var(--gg-u)); border-radius: calc(8 * var(--gg-u)); background: rgba(47,63,224,.2); box-shadow: inset 0 0 0 1.5px var(--gg-peri), var(--gg-glow-peri); text-shadow: 0 0 calc(10 * var(--gg-u)) rgba(159,180,255,.7); white-space: nowrap; }
+  .ggh.is-fright .ggh-badge { animation: ggh-blink var(--gg-blink) steps(1) infinite; }
+  .ggh.is-fright.ending .ggh-badge { animation-duration: .3s; }
+  @keyframes ggh-blink { 50% { opacity: .3; } }
+  .ggh-fbar { align-self: stretch; height: calc(8 * var(--gg-u)); border-radius: 99px; background: rgba(159,180,255,.15); overflow: hidden; }
+  .ggh-fbar i { display: block; height: 100%; width: 0; margin-left: auto; border-radius: 99px; background: linear-gradient(90deg, #fff, var(--gg-peri)); box-shadow: 0 0 calc(10 * var(--gg-u)) var(--gg-peri); transition: width .12s linear; }
+  .ggh.ending .ggh-fbar i { animation: ggh-flash .3s steps(1) infinite; }
+  @keyframes ggh-flash { 50% { background: #fff; } }
+  .ggh-ftime { font: 600 calc(14 * var(--gg-u))/1 var(--gg-font-mono); color: var(--gg-peri); letter-spacing: .1em; }
+  .ggh-hint { position: absolute; left: 50%; bottom: calc(26 * var(--gg-u)); transform: translateX(-50%); white-space: nowrap; font: 500 var(--gg-fs-hint)/1 var(--gg-font-mono); color: var(--gg-ink-2); letter-spacing: .02em; }
+  .ggh-hint em { font-style: normal; font-weight: 700; color: var(--gg-gold); }
+  .ggh-ready { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) scale(.3); opacity: 0; display: flex; flex-direction: column; align-items: center; gap: calc(22 * var(--gg-u)); white-space: nowrap; padding: calc(36 * var(--gg-u)) calc(48 * var(--gg-u)); background: radial-gradient(closest-side, rgba(6,5,26,.85), rgba(6,5,26,0)); }
+  .ggh-ready.show { animation: ggh-ready-in var(--gg-dur-ready) var(--gg-ease-out) both; }
+  .ggh-ready.hide { animation: ggh-ready-out .25s ease-in both; }
+  @keyframes ggh-ready-in { 0% { opacity: 0; transform: translate(-50%, -50%) scale(.3); } 60% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); } 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); } }
+  @keyframes ggh-ready-out { from { opacity: 1; transform: translate(-50%, -50%) scale(1); } to { opacity: 0; transform: translate(-50%, -50%) scale(1.25); } }
+  .ggh-rw { font-size: var(--gg-fs-ready); text-transform: uppercase; }
+  .ggh-rs { font-size: calc(16 * var(--gg-u)); letter-spacing: .1em; text-transform: uppercase; }
+  .ggh-mhint { display: none; }
+  .ggh-pause { display: none; width: 44px; height: 44px; flex: none; border-radius: 50%; border: 0; background: var(--gg-bg-raise); box-shadow: inset 0 0 0 1.5px var(--gg-cyan), var(--gg-glow-cyan); place-items: center; cursor: pointer; pointer-events: auto; }
+  .ggh-pause svg { width: 14px; height: 16px; display: block; }
+  .ggh-pause rect { fill: var(--gg-cyan); }
+  .ggh-pause:active { box-shadow: inset 0 0 0 1.5px var(--gg-gold), var(--gg-glow-gold); }
+  .ggh-pause:active rect { fill: var(--gg-gold); }
+  @media (pointer: coarse) {
+    .ggh-pause { display: grid; }
+    .ggh-hint { display: none; }
+  }
+  @media (max-height: 500px) {
+    .ggh-side { top: 0; bottom: 0; transform: none; width: var(--gg-band); gap: calc(12 * var(--gg-u)); }
+    .ggh-side.l { left: 0; padding: calc(16 * var(--gg-u)) calc(14 * var(--gg-u)) calc(16 * var(--gg-u)) var(--gg-safe-l); }
+    .ggh-side.r { right: 0; padding: calc(12 * var(--gg-u)) var(--gg-safe-r) calc(16 * var(--gg-u)) calc(14 * var(--gg-u)); align-items: stretch; text-align: left; }
+    .ggh-side.r .ggh-grp { align-items: flex-start; }
+    .ggh-grp { gap: calc(7 * var(--gg-u)); }
+    .ggh-side.r .ggh-grp { gap: calc(12 * var(--gg-u)); }
+    .ggh-side.r .gg-lbl.rev { flex-direction: row; }
+    .ggh-side.r .gg-lbl.rev::after { background: linear-gradient(90deg, var(--gg-line-strong), transparent); }
+    .ggh-lives-lbl { display: none; }
+    .ggh-depth i { height: calc(5 * var(--gg-u)); }
+    .ggh-lives { gap: calc(8 * var(--gg-u)); }
+    .ggh-orb { width: calc(22 * var(--gg-u)); height: calc(22 * var(--gg-u)); }
+    .ggh-fright { gap: calc(6 * var(--gg-u)); align-items: flex-start; }
+    .ggh-badge { font-size: calc(9 * var(--gg-u)); padding: calc(7 * var(--gg-u)) calc(8 * var(--gg-u)); border-radius: calc(6 * var(--gg-u)); letter-spacing: .12em; }
+    .ggh-fbar { height: calc(5 * var(--gg-u)); }
+    .ggh-fbar i { margin-left: 0; }
+    .ggh-ftime { font-size: calc(9 * var(--gg-u)); }
+    .ggh-ready { gap: calc(10 * var(--gg-u)); padding: calc(16 * var(--gg-u)) calc(22 * var(--gg-u)); }
+    .ggh-rs { font-size: calc(8 * var(--gg-u)); }
+    .ggh-hint { display: none; }
+  }
+  @media (max-height: 500px) and (pointer: coarse) {
+    .ggh-mhint { display: block; align-self: flex-start; margin-top: calc(10 * var(--gg-u)); font: 500 var(--gg-fs-hint)/1.35 var(--gg-font-mono); color: var(--gg-ink-2); padding: calc(7 * var(--gg-u)) calc(10 * var(--gg-u)); border-radius: 999px; background: rgba(127,220,255,.06); box-shadow: inset 0 0 0 1px var(--gg-line); transition: opacity .5s, transform .5s; }
+    .ggh-mhint.gone { opacity: 0; transform: translateY(-4px); }
+  }
+  @media (pointer: coarse) and (min-height: 501px) {
+    .ggh-mhint { display: block; position: absolute; left: 50%; bottom: calc(26 * var(--gg-u)); transform: translateX(-50%); white-space: nowrap; font: 500 var(--gg-fs-hint)/1 var(--gg-font-mono); color: var(--gg-ink-2); transition: opacity .5s; }
+    .ggh-mhint.gone { opacity: 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ggh.is-fright .ggh-badge, .ggh.ending .ggh-fbar i { animation: none; }
+  }
+  /* Portrait: the camera fits the maze to the screen WIDTH, so the side gutters are gone.
+     Both columns move into the band above the maze, at roughly landscape-phone sizes. */
+  @media (max-aspect-ratio: 1/1) {
+    .ggh {
+      --gg-u: calc(100vw / 480);
+      --gg-fs-score: calc(26 * var(--gg-u)); --gg-fs-level: calc(16 * var(--gg-u)); --gg-fs-label: calc(10 * var(--gg-u));
+      --gg-fs-sub: calc(11 * var(--gg-u)); --gg-fs-hint: calc(11 * var(--gg-u)); --gg-fs-ready: calc(28 * var(--gg-u));
+    }
+    .ggh-side { top: max(16px, env(safe-area-inset-top, 0px)); bottom: auto; transform: none; width: calc(50vw - 24px); gap: calc(8 * var(--gg-u)); }
+    .ggh-side.l { left: max(16px, env(safe-area-inset-left, 0px)); }
+    .ggh-side.r { right: max(16px, env(safe-area-inset-right, 0px)); }
+    .ggh-grp { gap: calc(6 * var(--gg-u)); }
+    .ggh-lives-lbl { display: none; }
+    .ggh-depth i { height: calc(5 * var(--gg-u)); }
+    .ggh-lives { gap: calc(8 * var(--gg-u)); }
+    .ggh-orb { width: calc(20 * var(--gg-u)); height: calc(20 * var(--gg-u)); }
+    .ggh-badge { font-size: calc(9 * var(--gg-u)); padding: calc(6 * var(--gg-u)) calc(8 * var(--gg-u)); }
+    .ggh-fbar { height: calc(5 * var(--gg-u)); }
+    .ggh-ftime { font-size: calc(9 * var(--gg-u)); }
+    .ggh-pause { width: 88px; height: 88px; }
+    .ggh-pause svg { width: 28px; height: 32px; }
+    .ggh-ready { gap: calc(10 * var(--gg-u)); padding: calc(16 * var(--gg-u)) calc(22 * var(--gg-u)); }
+    .ggh-rs { font-size: calc(8 * var(--gg-u)); }
+    .ggh-mhint { position: fixed; left: 50%; right: auto; top: auto; bottom: max(24px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); white-space: nowrap; }
+  }
+</style>
+<div class="gg-root ggh" data-class-is-fright="frightened" data-class-ending="ending">
+  <aside class="ggh-side l">
+    <div class="ggh-grp">
+      <div class="gg-lbl" data-text="score"></div>
+      <div class="ggh-score gg-arc gg-t-gold" data-bind="score"></div>
+      <div class="ggh-sub"><span data-text="best"></span> <b data-bind="best"></b> · <span data-text="pips"></span> <b data-bind="pips"></b></div>
+    </div>
+    <div class="ggh-mhint" id="ggh-mhint" data-text="touch_hint"></div>
+  </aside>
+  <aside class="ggh-side r">
+    <div class="ggh-grp">
+      <div class="ggh-top">
+        <div class="gg-lbl rev"><span><span data-text="level"></span> <span data-bind="level"></span>/<span data-bind="levels"></span></span></div>
+        <button class="ggh-pause" data-action="pause" aria-label="Pause"><svg viewBox="0 0 14 16" aria-hidden="true"><rect x="1" y="1" width="4" height="14" rx="1"/><rect x="9" y="1" width="4" height="14" rx="1"/></svg></button>
+      </div>
+      <div class="ggh-lvname gg-arc gg-t-cyan" data-bind="level_name"></div>
+      <div class="ggh-depth" data-each="depth">
+        <template><i data-class-done="done" data-class-now="now"></i></template>
+      </div>
+      <div class="ggh-sub"><span data-text="stalker_pace"></span> <b data-bind="pace"></b></div>
+    </div>
+    <div class="ggh-grp">
+      <div class="gg-lbl rev ggh-lives-lbl" data-text="lives"></div>
+      <div class="ggh-lives" data-each="lives">
+        <template><i class="ggh-orb" data-class-lost="lost"></i></template>
+      </div>
+    </div>
+    <div class="ggh-fright">
+      <div class="ggh-badge" data-text="vulnerable"></div>
+      <div class="ggh-fbar"><i data-style-width="fright_width"></i></div>
+      <div class="ggh-ftime" data-bind="fright_time"></div>
+    </div>
+  </aside>
+  <div class="ggh-hint"><kbd class="gg-kbd" data-text="hint_arrows"></kbd> / <kbd class="gg-kbd" data-text="hint_wasd"></kbd> <span data-text="hint_move"></span> <em data-text="hint_flare"></em> <span data-text="hint_rest"></span></div>
+  <div class="ggh-ready" id="ggh-ready" role="status">
+    <div class="ggh-rw gg-arc gg-t-gold" data-text="ready"></div>
+    <div class="ggh-rs gg-arc gg-t-cyan" data-bind="ready_line"></div>
+  </div>
+</div>
+<script>
+  // The READY splash pops in when a round starts and out when play begins; the touch
+  // hint fades 4.5 s after each READY.
+  (function () {
+    var ready = document.getElementById('ggh-ready');
+    var hint = document.getElementById('ggh-mhint');
+    var shown = false;
+    var timer = 0;
+    function restart(cls) {
+      ready.classList.remove('show', 'hide');
+      void ready.offsetWidth;
+      ready.classList.add(cls);
+    }
+    parallax.on_state(function (s) {
+      var now = !!(s && s.ready);
+      if (now === shown) return;
+      shown = now;
+      if (now) {
+        restart('show');
+        hint.classList.remove('gone');
+        clearTimeout(timer);
+        timer = setTimeout(function () { hint.classList.add('gone'); }, 4500);
+      } else {
+        restart('hide');
+      }
+    });
+  })();
+</script>

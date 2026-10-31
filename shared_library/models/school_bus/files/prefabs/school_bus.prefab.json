@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/school_bus"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 11000,
+      "linear_damping": 0.05,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.92,
+        3.215,
+        11
+      ],
+      "offset": [
+        0,
+        1.6075,
+        0
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 34,
+      "grip": 6,
+      "turn_rate": 1.1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.6075,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

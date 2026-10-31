@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/fridge", "cast_shadows": true }
+  }
+}

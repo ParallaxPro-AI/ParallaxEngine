@@ -1,0 +1,10 @@
+{
+  "id": "penguin",
+  "summary": "A king-style penguin, 0.8 m tall, on the engine's canonical humanoid_17 rig so the shared humanoid clip libra… options accent, markings; sockets head_top, back, bill.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.penguin or place \"prefab\": \"penguin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:penguin"]
+}

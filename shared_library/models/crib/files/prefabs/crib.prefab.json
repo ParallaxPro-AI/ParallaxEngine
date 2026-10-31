@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crib"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.433, 1.5, 0.812],
+      "offset": [0.0005, 0.75, 0]
+    }
+  }
+}

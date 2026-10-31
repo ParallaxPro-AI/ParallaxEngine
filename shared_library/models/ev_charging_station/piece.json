@@ -1,0 +1,10 @@
+{
+  "id": "ev_charging_station",
+  "summary": "A kerbside twin-outlet electric-vehicle charging post on a concrete pad: a rounded white enclosure on a black… options accent, status; sockets socket_plug_l, socket_plug_r, socket_screen, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ev_charging_station or place \"prefab\": \"ev_charging_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ev_charging_station"]
+}

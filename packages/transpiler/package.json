@@ -1,0 +1,10 @@
+{
+  "name": "@parallax/transpiler",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Parallax Python → JavaScript transpiler (Python, stdlib only). This manifest only wires its tests into the workspace.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "test": "python3 -m unittest discover -s tests -t ."
+  }
+}

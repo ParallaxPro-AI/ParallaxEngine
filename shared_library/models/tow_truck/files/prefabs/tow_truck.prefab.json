@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tow_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 4500
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        2.93,
+        6.98
+      ],
+      "offset": [
+        0,
+        1.465,
+        -0.11
+      ]
+    },
+    "vehicle": {
+      "max_speed": 30,
+      "steering": 30
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.465,
+        -0.11
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

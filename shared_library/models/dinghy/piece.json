@@ -1,0 +1,14 @@
+{
+  "id": "dinghy",
+  "summary": "A 4 m open tender: an unobstructed hull, three thwarts and a small outboard on the transom. sockets eye_point, waterline, socket_helm, socket_bow ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.dinghy or place \"prefab\": \"dinghy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:dinghy"
+  ]
+}

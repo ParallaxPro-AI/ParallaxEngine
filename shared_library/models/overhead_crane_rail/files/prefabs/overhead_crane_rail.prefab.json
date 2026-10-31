@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/overhead_crane_rail"
+    }
+  }
+}

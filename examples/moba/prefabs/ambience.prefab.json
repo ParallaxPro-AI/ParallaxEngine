@@ -1,0 +1,5 @@
+{
+  "components": {
+    "audio_source": { "sound": "sfx/amb_lane", "playing": true, "loop": true, "spatial": false }
+  }
+}

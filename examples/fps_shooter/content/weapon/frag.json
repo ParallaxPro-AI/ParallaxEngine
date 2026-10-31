@@ -1,0 +1,14 @@
+{
+  "name": "Frag Grenade",
+  "short": "Frag",
+  "slot": 4,
+  "kind": "thrown",
+  "damage": 110,
+  "fire_interval": 0.8,
+  "magazine": 2,
+  "reserve": 0,
+  "max_reserve": 2,
+  "reload_time": 0,
+  "projectile": "frag_grenade",
+  "throw_speed": 16
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cell_tower",
+  "summary": "A 30 m tapered steel monopole cell site: a flanged three-section pole on a concrete foundation, a triangular… joints dish_a, dish_b, cabinet_door_a, cabinet_door_b, gate; options cabinets, compound; sockets socket_dish_mount, socket_compound, obstruction_light.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cell_tower or place \"prefab\": \"cell_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cell_tower"]
+}

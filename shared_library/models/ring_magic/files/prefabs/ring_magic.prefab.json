@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ring_magic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0229, 0.029, 0.0104],
+      "offset": [0, 0.0138, 0]
+    }
+  }
+}

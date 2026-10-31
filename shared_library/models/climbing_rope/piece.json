@@ -1,0 +1,10 @@
+{
+  "id": "climbing_rope",
+  "summary": "A playground climbing rope: a three-leg steel tripod converging on an overhead eyelet, with a thick knotted r…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.climbing_rope or place \"prefab\": \"climbing_rope\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:climbing_rope"]
+}

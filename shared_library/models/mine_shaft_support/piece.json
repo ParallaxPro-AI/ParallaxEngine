@@ -1,0 +1,10 @@
+{
+  "id": "mine_shaft_support",
+  "summary": "A three-piece timber mine set from the UNDERGROUND kit: two adzed eight-sided log posts battered inward on sq…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mine_shaft_support or place \"prefab\": \"mine_shaft_support\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mine_shaft_support"]
+}

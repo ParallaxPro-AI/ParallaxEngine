@@ -1,0 +1,10 @@
+{
+  "id": "coffee_beans_sack",
+  "summary": "A 60 kg jute sack of roasted coffee beans with its neck rolled down into a cuff, a mounded heap of glossy bea… options print, scoop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffee_beans_sack or place \"prefab\": \"coffee_beans_sack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffee_beans_sack"]
+}

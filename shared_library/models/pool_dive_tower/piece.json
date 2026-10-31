@@ -1,0 +1,10 @@
+{
+  "id": "pool_dive_tower",
+  "summary": "The diving tower of a municipal outdoor pool: a cast-concrete stack with springboard aprons at 1 m and 3 m an… sockets board_1m, board_3m, stand_5m.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pool_dive_tower or place \"prefab\": \"pool_dive_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pool_dive_tower"]
+}

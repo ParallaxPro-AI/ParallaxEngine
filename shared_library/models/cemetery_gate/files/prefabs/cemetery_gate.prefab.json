@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cemetery_gate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.35, 3.013, 0.65],
+      "offset": [0, 1.5035, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bus_articulated",
+  "summary": "An articulated (bendy) city bus about 18.6 m long: the library bus as the front section, a pleated concertina… joints door_front, door_front_fold, door_rear, door_rear_fold, articulation, door_trailer, …; options type; sockets eye_point, socket_driver, socket_front_door, socket_rear_door, socket_trailer_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.bus_articulated or place \"prefab\": \"bus_articulated\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:bus_articulated"]
+}

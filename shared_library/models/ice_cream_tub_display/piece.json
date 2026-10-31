@@ -1,0 +1,10 @@
+{
+  "id": "ice_cream_tub_display",
+  "summary": "A gelato dipping cabinet: a cream base cabinet with stainless corner trims, bumper rail, kick plate and GELAT… joints door_l, door_r; options body.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_cream_tub_display or place \"prefab\": \"ice_cream_tub_display\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_cream_tub_display"]
+}

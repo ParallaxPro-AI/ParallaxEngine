@@ -1,0 +1,7 @@
+{
+  "extends": "rail",
+  "components": {
+    "shape": { "size": [19.6, 0.7, 0.4] },
+    "collider": { "size": [19.6, 2, 0.4] }
+  }
+}

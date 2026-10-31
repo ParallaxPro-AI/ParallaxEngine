@@ -1,0 +1,50 @@
+{
+ "tags": [
+  "objective_beacon"
+ ],
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    2.6,
+    16,
+    2.6
+   ],
+   "offset": [
+    0,
+    8,
+    0
+   ],
+   "color": "#33f27352",
+   "emissive": [
+    0.32,
+    1.52,
+    0.72
+   ],
+   "cast_shadows": false
+  }
+ },
+ "behaviors": {
+  "objective_beacon": {
+   "drop_off": true
+  }
+ },
+ "children": [
+  {
+   "name": "tag",
+   "at": [
+    0,
+    16.5,
+    0
+   ],
+   "components": {
+    "marker": {
+     "icon": "flag",
+     "label": "Drop-off",
+     "color": "#2ee06a",
+     "shown": false
+    }
+   }
+  }
+ ]
+}

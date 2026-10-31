@@ -1,0 +1,10 @@
+{
+  "id": "bandstand",
+  "summary": "A Victorian octagonal park bandstand, 6.8 m across: a brick plinth with stone base course and coping carrying… joints weather_vane; options ironwork_colour; sockets socket_stage_centre, socket_conductor, socket_steps_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bandstand or place \"prefab\": \"bandstand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bandstand"]
+}

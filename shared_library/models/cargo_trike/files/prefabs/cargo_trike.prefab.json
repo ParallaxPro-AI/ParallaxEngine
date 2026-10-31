@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cargo_trike"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 240
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.9576,
+        1.3443,
+        2.8501
+      ],
+      "offset": [
+        0,
+        0.672,
+        -0.0551
+      ]
+    },
+    "vehicle": {
+      "max_speed": 14,
+      "steering": 40
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.672,
+        -0.0551
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

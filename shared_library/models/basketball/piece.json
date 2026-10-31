@@ -1,0 +1,10 @@
+{
+  "id": "basketball",
+  "summary": "A size-7 basketball (0.242 m diameter): a pebbled orange sphere carrying the classic eight-panel seam network…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basketball or place \"prefab\": \"basketball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basketball"]
+}

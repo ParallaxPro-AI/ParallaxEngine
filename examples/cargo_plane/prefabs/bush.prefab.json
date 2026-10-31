@@ -1,0 +1,37 @@
+{
+ "components": {
+  "collider": {
+   "shape": "box",
+   "size": [
+    2.052,
+    3.005,
+    2.294
+   ],
+   "offset": [
+    0.116,
+    1.474,
+    -0.002
+   ]
+  }
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    0,
+    0
+   ],
+   "scale": [
+    2.4,
+    2.4,
+    2.4
+   ],
+   "components": {
+    "model": {
+     "model": "https://r2.parallaxpro.ai/assets/model_static/35/df/35df0d861fb2eb46ba05fb28475e2ca1043b063aaea18e3504b3c265e6ed4b33.glb",
+     "cast_shadows": true
+    }
+   }
+  }
+ ]
+}

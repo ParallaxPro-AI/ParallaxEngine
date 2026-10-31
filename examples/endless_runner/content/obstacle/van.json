@@ -1,0 +1,1 @@
+{ "prefab": "obstacle_van", "avoid": "switch_lane", "lanes_blocked": 1, "weight": 4, "from_distance": 0, "hard": false, "half_width": 0.98, "half_depth": 1.85, "clearance": 0 }

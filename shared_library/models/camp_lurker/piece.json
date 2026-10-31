@@ -1,0 +1,10 @@
+{
+  "id": "camp_lurker",
+  "summary": "A small jungle beast: a 1.46 m hunched rigged creature on the canonical 17-bone humanoid rig, with a bristled… sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camp_lurker or place \"prefab\": \"camp_lurker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camp_lurker"]
+}

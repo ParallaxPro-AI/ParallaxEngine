@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/clawfoot_tub"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.753, 0.8629, 0.7916],
+      "offset": [0.0285, 0.4315, 0]
+    }
+  }
+}

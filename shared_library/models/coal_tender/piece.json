@@ -1,0 +1,10 @@
+{
+  "id": "coal_tender",
+  "summary": "A standalone eight-wheel steam-locomotive tender at standard gauge (1.435 m): a riveted water tank with a fla… joints locker_lid_l, locker_lid_r, hand_brake, water_hatch, truck_f_axle_0, truck_f_axle_1, …; options livery; sockets socket_coupler_front, socket_coupler_rear, socket_coal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coal_tender or place \"prefab\": \"coal_tender\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coal_tender"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "rotating_hammer",
+  "summary": "A rotating hammer trap: a stone plinth, bolted iron base plate and turned pedestal carry an iron-banded pivot… joints rotor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rotating_hammer or place \"prefab\": \"rotating_hammer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rotating_hammer"]
+}

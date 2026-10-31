@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/snowman"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3283, 1.652, 1.12],
+      "offset": [0, 0.826, 0]
+    }
+  }
+}

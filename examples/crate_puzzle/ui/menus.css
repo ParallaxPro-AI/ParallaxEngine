@@ -1,0 +1,24 @@
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: calc(56 * var(--db-u)); align-items: center; width: calc(1100 * var(--db-u)); min-width: min(640px, calc(100cqw - 32px)); }
+@container (max-aspect-ratio: 1/1) { .split { grid-template-columns: 1fr; } }
+.hazard { position: absolute; left: 0; right: 0; top: 0; height: 6px; background: repeating-linear-gradient(135deg, var(--db-crate) 0 12px, transparent 12px 24px); opacity: 0.7; }
+.tag { text-transform: uppercase; font-family: var(--db-f-num); font-size: max(11px, calc(16 * var(--db-u))); font-weight: 600; letter-spacing: 0.3em; color: var(--db-accent); }
+.rule { display: flex; align-items: center; gap: 8px; margin: calc(16 * var(--db-u)) 0; }
+.rule i { flex: 1; height: 1px; background: rgba(87, 94, 115, 0.55); }
+.rule b { width: 10px; height: 10px; background: var(--db-crate); transform: rotate(45deg); }
+.rows { display: flex; flex-direction: column; gap: calc(10 * var(--db-u)); }
+.row { display: flex; flex-wrap: wrap; align-items: baseline; gap: calc(12 * var(--db-u)); font-size: max(13px, calc(20 * var(--db-u))); color: var(--db-ink-2); }
+.row b { color: var(--db-ink); }
+.save-bar { flex-basis: 100%; height: 4px; background: rgba(87, 94, 115, 0.4); }
+.save-bar [data-format="bar"] { display: block; height: 100%; background: var(--db-pad); }
+.blurb { font-size: max(14px, calc(22 * var(--db-u))); line-height: 1.45; color: var(--db-ink-2); }
+.seg { display: flex; gap: 0; margin: calc(10 * var(--db-u)) 0 0; }
+.opt { flex: 1; appearance: none; border: 1px solid #575e73; background: transparent; color: var(--db-ink-2); font-family: var(--db-f-label); font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: calc(12 * var(--db-u)) calc(18 * var(--db-u)); min-height: 40px; cursor: pointer; }
+.opt.on { border-color: var(--db-pad); background: rgba(92, 214, 250, 0.18); color: var(--db-ink); }
+.paused { display: flex; align-items: center; gap: calc(16 * var(--db-u)); }
+.glyph { display: flex; gap: 6px; }
+.glyph i { width: 6px; height: 24px; background: var(--db-pad); }
+.score { font-family: var(--db-f-num); font-size: max(40px, calc(96 * var(--db-u))); font-weight: 600; line-height: 1; }
+.badge { display: inline-block; margin-left: 12px; padding: 2px 10px; background: var(--db-locked); color: var(--db-on-accent); font-weight: 700; letter-spacing: 0.2em; animation: stamp 320ms 960ms var(--db-ease-out) both; }
+@keyframes stamp { from { transform: scale(1.8) rotate(-8deg); opacity: 0; } to { transform: rotate(-4deg); opacity: 1; } }
+.old { text-decoration: line-through; color: var(--db-ink-4); margin-right: 10px; }
+.center { text-align: center; }

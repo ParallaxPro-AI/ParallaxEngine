@@ -1,0 +1,1 @@
+{ "name": "Iron Valley", "scene": "iron_valley", "waves": ["w01", "w02", "w03"], "hp_mul": 1.0, "damage_mul": 1.0, "reward": "ap_shell", "next": "dust_bowl" }

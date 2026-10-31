@@ -1,0 +1,14 @@
+{
+  "name": "Execute Mark",
+  "blurb": "ULTIMATE. One target, at knife range, and usually the end of them.",
+  "kind": "melee",
+  "ultimate": true,
+  "max_rank": 3,
+  "cooldown": { "base": 38, "per_rank": -6 },
+  "mana": { "base": 85, "per_rank": 10 },
+  "damage": { "base": 300, "per_rank": 150 },
+  "damage_kind": "physical",
+  "range": { "base": 4 },
+  "cast_vfx": "vfx/slash_cast",
+  "vfx": "vfx/slash"
+}

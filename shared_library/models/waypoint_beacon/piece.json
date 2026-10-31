@@ -1,0 +1,10 @@
+{
+  "id": "waypoint_beacon",
+  "summary": "A 1.1 m floor-standing beacon: a weighted hazard-banded drum base, a glowing vertical column banded by dark c… joints lamp; options signal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.waypoint_beacon or place \"prefab\": \"waypoint_beacon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:waypoint_beacon"]
+}

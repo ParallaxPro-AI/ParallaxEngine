@@ -1,0 +1,10 @@
+{
+  "id": "pirate_galleon",
+  "summary": "A three-masted sailing warship in the galleon style: a lofted round-bilged hull with tumblehome, a black wale… joints rudder, ships_wheel, guns_l, gunport_l0, gunport_l1, gunport_l2, …; options hull_paint, sails, flag; sockets seat_driver, eye_point, waterline, socket_crows_nest, socket_deck, socket_bow, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pirate_galleon or place \"prefab\": \"pirate_galleon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pirate_galleon"]
+}

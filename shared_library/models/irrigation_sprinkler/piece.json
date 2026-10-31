@@ -1,0 +1,10 @@
+{
+  "id": "irrigation_sprinkler",
+  "summary": "A field irrigation impact sprinkler on a splayed three-leg tripod: galvanised riser pipe, brass bearing and t… joints impact_arm; options stand, head; sockets socket_hose, spray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.irrigation_sprinkler or place \"prefab\": \"irrigation_sprinkler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:irrigation_sprinkler"]
+}

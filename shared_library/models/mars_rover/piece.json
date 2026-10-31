@@ -1,0 +1,10 @@
+{
+  "id": "mars_rover",
+  "summary": "A car-sized six-wheel planetary science rover: a lofted warm electronics box on a rocker-bogie suspension (ro… joints mast_pan, mast_tilt, hga_az, hga_el, arm_shoulder, arm_elevation, …; sockets eye_point, socket_arm_tool, socket_cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.mars_rover or place \"prefab\": \"mars_rover\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:mars_rover"]
+}

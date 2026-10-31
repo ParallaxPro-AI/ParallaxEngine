@@ -1,0 +1,10 @@
+{
+  "id": "dog",
+  "summary": "A mid-size house dog on the engine's quadruped_20 rig — the SECOND character to stand on it. options coat; sockets head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dog or place \"prefab\": \"dog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dog"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "primitive_bow",
+  "summary": "A primitive self bow carved from a single wooden stave, 1.5 m tip to tip (real self bows run 1.2-1.8 m), brac… joints limb_upper, string_upper, limb_lower, string_lower; sockets socket_arrow, nocking_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.primitive_bow or place \"prefab\": \"primitive_bow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:primitive_bow"]
+}

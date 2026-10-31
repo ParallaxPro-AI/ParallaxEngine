@@ -1,0 +1,10 @@
+{
+  "id": "bird_cage",
+  "summary": "A 0.71 m round brass bird cage: a pressed base pan with a liner, thirty-two wall wires held by three rings, a… joints swing, door; options finish; sockets socket_perch, socket_perch_high.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bird_cage or place \"prefab\": \"bird_cage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bird_cage"]
+}

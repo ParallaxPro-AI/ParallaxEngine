@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camp_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7275, 0.974, 0.6638],
+      "offset": [0.0343, 0.487, -0.0219]
+    }
+  }
+}

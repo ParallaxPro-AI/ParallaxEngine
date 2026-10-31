@@ -1,0 +1,10 @@
+{
+  "id": "fertiliser_spreader",
+  "summary": "A tractor-mounted twin-disc fertiliser spreader: a red category-2 three-point headstock and frame, a white ho… joints spinner_l, spinner_r, lid; options paint; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fertiliser_spreader or place \"prefab\": \"fertiliser_spreader\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fertiliser_spreader"]
+}

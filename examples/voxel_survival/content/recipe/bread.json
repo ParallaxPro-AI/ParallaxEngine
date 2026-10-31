@@ -1,0 +1,3 @@
+{ "name": "Bake Bread", "order": 18, "category": "food", "station": "furnace", "seconds": 8,
+  "inputs": [{ "item": "wheat", "count": 3 }, { "item": "coal_ore", "count": 1 }],
+  "output": { "item": "bread", "count": 2 } }

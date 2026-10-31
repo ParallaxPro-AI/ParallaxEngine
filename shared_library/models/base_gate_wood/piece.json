@@ -1,0 +1,10 @@
+{
+  "id": "base_gate_wood",
+  "summary": "A survival base-building gate module that fills one 3.0 m wall slot, 3.0 m tall: two heavy log gate posts and… joints leaf_l, leaf_r; options tier; sockets socket_join_left, socket_join_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.base_gate_wood or place \"prefab\": \"base_gate_wood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:base_gate_wood"]
+}

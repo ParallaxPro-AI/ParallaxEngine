@@ -1,0 +1,10 @@
+{
+  "id": "pencil",
+  "summary": "A 0.166 m yellow HB school pencil: a six-sided lacquered shaft, a sharpened wood cone with an exposed graphit… sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.pencil or place \"prefab\": \"pencil\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:pencil"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "hospital_bed",
+  "summary": "An adjustable electric hospital bed: a castored base with two telescoping lift columns, a mattress deck whose… joints castor_fl, castor_fr, castor_bl, castor_br, deck_lift, side_rail_l, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hospital_bed or place \"prefab\": \"hospital_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hospital_bed"]
+}

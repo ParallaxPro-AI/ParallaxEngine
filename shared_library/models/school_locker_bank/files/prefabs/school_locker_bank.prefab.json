@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/school_locker_bank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.226, 2.05, 0.4985],
+      "offset": [0, 1.025, 0.0177]
+    }
+  }
+}

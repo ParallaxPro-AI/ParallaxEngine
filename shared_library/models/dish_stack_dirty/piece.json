@@ -1,0 +1,10 @@
+{
+  "id": "dish_stack_dirty",
+  "summary": "A stack of six dirty white dinner plates (270 mm, nested at a 7 mm pitch, about 60 mm tall) waiting for the w…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dish_stack_dirty or place \"prefab\": \"dish_stack_dirty\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dish_stack_dirty"]
+}

@@ -1,0 +1,2 @@
+{ "name": "Chef's Deluxe", "stage": 4, "task": "Deliver the deluxe!", "hint": "to the blue window",
+  "carry_shape": "box", "carry_color": "#fff1c4", "carry_size": [0.5, 0.18, 0.5] }

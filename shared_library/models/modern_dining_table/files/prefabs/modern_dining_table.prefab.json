@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_dining_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 1.3376, 0.85],
+      "offset": [0, 0.668, 0]
+    }
+  }
+}

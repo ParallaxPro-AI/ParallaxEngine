@@ -1,0 +1,10 @@
+{
+  "id": "pipe_stack",
+  "summary": "A stacked pyramid of ten 315 mm large-bore pipes, 4 m lengths in four courses (4-3-2-1) with open hollow ends… options pipe.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pipe_stack or place \"prefab\": \"pipe_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pipe_stack"]
+}

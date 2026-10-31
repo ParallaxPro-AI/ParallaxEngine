@@ -1,0 +1,5 @@
+{
+  "name": "Swift Sails",
+  "blurb": "+3 top speed.",
+  "stat": "max_speed", "amount": 3, "max_level": 3
+}

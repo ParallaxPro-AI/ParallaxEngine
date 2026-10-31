@@ -1,0 +1,10 @@
+{
+  "id": "wifi_router",
+  "summary": "A generic four-antenna wireless router (original design, no branding): a pillowed lofted body with cut diagon… joints led_internet, led_wifi_a, led_wifi_b, led_lan, antenna_0, antenna_1, …; options colour, activity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wifi_router or place \"prefab\": \"wifi_router\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wifi_router"]
+}

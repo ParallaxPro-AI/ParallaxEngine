@@ -1,0 +1,148 @@
+{
+  "pieces": {
+    "barrel": {
+      "from": "shared_library/models/barrel",
+      "version": "2026.10.23",
+      "sha": "b894332ec99fe196a492db199f7210e8a37aaa1fb725e3989312f6e99960ba4a",
+      "files": {
+        "assets/models/barrel.model.json": "0bb50c96b6da5fd9cc81b89a67c62b446de1688c7d189f84de25cddaaafafba7",
+        "prefabs/barrel.prefab.json": "bdf77508b47451dd398c938a0bc3848fd7efe4f4504fe1c3fef144b4f6f456f1"
+      },
+      "text": {}
+    },
+    "bench": {
+      "from": "shared_library/models/bench",
+      "version": "2026.10.23",
+      "sha": "d8ac1959455a4851a46d3989220b644e9688c9bb2cae83a5b2e465f50883f6e1",
+      "files": {
+        "assets/models/bench.model.json": "aac33acbfa69fb2fdcc5e89522a7b590a52e646fc96a89162c1ce7b08c969e94",
+        "prefabs/bench.prefab.json": "2551cecfde78ce0101f4293bd4de44bc33c62765afb7d7fa4193d38c1961829e"
+      },
+      "text": {}
+    },
+    "crate": {
+      "from": "shared_library/models/crate",
+      "version": "2026.10.23",
+      "sha": "089ebfabfadfa3101b7fb7ec68fe4595b39a48719adad02dc1953e5a0bb66ebc",
+      "files": {
+        "assets/models/crate.model.json": "56571f94c9ed745a328657835246b7f9f3e2fa9e5a82fffdeb9e17540e76488a",
+        "prefabs/crate.prefab.json": "563a830dec77df5b3f3a0dd4c6a3da256b6b6a6ee380e089505dc7d468bbdfec"
+      },
+      "text": {}
+    },
+    "dinghy": {
+      "from": "shared_library/models/dinghy",
+      "version": "2026.10.23",
+      "sha": "482cb4a546d3b393a54a328e86eac050d5c794c30f61dc182e986413ca57ac04",
+      "files": {
+        "assets/models/dinghy.model.json": "c125180d264561d39ad932746480b2eb1972d797150c1084a37985c0cf300d07",
+        "prefabs/dinghy.prefab.json": "f0340d6d6508a9c0fa8800a42bcada7fcd8632220e2b89735f491c8dab10fe8e"
+      },
+      "text": {}
+    },
+    "fire_hydrant": {
+      "from": "shared_library/models/fire_hydrant",
+      "version": "2026.10.23",
+      "sha": "9f49e2ae95ccc7752249fd7ce9cbebb183c56ed5b356263e388c7f31d9ab80cc",
+      "files": {
+        "assets/models/fire_hydrant.model.json": "29abcdb50437ee7b6e2c5efc50f8a4efd1429d6a074c4bddb87778ad4d9f9d36",
+        "prefabs/fire_hydrant.prefab.json": "f80f7a0715693ea46aa4d36be079b8b928ac3106ab135fc660e1e37dc5da9cd6"
+      },
+      "text": {}
+    },
+    "fishing_trawler": {
+      "from": "shared_library/models/fishing_trawler",
+      "version": "2026.10.23",
+      "sha": "1c630f82ab1e716e80a41f1935c39ce152a005d277675b757fc6ccadb8947d18",
+      "files": {
+        "assets/models/fishing_trawler.model.json": "d8c22aa32253c269b40089b00ecf1296b1526ea134dc075bdd0077d9b9841e9b",
+        "prefabs/fishing_trawler.prefab.json": "cfa71248168204c1bbb88a1416df8c4fe6acbd87eeec51b437beed8e15fb4262"
+      },
+      "text": {}
+    },
+    "fuse_box": {
+      "from": "shared_library/models/fuse_box",
+      "version": "2026.10.23",
+      "sha": "d134e3b4c609e4a05b25ea1730263fc8acbe72d6457c5ce38d8514f15795a420",
+      "files": {
+        "assets/models/fuse_box.model.json": "a07fa2f3ed6f93794f75ace62ae747f6c4d80c9c2e834110767afa6b9c13a313",
+        "prefabs/fuse_box.prefab.json": "3055f0a581c038bf0ed30270bbf8d6c1e32dae5fbf5788b9e76b01f8caeddd9a"
+      },
+      "text": {}
+    },
+    "generator": {
+      "from": "shared_library/models/generator",
+      "version": "2026.10.23",
+      "sha": "6c1a2313f3e1fa2ea354d6a763ff7e0ec15b2941bc5468e2c8a0d2977c1dc369",
+      "files": {
+        "assets/models/generator.model.json": "1fbed78cf51dd44a3787821de762522238469ee0aa5d159434d8276aee16de43",
+        "prefabs/generator.prefab.json": "1cb1aea4990ab34893a4fb9dcf39ba7a5d728616d5e03744da7bc256286f4055"
+      },
+      "text": {}
+    },
+    "humanoid_locomotion": {
+      "from": "shared_library/clips/humanoid_locomotion",
+      "version": "2026.10.23",
+      "sha": "e864b1171ebc5699b1bd8738f413c1eb07cf8af32f15fb3a62a6445bfbef8a52",
+      "files": {
+        "assets/clips/carry_walk.clip.json": "7d1a5446fb966111beab14751a73c20f00faa250651b8a7cc4085c23facf0399",
+        "assets/clips/human_fall.clip.json": "ab65de5627533fa7a9d85fd1a6e961e34c42d6d38308160b6663e93a36035883",
+        "assets/clips/run_cycle.clip.json": "68582aebb7c08dfc44b633fb166a7d89960e5591adfb2a232de26784c4bad243",
+        "assets/clips/stand_idle.clip.json": "04b3895e48aa5bde478abe1426844ceb8e3ebbf3f752adfa56c41a52be76bbfd",
+        "assets/clips/stand_idle_left.clip.json": "9423c2ffa815baf84c8088458ca64ab221fd7c7eaaa801a367930a4abed69029",
+        "assets/clips/walk_cycle.clip.json": "5f21442def2327494bb733ba1f045ca18d4179625586aff64aef49ee4482c817"
+      },
+      "text": {}
+    },
+    "pallet_load": {
+      "from": "shared_library/models/pallet_load",
+      "version": "2026.10.23",
+      "sha": "d7af360ef2c969cc164ca73ee82ecfd94263c68c65e11053ff087420e9895c5e",
+      "files": {
+        "assets/models/pallet_load.model.json": "914e36cafcd99fc89a31025a5b97ceef4af7ee5df87769d4d1b21f035220e226",
+        "prefabs/pallet_load.prefab.json": "74d7fa856444aea5673ab38c71b4bfd7354ba2cda17edceab191e1888ee6554d"
+      },
+      "text": {}
+    },
+    "road_sign": {
+      "from": "shared_library/models/road_sign",
+      "version": "2026.10.23",
+      "sha": "af631875e72ae029cd45c4bc4a972bfb9705bb9793decda5ca12d30659a10784",
+      "files": {
+        "assets/models/road_sign.model.json": "abf01d97c9ab8e6b995f8e7ae9de77b1ce2baf15112cc8a77f5d0c8a2d44e1a4",
+        "prefabs/road_sign.prefab.json": "3fb25c6ad2246fa78043561ced01f6510e8e54abf0ad0a5e1a235accc2d09914"
+      },
+      "text": {}
+    },
+    "sailboat": {
+      "from": "shared_library/models/sailboat",
+      "version": "2026.10.23",
+      "sha": "3a2300bab750dccc6c80f784cd682dfe11496b8a985798767b8ce0fe873721cc",
+      "files": {
+        "assets/models/sailboat.model.json": "731ae0d64d3029039529d4ae21a106ead9b2a3f54883943e391ec10e4821a23c",
+        "prefabs/sailboat.prefab.json": "607554e90f697ef18549c34e0d8f60e9cee032fd1e026a3f731ebfa79a58576c"
+      },
+      "text": {}
+    },
+    "suitcase": {
+      "from": "shared_library/models/suitcase",
+      "version": "2026.10.23",
+      "sha": "e41e7e674ab9184bf4cdfe6b3359ef7498a9840159f51348b77b99a37067fbdb",
+      "files": {
+        "assets/models/suitcase.model.json": "de7d92141d544f3cf1e7c2672534936e3d66fe752bc86b48016dd17b15dd0050",
+        "prefabs/suitcase.prefab.json": "c5bc117b0a408a40c5e96559345dc7b5ab7e8699dae6bd9a073c3d72ac54f841"
+      },
+      "text": {}
+    },
+    "traffic_cone": {
+      "from": "shared_library/models/traffic_cone",
+      "version": "2026.10.23",
+      "sha": "0396b8930d369b29095a405ea6d32ab8131e23978f10c14791b3715a24568fe3",
+      "files": {
+        "assets/models/traffic_cone.model.json": "5e49f31af82a557874d085ab73ff19ab1447152a38bf859bd0ceb24b81709ca8",
+        "prefabs/traffic_cone.prefab.json": "c2be616702ccb6af115fbbe9bde2059c0bc0b97094dd17f3310d11e33da0bf15"
+      },
+      "text": {}
+    }
+  }
+}

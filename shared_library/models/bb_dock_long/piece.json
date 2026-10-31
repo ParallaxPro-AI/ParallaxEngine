@@ -1,0 +1,10 @@
+{
+  "id": "bb_dock_long",
+  "summary": "Timber pier module with a raised plank deck and four pilings; existing dock height preserved.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_dock_long or place \"prefab\": \"bb_dock_long\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_dock_long"]
+}

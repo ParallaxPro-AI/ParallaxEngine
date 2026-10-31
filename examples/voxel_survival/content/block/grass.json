@@ -1,0 +1,2 @@
+{ "name": "Grass Block", "texture": { "side": "images/blocks/grass_side_638f3b", "top": "images/blocks/grass_638f3b", "bottom": "images/blocks/dirt_638f3b" }, "color": "#648f3b", "hardness": 0.6, "preferred_tool": "shovel", "soil": true,
+  "loot": [{ "item": "dirt" }], "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d0/0c/d00c2b3c9fff07e376145c8c8c45c90e5084ec192f6ce0387db233f7b86f1486.ogg" }

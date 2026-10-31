@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shotgun_shell_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1241, 0.1905, 0.2581],
+      "offset": [0, 0.0952, -0.0002]
+    }
+  }
+}

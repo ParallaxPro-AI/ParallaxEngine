@@ -1,0 +1,8 @@
+{
+  "components": {
+    "camera": { "mode": "perspective", "fov": 60, "min_visible": [18, 0], "focus_distance": 19 }
+  },
+  "behaviors": {
+    "board_camera": { "height": 19, "tilt": 40, "center_x": 0, "center_z": -12 }
+  }
+}

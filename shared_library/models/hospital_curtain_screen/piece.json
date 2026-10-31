@@ -1,0 +1,10 @@
+{
+  "id": "hospital_curtain_screen",
+  "summary": "A mobile hospital privacy screen: three tubular powder-coated panels on castors, each carrying a pleated wipe… joints centre_castor_a_roll, centre_castor_b_roll, wing_l, wing_castor_a_roll_l, wing_castor_b_roll_l, wing_r, …; options fabric, frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hospital_curtain_screen or place \"prefab\": \"hospital_curtain_screen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hospital_curtain_screen"]
+}

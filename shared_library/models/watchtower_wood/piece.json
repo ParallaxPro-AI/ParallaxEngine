@@ -1,0 +1,10 @@
+{
+  "id": "watchtower_wood",
+  "summary": "A medieval timber watchtower, about 16 m to the finial on a 5.1 m square footing (the motte-and-palisade type… joints door, shutter_0, shutter_1, shutter_2, shutter_3, shutter_4, …; sockets socket_door_outside, socket_lookout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watchtower_wood or place \"prefab\": \"watchtower_wood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watchtower_wood"]
+}

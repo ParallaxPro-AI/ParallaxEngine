@@ -1,0 +1,14 @@
+{
+  "id": "stepladder",
+  "summary": "An aluminium A-frame stepladder: a front step-section with five treads and a top platform, plus a rear… joints fold; options finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.stepladder or place \"prefab\": \"stepladder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:stepladder"
+  ]
+}

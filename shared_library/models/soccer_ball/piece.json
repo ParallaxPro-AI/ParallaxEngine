@@ -1,0 +1,10 @@
+{
+  "id": "soccer_ball",
+  "summary": "A size-5 association football (0.216 m diameter — a 68 cm circumference, the bottom of the match-ball band)…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.soccer_ball or place \"prefab\": \"soccer_ball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:soccer_ball"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/escape_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0536, 2.595, 2.0718],
+      "offset": [0, 1.2975, 0.0091]
+    }
+  }
+}

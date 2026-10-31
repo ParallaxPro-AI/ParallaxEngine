@@ -1,0 +1,10 @@
+{
+  "id": "tycoon_collector_pad",
+  "summary": "A tycoon-game collector (sell pad) that sits at the end of a conveyor: a squat 1.4 m square steel-blue plinth… sockets socket_collect.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tycoon_collector_pad or place \"prefab\": \"tycoon_collector_pad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tycoon_collector_pad"]
+}

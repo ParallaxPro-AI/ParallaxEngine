@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/howitzer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.8519, 1.7374, 7.6985],
+      "offset": [0, 0.8673, -0.1893]
+    }
+  }
+}

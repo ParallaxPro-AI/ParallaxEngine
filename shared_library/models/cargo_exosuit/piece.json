@@ -1,0 +1,10 @@
+{
+  "id": "cargo_exosuit",
+  "summary": "An original open-cockpit cargo exosuit (industrial power loader): two hydraulic legs with yellow guards on wi… joints hip_l, knee_l, hip_r, knee_r, shoulder_l, elbow_l, …; sockets socket_clamp_l, socket_clamp_r, socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cargo_exosuit or place \"prefab\": \"cargo_exosuit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cargo_exosuit"]
+}

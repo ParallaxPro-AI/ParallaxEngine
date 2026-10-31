@@ -1,0 +1,10 @@
+{
+  "id": "portion_food_guac",
+  "summary": "A spoonful of guac with individually modelled pieces, ready to portion on a tortilla.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portion_food_guac or place \"prefab\": \"portion_food_guac\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portion_food_guac"]
+}

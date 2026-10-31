@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_legs_skirt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6252, 0.525, 0.5349],
+      "offset": [-0.0037, 0.7825, 0.004]
+    }
+  }
+}

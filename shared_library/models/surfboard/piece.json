@@ -1,0 +1,10 @@
+{
+  "id": "surfboard",
+  "summary": "A 2.08 m (6'10\") funboard resting on its fins: a lofted foam blank with a measured outline (520 mm wide, squa… options deck, pad, fin_colour, fins; sockets stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.surfboard or place \"prefab\": \"surfboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:surfboard"]
+}

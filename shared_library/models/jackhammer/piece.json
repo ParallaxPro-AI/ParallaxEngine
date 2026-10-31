@@ -1,0 +1,10 @@
+{
+  "id": "jackhammer",
+  "summary": "A handheld pneumatic demolition breaker (jackhammer) standing upright: a yellow cylindrical body over a steel… joints bit; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jackhammer or place \"prefab\": \"jackhammer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jackhammer"]
+}

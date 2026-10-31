@@ -1,0 +1,10 @@
+{
+  "id": "luxury_dining_chair",
+  "summary": "Luxury dining chair: a caramel velvet wraparound barrel back that sweeps down from the back to the arms, a ro… options fabric, seat_fabric, metal; sockets seat_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_dining_chair or place \"prefab\": \"luxury_dining_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_dining_chair"]
+}

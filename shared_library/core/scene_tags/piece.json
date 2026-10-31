@@ -1,0 +1,6 @@
+{
+  "id": "scene_tags",
+  "summary": "The scene tags library pieces scope themselves by: \"playable\" (pause key, HUD kits, run timers live there).",
+  "version": "2026.10.23",
+  "setup": ["Add \"tags\": [\"playable\"] to every scene the player plays in (not the title or menus)."]
+}

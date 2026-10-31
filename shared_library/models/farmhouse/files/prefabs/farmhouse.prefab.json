@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/farmhouse"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [10.3, 10.4208, 11.295],
+      "offset": [0, 5.2104, -0.0475]
+    }
+  }
+}

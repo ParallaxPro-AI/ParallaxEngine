@@ -1,0 +1,10 @@
+{
+  "id": "proto_cylinder",
+  "summary": "A greybox prototype cylinder: a 1 m diameter, 1 m tall level-design pillar/column block with a 0.25 m grid wr… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_cylinder or place \"prefab\": \"proto_cylinder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_cylinder"]
+}

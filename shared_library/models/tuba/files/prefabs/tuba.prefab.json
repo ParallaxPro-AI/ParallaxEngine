@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tuba"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6259, 0.9306, 0.5617],
+      "offset": [0.001, 0.4657, 0.0011]
+    }
+  }
+}

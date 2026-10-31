@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/reindeer_sleigh"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3368, 1.5067, 2.799],
+      "offset": [-0.0716, 0.7567, 0.1905]
+    }
+  }
+}

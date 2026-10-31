@@ -1,0 +1,10 @@
+{
+  "id": "carbine",
+  "summary": "A modern 5.56 carbine in the M4 idiom: flat-top upper receiver with a full-length Picatinny rail, quad-rail h… joints trigger, stock, charging_handle, magazine; options finish, optic; sockets socket_muzzle, socket_optic, socket_foregrip, socket_rail_l, socket_rail_r, socket_magazine, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.carbine or place \"prefab\": \"carbine\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:carbine"]
+}

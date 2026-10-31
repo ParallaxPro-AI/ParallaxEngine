@@ -1,0 +1,10 @@
+{
+  "id": "warp_pipe_generic",
+  "summary": "A generic platformer warp pipe: a glossy green 1.2 m wide vertical industrial pipe standing 2 m tall on a bol…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.warp_pipe_generic or place \"prefab\": \"warp_pipe_generic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:warp_pipe_generic"]
+}

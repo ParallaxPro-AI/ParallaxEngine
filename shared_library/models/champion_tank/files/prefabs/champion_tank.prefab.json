@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/champion_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.78, 2.073, 0.6347],
+      "offset": [0, 1.0365, -0.052]
+    }
+  }
+}

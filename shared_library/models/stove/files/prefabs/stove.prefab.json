@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stove"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.76, 0.941, 0.735],
+      "offset": [0, 0.4705, 0.0375]
+    }
+  }
+}

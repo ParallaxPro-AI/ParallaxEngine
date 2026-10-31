@@ -1,0 +1,10 @@
+{
+  "id": "candy_sherbet",
+  "summary": "Sherbet compressed-sugar dispenser, with a sweet hopper, cream bands and brass nozzle. sockets grip_r, grip_l, sight, muzzle, eject.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.candy_sherbet or place \"prefab\": \"candy_sherbet\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:candy_sherbet"]
+}

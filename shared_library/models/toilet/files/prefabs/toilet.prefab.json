@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toilet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 1.0015, 0.7],
+      "offset": [0, 0.4993, -0.01]
+    }
+  }
+}

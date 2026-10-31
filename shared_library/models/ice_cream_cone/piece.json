@@ -1,0 +1,10 @@
+{
+  "id": "ice_cream_cone",
+  "summary": "A 99 Flake: a lathed waffle cone, a stacked soft-serve swirl and a chocolate flake pushed in at an angle. options topping; sockets socket_grip, socket_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_cream_cone or place \"prefab\": \"ice_cream_cone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_cream_cone"]
+}

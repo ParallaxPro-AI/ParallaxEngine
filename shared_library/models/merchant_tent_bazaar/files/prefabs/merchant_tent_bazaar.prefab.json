@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/merchant_tent_bazaar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.0152, 4.2448, 6.6303],
+      "offset": [-0.0924, 2.1176, 0.183]
+    }
+  }
+}

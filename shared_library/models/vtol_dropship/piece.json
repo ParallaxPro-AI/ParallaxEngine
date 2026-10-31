@@ -1,0 +1,10 @@
+{
+  "id": "vtol_dropship",
+  "summary": "An original sci-fi military troop dropship about 21 m long: a lofted chined armoured hull with a raised glaze… joints ramp, stub_wing_flap_l, stub_wing_flap_r, nacelle_l, nacelle_r; options hull; sockets eye_point, troop_bay, ramp_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vtol_dropship or place \"prefab\": \"vtol_dropship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vtol_dropship"]
+}

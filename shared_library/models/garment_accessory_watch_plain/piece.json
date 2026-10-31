@@ -1,0 +1,10 @@
+{
+  "id": "garment_accessory_watch_plain",
+  "summary": "A wristwatch on the left forearm: a round case, a bezel, a face and a two-piece strap. options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_accessory_watch_plain or place \"prefab\": \"garment_accessory_watch_plain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_accessory_watch_plain"]
+}

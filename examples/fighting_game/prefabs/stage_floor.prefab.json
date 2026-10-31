@@ -1,0 +1,22 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arena",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        40,
+        0.4,
+        16
+      ],
+      "offset": [
+        0,
+        -0.2,
+        0
+      ],
+      "layer": "stage"
+    }
+  }
+}

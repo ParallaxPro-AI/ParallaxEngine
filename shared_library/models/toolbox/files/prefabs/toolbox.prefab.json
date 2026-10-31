@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toolbox",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.456,
+        0.2715,
+        0.2355
+      ],
+      "offset": [
+        0.0,
+        0.1343,
+        0.0063
+      ]
+    }
+  }
+}

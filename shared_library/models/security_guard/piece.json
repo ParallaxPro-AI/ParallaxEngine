@@ -1,0 +1,10 @@
+{
+  "id": "security_guard",
+  "summary": "A security guard in a dark navy uniform shirt with epaulettes and chest pockets, maroon tie, duty belt carryi… options skin, hair, headwear; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_guard or place \"prefab\": \"security_guard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_guard"]
+}

@@ -1,0 +1,1 @@
+{ "name": "DECOY WHISTLE", "prefab": "powerup_decoy", "effect": "guard_setback", "seconds": 0, "power": 3.5, "weight": 2, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3", "volume": 0.5 }

@@ -1,0 +1,20 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sniper_rifle"
+    },
+    "viewmodel_item": {
+      "hip": [
+        0.095,
+        -0.282,
+        0.45
+      ],
+      "hip_turn": [
+        -2.864789,
+        -4.640958,
+        -7.73493
+      ],
+      "eye_relief": 0.095
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "speedboat",
+  "summary": "A 7.5 m sports runabout: a deep-vee hull, a wraparound screen, a helm console with a wheel and throttle, benc… joints windshield, outboard_tilt, outboard_steer; sockets eye_point, waterline, socket_helm, socket_bow, seat_driver, seat_pax_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.speedboat or place \"prefab\": \"speedboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:speedboat"]
+}

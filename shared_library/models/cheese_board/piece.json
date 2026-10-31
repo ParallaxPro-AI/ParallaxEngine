@@ -1,0 +1,10 @@
+{
+  "id": "cheese_board",
+  "summary": "A charcuterie and cheese serving board: a hardwood paddle board with a pierced handle carrying a brie wheel w… options board.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cheese_board or place \"prefab\": \"cheese_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cheese_board"]
+}

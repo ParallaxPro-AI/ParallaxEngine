@@ -1,0 +1,10 @@
+{
+  "id": "knight_tent_pavilion",
+  "summary": "A round medieval tournament pavilion: striped linen walls (20 panels, stripe colour customizable) under a gen… joints flap_r, flap_l; options stripe.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.knight_tent_pavilion or place \"prefab\": \"knight_tent_pavilion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:knight_tent_pavilion"]
+}

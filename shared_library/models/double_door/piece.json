@@ -1,0 +1,10 @@
+{
+  "id": "double_door",
+  "summary": "A pair of double doors in a cased frame — two leaves hinged on opposite jambs that swing out in opposite dire… joints door_l, door_r; options style; sockets socket_latch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.double_door or place \"prefab\": \"double_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:double_door"]
+}

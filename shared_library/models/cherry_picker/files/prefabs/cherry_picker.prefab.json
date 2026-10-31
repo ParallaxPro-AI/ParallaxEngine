@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cherry_picker"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 6800,
+      "linear_damping": 0.15,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.18,
+        2.13,
+        5.8925
+      ],
+      "offset": [
+        0,
+        1.065,
+        0.1462
+      ],
+      "bounce": 0.04
+    },
+    "vehicle": {
+      "max_speed": 2.2,
+      "steering": 35,
+      "grip": 8,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.065,
+        0.1462
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

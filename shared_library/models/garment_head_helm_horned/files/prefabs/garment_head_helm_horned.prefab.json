@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_helm_horned"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4715, 0.2483, 0.2731],
+      "offset": [0, 1.8451, -0.0114]
+    }
+  }
+}

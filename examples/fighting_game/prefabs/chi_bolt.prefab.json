@@ -1,0 +1,42 @@
+{
+  "components": {
+    "shape": {
+      "kind": "sphere",
+      "size": [
+        0.62,
+        0.62,
+        0.62
+      ],
+      "color": "#dbf9ff",
+      "emissive": "#67dce0"
+    },
+    "light": {
+      "kind": "point",
+      "color": "#aaefff",
+      "intensity": 1.6,
+      "range": 9
+    },
+    "rigidbody": {
+      "kind": "kinematic"
+    },
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.35,
+      "trigger": true,
+      "layer": "bolt",
+      "collides_with": [
+        "fighter",
+        "stage"
+      ]
+    }
+  },
+  "behaviors": {
+    "chi_bolt": {
+      "speed": 8,
+      "lifetime": 2,
+      "trail_width": 0.2,
+      "trail_seconds": 0.26
+    }
+  },
+  "pool": 4
+}

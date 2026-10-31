@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_coffee_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1, 0.47, 0.6],
+      "offset": [0, 0.235, 0]
+    }
+  }
+}

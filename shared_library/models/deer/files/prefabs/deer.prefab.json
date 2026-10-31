@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/deer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3909, 1.5658, 1.6798],
+      "offset": [0, 0.7829, 0.1552]
+    }
+  }
+}

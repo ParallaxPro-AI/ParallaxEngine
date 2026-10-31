@@ -1,0 +1,10 @@
+{
+  "id": "c4_charge",
+  "summary": "A demolition charge: three film-wrapped putty blocks bundled with tape straps, a rugged control box on top wi… joints keypad_cover, arm_switch; options wrap; sockets socket_led, blast, led.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.c4_charge or place \"prefab\": \"c4_charge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:c4_charge"]
+}

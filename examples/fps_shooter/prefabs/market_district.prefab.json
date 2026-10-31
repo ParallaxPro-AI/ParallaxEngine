@@ -1,0 +1,8 @@
+{
+ "components": {
+  "model": {
+   "model": "models/market_district",
+   "cast_shadows": true
+  }
+ }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "morning_star",
+  "summary": "A medieval footman's morning star, 0.80 m overall (real ones run 0.6-1.0 m with a 1.5-2 kg head): a slightly… sockets head, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.morning_star or place \"prefab\": \"morning_star\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:morning_star"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "kitchen_bin",
+  "summary": "A round stainless kitchen waste bin on a plastic foot. joints pedal, lid; options type; sockets socket_contents.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.kitchen_bin or place \"prefab\": \"kitchen_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:kitchen_bin"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sheriff_desk",
+  "summary": "A wild-west sheriff's office desk: a scarred oak twin-pedestal desk with raised panels, a gallery of pigeonho… joints drawer_l1, drawer_l2, drawer_l3, drawer_r1, drawer_file, drawer_centre; options wood; sockets socket_desktop, socket_user, socket_visitor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sheriff_desk or place \"prefab\": \"sheriff_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sheriff_desk"]
+}

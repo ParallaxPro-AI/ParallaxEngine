@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/workbench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 1.14, 0.828],
+      "offset": [0, 0.57, 0.039]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "harbour_seal",
+  "summary": "A harbour seal, ~1.5 m nose to tail-flipper. options coat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.harbour_seal or place \"prefab\": \"harbour_seal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:harbour_seal"]
+}

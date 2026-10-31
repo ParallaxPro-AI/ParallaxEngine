@@ -1,0 +1,9 @@
+{
+  "name": "The Ossuary", "tint": "#ebfaff",
+  "rooms": 7, "loops": 0.12, "has_gauntlet": false, "locked_chests": 1, "locks": 1,
+  "enemy_hp_mult": 1.25, "boss_hp_mult": 1.15, "shop_price_mult": 1.2, "elite_chance": 0.15,
+  "squads": {
+    "combat": { "husk": 3, "lurker": 2 },
+    "boss": { "bone_tyrant": 1 }
+  }
+}

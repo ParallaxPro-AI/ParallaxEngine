@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plasma_conduit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 0.544, 0.5],
+      "offset": [0, 0.272, 0]
+    }
+  }
+}

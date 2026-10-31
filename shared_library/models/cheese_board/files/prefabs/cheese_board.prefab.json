@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cheese_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.563, 0.072, 0.2902],
+      "offset": [0.0015, 0.036, -0.0051]
+    }
+  }
+}

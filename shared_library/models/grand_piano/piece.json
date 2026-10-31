@@ -1,0 +1,10 @@
+{
+  "id": "grand_piano",
+  "summary": "A 2.1 m polished-ebony grand piano: a true wing-shaped rim (straight bass side, concave bentside, rounded tai… joints keyboard_lid, lid, lid_prop, pedals; options finish; sockets socket_bench, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grand_piano or place \"prefab\": \"grand_piano\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grand_piano"]
+}

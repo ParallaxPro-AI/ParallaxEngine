@@ -1,0 +1,10 @@
+{
+  "id": "raptor",
+  "summary": "A feathered dromaeosaur ('raptor') on the engine's quadruped_20 rig used as a biped: about 2 m snout to tail… options skin; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.raptor or place \"prefab\": \"raptor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:raptor"]
+}

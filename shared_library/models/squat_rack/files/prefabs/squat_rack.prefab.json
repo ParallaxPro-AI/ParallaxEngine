@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/squat_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.21, 2.211, 1.5595],
+      "offset": [0, 1.1045, -0.0452]
+    }
+  }
+}

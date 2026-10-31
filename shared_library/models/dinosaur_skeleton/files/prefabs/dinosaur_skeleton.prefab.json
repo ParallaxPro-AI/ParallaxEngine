@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dinosaur_skeleton"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 4.0494, 10.4535],
+      "offset": [0, 2.0227, 0.0762]
+    }
+  }
+}

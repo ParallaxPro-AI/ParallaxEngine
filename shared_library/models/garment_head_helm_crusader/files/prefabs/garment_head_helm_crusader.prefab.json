@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_helm_crusader"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2779, 0.393, 0.2818],
+      "offset": [0, 1.7405, 0.0035]
+    }
+  }
+}

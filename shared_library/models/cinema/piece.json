@@ -1,0 +1,10 @@
+{
+  "id": "cinema",
+  "summary": "An 18 x 30 m single-screen cinema with a classic marquee: a canopy over the pavement with a lit letter board… options marquee_colour; sockets socket_entrance, socket_lobby, socket_stage, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cinema or place \"prefab\": \"cinema\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cinema"]
+}

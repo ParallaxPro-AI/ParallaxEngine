@@ -1,0 +1,2 @@
+{ "gold": 65, "respawn": 35,
+  "stats": { "max_health": 420, "damage": 18, "attack_range": 3, "attack_interval": 1.2, "move_speed": 4 } }

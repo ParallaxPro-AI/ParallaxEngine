@@ -1,0 +1,10 @@
+{
+  "id": "red_lacquer_cabinet",
+  "summary": "A Chinese red-lacquer cabinet, 1.0 m wide and 1.76 m tall: a polished cinnabar case with an overhanging gilt-… joints door_l, door_r, drawer_l, drawer_r; options lacquer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.red_lacquer_cabinet or place \"prefab\": \"red_lacquer_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:red_lacquer_cabinet"]
+}

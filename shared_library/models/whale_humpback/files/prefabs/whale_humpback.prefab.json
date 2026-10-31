@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/whale_humpback"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.7, 4.1491, 14.3679],
+      "offset": [0, -0.7745, -0.1535]
+    }
+  }
+}

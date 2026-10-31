@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/loot_pile_mixed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7641, 0.4076, 0.5469],
+      "offset": [0.0077, 0.1998, -0.0004]
+    }
+  }
+}

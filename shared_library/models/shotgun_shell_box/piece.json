@@ -1,0 +1,10 @@
+{
+  "id": "shotgun_shell_box",
+  "summary": "An open box of 25 twelve-gauge shotgun shells: a red printed card box (114 x 114 x 72 mm) with its lid folded… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shotgun_shell_box or place \"prefab\": \"shotgun_shell_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shotgun_shell_box"]
+}

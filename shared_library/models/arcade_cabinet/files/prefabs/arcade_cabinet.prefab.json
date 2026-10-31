@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arcade_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6615, 1.723, 0.9215],
+      "offset": [-0.0008, 0.86, 0.0693]
+    }
+  }
+}

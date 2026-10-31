@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dishwasher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 0.8815, 0.6815],
+      "offset": [0, 0.4392, 0.0393]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "max_heat": 5,
+  "search_after": 6,
+  "lose_after": 22,
+  "arrest_fine": 0.25,
+  "busted_seconds": 2.5,
+  "release": "safehouse_door",
+  "dispatch_interval": 1,
+  "spawn_min": 60,
+  "spawn_max": 95,
+  "stand_down": 160,
+  "helicopter_altitude": 35,
+  "roadblock_ahead": 90
+}

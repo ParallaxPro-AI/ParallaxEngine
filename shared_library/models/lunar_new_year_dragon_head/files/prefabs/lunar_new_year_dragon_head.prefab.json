@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lunar_new_year_dragon_head"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9631, 1.7873, 1.3994],
+      "offset": [0.0014, 0.8936, 0.0003]
+    }
+  }
+}

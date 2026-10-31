@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gem_cut_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.14, 0.0236, 0.094],
+      "offset": [0, 0.0072, 0]
+    }
+  }
+}

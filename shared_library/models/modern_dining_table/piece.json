@@ -1,0 +1,10 @@
+{
+  "id": "modern_dining_table",
+  "summary": "A modern four-seat dining table from the modern apartment set: a 1.4 x 0.85 m walnut top with a slim black st… options wood, dressing; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_dining_table or place \"prefab\": \"modern_dining_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_dining_table"]
+}

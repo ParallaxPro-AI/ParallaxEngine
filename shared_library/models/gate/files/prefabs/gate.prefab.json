@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.62, 0.185],
+      "offset": [0, 0.81, -0.0025]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "components": {
+    "sprite": { "image": "images/mark_sun", "size": [0.78, 0.78] }
+  },
+  "tags": ["piece"]
+}

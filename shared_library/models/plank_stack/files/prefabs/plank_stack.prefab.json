@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plank_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0936, 0.4685, 1.1091],
+      "offset": [0.0019, 0.2343, 0.0101]
+    }
+  }
+}

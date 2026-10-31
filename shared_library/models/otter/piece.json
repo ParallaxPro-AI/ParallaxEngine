@@ -1,0 +1,10 @@
+{
+  "id": "otter",
+  "summary": "A North American river otter on the engine's quadruped_20 rig, sized from a real adult: ~1.1 m nose to tail t… options coat; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.otter or place \"prefab\": \"otter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:otter"]
+}

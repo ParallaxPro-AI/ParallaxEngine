@@ -1,0 +1,10 @@
+{
+  "id": "console_terminal",
+  "summary": "A standing sci-fi operator console: a pedestal cabinet with a glowing front panel, a slide-out keyboard tray… joints screen_tilt, keyboard, screen_state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.console_terminal or place \"prefab\": \"console_terminal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:console_terminal"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shopkeeper"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.713, 1.7428, 0.2641],
+      "offset": [0, 0.8714, 0.0041]
+    }
+  }
+}

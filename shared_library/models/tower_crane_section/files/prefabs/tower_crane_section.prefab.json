@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tower_crane_section"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3265, 11.65, 36.4],
+      "offset": [-0.5118, 5.825, 7.1]
+    }
+  }
+}

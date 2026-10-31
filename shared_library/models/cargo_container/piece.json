@@ -1,0 +1,14 @@
+{
+  "id": "cargo_container",
+  "summary": "A modular sci-fi cargo container: corrugated walls, ISO-style corner castings, a corner-post frame, double… joints door_l, door_r, clamp_l, clamp_r; options colour, stencil; sockets socket_interior.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.cargo_container or place \"prefab\": \"cargo_container\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:cargo_container"
+  ]
+}

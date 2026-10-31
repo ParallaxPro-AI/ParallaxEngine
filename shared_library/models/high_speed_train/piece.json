@@ -1,0 +1,10 @@
+{
+  "id": "high_speed_train",
+  "summary": "A 26 m high-speed power car: the body section swept into a 5.8 m aerodynamic nose, sealed inter-city glazing… joints door_lf_a, door_lf_b, door_lr_a, door_lr_b, door_rf_a, door_rf_b, …; sockets socket_coupler_front, socket_coupler_rear, eye_point, seat_driver, rear_eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.high_speed_train or place \"prefab\": \"high_speed_train\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:high_speed_train"]
+}

@@ -1,0 +1,40 @@
+<!-- Ported from the template: Chess game over - Victory / Defeat / Draw card with a king mark, the ending (checkmate, stalemate, draw rule or resignation) and its reason, moves played, difficulty, Play Again and Main Menu -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .go { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .go-card { width: var(--cx-over-w); }
+  .go-mark { display: flex; justify-content: center; align-items: flex-end; gap: var(--cx-s-2); font-family: var(--cx-f-glyph); font-size: var(--cx-fs-mark); line-height: 1; height: calc(var(--cx-fs-mark) * 1.05); margin-bottom: var(--cx-s-4); }
+  .go-mark span { display: inline-block; transform-origin: 50% 80%; }
+  .go-k2 { display: none !important; }
+  .go-card[data-result="win"] .go-mark { color: var(--cx-accent); }
+  .go-card[data-result="loss"] .go-mark { color: var(--cx-neg); }
+  .go-card[data-result="loss"] .go-k1 { transform: translateY(-.22em) rotate(-90deg); }
+  .go-card[data-result="draw"] .go-mark { color: var(--cx-ink-2); }
+  .go-card[data-result="draw"] .go-k2 { display: inline-block !important; }
+  .go-card[data-result="win"] .cx-h2 { color: var(--cx-accent); }
+  .go-sep { color: var(--cx-ink-3); margin: 0 .15em; }
+  .go-reason { font: italic 400 var(--cx-fs-body)/1.4 var(--cx-f-display); color: var(--cx-ink-2); margin: var(--cx-s-3) auto 0; max-width: 30em; text-wrap: pretty; }
+  .go-stats { display: flex; justify-content: center; margin-top: var(--cx-s-6); border-top: 1px solid var(--cx-line); border-bottom: 1px solid var(--cx-line); }
+  .go-stats > div { padding: var(--cx-s-4) var(--cx-s-7); display: flex; flex-direction: column; gap: var(--cx-s-2); }
+  .go-stats > div + div { border-left: 1px solid var(--cx-line); }
+  .go-stats dd { font: 500 var(--cx-fs-value)/1 var(--cx-f-display); font-variant-numeric: lining-nums; }
+  .go-actions { display: flex; gap: var(--cx-s-4); justify-content: center; margin-top: var(--cx-s-6); }
+  .go-actions .cx-btn { min-width: var(--cx-act-w); }
+</style>
+<div class="cx-root go">
+  <div class="cx-scrim"></div>
+  <div class="cx-modal go-card" data-attr-data-result="result" role="dialog" aria-modal="true">
+    <div class="go-mark" aria-hidden="true"><span class="go-k1">&#9812;&#xFE0E;</span><span class="go-k2">&#9818;&#xFE0E;</span></div>
+    <div class="cx-label">Game over</div>
+    <h2 class="cx-h2"><span data-bind="title"></span><span class="go-sep">&mdash;</span><span data-bind="ending"></span></h2>
+    <p class="go-reason" data-bind="reason"></p>
+    <dl class="go-stats">
+      <div><dt class="cx-label" data-text="stat_moves"></dt><dd data-bind="moves"></dd></div>
+      <div><dt class="cx-label" data-text="stat_difficulty"></dt><dd data-bind="difficulty"></dd></div>
+    </dl>
+    <div class="go-actions">
+      <button class="cx-btn cx-primary" data-action="play_again" data-text="play_again"></button>
+      <button class="cx-btn" data-action="quit" data-text="main_menu"></button>
+    </div>
+  </div>
+</div>

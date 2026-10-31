@@ -1,0 +1,10 @@
+{
+  "id": "champion_warrior",
+  "summary": "A rigged melee champion on the engine's canonical 17-bone humanoid rig: plate cuirass, shoulder pauldrons, a… options team, trim, skin, hair, headgear; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.champion_warrior or place \"prefab\": \"champion_warrior\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:champion_warrior"]
+}

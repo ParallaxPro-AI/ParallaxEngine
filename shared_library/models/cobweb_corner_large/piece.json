@@ -1,0 +1,10 @@
+{
+  "id": "cobweb_corner_large",
+  "summary": "A large old cobweb built INTO a room's top corner (a 3D corner piece, not a flat web): radial threads run fro…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cobweb_corner_large or place \"prefab\": \"cobweb_corner_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cobweb_corner_large"]
+}

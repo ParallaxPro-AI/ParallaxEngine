@@ -1,0 +1,10 @@
+{
+  "id": "sandbag_wall",
+  "summary": "A stacked sandbag emplacement: six courses of filled hessian bags laid in running bond, a one-bag firing notc… sockets socket_firing, socket_end.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sandbag_wall or place \"prefab\": \"sandbag_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sandbag_wall"]
+}

@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": {"model": "models/wellspring_blue", "cast_shadows": true}
+  }
+}

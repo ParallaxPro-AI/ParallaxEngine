@@ -1,0 +1,10 @@
+{
+  "id": "djembe",
+  "summary": "A West African djembe goblet hand drum: a hollow carved-hardwood shell (bowl, narrow waist, flared foot, open…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.djembe or place \"prefab\": \"djembe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:djembe"]
+}

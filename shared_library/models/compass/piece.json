@@ -1,0 +1,10 @@
+{
+  "id": "compass",
+  "summary": "A 56 mm brass pocket compass lying dial-up: a lathed case with a cream dial, 36 tick marks and N/E/S/W letter… joints needle, lid; options finish; sockets socket_dial, socket_bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.compass or place \"prefab\": \"compass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:compass"]
+}

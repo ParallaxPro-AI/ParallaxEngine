@@ -1,0 +1,10 @@
+{
+  "id": "cyber_vending_wall",
+  "summary": "A cyberpunk street vending wall: three rounded-corner vending cabinets (each 0.78 m wide, 2.0 m tall, the foo… joints a_flap, b_door_open, c_flap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyber_vending_wall or place \"prefab\": \"cyber_vending_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyber_vending_wall"]
+}

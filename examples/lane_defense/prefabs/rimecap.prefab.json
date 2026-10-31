@@ -1,0 +1,10 @@
+{
+  "extends": "plant",
+  "components": {
+    "model": { "model": "models/rimecap" },
+    "health": { "current": 90, "max": 90 }
+  },
+  "behaviors": {
+    "lane_shooter": { "thorn": "rime_thorn", "damage": 15, "range": 14, "fire_interval": 1.6, "chill": "chill", "chill_seconds": 3, "flash": "vfx/rime_muzzle" }
+  }
+}

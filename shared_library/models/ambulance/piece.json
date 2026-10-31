@@ -1,0 +1,14 @@
+{
+  "id": "ambulance",
+  "summary": "A Type-III box ambulance: a van cab with a short bonnet and raked windscreen ahead of a taller, wider… joints beacon, barn_door_l, barn_door_r; sockets seat_driver, seat_crew_1, seat_pax_1, seat_pax_2 ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.ambulance or place \"prefab\": \"ambulance\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:ambulance"
+  ]
+}

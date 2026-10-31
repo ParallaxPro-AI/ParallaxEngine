@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="dockbot.css">
+<link rel="stylesheet" href="menus.css">
+<div class="scrim">
+  <div class="card split">
+    <i class="br tl"></i><i class="br tr"></i><i class="br bl"></i><i class="br bR"></i>
+    <div>
+      <h1 class="title" data-text="shift_complete"></h1>
+      <p class="blurb" data-bind="subtitle"></p>
+      <p class="label" data-show="resumed" data-text="resumed_note" style="margin-top: 12px"></p>
+    </div>
+    <div>
+      <div><span class="label" data-text="total_moves"></span><span class="badge" data-show="new_best" data-text="new_best"></span></div>
+      <div class="score" id="score" data-bind="moves"></div>
+      <div class="row" style="margin-top: 12px"><span class="label" data-text="fewest_moves"></span><span><span class="old" data-show="beat_previous" data-bind="previous_best"></span><b data-bind="best"></b></span></div>
+    </div>
+    <div class="actions" style="grid-column: 1 / -1">
+      <button class="btn btn--win" data-action="retry" data-text="new_shift"></button>
+      <button class="btn" data-action="quit" data-text="menu"></button>
+    </div>
+  </div>
+</div>
+<script>
+  // The total counts up over 0.9 s (ease-out cubic), as on the template's card.
+  let shown = null;
+  parallax.on_state((state) => {
+    if (state.moves === shown) return;
+    shown = state.moves;
+    const out = document.getElementById("score");
+    const t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 900);
+      out.textContent = String(Math.round(state.moves * (1 - Math.pow(1 - k, 3))));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+</script>

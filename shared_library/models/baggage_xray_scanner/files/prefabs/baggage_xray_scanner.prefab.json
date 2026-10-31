@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baggage_xray_scanner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3, 1.96, 1.2278],
+      "offset": [0, 0.98, 0.0829]
+    }
+  }
+}

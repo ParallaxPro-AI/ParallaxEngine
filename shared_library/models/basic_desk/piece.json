@@ -1,0 +1,10 @@
+{
+  "id": "basic_desk",
+  "summary": "A budget flat-pack desk from the 'basic' apartment set: a light pine top on square white legs with side rails… joints drawer; options dressing; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_desk or place \"prefab\": \"basic_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_desk"]
+}

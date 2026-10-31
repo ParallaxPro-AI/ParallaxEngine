@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/suv",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.14,
+        1.78,
+        4.734
+      ],
+      "offset": [
+        0.0,
+        0.89,
+        0.033
+      ]
+    }
+  }
+}

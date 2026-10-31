@@ -1,0 +1,10 @@
+{
+  "id": "health_station",
+  "summary": "A medical dispenser kiosk (heal station) for shooters and arcade games: a 0.7 x 1.78 m white chamfered cabine… joints charge, flap; options mount, cross, fluid; sockets socket_dispense, socket_light.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.health_station or place \"prefab\": \"health_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:health_station"]
+}

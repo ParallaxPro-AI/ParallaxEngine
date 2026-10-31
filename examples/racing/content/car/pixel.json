@@ -1,0 +1,4 @@
+{
+  "name": "Pixel", "blurb": "Nimble cornering — the twisty king",
+  "prefab": "car_pixel", "showroom": "showroom_pixel", "top_speed": 28, "acceleration": 42, "handling": 145, "price": 2600
+}

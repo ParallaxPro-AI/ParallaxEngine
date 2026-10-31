@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stair_climber"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.77, 2.0277, 1.88],
+      "offset": [0, 1.0138, 0.04]
+    }
+  }
+}

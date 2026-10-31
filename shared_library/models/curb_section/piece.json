@@ -1,0 +1,10 @@
+{
+  "id": "curb_section",
+  "summary": "A 3.0 m module of red-and-white racing kerb: a shallow wedge 12 mm proud at the track edge rising to 65 mm at…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.curb_section or place \"prefab\": \"curb_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:curb_section"]
+}

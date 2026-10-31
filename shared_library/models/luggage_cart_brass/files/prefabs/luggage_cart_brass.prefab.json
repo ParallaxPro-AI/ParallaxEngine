@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luggage_cart_brass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.664, 1.8295, 1.164],
+      "offset": [0, 0.9147, 0]
+    }
+  }
+}

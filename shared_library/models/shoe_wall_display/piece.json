@@ -1,0 +1,10 @@
+{
+  "id": "shoe_wall_display",
+  "summary": "A shoe-shop wall display: a white grooved slatwall panel in an oak frame with a lit SHOES fascia, fifteen oak… options panel, frame, contents; sockets socket_shelf_0_0, socket_shelf_0_1, socket_shelf_0_2, socket_shelf_1_0, socket_shelf_1_1, socket_shelf_1_2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shoe_wall_display or place \"prefab\": \"shoe_wall_display\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shoe_wall_display"]
+}

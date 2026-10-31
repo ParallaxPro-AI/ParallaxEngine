@@ -1,0 +1,6 @@
+{
+  "name": "Still air",
+  "weight": 3,
+  "speed_min": 0.0,
+  "speed_max": 0.6
+}

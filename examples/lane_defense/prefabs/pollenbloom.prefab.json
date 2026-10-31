@@ -1,0 +1,8 @@
+{
+  "extends": "plant",
+  "components": {
+    "model": { "model": "models/pollenbloom" },
+    "health": { "current": 70, "max": 70 }
+  },
+  "behaviors": { "pollen_bloom": { "interval": 22, "amount": 25, "watered_bonus": 1.5 } }
+}

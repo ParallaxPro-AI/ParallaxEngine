@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_ceiling"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 0.149, 3],
+      "offset": [0, 0.0745, 0]
+    }
+  }
+}

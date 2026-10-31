@@ -1,0 +1,10 @@
+{
+  "id": "claw_machine",
+  "summary": "A prize crane / claw machine: a coloured lower cabinet with a joystick console, a glass play box full of plus… joints gantry, claw, glass_door; sockets socket_prize_bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.claw_machine or place \"prefab\": \"claw_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:claw_machine"]
+}

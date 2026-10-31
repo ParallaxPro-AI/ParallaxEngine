@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/saloon_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.15, 2.17, 0.16],
+      "offset": [0, 1.085, 0]
+    }
+  }
+}

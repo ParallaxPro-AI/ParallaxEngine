@@ -1,0 +1,10 @@
+{
+  "id": "koi_pond_edge",
+  "summary": "A raised kidney-shaped koi pond: a dry-stacked stone wall capped with fifteen irregular flagstones overhangin… options koi, lilies, planting, coping_stone; sockets seat_edge, socket_water.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.koi_pond_edge or place \"prefab\": \"koi_pond_edge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:koi_pond_edge"]
+}

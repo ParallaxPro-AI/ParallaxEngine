@@ -1,0 +1,10 @@
+{
+  "id": "ore_rock_gold",
+  "summary": "A harvestable gold-ore node: a ~1.1 m dark grey boulder with a tall fractured crown and a low shelf, crossed…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ore_rock_gold or place \"prefab\": \"ore_rock_gold\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ore_rock_gold"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magazine_rifle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0312, 0.1842, 0.082],
+      "offset": [0, -0.0489, 0.006]
+    }
+  }
+}

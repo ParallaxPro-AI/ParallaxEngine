@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arabic_arch_doorway"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.68, 3.88, 0.6],
+      "offset": [0, 1.94, 0]
+    }
+  }
+}

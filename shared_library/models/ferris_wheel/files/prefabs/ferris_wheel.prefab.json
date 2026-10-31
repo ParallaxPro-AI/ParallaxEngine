@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ferris_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [13.06, 13.13, 4.003],
+      "offset": [0, 6.565, 0]
+    }
+  }
+}

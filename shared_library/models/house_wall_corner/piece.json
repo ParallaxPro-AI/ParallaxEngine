@@ -1,0 +1,10 @@
+{
+  "id": "house_wall_corner",
+  "summary": "The HOUSE kit corner piece: the 0.2 x 0.2 x 2.85 m post that fills the square where two 3 m house walls meet…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_wall_corner or place \"prefab\": \"house_wall_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_wall_corner"]
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "canyon",
+  "exclude": ["runner"],
+  "ui": ["title_screen"],
+  "music": null
+}

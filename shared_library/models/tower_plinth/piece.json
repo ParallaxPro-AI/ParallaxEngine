@@ -1,0 +1,10 @@
+{
+  "id": "tower_plinth",
+  "summary": "The raised, walled terrace a lane tower stands on: a battered octagonal retaining course, a chamfered coping… options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tower_plinth or place \"prefab\": \"tower_plinth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tower_plinth"]
+}

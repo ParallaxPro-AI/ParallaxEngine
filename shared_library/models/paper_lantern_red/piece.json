@@ -1,0 +1,10 @@
+{
+  "id": "paper_lantern_red",
+  "summary": "A large hanging Chinese red lantern (denglong): a 0.72 m squashed-sphere silk shade with sixteen dark bamboo… options colour, tassel, hanger; sockets hang.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_lantern_red or place \"prefab\": \"paper_lantern_red\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_lantern_red"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_skates"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2651, 0.2887, 0.3075],
+      "offset": [0, 0.1403, -0.004]
+    }
+  }
+}

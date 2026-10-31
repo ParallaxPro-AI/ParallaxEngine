@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cooking_spit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.55, 0.9634, 1.0066],
+      "offset": [0.025, 0.4817, -0.0094]
+    }
+  }
+}

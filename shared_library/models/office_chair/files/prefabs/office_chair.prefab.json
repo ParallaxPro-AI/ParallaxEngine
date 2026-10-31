@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/office_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6781, 1.1311, 0.658],
+      "offset": [0, 0.5656, 0.0215]
+    }
+  }
+}

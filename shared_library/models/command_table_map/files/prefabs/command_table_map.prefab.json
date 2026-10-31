@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/command_table_map"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 1.5182, 1.21],
+      "offset": [0, 0.7591, -0.005]
+    }
+  }
+}

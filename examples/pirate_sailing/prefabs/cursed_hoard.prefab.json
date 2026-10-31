@@ -1,0 +1,8 @@
+{
+  "tags": ["cursed_hoard"],
+  "components": {
+    "shape": { "kind": "sphere", "color": "#ffc72e", "emissive": "#664004" },
+    "light": { "kind": "point", "color": "#1accff", "intensity": 1.4, "range": 10 }
+  },
+  "scale": [1.2, 1.2, 1.2]
+}

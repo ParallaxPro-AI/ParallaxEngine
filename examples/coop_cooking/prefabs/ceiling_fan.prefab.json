@@ -1,0 +1,34 @@
+{
+  "components": {
+    "model": {
+      "model": "models/industrial_fan",
+      "options": {
+        "mount": "ceiling"
+      },
+      "cast_shadows": true
+    }
+  },
+  "scale": [
+    1.6,
+    1.6,
+    1.6
+  ],
+  "behaviors": {
+    "model_ambient": {
+      "motions": [
+        {
+          "joint": "blades",
+          "mode": "spin",
+          "period": 1.1
+        },
+        {
+          "joint": "louvres",
+          "mode": "oscillate",
+          "period": 6.0,
+          "low": 11.1,
+          "high": 55.5
+        }
+      ]
+    }
+  }
+}

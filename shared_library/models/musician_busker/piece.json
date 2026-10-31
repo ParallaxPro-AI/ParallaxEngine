@@ -1,0 +1,10 @@
+{
+  "id": "musician_busker",
+  "summary": "A street musician / busker: washed denim jacket (brass buttons, flapped chest pockets, waistband) over a whit… options skin, hair, jacket_colour, beanie_colour, headwear; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.musician_busker or place \"prefab\": \"musician_busker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:musician_busker"]
+}

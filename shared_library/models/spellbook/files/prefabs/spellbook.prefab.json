@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spellbook"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2219, 0.0764, 0.271],
+      "offset": [-0.0051, 0.036, 0]
+    }
+  }
+}

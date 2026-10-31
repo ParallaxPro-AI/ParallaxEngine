@@ -1,0 +1,10 @@
+{
+  "id": "mini_excavator",
+  "summary": "A 3-tonne compact (mini) excavator on rubber crawler tracks: lugged belts over rollers, a front idler and a t… joints blade, house, boom_swing, boom, dipper, bucket; options paint; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.mini_excavator or place \"prefab\": \"mini_excavator\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:mini_excavator"]
+}

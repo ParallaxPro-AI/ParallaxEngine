@@ -1,0 +1,10 @@
+{
+  "id": "metro_car_shanghai",
+  "summary": "A Shanghai Metro Type A car: white painted body with a rounded roof and tumblehome, a raked streamlined nose… joints door_lf_a, door_lf_b, door_lr_a, door_lr_b, door_rf_a, door_rf_b, …; sockets socket_coupler_front, socket_coupler_rear, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.metro_car_shanghai or place \"prefab\": \"metro_car_shanghai\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:metro_car_shanghai"]
+}

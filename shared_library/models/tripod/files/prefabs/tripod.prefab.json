@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tripod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9009, 1.2992, 0.8883],
+      "offset": [0, 0.6496, 0.0662]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tuba",
+  "summary": "A full-size upright BBb tuba: a wide hollow bell (bead-rimmed, open from above) on a tapering conical body th… joints main_slide, piston_0, piston_1, piston_2, piston_3; options finish; sockets mouthpiece.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tuba or place \"prefab\": \"tuba\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tuba"]
+}

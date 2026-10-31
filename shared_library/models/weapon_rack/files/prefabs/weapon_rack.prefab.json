@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/weapon_rack",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.203,
+        1.8515,
+        0.3015
+      ],
+      "offset": [
+        0.0,
+        0.9243,
+        -0.0008
+      ]
+    }
+  }
+}

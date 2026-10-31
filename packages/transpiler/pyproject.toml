@@ -1,0 +1,7 @@
+[project]
+name = "parallax-transpiler"
+version = "0.0.0"
+description = "Compiles Parallax Python (a CPython-exact subset) to JavaScript."
+license = "Apache-2.0"
+requires-python = ">=3.12"
+dependencies = []

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hand_dryer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2579, 0.3441, 0.1693],
+      "offset": [0, 0.172, 0.0026]
+    }
+  }
+}

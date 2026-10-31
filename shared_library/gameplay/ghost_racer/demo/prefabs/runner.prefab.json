@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "circle", "size": [0.6, 0.6, 0.6] } },
+  "behaviors": { "demo_runner": {}, "ghost_recorder": { "rate": 10 } }
+}

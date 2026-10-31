@@ -1,0 +1,10 @@
+{
+  "id": "alarm_bell_desk",
+  "summary": "A classic mechanical twin-bell alarm clock for a desk or bedside table, about 130 mm wide and 175 mm tall: a… joints hour_hand, minute_hand, alarm_hand, hammer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alarm_bell_desk or place \"prefab\": \"alarm_bell_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alarm_bell_desk"]
+}

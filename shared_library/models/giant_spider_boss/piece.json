@@ -1,0 +1,10 @@
+{
+  "id": "giant_spider_boss",
+  "summary": "A giant spider BOSS for a dungeon or cave arena, 3.2 m leg span and 1.74 m tall to the tips of its abdomen sp… joints fang_l, fang_r, abdomen_pitch, leg1_hip_l, leg1_lift_l, leg2_hip_l, …; options carapace, hair, markings, eyes; sockets mouth, back, spinneret.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.giant_spider_boss or place \"prefab\": \"giant_spider_boss\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:giant_spider_boss"]
+}

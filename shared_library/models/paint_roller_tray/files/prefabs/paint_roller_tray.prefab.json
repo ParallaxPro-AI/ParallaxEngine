@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paint_roller_tray"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.354, 0.1363, 0.5173],
+      "offset": [0, 0.0682, 0.0001]
+    }
+  }
+}

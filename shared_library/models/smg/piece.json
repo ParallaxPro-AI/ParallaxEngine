@@ -1,0 +1,10 @@
+{
+  "id": "smg",
+  "summary": "A roller-locked 9mm submachine gun in the MP5 idiom: slim polymer handguard over a stubby barrel, forward str… joints bolt, magazine, stock; sockets grip_r, grip_l, sight, muzzle, eject.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.smg or place \"prefab\": \"smg\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:smg"]
+}

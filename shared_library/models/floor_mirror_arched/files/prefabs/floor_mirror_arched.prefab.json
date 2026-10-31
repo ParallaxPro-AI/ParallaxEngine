@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/floor_mirror_arched"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8, 1.8897, 0.2633],
+      "offset": [0, 0.9449, 0.0041]
+    }
+  }
+}

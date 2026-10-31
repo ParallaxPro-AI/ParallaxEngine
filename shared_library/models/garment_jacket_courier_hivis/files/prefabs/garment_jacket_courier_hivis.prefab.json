@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_jacket_courier_hivis"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.344, 0.623, 0.3186],
+      "offset": [0, 1.2665, 0.0065]
+    }
+  }
+}

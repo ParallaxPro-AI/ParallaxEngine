@@ -1,0 +1,4 @@
+{ "name": "Vault City Vipers", "taunt": "Bring the ball. We'll take it.",
+  "color": "#a866f2", "speed": 5.3,
+  "style": { "shoot_range": 8.6, "skill": 0.96, "perfect_rate": 0.36, "good_rate": 0.5,
+             "steal_chance": 0.46, "close_pressure": 1.0, "pass_chance": 0.55 } }

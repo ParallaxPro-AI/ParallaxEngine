@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/diwali_lamp_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.97, 0.1165, 0.97],
+      "offset": [0, 0.0583, 0]
+    }
+  }
+}

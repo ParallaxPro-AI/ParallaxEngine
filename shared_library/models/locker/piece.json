@@ -1,0 +1,10 @@
+{
+  "id": "locker",
+  "summary": "A tall metal storage locker. joints door_0, vents_top_0, latch_0, door_1, vents_top_1, latch_1, …; options config.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.locker or place \"prefab\": \"locker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:locker"]
+}

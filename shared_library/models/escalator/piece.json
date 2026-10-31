@@ -1,0 +1,10 @@
+{
+  "id": "escalator",
+  "summary": "A 1 m step-width passenger escalator rising one 3.6 m storey at 30 degrees, as in a mall, station or airport… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.escalator or place \"prefab\": \"escalator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:escalator"]
+}

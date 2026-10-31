@@ -1,0 +1,10 @@
+{
+  "id": "sake_barrel_stack",
+  "summary": "A pyramid of six straw-wrapped sake casks (komodaru) as stacked at a shrine or brewery: each barrel is wrappe…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sake_barrel_stack or place \"prefab\": \"sake_barrel_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sake_barrel_stack"]
+}

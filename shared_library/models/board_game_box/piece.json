@@ -1,0 +1,10 @@
+{
+  "id": "board_game_box",
+  "summary": "A boxed strategy board game, closed: a square paperboard box 297 x 297 x 73 mm (the common large-board-game s… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.board_game_box or place \"prefab\": \"board_game_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:board_game_box"]
+}

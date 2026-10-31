@@ -1,0 +1,1 @@
+{"extends": "effect/smoke", "burst": 30, "max": 42, "rate": 0, "lifetime": [0.6, 1.35], "speed": [0.8, 2.6], "size": [0.25, 0.55], "size_end": 1.45, "color": "#5c5c5780", "color_end": "#9e9e9900", "radius": 0.9}

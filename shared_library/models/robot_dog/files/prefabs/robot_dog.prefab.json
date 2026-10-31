@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/robot_dog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.404, 0.5909, 0.8565],
+      "offset": [0, 0.2955, 0.0108]
+    }
+  }
+}

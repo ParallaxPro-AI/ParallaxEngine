@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/popup_canopy_tent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.12, 2.995, 3.1112],
+      "offset": [0, 1.4975, 0]
+    }
+  }
+}

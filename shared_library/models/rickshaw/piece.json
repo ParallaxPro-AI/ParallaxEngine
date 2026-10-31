@@ -1,0 +1,10 @@
+{
+  "id": "rickshaw",
+  "summary": "A cycle rickshaw (pedicab): a bicycle front end - raked fork, front wheel, handlebar with lamp and bell, diam… joints hood, steer_front, pedals, wheel_r_l_roll, wheel_r_r_roll; options body_paint, hood_colour; sockets seat_driver, seat_pax_1, seat_pax_2, socket_cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.rickshaw or place \"prefab\": \"rickshaw\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:rickshaw"]
+}

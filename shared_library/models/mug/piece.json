@@ -1,0 +1,10 @@
+{
+  "id": "mug",
+  "summary": "A 330 ml glazed ceramic mug: a lathed body with a slight flare to a rolled rim, an unglazed foot ring, a real… options fill, glaze; sockets socket_rim.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mug or place \"prefab\": \"mug\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mug"]
+}

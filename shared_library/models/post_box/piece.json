@@ -1,0 +1,14 @@
+{
+  "id": "post_box",
+  "summary": "A British-style cast-iron pillar post box: a round red column with a domed cap, a letter aperture with a… joints flap, door.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.post_box or place \"prefab\": \"post_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:post_box"
+  ]
+}

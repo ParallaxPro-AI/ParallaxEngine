@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hitching_post"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.988, 1.0975, 0.8365],
+      "offset": [0, 0.5487, 0.0068]
+    }
+  }
+}

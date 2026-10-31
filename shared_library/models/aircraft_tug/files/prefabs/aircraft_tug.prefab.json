@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/aircraft_tug"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 16000,
+      "linear_damping": 0.12,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.84,
+        2.55,
+        5.86
+      ],
+      "offset": [
+        0,
+        1.275,
+        0
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 8.5,
+      "steering": 36,
+      "grip": 7,
+      "turn_rate": 1.2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.275,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

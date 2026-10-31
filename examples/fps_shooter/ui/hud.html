@@ -1,0 +1,202 @@
+<link rel="stylesheet" href="dustline.css">
+<style>
+  #dm-root { position: fixed; inset: 0; pointer-events: none; }
+
+  #dm-score { position: fixed; top: calc(24 * var(--u)); left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: calc(150 * var(--u)) calc(400 * var(--u)) calc(150 * var(--u)); background: linear-gradient(180deg, rgba(10,23,27,.9), rgba(10,23,27,.72)); border-top: calc(2 * var(--u)) solid var(--dl-brass); box-shadow: var(--dl-sh-slab); }
+  #dm-score::after { content: ""; position: absolute; left: 0; right: 0; top: 100%; height: calc(20 * var(--u)); background: linear-gradient(180deg, rgba(10,23,27,.45), transparent); }
+  #dm-score > div { padding: calc(14 * var(--u)) calc(18 * var(--u)); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(5 * var(--u)); }
+  #dm-score > div + div { border-left: 1px solid var(--dl-sage-line); }
+  .dm-num { font-size: calc(40 * var(--u)); font-weight: 700; line-height: 1; }
+  .dm-scoreval { color: var(--dl-brass); }
+  .dm-streak { min-height: calc(15 * var(--u)); font-size: calc(15 * var(--u)); font-weight: 700; line-height: 1; color: var(--dl-brass); letter-spacing: .12em; text-transform: uppercase; }
+  .dm-rname { font-size: calc(30 * var(--u)); font-weight: 700; letter-spacing: .18em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
+  .dm-segs { width: 100%; height: calc(5 * var(--u)); display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: calc(3 * var(--u)); }
+  .dm-segs i { background: var(--dl-track); }
+  .dm-segs i.on { background: var(--dl-brass); }
+  .dm-pips { display: flex; flex-wrap: wrap; justify-content: center; gap: calc(3 * var(--u)); max-width: calc(110 * var(--u)); }
+  .dm-pips i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); background: var(--dl-track); }
+  .dm-pips i.on { background: var(--dl-ink); }
+
+  #dm-feed { position: fixed; top: calc(168 * var(--u)); left: 50%; transform: translateX(-50%); width: calc(600 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(4 * var(--u)); }
+  .dm-fl { display: flex; align-items: baseline; gap: calc(10 * var(--u)); padding: calc(5 * var(--u)) calc(26 * var(--u)); font-size: calc(17 * var(--u)); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; background: linear-gradient(90deg, transparent, rgba(10,23,27,.88) 18%, rgba(10,23,27,.88) 82%, transparent); text-shadow: var(--dl-sh-text); animation: dmFeed var(--dm-feed, 2.6s) var(--dl-ease-out) forwards; }
+  .dm-fl b { color: var(--dl-brass); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .dm-fl.death { color: var(--dl-danger); }
+  .dm-fl.death::before { content: "✕"; }
+  .dm-fl.buff { color: var(--dl-buff); }
+  .dm-fl.elite, .dm-fl.elite b { color: var(--dl-elite); }
+  .dm-fl.streak { font: 400 calc(42 * var(--u))/1 var(--dl-f-display); letter-spacing: .08em; color: var(--dl-brass); background: none; padding: calc(4 * var(--u)) 0 calc(6 * var(--u)); text-shadow: 0 0 calc(22 * var(--u)) rgba(230,186,112,.45), var(--dl-sh-text); }
+  .dm-fl.streak small { font: 700 calc(18 * var(--u))/1 var(--dl-f-hud); letter-spacing: .12em; }
+  @keyframes dmFeed { 0% { opacity: 0; transform: translateY(calc(-6 * var(--u))); } 8% { opacity: 1; transform: none; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+  #dm-tl { position: fixed; top: calc(28 * var(--u)); left: calc(32 * var(--u)); display: flex; flex-direction: column; gap: calc(16 * var(--u)); }
+  .dm-sector { display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+  .dm-sector .lbl { font-size: calc(11 * var(--u)); }
+  .dm-sector-name { display: flex; align-items: center; gap: calc(10 * var(--u)); font-size: calc(24 * var(--u)); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; text-shadow: var(--dl-sh-text); }
+  .dm-sector-name::before { content: ""; width: calc(8 * var(--u)); height: calc(8 * var(--u)); background: var(--dl-brass); transform: rotate(45deg); }
+  #dm-perks { display: flex; flex-direction: column; align-items: flex-start; gap: calc(6 * var(--u)); }
+
+  #dm-clock { position: fixed; top: calc(24 * var(--u)); right: calc(32 * var(--u)); display: flex; align-items: baseline; gap: calc(12 * var(--u)); padding: calc(8 * var(--u)) calc(14 * var(--u)) calc(8 * var(--u)) calc(28 * var(--u)); background: linear-gradient(270deg, rgba(10,23,27,.88), rgba(10,23,27,.35)); border-top: calc(2 * var(--u)) solid var(--dl-brass); }
+  #dm-clock .num { font-size: calc(34 * var(--u)); font-weight: 700; line-height: 1; }
+
+  #dm-vitals { position: fixed; left: calc(32 * var(--u)); bottom: calc(32 * var(--u)); width: calc(360 * var(--u)); padding: calc(14 * var(--u)) calc(18 * var(--u)) calc(16 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); background: linear-gradient(90deg, rgba(10,23,27,.88), rgba(10,23,27,.55) 75%, transparent); border-top: calc(2 * var(--u)) solid var(--dl-brass); }
+  .dm-vrow { display: grid; grid-template-columns: 1fr auto; align-items: end; row-gap: calc(6 * var(--u)); }
+  .dm-vrow .bar { grid-column: 1 / -1; }
+  .dm-vnum { font-weight: 700; line-height: .9; }
+  .dm-vnum small { font-size: calc(15 * var(--u)); color: var(--dl-sage); font-weight: 600; margin-left: calc(4 * var(--u)); }
+  .dm-hp .dm-vnum { font-size: calc(48 * var(--u)); color: var(--dl-health); }
+  .dm-hp .bar { color: var(--dl-health); }
+  .dm-ar .dm-vnum { font-size: calc(28 * var(--u)); color: var(--dl-armor); }
+  .dl .dm-ar .bar { height: calc(5 * var(--u)); color: var(--dl-armor); }
+  #dm-root.dm-low .dm-hp .dm-vnum, #dm-root.dm-low .dm-hp .bar { color: var(--dl-health-low); }
+  #dm-root.dm-low .dm-hp .bar { animation: dmPulse 1s ease-in-out infinite; }
+  @keyframes dmPulse { 50% { opacity: .55; } }
+
+  #dm-weapon { position: fixed; right: calc(32 * var(--u)); bottom: calc(32 * var(--u)); min-width: calc(300 * var(--u)); padding: calc(14 * var(--u)) calc(20 * var(--u)) calc(16 * var(--u)); display: flex; flex-direction: column; align-items: flex-end; gap: calc(6 * var(--u)); background: linear-gradient(270deg, rgba(10,23,27,.88), rgba(10,23,27,.55) 75%, transparent); border-top: calc(2 * var(--u)) solid var(--dl-brass); }
+  .dm-wname { font-size: calc(18 * var(--u)); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; white-space: nowrap; }
+  .dm-ammo { display: flex; align-items: baseline; gap: calc(8 * var(--u)); }
+  .dm-mag { font-size: calc(68 * var(--u)); font-weight: 700; line-height: .9; transition: color 120ms, opacity 120ms; }
+  .dm-mag.low { color: var(--dl-danger); }
+  .dm-res { font-size: calc(28 * var(--u)); font-weight: 600; color: var(--dl-sage); }
+  .dm-reload { display: none; align-items: center; gap: calc(10 * var(--u)); font-size: calc(14 * var(--u)); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--dl-brass); }
+  .dl .dm-reload .bar { width: calc(110 * var(--u)); height: calc(3 * var(--u)); color: var(--dl-brass); }
+  .dm-reload .bar i { animation: dmReload 1.8s linear infinite; }
+  @keyframes dmReload { from { width: 0; } to { width: 100%; } }
+  #dm-weapon.reloading .dm-mag { opacity: .3; }
+  #dm-weapon.reloading .dm-reload { display: flex; }
+
+  #dm-loadout { position: fixed; bottom: calc(32 * var(--u)); left: 50%; transform: translateX(-50%); display: flex; gap: calc(6 * var(--u)); }
+  .dm-slot { width: calc(118 * var(--u)); height: calc(62 * var(--u)); padding: calc(8 * var(--u)) calc(12 * var(--u)); display: flex; flex-direction: column; justify-content: space-between; background: var(--dl-panel-2); box-shadow: inset 0 0 0 1px var(--dl-sage-line); color: var(--dl-sage); }
+  .dm-slot .k { font-size: calc(13 * var(--u)); font-weight: 700; }
+  .dm-slot .n { display: flex; justify-content: space-between; font-size: calc(17 * var(--u)); font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--dl-ink-2); }
+  .dm-slot .n em { font-style: normal; color: var(--dl-sage); letter-spacing: .04em; }
+  .dm-slot.on { background: linear-gradient(180deg, rgba(230,186,112,.24), rgba(10,23,27,.86)); box-shadow: inset 0 calc(2 * var(--u)) 0 var(--dl-brass), inset 0 0 0 1px rgba(230,186,112,.45); }
+  .dm-slot.on .k { color: var(--dl-brass); }
+  .dm-slot.on .n { color: var(--dl-ink); }
+
+  #dm-banner { position: fixed; left: 0; right: 0; top: 33%; z-index: 30; display: none; flex-direction: column; align-items: center; padding: calc(30 * var(--u)) 0 calc(34 * var(--u)); background: linear-gradient(90deg, transparent, rgba(10,23,27,.88) 26%, rgba(10,23,27,.88) 74%, transparent); }
+  #dm-banner.on { display: flex; animation: dmBanner var(--dm-banner, 3s) var(--dl-ease-out) forwards; }
+  #dm-banner::before, #dm-banner::after { content: ""; position: absolute; left: 18%; right: 18%; height: 1px; background: linear-gradient(90deg, transparent, var(--dl-brass), transparent); }
+  #dm-banner::before { top: 0; }
+  #dm-banner::after { bottom: 0; }
+  .dm-rs-big { font: 400 calc(168 * var(--u))/.9 var(--dl-f-display); letter-spacing: .04em; text-transform: uppercase; text-shadow: var(--dl-sh-display); }
+  .dm-rs-sub { margin-top: calc(14 * var(--u)); font-size: calc(28 * var(--u)); font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--dl-brass); }
+  .dm-rs-tag { margin-top: calc(14 * var(--u)); font-size: calc(21 * var(--u)); color: var(--dl-ink-2); letter-spacing: .04em; }
+  .dm-rs-target { margin-top: calc(18 * var(--u)); display: flex; gap: calc(18 * var(--u)); }
+  @keyframes dmBanner { 0% { opacity: 0; transform: scaleX(.7); } 12% { opacity: 1; transform: none; } 80% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(calc(-20 * var(--u))); } }
+
+  #dm-respawn { position: fixed; inset: 0; z-index: 40; display: none; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(ellipse at center, rgba(150,30,20,.36) 0%, rgba(90,12,8,.8) 70%, rgba(40,4,2,.92) 100%); }
+  #dm-respawn.on { display: flex; animation: dmElimIn 200ms ease-out; }
+  @keyframes dmElimIn { from { opacity: 0; } to { opacity: 1; } }
+  .dm-e-title { font: 400 calc(200 * var(--u))/1 var(--dl-f-display); letter-spacing: .06em; text-transform: uppercase; text-shadow: 0 0 calc(60 * var(--u)) rgba(238,80,60,.55); }
+  .dm-e-sub { margin-top: calc(8 * var(--u)); font-size: calc(30 * var(--u)); font-weight: 600; letter-spacing: .3em; text-transform: uppercase; }
+  .dm-e-sub b { color: var(--dl-brass); font-weight: 700; }
+  .dl .dm-e-bar { width: calc(380 * var(--u)); height: calc(3 * var(--u)); margin-top: calc(22 * var(--u)); color: var(--dl-brass); }
+  .dl .dm-e-bar > i { transition: width 120ms linear; }
+  .dm-e-lives { margin-top: calc(26 * var(--u)); display: flex; align-items: center; gap: calc(14 * var(--u)); }
+  .dm-e-lives .dm-pips { max-width: none; gap: calc(4 * var(--u)); }
+  .dm-e-lives .dm-pips i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); }
+  .dm-e-lives .dm-pips i:not(.on) { background: rgba(237,241,237,.18); }
+
+  #dm-pause { display: none; position: fixed; left: calc(calc(48 * var(--u)) + env(safe-area-inset-left, 0px)); top: calc(calc(12 * var(--u)) + env(safe-area-inset-top, 0px)); width: calc(88 * var(--u)); height: calc(88 * var(--u)); padding: 0; border: 0; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; touch-action: manipulation; background: rgba(230,186,112,.55); clip-path: polygon(calc(18 * var(--u)) 0, calc(100% - calc(18 * var(--u))) 0, 100% calc(18 * var(--u)), 100% calc(100% - calc(18 * var(--u))), calc(100% - calc(18 * var(--u))) 100%, calc(18 * var(--u)) 100%, 0 calc(100% - calc(18 * var(--u))), 0 calc(18 * var(--u))); }
+  #dm-pause::before { content: ""; position: absolute; inset: calc(3 * var(--u)); background: rgba(10,23,27,.86); clip-path: inherit; }
+  #dm-pause .dm-pause-glyph { position: relative; width: calc(40 * var(--u)); height: calc(40 * var(--u)); background: var(--dl-brass); -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+  #dm-pause:active::before { background: var(--dl-brass-hi); }
+  #dm-pause:active .dm-pause-glyph { background: var(--dl-brass-ink); }
+
+  #dm-root.dm-scoped #dm-score, #dm-root.dm-scoped #dm-feed, #dm-root.dm-scoped #dm-tl, #dm-root.dm-scoped #dm-clock, #dm-root.dm-scoped #dm-loadout, #dm-root.dm-scoped #dm-banner { visibility: hidden; }
+
+  @media (pointer: coarse) {
+    #dm-score { top: calc(calc(12 * var(--u)) + env(safe-area-inset-top, 0px)); grid-template-columns: calc(144 * var(--u)) calc(392 * var(--u)) calc(144 * var(--u)); }
+    #dm-score > div { padding: calc(12 * var(--u)) calc(16 * var(--u)); gap: calc(4 * var(--u)); }
+    .dm-streak { min-height: calc(20 * var(--u)); font-size: calc(20 * var(--u)); letter-spacing: .06em; }
+    .dm-rname { font-size: calc(32 * var(--u)); letter-spacing: .16em; }
+    .dm-segs { height: calc(6 * var(--u)); gap: calc(4 * var(--u)); }
+    #dm-score .dm-pips { display: none; }
+    #dm-feed { top: calc(calc(144 * var(--u)) + env(safe-area-inset-top, 0px)); width: calc(720 * var(--u)); }
+    .dm-fl { font-size: calc(22 * var(--u)); padding: calc(6 * var(--u)) calc(32 * var(--u)); letter-spacing: .12em; }
+    .dm-fl.streak { font-size: calc(44 * var(--u)); padding: calc(4 * var(--u)) 0; }
+    .dm-fl.streak small { font-size: calc(22 * var(--u)); }
+    .dm-fl:nth-child(n+4) { display: none; }
+    #dm-tl, #dm-loadout { display: none; }
+    #dm-clock { top: calc(calc(12 * var(--u)) + env(safe-area-inset-top, 0px)); right: calc(calc(48 * var(--u)) + env(safe-area-inset-right, 0px)); padding: calc(8 * var(--u)) calc(20 * var(--u)) calc(8 * var(--u)) calc(36 * var(--u)); gap: calc(16 * var(--u)); }
+    #dm-clock .num { font-size: calc(40 * var(--u)); }
+    #dm-weapon { top: calc(calc(88 * var(--u)) + env(safe-area-inset-top, 0px)); bottom: auto; right: calc(calc(48 * var(--u)) + env(safe-area-inset-right, 0px)); min-width: 0; padding: calc(10 * var(--u)) calc(24 * var(--u)) calc(14 * var(--u)) calc(48 * var(--u)); gap: calc(4 * var(--u)); }
+    .dm-wname { font-size: calc(22 * var(--u)); letter-spacing: .18em; }
+    .dm-mag { font-size: calc(60 * var(--u)); }
+    .dm-reload { font-size: calc(18 * var(--u)); gap: calc(12 * var(--u)); }
+    .dl .dm-reload .bar { width: calc(112 * var(--u)); height: calc(4 * var(--u)); }
+    #dm-vitals { left: calc(calc(48 * var(--u)) + env(safe-area-inset-left, 0px)); top: calc(calc(176 * var(--u)) + env(safe-area-inset-top, 0px)); bottom: auto; width: calc(380 * var(--u)); padding: calc(12 * var(--u)) calc(20 * var(--u)) calc(16 * var(--u)); gap: calc(10 * var(--u)); }
+    .dm-ar .dm-vnum { font-size: calc(32 * var(--u)); }
+    .dm-vnum small { font-size: calc(20 * var(--u)); }
+    .dl .dm-hp .bar { height: calc(10 * var(--u)); }
+    .dl .dm-ar .bar { height: calc(6 * var(--u)); }
+    #dm-banner { top: calc(calc(184 * var(--u)) + env(safe-area-inset-top, 0px)); padding: calc(24 * var(--u)) 0 calc(28 * var(--u)); }
+    .dm-rs-big { font-size: calc(128 * var(--u)); }
+    .dm-rs-sub { margin-top: calc(12 * var(--u)); font-size: calc(26 * var(--u)); }
+    .dm-rs-tag { margin-top: calc(12 * var(--u)); font-size: calc(24 * var(--u)); }
+    .dm-rs-target { margin-top: calc(12 * var(--u)); }
+    .dm-e-title { font-size: calc(168 * var(--u)); }
+    .dl .dm-e-bar { width: calc(440 * var(--u)); margin-top: calc(24 * var(--u)); }
+    .dm-e-lives { margin-top: calc(28 * var(--u)); }
+    .dm-e-lives .dm-pips i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    #dm-pause { display: flex; }
+    #dm-root.dm-elim #dm-pause { display: none; }
+  }
+</style>
+<div id="dm-root" class="dl" data-class-dm-low="low" data-class-dm-scoped="scoped" data-class-dm-elim="eliminated"
+     data-style---dm-feed="feed_seconds" data-style---dm-banner="banner_seconds">
+  <div id="dm-score">
+    <div><span class="lbl" data-text="score_label"></span><span class="dm-num dm-scoreval num" data-bind="score"></span><span class="dm-streak num" data-bind="streak_text"></span></div>
+    <div>
+      <span class="lbl num"><span data-text="round_word"></span> <b data-bind="round"></b> / <span data-bind="rounds"></span></span>
+      <span class="dm-rname" data-bind="round_name"></span>
+      <span class="dm-segs" data-each="segs"><template><i data-class-on="on"></i></template></span>
+      <span class="lbl num"><b data-bind="frags"></b> / <span data-bind="frag_target"></span> <span data-text="frags_word"></span> · <span data-bind="alive"></span> <span data-text="on_field"></span></span>
+    </div>
+    <div><span class="lbl" data-text="lives_label"></span><span class="dm-num num" data-bind="lives"></span><span class="dm-pips" data-each="pips"><template><i data-class-on="on"></i></template></span></div>
+  </div>
+
+  <div id="dm-feed" data-each="feed"><template>
+    <div class="dm-fl" data-class-death="death" data-class-buff="buff" data-class-elite="elite" data-class-streak="streak">
+      <span data-bind="text"></span><b data-show="points" data-bind="points"></b><small class="num" data-show="multiplier" data-bind="multiplier"></small>
+    </div>
+  </template></div>
+
+  <div id="dm-tl">
+    <div class="dm-sector"><span class="lbl" data-text="sector_label"></span><span class="dm-sector-name" data-bind="sector"></span></div>
+    <div id="dm-perks" data-each="perks"><template><span class="dl-chip"><span class="g" data-bind="icon"></span><span data-bind="name"></span></span></template></div>
+  </div>
+
+  <div id="dm-clock"><span class="lbl" data-text="run_label"></span><span class="num" data-bind="clock"></span></div>
+
+  <div id="dm-vitals">
+    <div class="dm-vrow dm-hp"><span class="lbl" data-text="health_label"></span><span class="dm-vnum num"><span data-bind="health"></span><small>/<span data-bind="health_max"></span></small></span><span class="bar"><i data-style-width="health_fill"></i></span></div>
+    <div class="dm-vrow dm-ar"><span class="lbl" data-text="armor_label"></span><span class="dm-vnum num"><span data-bind="armor"></span><small>/<span data-bind="armor_max"></span></small></span><span class="bar"><i data-style-width="armor_fill"></i></span></div>
+  </div>
+
+  <div id="dm-weapon" data-class-reloading="reloading">
+    <span class="dm-wname" data-bind="weapon"></span>
+    <span class="dm-ammo num"><span class="dm-mag" data-class-low="mag_low" data-bind="loaded"></span><span class="dm-res">/ <span data-bind="reserve"></span></span></span>
+    <span class="dm-reload"><span data-text="reloading"></span> <span class="bar"><i></i></span></span>
+  </div>
+
+  <div id="dm-loadout" data-each="slots"><template>
+    <div class="dm-slot" data-class-on="on"><span class="k num" data-bind="key"></span><span class="n"><span data-bind="label"></span><em class="num" data-bind="count"></em></span></div>
+  </template></div>
+
+  <div id="dm-banner" data-class-on="banner_on">
+    <div class="dm-rs-big"><span data-text="round_word"></span> <span data-bind="round"></span></div>
+    <div class="dm-rs-sub" data-bind="round_name"></div>
+    <div class="dm-rs-tag" data-bind="tagline"></div>
+    <div class="dm-rs-target"><span class="lbl num"><span data-text="frag_target_label"></span> <b data-bind="frag_target"></b></span><span class="lbl num"><span data-text="bots_label"></span> <b data-bind="roster"></b></span></div>
+  </div>
+
+  <div id="dm-respawn" data-class-on="eliminated" aria-live="assertive">
+    <div class="dm-e-title" data-text="eliminated"></div>
+    <div class="dm-e-sub num"><span data-text="respawning_in"></span> <b data-bind="respawn_in"></b>…</div>
+    <span class="bar dm-e-bar"><i data-style-width="respawn_fill"></i></span>
+    <div class="dm-e-lives"><span class="dm-pips" data-each="pips"><template><i data-class-on="on"></i></template></span><span class="lbl num"><b data-bind="lives"></b> <span data-text="lives_left"></span></span></div>
+  </div>
+
+  <button id="dm-pause" data-action="pause" aria-label="Pause"><span class="dm-pause-glyph" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M9 5v14M15 5v14%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%222%22 stroke-linecap=%22square%22/%3E%3C/svg%3E&quot;)"></span></button>
+</div>

@@ -1,0 +1,2 @@
+{ "name": "Bone Whetstone", "blurb": "Your shards start sharper.",
+  "effect": "shard_damage", "amount": 1, "costs": [40, 90, 170] }

@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "circle", "size": [1, 1, 1], "color": "#ffffff33", "cast_shadows": false } },
+  "behaviors": { "range_ring": { "idle_radius": 1.5 } }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cyber_alley_ac_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.256, 2.72, 0.45],
+      "offset": [0.012, 1.36, 0]
+    }
+  }
+}

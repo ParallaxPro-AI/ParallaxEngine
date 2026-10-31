@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roof_vent_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9826, 2.803, 2.23],
+      "offset": [0, 1.3985, -0.005]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ladder_rope"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 3.116, 0.2311],
+      "offset": [0, 1.558, 0.0116]
+    }
+  }
+}

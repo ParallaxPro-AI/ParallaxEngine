@@ -1,0 +1,10 @@
+{
+  "id": "minivan",
+  "summary": "A family minivan (MPV / people carrier), about 5 m long: a one-box lofted body whose steeply raked windscreen… joints door_f_l, door_f_r, tailgate, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, …; options paint, config; sockets seat_driver, seat_pax_1, socket_driver, seat_pax_2, seat_pax_3, seat_pax_4, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.minivan or place \"prefab\": \"minivan\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:minivan"]
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/strip_light",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.53,
+        0.306,
+        0.061
+      ],
+      "offset": [
+        0.0,
+        0.15,
+        0.0025
+      ]
+    }
+  }
+}

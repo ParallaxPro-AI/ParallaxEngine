@@ -1,0 +1,10 @@
+{
+  "id": "house_window_shutters",
+  "summary": "A pair of exterior timber window shutters for the HOUSE modular kit: two painted leaves, each with stiles, th… joints leaf_l, leaf_r; options style, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_window_shutters or place \"prefab\": \"house_window_shutters\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_window_shutters"]
+}

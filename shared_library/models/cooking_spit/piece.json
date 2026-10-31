@@ -1,0 +1,10 @@
+{
+  "id": "cooking_spit",
+  "summary": "A spit roast over a stone fire ring: eleven field stones round an ash pit with a glowing coal bed, two burnin… joints spit; sockets socket_cook, socket_crank.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cooking_spit or place \"prefab\": \"cooking_spit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cooking_spit"]
+}

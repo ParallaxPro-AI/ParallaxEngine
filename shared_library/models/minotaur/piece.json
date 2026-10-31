@@ -1,0 +1,10 @@
+{
+  "id": "minotaur",
+  "summary": "A MINOTAUR - the bull-headed fantasy brute, about 2.5 m to the horn tips, on the canonical 17-bone humanoid r… options hide, fur, ring; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.minotaur or place \"prefab\": \"minotaur\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:minotaur"]
+}

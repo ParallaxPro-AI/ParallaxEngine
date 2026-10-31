@@ -1,0 +1,1 @@
+{ "name": "SHIELD", "prefab": "powerup_shield", "effect": "shield", "seconds": 0, "power": 1, "weight": 3, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/0e/aa/0eaadbbc5c259cc89a1dfbb0c99b61ca07e08710d035cc9bfc805b68cb0bdc9e.ogg", "volume": 0.5 }

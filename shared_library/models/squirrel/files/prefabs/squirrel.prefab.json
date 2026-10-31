@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/squirrel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.122, 0.3032, 0.3761],
+      "offset": [0, 0.1504, -0.0209]
+    }
+  }
+}

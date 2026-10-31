@@ -1,0 +1,34 @@
+{
+  "name": "@parallax/cli",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The `parallax` command: compile, check, test and edit a Parallax project locally (`parallax edit` serves the editor; Play runs the game).",
+  "license": "Apache-2.0",
+  "type": "module",
+  "bin": {
+    "parallax": "./bin/parallax.mjs"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "4.3.1",
+    "@parallax/check": "workspace:*",
+    "@parallax/editor": "workspace:*",
+    "@parallax/runtime": "workspace:*",
+    "@parallax/server": "workspace:*",
+    "@parallax/test": "workspace:*",
+    "esbuild": "0.28.0",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

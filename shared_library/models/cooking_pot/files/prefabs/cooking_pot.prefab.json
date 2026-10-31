@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cooking_pot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.316, 0.19, 0.2296],
+      "offset": [0, 0.095, 0]
+    }
+  }
+}

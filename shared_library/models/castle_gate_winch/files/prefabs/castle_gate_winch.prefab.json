@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/castle_gate_winch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.94, 1.54, 1.25],
+      "offset": [0, 0.77, 0]
+    }
+  }
+}

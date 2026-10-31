@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mushroom_creature"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8683, 1.005, 0.75],
+      "offset": [0, 0.5025, 0]
+    }
+  }
+}

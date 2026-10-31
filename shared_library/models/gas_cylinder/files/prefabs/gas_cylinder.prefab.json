@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gas_cylinder"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2379, 1.448, 0.236],
+      "offset": [0.001, 0.724, 0]
+    }
+  }
+}

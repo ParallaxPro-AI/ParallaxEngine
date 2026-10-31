@@ -1,0 +1,10 @@
+{
+  "id": "speed_bump",
+  "summary": "A bolt-down modular rubber speed bump spanning one traffic lane: six moulded 0.5 m segments alternating black… options stripe.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.speed_bump or place \"prefab\": \"speed_bump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:speed_bump"]
+}

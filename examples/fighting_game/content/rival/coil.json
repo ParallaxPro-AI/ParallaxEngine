@@ -1,0 +1,12 @@
+{
+  "name": "Coil",
+  "role": "THE CHI TACTICIAN",
+  "taunt": "Duck the bolt, then close the distance.",
+  "style": "zoning",
+  "walk_speed": 3.5,
+  "spacing": 3.2,
+  "block_chance": 0.52,
+  "reaction": 0.22,
+  "cadence": 0.85,
+  "kit": "jade"
+}

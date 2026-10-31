@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/watchtower_wood"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.04, 16.13, 6.04],
+      "offset": [0, 8.065, 0]
+    }
+  }
+}

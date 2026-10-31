@@ -1,0 +1,1 @@
+{ "name": "Chilled", "modifiers": [{ "component": "husk", "field": "speed", "multiply": 0.5 }], "tint": "#8ce6ff" }

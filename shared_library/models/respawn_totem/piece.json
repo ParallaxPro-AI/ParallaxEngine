@@ -1,0 +1,10 @@
+{
+  "id": "respawn_totem",
+  "summary": "A respawn / checkpoint totem: three stacked carved stone blocks (each with a stern face of glowing eye slits… joints crystal_spin; sockets socket_spawn.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.respawn_totem or place \"prefab\": \"respawn_totem\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:respawn_totem"]
+}

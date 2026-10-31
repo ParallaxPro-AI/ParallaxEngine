@@ -1,0 +1,7 @@
+{
+  "name": "Sage Scout",
+  "blurb": "Desert-sage green. Blends right in.",
+  "cost": 50,
+  "tint": [0.72, 1.0, 0.78],
+  "swatch": "#8fd69b"
+}

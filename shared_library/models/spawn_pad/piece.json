@@ -1,0 +1,10 @@
+{
+  "id": "spawn_pad",
+  "summary": "A 1.8 m player spawn / respawn pad: a low lathed steel disc with a splayed foot and chamfered rim, eight lamp… joints spinner; options team; sockets socket_spawn.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spawn_pad or place \"prefab\": \"spawn_pad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spawn_pad"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/holo_billboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.76, 5.17, 0.9],
+      "offset": [0, 2.585, 0]
+    }
+  }
+}

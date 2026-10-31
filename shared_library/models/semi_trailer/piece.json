@@ -1,0 +1,10 @@
+{
+  "id": "semi_trailer",
+  "summary": "A 13.6 m tri-axle semi-trailer: the OTHER HALF of an articulated lorry. joints door_l, door_r, landing_gear, landing_gear_r, wheel_a0_l_roll, wheel_a0_r_roll, …; options body, paint; sockets socket_kingpin, socket_deck, socket_seal, socket_rear.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.semi_trailer or place \"prefab\": \"semi_trailer\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:semi_trailer"]
+}

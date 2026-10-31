@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shoji_screen"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.994, 2.011, 0.42],
+      "offset": [0, 1.0055, 0]
+    }
+  }
+}

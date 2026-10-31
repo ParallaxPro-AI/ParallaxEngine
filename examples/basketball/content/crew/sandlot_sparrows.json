@@ -1,0 +1,4 @@
+{ "name": "Sandlot Sparrows", "taunt": "Warm up on us. Everyone does.",
+  "color": "#5cc96b", "speed": 4.4,
+  "style": { "shoot_range": 6.4, "skill": 0.78, "perfect_rate": 0.18, "good_rate": 0.52,
+             "steal_chance": 0.28, "close_pressure": 0.55, "pass_chance": 0.25 } }

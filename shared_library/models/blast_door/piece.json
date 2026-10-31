@@ -1,0 +1,10 @@
+{
+  "id": "blast_door",
+  "summary": "A heavy bi-parting blast door: a thick armoured frame, two fixed side plates and two massive steel leaves tha… joints leaf_left, leaf_right; options condition; sockets socket_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blast_door or place \"prefab\": \"blast_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blast_door"]
+}

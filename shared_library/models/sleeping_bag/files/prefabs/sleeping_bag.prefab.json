@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sleeping_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.784, 0.262, 2.112],
+      "offset": [0.0027, 0.131, -0.031]
+    }
+  }
+}

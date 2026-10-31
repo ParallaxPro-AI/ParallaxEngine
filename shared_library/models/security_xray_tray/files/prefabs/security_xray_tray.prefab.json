@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/security_xray_tray"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.639, 0.1245, 0.459],
+      "offset": [0, 0.0628, 0]
+    }
+  }
+}

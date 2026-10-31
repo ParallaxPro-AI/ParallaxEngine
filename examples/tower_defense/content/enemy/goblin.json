@@ -1,0 +1,1 @@
+{ "name": "Goblin", "prefab": "enemy_goblin", "health": 30, "speed": 3.6, "armor": 0, "reward": 10, "lives_cost": 1 }

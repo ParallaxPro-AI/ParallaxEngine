@@ -1,0 +1,10 @@
+{
+  "id": "wyvern",
+  "summary": "A WYVERN, the two-legged winged drake of heraldry and fantasy RPGs: about 5.3 m from snout to stinger, 3.2 m… joints head, jaw, wing_flap_l, wing_fold_l, wing_flap_r, wing_fold_r; options hide.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wyvern or place \"prefab\": \"wyvern\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wyvern"]
+}

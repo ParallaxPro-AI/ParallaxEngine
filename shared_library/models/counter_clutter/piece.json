@@ -1,0 +1,10 @@
+{
+  "id": "counter_clutter",
+  "summary": "The things that accumulate on a service counter beside a till, as one placeable set: a card terminal on its s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.counter_clutter or place \"prefab\": \"counter_clutter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:counter_clutter"]
+}

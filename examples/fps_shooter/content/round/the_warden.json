@@ -1,0 +1,1 @@
+{ "name": "Round 5 — The Warden", "tagline": "It hunts you. Everything it brought hunts you too.", "number": 5, "frag_target": 12, "damage_mul": 1.15, "accuracy_mul": 1.15, "roster": [{ "bot": "warden", "count": 1 }, { "bot": "heavy", "count": 1 }, { "bot": "marksman", "count": 1 }, { "bot": "rusher", "count": 2 }] }

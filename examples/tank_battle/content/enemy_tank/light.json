@@ -1,0 +1,1 @@
+{ "name": "Light tank", "prefab": "enemy_tank_light", "role": "flanker", "health": 100, "armor": 0, "speed": 8, "damage": 15, "range": 35, "fire_interval": 2.5, "detect": 40, "ride": 0.68, "standoff": 0.45, "shell_speed": 46, "spread": 2.86, "score": 100 }

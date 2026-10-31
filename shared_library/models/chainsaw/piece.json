@@ -1,0 +1,10 @@
+{
+  "id": "chainsaw",
+  "summary": "A petrol chainsaw: an orange powerhead with a wrap-around top handle, a rear trigger handle, a front hand-gua… joints chain_scroll, pull_cord; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chainsaw or place \"prefab\": \"chainsaw\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chainsaw"]
+}

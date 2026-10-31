@@ -1,0 +1,19 @@
+{
+  "name": "Harbour Run",
+  "blurb": "Salt in the air. The last stretch. Don't look back.",
+  "tint": "#5bb8ff",
+  "end_distance": 2600,
+  "speed_scale": 1.2,
+  "gap_scale": 0.78,
+  "hard_bias": 0.55,
+  "powerup_scale": 0.75,
+  "fog_color": "#ced7df",
+  "fog_near": 55,
+  "fog_far": 125,
+  "road": "road_harbour",
+  "buildings": ["building_harbour_0", "building_harbour_1"],
+  "encounters": ["gantry", "truck", "hurdle", "rest", "barrier_high", "dumpster", "rest"],
+  "landmark": "landmark_dock_boat",
+  "landmark_x": 9,
+  "waterfront": true
+}

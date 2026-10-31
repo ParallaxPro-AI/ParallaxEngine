@@ -1,0 +1,56 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/aa/ee/aaee9f242a24eede2714eba4e083bba5d4ac0eeaa22d6fc7eb4668708432925c.glb",
+      "tint": "#8cd98c",
+      "cast_shadows": true,
+      "rotation_offset": [
+        0,
+        90,
+        0
+      ]
+    },
+    "rigidbody": {
+      "kind": "kinematic",
+      "lock_rotation": true
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.45,
+      "height": 1.8,
+      "layer": "foe",
+      "collides_with": [
+        "shard",
+        "wall",
+        "prop",
+        "keeper"
+      ]
+    },
+    "nav_agent": {
+      "speed": 1.6,
+      "radius": 0.45,
+      "stopping_distance": 0.4
+    },
+    "health": {
+      "current": 10,
+      "max": 10
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        2.2,
+        0
+      ]
+    },
+    "side": {
+      "side": "side_cellar"
+    },
+    "animator": {
+      "default_clip": "Walk"
+    }
+  },
+  "behaviors": {
+    "foe_brain": {}
+  },
+  "pool": 24
+}

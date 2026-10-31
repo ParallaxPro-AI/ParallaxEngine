@@ -1,0 +1,10 @@
+{
+  "id": "elevator_call_panel",
+  "summary": "An upscale elevator hall call station: a bevelled polished-brass faceplate with a black-glass inset carrying… joints call_up, call_down; options metal, face; sockets press_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elevator_call_panel or place \"prefab\": \"elevator_call_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elevator_call_panel"]
+}

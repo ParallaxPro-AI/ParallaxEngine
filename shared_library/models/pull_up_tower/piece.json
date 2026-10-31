@@ -1,0 +1,10 @@
+{
+  "id": "pull_up_tower",
+  "summary": "A free-standing power tower (2.2 m tall): two box uprights on long floor feet with front and rear braces, top… joints vkr_carriage, dip_l, dip_r; options frame, pad; sockets hang_bar, stand_user, socket_elbow_l, socket_elbow_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pull_up_tower or place \"prefab\": \"pull_up_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pull_up_tower"]
+}

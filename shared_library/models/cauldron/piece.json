@@ -1,0 +1,14 @@
+{
+  "id": "cauldron",
+  "summary": "A cast-iron witch's cauldron: a potbellied pot standing on three splayed tripod legs, brimming with… joints tip, contents; sockets socket_rim_front.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.cauldron or place \"prefab\": \"cauldron\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:cauldron"
+  ]
+}

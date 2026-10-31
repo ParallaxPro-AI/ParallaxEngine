@@ -1,0 +1,10 @@
+{
+  "id": "bb_shark_patrol",
+  "summary": "Low-poly shark patrol with a tapered body, forked tail, dorsal and paired pectoral fins.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_shark_patrol or place \"prefab\": \"bb_shark_patrol\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_shark_patrol"]
+}

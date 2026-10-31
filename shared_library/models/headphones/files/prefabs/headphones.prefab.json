@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/headphones"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.211, 0.2401, 0.129],
+      "offset": [0, 0.1204, 0]
+    }
+  }
+}

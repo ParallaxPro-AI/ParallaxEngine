@@ -1,0 +1,10 @@
+{
+  "id": "merchant_tent_bazaar",
+  "summary": "A fantasy bazaar merchant tent: a 4.0 x 3.2 m stall (a real market pavilion size) on four dark turned poles w… joints pennant, awning.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.merchant_tent_bazaar or place \"prefab\": \"merchant_tent_bazaar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:merchant_tent_bazaar"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "bottle",
+  "summary": "A glass bottle in two forms — a corked wine bottle and a stoppered apothecary flask with a paper label —… options form, contents, glass_colour.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bottle or place \"prefab\": \"bottle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bottle"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/light_aircraft"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [11, 2.6215, 7.8445],
+      "offset": [0, 1.3108, 0.0968]
+    }
+  }
+}

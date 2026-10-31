@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/star_pickup"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3141, 0.2987, 0.088],
+      "offset": [0, 0.1493, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/zombie"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6705, 1.7404, 0.3462],
+      "offset": [0.0002, 0.8702, 0.0137]
+    }
+  }
+}

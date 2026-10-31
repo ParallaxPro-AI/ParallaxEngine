@@ -1,0 +1,10 @@
+{
+  "id": "kayak",
+  "summary": "A single-seat touring kayak: a lofted rotomoulded hull pointed at both ends with rocker and a crowned deck, a… joints hatch_bow, hatch_stern, rudder; options colour, paddle; sockets seat_driver, eye_point, waterline, socket_bow, socket_stern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kayak or place \"prefab\": \"kayak\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kayak"]
+}

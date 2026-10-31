@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.32, 0.32, 0.32], "color": "#b3edff", "emissive": "#b3edff" }
+  },
+  "behaviors": { "soul_mote": {} },
+  "pool": 200
+}

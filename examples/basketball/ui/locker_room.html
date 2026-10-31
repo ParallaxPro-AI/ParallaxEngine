@@ -1,0 +1,133 @@
+<!-- Ported from the template: Court Clash Locker Room perk draft - the win recap, the five-crew ladder (beaten / next / still to come), three chamfered perk cards dealt in from below (category, New or Owned chip, line icon, name, description, stack pips with the +1 preview) and a Lock in CTA with your bag. Same contract as lib:hud/choice: state.choice { title, sub, cards:[{ id, title, desc, icon }] } plus eyebrow, beat, nextName, nextColor, ladder, bag, sel and per-card tag / short / owned / max; tapping a card selects it (ui_event:hud/choice:select { index }), Lock in emits ui_event:hud/choice:pick { id }; choice null closes it. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ccl-wrap { display: none; }
+  .ccl-wrap.on { display: block; }
+  .ccl { position: fixed; inset: 0; background: var(--cc-scrim); display: flex; flex-direction: column; align-items: center; padding-top: calc(var(--u) * 80); pointer-events: auto; animation: cc-fade var(--cc-dur-med) ease-out both; }
+  .ccl-h { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .ccl-t { font-size: calc(var(--u) * 136); margin-top: calc(var(--u) * 14); }
+  .ccl-sub { font-size: calc(var(--u) * 22); color: var(--cc-chalk-dim); margin-top: calc(var(--u) * 10); }
+  .ccl-sub b { font-weight: 600; color: var(--ccl-next, var(--cc-accent)); }
+  .ccl .cc-ladder { margin-top: calc(var(--u) * 28); }
+  .ccl .cc-ladder .m { display: none; }
+  .ccl-cards { display: flex; gap: calc(var(--u) * 36); margin-top: calc(var(--u) * 52); }
+  .cc-root .ccl-card { position: relative; width: calc(var(--u) * 400); height: calc(var(--u) * 460); padding: calc(var(--u) * 28) calc(var(--u) * 30); display: flex; flex-direction: column; text-align: left; background: var(--cc-asphalt-700); clip-path: var(--cc-cut-lg); box-shadow: inset 0 0 0 1px var(--cc-line-soft); transition: transform var(--cc-dur-med) var(--cc-ease-snap), box-shadow var(--cc-dur-med), background var(--cc-dur-med); animation: ccl-deal 360ms var(--cc-ease-out) both; }
+  .ccl-card:nth-child(2) { animation-delay: 60ms; }
+  .ccl-card:nth-child(3) { animation-delay: 120ms; }
+  @keyframes ccl-deal { from { opacity: 0; transform: translateY(calc(var(--u) * 60)); } }
+  .cc-root .ccl-card:hover { transform: translateY(calc(var(--u) * -8)); box-shadow: inset 0 0 0 2px var(--cc-chalk); }
+  .cc-root .ccl-card.is-selected { transform: translateY(calc(var(--u) * -16)); background: var(--cc-asphalt-600); box-shadow: inset 0 0 0 3px var(--cc-accent); }
+  .ccl-check { position: absolute; top: 0; right: 0; width: calc(var(--u) * 44); height: calc(var(--u) * 44); display: none; place-items: center; background: var(--cc-accent); color: var(--cc-accent-ink); }
+  .ccl-check svg { width: 55%; height: 55%; }
+  .is-selected .ccl-check { display: grid; }
+  .ccl-top { display: flex; align-items: center; gap: calc(var(--u) * 12); }
+  .ccl-new, .ccl-own { font: 700 max(9px, calc(var(--u) * 11))/1 var(--cc-font-body); letter-spacing: .14em; text-transform: uppercase; padding: calc(var(--u) * 5) calc(var(--u) * 8); }
+  .ccl-new { background: var(--cc-chalk); color: var(--cc-asphalt-800); }
+  .ccl-own { box-shadow: inset 0 0 0 1.5px var(--cc-accent); color: var(--cc-accent); }
+  .ccl-icon { width: calc(var(--u) * 104); height: calc(var(--u) * 104); margin: calc(var(--u) * 40) 0 calc(var(--u) * 30); display: grid; place-items: center; color: var(--cc-accent); background: var(--cc-asphalt-950); clip-path: var(--cc-cut-md); }
+  .ccl-icon svg { width: 54%; height: 54%; }
+  .ccl-top, .ccl-icon, .ccl-card h3, .ccl-card p, .ccl-foot { flex: none; }
+  .ccl-card h3 { font-size: calc(var(--u) * 68); }
+  .ccl-card.long h3 { font-size: calc(var(--u) * 50); }
+  .ccl-card p { font-size: max(12px, calc(var(--u) * 19)); line-height: 1.4; color: var(--cc-chalk-dim); margin-top: calc(var(--u) * 12); }
+  .ccl-card p .m { display: none; }
+  .ccl-foot { margin-top: auto; display: flex; align-items: center; gap: calc(var(--u) * 12); padding-top: calc(var(--u) * 18); border-top: 1px solid var(--cc-line-faint); }
+  .ccl-stack { display: flex; gap: calc(var(--u) * 5); }
+  .ccl-stack i { width: calc(var(--u) * 24); height: calc(var(--u) * 8); background: var(--cc-asphalt-500); }
+  .ccl-stack i.on { background: var(--cc-chalk); }
+  .is-selected .ccl-stack i.add, .ccl-card:hover .ccl-stack i.add { background: var(--cc-accent); }
+  .ccl-n { margin-left: auto; font-size: max(11px, calc(var(--u) * 18)); color: var(--cc-chalk-dim); }
+  .ccl-cta { display: flex; align-items: center; gap: calc(var(--u) * 32); margin-top: calc(var(--u) * 52); }
+  .cc-root .ccl-go { width: calc(var(--u) * 520); height: calc(var(--u) * 72); font-size: calc(var(--u) * 36); }
+  .ccl-bag { display: flex; flex-direction: column; gap: calc(var(--u) * 6); }
+  .ccl-bag b { font: 600 max(12px, calc(var(--u) * 18)) var(--cc-font-body); }
+
+  @media (pointer: coarse) {
+    .ccl { padding: calc(var(--u) * 14) var(--cc-safe); align-items: stretch; }
+    .ccl-h { flex-direction: row; justify-content: space-between; align-items: flex-end; gap: calc(var(--u) * 20); text-align: left; }
+    .ccl-h .cc-eyebrow { display: none; }
+    .ccl-t { font-size: calc(var(--u) * 44); margin: 0; }
+    .ccl-sub { font-size: max(11px, calc(var(--u) * 13)); margin-top: calc(var(--u) * 4); }
+    .ccl .cc-ladder { margin: 0 0 calc(var(--u) * 4); --lw: 52; }
+    .ccl .cc-ladder span { font-size: 9px; }
+    .ccl .cc-ladder .d { display: none; }
+    .ccl .cc-ladder .m { display: inline; }
+    .ccl-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--u) * 14); margin-top: calc(var(--u) * 14); }
+    .cc-root .ccl-card { width: auto; height: calc(var(--u) * 214); padding: calc(var(--u) * 14) calc(var(--u) * 16); }
+    .cc-root .ccl-card:hover { transform: none; box-shadow: inset 0 0 0 1px var(--cc-line-soft); }
+    .cc-root .ccl-card.is-selected { transform: translateY(calc(var(--u) * -6)); box-shadow: inset 0 0 0 3px var(--cc-accent); }
+    .ccl-card:hover .ccl-stack i.add { background: var(--cc-asphalt-500); }
+    .is-selected .ccl-stack i.add { background: var(--cc-accent); }
+    .ccl-check { width: calc(var(--u) * 30); height: calc(var(--u) * 30); }
+    .ccl-top .cc-eyebrow { font-size: 9px; }
+    .ccl-new, .ccl-own { font-size: 9px; padding: calc(var(--u) * 4) calc(var(--u) * 6); }
+    .ccl-icon { width: calc(var(--u) * 48); height: calc(var(--u) * 48); margin: calc(var(--u) * 12) 0 calc(var(--u) * 10); clip-path: var(--cc-cut-sm); }
+    .ccl-card h3, .ccl-card.long h3 { font-size: calc(var(--u) * 32); }
+    .ccl-card p { font-size: max(11px, calc(var(--u) * 13)); margin-top: calc(var(--u) * 5); line-height: 1.35; }
+    .ccl-card p .d { display: none; }
+    .ccl-card p .m { display: inline; }
+    .ccl-foot { padding-top: calc(var(--u) * 9); gap: calc(var(--u) * 8); }
+    .ccl-foot .cc-eyebrow { display: none; }
+    .ccl-stack i { width: calc(var(--u) * 16); height: calc(var(--u) * 6); }
+    .ccl-n { font-size: 12px; }
+    .ccl-cta { margin-top: calc(var(--u) * 12); gap: calc(var(--u) * 20); }
+    .cc-root .ccl-go { flex: 1; width: auto; height: calc(var(--u) * 52); font-size: calc(var(--u) * 26); }
+    .ccl-bag b { font-size: max(11px, calc(var(--u) * 13)); }
+    .ccl-bag .cc-eyebrow { font-size: 9px; }
+  }
+</style>
+<div class="cc-root ccl-wrap on">
+  <div class="ccl">
+    <div class="ccl-h">
+      <span class="cc-eyebrow" data-bind="eyebrow"></span>
+      <div>
+        <h1 class="cc-display ccl-t" data-text="locker_room"></h1>
+        <p class="ccl-sub" data-style---ccl-next="next_color"><span data-bind="beat"></span> · Next: <b data-bind="next_crew"></b></p>
+      </div>
+      <ol class="cc-ladder" data-each="ladder"><template><li data-attr-class="state" data-style---crew="color"><i></i><span data-bind="name"></span></li></template></ol>
+    </div>
+    <div class="ccl-cards" role="group" aria-label="Choose one perk" data-each="cards">
+      <template>
+        <button class="ccl-card" data-class-long="long" data-card-id="">
+          <span class="ccl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <div class="ccl-top"><span class="cc-eyebrow" data-bind="category"></span><span class="ccl-own" data-show="owned" data-bind="owned_label"></span><span class="ccl-new" data-hide="owned">New</span></div>
+          <div class="ccl-icon"><svg viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3"><rect x="8" y="8" width="32" height="32"/><path d="M16 24h16M24 16v16" stroke-linecap="round"/></g></svg></div>
+          <h3 class="cc-display" data-bind="name"></h3>
+          <p><span class="d" data-bind="description"></span><span class="m" data-bind="description"></span></p>
+          <div class="ccl-foot"><span class="cc-eyebrow">Stack</span><span class="ccl-stack" data-each="pips"><template><i data-attr-class="state"></i></template></span><span class="cc-num ccl-n" data-bind="stack"></span></div>
+          <span hidden data-bind="card"></span>
+        </button>
+      </template>
+    </div>
+    <div class="ccl-cta">
+      <button class="cc-btn cc-btn-primary ccl-go" id="ccl-go">Lock in&nbsp;<span id="ccl-pick"></span><span class="cc-kbd d-only">Enter</span></button>
+      <span class="ccl-bag"><span class="cc-eyebrow">Your bag</span><b data-bind="bag"></b></span>
+    </div>
+  </div>
+</div>
+<script>
+  // Presentation: a click selects a card (the template's two-step pick); Lock in (or
+  // Enter) sends the selected card.
+  (function () {
+    var row = document.querySelector('.ccl-cards'), sel = 0;
+    function cards() { return Array.prototype.slice.call(row.querySelectorAll('.ccl-card')); }
+    function select(i) {
+      var all = cards(); if (!all.length) return;
+      sel = Math.max(0, Math.min(all.length - 1, i));
+      all.forEach(function (c, k) { c.classList.toggle('is-selected', k === sel); });
+      document.getElementById('ccl-pick').textContent = all[sel].querySelector('h3').textContent;
+    }
+    function lockIn() {
+      var c = cards()[sel]; if (!c) return;
+      parallax.action('pick', { card: c.querySelector('[hidden]').textContent });
+    }
+    row.addEventListener('click', function (e) { var c = e.target.closest('.ccl-card'); if (c) select(cards().indexOf(c)); });
+    document.getElementById('ccl-go').addEventListener('click', lockIn);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') lockIn();
+      if (e.key === 'ArrowRight') select(sel + 1);
+      if (e.key === 'ArrowLeft') select(sel - 1);
+    });
+    parallax.on_state(function () { select(sel); });
+  })();
+</script>

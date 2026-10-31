@@ -1,0 +1,10 @@
+{
+  "id": "paraglider",
+  "summary": "A paraglider in flight trim: an arched 11 m ram-air wing of 36 cells with a cambered, reflexed section at eve… sockets seat_driver, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paraglider or place \"prefab\": \"paraglider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paraglider"]
+}

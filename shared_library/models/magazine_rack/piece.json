@@ -1,0 +1,10 @@
+{
+  "id": "magazine_rack",
+  "summary": "A freestanding newsagent magazine rack: oak-veneer side panels cut to the lean of the face, a dark backboard… options finish, contents; sockets socket_ledge_0, socket_ledge_1, socket_ledge_2, socket_ledge_3, socket_ledge_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magazine_rack or place \"prefab\": \"magazine_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magazine_rack"]
+}

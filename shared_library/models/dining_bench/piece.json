@@ -1,0 +1,10 @@
+{
+  "id": "dining_bench",
+  "summary": "A backless wooden dining bench: a solid seat plank on four square legs braced by a skirting apron. sockets socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dining_bench or place \"prefab\": \"dining_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dining_bench"]
+}

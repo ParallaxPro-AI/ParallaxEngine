@@ -1,0 +1,20 @@
+/* Shared by the four panels: the template's 1920x1080 design scale (vw/vh in the template CSS became 19.2/10.8 design px), touch/desktop copy swap and fonts.
+
+   The old engine drew these panels from a 1920x1080 design, scaled to the game view
+   (min of width/1920 and height/1080; a fixed 0.5 on touch screens). `--u` is one design
+   pixel: each panel's outer `.view` fills the panel's area and is a size container, so
+   `cqw`/`cqh` are the game view. */
+.view { position: fixed; inset: 0; container-type: size; pointer-events: none; }
+.view button { pointer-events: auto; }
+* { --u: calc(min(100cqw, 177.78cqh) / 1920); }
+@media (pointer: coarse) { * { --u: 0.5px; } }
+:root {
+  --ink: #f7ecd8;
+  --gold: #f2c14e;
+  --mono: ui-monospace, "SF Mono", Consolas, Monaco, monospace;
+}
+.mobile-only { display: none; }
+@media (pointer: coarse) {
+  .desktop-only { display: none; }
+  .mobile-only { display: inline; }
+}

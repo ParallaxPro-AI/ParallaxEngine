@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hatchet"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.36, 0.3],
+      "hip_turn": [-14.896903, -22.918312, -35.523383],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.134, 0.0378, 0.3989],
+      "offset": [0.0335, 0.0158, 0.1994]
+    }
+  }
+}

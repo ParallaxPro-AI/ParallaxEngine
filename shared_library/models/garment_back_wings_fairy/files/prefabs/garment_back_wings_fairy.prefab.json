@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_wings_fairy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8235, 0.6597, 0.2569],
+      "offset": [0, 1.4215, -0.2464]
+    }
+  }
+}

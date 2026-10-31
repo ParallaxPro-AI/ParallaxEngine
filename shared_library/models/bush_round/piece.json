@@ -1,0 +1,10 @@
+{
+  "id": "bush_round",
+  "summary": "A rounded evergreen garden shrub, roughly 1.1 m across and 0.9 m tall: a dense lumpy dome of several hundred…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bush_round or place \"prefab\": \"bush_round\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bush_round"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/necromancer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 2.0742, 0.8124],
+      "offset": [0, 1.0371, 0.0236]
+    }
+  }
+}

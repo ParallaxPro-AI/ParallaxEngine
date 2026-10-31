@@ -1,0 +1,10 @@
+{
+  "id": "toaster",
+  "summary": "A brushed-steel pop-up toaster with a sliding front lever, a spring carriage that lowers the toast, a brownin… joints lever, carriage; options slices; sockets socket_slot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toaster or place \"prefab\": \"toaster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toaster"]
+}

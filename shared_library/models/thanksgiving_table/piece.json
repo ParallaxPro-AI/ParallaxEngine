@@ -1,0 +1,10 @@
+{
+  "id": "thanksgiving_table",
+  "summary": "A farmhouse oak dining table (2.0 x 0.95 m, turned legs) laid for a Thanksgiving dinner for six: a burlap run… options candles, runner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.thanksgiving_table or place \"prefab\": \"thanksgiving_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:thanksgiving_table"]
+}

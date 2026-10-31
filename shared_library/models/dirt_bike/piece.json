@@ -1,0 +1,10 @@
+{
+  "id": "dirt_bike",
+  "summary": "A motocross / enduro dirt bike: tall long-travel fork with gold sliders and fork guards, a 21-inch front and… joints steer, wheel_front, wheel_rear, kickstand; options livery; sockets seat_driver, socket_rider.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.dirt_bike or place \"prefab\": \"dirt_bike\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:dirt_bike"]
+}

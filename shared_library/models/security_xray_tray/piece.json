@@ -1,0 +1,10 @@
+{
+  "id": "security_xray_tray",
+  "summary": "A grey moulded checkpoint screening bin: a tapered, nestable plastic tray with a rolled stacking lip, stadium… options contents, color; sockets socket_contents, socket_stack.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_xray_tray or place \"prefab\": \"security_xray_tray\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_xray_tray"]
+}

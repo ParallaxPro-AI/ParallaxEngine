@@ -1,0 +1,10 @@
+{
+  "id": "dance_machine",
+  "summary": "A two-player arcade dance-rhythm machine: a black cabinet with a big lit screen under a hood, a song-select p… joints pad_p1_up, pad_p1_right, pad_p1_down, pad_p1_left, pad_p2_up, pad_p2_right, …; options arrows, screen; sockets dancer_p1, dancer_p2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dance_machine or place \"prefab\": \"dance_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dance_machine"]
+}

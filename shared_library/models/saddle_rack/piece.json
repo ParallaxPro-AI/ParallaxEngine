@@ -1,0 +1,10 @@
+{
+  "id": "saddle_rack",
+  "summary": "A western saddle on a wooden saddle stand: an oak A-frame stand with a peaked V top, splayed legs, end braces…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saddle_rack or place \"prefab\": \"saddle_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saddle_rack"]
+}

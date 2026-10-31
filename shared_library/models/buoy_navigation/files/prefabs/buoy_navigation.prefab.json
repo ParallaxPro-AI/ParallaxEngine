@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/buoy_navigation"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.02, 5.88, 2.02],
+      "offset": [0, 0.76, 0]
+    }
+  }
+}

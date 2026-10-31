@@ -1,0 +1,10 @@
+{
+  "id": "aquarium_large",
+  "summary": "A 1.2 m planted aquarium on its cabinet: a 240-litre glass tank with black trims and a centre brace, a blue-b… joints door_l, door_r; options stand, livestock.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.aquarium_large or place \"prefab\": \"aquarium_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:aquarium_large"]
+}

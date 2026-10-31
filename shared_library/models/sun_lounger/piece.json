@@ -1,0 +1,10 @@
+{
+  "id": "sun_lounger",
+  "summary": "A poolside sun lounger: 1.95 m aluminium frame with slatted hardwood bed, a reclining backrest on a pose hing… joints backrest; options cushions, cushion_colour; sockets socket_lie.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sun_lounger or place \"prefab\": \"sun_lounger\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sun_lounger"]
+}

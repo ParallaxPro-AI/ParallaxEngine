@@ -1,0 +1,10 @@
+{
+  "id": "potion_shelf",
+  "summary": "A narrow alchemist's potion shelf in dark walnut: four tiers of glowing potions (round flasks, slim vials, co… joints drawer; options wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.potion_shelf or place \"prefab\": \"potion_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:potion_shelf"]
+}

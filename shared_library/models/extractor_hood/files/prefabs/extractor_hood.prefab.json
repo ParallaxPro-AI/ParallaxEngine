@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/extractor_hood"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 1.0515, 0.56],
+      "offset": [0, 0.5242, 0]
+    }
+  }
+}

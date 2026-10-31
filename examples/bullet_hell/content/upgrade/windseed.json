@@ -1,0 +1,1 @@
+{ "name": "Windseed", "description": "+4 spark speed. Reach the top row sooner.", "stat": "spark_speed", "add": 4.0, "max_stacks": 2 }

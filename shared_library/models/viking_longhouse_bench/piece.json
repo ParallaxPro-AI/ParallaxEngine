@@ -1,0 +1,10 @@
+{
+  "id": "viking_longhouse_bench",
+  "summary": "A Viking longhouse bench, 2.4 m long: a half-log oak seat with a chip-carved front edge on two arched trestle… sockets seat_0, seat_1, seat_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.viking_longhouse_bench or place \"prefab\": \"viking_longhouse_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:viking_longhouse_bench"]
+}

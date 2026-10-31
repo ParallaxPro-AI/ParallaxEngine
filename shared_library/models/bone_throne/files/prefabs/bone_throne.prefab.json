@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bone_throne"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.36, 2.1599, 1.16],
+      "offset": [0, 1.08, -0.02]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/curling_stone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.291, 0.1928, 0.2992],
+      "offset": [0, 0.0964, -0.0041]
+    }
+  }
+}

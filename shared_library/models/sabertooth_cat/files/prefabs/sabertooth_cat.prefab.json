@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sabertooth_cat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4658, 1.1158, 2.012],
+      "offset": [0, 0.5549, 0.1049]
+    }
+  }
+}

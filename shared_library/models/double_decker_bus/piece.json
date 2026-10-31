@@ -1,0 +1,10 @@
+{
+  "id": "double_decker_bus",
+  "summary": "An 11.2 m two-axle double-decker city bus: one lofted monocoque with rounded front corners and a crowned roof… joints door_f_a, door_f_b, door_m_a, door_m_b, steering, wheel_f_l_roll, …; options paint; sockets seat_driver, eye_point, seat_pax_1, seat_pax_2, seat_pax_3, seat_pax_4, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.double_decker_bus or place \"prefab\": \"double_decker_bus\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:double_decker_bus"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "rune_stone",
+  "summary": "A 2.2 m carved standing stone: a weathered, tapering rough-rock slab with one dressed front face carrying a c… options runes; sockets socket_offering, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rune_stone or place \"prefab\": \"rune_stone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rune_stone"]
+}

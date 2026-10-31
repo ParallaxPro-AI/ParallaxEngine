@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lunar_lander"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.24, 5.6879, 9.2257],
+      "offset": [0, 2.844, 0]
+    }
+  }
+}

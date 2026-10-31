@@ -1,0 +1,10 @@
+{
+  "id": "punching_bag",
+  "summary": "A boxing heavy bag hanging from a free-standing steel stand: a 1.05 m leather-look bag with rounded ends, con… joints swing_x, swing_z; options bag_color, frame, mount; sockets socket_hit, socket_hook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.punching_bag or place \"prefab\": \"punching_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:punching_bag"]
+}

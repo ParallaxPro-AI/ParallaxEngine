@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/minivan"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1950,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.16,
+        1.8167,
+        5.0984
+      ],
+      "offset": [
+        0,
+        0.9083,
+        -0.0108
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 38,
+      "steering": 34,
+      "grip": 9,
+      "turn_rate": 2.1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.9083,
+        -0.0108
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_suv"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2100,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.18,
+        2.11,
+        5.0197
+      ],
+      "offset": [
+        0,
+        1.055,
+        0.1101
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 42,
+      "steering": 34,
+      "grip": 9,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.055,
+        0.1101
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

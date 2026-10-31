@@ -1,0 +1,11 @@
+{
+  "name": "Rallying Cry",
+  "blurb": "Faster feet and a harder swing, for a while.",
+  "kind": "buff",
+  "cooldown": { "base": 18, "per_rank": -1.4 },
+  "mana": { "base": 50, "per_rank": 4 },
+  "duration": { "base": 4, "per_rank": 0.6 },
+  "buff": { "move_speed": 1.5, "damage": 8 },
+  "cast_vfx": "vfx/heal_glow_cast",
+  "vfx": "vfx/heal_glow"
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_armchair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.85, 0.852, 0.85],
+      "offset": [0, 0.426, 0]
+    }
+  }
+}

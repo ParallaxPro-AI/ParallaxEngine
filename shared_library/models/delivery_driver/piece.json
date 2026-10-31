@@ -1,0 +1,10 @@
+{
+  "id": "delivery_driver",
+  "summary": "A parcel delivery driver: short-sleeved brown polo (gold-tipped collar and sleeve bands, two-button placket… options skin, hair, headwear, polo_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.delivery_driver or place \"prefab\": \"delivery_driver\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:delivery_driver"]
+}

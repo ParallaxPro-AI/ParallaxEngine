@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/popcorn_bucket"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.25,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.216, 0.266, 0.216],
+      "offset": [0, 0.133, 0]
+    }
+  }
+}

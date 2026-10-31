@@ -1,0 +1,1 @@
+{ "name": "Shambler", "prefab": "husk_shambler", "health": 100, "speed": 0.45, "bite_damage": 12, "bite_interval": 0.8, "bounty": 10 }

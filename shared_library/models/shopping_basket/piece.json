@@ -1,0 +1,10 @@
+{
+  "id": "shopping_basket",
+  "summary": "A moulded plastic supermarket hand basket: tapered walls punched with rows of slots, a rolled rim, ribbed fee… joints handle_front, handle_back; options colour; sockets socket_inside, socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shopping_basket or place \"prefab\": \"shopping_basket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shopping_basket"]
+}

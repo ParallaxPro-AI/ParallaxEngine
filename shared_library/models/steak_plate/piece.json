@@ -1,0 +1,10 @@
+{
+  "id": "steak_plate",
+  "summary": "A plated steak dinner on a 27 cm glazed china plate with a blue rim band: a grilled ribeye with crosshatched… sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.steak_plate or place \"prefab\": \"steak_plate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:steak_plate"]
+}

@@ -1,0 +1,15 @@
+{
+  "id": "civilian",
+  "summary": "An everyday adult civilian in casual modern clothes (jacket, top, trousers, boots) on the shared humanoid_17 rig: a walking Character for towns, crowds, drivers and riders. options skin, jacket, hair, headwear, top; sockets eye_point, grip_r, grip_l, holster_r …; a walking Character; humanoid skeleton.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "characters"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.civilian or place \"prefab\": \"civilian\" in a scene; Game(plugins=[...]) needs physics3d(), characters()."
+  ],
+  "replaces": [
+    "lib:civilian"
+  ]
+}

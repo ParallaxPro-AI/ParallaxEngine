@@ -1,0 +1,10 @@
+{
+  "id": "teapot",
+  "summary": "A 1 litre glazed ceramic teapot: a squat lathed belly with a foot ring and a painted band, a hollow swan-neck… joints lid; options glaze, band; sockets socket_lid_top, pour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.teapot or place \"prefab\": \"teapot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:teapot"]
+}

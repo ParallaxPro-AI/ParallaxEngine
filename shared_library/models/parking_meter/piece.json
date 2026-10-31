@@ -1,0 +1,10 @@
+{
+  "id": "parking_meter",
+  "summary": "Single-space mechanical parking meter: a steel pole on a foot plate carrying a painted die-cast head, with a… joints display, dial; sockets socket_coin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parking_meter or place \"prefab\": \"parking_meter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parking_meter"]
+}

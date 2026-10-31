@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chest_rare"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9114, 0.6902, 0.5968],
+      "offset": [0, 0.3441, 0.0001]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bb_skull_decor",
+  "summary": "Low-poly skull with dark eye sockets, triangular nasal impression and a toothed jaw.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_skull_decor or place \"prefab\": \"bb_skull_decor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_skull_decor"]
+}

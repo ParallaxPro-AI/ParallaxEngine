@@ -1,0 +1,91 @@
+<!-- The service receipt, ported from the template's game_over fork: a scalloped ticket-paper
+     receipt printing down over a rail-green wash: "Service Complete!" in rail green or "Out
+     of Time" in red, the kitchens as ticked / failed pills, the final score, the
+     dotted-leader stat lines (dishes served, best combo, orders missed, pots burnt, binned,
+     prep actions, best ever or a New Best! stamp) and the result line, then Play Again /
+     Main Menu. On touch the receipt turns landscape: title, score and buttons left, the
+     lines right. -->
+<link rel="stylesheet" href="kitchen_kit.css">
+<style>
+  .kro2 { position: fixed; inset: 0; --rc: var(--kr-rail-800); pointer-events: auto; }
+  .kro2.loss { --rc: #b42318; }
+  .krg2-dim { position: absolute; inset: 0; background: radial-gradient(70% 80% at 50% 45%, rgba(22,101,52,.55), rgba(5,46,22,.92)); animation: kr-fade 250ms ease-out both; }
+  .krg2-wrap { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--kr-u) * 34); }
+  .krg2-rcpt { width: calc(var(--kr-u) * 620); padding: calc(var(--kr-u) * 46) calc(var(--kr-u) * 52) calc(var(--kr-u) * 44); color: var(--kr-ink); text-align: center; background: linear-gradient(var(--kr-paper), var(--kr-paper-shade)); filter: drop-shadow(0 calc(var(--kr-u) * 24) calc(var(--kr-u) * 30) rgba(0,0,0,.5)); transform: rotate(-.6deg);
+    -webkit-mask: radial-gradient(circle calc(var(--kr-u) * 7) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--kr-u) * 18) 51% repeat-x, radial-gradient(circle calc(var(--kr-u) * 7) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--kr-u) * 18) 51% repeat-x;
+    mask: radial-gradient(circle calc(var(--kr-u) * 7) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--kr-u) * 18) 51% repeat-x, radial-gradient(circle calc(var(--kr-u) * 7) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--kr-u) * 18) 51% repeat-x; }
+  .krg2-print { animation: kr-print 500ms var(--kr-ease-out) both; }
+  .krg2-mono { font: 700 calc(var(--kr-u) * 13)/1.3 var(--kr-font-mono); letter-spacing: .14em; color: var(--kr-ink-faint); text-transform: uppercase; }
+  .krg2-rcpt h1 { font: 400 calc(var(--kr-u) * 66)/1 var(--kr-font-display); margin: calc(var(--kr-u) * 10) 0 calc(var(--kr-u) * 18); color: var(--rc); }
+  .krg2-prog { display: flex; justify-content: center; gap: calc(var(--kr-u) * 10); }
+  .krg2-prog span { display: inline-flex; align-items: center; gap: calc(var(--kr-u) * 6); font: 800 calc(var(--kr-u) * 15)/1.2 var(--kr-font-body); padding: calc(var(--kr-u) * 6) calc(var(--kr-u) * 14); border-radius: 99px; border: 2px solid rgba(31,23,18,.18); color: var(--kr-ink-soft); white-space: nowrap; }
+  .krg2-prog .done { background: var(--kr-rail-600); border-color: var(--kr-rail-600); color: #fff; }
+  .krg2-prog .fail { background: var(--kr-bar-bad); border-color: var(--kr-bar-bad); color: #fff; }
+  .krg2-score { margin: calc(var(--kr-u) * 26) 0 calc(var(--kr-u) * 8); padding: calc(var(--kr-u) * 18) 0 calc(var(--kr-u) * 10); border-top: 2px dashed rgba(31,23,18,.25); border-bottom: 2px dashed rgba(31,23,18,.25); }
+  .krg2-n { font: 400 calc(var(--kr-u) * 160)/1 var(--kr-font-display); letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .krg2-lines { display: flex; flex-direction: column; gap: calc(var(--kr-u) * 2); margin-top: calc(var(--kr-u) * 16); text-align: left; }
+  .krg2-ln { display: flex; align-items: baseline; gap: calc(var(--kr-u) * 10); font: 700 calc(var(--kr-u) * 21)/1.2 var(--kr-font-body); padding: calc(var(--kr-u) * 6) 0; animation: kr-rise 260ms var(--kr-ease-out) both; }
+  .krg2-ln b { font: 800 calc(var(--kr-u) * 22)/1 var(--kr-font-mono); }
+  .krg2-ln i { flex: 1; border-bottom: 2px dotted rgba(31,23,18,.3); transform: translateY(calc(var(--kr-u) * -5)); }
+  .krg2-ln.best { margin-top: calc(var(--kr-u) * 6); padding: calc(var(--kr-u) * 8) calc(var(--kr-u) * 12); border-radius: calc(var(--kr-u) * 8); background: rgba(250,204,21,.35); }
+  .krg2-ln.stamp { align-self: center; justify-content: center; margin-top: calc(var(--kr-u) * 6); padding: calc(var(--kr-u) * 8) calc(var(--kr-u) * 12); border-radius: calc(var(--kr-u) * 8); border: calc(var(--kr-u) * 3) solid var(--kr-rail-600); color: var(--kr-rail-800); font: 400 calc(var(--kr-u) * 28)/1 var(--kr-font-display); transform: rotate(-2deg); animation: kr-bump 400ms var(--kr-ease-pop) both; }
+  .krg2-result { margin-top: calc(var(--kr-u) * 16); padding: calc(var(--kr-u) * 14); border-radius: calc(var(--kr-u) * 10); font: 400 calc(var(--kr-u) * 26)/1.1 var(--kr-font-display); background: var(--rc); color: #fff; text-align: center; animation: kr-rise 260ms var(--kr-ease-out) both; }
+  .krg2-btns { display: flex; gap: calc(var(--kr-u) * 22); animation: kr-rise 300ms var(--kr-ease-out) both; }
+  .krg2-mbtns { display: none; }
+  @media (pointer: coarse) {
+    .krg2-wrap { inset: var(--kr-safe-t) var(--kr-safe-r) var(--kr-safe-b) var(--kr-safe-l); }
+    .krg2-rcpt { width: calc(var(--kr-u) * 720); display: grid; grid-template-columns: calc(var(--kr-u) * 300) 1fr; padding: 0; transform: none; filter: drop-shadow(0 calc(var(--kr-u) * 12) calc(var(--kr-u) * 18) rgba(0,0,0,.5));
+      -webkit-mask: radial-gradient(circle calc(var(--kr-u) * 5) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--kr-u) * 14) 51% repeat-x, radial-gradient(circle calc(var(--kr-u) * 5) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--kr-u) * 14) 51% repeat-x;
+      mask: radial-gradient(circle calc(var(--kr-u) * 5) at 50% 0, #0000 97%, #000) 50% 0 / calc(var(--kr-u) * 14) 51% repeat-x, radial-gradient(circle calc(var(--kr-u) * 5) at 50% 100%, #0000 97%, #000) 50% 100% / calc(var(--kr-u) * 14) 51% repeat-x; }
+    .krg2-l { padding: calc(var(--kr-u) * 22) calc(var(--kr-u) * 22) calc(var(--kr-u) * 22) calc(var(--kr-u) * 26); display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 2px dashed rgba(31,23,18,.25); }
+    .krg2-r { padding: calc(var(--kr-u) * 20) calc(var(--kr-u) * 26) calc(var(--kr-u) * 20) calc(var(--kr-u) * 22); display: flex; flex-direction: column; }
+    .krg2-mono { font-size: max(8px, calc(var(--kr-u) * 9)); }
+    .krg2-rcpt h1 { font-size: calc(var(--kr-u) * 30); margin: calc(var(--kr-u) * 6) 0 calc(var(--kr-u) * 8); }
+    .krg2-prog { gap: calc(var(--kr-u) * 5); }
+    .krg2-prog span { font-size: max(9px, calc(var(--kr-u) * 10)); padding: calc(var(--kr-u) * 3) calc(var(--kr-u) * 8); border-width: 1.5px; }
+    .krg2-score { margin: 0; padding: 0; border: 0; }
+    .krg2-score .krg2-mono { display: none; }
+    .krg2-n { font-size: calc(var(--kr-u) * 84); margin: calc(var(--kr-u) * 6) 0 calc(var(--kr-u) * 10); }
+    .krg2-lines { margin-top: 0; }
+    .krg2-ln { font-size: max(11px, calc(var(--kr-u) * 14)); gap: calc(var(--kr-u) * 8); padding: calc(var(--kr-u) * 3) 0; }
+    .krg2-ln b { font-size: max(11px, calc(var(--kr-u) * 14)); }
+    .krg2-ln i { border-bottom-width: 1.5px; transform: translateY(calc(var(--kr-u) * -3)); }
+    .krg2-ln.best { margin-top: calc(var(--kr-u) * 3); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 8); border-radius: calc(var(--kr-u) * 6); }
+    .krg2-ln.stamp { font-size: calc(var(--kr-u) * 16); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 8); border-width: 2px; }
+    .krg2-result { margin-top: calc(var(--kr-u) * 10); padding: calc(var(--kr-u) * 8) calc(var(--kr-u) * 10); border-radius: calc(var(--kr-u) * 8); font-size: calc(var(--kr-u) * 16); }
+    .krg2-btns { display: none; }
+    .krg2-mbtns { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--kr-u) * 10); width: 100%; animation: kr-rise 300ms var(--kr-ease-out) both; }
+    .kr-root .krg2-mbtns .kr-btn { font-size: calc(var(--kr-u) * 17); padding: calc(var(--kr-u) * 12) calc(var(--kr-u) * 8) calc(var(--kr-u) * 10); border-radius: calc(var(--kr-u) * 12); box-shadow: inset 0 calc(var(--kr-u) * -4) 0 rgba(0,0,0,.16), inset 0 calc(var(--kr-u) * 2) 0 rgba(255,255,255,.5), 0 calc(var(--kr-u) * 4) 0 rgba(0,0,0,.38); }
+    .kr-root .krg2-mbtns .kr-btn.cream { box-shadow: inset 0 calc(var(--kr-u) * -3) 0 rgba(0,0,0,.1), inset 0 0 0 2px rgba(31,23,18,.16), 0 calc(var(--kr-u) * 4) 0 rgba(0,0,0,.3); }
+  }
+  .krg2-mono .krg2-dk { display: inline; }
+  @media (pointer: coarse) { .krg2-mono .krg2-dk { display: none; } }
+</style>
+<div class="kr-root kro2" data-class-loss="lost">
+  <div class="krg2-dim"></div>
+  <div class="krg2-wrap">
+    <div class="krg2-rcpt krg2-print">
+      <div class="krg2-l">
+        <div class="krg2-mono"><span class="krg2-dk" data-text="receipt_game"></span><span data-text="receipt"></span></div>
+        <h1 data-bind="title"></h1>
+        <div class="krg2-prog" data-each="kitchens"><template><span data-class-done="done" data-class-fail="failed" data-bind="name"></span></template></div>
+        <div class="krg2-score"><div class="krg2-mono" data-text="final_score"></div><div class="krg2-n" data-bind="score"></div></div>
+        <div class="krg2-mbtns"><button class="kr-btn" data-action="play_again" data-text="play_again"></button><button class="kr-btn cream" data-action="main_menu" data-text="main_menu"></button></div>
+      </div>
+      <div class="krg2-r">
+        <div class="krg2-lines">
+          <div class="krg2-ln" style="animation-delay:700ms"><span data-text="dishes_served"></span><i></i><b data-bind="served"></b></div>
+          <div class="krg2-ln" style="animation-delay:750ms"><span data-text="best_combo"></span><i></i><b data-bind="best_streak"></b></div>
+          <div class="krg2-ln" style="animation-delay:800ms"><span data-text="orders_missed"></span><i></i><b data-bind="missed"></b></div>
+          <div class="krg2-ln" style="animation-delay:850ms"><span data-text="pots_burnt"></span><i></i><b data-bind="burnt"></b></div>
+          <div class="krg2-ln" style="animation-delay:900ms"><span data-text="binned"></span><i></i><b data-bind="binned"></b></div>
+          <div class="krg2-ln" style="animation-delay:950ms"><span data-text="prep_actions"></span><i></i><b data-bind="prep"></b></div>
+          <div class="krg2-ln stamp" style="animation-delay:1000ms" data-show="new_best" data-text="new_best"></div>
+          <div class="krg2-ln best" style="animation-delay:1000ms" data-hide="new_best"><span data-text="best_ever"></span><i></i><b data-bind="best_ever"></b></div>
+        </div>
+        <div class="krg2-result" style="animation-delay:1050ms" data-bind="result"></div>
+      </div>
+    </div>
+    <div class="krg2-btns" style="animation-delay:1100ms"><button class="kr-btn" data-action="play_again" data-key="Enter" data-text="play_again"></button><button class="kr-btn cream" data-action="main_menu" data-text="main_menu"></button></div>
+  </div>
+</div>

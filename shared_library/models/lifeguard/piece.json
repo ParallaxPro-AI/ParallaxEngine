@@ -1,0 +1,10 @@
+{
+  "id": "lifeguard",
+  "summary": "A beach / pool lifeguard: red sleeveless swimsuit with a scoop neck and a white cross, red board shorts with… options skin, hair, headwear, shorts_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lifeguard or place \"prefab\": \"lifeguard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lifeguard"]
+}

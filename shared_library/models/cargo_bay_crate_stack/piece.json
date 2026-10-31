@@ -1,0 +1,10 @@
+{
+  "id": "cargo_bay_crate_stack",
+  "summary": "A strapped stack of sci-fi cargo crates on a diamond-plate skid with hazard-striped ends and a lit edge: two… joints case_d_lid; options paint, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cargo_bay_crate_stack or place \"prefab\": \"cargo_bay_crate_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cargo_bay_crate_stack"]
+}

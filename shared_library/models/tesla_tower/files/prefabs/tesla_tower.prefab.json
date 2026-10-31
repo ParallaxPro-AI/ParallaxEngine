@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tesla_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 3.33, 2.4],
+      "offset": [0, 1.665, 0]
+    }
+  }
+}

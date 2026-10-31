@@ -1,0 +1,10 @@
+{
+  "id": "railway_platform",
+  "summary": "A 24 m railway passenger platform module for the rail_track kit: a brick-faced body with an engineering-brick… options edges, ends, trim; sockets track_a, track_b, deck_mid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.railway_platform or place \"prefab\": \"railway_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:railway_platform"]
+}

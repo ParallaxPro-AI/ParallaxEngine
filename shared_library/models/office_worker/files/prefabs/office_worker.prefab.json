@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/office_worker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7223, 1.7409, 0.2741],
+      "offset": [0, 0.8704, 0.0031]
+    }
+  }
+}

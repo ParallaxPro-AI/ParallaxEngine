@@ -1,0 +1,10 @@
+{
+  "id": "climbing_hold_wall",
+  "summary": "A freestanding 4.9 m wide, 4 m tall bouldering wall: a 0.45 m vertical kicker, a 20-degree overhang and a 10-… options wall; sockets socket_start_red, socket_start_blue, socket_start_yellow, socket_start_green, socket_start_purple, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.climbing_hold_wall or place \"prefab\": \"climbing_hold_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:climbing_hold_wall"]
+}

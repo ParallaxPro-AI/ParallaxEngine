@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sandbox_kids"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8524, 1.0787, 1.54],
+      "offset": [0, 0.5394, 0]
+    }
+  }
+}

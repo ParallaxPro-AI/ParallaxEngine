@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/weight_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.63, 1.202, 1.255],
+      "offset": [0, 0.599, 0.0475]
+    }
+  }
+}

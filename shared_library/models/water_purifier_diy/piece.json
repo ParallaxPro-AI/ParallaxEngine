@@ -1,0 +1,10 @@
+{
+  "id": "water_purifier_diy",
+  "summary": "A survivor's DIY gravity water purifier on a scrap-timber stand (0.62 x 0.56 m, 1.86 m tall): a ribbed blue p…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_purifier_diy or place \"prefab\": \"water_purifier_diy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_purifier_diy"]
+}

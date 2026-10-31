@@ -1,0 +1,1 @@
+{ "burst": 25, "max": 40, "lifetime": [0.2, 0.55], "speed": [2, 6], "radius": 0.5, "spread": 240, "gravity": -10, "size": [0.08, 0.2], "size_end": 0.035, "color": "#aaffcbff", "color_end": "#59bcf300", "blend": "additive" }

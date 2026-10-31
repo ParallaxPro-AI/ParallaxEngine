@@ -1,0 +1,10 @@
+{
+  "id": "subway_entrance",
+  "summary": "A city metro stair entrance: a granite flight of twenty steps with yellow nosings descending 3.6 m through a… joints shutter_curtain, shutter_bar; options livery.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.subway_entrance or place \"prefab\": \"subway_entrance\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:subway_entrance"]
+}

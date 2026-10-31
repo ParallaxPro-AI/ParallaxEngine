@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/upright_vacuum"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.31, 1.1615, 0.3193],
+      "offset": [0, 0.5808, -0.0187]
+    }
+  }
+}

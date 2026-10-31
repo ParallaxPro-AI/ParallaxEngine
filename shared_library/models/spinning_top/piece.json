@@ -1,0 +1,10 @@
+{
+  "id": "spinning_top",
+  "summary": "A classic painted spinning top: a turned body on a steel tip - lower cone, contrasting band, broad shoulder r… joints precess, tilt, spin; options main_paint, shoulder_paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spinning_top or place \"prefab\": \"spinning_top\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spinning_top"]
+}

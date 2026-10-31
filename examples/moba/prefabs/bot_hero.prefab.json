@@ -1,0 +1,11 @@
+{
+  "extends": "hero",
+  "behaviors": {
+    "bot_brain": { "engage_range": 14, "retreat_below": 0.28, "return_above": 0.9,
+                   "defensive_above": 0.8, "rank_order": [3, 0, 1, 2] },
+    "hero_motor": { "arrive_within": 0.5 },
+    "basic_attack": { "windup_fraction": 0.28, "max_windup": 0.34 },
+    "ability_caster": {},
+    "recall": { "move_tolerance": 0.4 }
+  }
+}

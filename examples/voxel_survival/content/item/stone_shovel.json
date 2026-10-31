@@ -1,0 +1,1 @@
+{ "name": "Stone Shovel", "icon": "shovel", "color": "#9199a1", "stack_max": 1, "tool": "shovel", "view": "shovel_view", "tier": 1, "mine_speed": 4, "damage": 7, "reach": 5 }

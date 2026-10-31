@@ -1,0 +1,45 @@
+<!-- NPC lines in the template's bark card (lantern glass, gilt corners, speaker in gold small caps, the line in the
+     speech face): the engine's DialoguePanel restyled. The template showed one line for 9 s; here the line stays until
+     E (or a click) moves the conversation on, so the draining rule became a key chip. -->
+<link rel="stylesheet" href="sundermere.css">
+<style>
+.dlg { position: fixed; left: 50%; bottom: calc(178 * var(--u)); width: calc(860 * var(--u)); max-width: calc(100cqw - 32px); padding: calc(22 * var(--u)) calc(34 * var(--u)) calc(26 * var(--u)); border-color: rgba(214,187,120,.3); box-shadow: 0 20px 60px rgba(0,0,0,.5), inset 0 1px 0 rgba(244,239,220,.06); transform: translateX(-50%); animation: sm-fade .22s ease-out both; }
+.dlg .sm-c { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+.d-who { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+.d-who > b { width: calc(6 * var(--u)); height: calc(6 * var(--u)); transform: rotate(45deg); background: #e0c48c; }
+.d-who > span { font: 600 calc(12 * var(--u))/1 var(--sm-font-ui); letter-spacing: .26em; text-transform: uppercase; color: var(--sm-gold); }
+.sm-root .d-line { margin: calc(12 * var(--u)) 0 0; font: 500 calc(31 * var(--u))/1.3 var(--sm-font-speech); color: var(--sm-ink); text-wrap: pretty; }
+.sm-root .d-line::before { content: '\201C'; }
+.sm-root .d-line::after { content: '\201D'; }
+.d-rule { position: absolute; left: calc(34 * var(--u)); right: calc(34 * var(--u)); bottom: calc(12 * var(--u)); height: 2px; background: rgba(214,187,120,.14); }
+.d-opts { display: flex; flex-direction: column; gap: calc(8 * var(--u)); margin-top: calc(16 * var(--u)); }
+.sm-root .d-opt { display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(8 * var(--u)) calc(14 * var(--u)); text-align: left; font: 500 calc(22 * var(--u))/1.25 var(--sm-font-speech); color: var(--sm-ink); background: rgba(10,18,20,.5); border: 1px solid rgba(214,187,120,.25); border-radius: calc(6 * var(--u)); cursor: pointer; pointer-events: auto; }
+.sm-root .d-opt:not(.enabled) { opacity: .45; }
+.sm-root .d-next { position: absolute; right: calc(28 * var(--u)); bottom: calc(-16 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(5 * var(--u)) calc(16 * var(--u)) calc(5 * var(--u)) calc(5 * var(--u)); border-radius: 999px; background: var(--sm-glass); border: 1px solid rgba(214,187,120,.3); box-shadow: 0 8px 24px rgba(0,0,0,.45); font: 600 calc(11 * var(--u))/1 var(--sm-font-ui); letter-spacing: .22em; text-transform: uppercase; color: var(--sm-gold); cursor: pointer; pointer-events: auto; }
+.d-next .sm-kbd { margin: 0; }
+@container (max-height: 500px) {
+  .dlg { left: calc(192 * var(--u)); bottom: calc(16 * var(--u)); width: calc(360 * var(--u)); padding: calc(12 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); border-radius: calc(10 * var(--u)); border-color: rgba(214,187,120,.32); box-shadow: 0 14px 40px rgba(0,0,0,.5); transform: none; }
+  .dlg .sm-c { display: none; }
+  .d-who { gap: calc(7 * var(--u)); }
+  .d-who > b { width: calc(5 * var(--u)); height: calc(5 * var(--u)); }
+  .d-who > span { font-size: calc(11 * var(--u)); letter-spacing: .24em; }
+  .sm-root .d-line { margin-top: calc(7 * var(--u)); font-size: calc(19 * var(--u)); line-height: 1.28; }
+  .d-rule { left: calc(16 * var(--u)); right: calc(16 * var(--u)); bottom: calc(7 * var(--u)); }
+  .sm-root .d-opt { font-size: calc(16 * var(--u)); }
+  .sm-root .d-next { right: calc(12 * var(--u)); bottom: calc(-12 * var(--u)); }
+}
+</style>
+<div class="sm-root">
+  <section class="dlg sm-glass">
+    <b class="sm-c tl"></b><b class="sm-c tr"></b>
+    <div class="d-who" data-show="speaker"><b></b><span data-bind="speaker"></span></div>
+    <p class="d-line" data-bind="text"></p>
+    <div class="d-opts" data-each="options">
+      <template>
+        <button class="d-opt" data-action="choose" data-attr-data-option="index" data-class-enabled="enabled" data-key="Digit{index1}"><span data-bind="text"></span></button>
+      </template>
+    </div>
+    <div class="d-rule"></div>
+    <button class="d-next" data-hide="options" data-action="next"><span class="sm-kbd">E</span><span data-text="dialogue_continue"></span></button>
+  </section>
+</div>

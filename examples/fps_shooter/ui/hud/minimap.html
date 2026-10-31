@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="../dustline.css">
+<style>
+  /* The engine's minimap in the Dustline frame (the template kit's hud/minimap dressing):
+     a 208 px square under the run clock, teal glass with a brass hairline, no label. */
+  .root { position: absolute; inset: 0; pointer-events: none; }
+  .map { position: absolute; top: calc(96 * var(--u)); right: calc(32 * var(--u)); width: calc(208 * var(--u)); height: calc(208 * var(--u)); overflow: hidden; background: var(--dl-panel-2); box-shadow: inset 0 0 0 1px rgba(230,186,112,.3); }
+  .contrast .map { background: #000; box-shadow: inset 0 0 0 calc(3 * var(--u)) #fff; }
+  .turn { position: absolute; inset: 0; }
+  .base { position: absolute; max-width: none; image-rendering: auto; opacity: 0.45; filter: grayscale(1) brightness(.7); }
+  .icon { position: absolute; transform: translate(-50%, -50%); font-size: 0.8em; line-height: 1; text-shadow: 0 0 calc(2 * var(--u)) #000, 0 0 calc(2 * var(--u)) #000; }
+  .icon i { display: inline-block; font-style: normal; }
+  .icon.edge { opacity: 0.85; }
+  .me { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  .me b { position: absolute; left: -0.5em; top: -0.62em; width: 1em; text-align: center; font-size: 1em; line-height: 1.2; color: var(--dl-brass); text-shadow: 0 0 calc(3 * var(--u)) #000; }
+  @media (pointer: coarse) { .map { top: calc(calc(12 * var(--u)) + env(safe-area-inset-top, 0px)); left: calc(calc(152 * var(--u)) + env(safe-area-inset-left, 0px)); right: auto; width: calc(128 * var(--u)); height: calc(128 * var(--u)); } }
+</style>
+<div class="root" data-class-contrast="a11y.contrast" data-style-font-size="a11y.font" data-show="shown">
+  <div class="map">
+    <div class="turn" data-style-transform="turn">
+      <img class="base" alt="" data-show="base" data-attr-src="base" data-style-left="base_left" data-style-top="base_top" data-style-width="base_width" data-style-height="base_height">
+    </div>
+    <div data-each="icons"><template>
+      <span class="icon" data-class-edge="edge" data-style-left="x" data-style-top="y" data-style-color="color" data-style-font-size="size"><i data-style-transform="turn" data-bind="glyph"></i></span>
+    </template></div>
+    <span class="me"><b data-style-transform="player_turn">▲</b></span>
+  </div>
+</div>

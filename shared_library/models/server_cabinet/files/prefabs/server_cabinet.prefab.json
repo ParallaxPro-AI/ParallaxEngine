@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/server_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.61, 1.247, 0.672],
+      "offset": [0, 0.6235, 0.016]
+    }
+  }
+}

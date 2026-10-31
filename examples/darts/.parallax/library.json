@@ -1,0 +1,34 @@
+{
+  "pieces": {
+    "bar_stool": {
+      "from": "shared_library/models/bar_stool",
+      "version": "2026.10.23",
+      "sha": "1fca268d4db9fcc2e717f5c88b645b613482f592c13f96076ced1364e46f2810",
+      "files": {
+        "assets/models/bar_stool.model.json": "6252ae34fd27367b05a69abb9163ab06cb23e2c8d954d812bd0de178d551faef",
+        "prefabs/bar_stool.prefab.json": "56fc02a0e18d587f247a5b16b3d42f5785431167bd2f55ce076739b3924927d2"
+      },
+      "text": {}
+    },
+    "industrial_fan": {
+      "from": "shared_library/models/industrial_fan",
+      "version": "2026.10.23",
+      "sha": "51f0de7ba3ef4d54105c5d313138606ac5ee255b1f87794d49704733a9946b1c",
+      "files": {
+        "assets/models/industrial_fan.model.json": "fe92b49df44d349bb78cab72683ad82ea35c53c76c25ce32bee703aff6f8a92c",
+        "prefabs/industrial_fan.prefab.json": "5d9b17d59d5e39537e13d81118c5e5290c21cec878a9d0bec6086edf962e2429"
+      },
+      "text": {}
+    },
+    "model_ambient": {
+      "from": "shared_library/props/model_ambient",
+      "version": "2026.10.23",
+      "sha": "a418e8b0f169752af3b9067babaf2da4a788c67cc0466c40dd9f31af97f5540a",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/model_ambient.py": "dde4a86a3aba3bbbb2894042d425db7347dd65202d817c796d762680e753f4c4"
+      },
+      "text": {}
+    }
+  }
+}

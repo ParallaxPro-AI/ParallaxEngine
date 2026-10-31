@@ -1,0 +1,10 @@
+{
+  "id": "meat_hook_chain",
+  "summary": "A butcher's meat hook on a hanging chain: a square steel ceiling plate with four bolts and a swivel eye, sixt… joints chain, hook_swivel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.meat_hook_chain or place \"prefab\": \"meat_hook_chain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:meat_hook_chain"]
+}

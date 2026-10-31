@@ -1,0 +1,10 @@
+{
+  "id": "bloody_operating_tray",
+  "summary": "A surgical Mayo instrument stand: a U-shaped base on four casters, a telescoping post with a clamp knob and a… joints riser; options state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bloody_operating_tray or place \"prefab\": \"bloody_operating_tray\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bloody_operating_tray"]
+}

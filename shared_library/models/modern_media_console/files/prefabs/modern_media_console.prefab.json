@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_media_console"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 1.25, 0.4645],
+      "offset": [0, 0.625, 0.0063]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="dustline.css">
+<style>
+  .dp-overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; overflow-y: auto; padding: calc(24 * var(--u)); pointer-events: auto; background: rgba(10,23,27,.8); animation: dpIn .24s ease; }
+  @keyframes dpIn { from { opacity: 0; } to { opacity: 1; } }
+  .dp-title { font: 400 calc(160 * var(--u))/1 var(--dl-f-display); letter-spacing: .08em; text-transform: uppercase; flex-shrink: 0; }
+  .dp-meta { margin-top: calc(8 * var(--u)); display: flex; flex-wrap: wrap; justify-content: center; gap: calc(12 * var(--u)) calc(28 * var(--u)); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .dp-buttons { margin-top: calc(44 * var(--u)); width: calc(380 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); flex-shrink: 0; }
+  .dp-buttons .dl-btn { width: 100%; }
+  .dp-hint { margin-top: calc(28 * var(--u)); font-size: calc(15 * var(--u)); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dl-sage); flex-shrink: 0; }
+  @media (pointer: coarse) {
+    .dp-overlay { padding: calc(24 * var(--u)) calc(calc(48 * var(--u)) + env(safe-area-inset-right, 0px)) calc(24 * var(--u)) calc(calc(48 * var(--u)) + env(safe-area-inset-left, 0px)); }
+    .dp-title { font-size: calc(144 * var(--u)); }
+    .dp-buttons { margin-top: calc(32 * var(--u)); width: calc(560 * var(--u)); gap: calc(20 * var(--u)); }
+    .dp-lbl { font-size: calc(22 * var(--u)); }
+  }
+</style>
+<div class="dl dp-overlay" role="dialog" aria-label="Paused">
+  <h1 class="dp-title" data-text="paused"></h1>
+  <div class="dp-meta">
+    <span class="lbl"><span data-text="round_word"></span> <b data-bind="round"></b> / <span data-bind="rounds"></span> · <b data-bind="round_name"></b></span>
+    <span class="lbl"><span data-text="score_label"></span> <b data-bind="score"></b></span>
+    <span class="lbl"><span data-text="lives_label"></span> <b data-bind="lives"></b></span>
+    <span class="lbl"><span data-text="run_label"></span> <b data-bind="clock"></b></span>
+    <span class="lbl" data-show="has_accuracy"><span data-text="accuracy_label"></span> <b data-bind="accuracy"></b></span>
+  </div>
+  <div class="dp-buttons">
+    <button class="dl-btn primary" data-action="resume" data-text="resume"></button>
+    <button class="dl-btn danger" data-action="quit" data-text="abandon_run"></button>
+    <button class="dl-btn" data-action="settings" data-text="settings"></button>
+  </div>
+  <p class="dp-hint desktop-only"><span data-text="press"></span> <kbd>P</kbd> <span data-text="to_resume"></span></p>
+</div>

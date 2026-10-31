@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lifeboat"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 3500,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.68, 3.31, 7.69],
+      "offset": [0, 1.655, -0.135]
+    }
+  }
+}

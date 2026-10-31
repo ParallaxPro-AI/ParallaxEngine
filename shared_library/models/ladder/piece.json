@@ -1,0 +1,10 @@
+{
+  "id": "ladder",
+  "summary": "An aluminium ladder. joints extends, feet; options config; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ladder or place \"prefab\": \"ladder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ladder"]
+}

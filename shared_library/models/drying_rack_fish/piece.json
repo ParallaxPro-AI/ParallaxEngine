@@ -1,0 +1,10 @@
+{
+  "id": "drying_rack_fish",
+  "summary": "A fish drying rack: two lashed A-frame trestles of bark poles (crossing 1.5 m up, 1.04 m spread at the foot… sockets socket_hang, socket_basket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drying_rack_fish or place \"prefab\": \"drying_rack_fish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drying_rack_fish"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "grandfather_clock",
+  "summary": "A 2.1 m wooden longcase (grandfather) clock: a panelled plinth on bun feet, a narrow trunk with a glazed door… joints hour_hand, minute_hand, pendulum, trunk_door, hood_door; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grandfather_clock or place \"prefab\": \"grandfather_clock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grandfather_clock"]
+}

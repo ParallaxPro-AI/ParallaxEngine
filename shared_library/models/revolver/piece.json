@@ -1,0 +1,10 @@
+{
+  "id": "revolver",
+  "summary": "A double-action revolver: fluted six-shot cylinder that swings out on its crane, a hammer that cocks, a trigg… joints cylinder, hammer, trigger; options barrel; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.revolver or place \"prefab\": \"revolver\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:revolver"]
+}

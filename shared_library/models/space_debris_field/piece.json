@@ -1,0 +1,10 @@
+{
+  "id": "space_debris_field",
+  "summary": "A drifting cluster of spacecraft wreckage for a space shooter, about 4.6 m across and 1.8 m tall: a curved wh…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_debris_field or place \"prefab\": \"space_debris_field\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_debris_field"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "buffet_station_sign",
+  "summary": "Brass pedestal buffet label with a deep green face and seven selectable cuisine labels. options station.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.buffet_station_sign or place \"prefab\": \"buffet_station_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:buffet_station_sign"]
+}

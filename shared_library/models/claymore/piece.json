@@ -1,0 +1,10 @@
+{
+  "id": "claymore",
+  "summary": "A 1.4 m Highland two-handed claymore: a 1.03 m broad double-edged blade with a long fuller and bright ground… options hilt; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.claymore or place \"prefab\": \"claymore\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:claymore"]
+}

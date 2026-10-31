@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/data_server_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 2.91, 1.06],
+      "offset": [0, 1.455, -0.06]
+    }
+  }
+}

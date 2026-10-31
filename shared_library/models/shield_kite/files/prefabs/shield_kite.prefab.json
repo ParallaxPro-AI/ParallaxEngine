@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shield_kite"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.558, 1.0713, 0.1509],
+      "offset": [0, 0.5335, -0.0005]
+    }
+  }
+}

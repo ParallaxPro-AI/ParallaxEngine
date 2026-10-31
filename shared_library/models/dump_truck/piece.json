@@ -1,0 +1,10 @@
+{
+  "id": "dump_truck",
+  "summary": "A 6x4 rigid tipper: the cab-over truck on a tandem-drive bogie with a lofted half-round steel body that TIPS… joints cab_tilt, door_l, door_r, tipper, tailgate, wheel_f_l_roll, …; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_load, exhaust_0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.dump_truck or place \"prefab\": \"dump_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:dump_truck"]
+}

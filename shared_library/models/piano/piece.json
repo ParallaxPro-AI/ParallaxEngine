@@ -1,0 +1,10 @@
+{
+  "id": "piano",
+  "summary": "A piano that switches between a grand and an upright body at runtime. joints keys, fallboard, pedals, lid; options style; sockets socket_bench, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.piano or place \"prefab\": \"piano\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:piano"]
+}

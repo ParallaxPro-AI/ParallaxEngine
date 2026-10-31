@@ -1,0 +1,8 @@
+{
+  "tags": ["playable"],
+    "entities": [
+    { "id": "explorer", "prefab": "explorer" },
+    { "prefab": "rock", "at": [20, 1, 30] },
+    { "prefab": "camera", "components": { "camera": { "follow": "explorer" } } }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "carved_tablet",
+  "summary": "A 2.3 m carved stone stele on a stepped plinth: a slab with a low gabled crest and a broken top-right corner… options inscription; sockets socket_offering.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.carved_tablet or place \"prefab\": \"carved_tablet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:carved_tablet"]
+}

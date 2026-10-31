@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tanker_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 14000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        3.685,
+        8.685
+      ],
+      "offset": [
+        0,
+        1.8425,
+        0.1375
+      ]
+    },
+    "vehicle": {
+      "max_speed": 27,
+      "steering": 28
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.8425,
+        0.1375
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

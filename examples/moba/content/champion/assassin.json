@@ -1,0 +1,18 @@
+{
+  "name": "Nightcut",
+  "role": "Assassin",
+  "passive_name": "First Blood",
+  "model": "models/champ_assassin",
+  "scale": 0.97,
+  "color": "#73478c",
+  "role_icon": "venom",
+  "crest": "M9 13 L14 9 L31 30 L26 34 Z",
+  "clips": {
+    "idle": "clips/guard_stance", "run": "clips/run_cycle", "attack": "clips/thrust_lunge",
+    "cast": "clips/cleave_swing", "recall": "clips/recall_channel", "death": "clips/human_fall"
+  },
+  "bolt": "vfx/auto_attack",
+  "stats": { "max_health": 440, "max_mana": 200, "mana_regen": 5, "damage": 45, "attack_range": 6, "attack_interval": 1.0, "move_speed": 9.2 },
+  "passive": { "damage": 9, "move_speed": 0.4 },
+  "abilities": ["shadowstep", "venom_edge", "blink_dash", "execute_mark"]
+}

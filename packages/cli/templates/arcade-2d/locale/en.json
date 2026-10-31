@@ -1,0 +1,8 @@
+{
+  "game_title": "{{title}}",
+  "move_hint": "A / D or arrow keys to dodge",
+  "score": "Score",
+  "best": "Best",
+  "game_over": "Game over",
+  "retry": "Retry"
+}

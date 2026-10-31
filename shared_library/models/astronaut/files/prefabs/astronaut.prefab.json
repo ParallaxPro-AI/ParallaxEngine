@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/astronaut"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.704, 2, 0.6251],
+      "offset": [0, 1, -0.0734]
+    }
+  }
+}

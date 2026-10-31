@@ -1,0 +1,10 @@
+{
+  "id": "stocks",
+  "summary": "Medieval stocks (pillory): two heavy timber posts mortised by a pair of stacked oak boards with a large centr… joints upper_board.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stocks or place \"prefab\": \"stocks\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stocks"]
+}

@@ -1,0 +1,24 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vending_machine",
+      "cast_shadows": true,
+      "options": {
+        "product": "drinks"
+      }
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.9015,
+        1.8315,
+        0.9265
+      ],
+      "offset": [
+        0.00075,
+        0.91575,
+        0.03675
+      ]
+    }
+  }
+}

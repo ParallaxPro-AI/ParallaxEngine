@@ -1,0 +1,72 @@
+<!-- Pause, ported from the template's pause_menu fork: the stage / stage name / moves context line,
+     PAUSED over a gold diamond rule, Resume, Settings and Main Menu as stepped jewel buttons, a
+     Settings view with the Low / Medium / High graphics switch and Back, and the desktop-only
+     Press P to resume hint. -->
+<link rel="stylesheet" href="gem_kit.css">
+<style>
+  .gcp { --pw: 500px; --ppad: clamp(32px, 5cqh, 48px) 48px; --pg: clamp(14px, 2.2cqh, 20px); --fs-pt: clamp(40px, 6cqh, 58px); --bh: clamp(56px, 6.5cqh, 64px);
+    position: fixed; inset: 0; z-index: 250; display: grid; place-items: center; padding: 16px calc(var(--gc-sa-r) + 16px) calc(var(--gc-sa-b) + 12px) calc(var(--gc-sa-l) + 16px); pointer-events: auto; }
+  .gcp-card { position: relative; width: min(100%, var(--pw)); max-height: calc(100cqh - 28px); --c: 26px; animation: gc-rise .3s var(--gc-ease-out) both; }
+  .gcp-card > .gc-body { padding: var(--ppad); overflow-y: auto; max-height: calc(100cqh - 38px); }
+  .gcp-view { display: flex; flex-direction: column; align-items: stretch; gap: var(--pg); text-align: center; }
+  .gcp-title { font: 700 var(--fs-pt)/1 var(--gc-font-display); letter-spacing: .22em; padding-left: .22em; text-transform: uppercase; }
+  .gcp-title.sm { font-size: calc(var(--fs-pt) * .72); }
+  .gcp-ctx { display: flex; justify-content: center; flex-wrap: wrap; gap: 4px 12px; align-items: center; }
+  .gcp-ctx i { width: 5px; height: 5px; background: var(--gc-ink-3); transform: rotate(45deg); }
+  .gcp-ctx:empty { display: none; }
+  .gcp-btns { display: grid; gap: 10px; }
+  .gcp-hint { display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--gc-ink-3); }
+  .gcp-set { display: grid; gap: 10px; text-align: left; }
+  .gcp-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .gc-root .gcp-opt { --c: 9px; --k: var(--c); position: relative; height: var(--bh); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: rgba(208,144,255,.55); font-size: 14px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--gc-ink-2); transition: filter .12s; }
+  .gcp-opt::before { content: ""; position: absolute; inset: 1px; --k: calc(var(--c) - .42px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: linear-gradient(180deg, #2e2460 0 50%, #231a4c 50%); }
+  .gcp-opt span { position: relative; }
+  .gc-root .gcp-opt.on { background: #f8e2f9; color: var(--gc-ink-on-gem); }
+  .gcp-opt.on::before { background: linear-gradient(180deg, #f4d8f6 0 16%, #e8b5ea 16% 44%, #d090ff 44% 76%, #a576ee 76%); }
+  .gcp-opt:active { filter: brightness(.9); }
+  .gc-root .gcp-opt:focus-visible { outline: none; background: var(--gc-cyan-bright); }
+  @media (hover: hover) { .gcp-opt:hover { filter: brightness(1.15); } }
+  @media (pointer: coarse) {
+    .gcp { --pw: 400px; --ppad: 20px 26px; --pg: 10px; --fs-pt: 28px; --bh: 48px; --bfs: 16px; }
+    .gcp-card { --c: 18px; }
+    .gcp-btns { gap: 8px; }
+    .gcp-hint { display: none; }
+  }
+</style>
+<div class="gc-root gcp">
+  <div class="gc-dim"></div>
+  <div class="gc-facet gcp-card gc-shadow" role="dialog" aria-modal="true"><div class="gc-body">
+    <section class="gcp-view" id="gcp-main">
+      <div class="gcp-ctx gc-lbl"><span><span data-text="stage"></span> <b data-bind="stage"></b> / <span data-bind="stages"></span></span><i></i><span data-bind="stage_name"></span><i></i><span><b data-bind="moves"></b> <span data-bind="moves_word"></span></span></div>
+      <h1 class="gcp-title" data-text="paused"></h1>
+      <div class="gc-rule"><i></i></div>
+      <div class="gcp-btns">
+        <button class="gc-btn gc-btn-primary" data-action="resume"><span data-text="resume"></span></button>
+        <button class="gc-btn gc-btn-ghost" id="gcp-open-set"><span data-text="settings"></span></button>
+        <button class="gc-btn gc-btn-ghost" data-action="quit"><span data-text="main_menu"></span></button>
+      </div>
+      <div class="gcp-hint"><span data-text="press"></span> <span class="gc-key">P</span> <span data-text="to_resume"></span></div>
+    </section>
+    <section class="gcp-view" id="gcp-settings" hidden>
+      <h1 class="gcp-title sm" data-text="settings"></h1>
+      <div class="gc-rule"><i></i></div>
+      <div class="gcp-set"><span class="gc-lbl" data-text="graphics"></span>
+        <div class="gcp-seg">
+          <button class="gcp-opt" data-action="quality" data-quality="low" data-class-on="low"><span data-text="low"></span></button>
+          <button class="gcp-opt" data-action="quality" data-quality="medium" data-class-on="medium"><span data-text="medium"></span></button>
+          <button class="gcp-opt" data-action="quality" data-quality="high" data-class-on="high"><span data-text="high"></span></button>
+        </div>
+      </div>
+      <div class="gcp-btns"><button class="gc-btn gc-btn-ghost" id="gcp-back"><span data-text="back"></span></button></div>
+    </section>
+  </div></div>
+</div>
+<script>
+  // Settings and Back switch the card's two views, as in the template.
+  (function () {
+    var main = document.getElementById('gcp-main'), set = document.getElementById('gcp-settings');
+    function view(name) { main.hidden = name !== 'main'; set.hidden = name !== 'settings'; }
+    document.getElementById('gcp-open-set').addEventListener('click', function () { view('settings'); });
+    document.getElementById('gcp-back').addEventListener('click', function () { view('main'); });
+  })();
+</script>

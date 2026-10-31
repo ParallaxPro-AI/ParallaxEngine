@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.6, 0.6, 0.6], "color": "#fff695", "emissive": "#ffff69", "roughness": 0.16, "cast_shadows": false },
+    "collider": { "shape": "sphere", "radius": 0.85, "trigger": true, "layer": "pollen", "collides_with": ["pollen"] }
+  },
+  "tags": ["pollen_mote"],
+  "behaviors": { "pollen_mote": {} },
+  "pool": 16
+}

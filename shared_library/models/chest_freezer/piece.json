@@ -1,0 +1,10 @@
+{
+  "id": "chest_freezer",
+  "summary": "A white chest freezer with a top-hinged lid: rounded enamelled cabinet on a grey plinth and rubber feet, a li… joints lid; options finish, contents; sockets socket_inside, socket_lid_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chest_freezer or place \"prefab\": \"chest_freezer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chest_freezer"]
+}

@@ -1,0 +1,9 @@
+{ "label": "Delivery", "color": "#3aa0ff",
+  "steps": [
+  {"prompt": "Serve", "takes": "chopped_tomato", "deliver": true},
+  {"prompt": "Serve", "takes": "chopped_lettuce", "deliver": true},
+  {"prompt": "Serve Salad", "takes": "salad", "deliver": true},
+  {"prompt": "Serve Deluxe", "takes": "deluxe_salad", "deliver": true},
+  {"prompt": "Serve Soup", "takes": "tomato_soup", "deliver": true},
+  {"prompt": "Serve Soup", "takes": "onion_soup", "deliver": true}
+] }

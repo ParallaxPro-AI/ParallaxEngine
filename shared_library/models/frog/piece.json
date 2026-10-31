@@ -1,0 +1,10 @@
+{
+  "id": "frog",
+  "summary": "A sitting pond frog (0.25 m nose to folded heel, 0.12 m tall) on the engine's quadruped_20 rig, so the built-… options skin; sockets head_top, mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.frog or place \"prefab\": \"frog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:frog"]
+}

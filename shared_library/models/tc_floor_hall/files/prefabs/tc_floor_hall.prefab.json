@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_floor_hall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.2, 0.02, 8.4],
+      "offset": [0, 0.01, 0]
+    }
+  }
+}

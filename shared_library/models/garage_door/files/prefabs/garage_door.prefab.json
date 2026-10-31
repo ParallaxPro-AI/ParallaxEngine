@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garage_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.883, 2.5015, 1.3365],
+      "offset": [0, 1.2508, 0.0008]
+    }
+  }
+}

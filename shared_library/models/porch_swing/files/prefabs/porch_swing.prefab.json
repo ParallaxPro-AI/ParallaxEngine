@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/porch_swing"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.54, 2.09, 1.88],
+      "offset": [0, 1.045, 0]
+    }
+  }
+}

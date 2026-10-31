@@ -1,0 +1,14 @@
+{
+  "id": "rug",
+  "summary": "A patterned rug with a woven border, a centre medallion and knotted fringe at both ends. options pattern.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.rug or place \"prefab\": \"rug\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:rug"
+  ]
+}

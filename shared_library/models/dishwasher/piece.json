@@ -1,0 +1,10 @@
+{
+  "id": "dishwasher",
+  "summary": "A 600mm under-counter dishwasher with a drop-down door hinged at the bottom front edge, a modelled stainless… joints drop_door, basket; options mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dishwasher or place \"prefab\": \"dishwasher\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dishwasher"]
+}

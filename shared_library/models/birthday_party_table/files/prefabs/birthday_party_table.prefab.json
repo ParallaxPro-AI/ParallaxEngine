@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/birthday_party_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8699, 0.9235, 0.8406],
+      "offset": [0, 0.4617, 0.0053]
+    }
+  }
+}

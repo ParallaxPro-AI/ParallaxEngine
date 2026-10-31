@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flail"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.36, 0.3],
+      "hip_turn": [-14.896903, -22.918312, -35.523383],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1089, 0.1145, 0.7442],
+      "offset": [0, 0, 0.3721]
+    }
+  }
+}

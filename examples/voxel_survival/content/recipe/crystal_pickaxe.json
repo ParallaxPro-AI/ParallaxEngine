@@ -1,0 +1,3 @@
+{ "name": "Crystal Pickaxe", "order": 21, "category": "tools", "station": "workbench",
+  "inputs": [{ "item": "crystal_ore", "count": 3 }, { "item": "iron_ingot", "count": 2 }],
+  "output": { "item": "crystal_pickaxe", "count": 1 } }

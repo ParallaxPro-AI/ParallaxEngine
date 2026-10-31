@@ -1,0 +1,10 @@
+{
+  "id": "aztec_calendar_stone",
+  "summary": "The Aztec Sun Stone (Piedra del Sol) at full size, a 3.58 m carved basalt disc standing in a low cradle: Tona… options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.aztec_calendar_stone or place \"prefab\": \"aztec_calendar_stone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:aztec_calendar_stone"]
+}

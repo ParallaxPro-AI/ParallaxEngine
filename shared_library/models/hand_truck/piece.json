@@ -1,0 +1,10 @@
+{
+  "id": "hand_truck",
+  "summary": "A two-wheel hand truck (sack truck): a bent-tube steel frame with a loop handle and rubber grip, three cross… joints wheels, tilt; options paint; sockets load, grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hand_truck or place \"prefab\": \"hand_truck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hand_truck"]
+}

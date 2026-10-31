@@ -1,0 +1,10 @@
+{
+  "id": "mace",
+  "summary": "A 0.66 m medieval flanged mace: an oak haft with an iron butt knob and a spiral-ridged leather grip, an iron… options head_finish, haft_wood, head; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.mace or place \"prefab\": \"mace\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:mace"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bait_bucket",
+  "summary": "A classic 8-quart enamelled minnow bucket (real size ~0.27 m across the rim, ~0.30 m tall to the lid): a fore… joints trap_door, bail.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bait_bucket or place \"prefab\": \"bait_bucket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bait_bucket"]
+}

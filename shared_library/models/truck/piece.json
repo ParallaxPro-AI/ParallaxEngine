@@ -1,0 +1,10 @@
+{
+  "id": "truck",
+  "summary": "A cab-over-engine (COE) heavy truck: a tall flat-fronted cab that tilts forward on its front hinge to expose… joints cab_tilt, door_l, door_r; options body, paint; sockets socket_driver, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.truck or place \"prefab\": \"truck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:truck"]
+}

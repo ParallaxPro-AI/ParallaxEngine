@@ -1,0 +1,10 @@
+{
+  "id": "tree_willow",
+  "summary": "A weeping willow: a short, stout, buttressed trunk splitting into upswept arching limbs, a low domed crown, a… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_willow or place \"prefab\": \"tree_willow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_willow"]
+}

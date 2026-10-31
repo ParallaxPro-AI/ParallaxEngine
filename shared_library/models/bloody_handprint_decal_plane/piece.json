@@ -1,0 +1,10 @@
+{
+  "id": "bloody_handprint_decal_plane",
+  "summary": "A bloody handprint for a wall or door, as a thin decal layer: a wet, glossy adult left-hand print (palm 88 x…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bloody_handprint_decal_plane or place \"prefab\": \"bloody_handprint_decal_plane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bloody_handprint_decal_plane"]
+}

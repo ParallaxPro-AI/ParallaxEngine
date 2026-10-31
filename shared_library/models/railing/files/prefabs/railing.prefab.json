@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/railing"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8256, 1.828, 0.19],
+      "offset": [0, 0.914, 0]
+    }
+  }
+}

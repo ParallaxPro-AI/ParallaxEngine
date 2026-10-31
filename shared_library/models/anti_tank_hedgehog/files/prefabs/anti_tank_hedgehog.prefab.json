@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/anti_tank_hedgehog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4963, 1.2866, 1.7261],
+      "offset": [-0.0484, 0.6433, 0]
+    }
+  }
+}

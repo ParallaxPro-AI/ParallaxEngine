@@ -1,0 +1,10 @@
+{
+  "id": "taiko_drum",
+  "summary": "A large Japanese barrel drum (nagado-daiko style): a bulged lacquered-hardwood shell with cowhide heads stret… sockets player.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.taiko_drum or place \"prefab\": \"taiko_drum\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:taiko_drum"]
+}

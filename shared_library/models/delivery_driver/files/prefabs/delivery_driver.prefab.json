@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/delivery_driver"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7223, 1.791, 0.2953],
+      "offset": [0, 0.8955, 0.0321]
+    }
+  }
+}

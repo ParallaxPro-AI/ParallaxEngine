@@ -1,0 +1,10 @@
+{
+  "id": "athlete_runner",
+  "summary": "A rigged modern distance runner on the canonical 17-bone humanoid rig (forked from `cowboy`/`civilian`): a le… options skin, hair, singlet_colour, shoe_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.athlete_runner or place \"prefab\": \"athlete_runner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:athlete_runner"]
+}

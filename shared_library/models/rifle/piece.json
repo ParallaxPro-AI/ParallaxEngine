@@ -1,0 +1,10 @@
+{
+  "id": "rifle",
+  "summary": "A modern polymer-furniture assault rifle: dark gunmetal receiver and barrel, an M-LOK-style vented handguard… joints bolt, magazine, trigger, stock; options optic, grip, barrel; sockets socket_muzzle, socket_optic, grip_r, grip_l, sight, muzzle, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.rifle or place \"prefab\": \"rifle\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:rifle"]
+}

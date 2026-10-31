@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/leather_hide_roll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.546, 0.1382, 0.2137],
+      "offset": [0, 0.0695, -0.0015]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/oven"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.652, 0.906, 0.6835],
+      "offset": [0, 0.45, 0.0403]
+    }
+  }
+}

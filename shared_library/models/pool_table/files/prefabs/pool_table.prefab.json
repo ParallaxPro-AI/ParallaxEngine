@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pool_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.294, 0.82, 2.391],
+      "offset": [0, 0.41, 0.0205]
+    }
+  }
+}

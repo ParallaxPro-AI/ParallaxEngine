@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+/* The engine minimap dressed as the template kit's dark ring (sr_kit.html), under the times plate. */
+.root { position: absolute; inset: 0; pointer-events: none; }
+.map { position: absolute; top: calc(var(--sr-hud-y) + 212 * var(--u)); right: var(--sr-hud-x); width: calc(200 * var(--u)); height: calc(200 * var(--u));
+  overflow: hidden; border-radius: 50%; background: rgba(14, 10, 12, 0.82); box-shadow: inset 0 0 0 calc(1.5 * var(--u)) rgba(255, 247, 237, 0.16);
+  filter: drop-shadow(0 calc(6 * var(--u)) calc(18 * var(--u)) rgba(0, 0, 0, 0.45)); }
+.turn { position: absolute; inset: 0; }
+.base { position: absolute; max-width: none; image-rendering: auto; opacity: 0.92; }
+.route { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.route polyline { fill: none; stroke: #ffd95a; stroke-width: 1.4; stroke-linejoin: round; stroke-dasharray: 3 2; vector-effect: non-scaling-stroke; }
+.icon { position: absolute; transform: translate(-50%, -50%); font-size: calc(13 * var(--u)); line-height: 1; text-shadow: 0 0 calc(2 * var(--u)) #000, 0 0 calc(2 * var(--u)) #000; }
+.icon i { display: inline-block; font-style: normal; }
+.icon.edge { opacity: 0.85; }
+.me { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+.me b { position: absolute; left: -0.5em; top: -0.62em; width: 1em; text-align: center; font-size: calc(16 * var(--u)); line-height: 1.2; color: #f97316; text-shadow: 0 0 calc(1 * var(--u)) #000, 0 0 calc(3 * var(--u)) rgba(0, 0, 0, 0.8); }
+</style>
+<div class="root" data-show="shown">
+  <div class="map">
+    <div class="turn" data-style-transform="turn">
+      <img class="base" alt="" data-show="base" data-attr-src="base" data-style-left="base_left" data-style-top="base_top" data-style-width="base_width" data-style-height="base_height">
+      <svg class="route" viewBox="0 0 100 100" preserveAspectRatio="none" data-show="has_route"><polyline data-attr-points="route"></polyline></svg>
+    </div>
+    <div data-each="icons"><template>
+      <span class="icon" data-class-edge="edge" data-style-left="x" data-style-top="y" data-style-color="color" data-style-font-size="size"><i data-style-transform="turn" data-bind="glyph"></i></span>
+    </template></div>
+    <span class="me"><b data-style-transform="player_turn">▲</b></span>
+  </div>
+</div>

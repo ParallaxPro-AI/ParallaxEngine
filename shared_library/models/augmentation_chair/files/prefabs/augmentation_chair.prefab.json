@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/augmentation_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0952, 2.13, 2.4593],
+      "offset": [0.0551, 1.065, -0.0195]
+    }
+  }
+}

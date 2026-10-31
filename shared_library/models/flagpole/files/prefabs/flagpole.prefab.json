@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flagpole"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.935, 7.725, 0.7],
+      "offset": [0.6175, 3.8625, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "elevator_platform",
+  "summary": "An open freight lift: a 2.8 m square diamond-plate platform with toe boards, safety railings on three sides… joints car, lever; options paint; sockets call_panel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elevator_platform or place \"prefab\": \"elevator_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elevator_platform"]
+}

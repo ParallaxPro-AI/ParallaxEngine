@@ -1,0 +1,10 @@
+{
+  "id": "lion",
+  "summary": "An adult male African lion (1.05 m at the shoulder, ~2.9 m nose to tail-tuft) on the engine's quadruped_20 ri… options coat, mane_colour, mane; sockets head_top, back, collar, mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lion or place \"prefab\": \"lion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lion"]
+}

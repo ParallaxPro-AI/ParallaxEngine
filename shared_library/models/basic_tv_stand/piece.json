@@ -1,0 +1,10 @@
+{
+  "id": "basic_tv_stand",
+  "summary": "A budget flat-pack TV unit from the 'basic' apartment set: a low white-laminate carcass with a pine top, shor… joints door; options tv, decor; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_tv_stand or place \"prefab\": \"basic_tv_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_tv_stand"]
+}

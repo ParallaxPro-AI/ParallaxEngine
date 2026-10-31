@@ -1,0 +1,10 @@
+{
+  "id": "lobby_fountain_indoor",
+  "summary": "A two-tier indoor lobby fountain, 2.5 m across and 2.05 m tall: a round cream-marble basin with a brass band… options stone, metal, water; sockets seat_coping_s, seat_coping_n, coin_toss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lobby_fountain_indoor or place \"prefab\": \"lobby_fountain_indoor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lobby_fountain_indoor"]
+}

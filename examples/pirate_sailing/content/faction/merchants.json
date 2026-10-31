@@ -1,0 +1,54 @@
+{
+  "number": 2,
+  "name": "Merchant Guild",
+  "start": 0,
+  "min": -100,
+  "max": 100,
+  "allies": [
+    {
+      "faction": "crown",
+      "share": 0.25
+    }
+  ],
+  "ranks": [
+    {
+      "at": -100,
+      "name": "Blacklisted",
+      "perk": -2,
+      "hostile": true
+    },
+    {
+      "at": -60,
+      "name": "Shunned",
+      "perk": -1,
+      "hostile": true
+    },
+    {
+      "at": -20,
+      "name": "Distrusted",
+      "perk": -1
+    },
+    {
+      "at": 0,
+      "name": "Stranger",
+      "perk": 0
+    },
+    {
+      "at": 25,
+      "name": "Customer",
+      "perk": 1
+    },
+    {
+      "at": 55,
+      "name": "Partner",
+      "perk": 1
+    },
+    {
+      "at": 85,
+      "name": "Guildmaster",
+      "perk": 1
+    }
+  ],
+  "perk_label": "Port stock",
+  "perk_kind": "cards"
+}

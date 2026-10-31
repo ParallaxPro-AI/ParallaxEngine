@@ -1,0 +1,10 @@
+{
+  "id": "film_camera",
+  "summary": "A vintage studio movie camera on a wooden tripod stand: a black chamfered camera body with a brass-ringed len… joints pan, tilt, film_door, crank, reel_front, reel_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.film_camera or place \"prefab\": \"film_camera\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:film_camera"]
+}

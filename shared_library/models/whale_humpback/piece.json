@@ -1,0 +1,10 @@
+{
+  "id": "whale_humpback",
+  "summary": "A humpback whale, 13 m rostrum to tail stock (14.3 m to the swept fluke tips): a long flat knobbed head (tube… joints flipper_l, flipper_r, body_flex, tail_beat; options skin, flippers, throat; sockets back, blowhole, mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.whale_humpback or place \"prefab\": \"whale_humpback\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:whale_humpback"]
+}

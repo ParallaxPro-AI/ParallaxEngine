@@ -1,0 +1,10 @@
+{
+  "id": "walkie_talkie",
+  "summary": "A handheld two-way radio: a black chamfered body with a slotted speaker grille, a small glowing LCD, a 3x4 ke… joints ptt, channel, belt_clip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.walkie_talkie or place \"prefab\": \"walkie_talkie\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:walkie_talkie"]
+}

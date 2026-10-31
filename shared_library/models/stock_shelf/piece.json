@@ -1,0 +1,14 @@
+{
+  "id": "stock_shelf",
+  "summary": "A stocked run of retail gondola shelving: slotted uprights, a back panel, five decks that step back as… No joints or options.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.stock_shelf or place \"prefab\": \"stock_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:stock_shelf"
+  ]
+}

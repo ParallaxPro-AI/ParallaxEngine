@@ -1,0 +1,18 @@
+{
+  "name": "Ironbound",
+  "role": "Fighter",
+  "passive_name": "Tempered Plate",
+  "model": "models/champ_warrior",
+  "scale": 1.0,
+  "color": "#e6524d",
+  "role_icon": "swords",
+  "crest": "M10 26 L20 16 L30 26 L30 32 L20 22 L10 32 Z",
+  "clips": {
+    "idle": "clips/guard_stance", "run": "clips/walk_cycle", "attack": "clips/overhead_swing",
+    "cast": "clips/cleave_swing", "recall": "clips/recall_channel", "death": "clips/human_fall"
+  },
+  "bolt": "vfx/auto_attack",
+  "stats": { "max_health": 560, "max_mana": 180, "mana_regen": 5, "damage": 38, "attack_range": 7, "attack_interval": 1.0, "move_speed": 8.0 },
+  "passive": { "max_health": 55, "damage_reduction": 0.06 },
+  "abilities": ["sunder_blow", "iron_stance", "rallying_cry", "breaker_charge"]
+}

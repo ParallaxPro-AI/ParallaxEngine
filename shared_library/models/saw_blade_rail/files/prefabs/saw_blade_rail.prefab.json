@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/saw_blade_rail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.286, 0.8121, 0.7],
+      "offset": [0, 0.406, 0]
+    }
+  }
+}

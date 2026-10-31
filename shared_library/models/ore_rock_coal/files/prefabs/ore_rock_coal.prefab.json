@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ore_rock_coal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3023, 0.7215, 1.1584],
+      "offset": [0.054, 0.3608, 0.0158]
+    }
+  }
+}

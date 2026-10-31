@@ -1,0 +1,18 @@
+{
+  "name": "Neon Quay",
+  "blurb": "Wet asphalt, purple light, no room to think.",
+  "tint": "#e66bff",
+  "end_distance": 1100,
+  "speed_scale": 1.06,
+  "gap_scale": 0.93,
+  "hard_bias": 0.15,
+  "powerup_scale": 0.95,
+  "fog_color": "#8676aa",
+  "fog_near": 45,
+  "fog_far": 125,
+  "road": "road_neon",
+  "buildings": ["building_neon_0", "building_neon_1"],
+  "encounters": ["barrier_high", "van", "barrier_low", "rest", "truck", "barrier_high", "rest"],
+  "landmark": "landmark_neon_sign",
+  "landmark_x": 6.6
+}

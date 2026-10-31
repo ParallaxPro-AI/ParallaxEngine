@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [1.6, 0.5, 0.7] }
+  },
+  "behaviors": { "packet_look": {}, "descend": {} },
+  "pool": 24
+}

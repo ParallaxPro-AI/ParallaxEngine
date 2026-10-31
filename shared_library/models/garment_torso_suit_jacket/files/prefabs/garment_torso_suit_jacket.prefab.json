@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_suit_jacket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.336, 0.795, 0.3277],
+      "offset": [0, 1.1975, 0.0086]
+    }
+  }
+}

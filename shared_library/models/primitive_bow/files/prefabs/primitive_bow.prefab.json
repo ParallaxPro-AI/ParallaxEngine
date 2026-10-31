@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/primitive_bow"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0434, 1.4976, 0.1746],
+      "offset": [0, 0.75, 0.0071]
+    }
+  }
+}

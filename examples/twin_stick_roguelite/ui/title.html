@@ -1,0 +1,93 @@
+<!-- Ported from the template: Cellar Purge title screen - the basement-door run sheet: CELLAR PURGE wordmark, the live record row, the last-run note and the Enter Cellar / The Vault buttons over the candle-lit crypt -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cpt-scene { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; font-family: var(--cp-font-ui); color: var(--cp-ink); }
+  .cpt-scene::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,.85) 100%); }
+  .cpt-card { position: relative; width: calc(900 * var(--u)); animation: cp-rise 400ms var(--cp-ease-out) both; }
+  .cpt-head { display: flex; align-items: center; justify-content: space-between; margin: calc(8 * var(--u)) calc(8 * var(--u)) 0; padding: calc(18 * var(--u)) calc(32 * var(--u)); border-bottom: 1px solid var(--cp-rule); font-weight: 600; font-size: calc(18 * var(--u)); letter-spacing: .24em; text-transform: uppercase; color: var(--cp-umber); }
+  .cpt-door { display: flex; align-items: center; gap: calc(14 * var(--u)); }
+  .cpt-door svg { width: calc(22 * var(--u)); height: calc(26 * var(--u)); display: block; }
+  .cpt-body { display: flex; flex-direction: column; padding: calc(52 * var(--u)) calc(72 * var(--u)) calc(48 * var(--u)); text-align: center; }
+  .cpt-note { order: 1; }
+  .cpt-actions { order: 2; }
+  .cpt-hint { order: 3; }
+  .cpt-mark { font: 900 calc(118 * var(--u))/.92 var(--cp-font-display); letter-spacing: .05em; text-shadow: 0 0 calc(50 * var(--u)) rgba(245,197,24,.16), 0 calc(5 * var(--u)) 0 #000; animation: cpt-flicker 1.6s steps(1, end) 400ms both; }
+  .cpt-mark div:first-child { color: var(--cp-ink); }
+  .cpt-mark div:last-child { color: var(--cp-blood); }
+  @keyframes cpt-flicker { 0% { opacity: 1; } 8% { opacity: .55; } 11% { opacity: 1; } 15% { opacity: .78; } 19% { opacity: 1; } 100% { opacity: 1; } }
+  .cpt-sub { margin-top: calc(22 * var(--u)); font-size: calc(32 * var(--u)); line-height: 1.2; color: var(--cp-umber); }
+  .cpt-divider { margin-top: calc(40 * var(--u)); }
+  .cpt-divider .cp-diamond { opacity: .7; }
+  .cpt-record { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: calc(28 * var(--u)); }
+  .cpt-slot { display: flex; flex-direction: column; gap: calc(8 * var(--u)); align-items: center; }
+  .cpt-slot + .cpt-slot { border-left: 1px solid rgba(148,130,114,.2); }
+  .cpt-slot span { font-size: calc(17 * var(--u)); }
+  .cpt-slot strong { font: 700 calc(44 * var(--u))/1 var(--cp-font-display); color: var(--cp-ink); }
+  .cpt-slot strong.is-gold { color: var(--cp-gold); }
+  .cpt-note { margin-top: calc(40 * var(--u)); font-size: calc(26 * var(--u)); line-height: 1.35; color: var(--cp-ink); text-wrap: pretty; }
+  .cpt-actions { display: flex; justify-content: center; gap: calc(20 * var(--u)); margin-top: calc(40 * var(--u)); }
+  .cpt-actions .cp-btn > span { padding: 0 calc(44 * var(--u)); }
+  .cpt-actions .cp-btn.is-primary > span { padding: 0 calc(56 * var(--u)); }
+  .cpt-actions .cp-coin { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+  .cpt-hint { margin-top: calc(32 * var(--u)); font-size: calc(20 * var(--u)); font-weight: 500; letter-spacing: .04em; color: var(--cp-umber); }
+  .cpt-hint .cp-key { height: auto; min-width: 0; padding: 2px calc(8 * var(--u)); font-size: calc(20 * var(--u)); }
+  .cpt-left, .cpt-right { display: contents; }
+
+  @media (pointer: coarse) {
+    .cpt-card { position: absolute; left: calc(88 * var(--u)); right: calc(88 * var(--u)); top: calc(20 * var(--u)); bottom: calc(20 * var(--u)); width: auto; display: flex; flex-direction: column; box-shadow: 0 calc(40 * var(--u)) calc(100 * var(--u)) rgba(0,0,0,.75), inset 0 0 0 calc(8 * var(--u)) rgba(11,9,8,.7), inset 0 0 0 calc(10 * var(--u)) rgba(148,130,114,.2); }
+    .cpt-head { margin: calc(10 * var(--u)) calc(10 * var(--u)) 0; padding: calc(16 * var(--u)) calc(36 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: .22em; }
+    .cpt-door { gap: calc(18 * var(--u)); }
+    .cpt-door svg { width: calc(28 * var(--u)); height: calc(34 * var(--u)); }
+    .cpt-body { flex: 1; display: grid; grid-template-columns: 1.1fr 1fr; gap: calc(52 * var(--u)); padding: calc(36 * var(--u)) calc(48 * var(--u)) calc(28 * var(--u)); align-items: center; text-align: left; }
+    .cpt-left, .cpt-right { display: flex; flex-direction: column; gap: calc(24 * var(--u)); }
+    .cpt-mark { font-size: calc(104 * var(--u)); letter-spacing: .04em; text-shadow: 0 calc(6 * var(--u)) 0 #000; }
+    .cpt-sub { margin-top: 0; font-size: calc(34 * var(--u)); }
+    .cpt-divider { display: none; }
+    .cpt-note { order: 3; margin-top: calc(8 * var(--u)); padding-top: calc(24 * var(--u)); border-top: 1px solid rgba(245,197,24,.25); font-size: calc(30 * var(--u)); }
+    .cpt-record { grid-template-columns: 1fr 1fr; margin-top: 0; border: 1px solid rgba(148,130,114,.2); }
+    .cpt-slot { align-items: flex-start; gap: calc(6 * var(--u)); padding: calc(14 * var(--u)) calc(24 * var(--u)); }
+    .cpt-slot + .cpt-slot { border-left: 0; }
+    .cpt-slot:nth-child(odd) { border-right: 1px solid rgba(148,130,114,.2); }
+    .cpt-slot:nth-child(-n+2) { border-bottom: 1px solid rgba(148,130,114,.2); }
+    .cpt-slot span { font-size: calc(24 * var(--u)); letter-spacing: .2em; }
+    .cpt-slot strong { font-size: calc(44 * var(--u)); }
+    .cpt-actions { display: grid; grid-template-columns: 1.2fr 1fr; gap: calc(20 * var(--u)); margin-top: 0; }
+    .cpt-actions .cp-btn { width: 100%; }
+    .cpt-actions .cp-btn > span, .cpt-actions .cp-btn.is-primary > span { padding: 0 calc(12 * var(--u)); }
+    .cpt-actions .cp-coin { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+    .cpt-hint { margin-top: 0; font-size: calc(28 * var(--u)); text-align: center; }
+  }
+</style>
+<div class="cpt-scene">
+  <main class="cp-panel cpt-card">
+    <div class="cpt-head">
+      <div class="cpt-door">
+        <svg viewBox="0 0 22 26" aria-hidden="true"><path d="M3 25V10a8 8 0 0 1 16 0v15z" fill="none" stroke="#f5c518" stroke-width="2"/><circle cx="14.5" cy="16" r="1.6" fill="#f5c518"/></svg>
+        <span>Basement Door</span>
+      </div>
+      <span>Cellar Run</span>
+    </div>
+    <section class="cpt-body">
+      <div class="cpt-left">
+        <h1 class="cpt-mark"><div>CELLAR</div><div>PURGE</div></h1>
+        <div class="cpt-sub cp-flavor">Shards, hearts, and the dark below.</div>
+        <div class="cpt-divider cp-rule"><span class="cp-diamond"></span></div>
+        <p class="cpt-note cp-flavor" data-text="tagline"></p>
+      </div>
+      <div class="cpt-right">
+        <div class="cpt-record">
+          <div class="cpt-slot"><span class="cp-label">Deepest</span><strong data-bind="deepest"></strong></div>
+          <div class="cpt-slot"><span class="cp-label">Bosses</span><strong data-bind="boss_kills"></strong></div>
+          <div class="cpt-slot"><span class="cp-label">Runs</span><strong data-bind="runs"></strong></div>
+          <div class="cpt-slot"><span class="cp-label">In Vault</span><strong class="is-gold" data-bind="vault_coins"></strong></div>
+        </div>
+        <div class="cpt-actions">
+          <button class="cp-btn is-primary" data-action="start" data-key="Enter"><span>Enter Cellar</span></button>
+          <button class="cp-btn" data-action="vault"><span><i class="cp-coin"></i>The Vault</span></button>
+        </div>
+        <p class="cpt-hint d-only"><span class="cp-key">WASD</span> walks · the <span class="cp-key">arrow keys</span> fire · <span class="cp-key">Space</span> spends a bomb.</p>
+        <p class="cpt-hint m-only">Left stick walks · right stick fires · 💣 spends a bomb.</p>
+      </div>
+    </section>
+  </main>
+</div>

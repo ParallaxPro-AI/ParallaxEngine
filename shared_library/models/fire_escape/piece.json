@@ -1,0 +1,10 @@
+{
+  "id": "fire_escape",
+  "summary": "ONE STOREY of a painted-iron tenement fire escape, built to stack: a slatted landing on a channel frame with… joints drop_ladder; options paint, stair, drop_ladder.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fire_escape or place \"prefab\": \"fire_escape\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fire_escape"]
+}

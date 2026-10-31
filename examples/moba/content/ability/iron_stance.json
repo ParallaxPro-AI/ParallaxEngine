@@ -1,0 +1,10 @@
+{
+  "name": "Iron Stance",
+  "blurb": "Absorb the next few seconds of damage.",
+  "kind": "shield",
+  "cooldown": { "base": 16, "per_rank": -1.2 },
+  "mana": { "base": 55, "per_rank": 5 },
+  "shield": { "base": 120, "per_rank": 55 },
+  "duration": { "base": 3.5 },
+  "vfx": "vfx/heal_glow"
+}

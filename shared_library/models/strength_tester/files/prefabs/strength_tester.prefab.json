@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/strength_tester"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.72, 3.135, 0.62],
+      "offset": [0, 1.5675, 0]
+    }
+  }
+}

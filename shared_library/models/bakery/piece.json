@@ -1,0 +1,10 @@
+{
+  "id": "bakery",
+  "summary": "A traditional brick bakery, 8 x 9 m under a terracotta gable roof: a painted timber shopfront with pilasters… joints case_a_glass_left, case_a_glass_right, case_a_shelf_adjust, case_a_light_hood, case_b_glass_left, case_b_glass_right, …; options shopfront_colour; sockets socket_entrance, socket_baker_counter, socket_baker_oven, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bakery or place \"prefab\": \"bakery\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bakery"]
+}

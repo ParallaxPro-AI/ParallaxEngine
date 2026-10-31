@@ -1,0 +1,10 @@
+{
+  "id": "pedestrian_signal_pole",
+  "summary": "A kerbside pedestrian crossing pole: a dark grey pole on a bolted base with a two-aspect signal head (red sta… joints push_button, tactile_cone; options state, wait, housing; sockets socket_button, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pedestrian_signal_pole or place \"prefab\": \"pedestrian_signal_pole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pedestrian_signal_pole"]
+}

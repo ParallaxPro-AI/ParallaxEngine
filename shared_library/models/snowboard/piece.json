@@ -1,0 +1,10 @@
+{
+  "id": "snowboard",
+  "summary": "A 1.56 m all-mountain snowboard lying flat: a lofted wood-core board with real sidecut, 7 mm camber and spoon… joints binding_front_hb, binding_rear_hb; options topsheet, graphic, bindings; sockets stand_front, stand_rear.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.snowboard or place \"prefab\": \"snowboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:snowboard"]
+}

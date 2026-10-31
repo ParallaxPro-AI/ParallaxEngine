@@ -1,0 +1,10 @@
+{
+  "id": "coral_brain",
+  "summary": "A brain coral head on the reef: a round boulder-like dome covered in meandering raised ridges separated by da…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coral_brain or place \"prefab\": \"coral_brain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coral_brain"]
+}

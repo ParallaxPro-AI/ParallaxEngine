@@ -1,0 +1,10 @@
+{
+  "id": "weapon_upgrade_orb",
+  "summary": "A weapon-upgrade power-up for a space shooter: a glowing orange energy orb held on a short conduit above a da… joints reticle; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.weapon_upgrade_orb or place \"prefab\": \"weapon_upgrade_orb\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:weapon_upgrade_orb"]
+}

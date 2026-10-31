@@ -1,0 +1,10 @@
+{
+  "id": "bo_staff",
+  "summary": "A 1.8 m bo staff, the Okinawan martial-arts long staff: a single lofted hardwood shaft that swells from 26 mm… options wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.bo_staff or place \"prefab\": \"bo_staff\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:bo_staff"]
+}

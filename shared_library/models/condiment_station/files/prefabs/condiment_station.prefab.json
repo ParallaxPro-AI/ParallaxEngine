@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/condiment_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.92, 1.26, 0.603],
+      "offset": [0, 0.628, 0.0165]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/freight_boxcar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.45, 4.6935, 16.49],
+      "offset": [0, 2.3428, 0]
+    }
+  }
+}

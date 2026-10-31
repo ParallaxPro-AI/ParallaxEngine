@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/56/5a/565aae51ad273a8df5e6c39802e0056eb7e2aca521f7f00c1379423e85f65c21.glb",
+      "cast_shadows": true
+    },
+    "static_mesh": {}
+  }
+}

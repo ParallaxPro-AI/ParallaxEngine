@@ -1,0 +1,10 @@
+{
+  "id": "gravestone",
+  "summary": "A weathered arched headstone leaning on a mossy plinth: a round-topped slab with a sunk inscription panel, wo…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gravestone or place \"prefab\": \"gravestone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gravestone"]
+}

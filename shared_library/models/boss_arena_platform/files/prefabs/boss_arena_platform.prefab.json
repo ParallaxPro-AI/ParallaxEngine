@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boss_arena_platform"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [14.6, 4.64, 16.25],
+      "offset": [0, 2.32, 0.825]
+    }
+  }
+}

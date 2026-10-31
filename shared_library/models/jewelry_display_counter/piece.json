@@ -1,0 +1,10 @@
+{
+  "id": "jewelry_display_counter",
+  "summary": "A lit jeweller's showcase counter: a dark-flitch veneer base on a recessed dark plinth with brass inlay lines… joints slide_door_l, slide_door_r; options velvet, trim, contents; sockets socket_deck, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jewelry_display_counter or place \"prefab\": \"jewelry_display_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jewelry_display_counter"]
+}

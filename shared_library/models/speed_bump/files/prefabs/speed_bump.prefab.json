@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/speed_bump"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.306, 0.051, 0.33],
+      "offset": [0, 0.0255, 0]
+    }
+  }
+}

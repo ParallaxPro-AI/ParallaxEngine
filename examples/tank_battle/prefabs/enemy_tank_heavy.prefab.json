@@ -1,0 +1,27 @@
+{
+  "extends": "enemy_tank",
+  "scale": [1.15, 1.15, 1.15],
+  "components": {
+    "model": {
+      "colors": {
+        "camo_hull": "#4a4d40"
+      },
+      "tint": "#c8c8c8"
+    }
+  },
+  "children": [
+    {
+      "name": "turret",
+      "prefab": "tank_turret",
+      "at": [0, 0.332, 0.175],
+      "components": {
+        "model": {
+          "colors": {
+            "camo_hull": "#4a4d40"
+          },
+          "tint": "#c8c8c8"
+        }
+      }
+    }
+  ]
+}

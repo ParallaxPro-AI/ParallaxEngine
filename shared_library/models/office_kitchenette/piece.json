@@ -1,0 +1,10 @@
+{
+  "id": "office_kitchenette",
+  "summary": "A 2.4 m office kitchenette run against a wall: an under-counter fridge (door `fridge_door`, with shelves, doo… joints sink_door_l, sink_door_r, drawer_1, drawer_2, drawer_3, cupboard_door, …; options fronts, worktop; sockets socket_counter, socket_counter_l, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.office_kitchenette or place \"prefab\": \"office_kitchenette\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:office_kitchenette"]
+}

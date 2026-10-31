@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_snowy_pine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.6915, 9.9999, 6.4638],
+      "offset": [-0.1427, 5, -0.1539]
+    }
+  }
+}

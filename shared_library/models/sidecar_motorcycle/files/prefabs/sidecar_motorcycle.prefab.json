@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sidecar_motorcycle"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 420,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5725, 1.1966, 2.1167],
+      "offset": [0.0088, 0.5983, -0.0083]
+    }
+  }
+}

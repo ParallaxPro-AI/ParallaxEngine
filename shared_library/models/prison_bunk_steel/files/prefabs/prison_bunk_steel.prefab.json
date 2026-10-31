@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/prison_bunk_steel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.102, 1.725, 0.882],
+      "offset": [0, 0.8625, 0]
+    }
+  }
+}

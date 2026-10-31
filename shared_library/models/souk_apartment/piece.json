@@ -1,0 +1,10 @@
+{
+  "id": "souk_apartment",
+  "summary": "A three-storey Middle-Eastern souk apartment block in the Claude-of-Duty 'Crash/Backlot' idiom: a plaster she… sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.souk_apartment or place \"prefab\": \"souk_apartment\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:souk_apartment"]
+}

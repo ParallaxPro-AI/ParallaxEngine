@@ -1,0 +1,10 @@
+{
+  "id": "suv_large",
+  "summary": "A full-size seven-seat SUV - the compact SUV's lofted body on a longer wheelbase and a taller roof, with a th… joints door_f_l, door_f_r, door_r_l, door_r_r, tailgate; options kit; sockets seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, seat_pax_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.suv_large or place \"prefab\": \"suv_large\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:suv_large"]
+}

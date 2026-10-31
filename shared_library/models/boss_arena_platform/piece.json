@@ -1,0 +1,10 @@
+{
+  "id": "boss_arena_platform",
+  "summary": "A circular boss-fight arena platform: a 14 m round stone dais raised 0.8 m on a dark plinth, with a moulded c… sockets socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boss_arena_platform or place \"prefab\": \"boss_arena_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boss_arena_platform"]
+}

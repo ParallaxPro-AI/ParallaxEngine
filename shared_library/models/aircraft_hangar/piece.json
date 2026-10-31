@@ -1,0 +1,10 @@
+{
+  "id": "aircraft_hangar",
+  "summary": "An arched aircraft hangar, 30 x 36 m with a 26 m clear front opening 8.4 m high under a segmental barrel roof… joints door_l_outer, door_l_inner, door_r_inner, door_r_outer; options door_colour; sockets socket_aircraft, socket_apron, socket_workbench, eye_point, eye_room2, eye_room3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.aircraft_hangar or place \"prefab\": \"aircraft_hangar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:aircraft_hangar"]
+}

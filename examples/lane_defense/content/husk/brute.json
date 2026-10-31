@@ -1,0 +1,1 @@
+{ "name": "Brute", "prefab": "husk_brute", "health": 950, "speed": 0.26, "bite_damage": 34, "bite_interval": 1.1, "bounty": 80 }

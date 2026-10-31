@@ -1,0 +1,10 @@
+{
+  "id": "gem_cluster",
+  "summary": "A faceted crystal collectible: one tall six-sided spire with a brighter glowing lower section, three smaller… joints crystals; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gem_cluster or place \"prefab\": \"gem_cluster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gem_cluster"]
+}

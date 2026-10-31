@@ -1,0 +1,10 @@
+{
+  "id": "microscope",
+  "summary": "Compound monocular laboratory microscope: heavy base with an emissive illuminator, a rising C-arm, a slide st… joints focus_knobs, stage, turret.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.microscope or place \"prefab\": \"microscope\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:microscope"]
+}

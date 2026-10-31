@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/waypoint_beacon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.43, 1.092, 0.43],
+      "offset": [0, 0.546, 0]
+    }
+  }
+}

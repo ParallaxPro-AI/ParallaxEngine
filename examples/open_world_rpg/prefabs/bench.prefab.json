@@ -1,0 +1,11 @@
+{
+  "extends": "scenery",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/b9/30/b9309779e5a3bab23b40175d4d5706f2b63a5ec749111345a263afedc93271f3.glb",
+      "colors": {
+        "Wood": "#6d4a2b"
+      }
+    }
+  }
+}

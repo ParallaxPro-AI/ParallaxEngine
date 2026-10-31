@@ -1,0 +1,10 @@
+{
+  "id": "harp",
+  "summary": "A concert pedal harp: a turned forepillar column with a gilded capital and crown, an S-curved neck carrying a… joints pedal_0, pedal_1, pedal_2, pedal_3, pedal_4, pedal_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.harp or place \"prefab\": \"harp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:harp"]
+}

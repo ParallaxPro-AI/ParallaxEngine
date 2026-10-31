@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_oiler"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0516, 0.07, 0.1168],
+      "offset": [0, 0.035, 0.0082]
+    }
+  }
+}

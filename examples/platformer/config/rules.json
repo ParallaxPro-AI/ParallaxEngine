@@ -1,0 +1,28 @@
+{
+  "start_lives": 3,
+  "max_lives": 5,
+  "kill_plane": -10,
+  "stomp_height": 0.6,
+  "stomp_bounce": 12,
+  "respawn_grace": 1.4,
+  "respawn_lift": 1.2,
+  "death_pause": 0.7,
+  "crumble_respawn": 3.5,
+  "checkpoint_min_gap": 6,
+  "checkpoint_clearance": 3.5,
+  "chain_window": 2.5,
+  "chain_step": 0.2,
+  "chain_max": 3.0,
+  "goal_bonus": 200,
+  "lives_bonus": 50,
+  "time_bonus_per_second": 4,
+  "vault_bridge_rise": 20,
+  "vault_bridge_speed": 9,
+  "tip_spacing": 40,
+  "tips": [
+    "Follow the gold trail. Jump again in the air!",
+    "Dash in your movement direction. Land to refill it.",
+    "Three keepsakes hide on little islands above the gold trail.",
+    "The sky gate is ahead. Finish, find keepsakes, then chase a clean time."
+  ]
+}

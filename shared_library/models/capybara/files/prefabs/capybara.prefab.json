@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/capybara"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5056, 0.6459, 1.3045],
+      "offset": [0, 0.3232, 0.1127]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{ "prefab": "obstacle_barrier_low", "avoid": "jump", "lanes_blocked": 1, "weight": 4, "from_distance": 0, "hard": false, "half_width": 0.98, "half_depth": 0.48, "clearance": 1.35 }

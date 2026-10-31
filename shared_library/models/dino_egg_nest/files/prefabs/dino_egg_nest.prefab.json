@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dino_egg_nest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3688, 0.3208, 1.3631],
+      "offset": [0.0181, 0.1604, 0.0135]
+    }
+  }
+}

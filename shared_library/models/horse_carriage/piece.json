@@ -1,0 +1,10 @@
+{
+  "id": "horse_carriage",
+  "summary": "A closed horse-drawn carriage (brougham) WITHOUT the horse: a lofted coach body with a curved underside, roll… joints brake, spin_rear_l, spin_rear_r, front_axle, spin_front_l, spin_front_r, …; options cover, box_paint, gear_paint, cover_colour; sockets socket_hitch, socket_traces, seat_driver, seat_pax_1, eye_point, socket_cargo, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.horse_carriage or place \"prefab\": \"horse_carriage\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:horse_carriage"]
+}

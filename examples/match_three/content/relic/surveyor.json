@@ -1,0 +1,7 @@
+{
+  "name": "Surveyor's Eye",
+  "description": "+4 moves on every remaining stage.",
+  "short": "+4 moves on every stage.",
+  "highlight": "+4 moves",
+  "extra_moves": 4
+}

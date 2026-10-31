@@ -1,0 +1,10 @@
+{
+  "id": "apc",
+  "summary": "A generic 8x8 wheeled armoured personnel carrier: a faceted welded hull with a shallow upper glacis, a V-bell… joints ramp, driver_hatch, steering, troop_hatch_l, troop_hatch_r, turret, …; options paint; sockets seat_driver, seat_gunner, seat_commander, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.apc or place \"prefab\": \"apc\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:apc"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dunk_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.93, 2.9131, 1.8038],
+      "offset": [-0.005, 1.4534, 0.0081]
+    }
+  }
+}

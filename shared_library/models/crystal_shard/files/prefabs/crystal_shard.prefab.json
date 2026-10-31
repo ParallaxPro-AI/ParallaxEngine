@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crystal_shard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1709, 0.3994, 0.1781],
+      "offset": [0.0022, 0.1997, -0.002]
+    }
+  }
+}

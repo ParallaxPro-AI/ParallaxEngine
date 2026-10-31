@@ -1,0 +1,9 @@
+{
+  "label": "ARMOUR",
+  "respawn": 22,
+  "armor": 45,
+  "cue": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg",
+    "volume": 0.55
+  }
+}

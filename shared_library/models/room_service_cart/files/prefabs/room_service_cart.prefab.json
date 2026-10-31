@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/room_service_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.888, 1.1178, 0.878],
+      "offset": [0, 0.5589, 0]
+    }
+  }
+}

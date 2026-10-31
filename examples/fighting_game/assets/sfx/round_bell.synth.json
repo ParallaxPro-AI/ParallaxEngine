@@ -1,0 +1,36 @@
+{
+ "duration": 0.9,
+ "seed": 760,
+ "gain": 0.7,
+ "layers": [
+  {
+   "wave": "sine",
+   "freq": 880,
+   "attack": 0.002,
+   "decay": 0.7,
+   "sustain": 0,
+   "gain": 0.6,
+   "ring_hz": 660
+  },
+  {
+   "wave": "sine",
+   "freq": 1320,
+   "delay": 0.01,
+   "attack": 0.002,
+   "decay": 0.6,
+   "sustain": 0,
+   "gain": 0.35,
+   "ring_hz": 990
+  },
+  {
+   "wave": "noise",
+   "decay": 0.02,
+   "sustain": 0,
+   "gain": 0.25,
+   "filter": {
+    "type": "highpass",
+    "freq": 3000
+   }
+  }
+ ]
+}

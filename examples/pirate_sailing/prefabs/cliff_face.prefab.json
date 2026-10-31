@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/cliff_face", "cast_shadows": true },
+    "collider": { "shape": "mesh" }
+  }
+}

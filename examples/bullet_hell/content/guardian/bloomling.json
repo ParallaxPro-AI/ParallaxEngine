@@ -1,0 +1,4 @@
+{
+  "name": "Bloomling", "animation": "bloomling", "hp": 1, "scale": 0.9, "score": 100,
+  "fire": "none", "arms": 1, "spread": 0, "spin_step": 0, "petal_speed": 6.5
+}

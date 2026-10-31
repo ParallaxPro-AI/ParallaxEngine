@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cannon_launcher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3, 3.4339, 3.5812],
+      "offset": [0, 1.7169, -0.1574]
+    }
+  }
+}

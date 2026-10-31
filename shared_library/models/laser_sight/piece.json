@@ -1,0 +1,10 @@
+{
+  "id": "laser_sight",
+  "summary": "A rail-mounted laser aiming module, 0.088 m long: a tan polymer box housing with filleted edges and three hea… joints selector, battery_cap; sockets socket_mount, laser.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laser_sight or place \"prefab\": \"laser_sight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laser_sight"]
+}

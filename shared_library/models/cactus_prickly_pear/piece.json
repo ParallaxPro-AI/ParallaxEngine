@@ -1,0 +1,10 @@
+{
+  "id": "cactus_prickly_pear",
+  "summary": "A prickly pear cactus (Opuntia) clump: three stems of flat, oval, paddle-shaped pads (cladodes) branching fro…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cactus_prickly_pear or place \"prefab\": \"cactus_prickly_pear\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cactus_prickly_pear"]
+}

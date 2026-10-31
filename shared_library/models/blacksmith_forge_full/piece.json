@@ -1,0 +1,10 @@
+{
+  "id": "blacksmith_forge_full",
+  "summary": "A complete blacksmith's forge station: a brick hearth with a stone cap and a firebrick fire pot of glowing co… joints bellows; options masonry; sockets work_fire, work_anvil, smoke, sparks.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blacksmith_forge_full or place \"prefab\": \"blacksmith_forge_full\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blacksmith_forge_full"]
+}

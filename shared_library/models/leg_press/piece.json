@@ -1,0 +1,10 @@
+{
+  "id": "leg_press",
+  "summary": "A plate-loaded 45-degree leg press (2.4 m long, 1.8 m tall): a sled with a diamond-plate foot platform, heel… joints backrest, sled, safety_catch; options load, frame, pad, plates; sockets seat_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.leg_press or place \"prefab\": \"leg_press\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:leg_press"]
+}

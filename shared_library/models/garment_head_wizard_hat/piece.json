@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_wizard_hat",
+  "summary": "A tall pointed wizard hat in soft felt: a wide drooping brim with an uneven wave, a cone that climbs 23 cm an… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_wizard_hat or place \"prefab\": \"garment_head_wizard_hat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_wizard_hat"]
+}

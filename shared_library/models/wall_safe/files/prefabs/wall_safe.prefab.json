@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wall_safe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.403, 0.35, 0.3355],
+      "offset": [0, 0.175, 0.0163]
+    }
+  }
+}

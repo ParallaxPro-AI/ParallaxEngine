@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spinning_log"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.202, 0.64, 0.64],
+      "offset": [0, 0.32, 0]
+    }
+  }
+}

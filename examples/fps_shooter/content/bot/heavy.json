@@ -1,0 +1,1 @@
+{"name": "Heavy", "scale": 1.22, "health": 210, "damage": 15, "fire_interval": 1.5, "accuracy": 0.46, "reaction": 0.55, "sight_range": 40, "shoot_range": 30, "move_speed": 3.6, "stop_range": 8, "patrol_radius": 12, "score": 230, "tracer": "#ff9e33", "look": {"headgear": "helmet", "gear": "full", "jacket": "grey", "trousers": "charcoal"}, "jacket_tint": "#595345"}

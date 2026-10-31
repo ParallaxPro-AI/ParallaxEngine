@@ -1,0 +1,16 @@
+{
+  "refit_pick": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3",
+  "leg_start": "https://r2.parallaxpro.ai/assets/audio_sfx/55/74/5574e69dd04e5f59322c5ddffde5978f077b09170ae5e29cec0bd9901828cd90.ogg",
+  "kraken_rise": "https://r2.parallaxpro.ai/assets/audio_sfx/48/0e/480ee82b690136ea9db6966a3c3033356b8274752795c4e37afd6b6defcfacff.ogg",
+  "hull_hit": "https://r2.parallaxpro.ai/assets/audio_sfx/f6/a1/f6a14da45994229676b4f29e6a35f504b5c2ec2b8166fb1a3b1aa004bc6911ef.ogg",
+  "cannon": "https://r2.parallaxpro.ai/assets/audio_sfx/be/2b/be2b8ddc62e4a24c91e2e77793de98549ce216faf2f323a917e7d6f34321ff97.ogg",
+  "win": "https://r2.parallaxpro.ai/assets/audio_tts/21/ee/21ee1909734144ee0ad29fbdf8eda5c06fd360862f46ab89234d2d23af3fdead.ogg",
+  "defeat": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg",
+  "ship_sank": "https://r2.parallaxpro.ai/assets/audio_sfx/cd/da/cdda50600a4928f2f1b8371224d53c171ac799c1cf2c30b11999508985250b3b.ogg",
+  "bounty": "https://r2.parallaxpro.ai/assets/audio_sfx/15/e3/15e3fe971ffd3415e5ab641d3a4d043fb31f6712b0956315b524ba29c3889cda.ogg",
+  "refit_open": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg",
+  "crew_lost": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/3a/9c3a1c73cadf0de5d5a578b31a264f20b1ac7cb6ec9bbd34a203f58402ea5390.ogg",
+  "leg_cleared": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3",
+  "treasure": "https://r2.parallaxpro.ai/assets/audio_sfx/44/23/4423d459fc15fdd8593a4584d71e272ec2e5f8bdc11b759db623fc613ffd957c.ogg",
+  "thunder": "https://r2.parallaxpro.ai/assets/audio_sfx/98/51/9851a69d0c613e13bceef08060ecc4148f098ef487927cbebe270d642398a3b3.ogg"
+}

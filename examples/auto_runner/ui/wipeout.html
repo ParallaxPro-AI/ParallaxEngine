@@ -1,0 +1,93 @@
+<!-- Ported from the template: Canyon Dash lose card - WIPED OUT naming the hazard and stage that ended the run, the distance counting up, coins / best / left-to-the-rim rows, the verb you needed, a NEW BEST stamp and Run Again / Menu -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cdw[data-slot] { background: radial-gradient(circle at 50% 45%, rgba(113,56,41,.55), rgba(20,13,8,.82) 70%); animation: cdw-flash 450ms ease-out both; }
+  @keyframes cdw-flash { 0% { background-color: rgba(255,90,60,.45); } 100% { background-color: rgba(255,90,60,0); } }
+  .cdw[data-slot] > .cdw-card { overflow: visible; max-height: none; }
+  .cdw-card { width: calc(860 * var(--u)); padding: calc(44 * var(--u)) calc(56 * var(--u)) calc(48 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(22 * var(--u)); animation: cdw-drop 420ms cubic-bezier(.3,1.4,.6,1) 120ms both; }
+  @keyframes cdw-drop { 0% { opacity: 0; transform: translateY(calc(-60 * var(--u))) rotate(-2deg); } 100% { opacity: 1; transform: none; } }
+  .cdw-stamp { position: absolute; right: calc(-46 * var(--u)); top: calc(-46 * var(--u)); width: calc(170 * var(--u)); height: calc(170 * var(--u)); box-sizing: border-box; border-radius: 50%; background: var(--cd-gold); border: calc(6 * var(--u)) solid var(--cd-rust-dark); box-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-night); display: flex; flex-direction: column; align-items: center; justify-content: center; font-family: var(--cd-font-display); color: var(--cd-rust-dark); line-height: 1; transform: rotate(12deg); }
+  .cdw-stamp span { font-size: calc(36 * var(--u)); letter-spacing: 2px; }
+  .cdw-stamp b { font-weight: 400; font-size: calc(52 * var(--u)); letter-spacing: 2px; }
+  .cdw-stamp.is-in { animation: cdw-thud 260ms cubic-bezier(.2,.9,.3,1) both; }
+  @keyframes cdw-thud { 0% { opacity: 0; transform: rotate(12deg) scale(1.4); } 100% { opacity: 1; transform: rotate(12deg) scale(1); } }
+  .cdw-head { display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); }
+  .cdw-title { font: 400 calc(136 * var(--u))/1 var(--cd-font-display); letter-spacing: calc(4 * var(--u)); text-transform: uppercase; color: var(--cd-rust); transform: rotate(-2deg) skewX(-8deg); text-shadow: calc(7 * var(--u)) calc(7 * var(--u)) 0 var(--cd-brown); white-space: nowrap; }
+  .cdw-sub { font-size: calc(30 * var(--u)); font-weight: 700; font-style: italic; color: var(--cd-brown-soft); text-align: center; }
+  .cdw-score { font: 400 calc(150 * var(--u))/1 var(--cd-font-display); color: var(--cd-brown); font-variant-numeric: tabular-nums; }
+  .cdw-rows { width: 100%; box-sizing: border-box; background: var(--cd-brown); border-radius: calc(6 * var(--u)); padding: calc(10 * var(--u)) calc(28 * var(--u)); display: flex; flex-direction: column; }
+  .cdw-row { display: flex; justify-content: space-between; align-items: baseline; padding: calc(10 * var(--u)) 0; border-bottom: 2px dashed rgba(255,244,202,.2); }
+  .cdw-row:last-child { border-bottom: 0; }
+  .cdw-row span { font-size: calc(26 * var(--u)); font-weight: 800; color: var(--cd-cream); }
+  .cdw-row b { font: 400 calc(40 * var(--u))/1.2 var(--cd-font-display); color: var(--cd-cream); }
+  .cdw-row b.is-gold { color: var(--cd-gold); }
+  .cdw-row b.is-sand { color: var(--cd-sand); }
+  .cdw-note { width: 100%; box-sizing: border-box; display: flex; align-items: center; gap: calc(16 * var(--u)); background: var(--cd-cream-2); border: calc(3 * var(--u)) dashed var(--cd-rust); padding: calc(14 * var(--u)) calc(20 * var(--u)); font-size: calc(26 * var(--u)); font-weight: 800; }
+  .cdw-note svg { width: calc(34 * var(--u)); height: calc(30 * var(--u)); flex: none; display: block; }
+  .cdw-note b { font: 400 1em var(--cd-font-display); letter-spacing: 1px; color: var(--cd-rust); }
+  .cdw-tip { max-width: calc(680 * var(--u)); font-size: calc(22 * var(--u)); font-weight: 700; line-height: 1.4; text-align: center; color: var(--cd-brown-soft); }
+  .cdw-actions { width: 100%; display: grid; grid-template-columns: 1.6fr 1fr; gap: calc(28 * var(--u)); margin-top: calc(6 * var(--u)); }
+  .cdw-actions .cd-skew { padding: calc(6 * var(--u)) 0; font-size: calc(42 * var(--u)); line-height: 1.25; letter-spacing: calc(3 * var(--u)); }
+  .cdw-actions .cd-skew.is-primary { font-size: calc(56 * var(--u)); letter-spacing: calc(4 * var(--u)); }
+  .cdw-cols, .cdw-main, .cdw-side { display: contents; }
+  .cdw [hidden] { display: none !important; }
+
+  @media (pointer: coarse) {
+    .cdw-card { width: calc(1440 * var(--u)); max-width: 100%; padding: calc(32 * var(--u)) calc(44 * var(--u)) calc(40 * var(--u)); gap: calc(24 * var(--u)); align-items: stretch; }
+    .cdw-stamp { right: auto; left: calc(540 * var(--u)); top: calc(186 * var(--u)); width: calc(156 * var(--u)); height: calc(156 * var(--u)); border-width: calc(8 * var(--u)); }
+    .cdw-stamp span { font-size: calc(32 * var(--u)); }
+    .cdw-stamp b { font-size: calc(48 * var(--u)); }
+    .cdw-cols { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: calc(40 * var(--u)); align-items: center; }
+    .cdw-main, .cdw-side { display: flex; flex-direction: column; }
+    .cdw-main { gap: calc(4 * var(--u)); align-items: flex-start; }
+    .cdw-side { gap: calc(16 * var(--u)); }
+    .cdw-head { align-items: flex-start; gap: calc(4 * var(--u)); }
+    .cdw-title { font-size: calc(116 * var(--u)); letter-spacing: calc(4 * var(--u)); transform: skewX(-8deg); text-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-brown); }
+    .cdw-sub { font-size: calc(28 * var(--u)); text-align: left; }
+    .cdw-score { font-size: calc(128 * var(--u)); line-height: 1.05; margin-top: calc(8 * var(--u)); }
+    .cdw-rows { padding: calc(8 * var(--u)) calc(28 * var(--u)); border-radius: calc(10 * var(--u)); }
+    .cdw-row { padding: calc(8 * var(--u)) 0; }
+    .cdw-row span { font-size: calc(28 * var(--u)); }
+    .cdw-row b { font-size: calc(44 * var(--u)); }
+    .cdw-note { gap: calc(16 * var(--u)); padding: calc(10 * var(--u)) calc(20 * var(--u)); border-width: calc(4 * var(--u)); font-size: calc(28 * var(--u)); }
+    .cdw-note svg { width: calc(36 * var(--u)); height: calc(32 * var(--u)); }
+    .cdw-tip { max-width: none; font-size: calc(26 * var(--u)); }
+    .cdw-actions { gap: calc(36 * var(--u)); margin-top: 0; }
+    .cdw-actions .cd-skew { min-height: calc(104 * var(--u)); padding: 0; font-size: calc(48 * var(--u)); letter-spacing: calc(4 * var(--u)); }
+    .cdw-actions .cd-skew.is-primary { font-size: calc(56 * var(--u)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cdw[data-slot], .cdw-card, .cdw-stamp.is-in { animation: none; }
+  }
+</style>
+<div class="cdw">
+  <div class="cd-card cdw-card">
+    <div class="cdw-stamp is-in" data-show="new_best"><span>NEW</span><b>BEST</b></div>
+    <div class="cdw-cols">
+      <div class="cdw-main">
+        <div class="cdw-head">
+          <div class="cdw-title" data-text="over_lost"></div>
+          <div class="cdw-sub" data-bind="subtitle"></div>
+        </div>
+        <div class="cdw-score" data-bind="distance"></div>
+      </div>
+      <div class="cdw-side">
+        <div class="cdw-rows">
+          <div class="cdw-row"><span data-text="over_coins"></span><b class="is-gold" data-bind="coins"></b></div>
+          <div class="cdw-row"><span data-text="over_wallet"></span><b class="is-gold" data-bind="wallet"></b></div>
+          <div class="cdw-row"><span data-bind="best_label"></span><b data-bind="best"></b></div>
+          <div class="cdw-row" data-show="journey"><span data-text="over_to_rim"></span><b class="is-sand" data-bind="to_rim"></b></div>
+        </div>
+        <div class="cdw-note" data-show="lesson">
+          <svg viewBox="0 0 34 30" aria-hidden="true"><polygon points="17,2 32,28 2,28" fill="#b64f2f"/><rect x="15.5" y="10" width="3" height="10" fill="#fff4ca"/><rect x="15.5" y="22" width="3" height="3" fill="#fff4ca"/></svg>
+          <span>you needed to <b data-bind="verb"></b> <span data-bind="verb_tail"></span></span>
+        </div>
+      </div>
+    </div>
+    <div class="cdw-tip" data-text="over_tip"></div>
+    <div class="cdw-actions">
+      <button class="cd-skew is-primary" data-action="retry" data-key="Enter" data-text="over_retry"></button>
+      <button class="cd-skew" data-action="quit" data-text="over_quit"></button>
+    </div>
+  </div>
+</div>

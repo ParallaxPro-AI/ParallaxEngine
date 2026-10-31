@@ -1,0 +1,2 @@
+{ "name": "Fire-Rate Shard", "blurb": "Shards come faster.",
+  "relic": true, "effect": "fire_interval", "amount": -0.035, "mesh": "cylinder", "color": "#66e6ff" }

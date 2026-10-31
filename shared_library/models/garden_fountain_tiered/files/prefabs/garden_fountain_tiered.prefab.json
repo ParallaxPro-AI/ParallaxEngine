@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garden_fountain_tiered"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.32, 1.645, 1.32],
+      "offset": [0, 0.8225, 0]
+    }
+  }
+}

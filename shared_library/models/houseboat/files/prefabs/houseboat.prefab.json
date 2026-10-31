@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/houseboat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.96, 6.11, 15.445],
+      "offset": [0, 3.055, -0.3225]
+    }
+  }
+}

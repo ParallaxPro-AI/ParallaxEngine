@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_long_straight"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2441, 0.6572, 0.2242],
+      "offset": [0, 1.5534, -0.0384]
+    }
+  }
+}

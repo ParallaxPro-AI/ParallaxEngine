@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flamingo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2868, 1.3337, 0.7004],
+      "offset": [0, 0.6698, -0.0284]
+    }
+  }
+}

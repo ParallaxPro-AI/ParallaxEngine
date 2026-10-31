@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/archer_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 6.17, 2.461],
+      "offset": [0, 3.085, 0.0305]
+    }
+  }
+}

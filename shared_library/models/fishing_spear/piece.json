@@ -1,0 +1,10 @@
+{
+  "id": "fishing_spear",
+  "summary": "A primitive four-pronged fishing spear (a gig/leister): a 1.7 m peeled sapling shaft with a spiralled leather… options shaft_wood; sockets tip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.fishing_spear or place \"prefab\": \"fishing_spear\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:fishing_spear"]
+}

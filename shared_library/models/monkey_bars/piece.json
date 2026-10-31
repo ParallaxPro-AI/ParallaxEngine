@@ -1,0 +1,10 @@
+{
+  "id": "monkey_bars",
+  "summary": "Galvanised-steel overhead monkey bars: two splayed A-frame end towers carrying a pair of long side rails, wit…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.monkey_bars or place \"prefab\": \"monkey_bars\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:monkey_bars"]
+}

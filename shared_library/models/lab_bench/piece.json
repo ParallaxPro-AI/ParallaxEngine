@@ -1,0 +1,10 @@
+{
+  "id": "lab_bench",
+  "summary": "A laboratory workbench: a dark chemical-resistant epoxy worktop on two grey steel pedestals with an open knee… joints sink_cover, tap_swivel, gas_valve, drawer_0, drawer_1, drawer_2; sockets socket_basin, socket_shelf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lab_bench or place \"prefab\": \"lab_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lab_bench"]
+}

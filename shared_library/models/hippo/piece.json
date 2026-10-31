@@ -1,0 +1,10 @@
+{
+  "id": "hippo",
+  "summary": "A common hippopotamus on the engine's quadruped_20 rig: ~4.0 m nose to tail, ~1.5 m at the shoulder, a barrel… joints jaw; options hide; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hippo or place \"prefab\": \"hippo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hippo"]
+}

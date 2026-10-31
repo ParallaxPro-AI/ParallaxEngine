@@ -1,0 +1,10 @@
+{
+  "id": "archery_target",
+  "summary": "An archery target on a wooden A-frame stand: a thick round straw boss bound with rope bands, faced with a 122… options stand; sockets socket_bullseye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.archery_target or place \"prefab\": \"archery_target\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:archery_target"]
+}

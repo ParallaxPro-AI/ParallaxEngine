@@ -1,0 +1,10 @@
+{
+  "id": "viking_longship",
+  "summary": "A Norse-style clinker-built longship: an open, double-ended oak hull of eight lapped strakes a side with a st… joints sail, steering_oar; sockets waterline, seat_driver, socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.viking_longship or place \"prefab\": \"viking_longship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:viking_longship"]
+}

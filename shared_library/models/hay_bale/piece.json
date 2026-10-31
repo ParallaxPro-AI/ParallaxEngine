@@ -1,0 +1,10 @@
+{
+  "id": "hay_bale",
+  "summary": "A small square hay bale, 90 x 36 x 46 cm: a rounded block of straw-textured hay bound by two tight loops of b… options twine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hay_bale or place \"prefab\": \"hay_bale\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hay_bale"]
+}

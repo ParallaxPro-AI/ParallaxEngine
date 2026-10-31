@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_autumn_maple"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.8033, 9.5038, 8.5505],
+      "offset": [-0.0883, 4.7508, -0.0192]
+    }
+  }
+}

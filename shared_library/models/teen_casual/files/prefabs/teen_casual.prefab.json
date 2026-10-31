@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/teen_casual"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4623, 1.7333, 0.3766],
+      "offset": [0, 0.8649, -0.0218]
+    }
+  }
+}

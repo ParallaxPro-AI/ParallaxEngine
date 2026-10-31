@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tv"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.49, 1.0475, 0.26],
+      "offset": [0, 0.5238, -0.02]
+    }
+  }
+}

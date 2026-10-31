@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hanging_chains"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5134, 2.3712, 0.232],
+      "offset": [0.0004, 1.1856, 0]
+    }
+  }
+}

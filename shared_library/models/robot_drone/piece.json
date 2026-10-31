@@ -1,0 +1,10 @@
+{
+  "id": "robot_drone",
+  "summary": "A sci-fi hovering robot drone: a rounded armored orb chassis floating over a downward hover-thruster nozzle… joints hover_fins, sensor_eye; sockets socket_eye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.robot_drone or place \"prefab\": \"robot_drone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:robot_drone"]
+}

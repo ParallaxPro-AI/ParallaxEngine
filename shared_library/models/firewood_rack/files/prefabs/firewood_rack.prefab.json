@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/firewood_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0125, 1.5659, 0.8983],
+      "offset": [-0.1537, 0.7829, 0]
+    }
+  }
+}

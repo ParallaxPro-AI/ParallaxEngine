@@ -1,0 +1,103 @@
+{
+  "tags": [
+    "crew_ship"
+  ],
+  "components": {
+    "model": {
+      "model": "models/player_ship",
+      "offset": [
+        0,
+        -1.0,
+        2.1
+      ],
+      "cast_shadows": true
+    },
+    "animator": {
+      "params": {
+        "hoist": 0
+      }
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 12000,
+      "linear_damping": 0.01,
+      "angular_damping": 0.12,
+      "continuous": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        4.3,
+        2.6,
+        8.8
+      ],
+      "offset": [
+        0,
+        0.3,
+        2.1
+      ]
+    },
+    "buoyancy": {},
+    "vehicle": {
+      "kind": "boat",
+      "max_speed": 13,
+      "acceleration": 1.2,
+      "braking": 2.5,
+      "steering": 30
+    },
+    "health": {
+      "current": 200,
+      "max": 200,
+      "destroy_on_death": true
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        6,
+        0
+      ],
+      "color": "#c9a24a",
+      "ally_color": "#1f8a8a",
+      "enemy_color": "#a3261b"
+    },
+    "side": {
+      "side": "side_crew"
+    },
+    "rig": {},
+    "broadsides": {
+      "rack": 4
+    }
+  },
+  "behaviors": {
+    "helm": {
+      "hoist_rate": 0.4
+    },
+    "broadsides": {
+      "damage": 35,
+      "reach": 42,
+      "aim_cone": 160,
+      "muzzle_speed": 55,
+      "elevation": 3,
+      "shot_gap": 0.55,
+      "reload_time": 3.2
+    },
+    "hull_regen": {},
+    "contract_board": {}
+  },
+  "children": [
+    {
+      "name": "pennant",
+      "prefab": "pennant",
+      "at": [
+        0,
+        8.4,
+        0.85
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ]
+    }
+  ]
+}

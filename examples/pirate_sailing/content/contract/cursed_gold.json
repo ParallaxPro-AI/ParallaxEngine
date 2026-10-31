@@ -1,0 +1,9 @@
+{
+  "number": 2,
+  "label": "Recover 3 cursed hoards",
+  "kind": "treasure",
+  "goal": 3,
+  "gold": 100,
+  "hoards": 3,
+  "radius": 46
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chair",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6513,
+        0.905,
+        0.6194
+      ],
+      "offset": [
+        0.0,
+        0.4525,
+        -0.0223
+      ]
+    }
+  }
+}

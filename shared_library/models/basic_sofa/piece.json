@@ -1,0 +1,10 @@
+{
+  "id": "basic_sofa",
+  "summary": "A budget flat-pack two-seat sofa from the 'basic' apartment set: plain warm-grey woven upholstery over a boxy… options fabric, throw; sockets seat_l, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_sofa or place \"prefab\": \"basic_sofa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_sofa"]
+}

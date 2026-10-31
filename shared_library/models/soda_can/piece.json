@@ -1,0 +1,10 @@
+{
+  "id": "soda_can",
+  "summary": "A generic unbranded 355 ml drinks can: a painted aluminium body with a contrasting band, a necked-in bare-met… joints tab; options colour, band, opened; sockets socket_grip, socket_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.soda_can or place \"prefab\": \"soda_can\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:soda_can"]
+}

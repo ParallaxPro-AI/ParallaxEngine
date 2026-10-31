@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/advertising_column"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.64, 3.9, 1.64],
+      "offset": [0, 1.95, 0]
+    }
+  }
+}

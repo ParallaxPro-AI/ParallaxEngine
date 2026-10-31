@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/engine_block"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 0.657, 0.6424],
+      "offset": [0.02, 0.3285, 0.0188]
+    }
+  }
+}

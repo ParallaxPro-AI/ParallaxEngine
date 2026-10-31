@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_armchair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8991, 0.78, 0.9],
+      "offset": [0, 0.39, 0]
+    }
+  }
+}

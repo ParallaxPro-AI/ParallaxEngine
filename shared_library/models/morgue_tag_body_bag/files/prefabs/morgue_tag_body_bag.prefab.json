@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/morgue_tag_body_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 0.2773, 0.9493],
+      "offset": [0, 0.1374, 0.0509]
+    }
+  }
+}

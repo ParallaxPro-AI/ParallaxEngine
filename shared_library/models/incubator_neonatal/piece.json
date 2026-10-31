@@ -1,0 +1,10 @@
+{
+  "id": "incubator_neonatal",
+  "summary": "A neonatal intensive-care incubator: a clear double-wall acrylic hood with a domed roof, a drop-down front ac… joints castor_0_roll, castor_1_roll, castor_2_roll, castor_3_roll, drawer_0, drawer_1, …; options accent; sockets infant, carer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.incubator_neonatal or place \"prefab\": \"incubator_neonatal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:incubator_neonatal"]
+}

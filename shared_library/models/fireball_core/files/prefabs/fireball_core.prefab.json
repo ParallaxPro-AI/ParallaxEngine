@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fireball_core"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2488, 0.2491, 0.7035],
+      "offset": [0.0002, 0.1223, -0.0087]
+    }
+  }
+}

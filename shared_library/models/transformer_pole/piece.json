@@ -1,0 +1,10 @@
+{
+  "id": "transformer_pole",
+  "summary": "An H-frame transformer platform: two 11.5 m spun-concrete poles with step bolts and anti-climb bands carry a… joints fuse_0, fuse_1, fuse_2, lvbox_door; sockets line_0, line_1, line_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.transformer_pole or place \"prefab\": \"transformer_pole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:transformer_pole"]
+}

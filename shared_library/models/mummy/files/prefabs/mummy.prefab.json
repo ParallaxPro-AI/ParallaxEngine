@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mummy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.8837, 0.3059],
+      "offset": [0, 0.9419, -0.0031]
+    }
+  }
+}

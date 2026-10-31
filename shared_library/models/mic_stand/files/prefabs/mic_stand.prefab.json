@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mic_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 1.5, 1.1853],
+      "offset": [0, 0.75, 0.3377]
+    }
+  }
+}

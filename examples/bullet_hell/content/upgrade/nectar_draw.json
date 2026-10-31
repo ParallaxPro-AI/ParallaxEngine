@@ -1,0 +1,1 @@
+{ "name": "Nectar Draw", "description": "+0.7 pickup radius — blooms drift to you.", "stat": "pickup_radius", "add": 0.7, "max_stacks": 3 }

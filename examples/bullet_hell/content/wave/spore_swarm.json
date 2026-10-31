@@ -1,0 +1,4 @@
+{
+  "number": 7, "name": "Spore Swarm", "act": 3, "guardian": "sporelet", "flight": "plunge", "count": 10,
+  "speed": 1.30, "amp": 2.8, "freq": 1.60, "fire_rate": 2.4, "hp_mul": 1.5, "drop_chance": 0.45
+}

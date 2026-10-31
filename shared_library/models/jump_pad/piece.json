@@ -1,0 +1,10 @@
+{
+  "id": "jump_pad",
+  "summary": "An arena launch pad: a 1.8 m two-tier deck with an emissive band round its edge, a recessed energy well, a sp… joints plunger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jump_pad or place \"prefab\": \"jump_pad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jump_pad"]
+}

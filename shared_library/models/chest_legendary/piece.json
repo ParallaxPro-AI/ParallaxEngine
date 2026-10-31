@@ -1,0 +1,10 @@
+{
+  "id": "chest_legendary",
+  "summary": "A legendary-rarity RPG loot chest, about 0.92 m wide, 0.58 m deep and 0.65 m tall, raised on claw feet: ebony… joints lid, hasp; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chest_legendary or place \"prefab\": \"chest_legendary\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chest_legendary"]
+}

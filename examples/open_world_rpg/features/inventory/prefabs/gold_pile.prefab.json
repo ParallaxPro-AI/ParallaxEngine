@@ -1,0 +1,8 @@
+{
+  "components": {
+    "model": { "model": "models/gold_pile" },
+    "collider": { "shape": "sphere", "radius": 0.8, "trigger": true },
+    "pickup": { "gold": 8, "xp": 5 }
+  },
+  "pool": 32
+}

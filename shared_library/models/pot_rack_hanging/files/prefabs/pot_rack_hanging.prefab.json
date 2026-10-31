@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pot_rack_hanging"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.938, 0.9445, 0.5674],
+      "offset": [0, 0.4758, -0.0287]
+    }
+  }
+}

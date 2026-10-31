@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="sky_freight.css">
+<style>
+  .sft { position: fixed; inset: 0; pointer-events: none; display: flex; align-items: center; justify-content: center; }
+  .sft-sheet { position: relative; width: calc(var(--u) * 920); padding: calc(var(--u) * 44) calc(var(--u) * 56) calc(var(--u) * 48); display: flex; flex-direction: column; gap: calc(var(--u) * 28); pointer-events: auto; animation: sf-rise 360ms ease-out both; }
+  .sft-main { display: flex; flex-direction: column; gap: calc(var(--u) * 28); }
+  .sft-id { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 28); }
+  .sft-dials { display: flex; justify-content: center; gap: calc(var(--u) * 56); }
+  .sft-dial { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 10); }
+  .sft-dial svg { width: calc(var(--u) * 124); height: calc(var(--u) * 124); }
+  .sft-dial span { font: 400 calc(var(--u) * 12)/1 var(--sf-f-mono); letter-spacing: .22em; color: var(--sf-sky-300); }
+  .sft-needle { transform-origin: calc(var(--u) * 66) calc(var(--u) * 66); animation: sf-needle 2s cubic-bezier(.16,.84,.3,1) both; }
+  .sft-names { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 14); }
+  .sft-title { margin: 0; font: 700 calc(var(--u) * 128)/1 var(--sf-f-mono); letter-spacing: -.04em; color: var(--sf-cream); text-shadow: 0 calc(var(--u) * 4) calc(var(--u) * 30) rgba(125,211,252,.25); white-space: nowrap; }
+  .sft-sub { font: 400 calc(var(--u) * 22)/1 var(--sf-f-mono); letter-spacing: .5em; padding-left: .5em; color: var(--sf-sky-300); }
+  .sft-side { display: flex; flex-direction: column; gap: calc(var(--u) * 28); }
+  .sft-boxes { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 20); }
+  .sft-box { border: calc(var(--u) * 1) solid rgba(186,230,253,.35); border-radius: calc(var(--u) * 4); padding: calc(var(--u) * 16) calc(var(--u) * 20); display: flex; justify-content: space-between; align-items: center; }
+  .sft-box .sf-lbl { font-size: calc(var(--u) * 14); letter-spacing: .24em; font-weight: 400; }
+  .sft-box b { display: flex; align-items: center; gap: calc(var(--u) * 10); font: 600 calc(var(--u) * 24)/1 var(--sf-f-mono); color: var(--sf-cream); }
+  .sft-box b i { width: calc(var(--u) * 10); height: calc(var(--u) * 10); border-radius: 50%; background: var(--sf-good); box-shadow: 0 0 calc(var(--u) * 10) var(--sf-good); }
+  .sft-note { margin: 0; text-align: center; font: 400 calc(var(--u) * 19)/1.6 var(--sf-f-mono); color: var(--sf-sky-200); text-wrap: pretty; }
+  .sft-go { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 16); }
+  .sft-go .sf-stamp { color: var(--sf-good); border-color: var(--sf-good); }
+  .sft-start { height: auto; font-size: calc(var(--u) * 26); letter-spacing: .06em; padding: calc(var(--u) * 20) calc(var(--u) * 72); box-shadow: 0 calc(var(--u) * 6) 0 var(--sf-cream-lo), 0 calc(var(--u) * 16) calc(var(--u) * 40) rgba(254,243,199,.18); }
+  .sft-start:active { transform: translateY(calc(var(--u) * 4)); box-shadow: 0 calc(var(--u) * 2) 0 var(--sf-cream-lo); }
+  @media (pointer: coarse) {
+    .sft-sheet { width: min(calc(var(--u) * 1480), calc(100cqw - calc(var(--u) * 96))); padding: calc(var(--u) * 40) calc(var(--u) * 52) calc(var(--u) * 44); gap: calc(var(--u) * 28); box-shadow: 0 calc(var(--u) * 40) calc(var(--u) * 100) rgba(0,0,0,.45), inset 0 0 0 calc(var(--u) * 10) rgba(2,6,23,.25), inset 0 0 0 calc(var(--u) * 12) rgba(186,230,253,.12); }
+    .sft-head { font-size: calc(var(--u) * 20); letter-spacing: .24em; padding-bottom: calc(var(--u) * 20); }
+    .sft-head .sft-no-d { display: none; }
+    .sft-main { display: grid; grid-template-columns: 1.15fr 1fr; gap: calc(var(--u) * 52); align-items: center; }
+    .sft-id { align-items: flex-start; gap: calc(var(--u) * 28); }
+    .sft-dials { gap: calc(var(--u) * 28); justify-content: flex-start; }
+    .sft-dial span { display: none; }
+    .sft-dial svg { width: calc(var(--u) * 116); height: calc(var(--u) * 116); }
+    .sft-names { align-items: flex-start; gap: calc(var(--u) * 28); }
+    .sft-title { font-size: calc(var(--u) * 124); text-shadow: none; }
+    .sft-sub { font-size: calc(var(--u) * 26); letter-spacing: .42em; padding-left: 0; }
+    .sft-side { gap: calc(var(--u) * 24); }
+    .sft-boxes { gap: calc(var(--u) * 16); }
+    .sft-box { flex-direction: column; align-items: flex-start; gap: calc(var(--u) * 8); padding: calc(var(--u) * 16) calc(var(--u) * 20); }
+    .sft-box .sf-lbl { font-size: calc(var(--u) * 18); letter-spacing: .22em; }
+    .sft-box b { font-size: calc(var(--u) * 30); gap: calc(var(--u) * 12); }
+    .sft-box b i { width: calc(var(--u) * 14); height: calc(var(--u) * 14); box-shadow: 0 0 calc(var(--u) * 16) var(--sf-good); }
+    .sft-note { text-align: left; font-size: calc(var(--u) * 24); line-height: 1.55; }
+    .sft-go { align-items: flex-start; gap: calc(var(--u) * 20); }
+    .sft-go .sf-stamp { font-size: calc(var(--u) * 18); letter-spacing: .24em; padding: calc(var(--u) * 8) calc(var(--u) * 18); border-width: calc(var(--u) * 3); }
+    .sft-start { width: 100%; height: calc(var(--u) * 104); padding: 0; font-size: calc(var(--u) * 36); border-radius: calc(var(--u) * 12); box-shadow: 0 calc(var(--u) * 8) 0 var(--sf-cream-lo); }
+    .sft-start:active { transform: translateY(calc(var(--u) * 6)); box-shadow: 0 calc(var(--u) * 2) 0 var(--sf-cream-lo); }
+  }
+</style>
+<div class="sft sf-root">
+  <main class="sf-sheet sft-sheet">
+    <div class="sf-sheet-head sft-head"><span data-text="manifest_head"></span><span><span class="sft-no-d" data-text="manifest_form"></span><span data-text="manifest_number"></span></span></div>
+    <div class="sft-main">
+      <div class="sft-id">
+        <div class="sft-dials" aria-hidden="true">
+          <div class="sft-dial"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="62" fill="rgba(2,6,23,.55)" stroke="#7dd3fc" stroke-width="2"/><circle cx="66" cy="66" r="54" fill="none" stroke="#bae6fd" stroke-width="8" stroke-dasharray="1.5 15.46" opacity=".7"/><circle cx="66" cy="66" r="38" fill="none" stroke="rgba(186,230,253,.18)" stroke-width="1"/><g class="sft-needle" style="--sf-from:-322deg;--sf-to:38deg"><line x1="66" y1="66" x2="66" y2="20" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/></g><circle cx="66" cy="66" r="5" fill="#fef3c7"/></svg><span data-text="dial_10m"></span></div>
+          <div class="sft-dial"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="62" fill="rgba(2,6,23,.55)" stroke="#7dd3fc" stroke-width="2"/><circle cx="66" cy="66" r="54" fill="none" stroke="#bae6fd" stroke-width="8" stroke-dasharray="1.5 15.46" opacity=".7"/><circle cx="66" cy="66" r="38" fill="none" stroke="rgba(186,230,253,.18)" stroke-width="1"/><g class="sft-needle" style="--sf-from:-148deg;--sf-to:212deg"><line x1="66" y1="66" x2="66" y2="20" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/></g><circle cx="66" cy="66" r="5" fill="#fef3c7"/></svg><span data-text="dial_100m"></span></div>
+          <div class="sft-dial"><svg viewBox="0 0 132 132"><circle cx="66" cy="66" r="62" fill="rgba(2,6,23,.55)" stroke="#7dd3fc" stroke-width="2"/><circle cx="66" cy="66" r="54" fill="none" stroke="#bae6fd" stroke-width="8" stroke-dasharray="1.5 15.46" opacity=".7"/><circle cx="66" cy="66" r="38" fill="none" stroke="rgba(186,230,253,.18)" stroke-width="1"/><g class="sft-needle" style="--sf-from:-256deg;--sf-to:104deg"><line x1="66" y1="66" x2="66" y2="20" stroke="#fef3c7" stroke-width="3" stroke-linecap="round"/></g><circle cx="66" cy="66" r="5" fill="#fef3c7"/></svg><span data-text="dial_1km"></span></div>
+        </div>
+        <div class="sft-names">
+          <h1 class="sft-title" data-text="game_title"></h1>
+          <div class="sft-sub" data-text="game_subtitle"></div>
+        </div>
+      </div>
+      <div class="sft-side">
+        <div class="sft-boxes" aria-hidden="true">
+          <div class="sft-box"><span class="sf-lbl" data-text="title_hold"></span><b><i></i><span data-text="title_loaded"></span></b></div>
+          <div class="sft-box"><span class="sf-lbl" data-text="title_runway"></span><b><i></i><span data-text="title_clear"></span></b></div>
+        </div>
+        <p class="sft-note" data-text="tagline"></p>
+        <div class="sft-go">
+          <span class="sf-stamp" data-text="tower_clearance"></span>
+          <button class="sf-btn sf-btn-primary sft-start" data-action="start" data-text="start_engine"></button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

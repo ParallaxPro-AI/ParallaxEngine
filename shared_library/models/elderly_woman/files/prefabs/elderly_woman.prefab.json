@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elderly_woman"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6213, 1.6059, 0.4613],
+      "offset": [0, 0.8029, 0.028]
+    }
+  }
+}

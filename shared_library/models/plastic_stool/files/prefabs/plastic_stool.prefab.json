@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plastic_stool"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 0.45, 0.36],
+      "offset": [0, 0.225, 0]
+    }
+  }
+}

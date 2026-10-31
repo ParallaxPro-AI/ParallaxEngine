@@ -1,0 +1,10 @@
+{
+  "id": "enchanting_table",
+  "summary": "An arcane enchanting table: a faceted obsidian pedestal on an octagonal plinth with glowing rune inlays and a… joints hover, orbit_spin, book; options cloth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.enchanting_table or place \"prefab\": \"enchanting_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:enchanting_table"]
+}

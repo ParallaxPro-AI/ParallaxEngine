@@ -1,0 +1,10 @@
+{
+  "id": "field_gate",
+  "summary": "A timber field gate hung between two posts. joints leaf, latch; options style.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.field_gate or place \"prefab\": \"field_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:field_gate"]
+}

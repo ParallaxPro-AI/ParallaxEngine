@@ -1,0 +1,10 @@
+{
+  "id": "sideboard",
+  "summary": "A mid-century sideboard/credenza on tapered legs: two hinged cabinet doors flanking a central bank of three s… joints door_left, door_right, drawer_0, drawer_1, drawer_2; options finish; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sideboard or place \"prefab\": \"sideboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sideboard"]
+}

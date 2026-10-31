@@ -1,0 +1,51 @@
+{
+  "pieces": {
+    "ghost_racer": {
+      "from": "shared_library/gameplay/ghost_racer",
+      "version": "2026.10.23",
+      "sha": "2b2a6037eaf194f85e4baa6c8a38222ec2eaafd271e1c12d6cc552ddf3e55a6e",
+      "files": {
+        "config/ghost_racer.json": "ddd61b43d3ee40412f83df6923b0e79cc3bde2847bd498e30c03807d298c52e7",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/ghost_racer.py": "adab0fa3eba4b1b097663b123c8110ab5e5eac922d596987afe0f6bd7693a037"
+      },
+      "text": {}
+    },
+    "scene_tags": {
+      "from": "shared_library/core/scene_tags",
+      "version": "2026.10.23",
+      "sha": "0f056ebed781b197ffa0cbe8dee207ccde08a6e6b2c4e895249b8f1012f6c359",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/scene_tags.py": "6a0b14ef26d2a90ce86402cd4b2e60c1ad40e5d10dd85a5c9480aab7165ef378"
+      },
+      "text": {}
+    },
+    "time_trial": {
+      "from": "shared_library/gameplay/time_trial",
+      "version": "2026.10.23",
+      "sha": "d5cfab9723e4fcbc90cf9c98ac108f4d72cb935b1ef2a36027a68edcedf1b0fd",
+      "files": {
+        "config/time_trial.json": "4dabdd558c96449ead7d20b65b85a00d697e758f2337e0b077fb005c0597deb7",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/time_trial.py": "1a33195f001b883efe537e2c7b80f8a50e023c980a3fe5e92949c27d2fd9c0b8",
+        "ui/lib/time_trial.html": "f2d2a103884a27ad7804f67afff6110912bdb9b674914372fcc85ecacbbae365"
+      },
+      "text": {
+        "locale/en.json": [
+          "time_trial_best",
+          "time_trial_gold"
+        ]
+      }
+    },
+    "ui_theme": {
+      "from": "shared_library/core/ui_theme",
+      "version": "2026.10.23",
+      "sha": "c4c9f52e853af817702f701e9c4d3b4e74435f284420ace9722ba5bf0c195288",
+      "files": {
+        "ui/lib/theme.css": "c5be7110d951bf6ec20229526256c6943d5a87bd76c659119d4f94152b54107b"
+      },
+      "text": {}
+    }
+  }
+}

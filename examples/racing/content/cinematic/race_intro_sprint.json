@@ -1,0 +1,59 @@
+{
+  "duration": 3.0,
+  "skippable": true,
+  "scenes": [
+    "terrain_sprint"
+  ],
+  "tracks": [
+    {
+      "type": "camera",
+      "keys": [
+        {
+          "t": 0,
+          "cut": true,
+          "position": [
+            458,
+            110.45,
+            102
+          ],
+          "look_at": [
+            443,
+            82.31,
+            80
+          ],
+          "fov": 50
+        },
+        {
+          "t": 1.5,
+          "position": [
+            441,
+            92.15,
+            56
+          ],
+          "look_at": [
+            443,
+            81.49,
+            88
+          ],
+          "fov": 52,
+          "ease": "in_out_quad"
+        },
+        {
+          "t": 3.0,
+          "position": [
+            440,
+            85.11,
+            66
+          ],
+          "look_at": [
+            445,
+            83.42,
+            106
+          ],
+          "fov": 52,
+          "ease": "in_out_cubic"
+        }
+      ]
+    }
+  ]
+}

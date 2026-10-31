@@ -1,0 +1,10 @@
+{
+  "id": "souk_corner",
+  "summary": "A two-storey Middle-Eastern souk corner block in the Claude-of-Duty idiom: shopfronts wrapping TWO street fac… sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.souk_corner or place \"prefab\": \"souk_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:souk_corner"]
+}

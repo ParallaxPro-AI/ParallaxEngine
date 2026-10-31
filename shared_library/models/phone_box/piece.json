@@ -1,0 +1,10 @@
+{
+  "id": "phone_box",
+  "summary": "A classic red K6-style British telephone box: solid plinth base, glazed sides on a corner-post frame, a TELEP… joints door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.phone_box or place \"prefab\": \"phone_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:phone_box"]
+}

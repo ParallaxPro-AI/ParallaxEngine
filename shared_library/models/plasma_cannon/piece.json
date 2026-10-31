@@ -1,0 +1,10 @@
+{
+  "id": "plasma_cannon",
+  "summary": "A heavy shoulder-fired plasma cannon, 1.04 m: a chamfered armoured receiver over a dark keel with a rubber sh… joints trigger, heat_vent, cell; options armor_colour, glow_colour; sockets socket_muzzle, socket_optic, vent, grip_r, grip_l, sight, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.plasma_cannon or place \"prefab\": \"plasma_cannon\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:plasma_cannon"]
+}

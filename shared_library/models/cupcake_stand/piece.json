@@ -1,0 +1,10 @@
+{
+  "id": "cupcake_stand",
+  "summary": "A three-tier glazed ceramic cupcake stand on a domed foot with a gold-tone centre rod and carry ring, holding… options stand, frosting, cupcakes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cupcake_stand or place \"prefab\": \"cupcake_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cupcake_stand"]
+}

@@ -1,0 +1,31 @@
+{
+  "components": {
+    "model": {
+      "model": "models/healer"
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.4,
+      "height": 1.8,
+      "offset": [
+        0,
+        0.9,
+        0
+      ]
+    },
+    "nameplate": {
+      "text": "Sister Maelin",
+      "health": false,
+      "shown": false
+    },
+    "talkable": {
+      "dialogue": "sister_maelin"
+    }
+  },
+  "tags": [
+    "npc"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "flashlight",
+  "summary": "A 0.20 m aluminium LED flashlight: a knurled grip tube with a pocket clip, a rubber side switch, four cooling… joints switch; options power, body_colour; sockets beam, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.flashlight or place \"prefab\": \"flashlight\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:flashlight"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ice_machine",
+  "summary": "A hotel-corridor ice machine: a stainless ice-maker head with a black bezel, a louvred air grille, power / bi… joints bin_door; options finish, ice; sockets user_spot, bucket_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_machine or place \"prefab\": \"ice_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_machine"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/go_kart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.302, 0.5823, 1.79],
+      "offset": [0, 0.2911, -0.045]
+    }
+  }
+}

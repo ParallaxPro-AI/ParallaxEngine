@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/console_terminal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.78, 1.6, 0.56],
+      "offset": [0, 0.8, 0]
+    }
+  }
+}

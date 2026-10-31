@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/morgue_drawer_bank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.46, 2.356, 2.451],
+      "offset": [0, 1.178, 0.0555]
+    }
+  }
+}

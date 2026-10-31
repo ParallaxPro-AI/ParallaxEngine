@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/courier_parcel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.464, 0.312, 0.324],
+      "offset": [0, 0.004, 0]
+    }
+  }
+}

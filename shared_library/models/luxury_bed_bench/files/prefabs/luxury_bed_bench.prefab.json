@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_bed_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 0.48, 0.45],
+      "offset": [0, 0.24, 0]
+    }
+  }
+}

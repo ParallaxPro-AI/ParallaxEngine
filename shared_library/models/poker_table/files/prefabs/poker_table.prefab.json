@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/poker_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.7063, 0.9086, 2.5506],
+      "offset": [0, 0.4543, 0]
+    }
+  }
+}

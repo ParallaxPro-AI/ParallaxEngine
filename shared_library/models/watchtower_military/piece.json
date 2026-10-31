@@ -1,0 +1,10 @@
+{
+  "id": "watchtower_military",
+  "summary": "A steel military guard tower: four splayed box-section legs on concrete footings, X-braced on every face, car… joints ladder_gate, door, searchlight, searchlight_head; options paint; sockets ladder_bottom, ladder_top, lookout, beacon.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watchtower_military or place \"prefab\": \"watchtower_military\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watchtower_military"]
+}

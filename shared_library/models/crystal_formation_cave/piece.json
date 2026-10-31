@@ -1,0 +1,10 @@
+{
+  "id": "crystal_formation_cave",
+  "summary": "A cave crystal formation: a cluster of violet amethyst quartz points - six-sided prisms with pyramidal termin…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crystal_formation_cave or place \"prefab\": \"crystal_formation_cave\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crystal_formation_cave"]
+}

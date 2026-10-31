@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/aquarium_large"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.22, 1.435, 0.5237],
+      "offset": [0, 0.7175, 0.0001]
+    }
+  }
+}

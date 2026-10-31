@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crystal_ball"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.151, 0.212, 0.1559],
+      "offset": [0, 0.106, 0.0024]
+    }
+  }
+}

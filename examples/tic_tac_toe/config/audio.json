@@ -1,0 +1,7 @@
+{
+  "place": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/55/a1/55a15cba3be43966ee2191cd60657bae620d9e32efa75e715f17e365b7287da0.mp3", "volume": 0.4 },
+  "taken": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3", "volume": 0.2 },
+  "win": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3", "volume": 0.55 },
+  "lose": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg", "volume": 0.5 },
+  "draw": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3", "volume": 0.4 }
+}

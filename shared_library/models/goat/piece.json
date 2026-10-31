@@ -1,0 +1,10 @@
+{
+  "id": "goat",
+  "summary": "A domestic goat on the engine's quadruped_20 rig, so the built-in quadruped clips (Idle, Walk, Trot, Sit, Eat… options coat, horns; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.goat or place \"prefab\": \"goat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:goat"]
+}

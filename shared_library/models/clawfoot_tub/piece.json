@@ -1,0 +1,10 @@
+{
+  "id": "clawfoot_tub",
+  "summary": "A Victorian double-ended cast-iron roll-top bath on four claw-and-ball feet: a white enamel well and rolled r… joints hot, cold; options paint, metal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.clawfoot_tub or place \"prefab\": \"clawfoot_tub\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:clawfoot_tub"]
+}

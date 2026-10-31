@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/knight_tent_pavilion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.067, 4.36, 5.2733],
+      "offset": [0, 2.18, 0]
+    }
+  }
+}

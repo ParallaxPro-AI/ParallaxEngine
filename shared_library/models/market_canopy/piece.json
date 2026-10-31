@@ -1,0 +1,10 @@
+{
+  "id": "market_canopy",
+  "summary": "A 3 x 3 m pop-up market canopy: four telescopic square aluminium legs on foot plates, each held down by a can… options walls, goods, canvas; sockets vendor, counter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_canopy or place \"prefab\": \"market_canopy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_canopy"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "skate_ramp",
+  "summary": "A small wooden skateboard / BMX quarter pipe: one 0.9 m transition on a 1.5 m radius rising toward +Z from a… options skirt_colour, surface; sockets socket_deck_b, socket_lip_b, socket_toe.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skate_ramp or place \"prefab\": \"skate_ramp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skate_ramp"]
+}

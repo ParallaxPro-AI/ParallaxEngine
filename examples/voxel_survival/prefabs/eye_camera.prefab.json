@@ -1,0 +1,22 @@
+{
+  "components": {
+    "camera": {
+      "rig": "first_person",
+      "fov": 75,
+      "pitch_limits": [
+        -85,
+        85
+      ]
+    }
+  },
+  "children": [
+    {
+      "name": "hands",
+      "components": {
+        "viewmodel": {
+          "fov": 62
+        }
+      }
+    }
+  ]
+}

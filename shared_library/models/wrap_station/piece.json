@@ -1,0 +1,10 @@
+{
+  "id": "wrap_station",
+  "summary": "A turntable pallet stretch-wrapper: a welded steel skid carrying a driven turntable a pallet is set down on… joints turntable, carriage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wrap_station or place \"prefab\": \"wrap_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wrap_station"]
+}

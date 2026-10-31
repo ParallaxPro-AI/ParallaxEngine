@@ -1,0 +1,10 @@
+{
+  "id": "rock_arch",
+  "summary": "A natural sandstone rock arch of the desert-canyon kind, about 7.0 m wide, 4.4 m tall and 2.4 m deep, with an…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rock_arch or place \"prefab\": \"rock_arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rock_arch"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/exam_table_clinic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.79, 1.1778, 0.709],
+      "offset": [0, 0.5889, 0.0145]
+    }
+  }
+}

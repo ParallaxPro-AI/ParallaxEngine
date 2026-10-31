@@ -1,0 +1,14 @@
+{
+  "id": "streetlight",
+  "summary": "A ~5 m roadside streetlight: anchored base, tapered pole, and a luminaire on an arm reaching over the road… options era, heads; sockets socket_banner.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.streetlight or place \"prefab\": \"streetlight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:streetlight"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stapler_tape_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1771, 0.0812, 0.1521],
+      "offset": [0.0025, 0.0406, -0.0102]
+    }
+  }
+}

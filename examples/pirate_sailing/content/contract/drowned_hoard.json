@@ -1,0 +1,9 @@
+{
+  "number": 5,
+  "label": "Raise 4 drowned hoards",
+  "kind": "treasure",
+  "goal": 4,
+  "gold": 170,
+  "hoards": 4,
+  "radius": 70
+}

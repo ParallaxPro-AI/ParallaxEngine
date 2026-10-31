@@ -1,0 +1,10 @@
+{
+  "id": "clothes_rail",
+  "summary": "A mobile retail clothes rail: a chrome top tube on two uprights over two feet, four swivel castors, and a row… joints castor_0_l, roll_0_l, castor_1_l, roll_1_l, castor_0_r, roll_0_r, …; sockets socket_rail_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.clothes_rail or place \"prefab\": \"clothes_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:clothes_rail"]
+}

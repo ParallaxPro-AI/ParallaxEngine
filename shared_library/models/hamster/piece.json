@@ -1,0 +1,10 @@
+{
+  "id": "hamster",
+  "summary": "A golden hamster on the quadruped_20 rig, ~11 cm at the ears. options coat; sockets head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hamster or place \"prefab\": \"hamster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hamster"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "grenade",
+  "summary": "A hand grenade with a shared M228-style fuze: a safety pin that pulls out and a safety lever (spoon) that swi… joints pin, lever; options type; sockets socket_top, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.grenade or place \"prefab\": \"grenade\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:grenade"]
+}

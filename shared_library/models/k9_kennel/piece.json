@@ -1,0 +1,10 @@
+{
+  "id": "k9_kennel",
+  "summary": "A police K9 outdoor kennel run: a 1.6 x 2.4 x 1.85 m galvanised welded-bar enclosure on a concrete slab with… joints gate; options roof, finish; sockets socket_dog, socket_dog_house, socket_handler.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.k9_kennel or place \"prefab\": \"k9_kennel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:k9_kennel"]
+}

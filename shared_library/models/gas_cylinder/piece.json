@@ -1,0 +1,10 @@
+{
+  "id": "gas_cylinder",
+  "summary": "A tall compressed-gas cylinder (230 mm diameter, about 1.45 m with its cap): a drawn-steel body with an ellip… joints valve; options cap, paint, band; sockets regulator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gas_cylinder or place \"prefab\": \"gas_cylinder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gas_cylinder"]
+}

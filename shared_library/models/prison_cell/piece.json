@@ -1,0 +1,10 @@
+{
+  "id": "prison_cell",
+  "summary": "A dungeon prison cell front from the DUNGEON_KIT: a full-width wall of wrought-iron bars with banded rails, a… joints gate; options furnishing, iron; sockets prisoner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.prison_cell or place \"prefab\": \"prison_cell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:prison_cell"]
+}

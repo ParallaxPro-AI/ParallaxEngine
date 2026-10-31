@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ramadan_lantern"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.26, 0.6565, 0.26],
+      "offset": [0, 0.3282, 0]
+    }
+  }
+}

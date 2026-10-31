@@ -1,0 +1,10 @@
+{
+  "id": "picnic_table",
+  "summary": "A classic 6 ft (1.83 m) A-frame wooden picnic table with its two benches attached: five gapped top boards at… options finish; sockets socket_top, socket_seat_fl, socket_seat_fr, socket_seat_bl, socket_seat_br.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.picnic_table or place \"prefab\": \"picnic_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:picnic_table"]
+}

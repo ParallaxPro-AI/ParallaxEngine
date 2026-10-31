@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wok_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5513, 1.4229, 0.943],
+      "offset": [-0.0206, 0.7094, 0.0215]
+    }
+  }
+}

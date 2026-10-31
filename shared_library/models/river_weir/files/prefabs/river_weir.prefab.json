@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/river_weir"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [14, 2.9, 2.85],
+      "offset": [0, 1.45, -0.075]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/duty_free_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.344, 2.31, 0.874],
+      "offset": [0, 1.155, -0.015]
+    }
+  }
+}

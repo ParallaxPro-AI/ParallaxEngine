@@ -1,0 +1,10 @@
+{
+  "id": "pig",
+  "summary": "A domestic pig (0.8 m at the back, ~1.45 m snout to tail) on the engine's quadruped_20 rig, so the built-in q… options coat, snout, markings; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pig or place \"prefab\": \"pig\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pig"]
+}

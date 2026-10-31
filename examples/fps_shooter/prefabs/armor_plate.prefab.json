@@ -1,0 +1,25 @@
+{
+ "extends": "ammo_crate",
+ "components": {
+  "shape": {
+   "kind": "box",
+   "size": [
+    0.55,
+    0.7,
+    0.22
+   ],
+   "color": "#a2ddff",
+   "cast_shadows": true
+  },
+  "marker": {
+   "icon": "diamond",
+   "label": "Supply",
+   "color": "#e6ba70"
+  }
+ },
+ "behaviors": {
+  "pickup": {
+   "kind": "armor"
+  }
+ }
+}

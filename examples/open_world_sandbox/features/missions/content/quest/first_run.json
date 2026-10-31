@@ -1,0 +1,36 @@
+{
+  "title": "First Run",
+  "summary": "Borrow my car. Collect sealed cargo at Bay Supply. Wait for a quiet handover for a $150 bonus, or force a fast pickup and face the police. Bring it home clean.",
+  "contact": "mara",
+  "kind": "courier",
+  "brief_node": "first_run_brief",
+  "paid_node": "first_run_paid",
+  "pickup_crime": "job_heat",
+  "reward": 350,
+  "quiet_bonus": 150,
+  "start": "car",
+  "steps": {
+    "car": {
+      "text": "Get a car. Mara's is outside the safehouse.",
+      "verb": "in_car", "next": ["pickup"]
+    },
+    "pickup": {
+      "text": "Drive to {place} ({distance} m), stop in the bay, then K to hand over — or B for a fast pickup.",
+      "verb": "pick_up", "target": "bay_supply", "marker": "supply_bay", "next": ["load"]
+    },
+    "load": {
+      "text": "Loading… keep the car still in the bay ({loaded}s).",
+      "verb": "hold_still", "target": "bay_supply", "marker": "supply_bay",
+      "next": ["deliver"],
+      "next_if": [{ "fact": "cargo_rushed", "goto": ["escape"] }]
+    },
+    "escape": {
+      "text": "Lose the police. Break line of sight and stay hidden.",
+      "verb": "lose_heat", "next": ["deliver"]
+    },
+    "deliver": {
+      "text": "Deliver to {place} ({distance} m). Stop in the bay and press K.",
+      "verb": "deliver", "target": "safehouse", "marker": "safehouse_bay"
+    }
+  }
+}

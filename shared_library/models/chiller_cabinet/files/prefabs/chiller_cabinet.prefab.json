@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chiller_cabinet",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.88,
+        2.0,
+        0.846
+      ],
+      "offset": [
+        0.0,
+        1.0,
+        0.023
+      ]
+    }
+  }
+}

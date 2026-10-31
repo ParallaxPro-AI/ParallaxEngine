@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_elemental"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5864, 2.6727, 0.873],
+      "offset": [0, 1.3364, -0.047]
+    }
+  }
+}

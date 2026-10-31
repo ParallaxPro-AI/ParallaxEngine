@@ -1,0 +1,10 @@
+{
+  "id": "lmg",
+  "summary": "A belt-fed 5.56 light machine gun in the M249 idiom: deep stamped receiver with a hinged feed-tray cover carr… joints feed_cover, charging_handle, drum, bipod, trigger, shoulder_rest; sockets socket_muzzle, socket_optic, socket_foregrip, socket_rail_r, socket_ammo, grip_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.lmg or place \"prefab\": \"lmg\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:lmg"]
+}

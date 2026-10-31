@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bolt_cutter"
+    },
+    "viewmodel_item": {
+      "hip": [0.02, -0.36, 0.3],
+      "hip_turn": [2.864789, 0.0, 0.0],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1167, 0.0364, 0.6167],
+      "offset": [0, 0.019, 0.3037]
+    }
+  }
+}

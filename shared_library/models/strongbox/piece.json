@@ -1,0 +1,10 @@
+{
+  "id": "strongbox",
+  "summary": "A small banded steel strongbox with a hinged lid and a swinging padlock loop (hasp) on the front. joints lid, padlock_loop; sockets socket_interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.strongbox or place \"prefab\": \"strongbox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:strongbox"]
+}

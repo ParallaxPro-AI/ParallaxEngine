@@ -1,0 +1,30 @@
+{
+ "duration": 0.24,
+ "seed": 630,
+ "gain": 0.6,
+ "layers": [
+  {
+   "wave": "sine",
+   "freq": 260,
+   "freq_end": 640,
+   "attack": 0.03,
+   "decay": 0.2,
+   "sustain": 0.1,
+   "gain": 0.5,
+   "ring_hz": 90
+  },
+  {
+   "wave": "noise",
+   "attack": 0.05,
+   "decay": 0.16,
+   "sustain": 0,
+   "gain": 0.35,
+   "filter": {
+    "type": "bandpass",
+    "freq": 1200,
+    "freq_end": 2400,
+    "q": 1.8
+   }
+  }
+ ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stealth_bomber"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [50, 5.0794, 19.1],
+      "offset": [0, 2.5397, 0.95]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wifi_router"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.23, 0.206, 0.1522],
+      "offset": [0, 0.103, -0.0011]
+    }
+  }
+}

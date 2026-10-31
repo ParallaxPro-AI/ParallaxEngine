@@ -1,0 +1,10 @@
+{
+  "id": "hot_dog",
+  "summary": "A hot dog: a soft split bun with rounded ends and a flatter base, its pale crumb showing inside the split, ho… options sauce, tray, tray_colour; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hot_dog or place \"prefab\": \"hot_dog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hot_dog"]
+}

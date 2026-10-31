@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vcr_vhs"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.432, 0.1226, 0.3691],
+      "offset": [0, 0.0613, 0.0241]
+    }
+  }
+}

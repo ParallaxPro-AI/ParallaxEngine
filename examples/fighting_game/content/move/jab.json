@@ -1,0 +1,9 @@
+{
+  "label": "JAB",
+  "clip": "clips/light", "swing_sound": "sfx/swing_light", "hit_sound": "sfx/hit_light",
+  "startup": 6, "active": 3, "recovery": 13,
+  "damage": 6, "reach": 1.1, "box_height": 1.0,
+  "hitstun": 23, "blockstun": 10, "hitstop": 0.045, "knockback": 1.2, "shake": 0.045, "rumble": 0.012,
+  "cancels_into": ["heavy", "chi_bolt"],
+  "in_air": "air_strike"
+}

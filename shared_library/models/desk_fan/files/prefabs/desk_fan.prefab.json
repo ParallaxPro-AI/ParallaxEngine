@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/desk_fan"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.317, 0.5185, 0.227],
+      "offset": [0, 0.2592, -0.0015]
+    }
+  }
+}

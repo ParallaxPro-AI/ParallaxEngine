@@ -1,0 +1,10 @@
+{
+  "id": "houseplant_fiddle_leaf",
+  "summary": "A potted fiddle-leaf fig tree: a slim grey trunk with a slight S and two side branches carrying 32 large glos… options planter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.houseplant_fiddle_leaf or place \"prefab\": \"houseplant_fiddle_leaf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:houseplant_fiddle_leaf"]
+}

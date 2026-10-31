@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/windmill"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4, 7.35, 4.45],
+      "offset": [0, 3.675, 0.025]
+    }
+  }
+}

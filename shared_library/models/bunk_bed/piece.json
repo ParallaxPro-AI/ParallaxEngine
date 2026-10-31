@@ -1,0 +1,10 @@
+{
+  "id": "bunk_bed",
+  "summary": "A solid-wood twin-over-twin bunk bed: four square corner posts, panelled head and foot ends on both tiers, a… joints drawer_foot, drawer_head; options finish, bedding_lower, bedding_upper; sockets socket_bunk_lower, socket_bunk_upper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bunk_bed or place \"prefab\": \"bunk_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bunk_bed"]
+}

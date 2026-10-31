@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/passenger_ferry"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 480000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [16, 18.3, 59.6],
+      "offset": [0, 9.15, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ramen_bowl"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.15, 0.0815, 0.15],
+      "offset": [0, 0.0408, 0]
+    }
+  }
+}

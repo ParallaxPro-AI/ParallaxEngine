@@ -1,0 +1,10 @@
+{
+  "id": "sphinx_statue_small",
+  "summary": "A small Egyptian sphinx statue, 1.45 m long and 1.1 m high: a recumbent lion with forelegs stretched out, hau… options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sphinx_statue_small or place \"prefab\": \"sphinx_statue_small\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sphinx_statue_small"]
+}

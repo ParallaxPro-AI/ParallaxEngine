@@ -1,0 +1,10 @@
+{
+  "id": "smith_machine",
+  "summary": "A commercial Smith machine (2.2 m tall, 2.2 m wide across the loaded bar): four 75 mm box uprights on floor r… joints safety_stops, bar_carriage; options load, frame, plates; sockets socket_bar, stand_user, socket_bench.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.smith_machine or place \"prefab\": \"smith_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:smith_machine"]
+}

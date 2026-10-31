@@ -1,0 +1,35 @@
+<!-- Sunset Bay title, ported from the template's code/ui/title_screens/open_world_crime.html: the
+     sun-cut SUNSET BAY poster wordmark over the city, the tagline and one amber Play button. -->
+<link rel="stylesheet" href="sunset_bay.css">
+<style>
+  .sbt { position: fixed; inset: 0; pointer-events: auto; font-family: var(--sb-font, 'Inter', system-ui, sans-serif); color: var(--sb-ink, #f4efe6); -webkit-font-smoothing: antialiased; }
+  .sbt-veil { position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 45%, rgba(8,14,20,0), rgba(8,14,20,.75)), linear-gradient(180deg, rgba(8,14,20,0) 55%, rgba(8,14,20,.85)); }
+  .sbt-wrap { position: absolute; z-index: 1; left: 0; right: 0; top: calc(250 * var(--sb-u)); display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .sbt-wm { margin: 0; filter: drop-shadow(0 calc(10 * var(--sb-u)) 0 #111f28) drop-shadow(0 0 calc(40 * var(--sb-u)) rgba(251,113,36,.35)); }
+  .sbt-wm span { display: block; font: 400 calc(300 * var(--sb-u))/.86 var(--sb-font-display, 'Anton', Impact, sans-serif); letter-spacing: .01em; white-space: nowrap; text-transform: uppercase; text-shadow: none;
+    background: linear-gradient(180deg, #fde68a 0%, #fbbf24 38%, #f97316 70%, #e7b77b 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+    -webkit-mask-image: linear-gradient(180deg, #000 0 56%, transparent 56% 60%, #000 60% 69%, transparent 69% 72.5%, #000 72.5% 81%, transparent 81% 83.5%, #000 83.5%);
+    mask-image: linear-gradient(180deg, #000 0 56%, transparent 56% 60%, #000 60% 69%, transparent 69% 72.5%, #000 72.5% 81%, transparent 81% 83.5%, #000 83.5%); }
+  .sbt-tag { margin: calc(36 * var(--sb-u)) 0 0; font: 500 calc(26 * var(--sb-u))/1.3 var(--sb-font, 'Inter', sans-serif); letter-spacing: .01em; text-shadow: 0 2px 0 rgba(0,0,0,.35), 0 0 calc(18 * var(--sb-u)) rgba(0,0,0,.35); }
+  .sbt-play { margin-top: calc(64 * var(--sb-u)); display: inline-flex; align-items: center; justify-content: center; min-height: calc(84 * var(--sb-u)); padding: 0 calc(80 * var(--sb-u)); border: 0; border-radius: calc(16 * var(--sb-u)); cursor: pointer;
+    background: var(--sb-amber, #fbbf24); color: var(--sb-panel, #111f28); font: 800 calc(30 * var(--sb-u))/1 var(--sb-font, 'Inter', sans-serif); letter-spacing: .2em; text-transform: uppercase;
+    box-shadow: 0 0 0 calc(6 * var(--sb-u)) rgba(251,191,36,.2), 0 calc(14 * var(--sb-u)) calc(40 * var(--sb-u)) rgba(0,0,0,.45); transition: transform .12s, background .12s; }
+  .sbt-play:hover, .sbt-play[data-parallax-hover] { background: var(--sb-amber-hi, #fcd34d); transform: translateY(-2px); }
+  .sbt-play:active { transform: scale(.97); }
+  .sbt-play:focus-visible { outline: calc(3 * var(--sb-u)) solid #fff; outline-offset: calc(6 * var(--sb-u)); }
+  @media (pointer: coarse) {
+    .sbt-wrap { top: calc(116 * var(--sb-u)); }
+    .sbt-wm { filter: drop-shadow(0 calc(10 * var(--sb-u)) 0 #111f28) drop-shadow(0 0 calc(40 * var(--sb-u)) rgba(251,113,36,.35)); }
+    .sbt-wm span { font-size: calc(280 * var(--sb-u)); }
+    .sbt-tag { margin-top: calc(32 * var(--sb-u)); font-size: calc(28 * var(--sb-u)); }
+    .sbt-play { margin-top: calc(48 * var(--sb-u)); min-height: calc(104 * var(--sb-u)); padding: 0 calc(96 * var(--sb-u)); border-radius: calc(24 * var(--sb-u)); font-size: calc(34 * var(--sb-u)); }
+  }
+</style>
+<div class="sbt">
+  <div class="sbt-veil"></div>
+  <main class="sbt-wrap">
+    <h1 class="sbt-wm"><span data-text="game_title"></span></h1>
+    <p class="sbt-tag" data-text="game_tagline"></p>
+    <button class="sbt-play" data-action="play" data-key="Enter" data-text="play"></button>
+  </main>
+</div>

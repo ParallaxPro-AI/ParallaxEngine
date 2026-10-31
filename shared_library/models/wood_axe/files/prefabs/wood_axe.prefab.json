@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wood_axe"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.42, 0.34],
+      "hip_turn": [-17.188734, -26.356059, -40.107046],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.193, 0.0364, 0.8055],
+      "offset": [0.0495, 0, 0.4027]
+    }
+  }
+}

@@ -1,0 +1,136 @@
+<!-- Ported from the template: Armor Assault title screen - Tank Hangar / Armored Front panel with the MBT schematic, career readouts, briefing, save status, Deploy Tank and Continue -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif); color: #e8e8e8; -webkit-font-smoothing: antialiased; }
+  .scene { position: fixed; inset: 0; display: flex; align-items: center; justify-content: safe center; flex-direction: column; overflow-y: auto; padding: calc(24 * var(--u)); pointer-events: none; background: rgba(3,6,4,.45); }
+  .panel { position: relative; flex-shrink: 0; width: calc(1240 * var(--u)); max-width: 100%; background: rgba(5,10,8,.62); border: 1px solid rgba(255,255,255,.14); animation: aaIn .45s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes aaIn { from { opacity: 0; transform: translateY(calc(14 * var(--u))); } to { opacity: 1; transform: none; } }
+  .corner { position: absolute; width: calc(22 * var(--u)); height: calc(22 * var(--u)); border: 0 solid #f59e0b; pointer-events: none; }
+  .corner.tl { left: -1px; top: -1px; border-left-width: 2px; border-top-width: 2px; }
+  .corner.tr { right: -1px; top: -1px; border-right-width: 2px; border-top-width: 2px; }
+  .corner.bl { left: -1px; bottom: -1px; border-left-width: 2px; border-bottom-width: 2px; }
+  .corner.br { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: calc(60 * var(--u)); padding: 0 calc(32 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.12); background: repeating-linear-gradient(-45deg, rgba(77,124,15,.18) 0 calc(10 * var(--u)), rgba(77,124,15,.06) calc(10 * var(--u)) calc(20 * var(--u))); }
+  .bar-l { display: flex; align-items: center; gap: calc(14 * var(--u)); font-weight: 700; font-size: calc(20 * var(--u)); letter-spacing: .28em; white-space: nowrap; }
+  .bar-l i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); background: #4d7c0f; outline: 1px solid rgba(255,255,255,.3); }
+  .tag { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(5 * var(--u)) calc(12 * var(--u)); border: 1px solid #f59e0b; color: #f59e0b; font-weight: 700; font-size: calc(16 * var(--u)); letter-spacing: .2em; white-space: nowrap; }
+  .tag svg { width: calc(10 * var(--u)); height: calc(20 * var(--u)); }
+  .grid { display: grid; grid-template-columns: calc(520 * var(--u)) 1fr; gap: calc(64 * var(--u)); padding: calc(56 * var(--u)) calc(64 * var(--u)) calc(60 * var(--u)); }
+  .lcol { display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
+  .schem { position: relative; height: calc(330 * var(--u)); border: 1px solid rgba(34,211,238,.25); background: linear-gradient(rgba(34,211,238,.06) 1px, transparent 1px) 0 0/calc(26 * var(--u)) calc(26 * var(--u)), linear-gradient(90deg, rgba(34,211,238,.06) 1px, transparent 1px) 0 0/calc(26 * var(--u)) calc(26 * var(--u)), rgba(2,8,8,.5); overflow: hidden; }
+  .schem svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .schem-cap { position: absolute; left: calc(14 * var(--u)); top: calc(12 * var(--u)); font-family: var(--aa-font-mono, ui-monospace, Menlo, monospace); font-size: calc(12 * var(--u)); letter-spacing: .1em; color: rgba(34,211,238,.7); }
+  .specs { display: flex; justify-content: space-between; font-weight: 600; font-size: calc(15 * var(--u)); letter-spacing: .22em; color: #888; }
+  .rcol { display: flex; flex-direction: column; min-width: 0; }
+  .title { font-family: var(--aa-font-display, 'Anton', Impact, sans-serif); font-size: calc(132 * var(--u)); line-height: .92; letter-spacing: .01em; text-transform: uppercase; }
+  .subtitle { margin-top: calc(14 * var(--u)); font-weight: 600; font-size: calc(26 * var(--u)); letter-spacing: .42em; text-transform: uppercase; color: #22d3ee; }
+  .tb-m { display: none; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: calc(40 * var(--u)); border: 1px solid rgba(255,255,255,.12); }
+  .stat { padding: calc(16 * var(--u)) calc(20 * var(--u)); border-right: 1px solid rgba(255,255,255,.12); min-width: 0; }
+  .stat:last-child { border-right: 0; }
+  .stat-k { font-weight: 600; font-size: calc(14 * var(--u)); letter-spacing: .24em; color: #888; white-space: nowrap; }
+  .stat-v { margin-top: calc(6 * var(--u)); font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 700; font-size: calc(34 * var(--u)); font-variant-numeric: tabular-nums; }
+  .brief { margin-top: calc(28 * var(--u)); max-width: calc(560 * var(--u)); font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 500; font-size: calc(18 * var(--u)); line-height: 1.55; color: #c9cbc9; }
+  .status { display: flex; align-items: center; gap: calc(10 * var(--u)); margin-top: calc(30 * var(--u)); font-weight: 600; font-size: calc(16 * var(--u)); letter-spacing: .24em; }
+  .status i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); }
+  .status.hot i { border-radius: 50%; background: #f59e0b; box-shadow: 0 0 calc(10 * var(--u)) #f59e0b; }
+  .status.hot .s1 { color: #f59e0b; }
+  .status.save i { background: #22d3ee; }
+  .status.save .s1 { color: #22d3ee; }
+  .status .s2 { color: #888; }
+  .btns { display: flex; gap: calc(16 * var(--u)); margin-top: calc(20 * var(--u)); }
+  .btn { display: flex; align-items: center; justify-content: center; gap: calc(14 * var(--u)); height: calc(66 * var(--u)); padding: 0 calc(32 * var(--u)); border: 1px solid rgba(232,232,232,.4); background: transparent; color: #e8e8e8; font-family: inherit; font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .18em; text-transform: uppercase; cursor: pointer; pointer-events: auto; white-space: nowrap; transition: background .15s ease, border-color .15s ease, transform .06s ease; }
+  .btn:hover, .btn:focus-visible { border-color: #e8e8e8; background: rgba(255,255,255,.06); outline: none; }
+  .btn:active { transform: scale(.98); }
+  .btn.primary { height: calc(68 * var(--u)); padding: 0 calc(40 * var(--u)); border: 0; background: #22c55e; color: #06140a; font-weight: 700; font-size: calc(26 * var(--u)); letter-spacing: .2em; clip-path: polygon(calc(14 * var(--u)) 0,100% 0,100% calc(100% - calc(14 * var(--u))),calc(100% - calc(14 * var(--u))) 100%,0 100%,0 calc(14 * var(--u))); }
+  .btn.primary:hover, .btn.primary:focus-visible { background: #4ade80; }
+  .btn.primary:active { background: #16a34a; }
+  .btn.primary svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+  @media (pointer: coarse) {
+    .scene { padding: calc(24 * var(--u)) calc(32 * var(--u)); }
+    .panel { width: 100%; }
+    .corner { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+    .corner.tr, .corner.bl { display: none; }
+    .bar { height: calc(68 * var(--u)); padding: 0 calc(32 * var(--u)); }
+    .bar-l { gap: calc(16 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: .24em; }
+    .bar-l i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    .tag { gap: calc(12 * var(--u)); padding: calc(4 * var(--u)) calc(16 * var(--u)); font-size: calc(24 * var(--u)); letter-spacing: .18em; }
+    .tag svg { width: calc(12 * var(--u)); height: calc(24 * var(--u)); }
+    .grid { grid-template-columns: calc(600 * var(--u)) 1fr; gap: calc(56 * var(--u)); padding: calc(32 * var(--u)) calc(44 * var(--u)) calc(36 * var(--u)); align-items: center; }
+    .schem { height: calc(240 * var(--u)); }
+    .schem-cap, .specs { display: none; }
+    .lcol { gap: 0; }
+    .tb-d { display: none; }
+    .tb-m { display: block; }
+    .tb-m .title { margin-top: calc(24 * var(--u)); font-size: calc(104 * var(--u)); line-height: .95; }
+    .tb-m .subtitle { margin-top: calc(12 * var(--u)); font-size: calc(30 * var(--u)); letter-spacing: .4em; }
+    .stats { margin-top: 0; }
+    .stat { padding: calc(16 * var(--u)) calc(24 * var(--u)); }
+    .stat-k { font-size: calc(22 * var(--u)); letter-spacing: .2em; }
+    .stat-v { margin-top: 2px; font-size: calc(40 * var(--u)); }
+    .brief { margin-top: calc(24 * var(--u)); max-width: none; font-size: calc(26 * var(--u)); line-height: 1.45; }
+    .status { margin-top: calc(24 * var(--u)); gap: calc(16 * var(--u)); font-size: calc(24 * var(--u)); letter-spacing: .22em; }
+    .status i { width: calc(12 * var(--u)); height: calc(12 * var(--u)); }
+    .btns { gap: calc(20 * var(--u)); margin-top: calc(24 * var(--u)); }
+    .btn { flex: 1; height: calc(92 * var(--u)); padding: 0 calc(16 * var(--u)); font-size: calc(30 * var(--u)); letter-spacing: .14em; }
+    .btn.primary { height: calc(96 * var(--u)); padding: 0 calc(16 * var(--u)); font-size: calc(36 * var(--u)); letter-spacing: .18em; clip-path: polygon(calc(20 * var(--u)) 0,100% 0,100% calc(100% - calc(20 * var(--u))),calc(100% - calc(20 * var(--u))) 100%,0 100%,0 calc(20 * var(--u))); }
+    .btn.primary svg { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+  }
+</style>
+<div class="scene">
+  <main class="panel">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="bar">
+      <div class="bar-l"><i></i>TANK HANGAR <span style="color:#888">/</span> ARMORED FRONT</div>
+      <div class="tag"><svg viewBox="0 0 10 20"><rect x="1" y="6" width="8" height="13" fill="#f59e0b"></rect><polygon points="1,6 5,0 9,6" fill="#f59e0b"></polygon></svg>AP 24</div>
+    </div>
+    <section class="grid">
+      <div class="lcol">
+        <div class="schem" aria-hidden="true">
+          <svg viewBox="0 0 520 330" preserveAspectRatio="xMidYMid meet">
+            <g fill="rgba(34,211,238,.07)" stroke="#22d3ee" stroke-width="2">
+              <rect x="56" y="200" width="400" height="58" rx="29"></rect>
+              <polygon points="62,200 96,154 420,154 456,200"></polygon>
+              <polygon points="170,154 192,108 318,108 342,154"></polygon>
+              <rect x="318" y="118" width="140" height="13"></rect>
+              <rect x="452" y="113" width="22" height="23"></rect>
+              <rect x="226" y="94" width="44" height="14"></rect>
+            </g>
+            <g fill="none" stroke="#22d3ee" stroke-width="2">
+              <circle cx="90" cy="229" r="20"></circle><circle cx="145" cy="229" r="18"></circle><circle cx="200" cy="229" r="18"></circle><circle cx="255" cy="229" r="18"></circle><circle cx="310" cy="229" r="18"></circle><circle cx="365" cy="229" r="18"></circle><circle cx="422" cy="229" r="20"></circle>
+            </g>
+            <g stroke="rgba(34,211,238,.5)" stroke-width="1" fill="none">
+              <line x1="56" y1="284" x2="474" y2="284"></line><line x1="56" y1="278" x2="56" y2="290"></line><line x1="474" y1="278" x2="474" y2="290"></line>
+              <line x1="30" y1="94" x2="30" y2="258"></line><line x1="24" y1="94" x2="36" y2="94"></line><line x1="24" y1="258" x2="36" y2="258"></line>
+              <line x1="255" y1="40" x2="255" y2="94" stroke-dasharray="4 4"></line>
+            </g>
+            <g font-family="Barlow Condensed, Arial Narrow, sans-serif" font-size="13" letter-spacing="2" fill="rgba(34,211,238,.85)">
+              <text x="265" y="302" text-anchor="middle">HULL L 7.9 M</text>
+              <text x="44" y="180" transform="rotate(-90 44 180)" text-anchor="middle">H 2.4 M</text>
+              <text x="263" y="50">TURRET &middot; 360&deg;</text>
+              <text x="400" y="104">120 MM</text>
+            </g>
+          </svg>
+          <div class="schem-cap">SCHEMATIC &middot; MBT-4 "WARDEN"</div>
+        </div>
+        <div class="specs"><span>CHASSIS 01</span><span>CREW 3</span><span>RACK 5 RDS</span></div>
+        <div class="tb-m"><div class="title">Armor Assault</div><div class="subtitle">Tank Combat</div></div>
+      </div>
+      <div class="rcol">
+        <div class="tb-d"><div class="title">Armor<br>Assault</div><div class="subtitle">Tank Combat</div></div>
+        <div class="stats">
+          <div class="stat"><div class="stat-k">BEST SCORE</div><div class="stat-v" data-bind="best_score"></div></div>
+          <div class="stat"><div class="stat-k">TANKS KILLED</div><div class="stat-v" data-bind="total_kills"></div></div>
+          <div class="stat"><div class="stat-k">CAMPAIGNS WON</div><div class="stat-v" data-bind="victories"></div></div>
+        </div>
+        <p class="brief">Four battlefields, an escalating armoured column, and one field upgrade between each front. Break the column — or be broken on it.</p>
+        <div class="status hot"><i></i><span class="s1" data-bind="status_1"></span><span class="s2" data-bind="status_2"></span></div>
+        <div class="btns">
+          <button class="btn primary" data-action="start"><svg viewBox="0 0 20 20"><polygon points="3,2 18,10 3,18" fill="#06140a"></polygon></svg>Deploy Tank</button>
+          <button class="btn" data-action="continue" data-show="can_continue">Continue</button>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

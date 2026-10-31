@@ -1,0 +1,10 @@
+{
+  "id": "rock_cliff_chunk",
+  "summary": "A free-standing chunk of layered sedimentary cliff, about 4.1 m wide, 4.6 m tall and 2.9 m deep: a modular pi…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rock_cliff_chunk or place \"prefab\": \"rock_cliff_chunk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rock_cliff_chunk"]
+}

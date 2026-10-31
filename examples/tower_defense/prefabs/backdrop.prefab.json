@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": {
+      "kind": "plane",
+      "color": "#4d6973",
+      "roughness": 1
+    }
+  }
+}

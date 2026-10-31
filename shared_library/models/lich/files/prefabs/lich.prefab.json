@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lich"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6042, 1.9988, 0.7879],
+      "offset": [0, 0.9974, -0.0129]
+    }
+  }
+}

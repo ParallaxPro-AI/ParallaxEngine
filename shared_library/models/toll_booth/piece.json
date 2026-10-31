@@ -1,0 +1,10 @@
+{
+  "id": "toll_booth",
+  "summary": "A highway toll booth on a kerbed island with yellow-and-black striped edges, nose bollards and an impact atte… joints barrier_arm, pay_tray; options band_colour; sockets socket_attendant, socket_car_stop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toll_booth or place \"prefab\": \"toll_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toll_booth"]
+}

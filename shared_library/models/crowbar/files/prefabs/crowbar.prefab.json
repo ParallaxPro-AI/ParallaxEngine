@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crowbar"
+    },
+    "viewmodel_item": {
+      "hip": [0.23, -0.44, 0.5],
+      "hip_turn": [-59.348929, -58.832232, -144.946373],
+      "eye_relief": 0.35,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1509, 0.0336, 0.5645],
+      "offset": [0.0521, 0, 0.2801]
+    }
+  }
+}

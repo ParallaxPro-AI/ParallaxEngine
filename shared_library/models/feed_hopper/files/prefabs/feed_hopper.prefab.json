@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/feed_hopper"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.21, 2.245, 1.16],
+      "offset": [0, 1.1225, 0]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "extends": "board",
+  "ui": ["title"],
+  "music": null
+}

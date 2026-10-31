@@ -1,0 +1,10 @@
+{
+  "id": "teen_casual",
+  "summary": "A rigged casual teenager (about 15) on the canonical 17-bone humanoid rig (forked from `cowboy`/`civilian`, r… options skin, hair, hoodie; sockets eye_point, grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.teen_casual or place \"prefab\": \"teen_casual\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:teen_casual"]
+}

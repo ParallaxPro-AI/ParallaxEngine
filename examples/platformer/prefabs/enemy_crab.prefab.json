@@ -1,0 +1,32 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/d3/94/d3947d15f6ab17c79da0301243622f9504a9bd12b10ef6de8174cf1f74d08b90.glb",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.2,
+        0.9,
+        1.2
+      ],
+      "trigger": true
+    },
+    "animator": {
+      "default_clip": "Walk"
+    },
+    "rigidbody": {
+      "kind": "kinematic"
+    },
+    "enemy": {
+      "kind": "crab"
+    }
+  },
+  "behaviors": {
+    "patrol": {
+      "speed": 2,
+      "range": 1.5
+    }
+  }
+}

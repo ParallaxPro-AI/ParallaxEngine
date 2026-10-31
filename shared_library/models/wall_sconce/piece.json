@@ -1,0 +1,10 @@
+{
+  "id": "wall_sconce",
+  "summary": "A wall-mounted sconce: a vertical mounting backplate flush against the wall, a bracket arm projecting into th…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wall_sconce or place \"prefab\": \"wall_sconce\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wall_sconce"]
+}

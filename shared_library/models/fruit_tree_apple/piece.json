@@ -1,0 +1,10 @@
+{
+  "id": "fruit_tree_apple",
+  "summary": "A mature semi-dwarf orchard apple tree in fruit: a flared, slightly leaning bark trunk with surface roots, pr…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fruit_tree_apple or place \"prefab\": \"fruit_tree_apple\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fruit_tree_apple"]
+}

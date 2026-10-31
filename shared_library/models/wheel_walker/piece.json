@@ -1,0 +1,10 @@
+{
+  "id": "wheel_walker",
+  "summary": "A folding two-wheeled mobility walker (rollator-style walking frame): anodised aluminium side frames bent fro… joints fold_l, wheel_l, fold_r, wheel_r; options frame; sockets grip_l, grip_r, user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wheel_walker or place \"prefab\": \"wheel_walker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wheel_walker"]
+}

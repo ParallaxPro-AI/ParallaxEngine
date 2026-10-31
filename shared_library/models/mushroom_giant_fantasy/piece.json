@@ -1,0 +1,10 @@
+{
+  "id": "mushroom_giant_fantasy",
+  "summary": "A giant bioluminescent fantasy mushroom for an enchanted forest: a 3.9 m tree-sized toadstool with a broad wa…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mushroom_giant_fantasy or place \"prefab\": \"mushroom_giant_fantasy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mushroom_giant_fantasy"]
+}

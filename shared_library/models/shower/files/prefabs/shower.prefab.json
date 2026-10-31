@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.703, 2.103, 0.869],
+      "offset": [0, 1.05, 0.008]
+    }
+  }
+}

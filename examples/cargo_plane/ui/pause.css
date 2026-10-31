@@ -1,0 +1,36 @@
+/* The template's pause sheet (pause_menu.html), shared by its menu and Settings views. */
+  .sfp { position: fixed; inset: 0; pointer-events: auto; display: flex; align-items: center; justify-content: center; animation: sf-fade 200ms ease both; }
+  .sfp-scrim { position: fixed; inset: 0; background: var(--sf-scrim); }
+  .sfp-card { position: relative; width: calc(var(--u) * 520); animation: sf-rise 220ms ease-out both; padding: calc(var(--u) * 36) calc(var(--u) * 40) calc(var(--u) * 40); background: rgba(2,6,23,.72); box-shadow: var(--sf-shadow-sheet), inset 0 0 0 calc(var(--u) * 7) rgba(2,6,23,.3), inset 0 0 0 calc(var(--u) * 8) rgba(186,230,253,.1); }
+  .sfp-view { display: flex; flex-direction: column; gap: calc(var(--u) * 24); }
+  .sfp-view[hidden] { display: none; }
+  .sfp-head { font-size: calc(var(--u) * 12); letter-spacing: .24em; padding-bottom: calc(var(--u) * 14); }
+  .sfp-kick { display: none; }
+  .sfp h2 { margin: 0; font: 700 calc(var(--u) * 56)/1 var(--sf-f-mono); letter-spacing: -.03em; color: var(--sf-cream); }
+  .sfp-set h2 { font-size: calc(var(--u) * 48); }
+  .sfp-stack { display: flex; flex-direction: column; gap: calc(var(--u) * 12); }
+  .sfp-stack .sf-btn { width: 100%; }
+  .sfp-more { justify-content: space-between; padding: 0 calc(var(--u) * 20); }
+  .sfp-more span:last-child { color: var(--sf-sky-300); }
+  .sfp-seg { display: grid; grid-template-columns: repeat(3, 1fr); border: calc(var(--u) * 1.5) solid rgba(186,230,253,.45); border-radius: calc(var(--u) * 6); overflow: hidden; }
+  .sfp-seg button { height: calc(var(--u) * 56); margin: 0; border: none; border-radius: 0; background: transparent; color: var(--sf-cream); font: 700 calc(var(--u) * 18)/1 var(--sf-f-mono); cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+  .sfp-seg button[aria-pressed="true"] { background: var(--sf-sky-300); color: var(--sf-navy-950); }
+  .sfp-note { margin: 0; font: 400 calc(var(--u) * 14)/1.5 var(--sf-f-mono); color: rgba(186,230,253,.8); min-height: calc(var(--u) * 21); }
+  .sfp-lbl { font-size: calc(var(--u) * 12); letter-spacing: .22em; font-weight: 400; }
+  @media (pointer: coarse) {
+    .sfp-card { width: min(calc(var(--u) * 1120), calc(100cqw - calc(var(--u) * 96))); padding: calc(var(--u) * 44) calc(var(--u) * 52); box-shadow: 0 calc(var(--u) * 40) calc(var(--u) * 100) rgba(0,0,0,.45); }
+    .sfp-view { display: grid; grid-template-columns: calc(var(--u) * 360) 1fr; gap: calc(var(--u) * 48); align-items: center; }
+    .sfp-head { display: none; }
+    .sfp-title { display: flex; flex-direction: column; gap: calc(var(--u) * 16); }
+    .sfp-kick { display: block; font-size: calc(var(--u) * 18); letter-spacing: .22em; font-weight: 400; }
+    .sfp h2 { font-size: calc(var(--u) * 80); }
+    .sfp-set h2 { font-size: calc(var(--u) * 64); }
+    .sfp-stack { gap: calc(var(--u) * 16); }
+    .sfp .sf-btn { height: calc(var(--u) * 96); font-size: calc(var(--u) * 30); border-width: calc(var(--u) * 3); border-radius: calc(var(--u) * 12); }
+    .sfp .sf-btn-primary { height: calc(var(--u) * 104); font-size: calc(var(--u) * 34); box-shadow: 0 calc(var(--u) * 8) 0 var(--sf-cream-lo); }
+    .sfp-more { padding: 0 calc(var(--u) * 32); }
+    .sfp-seg { border-width: calc(var(--u) * 3); border-radius: calc(var(--u) * 12); }
+    .sfp-seg button { height: calc(var(--u) * 96); font-size: calc(var(--u) * 30); }
+    .sfp-lbl { font-size: calc(var(--u) * 18); }
+    .sfp-note { display: none; }
+  }

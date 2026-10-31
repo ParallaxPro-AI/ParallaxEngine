@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hamster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0602, 0.0869, 0.1495],
+      "offset": [0, 0.043, 0.021]
+    }
+  }
+}

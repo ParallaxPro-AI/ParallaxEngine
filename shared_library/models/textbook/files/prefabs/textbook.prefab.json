@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/textbook"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.185, 0.0301, 0.24],
+      "offset": [0, 0.015, 0]
+    }
+  }
+}

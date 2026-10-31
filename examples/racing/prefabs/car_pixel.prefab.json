@@ -1,0 +1,79 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kart",
+      "cast_shadows": true,
+      "colors": {
+        "helmet": "#ff9d2e",
+        "chassis_body_merged": "#c05cff",
+        "chassis_accent_merged": "#ffd0a0",
+        "chassis_suit_merged": "#33224a"
+      }
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1050,
+      "linear_damping": 0.025,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.6,
+        1.1,
+        2.25
+      ],
+      "offset": [
+        0,
+        0.55,
+        0
+      ],
+      "friction": 0.4,
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "kind": "car",
+      "max_speed": 50,
+      "acceleration": 10,
+      "braking": 21,
+      "steering": 46,
+      "grip": 1.09
+    },
+    "drivetrain": {
+      "gears": [
+        3.6,
+        2.3,
+        1.7,
+        1.3,
+        1.0
+      ],
+      "reverse_ratio": 3.2,
+      "final_drive": 4.7,
+      "idle_rpm": 900,
+      "peak_rpm": 5000,
+      "redline_rpm": 7000,
+      "peak_torque": 340,
+      "engine_braking": 0.055,
+      "drive": "all",
+      "gearbox": "auto",
+      "shift_time": 0.12,
+      "upshift": 0.957,
+      "downshift": 0.429
+    },
+    "vehicle_rig": {
+      "wheels": [
+        "spin_front_l",
+        "spin_front_r",
+        "spin_rear_l",
+        "spin_rear_r"
+      ],
+      "steer": [
+        "steer_l",
+        "steer_r"
+      ]
+    }
+  },
+  "children": [
+    {"name": "driver_seat", "at": [0, 0.55, 0], "components": {"seat": {"enter_time": 0}}}
+  ]
+}

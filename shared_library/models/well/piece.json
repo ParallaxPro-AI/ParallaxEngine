@@ -1,0 +1,14 @@
+{
+  "id": "well",
+  "summary": "A medieval stone wishing well: a round dry-stone shaft ring with a coping rim, two timber posts carrying a… joints crank, rope, bucket; sockets socket_rim.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.well or place \"prefab\": \"well\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:well"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/laundry_pile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9138, 0.2617, 0.7372],
+      "offset": [0.0026, 0.1288, 0.0209]
+    }
+  }
+}

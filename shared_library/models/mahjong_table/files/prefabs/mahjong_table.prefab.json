@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mahjong_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.86, 0.792, 0.86],
+      "offset": [0, 0.396, 0]
+    }
+  }
+}

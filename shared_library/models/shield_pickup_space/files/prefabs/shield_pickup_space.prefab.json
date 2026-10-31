@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shield_pickup_space"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.478, 0.4214, 0.07],
+      "offset": [0, 0.2107, 0]
+    }
+  }
+}

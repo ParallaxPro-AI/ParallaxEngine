@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rocking_horse"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3841, 1.0336, 1.1377],
+      "offset": [0, 0.5168, 0.0001]
+    }
+  }
+}

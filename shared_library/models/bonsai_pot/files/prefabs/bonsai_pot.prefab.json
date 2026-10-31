@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bonsai_pot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6045, 0.6747, 0.38],
+      "offset": [-0.0222, 0.3373, 0]
+    }
+  }
+}

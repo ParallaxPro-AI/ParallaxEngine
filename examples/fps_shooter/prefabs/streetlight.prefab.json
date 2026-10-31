@@ -1,0 +1,22 @@
+{
+ "components": {
+  "model": {
+   "model": "models/streetlight",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.2,
+    4.9,
+    0.2
+   ],
+   "offset": [
+    0.0,
+    2.45,
+    0.0
+   ],
+   "layer": "world"
+  }
+ }
+}

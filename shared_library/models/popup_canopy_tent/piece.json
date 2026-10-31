@@ -1,0 +1,10 @@
+{
+  "id": "popup_canopy_tent",
+  "summary": "A 3 x 3 m pop-up market gazebo: four telescoping square-tube legs on foot plates with push-button height coll… joints frame, upper; options canopy, band, weights, walls; sockets socket_table, socket_vendor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.popup_canopy_tent or place \"prefab\": \"popup_canopy_tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:popup_canopy_tent"]
+}

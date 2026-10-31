@@ -1,0 +1,4 @@
+{
+  "components": {},
+  "behaviors": { "pickup_spawner": { "prefab": "ammo_box", "restock": 45 } }
+}

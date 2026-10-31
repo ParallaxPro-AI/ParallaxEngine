@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_top_hat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3112, 0.18, 0.325],
+      "offset": [0, 1.871, -0.0195]
+    }
+  }
+}

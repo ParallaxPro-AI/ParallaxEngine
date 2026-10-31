@@ -1,0 +1,1 @@
+{ "components": {"shape": {"kind": "cylinder", "size": [5, 0.08, 5], "color": "#4b443ed9"}, "grounded": {"lift": 0.04}}}

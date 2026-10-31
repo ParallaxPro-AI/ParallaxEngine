@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chef"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6739, 1.836, 0.272],
+      "offset": [0, 0.918, -0.006]
+    }
+  }
+}

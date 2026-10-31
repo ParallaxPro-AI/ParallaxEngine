@@ -1,0 +1,10 @@
+{
+  "id": "office_chair",
+  "summary": "An ergonomic office task chair: a five-star base on twin-wheel casters, a gas-lift column with a bellows shro… joints lift, swivel, recline; options upholstery, base; sockets seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.office_chair or place \"prefab\": \"office_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:office_chair"]
+}

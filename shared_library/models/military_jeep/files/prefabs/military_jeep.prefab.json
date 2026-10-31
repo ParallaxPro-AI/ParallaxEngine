@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/military_jeep"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1550,
+      "linear_damping": 0.06,
+      "angular_damping": 0.75
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.655,
+        1.975,
+        3.6936
+      ],
+      "offset": [
+        -0.0425,
+        0.9875,
+        0.0278
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 26,
+      "steering": 34,
+      "grip": 8,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.0425,
+        0.9875,
+        0.0278
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/standing_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 0.72, 0.7121],
+      "offset": [0, 0.36, 0.006]
+    }
+  }
+}

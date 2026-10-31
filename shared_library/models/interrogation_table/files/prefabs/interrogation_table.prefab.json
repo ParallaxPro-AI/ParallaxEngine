@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/interrogation_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 0.93, 1.54],
+      "offset": [0, 0.465, 0.02]
+    }
+  }
+}

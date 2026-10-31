@@ -1,0 +1,10 @@
+{
+  "id": "mic_stand",
+  "summary": "A round-base boom microphone stand: a weighted cast base, a telescoping chrome upright, and a boom arm on a s… joints height, clutch, boom.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mic_stand or place \"prefab\": \"mic_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mic_stand"]
+}

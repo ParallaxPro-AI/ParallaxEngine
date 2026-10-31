@@ -1,0 +1,10 @@
+{
+  "id": "portion_guest",
+  "summary": "A rounded, illustrated counter customer with shirt and skin palettes, skinned to the engine's canonical human… options jacket, skin; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portion_guest or place \"prefab\": \"portion_guest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portion_guest"]
+}

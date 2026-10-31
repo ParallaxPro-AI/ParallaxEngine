@@ -1,0 +1,10 @@
+{
+  "id": "gatling_gun",
+  "summary": "A hand-cranked six-barrel rotary gun on a field tripod: a cluster of six barrels on a centre shaft with bronz… joints traverse, elevation, barrels, crank, magazine; options casing_finish, leg_wood; sockets socket_gunner, muzzle, eject.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gatling_gun or place \"prefab\": \"gatling_gun\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gatling_gun"]
+}

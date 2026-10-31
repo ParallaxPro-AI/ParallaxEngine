@@ -1,0 +1,10 @@
+{
+  "id": "anti_aircraft_gun",
+  "summary": "A generic twin-barrel towed anti-aircraft autocannon in its firing position: a cruciform ground platform on f… joints mount, guns; options paint; sockets seat_gunner_l, seat_gunner_r, muzzle_l, muzzle_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.anti_aircraft_gun or place \"prefab\": \"anti_aircraft_gun\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:anti_aircraft_gun"]
+}

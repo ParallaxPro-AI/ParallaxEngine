@@ -1,0 +1,41 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spell_altar",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.296,
+        1.5582,
+        1.2067
+      ],
+      "offset": [
+        0.0,
+        0.7791,
+        0.0
+      ]
+    },
+    "ambient_motion": {
+      "moves": [
+        {
+          "joint": "ring_a",
+          "mode": "spin",
+          "period": 5.0
+        },
+        {
+          "joint": "ring_b",
+          "mode": "spin",
+          "period": 7.5,
+          "phase": 0.5
+        },
+        {
+          "joint": "runes",
+          "mode": "spin",
+          "period": 14.0
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "crop_duster",
+  "summary": "A big single-seat radial-engined agricultural aeroplane (crop duster / ag plane): a lofted body-of-revolution… joints propeller, wing_aileron_l, wing_aileron_r, hstab_elevator_l, hstab_elevator_r, fin_rudder; sockets socket_pilot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crop_duster or place \"prefab\": \"crop_duster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crop_duster"]
+}

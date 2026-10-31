@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lawn_mower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.622, 0.949, 1.123],
+      "offset": [0, 0.4745, -0.0025]
+    }
+  }
+}

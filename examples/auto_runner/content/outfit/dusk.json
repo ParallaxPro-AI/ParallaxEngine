@@ -1,0 +1,7 @@
+{
+  "name": "Dusk Rider",
+  "blurb": "Sundown violet for the late run.",
+  "cost": 120,
+  "tint": [0.8, 0.7, 1.0],
+  "swatch": "#a98bf0"
+}

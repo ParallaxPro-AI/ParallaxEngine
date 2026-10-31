@@ -1,0 +1,10 @@
+{
+  "id": "drawbridge",
+  "summary": "A medieval castle drawbridge: a planked timber deck that hinges up on its base edge to seal a stone gatehouse… joints deck, chain_left, chain_l_scale, chain_right, chain_r_scale.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drawbridge or place \"prefab\": \"drawbridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drawbridge"]
+}

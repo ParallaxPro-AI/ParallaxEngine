@@ -1,0 +1,10 @@
+{
+  "id": "bb_anchor_decor",
+  "summary": "Iron anchor lying on the sand, with a cross-stock and two broad flukes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_anchor_decor or place \"prefab\": \"bb_anchor_decor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_anchor_decor"]
+}

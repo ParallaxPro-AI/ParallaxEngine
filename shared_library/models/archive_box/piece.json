@@ -1,0 +1,10 @@
+{
+  "id": "archive_box",
+  "summary": "A corrugated cardboard archive / records box (305 x 381 x 254 mm) with a flip-top lid hinged at the back, sta… joints lid; options finish, contents.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.archive_box or place \"prefab\": \"archive_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:archive_box"]
+}

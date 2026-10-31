@@ -1,0 +1,12 @@
+{
+  "rig": "quadruped", "duration": 0.85, "loop": false,
+  "events": [{"time":0.34,"name":"munch"},{"time":0.56,"name":"munch"}],
+  "keys": [
+    {"time":0,"ease":"linear","pose":{"Neck":[0,0,0],"Head":[0,0,0],"Spine2":[0,0,0]}},
+    {"time":0.22,"pose":{"Neck":[28,0,0],"Head":[18,0,0],"Spine2":[12,0,0]}},
+    {"time":0.34,"pose":{"Neck":[34,0,0],"Head":[24,0,0],"Spine2":[12,0,0]}},
+    {"time":0.44,"pose":{"Neck":[28,0,0],"Head":[14,0,0],"Spine2":[12,0,0]}},
+    {"time":0.56,"pose":{"Neck":[34,0,0],"Head":[24,0,0],"Spine2":[12,0,0]}},
+    {"time":0.85,"pose":{"Neck":[0,0,0],"Head":[0,0,0],"Spine2":[0,0,0]}}
+  ]
+}

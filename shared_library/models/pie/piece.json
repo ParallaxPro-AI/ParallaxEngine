@@ -1,0 +1,10 @@
+{
+  "id": "pie",
+  "summary": "A lattice-top fruit pie in a 25 cm pressed aluminium tin: a woven five-by-five lattice of egg-washed pastry s… options slice; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pie or place \"prefab\": \"pie\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pie"]
+}

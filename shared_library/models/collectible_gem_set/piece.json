@@ -1,0 +1,10 @@
+{
+  "id": "collectible_gem_set",
+  "summary": "A set of six chunky collectible game gems for platformers, each about 0.34 m across (oversized pickup scale… options gem.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.collectible_gem_set or place \"prefab\": \"collectible_gem_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:collectible_gem_set"]
+}

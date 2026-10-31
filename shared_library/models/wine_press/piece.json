@@ -1,0 +1,10 @@
+{
+  "id": "wine_press",
+  "summary": "A timber screw press: a slatted, iron-hooped basket of crushed grapes on a rimmed tray with a front spout dra… joints platen, screw; options fruit; sockets spout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wine_press or place \"prefab\": \"wine_press\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wine_press"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tool_pegboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.29, 0.841, 0.146],
+      "offset": [0, 0.4205, -0.003]
+    }
+  }
+}

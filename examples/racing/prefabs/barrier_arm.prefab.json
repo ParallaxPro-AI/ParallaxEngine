@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/barrier_arm", "cast_shadows": true },
+    "collider": { "shape": "box", "size": [3.9, 1.26, 0.59], "offset": [0, 0.63, 0] }
+  }
+}

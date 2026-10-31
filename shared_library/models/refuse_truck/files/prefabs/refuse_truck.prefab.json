@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/refuse_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 11000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.865,
+        3.535,
+        9.1
+      ],
+      "offset": [
+        -0.0275,
+        1.7675,
+        0.03
+      ]
+    },
+    "vehicle": {
+      "max_speed": 19,
+      "steering": 32
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.0275,
+        1.7675,
+        0.03
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

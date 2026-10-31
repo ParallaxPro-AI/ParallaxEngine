@@ -1,0 +1,10 @@
+{
+  "id": "palisade_wall_spiked",
+  "summary": "A survival-fort palisade module, 3.0 m long and about 3.3 m tall: ten upright logs sharpened to fire-blackene… options tier; sockets socket_join_left, socket_join_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.palisade_wall_spiked or place \"prefab\": \"palisade_wall_spiked\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:palisade_wall_spiked"]
+}

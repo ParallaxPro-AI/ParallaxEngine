@@ -1,0 +1,10 @@
+{
+  "id": "centaur",
+  "summary": "A centaur: a bay horse's body and four legs with a bare-chested man's torso, arms and head rising from the wi… options coat, tail, legs, skin, hair, gear; sockets grip_l, grip_r, head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.centaur or place \"prefab\": \"centaur\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:centaur"]
+}

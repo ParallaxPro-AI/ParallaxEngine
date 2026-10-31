@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/picture_frame",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.56,
+        0.893,
+        0.068
+      ],
+      "offset": [
+        0.0,
+        0.4465,
+        0.004
+      ]
+    }
+  }
+}

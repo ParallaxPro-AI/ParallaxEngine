@@ -1,0 +1,28 @@
+{
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/81/45/814511d3a8c5a279c7ad182e1703ac16cc18a2a429ba73d52f0250a7a6f04dc8.png",
+      "size": [1.1, 1.1],
+      "animations": { "flutter": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/81/45/814511d3a8c5a279c7ad182e1703ac16cc18a2a429ba73d52f0250a7a6f04dc8.png", "https://r2.parallaxpro.ai/assets/image_sprite/be/92/be92a27c5272fc5668086a95a06b9c2947f89e18b8eaa36dfdac2a39bddf8879.png"], "fps": 12, "loop": true } }
+    },
+    "health": { "current": 3, "max": 3, "destroy_on_death": false },
+    "wisp": {
+      "fire_gap": 1.0, "spark_damage": 1.0, "spark_speed": 16.0, "twin": 0,
+      "move_speed": 8.5, "wave_shields": 0, "pickup_radius": 0.8, "drop_bonus": 0,
+      "graze_gain": 1.0, "max_bombs": 3, "invulnerability": 1.3,
+      "bombs": 2
+    }
+  },
+  "children": [
+    { "name": "focus_ring", "prefab": "focus_ring", "at": [0, 0, 0.2] }
+  ],
+  "behaviors": {
+    "wisp_controls": { "focus_speed": 0.45, "min_x": -4.0, "max_x": 4.0, "min_y": -7.0, "max_y": 6.5 },
+    "wisp_gun": {
+      "fire_gap": 0.22, "rapid_gap": 0.10, "min_gap": 0.05, "muzzle": 0.55,
+      "twin_offset": 0.24, "spread_drift": 2.5, "twin_spread_offset": 0.32, "twin_spread_drift": 4.6,
+      "pierce_color": "#c799ff"
+    },
+    "wisp_glow": { "shield_color": "#8cffbf", "blink_rate": 22, "blink_low": 0.35 }
+  }
+}

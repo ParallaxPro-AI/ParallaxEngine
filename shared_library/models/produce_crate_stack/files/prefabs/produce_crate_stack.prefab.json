@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/produce_crate_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.058, 0.5937, 0.5493],
+      "offset": [0.0126, 0.2968, 0.0039]
+    }
+  }
+}

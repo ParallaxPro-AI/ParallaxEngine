@@ -1,0 +1,10 @@
+{
+  "voice": "mate",
+  "trigger": "open",
+  "lines": [
+    "I'm open!",
+    "Over here!",
+    "Ball! Ball!",
+    "Right here!"
+  ]
+}

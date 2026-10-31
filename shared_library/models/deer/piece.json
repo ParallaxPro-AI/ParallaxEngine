@@ -1,0 +1,10 @@
+{
+  "id": "deer",
+  "summary": "A white-tailed deer (1.0 m at the shoulder, ~1.45 m at the antler tips) on the engine's quadruped_20 rig, so… options coat, antlers; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.deer or place \"prefab\": \"deer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:deer"]
+}

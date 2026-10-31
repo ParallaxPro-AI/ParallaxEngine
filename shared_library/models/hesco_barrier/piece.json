@@ -1,0 +1,10 @@
+{
+  "id": "hesco_barrier",
+  "summary": "One module of a HESCO-style defensive bastion: three 1.06 m cells of galvanised welded wire mesh (76 mm grid)… options liner, fill; sockets end_l, end_r, top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hesco_barrier or place \"prefab\": \"hesco_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hesco_barrier"]
+}

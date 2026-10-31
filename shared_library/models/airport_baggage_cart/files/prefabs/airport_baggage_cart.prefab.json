@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/airport_baggage_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.52, 1.965, 3.75],
+      "offset": [0, 0.9825, 0.495]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_jetpack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 0.6771, 0.562],
+      "offset": [0, 1.2765, -0.109]
+    }
+  }
+}

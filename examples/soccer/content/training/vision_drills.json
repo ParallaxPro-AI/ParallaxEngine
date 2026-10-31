@@ -1,0 +1,5 @@
+{
+  "name": "Vision Drills",
+  "description": "+4 pass power and a longer pass.",
+  "max_stacks": 3, "pass_power": 4, "pass_range": 6
+}

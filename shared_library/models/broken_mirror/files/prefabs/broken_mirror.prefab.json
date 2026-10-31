@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/broken_mirror"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.66, 1.0876, 0.068],
+      "offset": [0, 0.5438, -0.001]
+    }
+  }
+}

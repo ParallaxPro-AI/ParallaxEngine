@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_accessory_watch_plain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0352, 0.0775, 0.048],
+      "offset": [0.6834, 1.45, 0.026]
+    }
+  }
+}

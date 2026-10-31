@@ -1,0 +1,10 @@
+{
+  "id": "throwing_star",
+  "summary": "A flat steel throwing star (hira-shuriken) 110 mm tip to tip and 2.6 mm thick: dark blued flats framed by a b… options points, finish; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.throwing_star or place \"prefab\": \"throwing_star\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:throwing_star"]
+}

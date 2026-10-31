@@ -1,0 +1,2 @@
+{ "name": "Crystal Ore", "texture": "images/blocks/ore_29bfeb", "color": "#29bfeb", "hardness": 3.5, "min_tier": 2, "ore": true,
+  "loot": [{ "item": "crystal_ore" }], "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d0/0c/d00c2b3c9fff07e376145c8c8c45c90e5084ec192f6ce0387db233f7b86f1486.ogg" }

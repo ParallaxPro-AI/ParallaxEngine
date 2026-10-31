@@ -1,0 +1,10 @@
+{
+  "id": "train_set_wooden",
+  "summary": "A classic beech-wood toy railway on the floor: an oval of chunky grooved wooden track in 20 cm pieces (cut se… options engine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.train_set_wooden or place \"prefab\": \"train_set_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:train_set_wooden"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hidden_bookshelf_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.23, 2.603, 1.4017],
+      "offset": [0, 1.3015, -0.0991]
+    }
+  }
+}

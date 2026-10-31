@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sunflower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7354, 2.0266, 0.5888],
+      "offset": [0.0195, 1.0089, 0.0183]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/potted_house_plant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.384, 0.8594, 0.384],
+      "offset": [0, 0.4297, 0]
+    }
+  }
+}

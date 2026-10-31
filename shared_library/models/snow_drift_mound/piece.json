@@ -1,0 +1,10 @@
+{
+  "id": "snow_drift_mound",
+  "summary": "A wind-built snow drift mound about 3.2 m long, 0.95 m high and 2.3 m wide (drifts behind fences and boulders…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.snow_drift_mound or place \"prefab\": \"snow_drift_mound\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:snow_drift_mound"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "workbench",
+  "summary": "A crafting workbench: a 90 mm laminated beech top with a bull-nosed front edge, six round dog holes and a dis… joints drawer, vice; sockets socket_worktop, socket_vice.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.workbench or place \"prefab\": \"workbench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:workbench"]
+}

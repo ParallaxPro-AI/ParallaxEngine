@@ -1,0 +1,10 @@
+{
+  "id": "pyramid_temple",
+  "summary": "An ancient Egyptian-style step pyramid temple in sandstone, 20 m square and 14 m to its gilded capstone: six… joints door_l, door_r; options stone_colour; sockets socket_altar, socket_chamber, socket_entrance, socket_summit.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pyramid_temple or place \"prefab\": \"pyramid_temple\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pyramid_temple"]
+}

@@ -1,0 +1,419 @@
+{
+ "format": "parallax.model",
+ "version": 1,
+ "source": "library clips demo: a quadruped rig puppet (a block on every bone)",
+ "materials": {
+  "clay": {
+   "color": "#c9a27e",
+   "metallic": 0,
+   "roughness": 0.8
+  }
+ },
+ "skeleton": {
+  "bones": [
+   {
+    "name": "Hips",
+    "parent": null,
+    "position": [
+     0,
+     0.5,
+     -0.25
+    ]
+   },
+   {
+    "name": "Spine",
+    "parent": 0,
+    "position": [
+     0,
+     0.02,
+     0.25
+    ]
+   },
+   {
+    "name": "Spine2",
+    "parent": 1,
+    "position": [
+     0,
+     0,
+     0.25
+    ]
+   },
+   {
+    "name": "Neck",
+    "parent": 2,
+    "position": [
+     0,
+     0.06,
+     0.12
+    ]
+   },
+   {
+    "name": "Head",
+    "parent": 3,
+    "position": [
+     0,
+     0.1,
+     0.1
+    ]
+   },
+   {
+    "name": "Tail1",
+    "parent": 0,
+    "position": [
+     0,
+     0.04,
+     -0.08
+    ]
+   },
+   {
+    "name": "Tail2",
+    "parent": 5,
+    "position": [
+     0,
+     0,
+     -0.12
+    ]
+   },
+   {
+    "name": "Tail3",
+    "parent": 6,
+    "position": [
+     0,
+     0,
+     -0.12
+    ]
+   },
+   {
+    "name": "FL_UpperLeg",
+    "parent": 2,
+    "position": [
+     -0.1,
+     -0.06,
+     0
+    ]
+   },
+   {
+    "name": "FL_LowerLeg",
+    "parent": 8,
+    "position": [
+     0,
+     -0.22,
+     0
+    ]
+   },
+   {
+    "name": "FL_Paw",
+    "parent": 9,
+    "position": [
+     0,
+     -0.2,
+     0
+    ]
+   },
+   {
+    "name": "FR_UpperLeg",
+    "parent": 2,
+    "position": [
+     0.1,
+     -0.06,
+     0
+    ]
+   },
+   {
+    "name": "FR_LowerLeg",
+    "parent": 11,
+    "position": [
+     0,
+     -0.22,
+     0
+    ]
+   },
+   {
+    "name": "FR_Paw",
+    "parent": 12,
+    "position": [
+     0,
+     -0.2,
+     0
+    ]
+   },
+   {
+    "name": "BL_UpperLeg",
+    "parent": 0,
+    "position": [
+     -0.1,
+     -0.05,
+     0
+    ]
+   },
+   {
+    "name": "BL_LowerLeg",
+    "parent": 14,
+    "position": [
+     0,
+     -0.22,
+     0
+    ]
+   },
+   {
+    "name": "BL_Paw",
+    "parent": 15,
+    "position": [
+     0,
+     -0.21,
+     0
+    ]
+   },
+   {
+    "name": "BR_UpperLeg",
+    "parent": 0,
+    "position": [
+     0.1,
+     -0.05,
+     0
+    ]
+   },
+   {
+    "name": "BR_LowerLeg",
+    "parent": 17,
+    "position": [
+     0,
+     -0.22,
+     0
+    ]
+   },
+   {
+    "name": "BR_Paw",
+    "parent": 18,
+    "position": [
+     0,
+     -0.21,
+     0
+    ]
+   }
+  ],
+  "inverse_bind": "f32:AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAgAAAAL8AAIA+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAIC4HgW/AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAACAuB4FvwAAgL4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAgOF6FL+kcL2+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAIB7FC6/16PwvgAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAACAcT0Kv8P1qD4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAgHE9Cr9mZuY+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAIBxPQq/hesRPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMw9H4XrvgAAgL4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMPY/Cdb4AAIC+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzD0K1yO9AACAvgAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMy9H4XrvgAAgL4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMvY/Cdb4AAIC+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzL0K1yO9AACAvgAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMw9ZmbmvgAAgD4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMPR+Fa74AAIA+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzD0K16O8AACAPgAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMy9ZmbmvgAAgD4AAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMvR+Fa74AAIA+AACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzL0K16O8AACAPgAAgD8="
+ },
+ "parts": [
+  {
+   "name": "Hips_block",
+   "parent": "Hips",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Spine_block",
+   "parent": "Spine",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Spine2_block",
+   "parent": "Spine2",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Neck_block",
+   "parent": "Neck",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Head_block",
+   "parent": "Head",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Tail1_block",
+   "parent": "Tail1",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Tail2_block",
+   "parent": "Tail2",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Tail3_block",
+   "parent": "Tail3",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FL_UpperLeg_block",
+   "parent": "FL_UpperLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FL_LowerLeg_block",
+   "parent": "FL_LowerLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FL_Paw_block",
+   "parent": "FL_Paw",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FR_UpperLeg_block",
+   "parent": "FR_UpperLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FR_LowerLeg_block",
+   "parent": "FR_LowerLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "FR_Paw_block",
+   "parent": "FR_Paw",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BL_UpperLeg_block",
+   "parent": "BL_UpperLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BL_LowerLeg_block",
+   "parent": "BL_LowerLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BL_Paw_block",
+   "parent": "BL_Paw",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BR_UpperLeg_block",
+   "parent": "BR_UpperLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BR_LowerLeg_block",
+   "parent": "BR_LowerLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "BR_Paw_block",
+   "parent": "BR_Paw",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  }
+ ]
+}

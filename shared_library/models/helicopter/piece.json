@@ -1,0 +1,10 @@
+{
+  "id": "helicopter",
+  "summary": "A light single-turbine helicopter: a lofted teardrop pod that fairs straight into its tail boom, a wrap-aroun… joints door_l, door_r, tail_rotor, main_rotor, gear; options config; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.helicopter or place \"prefab\": \"helicopter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:helicopter"]
+}

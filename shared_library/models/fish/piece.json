@@ -1,0 +1,10 @@
+{
+  "id": "fish",
+  "summary": "A generic bony fish, 0.40 m snout to tail fork (perch/bass/carp proportions): a laterally compressed station-… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; options scales, back, belly, fins; sockets mouth, dorsal_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish or place \"prefab\": \"fish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish"]
+}

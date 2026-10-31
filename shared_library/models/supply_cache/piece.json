@@ -1,0 +1,10 @@
+{
+  "id": "supply_cache",
+  "summary": "A rugged survival supply cache: a chamfered olive hard case on rubber feet with stiffening ribs, two front dr… joints lid; options colour; sockets socket_loot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.supply_cache or place \"prefab\": \"supply_cache\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:supply_cache"]
+}

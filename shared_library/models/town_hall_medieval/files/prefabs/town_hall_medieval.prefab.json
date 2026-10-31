@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/town_hall_medieval"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [17.88, 25.15, 11.8933],
+      "offset": [0.64, 12.575, 0.4989]
+    }
+  }
+}

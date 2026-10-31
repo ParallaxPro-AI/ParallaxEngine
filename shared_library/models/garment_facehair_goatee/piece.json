@@ -1,0 +1,10 @@
+{
+  "id": "garment_facehair_goatee",
+  "summary": "A goatee (circle beard): a trimmed patch of beard on the chin only, ending in a short pointed tuft ~2.5 cm be… options channel0; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_facehair_goatee or place \"prefab\": \"garment_facehair_goatee\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_facehair_goatee"]
+}

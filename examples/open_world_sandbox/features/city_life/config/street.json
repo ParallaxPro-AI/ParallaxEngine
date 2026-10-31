@@ -1,0 +1,7 @@
+{
+  "cash_per_kill_min": 5,
+  "cash_per_kill_max": 25,
+  "run_over_damage": 0.004,
+  "panic_radius": 30,
+  "panic_seconds": 8
+}

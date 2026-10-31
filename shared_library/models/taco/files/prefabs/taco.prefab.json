@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/taco"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.16, 0.08, 0.0661],
+      "offset": [0, 0.04, 0]
+    }
+  }
+}

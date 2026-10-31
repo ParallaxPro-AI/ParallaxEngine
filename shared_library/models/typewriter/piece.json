@@ -1,0 +1,10 @@
+{
+  "id": "typewriter",
+  "summary": "A mid-century manual typewriter (generic, no maker's badge text): a gloss-black enamelled body lofted from it… joints carriage; options paper, body_colour; sockets socket_paper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.typewriter or place \"prefab\": \"typewriter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:typewriter"]
+}

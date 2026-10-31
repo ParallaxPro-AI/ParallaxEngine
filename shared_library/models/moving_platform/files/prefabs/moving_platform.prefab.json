@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/moving_platform"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.003, 0.4, 1.54],
+      "offset": [0, 0.2, 0]
+    }
+  }
+}

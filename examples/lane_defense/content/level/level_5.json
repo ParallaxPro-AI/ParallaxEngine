@@ -1,0 +1,19 @@
+{
+  "number": 5,
+  "title": "A pot of trouble",
+  "subtitle": "Break their armor",
+  "hint": "Potheads shed their helmet at half health. Water your busiest attacking row.",
+  "reward": "Blast Gourd",
+  "lanes": [0, 1, 2, 3, 4],
+  "cards": ["pollenbloom", "thornspitter", "barkshell", "twinthorn", "rimecap"],
+  "start_pollen": 550,
+  "buildup": 20,
+  "interval": 25,
+  "irrigation": true,
+  "waves": [
+    { "husks": ["scrapmask", "ironhelm", "shambler"] },
+    { "husks": ["sprinter", "scrapmask", "ironhelm", "sprinter"] },
+    { "husks": ["ironhelm", "scrapmask", "sprinter", "ironhelm"] },
+    { "husks": ["brute", "sprinter", "ironhelm", "scrapmask"] }
+  ]
+}

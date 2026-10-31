@@ -1,0 +1,11 @@
+{
+  "name": "Breezy Orchard",
+  "world": "Meadow",
+  "theme": "meadow",
+  "subtitle": "Learn the leap, then follow the wind.",
+  "scene": "level_sunny_meadow",
+  "order": 1,
+  "length": 135,
+  "par_time": 65,
+  "sections": ["First steps", "Orchard steps", "The spring garden", "A little detour"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "modern_wardrobe",
+  "summary": "A modern two-door wardrobe from the modern apartment set: a 1.2 x 2.0 m walnut carcass on a recessed black pl… joints door_l, door_r; options wood, front; sockets top, hat_shelf, rail.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_wardrobe or place \"prefab\": \"modern_wardrobe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_wardrobe"]
+}

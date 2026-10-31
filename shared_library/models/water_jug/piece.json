@@ -1,0 +1,10 @@
+{
+  "id": "water_jug",
+  "summary": "A moulded plastic water carrier: 20-litre tank with a moulded grip, a screw cap on a short neck and a carry b… joints cap; options level, contents, finish; sockets socket_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_jug or place \"prefab\": \"water_jug\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_jug"]
+}

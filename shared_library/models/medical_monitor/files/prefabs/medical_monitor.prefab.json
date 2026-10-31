@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/medical_monitor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5926, 1.236, 0.5886],
+      "offset": [0, 0.618, 0.0387]
+    }
+  }
+}

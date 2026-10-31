@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sand_dune_mound"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.982, 1.6948, 6.0206],
+      "offset": [-0.2787, 0.8433, 0.2516]
+    }
+  }
+}

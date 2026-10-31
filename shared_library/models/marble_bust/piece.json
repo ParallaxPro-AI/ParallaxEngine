@@ -1,0 +1,10 @@
+{
+  "id": "marble_bust",
+  "summary": "A life-size classical portrait bust: a curly-haired, bearded philosopher (blank marble eyes, straight Greek n… options beard, stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.marble_bust or place \"prefab\": \"marble_bust\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:marble_bust"]
+}

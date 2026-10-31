@@ -1,0 +1,46 @@
+{
+  "extends": "car",
+  "components": {
+    "model": {
+      "model": "models/sports_car",
+      "cast_shadows": true
+    },
+    "vehicle": {
+      "max_speed": 36,
+      "acceleration": 12,
+      "grip": 1.1
+    },
+    "car_condition": {
+      "fragility": 5e-05
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.17,
+        1.3337,
+        4.4249
+      ],
+      "offset": [
+        0,
+        0.6668,
+        0
+      ]
+    },
+    "vehicle_rig": {
+      "wheels": [
+        "wheel_f_l_roll",
+        "wheel_f_r_roll",
+        "wheel_r_l_roll",
+        "wheel_r_r_roll"
+      ],
+      "steer": [
+        "wheel_f_l_steer",
+        "wheel_f_r_steer"
+      ]
+    }
+  },
+  "children": [
+    {"name": "driver_seat", "at": [-0.28, -0.598, -0.25]},
+    {"name": "passenger_seat", "at": [0.28, -0.598, -0.25]}
+  ]
+}

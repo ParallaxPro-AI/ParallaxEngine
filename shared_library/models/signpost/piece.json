@@ -1,0 +1,10 @@
+{
+  "id": "signpost",
+  "summary": "A timber fingerpost signpost: a chamfered square post with a pyramid cap set in a stone cairn, carrying four… joints arm_1, arm_2, arm_3, arm_4; options arms, boards, post, ink; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.signpost or place \"prefab\": \"signpost\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:signpost"]
+}

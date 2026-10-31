@@ -1,0 +1,10 @@
+{
+  "id": "rope_bridge",
+  "summary": "A sagging rope-and-plank suspension footbridge spanning 12.0 m between two log anchor frames: 48 hand-laid pl… options condition, rope; sockets end_w, end_e, midspan.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rope_bridge or place \"prefab\": \"rope_bridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rope_bridge"]
+}

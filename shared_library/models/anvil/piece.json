@@ -1,0 +1,14 @@
+{
+  "id": "anvil",
+  "summary": "A London-pattern blacksmith's anvil: wide splayed base, pinched waist, a heavy steel body with a flat… No joints or options.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.anvil or place \"prefab\": \"anvil\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:anvil"
+  ]
+}

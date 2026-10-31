@@ -1,0 +1,10 @@
+{
+  "id": "bird",
+  "summary": "A generic medium bird (crow / pigeon size, 0.36 m beak to tail, 0.62 m wingspan spread) standing on its feet… joints head_turn, head_pitch, wing_flap_l, wing_spread_l, wing_tip_l, wing_flap_r, …; options plumage, accent, breast, flight, beak, feet, …; sockets beak, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bird or place \"prefab\": \"bird\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bird"]
+}

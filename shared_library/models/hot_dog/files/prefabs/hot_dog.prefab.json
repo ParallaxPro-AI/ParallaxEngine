@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hot_dog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.21, 0.0433, 0.077],
+      "offset": [0, 0.0216, 0]
+    }
+  }
+}

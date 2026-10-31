@@ -1,0 +1,10 @@
+{
+  "id": "sports_car",
+  "summary": "A low, wide wedge-nosed sports car: CSG-lofted body with real wheel arches and a raked screen, a long hood an… joints door_l, door_r, light_l, light_r, steering, wheel_f_l_roll, …; sockets seat_driver, seat_pax_1, eye_point, instrument_anchor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.sports_car or place \"prefab\": \"sports_car\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:sports_car"]
+}

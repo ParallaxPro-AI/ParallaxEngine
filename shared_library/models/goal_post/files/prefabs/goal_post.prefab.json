@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/goal_post"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.73, 2.1765, 1.62],
+      "offset": [0, 1.0868, 0]
+    }
+  }
+}

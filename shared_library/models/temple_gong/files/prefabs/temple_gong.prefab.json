@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/temple_gong"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6362, 1.7489, 0.62],
+      "offset": [0, 0.8745, 0]
+    }
+  }
+}

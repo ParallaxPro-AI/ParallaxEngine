@@ -1,0 +1,10 @@
+{
+  "id": "cave_wall_segment",
+  "summary": "A 4 m natural limestone cave wall from the UNDERGROUND kit: one continuous, faceted rock face with a scree fo…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cave_wall_segment or place \"prefab\": \"cave_wall_segment\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cave_wall_segment"]
+}

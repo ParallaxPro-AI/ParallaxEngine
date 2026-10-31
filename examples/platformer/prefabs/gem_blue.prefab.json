@@ -1,0 +1,30 @@
+{
+  "components": {
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.6,
+      "trigger": true
+    },
+    "collectible": {
+      "kind": "gem"
+    }
+  },
+  "behaviors": {
+    "spin": {
+      "speed": 120,
+      "bob": 0.15,
+      "bob_rate": 2.5
+    }
+  },
+  "children": [
+    {
+      "name": "art",
+      "components": {
+        "model": {
+          "model": "https://r2.parallaxpro.ai/assets/model_static/97/eb/97eb76162731e0fdcee63676765251764db2964daee486dea4e4363cb89e7f31.glb",
+          "cast_shadows": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "extends": "pip",
+  "components": {
+    "sprite": { "image": "images/glow", "size": [0.46, 0.46], "color": "#ffb847" }
+  },
+  "tags": ["pip", "flare"]
+}

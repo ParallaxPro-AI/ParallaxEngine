@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/exit_sign"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 0.378, 0.07],
+      "offset": [0, 0.187, -0.003]
+    }
+  }
+}

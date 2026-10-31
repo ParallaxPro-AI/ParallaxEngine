@@ -1,0 +1,10 @@
+{
+  "id": "residential_mailbox",
+  "summary": "A curbside residential mailbox: a round-topped sheet-steel tunnel box with rolled rims, a drop-down front doo… joints door, flag; options colour, post; sockets socket_mail.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.residential_mailbox or place \"prefab\": \"residential_mailbox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:residential_mailbox"]
+}

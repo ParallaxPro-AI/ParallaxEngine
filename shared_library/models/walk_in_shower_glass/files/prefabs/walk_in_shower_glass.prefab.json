@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/walk_in_shower_glass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 2.1, 0.9],
+      "offset": [0, 1.05, 0]
+    }
+  }
+}

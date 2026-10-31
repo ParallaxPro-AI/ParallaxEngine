@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_hoodie"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.408, 0.802, 0.3976],
+      "offset": [0, 1.231, -0.0288]
+    }
+  }
+}

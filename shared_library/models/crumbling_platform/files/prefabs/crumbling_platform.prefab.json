@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crumbling_platform"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3568, 0.7486, 2.3407],
+      "offset": [-0.0084, 0.1713, -0.0239]
+    }
+  }
+}

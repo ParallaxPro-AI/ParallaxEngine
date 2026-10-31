@@ -1,0 +1,10 @@
+{
+  "id": "asteroid_large",
+  "summary": "A large drifting space asteroid for a space shooter, about 6.5 m long, 4 m tall and 5 m deep (a game-scale bo…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.asteroid_large or place \"prefab\": \"asteroid_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:asteroid_large"]
+}

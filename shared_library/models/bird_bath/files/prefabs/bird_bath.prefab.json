@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bird_bath"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.636, 0.672, 0.636],
+      "offset": [0, 0.336, 0]
+    }
+  }
+}

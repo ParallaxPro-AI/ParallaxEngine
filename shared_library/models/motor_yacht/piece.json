@@ -1,0 +1,10 @@
+{
+  "id": "motor_yacht",
+  "summary": "An 18 m flybridge motor yacht: a raked working hull turned pleasure boat — a glazed saloon, an upper helm on… joints door_l, door_r; sockets eye_point, waterline, seat_driver, seat_crew_1, seat_crew_2, seat_crew_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.motor_yacht or place \"prefab\": \"motor_yacht\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:motor_yacht"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_oak"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [10.1387, 10.3323, 11.7662],
+      "offset": [-0.0404, 5.1639, -0.0461]
+    }
+  }
+}

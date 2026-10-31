@@ -1,0 +1,24 @@
+{
+ "tags": [
+  "sea"
+ ],
+ "components": {
+  "water_body": {
+   "kind": "ocean",
+   "waves": "calm"
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    5400,
+    2,
+    5400
+   ],
+   "offset": [
+    0,
+    -1,
+    0
+   ]
+  }
+ }
+}

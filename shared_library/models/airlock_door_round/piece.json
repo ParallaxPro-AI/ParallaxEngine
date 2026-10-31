@@ -1,0 +1,10 @@
+{
+  "id": "airlock_door_round",
+  "summary": "A round pressure hatch set in a panelled sci-fi bulkhead: a domed circular door leaf on a heavy side hinge wi… joints hatch, lock_wheel; options hull, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airlock_door_round or place \"prefab\": \"airlock_door_round\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airlock_door_round"]
+}

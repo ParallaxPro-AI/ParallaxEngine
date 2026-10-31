@@ -1,0 +1,10 @@
+{
+  "id": "overhead_crane_rail",
+  "summary": "One 6.0 m MODULE of an overhead bridge-crane runway along a factory wall: an H-section building column on an… options ends, stops, finish; sockets end_neg, end_pos, column_neg, column_pos.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.overhead_crane_rail or place \"prefab\": \"overhead_crane_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:overhead_crane_rail"]
+}

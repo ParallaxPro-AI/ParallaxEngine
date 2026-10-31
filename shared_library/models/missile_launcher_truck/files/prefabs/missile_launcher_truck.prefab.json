@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/missile_launcher_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 14000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        3.05,
+        7.885
+      ],
+      "offset": [
+        0,
+        1.525,
+        0.1375
+      ]
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 28
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.525,
+        0.1375
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

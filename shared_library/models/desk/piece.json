@@ -1,0 +1,10 @@
+{
+  "id": "desk",
+  "summary": "A work desk with a pull-out drawer and a sliding keyboard tray. joints drawer, keyboard_tray; options style, finish; sockets socket_desktop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.desk or place \"prefab\": \"desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:desk"]
+}

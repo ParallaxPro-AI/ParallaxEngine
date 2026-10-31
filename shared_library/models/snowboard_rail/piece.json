@@ -1,0 +1,10 @@
+{
+  "id": "snowboard_rail",
+  "summary": "A terrain-park flat-down rail: a 4 in (102 mm) powder-coated round rail running 3 m flat at 0.83 m then kinki… options rail; sockets socket_rail_entry, socket_rail_kink, socket_rail_exit, socket_ramp_start.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.snowboard_rail or place \"prefab\": \"snowboard_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:snowboard_rail"]
+}

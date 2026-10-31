@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/blanket_folded"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4625, 0.1363, 0.3417],
+      "offset": [0.0004, 0.0646, 0]
+    }
+  }
+}

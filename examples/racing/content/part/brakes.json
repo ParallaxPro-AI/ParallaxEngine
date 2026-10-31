@@ -1,0 +1,10 @@
+{
+  "order": 3,
+  "name": "Brakes",
+  "blurb": "Later braking points mean more time at full throttle.",
+  "tiers": [
+    { "name": "Stock", "blurb": "Adequate. Barely." },
+    { "name": "Vented", "blurb": "+12% brake force.", "price": 900, "brake": 1.12 },
+    { "name": "Carbon", "blurb": "+28% brake force. Brake where they lift.", "price": 2100, "brake": 1.28 }
+  ]
+}

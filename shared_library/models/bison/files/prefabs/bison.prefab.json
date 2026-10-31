@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bison"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9368, 1.8277, 2.9842],
+      "offset": [0, 0.9139, 0.2616]
+    }
+  }
+}

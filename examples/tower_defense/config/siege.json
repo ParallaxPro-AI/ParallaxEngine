@@ -1,0 +1,18 @@
+{
+  "interest_rate": 0.08,
+  "interest_cap": 60,
+  "clear_bonus": 20,
+  "clear_bonus_per_wave": 6,
+  "boss_bonus_mul": 2,
+  "no_leak_bonus": 30,
+  "sell_refund": 0.5,
+  "first_spawn_delay": 0.6,
+  "spawn_gap": 0.8,
+  "spawn_gap_per_wave": -0.03,
+  "min_spawn_gap": 0.3,
+  "pad_pick_radius": 5,
+  "score_per_gold": 1,
+  "score_per_life": 50,
+  "score_per_wave": 25,
+  "two_star_lives": 0.6
+}

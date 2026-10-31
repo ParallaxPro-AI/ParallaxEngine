@@ -1,0 +1,13 @@
+{
+  "id": "time_trial",
+  "summary": "Run timer per level with medal times as content (content/trial/<id>.json), the device's best time and medal per level, a timer panel, and TrialFinished at the line.",
+  "version": "2026.10.23",
+  "requires": ["scene_tags", "ui_theme"],
+  "setup": [
+    "List TrialClock in Game(systems=[...]) (from game.lib.time_trial import TrialClock).",
+    "Add content/trial/<id>.json per timed scene: {\"scene\": \"level_1\", \"gold\": 40, \"silver\": 55, \"bronze\": 75}.",
+    "Emit FinishReached() when the player crosses the line; with \"auto_start\": false in config/time_trial.json, emit TrialStarted() at the start (e.g. on countdown's CountdownFinished).",
+    "Optional: several trials per scene (e.g. per lap count): set ctx.get(TrialRun).variant before the line; records key on \"<trial id>:<variant>\" (trial_key). \"show_timer\": false in config/time_trial.json hides the timer panel for a game that draws its own clock."
+  ],
+  "replaces": ["lib:gameplay/time_trial", "lib:hud/timer", "lib:hud/medal"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "air_compressor",
+  "summary": "A 6 gallon pancake air compressor: a squat welded steel tank with a seam band on three rubber feet, a moulded… joints regulator, power, drain_valve, tank_needle, out_needle; options tank, shroud; sockets socket_hose, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.air_compressor or place \"prefab\": \"air_compressor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:air_compressor"]
+}

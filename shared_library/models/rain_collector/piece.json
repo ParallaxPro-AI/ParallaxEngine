@@ -1,0 +1,10 @@
+{
+  "id": "rain_collector",
+  "summary": "A survival rainwater collector: four 100 mm bark posts (1.72 m, 1.6 m apart) with a lashed rail frame; an oli… joints tap; sockets socket_spigot, socket_water.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rain_collector or place \"prefab\": \"rain_collector\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rain_collector"]
+}

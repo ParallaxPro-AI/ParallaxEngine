@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/covered_wagon"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 900,
+      "linear_damping": 0.08,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.19,
+        3.1656,
+        7.88
+      ],
+      "offset": [
+        0,
+        1.5828,
+        0.22
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 7,
+      "steering": 35,
+      "grip": 6,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.5828,
+        0.22
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

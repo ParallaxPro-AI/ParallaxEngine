@@ -1,0 +1,10 @@
+{
+  "id": "garden_shed",
+  "summary": "A timber apex garden shed, 2.6 x 1.8 m on bearers: painted shiplap siding with white corner boards, a felt-sh… joints wheelbarrow_wheel, wheelbarrow_tipping; options paint_colour; sockets socket_door_outside, socket_bench.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garden_shed or place \"prefab\": \"garden_shed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garden_shed"]
+}

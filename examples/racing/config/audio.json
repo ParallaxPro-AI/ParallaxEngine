@@ -1,0 +1,8 @@
+{
+  "countdown_beep": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/f2/f4/f2f44effce087e47683f0fea05a71002bd8dca78fb10bf93d9f0b38d49f9590e.ogg", "volume": 0.9 },
+  "race_go": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg", "volume": 1.0 },
+  "checkpoint": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.22 },
+  "lap": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.6 },
+  "finish": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/56/89/568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661.ogg", "volume": 1.0 },
+  "purchase": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg", "volume": 0.7 }
+}

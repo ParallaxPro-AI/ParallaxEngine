@@ -1,0 +1,10 @@
+{
+  "id": "easter_egg_basket",
+  "summary": "An Easter basket: a flared woven-wicker bowl with dark cane weavers, upright stakes and a rolled rim, a twist…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.easter_egg_basket or place \"prefab\": \"easter_egg_basket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:easter_egg_basket"]
+}

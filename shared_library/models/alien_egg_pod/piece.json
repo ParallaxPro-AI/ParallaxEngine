@@ -1,0 +1,10 @@
+{
+  "id": "alien_egg_pod",
+  "summary": "A 1.3 m stylised alien egg pod: five ribbed chitin petals closed into an egg over a fleshy base cup, bone spu… joints petal_0, petal_1, petal_2, petal_3, petal_4; options glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alien_egg_pod or place \"prefab\": \"alien_egg_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alien_egg_pod"]
+}

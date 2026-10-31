@@ -1,0 +1,10 @@
+{
+  "id": "ammo_pickup",
+  "summary": "A loose ammunition pickup: a shallow open-top steel caddy with stamped end grips and a yellow calibre band, h… sockets socket_load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ammo_pickup or place \"prefab\": \"ammo_pickup\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ammo_pickup"]
+}

@@ -1,0 +1,11 @@
+{
+  "components": {
+    "audio_source": {
+      "sound": "https://r2.parallaxpro.ai/assets/audio_ambient/f1/6b/f16b687943d96ce62fbe6313adaee42c59d530146335a45b1c315ad9299b8e14.mp3",
+      "playing": true,
+      "loop": true,
+      "volume": 0.4,
+      "spatial": false
+    }
+  }
+}

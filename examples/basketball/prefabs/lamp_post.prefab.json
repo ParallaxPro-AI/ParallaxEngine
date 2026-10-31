@@ -1,0 +1,10 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [0.18, 5, 0.18], "offset": [0, 2.5, 0], "color": "#767681", "metallic": 0.6 }
+  },
+  "children": [
+    { "at": [0, 5.2, 0], "components": {
+        "shape": { "kind": "cylinder", "size": [0.5, 1, 0.5], "color": "#f9f6c4", "emissive": "#fff2b0" },
+        "light": { "kind": "point", "color": "#ffe9b8", "intensity": 3, "range": 18 } } }
+  ]
+}

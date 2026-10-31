@@ -1,0 +1,10 @@
+{
+  "id": "kelp_strand",
+  "summary": "Giant kelp rising from the sea floor: a root-like holdfast gripping a rock sends up two swaying stipes (3.4 m…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kelp_strand or place \"prefab\": \"kelp_strand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kelp_strand"]
+}

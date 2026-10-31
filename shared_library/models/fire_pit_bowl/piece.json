@@ -1,0 +1,10 @@
+{
+  "id": "fire_pit_bowl",
+  "summary": "A steel garden fire-pit bowl: a deep spun bowl with a broad flat rim flange and two ring handles, on a ring s… options fire, spark_screen, finish; sockets socket_fire, socket_rim, smoke.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fire_pit_bowl or place \"prefab\": \"fire_pit_bowl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fire_pit_bowl"]
+}

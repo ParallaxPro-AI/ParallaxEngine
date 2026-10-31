@@ -1,0 +1,3 @@
+{ "name": "Wooden Pickaxe", "order": 1, "category": "tools", "station": "hand",
+  "inputs": [{ "item": "wood_log", "count": 3 }],
+  "output": { "item": "wood_pickaxe", "count": 1 } }

@@ -1,0 +1,14 @@
+{
+  "id": "shop_counter",
+  "summary": "A retail service / checkout counter: a wood cabinet with a walnut worktop, a cash-register on top, a… joints till_drawer, flap; sockets socket_worktop.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.shop_counter or place \"prefab\": \"shop_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:shop_counter"
+  ]
+}

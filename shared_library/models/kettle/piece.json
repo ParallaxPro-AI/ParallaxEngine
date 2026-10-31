@@ -1,0 +1,10 @@
+{
+  "id": "kettle",
+  "summary": "A kitchen kettle with a hinged lid, a pouring spout, a back handle and an on/off switch. joints lid, switch; options type; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kettle or place \"prefab\": \"kettle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kettle"]
+}

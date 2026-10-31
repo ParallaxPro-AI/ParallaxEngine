@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/counter_clutter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9917, 0.2505, 0.4367],
+      "offset": [0.0018, 0.1232, 0.0026]
+    }
+  }
+}

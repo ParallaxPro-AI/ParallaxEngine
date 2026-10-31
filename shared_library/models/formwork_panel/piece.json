@@ -1,0 +1,10 @@
+{
+  "id": "formwork_panel",
+  "summary": "A 1.35 x 2.70 m framed concrete formwork panel standing on edge: a powder-coated steel perimeter frame with t… options bracing, frame, face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.formwork_panel or place \"prefab\": \"formwork_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:formwork_panel"]
+}

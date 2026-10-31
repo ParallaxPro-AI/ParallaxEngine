@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_coat_wool_long"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.304, 1.028, 0.4583],
+      "offset": [0, 1.074, -0.0072]
+    }
+  }
+}

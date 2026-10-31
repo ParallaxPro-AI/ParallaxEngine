@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pharmacy_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1, 2.057, 0.42],
+      "offset": [0, 1.0285, 0]
+    }
+  }
+}

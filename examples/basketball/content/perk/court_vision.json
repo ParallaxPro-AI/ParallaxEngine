@@ -1,0 +1,2 @@
+{ "name": "Court Vision", "description": "Snappier passes, and +10% on your running mate's shots.",
+  "category": "playmaking", "max_stacks": 2, "pass_speed": 8, "ally_make_bonus": 0.1 }

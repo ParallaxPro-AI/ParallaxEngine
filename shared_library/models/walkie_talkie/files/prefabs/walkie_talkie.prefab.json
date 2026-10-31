@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/walkie_talkie"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.069, 0.292, 0.0532],
+      "offset": [-0.0015, 0.146, -0.0053]
+    }
+  }
+}

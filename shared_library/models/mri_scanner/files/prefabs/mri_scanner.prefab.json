@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mri_scanner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.064, 2.1, 3.845],
+      "offset": [0, 1.05, 0.1275]
+    }
+  }
+}

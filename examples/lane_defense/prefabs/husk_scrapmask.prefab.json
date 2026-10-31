@@ -1,0 +1,5 @@
+{
+  "extends": "husk",
+  "components": { "model": { "model": "models/husk_scrapmask" } },
+  "behaviors": { "husk_walker": { "armored": true } }
+}

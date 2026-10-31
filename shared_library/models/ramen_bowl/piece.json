@@ -1,0 +1,10 @@
+{
+  "id": "ramen_bowl",
+  "summary": "A ramen bowl — glossy ceramic bowl on a footed base, dark broth, a tangle of noodles, a halved soft-egg, scal…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ramen_bowl or place \"prefab\": \"ramen_bowl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ramen_bowl"]
+}

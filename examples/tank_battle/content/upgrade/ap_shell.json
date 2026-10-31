@@ -1,0 +1,1 @@
+{ "name": "AP shell", "description": "Iron Valley cleared — AP shell: +8 damage, +25 hull", "icon": "●", "offered": false, "damage": 8, "max_health": 25 }

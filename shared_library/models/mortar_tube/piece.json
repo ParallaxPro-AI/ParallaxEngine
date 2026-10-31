@@ -1,0 +1,10 @@
+{
+  "id": "mortar_tube",
+  "summary": "An infantry mortar: an 81 mm-class smoothbore tube with a ball breech cap seated in the socket of a ribbed, d… joints tube, elev_crank; options finish; sockets muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mortar_tube or place \"prefab\": \"mortar_tube\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mortar_tube"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ticket_barrier",
+  "summary": "A two-pedestal metro/transit fare gate with card readers and a green go-indicator. joints gate_l, gate_r; sockets socket_reader_left.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ticket_barrier or place \"prefab\": \"ticket_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ticket_barrier"]
+}

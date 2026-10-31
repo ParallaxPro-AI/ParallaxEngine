@@ -1,0 +1,10 @@
+{
+  "id": "bulletin_board",
+  "summary": "A wall-hung 900 x 600 mm cork notice board in a chamfered timber frame, dressed with pinned notices (printed… options content, frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bulletin_board or place \"prefab\": \"bulletin_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bulletin_board"]
+}

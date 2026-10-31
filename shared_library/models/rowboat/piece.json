@@ -1,0 +1,10 @@
+{
+  "id": "rowboat",
+  "summary": "A small wooden rowboat: a lofted clinker-style hull hollowed to an open cockpit, three thwart benches, and tw… joints oar_l, oar_r; sockets waterline.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rowboat or place \"prefab\": \"rowboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rowboat"]
+}

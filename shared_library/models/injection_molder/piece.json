@@ -1,0 +1,10 @@
+{
+  "id": "injection_molder",
+  "summary": "A horizontal plastic injection moulding machine, 5.5 m long and 2.6 m to the hopper lid: a long painted base… joints clamp, safety_gate, hopper_lid; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.injection_molder or place \"prefab\": \"injection_molder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:injection_molder"]
+}

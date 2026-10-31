@@ -1,0 +1,12 @@
+{
+  "name": "The Drifter",
+  "role": "THE FOOTWORK TEST",
+  "taunt": "Step into jab range. Guard, then punish.",
+  "style": "spacing",
+  "walk_speed": 3.2,
+  "spacing": 1.4,
+  "block_chance": 0.2,
+  "reaction": 0.42,
+  "cadence": 1.05,
+  "kit": "indigo"
+}

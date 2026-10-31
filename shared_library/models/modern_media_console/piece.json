@@ -1,0 +1,10 @@
+{
+  "id": "modern_media_console",
+  "summary": "A modern 1.8 m media console from the modern apartment set: a walnut carcass on black steel sled legs with an… joints door_l, door_r; options wood, tv, decor; sockets top, bay.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_media_console or place \"prefab\": \"modern_media_console\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_media_console"]
+}

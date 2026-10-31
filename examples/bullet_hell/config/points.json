@@ -1,0 +1,11 @@
+{
+  "chain_window": 2.6,
+  "chain_gain": 0.2,
+  "max_multiplier": 6,
+  "wave_bonus": 250,
+  "graze_score": 10,
+  "bloom_score": 50,
+  "win_bonus_per_life": 500,
+  "win_bonus_per_shield": 150,
+  "win_bonus_per_bomb": 200
+}

@@ -1,0 +1,10 @@
+{
+  "id": "money_bag_dollar",
+  "summary": "A cartoon money bag: a plump tied burlap sack with a heavy rounded belly, a rope cinched round its neck with… sockets socket_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.money_bag_dollar or place \"prefab\": \"money_bag_dollar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:money_bag_dollar"]
+}

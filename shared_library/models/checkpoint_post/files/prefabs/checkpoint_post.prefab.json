@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/checkpoint_post"
+    }
+  }
+}

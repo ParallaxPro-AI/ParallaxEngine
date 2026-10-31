@@ -1,0 +1,1 @@
+{ "name": "Soft Accel", "description": "The orb speeds up half as fast off the paddle.", "ball_accel": 0.5 }

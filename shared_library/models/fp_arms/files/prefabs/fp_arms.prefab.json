@@ -1,0 +1,38 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fp_arms",
+      "cast_shadows": false
+    },
+    "animator": {
+      "ik": {
+        "limbs": {
+          "right_hand": {
+            "bones": [
+              "RightArm",
+              "RightForeArm",
+              "RightHand"
+            ],
+            "pole": [
+              0.5,
+              -1,
+              -0.2
+            ]
+          },
+          "left_hand": {
+            "bones": [
+              "LeftArm",
+              "LeftForeArm",
+              "LeftHand"
+            ],
+            "pole": [
+              -0.5,
+              -1,
+              -0.2
+            ]
+          }
+        }
+      }
+    }
+  }
+}

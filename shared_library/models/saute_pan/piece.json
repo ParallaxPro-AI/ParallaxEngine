@@ -1,0 +1,10 @@
+{
+  "id": "saute_pan",
+  "summary": "A 260 mm stainless sauté pan — flared body lathed from one section, a dark matte cooking surface inset inside…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saute_pan or place \"prefab\": \"saute_pan\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saute_pan"]
+}

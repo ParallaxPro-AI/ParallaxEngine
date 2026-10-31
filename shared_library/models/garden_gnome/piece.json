@@ -1,0 +1,10 @@
+{
+  "id": "garden_gnome",
+  "summary": "A 0.5 m glazed resin garden gnome on a grassy plinth: black boots, a belted blue tunic, a long lofted white b… options hat_colour, coat_colour; sockets socket_hands.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garden_gnome or place \"prefab\": \"garden_gnome\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garden_gnome"]
+}

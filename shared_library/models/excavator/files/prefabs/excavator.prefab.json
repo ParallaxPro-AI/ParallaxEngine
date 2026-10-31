@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/excavator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.25, 4.4486, 5.0066],
+      "offset": [0, 2.2243, 0.3797]
+    }
+  }
+}

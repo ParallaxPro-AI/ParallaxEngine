@@ -1,0 +1,212 @@
+<link rel="stylesheet" href="menu_kit.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1) x uiScale 2; --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: calc(2 * min(100cqw / 1920, 100cqh / 1080, 1px)); }
+
+  /* Theme the shared title kit (.pp-menu-* live in the engine bundle). Only the
+     CRT-arcade palette + the bespoke scoreboard header, court art (net / paddles /
+     ball) and the stepped power-on entrance are authored here; the scene, card
+     shell, button mechanics and the coarse-pointer touch floor are inherited. */
+  .card {
+    --pp-menu-font: Consolas, Monaco, "Courier New", monospace;
+    --pp-menu-ink: #ffffff;
+    --pp-menu-w: min(calc(500 * var(--u)), calc(100cqw - calc(40 * var(--u))));
+    --pp-menu-pad: 0;
+    --pp-menu-r: 0;
+    --pp-menu-border: calc(2 * var(--u)) solid rgba(255, 255, 255, 0.82);
+    --pp-menu-bg: rgba(0, 0, 0, 0.74);
+    --pp-menu-shadow: 0 calc(22 * var(--u)) calc(62 * var(--u)) rgba(0, 0, 0, 0.42), 0 0 calc(28 * var(--u)) rgba(255, 255, 255, 0.12);
+    --pp-menu-blur: calc(5 * var(--u));
+    --pp-menu-btn-bg: #000000;
+    --pp-menu-btn-border: #ffffff;
+    --pp-menu-btn-ink: #ffffff;
+    --pp-menu-btn-r: 0;
+    --pp-menu-btn-shadow: 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0, 0, 0, 0.30);
+  }
+
+  /* Signature CRT power-on: a stepped scale/opacity fade (evoking a scoreboard
+     flickering on) instead of the kit's smooth translate-fade. */
+  .pp-menu-scene { animation: scoreIn 0.55s steps(5, end) forwards; }
+  @keyframes scoreIn {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .bg-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .score-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    border-bottom: calc(2 * var(--u)) solid #ffffff;
+    color: #ffffff;
+    font-size: calc(13 * var(--u));
+    font-weight: 900;
+    letter-spacing: calc(3 * var(--u));
+    text-transform: uppercase;
+  }
+
+  .player {
+    padding: calc(13 * var(--u)) calc(16 * var(--u));
+  }
+
+  .player.right {
+    text-align: right;
+  }
+
+  .net {
+    width: calc(2 * var(--u));
+    height: calc(44 * var(--u));
+    background: repeating-linear-gradient(180deg, #ffffff 0 calc(6 * var(--u)), transparent calc(6 * var(--u)) calc(10 * var(--u)));
+  }
+
+  .screen-panel {
+    padding: calc(28 * var(--u)) calc(30 * var(--u)) calc(30 * var(--u));
+    text-align: center;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.05) calc(1 * var(--u)), transparent calc(1 * var(--u))) 0 0 / 100% calc(5 * var(--u)),
+      rgba(0, 0, 0, 0.32);
+  }
+
+  .cabinet-tag {
+    display: inline-block;
+    padding: calc(5 * var(--u)) calc(11 * var(--u));
+    border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.65);
+    color: #ffffff;
+    font-size: calc(11 * var(--u));
+    font-weight: 900;
+    letter-spacing: calc(3 * var(--u));
+    text-transform: uppercase;
+  }
+
+  .title-area {
+    margin-top: calc(20 * var(--u));
+  }
+
+  .game-title {
+    color: #ffffff;
+    font-size: clamp(calc(34 * var(--u)), 8cqw, calc(56 * var(--u)));
+    font-weight: 400;
+    line-height: 0.98;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    text-shadow: 0 0 calc(18 * var(--u)) rgba(255, 255, 255, 0.34);
+  }
+
+  .court-line {
+    width: calc(72 * var(--u));
+    height: calc(2 * var(--u));
+    margin: calc(20 * var(--u)) auto;
+    background: #ffffff;
+  }
+
+  .rally {
+    display: grid;
+    grid-template-columns: 1fr calc(12 * var(--u)) 1fr;
+    align-items: center;
+    gap: calc(12 * var(--u));
+    margin: 0 auto;
+    max-width: calc(260 * var(--u));
+  }
+
+  .paddle {
+    height: calc(46 * var(--u));
+    border: calc(2 * var(--u)) solid #ffffff;
+  }
+
+  .ball {
+    width: calc(12 * var(--u));
+    height: calc(12 * var(--u));
+    background: #ffffff;
+    box-shadow: 0 0 calc(14 * var(--u)) rgba(255, 255, 255, 0.45);
+  }
+
+  .hint {
+    max-width: calc(360 * var(--u));
+    margin: calc(20 * var(--u)) auto 0;
+    color: rgba(255, 255, 255, 0.76);
+    font-size: calc(13 * var(--u));
+    line-height: 1.45;
+  }
+
+  /* Single centered arcade button — the kit's .pp-menu-actions would stack it
+     full-width, so keep the centered, non-stretched group. */
+  .btn-group {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(24 * var(--u));
+  }
+
+  /* Reuse .pp-menu-btn (structure + press + touch floor); layer back this game's
+     wide-letterspaced monospace label, sharp 190px block and the CRT invert hover. */
+  .menu-btn {
+    width: auto;
+    min-width: calc(190 * var(--u));
+    padding: calc(15 * var(--u)) calc(20 * var(--u));
+    font-size: calc(16 * var(--u));
+    letter-spacing: calc(5 * var(--u));
+    transition: transform 0.12s ease, background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+  }
+
+  .menu-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 0 calc(24 * var(--u)) rgba(255, 255, 255, 0.34);
+  }
+
+  @media (max-width: 640px) {
+    .card {
+      --pp-menu-w: min(calc(430 * var(--u)), calc(100cqw - calc(28 * var(--u))));
+    }
+
+    .score-row {
+      font-size: calc(11 * var(--u));
+    }
+
+    .screen-panel {
+      padding: calc(24 * var(--u)) calc(20 * var(--u));
+    }
+
+    .menu-btn {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+</style>
+<div class="bg-layer"></div>
+<div class="pp-menu-scene">
+  <main class="pp-menu-card card">
+    <div class="score-row" aria-hidden="true">
+      <span class="player" data-text="title_p1"></span>
+      <span class="net"></span>
+      <span class="player right" data-text="title_cpu"></span>
+    </div>
+
+    <section class="screen-panel">
+      <div class="cabinet-tag" data-text="title_tag"></div>
+
+      <div class="title-area">
+        <h1 class="game-title"><span data-text="title_first"></span><br /><span data-text="title_second"></span></h1>
+      </div>
+
+      <div class="court-line"></div>
+
+      <div class="rally" aria-hidden="true">
+        <span class="paddle"></span>
+        <span class="ball"></span>
+        <span class="paddle"></span>
+      </div>
+
+      <p class="hint" data-text="title_hint"></p>
+
+      <div class="btn-group">
+        <button class="pp-menu-btn menu-btn" data-action="start" data-text="title_start"></button>
+      </div>
+    </section>
+  </main>
+</div>

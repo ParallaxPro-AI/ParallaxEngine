@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/canopic_jar_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.628, 0.6409, 0.6998],
+      "offset": [0, 0.3204, 0.0099]
+    }
+  }
+}

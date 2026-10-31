@@ -1,0 +1,1 @@
+{ "name": "Escalation", "description": "Each frag in a streak adds +0.15 to your score multiplier instead of +0.10.", "icon": "⧗", "streak_step_add": 0.05 }

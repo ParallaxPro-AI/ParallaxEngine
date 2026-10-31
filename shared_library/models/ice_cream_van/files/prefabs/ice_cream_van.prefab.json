@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_cream_van"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2100,
+      "linear_damping": 0.05,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.7419,
+        3.464,
+        4.8
+      ],
+      "offset": [
+        -0.131,
+        1.732,
+        0.01
+      ],
+      "bounce": 0.12
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 34,
+      "grip": 8,
+      "turn_rate": 2.2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.131,
+        1.732,
+        0.01
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

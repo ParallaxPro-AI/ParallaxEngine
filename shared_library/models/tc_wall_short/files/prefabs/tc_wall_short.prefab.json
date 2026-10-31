@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_wall_short"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1, 2.4, 8.6],
+      "offset": [0, 1.2, 0]
+    }
+  }
+}

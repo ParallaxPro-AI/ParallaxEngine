@@ -1,0 +1,10 @@
+{
+  "id": "site_cabin",
+  "summary": "A 12 x 8 ft anti-vandal steel site office you can walk into: a ribbed painted steel box on a base frame with… joints door, desk_drawer, chair_lift, chair_swivel, chair_recline, cabinet_drawer_0, …; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.site_cabin or place \"prefab\": \"site_cabin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:site_cabin"]
+}

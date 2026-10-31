@@ -1,0 +1,10 @@
+{
+  "id": "quest_board",
+  "summary": "A fantasy-RPG village quest board: two dark oak posts (3.3 m) on dressed stone footings carry a 2.0 x 1.4 m b… joints lantern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.quest_board or place \"prefab\": \"quest_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:quest_board"]
+}

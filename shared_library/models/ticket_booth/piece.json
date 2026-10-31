@@ -1,0 +1,10 @@
+{
+  "id": "ticket_booth",
+  "summary": "A carnival ticket booth: white body, red roof with a striped valance and a lit TICKETS sign, a service counte… joints shutter, window; sockets socket_counter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ticket_booth or place \"prefab\": \"ticket_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ticket_booth"]
+}

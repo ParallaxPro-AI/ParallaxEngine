@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gym_bench_adjustable"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.586, 0.665, 1.591],
+      "offset": [0, 0.3325, 0.0945]
+    }
+  }
+}

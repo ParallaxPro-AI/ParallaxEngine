@@ -1,0 +1,10 @@
+{
+  "id": "candy_mixer",
+  "summary": "Open confectionery kettle with raspberry syrup, enamel housing, brass rim and agitator bridge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.candy_mixer or place \"prefab\": \"candy_mixer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:candy_mixer"]
+}

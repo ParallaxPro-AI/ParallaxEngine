@@ -1,0 +1,10 @@
+{
+  "id": "house_roof_hip_corner",
+  "summary": "The hipped end (two hip corners) of a 35-degree pitched roof for the HOUSE modular kit, covering one 3 x 3 m… options end_left, slate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_roof_hip_corner or place \"prefab\": \"house_roof_hip_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_roof_hip_corner"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/barn_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 2.4165, 0.207],
+      "offset": [0, 1.2067, -0.0015]
+    }
+  }
+}

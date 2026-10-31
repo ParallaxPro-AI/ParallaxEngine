@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/inn_tavern_exterior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [13.723, 13.054, 11.217],
+      "offset": [-0.0015, 6.523, -0.0035]
+    }
+  }
+}

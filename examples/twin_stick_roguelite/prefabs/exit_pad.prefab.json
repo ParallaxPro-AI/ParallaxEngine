@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [2.6, 0.14, 2.6], "color": "#40f273", "emissive": "#80ff99" },
+    "collider": { "shape": "cylinder", "radius": 1.7, "height": 0.5, "trigger": true, "layer": "pickup", "collides_with": ["keeper"] }
+  },
+  "behaviors": { "exit_pad": {} }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "canopic_jar_set",
+  "summary": "A set of four Egyptian canopic jars on a gilded sledge base: turned calcite jars with painted inscription col… joints imsety_lid, hapy_lid, duamutef_lid, qebehsenuef_lid; options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.canopic_jar_set or place \"prefab\": \"canopic_jar_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:canopic_jar_set"]
+}

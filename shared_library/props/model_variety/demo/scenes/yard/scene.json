@@ -1,0 +1,6 @@
+{
+  "entities": [
+    { "prefab": "camera", "at": [0, 3, -8] },
+    { "prefab": "gadget", "grid": { "cols": 8, "rows": 2, "spacing": [1.5, 1.5], "origin": [-5, 0] } }
+  ]
+}

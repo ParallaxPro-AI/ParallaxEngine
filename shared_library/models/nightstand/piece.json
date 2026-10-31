@@ -1,0 +1,10 @@
+{
+  "id": "nightstand",
+  "summary": "A wooden bedside nightstand on four short legs: an upper drawer that slides out and a lower cabinet door that… joints drawer, door; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.nightstand or place \"prefab\": \"nightstand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:nightstand"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trophy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2743, 0.342, 0.2094],
+      "offset": [0, 0.171, 0.0017]
+    }
+  }
+}

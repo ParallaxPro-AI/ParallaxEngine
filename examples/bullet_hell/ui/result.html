@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="garden.css">
+<style>
+  .psr { position: fixed; inset: 0; display: grid; place-items: center; padding: 12px calc(var(--ps-sa-r) + 12px) 12px calc(var(--ps-sa-l) + 12px); pointer-events: auto; }
+  .psr-card { --accent: var(--ps-win); position: relative; width: min(100%, calc(1180 * var(--ps-u))); max-height: calc(100cqh - 24px); overflow-y: auto; padding: calc(52 * var(--ps-u)) calc(80 * var(--ps-u)) calc(50 * var(--ps-u)); display: flex; flex-direction: column; align-items: center; text-align: center; border-color: color-mix(in oklab, var(--accent) 45%, transparent); animation: ps-rise .52s var(--ps-ease); }
+  .psr-card::before { content: ""; position: absolute; left: 20%; right: 20%; top: -1px; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent); }
+  .psr-card.lost { --accent: var(--ps-loss); }
+  .psr-col { display: contents; }
+  .psr-orn { width: calc(48 * var(--ps-u)); height: calc(48 * var(--ps-u)); margin-bottom: calc(18 * var(--ps-u)); color: var(--accent); }
+  .psr-orn .i { width: 100%; height: 100%; }
+  .psr-orn .moon, .lost .psr-orn .bloom { display: none; }
+  .lost .psr-orn .moon { display: block; }
+  .psr-title { font: italic 600 calc(104 * var(--ps-u))/1 var(--ps-font-display); color: var(--accent); text-shadow: 0 0 calc(36 * var(--ps-u)) color-mix(in oklab, var(--accent) 40%, transparent); }
+  .psr-sub { margin-top: calc(16 * var(--ps-u)); font: 500 var(--ps-fs-body)/1.4 var(--ps-font-ui); color: var(--ps-ink-dim); text-wrap: pretty; }
+  .psr-score { position: relative; display: flex; flex-direction: column; align-items: center; gap: calc(12 * var(--ps-u)); margin-top: calc(38 * var(--ps-u)); }
+  .psr-scorev { font-size: calc(112 * var(--ps-u)); line-height: 1; color: var(--ps-gold); text-shadow: 0 0 calc(30 * var(--ps-u)) rgba(255,227,158,.3); }
+  .psr-badge { position: absolute; right: calc(-130 * var(--ps-u)); top: calc(56 * var(--ps-u)); padding: calc(9 * var(--ps-u)) calc(16 * var(--ps-u)); font: 700 var(--ps-fs-label)/1 var(--ps-font-ui); letter-spacing: .16em; text-transform: uppercase; white-space: nowrap; color: var(--ps-panel); background: var(--accent); border-radius: 999px; box-shadow: 0 0 calc(20 * var(--ps-u)) color-mix(in oklab, var(--accent) 60%, transparent); animation: ps-pop .42s .95s var(--ps-ease) both; }
+  .psr-stats { display: grid; grid-template-columns: repeat(3, 1fr); width: min(100%, calc(720 * var(--ps-u))); margin-top: calc(34 * var(--ps-u)); }
+  .psr-stats > div { display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--ps-u)); }
+  .psr-stats > div + div { border-left: 1px solid rgba(145,182,159,.3); }
+  .psr-stats dd { font-size: calc(40 * var(--ps-u)); color: var(--ps-ink); }
+  .psr-build { display: flex; flex-direction: column; align-items: center; gap: calc(16 * var(--ps-u)); margin-top: calc(34 * var(--ps-u)); }
+  .psr-chips { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: calc(10 * var(--ps-u)); max-width: calc(1000 * var(--ps-u)); }
+  .psr-chips li { padding: calc(9 * var(--ps-u)) calc(18 * var(--ps-u)); font-size: calc(19 * var(--ps-u)); font-weight: 600; color: var(--ps-ink); border: 1px solid var(--ps-border); border-radius: 999px; background: rgba(3,14,16,.3); }
+  .psr-stock { font: italic 500 calc(28 * var(--ps-u))/1.2 var(--ps-font-display); color: var(--ps-ink-dim); }
+  .psr-actions { display: flex; gap: calc(20 * var(--ps-u)); margin-top: calc(40 * var(--ps-u)); }
+  .ps-root .psr-actions .ps-btn { min-width: calc(240 * var(--ps-u)); }
+  .ps-root .psr-again { background: var(--accent); color: var(--ps-panel); box-shadow: 0 calc(10 * var(--ps-u)) calc(30 * var(--ps-u)) rgba(2,10,12,.45), 0 0 calc(26 * var(--ps-u)) color-mix(in oklab, var(--accent) 40%, transparent); }
+  @media (hover: hover) { .ps-root .psr-again:hover { background: var(--accent); filter: brightness(1.08); } }
+  @container (max-height: 500px) {
+    .psr { padding: calc(20 * var(--ps-u)) max(16px, calc(var(--ps-sa-r) + 12px)) calc(20 * var(--ps-u)) max(16px, calc(var(--ps-sa-l) + 12px)); }
+    .psr-card { width: min(100%, calc(756 * var(--ps-u))); height: auto; padding: calc(24 * var(--ps-u)) calc(30 * var(--ps-u)); display: grid; grid-template-columns: 1fr 1fr; gap: calc(30 * var(--ps-u)); text-align: left; align-items: stretch; }
+    .psr-col { display: flex; flex-direction: column; min-width: 0; justify-content: center; }
+    .psr-col.r { gap: calc(16 * var(--ps-u)); border-left: 1px solid rgba(145,182,159,.25); padding-left: calc(30 * var(--ps-u)); }
+    .psr-orn { width: calc(22 * var(--ps-u)); height: calc(22 * var(--ps-u)); margin-bottom: calc(8 * var(--ps-u)); }
+    .psr-title { font-size: calc(40 * var(--ps-u)); }
+    .psr-sub { margin-top: calc(8 * var(--ps-u)); }
+    .psr-score { margin-top: calc(22 * var(--ps-u)); gap: calc(6 * var(--ps-u)); align-items: flex-start; }
+    .psr-scorev { font-size: calc(48 * var(--ps-u)); }
+    .psr-badge { right: auto; left: calc(190 * var(--ps-u)); top: calc(30 * var(--ps-u)); padding: calc(5 * var(--ps-u)) calc(9 * var(--ps-u)); }
+    .psr-stats { margin-top: 0; width: 100%; }
+    .psr-stats > div { gap: calc(6 * var(--ps-u)); }
+    .psr-stats dd { font-size: calc(22 * var(--ps-u)); }
+    .psr-build { margin-top: 0; gap: calc(9 * var(--ps-u)); align-items: flex-start; }
+    .psr-chips { gap: calc(5 * var(--ps-u)); justify-content: flex-start; max-width: none; }
+    .psr-chips li { font-size: max(10px, calc(11 * var(--ps-u))); padding: calc(4 * var(--ps-u)) calc(9 * var(--ps-u)); }
+    .psr-stock { font-size: calc(16 * var(--ps-u)); }
+    .psr-actions { gap: calc(10 * var(--ps-u)); margin-top: calc(4 * var(--ps-u)); }
+    .ps-root .psr-actions .ps-btn { flex: 1; min-width: 0; padding: 0 1em; }
+  }
+  .mask { display: block; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+</style>
+<div class="ps-root psr">
+  <div class="ps-veil"></div>
+  <div class="ps-panel psr-card" data-class-lost="lost" role="dialog" aria-modal="true">
+    <div class="psr-col l">
+      <span class="psr-orn"><span class="i bloom mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%2872 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28144 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28216 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28288 12 12%29%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.4%22 fill=%22%23ffe39e%22/%3E%3C/svg%3E&quot;)"></span><span class="i moon mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M15.5 3.2A9 9 0 1 0 20.8 16 7.2 7.2 0 1 1 15.5 3.2z%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span></span>
+      <h1 class="psr-title" data-bind="title"></h1>
+      <p class="psr-sub" data-bind="subtitle"></p>
+      <div class="psr-score"><span class="ps-lbl" data-text="final_score"></span><span class="psr-scorev ps-num" data-bind="score_text"></span><span class="psr-badge" data-show="new_best" data-text="new_best"></span></div>
+    </div>
+    <div class="psr-col r">
+      <dl class="psr-stats">
+        <div><dt class="ps-lbl" data-text="waves"></dt><dd class="ps-num" data-bind="waves"></dd></div>
+        <div><dt class="ps-lbl" data-text="graze"></dt><dd class="ps-num" data-bind="graze"></dd></div>
+        <div><dt class="ps-lbl" data-text="best"></dt><dd class="ps-num" data-bind="best"></dd></div>
+      </dl>
+      <div class="psr-build"><span class="ps-lbl" data-text="attunements"></span>
+        <ul class="psr-chips" data-show="build" data-each="build"><template><li data-bind="label"></li></template></ul>
+        <p class="psr-stock" data-hide="build" data-text="stock_wings"></p>
+      </div>
+      <div class="psr-actions">
+        <button class="ps-btn ps-btn-leaf psr-again" data-action="retry" data-text="again"></button>
+        <button class="ps-btn" data-action="quit" data-text="menu"></button>
+      </div>
+    </div>
+  </div>
+</div>

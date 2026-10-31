@@ -1,0 +1,10 @@
+{
+  "id": "pool_table",
+  "summary": "An 8-foot slate-bed pool / billiards table: solid cabinet on a plinth, green felt bed, cushioned rails with s… joints cues, pockets; sockets socket_rack_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pool_table or place \"prefab\": \"pool_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pool_table"]
+}

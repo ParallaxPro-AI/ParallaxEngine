@@ -1,0 +1,10 @@
+{
+  "id": "space_fighter",
+  "summary": "An original 12.5 m single-seat starfighter: a lofted hexagonal-section fuselage with a long chiselled nose, a… joints canopy, thrust, wing_aileron_l, wing_aileron_r, nose_gear, maingear_l, …; options hull, accent; sockets eye_point, socket_seat, engine_l, engine_r, muzzle_chin_l, muzzle_chin_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_fighter or place \"prefab\": \"space_fighter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_fighter"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mortar_tube"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5505, 0.8474, 0.7328],
+      "offset": [0, 0.4237, 0.0114]
+    }
+  }
+}

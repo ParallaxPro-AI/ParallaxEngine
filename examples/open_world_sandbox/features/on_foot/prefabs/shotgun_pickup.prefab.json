@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": { "model": "models/wpn_shotgun" },
+    "collider": { "shape": "sphere", "radius": 0.9, "trigger": true },
+    "weapon_pickup": { "weapon": "shotgun", "ammo": 24 }
+  }
+}

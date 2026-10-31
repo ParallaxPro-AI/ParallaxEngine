@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sawhorse",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.0,
+        0.85,
+        0.6318
+      ],
+      "offset": [
+        0.0,
+        0.425,
+        0.0
+      ]
+    }
+  }
+}

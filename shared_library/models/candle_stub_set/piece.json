@@ -1,0 +1,10 @@
+{
+  "id": "candle_stub_set",
+  "summary": "A cluster of five burned-down candle stubs (34-105 mm tall, 38-60 mm across) standing in one pool of melted w… sockets socket_flame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.candle_stub_set or place \"prefab\": \"candle_stub_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:candle_stub_set"]
+}

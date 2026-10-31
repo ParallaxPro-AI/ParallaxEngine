@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_guest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.707, 1.8882, 0.4454],
+      "offset": [0, 0.9441, 0.0093]
+    }
+  }
+}

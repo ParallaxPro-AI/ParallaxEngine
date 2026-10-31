@@ -1,0 +1,10 @@
+{
+  "id": "bowling_ball",
+  "summary": "A regulation ten-pin bowling ball (0.218 m / 8.59 in diameter): a polished swirl-resin sphere drilled with a… options colour; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bowling_ball or place \"prefab\": \"bowling_ball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bowling_ball"]
+}

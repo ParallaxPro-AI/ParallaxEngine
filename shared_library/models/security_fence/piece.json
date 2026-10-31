@@ -1,0 +1,10 @@
+{
+  "id": "security_fence",
+  "summary": "One 2.5 m bay of 2.4 m welded-mesh security fencing: a rigid panel of 6 mm wires welded on a 50 x 200 mm grid… options topping, ends, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_fence or place \"prefab\": \"security_fence\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_fence"]
+}

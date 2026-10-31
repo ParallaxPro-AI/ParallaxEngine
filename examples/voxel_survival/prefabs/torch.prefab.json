@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.12, 0.55, 0.12], "offset": [0, 0.6, 0], "color": "#f29429", "emissive": "#ff6614" },
+    "light": { "kind": "point", "color": "#ffb060", "intensity": 2.2, "range": 9 },
+    "safe_zone": { "radius": 9 }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cell_tower"
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "components": {
+    "shape": { "kind": "plane", "size": [20, 1, 20], "color": "#2c3340" }
+  }
+}

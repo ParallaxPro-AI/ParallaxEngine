@@ -1,0 +1,2 @@
+{ "name": "Lettuce", "stage": 2, "task": "Chop the lettuce", "hint": "at a chopping board",
+  "carry_shape": "sphere", "carry_color": "#aae59e", "carry_size": [0.32, 0.32, 0.32] }

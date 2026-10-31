@@ -1,0 +1,10 @@
+{
+  "id": "water_cooler",
+  "summary": "A free-standing office water cooler: a tall white cabinet with a recessed dispensing alcove, two push-paddle… joints tap_hot, tap_cold, bottle; sockets socket_cup.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_cooler or place \"prefab\": \"water_cooler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_cooler"]
+}

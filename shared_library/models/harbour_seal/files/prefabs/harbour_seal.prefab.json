@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/harbour_seal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.44, 0.35, 1.495],
+      "offset": [0, 0, -0.0575]
+    }
+  }
+}

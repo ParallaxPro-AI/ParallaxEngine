@@ -1,0 +1,10 @@
+{
+  "components": {
+    "light": {
+      "kind": "directional",
+      "color": "#d3e5ff",
+      "intensity": 0.55,
+      "shadows": false
+    }
+  }
+}

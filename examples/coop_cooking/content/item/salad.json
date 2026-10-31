@@ -1,0 +1,2 @@
+{ "name": "Garden Salad", "stage": 4, "task": "Deliver the salad", "hint": "to the blue window",
+  "carry_shape": "box", "carry_color": "#f9f7ed", "carry_size": [0.44, 0.16, 0.44] }

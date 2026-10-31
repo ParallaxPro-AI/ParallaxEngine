@@ -1,0 +1,10 @@
+{
+  "id": "checkout_lane",
+  "summary": "A supermarket checkout lane mid-transaction, 2.67 m long: a rubber belt between stainless rails with shopping…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.checkout_lane or place \"prefab\": \"checkout_lane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:checkout_lane"]
+}

@@ -1,0 +1,18 @@
+{
+  "number": 1,
+  "title": "A little green courage",
+  "subtitle": "Meet your first defender",
+  "hint": "Choose Thornspitter, then plant in the open middle row.",
+  "reward": "Pollen Bloom",
+  "lanes": [2],
+  "cards": ["thornspitter"],
+  "start_pollen": 200,
+  "buildup": 8,
+  "interval": 19,
+  "waits_for_defender": true,
+  "waves": [
+    { "husks": ["shambler"] },
+    { "husks": ["shambler", "shambler"] },
+    { "husks": ["shambler", "shambler", "shambler"] }
+  ]
+}

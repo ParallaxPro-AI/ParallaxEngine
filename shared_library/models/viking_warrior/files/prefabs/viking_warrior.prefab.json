@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/viking_warrior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.9572, 0.599],
+      "offset": [0, 0.9786, -0.0465]
+    }
+  }
+}

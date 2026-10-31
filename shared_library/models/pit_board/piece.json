@@ -1,0 +1,10 @@
+{
+  "id": "pit_board",
+  "summary": "The trackside pit signal board: a cast pad and steel foot, a square post, and a board raked 12 degrees back o… sockets socket_face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pit_board or place \"prefab\": \"pit_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pit_board"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "siege_ram",
+  "summary": "A covered medieval battering ram: a heavy timber cart on four cart wheels, four corner posts carrying a gable… joints ram, roof, spin_f_l, spin_f_r, spin_r_l, spin_r_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.siege_ram or place \"prefab\": \"siege_ram\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:siege_ram"]
+}

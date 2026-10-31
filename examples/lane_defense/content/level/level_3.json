@@ -1,0 +1,18 @@
+{
+  "number": 3,
+  "title": "Roots and rain",
+  "subtitle": "Choose where the water goes",
+  "hint": "Water a row to grow pollen faster and boost its defenders. Barkshell buys time.",
+  "reward": "Rimecap",
+  "lanes": [1, 2, 3],
+  "cards": ["pollenbloom", "thornspitter", "barkshell"],
+  "start_pollen": 375,
+  "buildup": 15,
+  "interval": 24,
+  "irrigation": true,
+  "waves": [
+    { "husks": ["shambler", "scrapmask"] },
+    { "husks": ["scrapmask", "shambler", "scrapmask"] },
+    { "husks": ["shambler", "scrapmask", "shambler", "scrapmask"] }
+  ]
+}

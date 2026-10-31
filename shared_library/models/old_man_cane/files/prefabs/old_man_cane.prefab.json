@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/old_man_cane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6739, 1.7059, 0.2665],
+      "offset": [0, 0.8529, 0.0091]
+    }
+  }
+}

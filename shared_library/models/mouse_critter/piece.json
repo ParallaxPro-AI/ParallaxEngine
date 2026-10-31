@@ -1,0 +1,10 @@
+{
+  "id": "mouse_critter",
+  "summary": "A tiny house mouse — a static (non-skeletal) decorative mesh whose ROOT a Python behaviour scurries around th…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mouse_critter or place \"prefab\": \"mouse_critter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mouse_critter"]
+}

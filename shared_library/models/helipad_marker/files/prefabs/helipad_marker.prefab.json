@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/helipad_marker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [12, 0.22, 12],
+      "offset": [0, 0.11, 0]
+    }
+  }
+}

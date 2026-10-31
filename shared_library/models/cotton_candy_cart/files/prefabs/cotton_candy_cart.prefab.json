@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cotton_candy_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.544, 2.285, 1.016],
+      "offset": [-0.034, 1.1425, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "components": {
+    "light": {
+      "kind": "point",
+      "color": "#fff8ed",
+      "intensity": 65,
+      "range": 14
+    }
+  }
+}

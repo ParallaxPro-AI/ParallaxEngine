@@ -1,0 +1,4 @@
+{
+  "number": 4, "name": "Pollen Veil", "act": 2, "guardian": "pollencap", "flight": "sway", "count": 8,
+  "speed": 1.00, "amp": 3.4, "freq": 1.20, "fire_rate": 2.8, "hp_mul": 1.0, "drop_chance": 0.40
+}

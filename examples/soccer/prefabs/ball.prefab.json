@@ -1,0 +1,40 @@
+{
+  "components": {
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.43,
+      "linear_damping": 0.9,
+      "angular_damping": 0.9,
+      "continuous": true
+    },
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.3,
+      "bounce": 0.6,
+      "friction": 0.4
+    },
+    "ball": {
+      "tackle_lock": 0.8,
+      "strike_cooldown": 0.3,
+      "dribble_range": 2.3,
+      "kick_range": 2.6,
+      "carry_ahead": 1.35,
+      "carry_pull": 7
+    }
+  },
+  "children": [
+    {
+      "scale": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "components": {
+        "model": {
+          "model": "https://r2.parallaxpro.ai/assets/model_static/12/8d/128d5b97c13232d640c16519d775d86fa894c39e8c345727bbff27480447fd50.glb",
+          "cast_shadows": true
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/giant_spider_boss"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.2163, 1.7392, 3.1396],
+      "offset": [0, 0.8681, 0.2707]
+    }
+  }
+}

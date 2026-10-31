@@ -1,0 +1,11 @@
+{
+  "name": "Cloudcap Peaks",
+  "world": "Frost",
+  "theme": "frost",
+  "subtitle": "Take the high road across the drifting sky.",
+  "scene": "level_frostpeak",
+  "order": 3,
+  "length": 135,
+  "par_time": 85,
+  "sections": ["Snowbound trail", "Drifting steps", "Cloud lift", "Summit trail"]
+}

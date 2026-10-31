@@ -1,0 +1,10 @@
+{
+  "id": "bb_treasure_chest_closed",
+  "summary": "Iron-bound wooden treasure chest with an arched closed lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_treasure_chest_closed or place \"prefab\": \"bb_treasure_chest_closed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_treasure_chest_closed"]
+}

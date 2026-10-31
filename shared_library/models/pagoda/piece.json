@@ -1,0 +1,10 @@
+{
+  "id": "pagoda",
+  "summary": "A five-tier East Asian pagoda on a 12 m stone podium with front steps and a pair of stone lanterns: red-lacqu… options lacquer_colour; sockets socket_steps, socket_shrine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pagoda or place \"prefab\": \"pagoda\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pagoda"]
+}

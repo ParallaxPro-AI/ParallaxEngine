@@ -1,0 +1,7 @@
+{
+  "name": "The Finale",
+  "blurb": "Four laps of the canyon for double points. Whatever the standings say, this is where the title is won.",
+  "conditions": "Clear · Morning",
+  "number": 4, "track": "canyon_carver", "laps": 4, "opponents": 3,
+  "weather": "clear", "time_of_day": "morning", "purse_scale": 1.6, "points_scale": 2
+}

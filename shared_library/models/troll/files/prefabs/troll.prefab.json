@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/troll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.356, 2.7021, 1.1978],
+      "offset": [0, 1.3511, 0.1793]
+    }
+  }
+}

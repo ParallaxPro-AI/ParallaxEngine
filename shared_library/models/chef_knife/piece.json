@@ -1,0 +1,10 @@
+{
+  "id": "chef_knife",
+  "summary": "A 200 mm chef's knife standing on its edge — polished steel blade with a bright bevel strip and a proud spine…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chef_knife or place \"prefab\": \"chef_knife\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chef_knife"]
+}

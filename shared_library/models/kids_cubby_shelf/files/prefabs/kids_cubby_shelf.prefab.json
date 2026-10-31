@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kids_cubby_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.253, 0.9171, 0.4534],
+      "offset": [0, 0.4586, 0.0267]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "moped",
+  "summary": "A full-size step-through moped: 2 m long, a wrapped legshield, a bench saddle, a swept tail fairing over a vi… joints steer, spin_front, spin_rear; options type, paint; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.moped or place \"prefab\": \"moped\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:moped"]
+}

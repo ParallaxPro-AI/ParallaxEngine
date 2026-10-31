@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tatami_platform"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.868, 0.406, 1.874],
+      "offset": [0, 0.198, 0.003]
+    }
+  }
+}

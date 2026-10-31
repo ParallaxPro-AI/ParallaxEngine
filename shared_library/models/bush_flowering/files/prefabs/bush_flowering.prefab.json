@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bush_flowering"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5919, 1.1286, 1.4616],
+      "offset": [-0.0284, 0.5618, 0.0315]
+    }
+  }
+}

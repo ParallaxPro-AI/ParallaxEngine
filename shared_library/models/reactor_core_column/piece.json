@@ -1,0 +1,10 @@
+{
+  "id": "reactor_core_column",
+  "summary": "A tall fusion-reactor column for an engine room: a glowing cyan plasma column inside a clear containment tube… joints field_carousel; options core, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reactor_core_column or place \"prefab\": \"reactor_core_column\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reactor_core_column"]
+}

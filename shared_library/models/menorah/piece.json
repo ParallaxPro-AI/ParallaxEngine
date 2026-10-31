@@ -1,0 +1,10 @@
+{
+  "id": "menorah",
+  "summary": "A nine-branched brass Hanukkah menorah (hanukkiah): a stepped dome foot and turned baluster stem carrying fou… options lit, finish; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.menorah or place \"prefab\": \"menorah\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:menorah"]
+}

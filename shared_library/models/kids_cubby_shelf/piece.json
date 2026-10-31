@@ -1,0 +1,10 @@
+{
+  "id": "kids_cubby_shelf",
+  "summary": "A child-height classroom cubby unit in birch plywood with rounded front edges and a recessed black plinth: a… joints tray_0_0, tray_0_1, tray_0_2, tray_1_0, tray_1_1, tray_1_2, …; options finish; sockets top_surface.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kids_cubby_shelf or place \"prefab\": \"kids_cubby_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kids_cubby_shelf"]
+}

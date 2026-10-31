@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/billiard_cue_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.79, 1.537, 0.4287],
+      "offset": [0.015, 0.7685, -0.0003]
+    }
+  }
+}

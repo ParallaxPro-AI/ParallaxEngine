@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flip_chart_easel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.72, 1.8361, 0.8563],
+      "offset": [0, 0.9166, -0.0493]
+    }
+  }
+}

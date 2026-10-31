@@ -1,0 +1,1 @@
+{"extends": "invader", "components": {"model": {"model": "https://r2.parallaxpro.ai/assets/model_character/c6/64/c664727fa0f20f60271bf51093dd9a80b684b1171f94e9d847a333a58bc03cf8.glb", "cast_shadows": true}, "animator": {"default_clip": "DragonArmature|DragonArmature|Dragon_Flying"}, "health_bar": {"offset": [0, 4.2, 0]}}}

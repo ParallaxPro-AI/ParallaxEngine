@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_abrasive"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0432, 0.0298, 0.1038],
+      "offset": [0, 0.0146, 0.0019]
+    }
+  }
+}

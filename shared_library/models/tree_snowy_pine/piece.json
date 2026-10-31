@@ -1,0 +1,10 @@
+{
+  "id": "tree_snowy_pine",
+  "summary": "A snow-laden evergreen conifer: a straight flared trunk with whorls of drooping needle boughs, each tier capp… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_snowy_pine or place \"prefab\": \"tree_snowy_pine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_snowy_pine"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "billiard_cue_rack",
+  "summary": "A floor-standing billiard cue rack: a walnut base with eight butt cups, turned uprights, a top rail with eigh… joints cue_0, cue_1, cue_2, cue_3, cue_4, cue_5, …; options wood; sockets cue_slot_0, cue_slot_1, cue_slot_2, cue_slot_3, cue_slot_4, cue_slot_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.billiard_cue_rack or place \"prefab\": \"billiard_cue_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:billiard_cue_rack"]
+}

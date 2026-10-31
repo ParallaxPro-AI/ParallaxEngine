@@ -1,0 +1,10 @@
+{
+  "id": "generator_trailer",
+  "summary": "A towable diesel generator: a silenced acoustic canopy on a bunded fuel-tank base, mounted on a galvanised si… joints jockey, steady_l, steady_r, wheel_l, wheel_r, panel_door, …; options colour; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.generator_trailer or place \"prefab\": \"generator_trailer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:generator_trailer"]
+}

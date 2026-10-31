@@ -1,0 +1,68 @@
+<link rel="stylesheet" href="kit.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .sh-card { position: fixed; left: calc(var(--safe-l) + calc(var(--rem)*2.5)); bottom: calc(var(--safe-b) + calc(var(--rem)*2.5)); display: flex; min-height: calc(var(--rem)*6.5); --sl: calc(var(--rem)*.875); filter: drop-shadow(var(--sh-drop)); }
+  .sh-card > * { clip-path: polygon(var(--sl) 0, 100% 0, calc(100% - var(--sl)) 100%, 0 100%); }
+  .sh-shirt { width: calc(var(--rem)*6.5); background: var(--c-home); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--rem)*.125); font: 800 calc(var(--rem)*.875)/1 var(--font-display); letter-spacing: .14em; }
+  .sh-shirt svg { width: calc(var(--rem)*3.25); height: calc(var(--rem)*3.25); }
+  .sh-body { margin-left: calc(var(--sl) * -1 + 3px); background: var(--c-panel-solid); min-width: calc(var(--rem)*21); padding: calc(var(--rem)*.875) calc(var(--sl) + calc(var(--rem)*1.25)) calc(var(--rem)*.875) calc(var(--sl) + calc(var(--rem)*1)); display: flex; flex-direction: column; justify-content: center; gap: calc(var(--rem)*.5); }
+  .sh-k { font: 600 calc(var(--rem)*.75)/1 var(--font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--c-mint-200); }
+  .sh-name { font: 700 calc(var(--rem)*1.875)/1 var(--font-display); text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+  .sh-meta { display: flex; justify-content: space-between; align-items: baseline; font: 600 calc(var(--rem)*.75)/1 var(--font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--c-ink-3); }
+  .sh-meta b { font: 700 calc(var(--rem)*1.125)/1 var(--font-display); font-variant-numeric: tabular-nums; color: var(--stam-c); }
+  .sh-stam { position: relative; flex: none; height: calc(var(--rem)*.625); background: rgba(220,252,231,.12); transform: skewX(-20deg); overflow: hidden; }
+  .sh-fill { position: absolute; top: 0; bottom: 0; left: 0; width: calc(var(--v, 1) * 100%); background: var(--stam-c); transition: width .2s linear, background .3s; }
+  .sh-stam::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), var(--c-panel-solid) calc(10% - 2px) 10%); }
+  [data-stam="crit"] .sh-fill { animation: sc-pulse .6s ease-in-out infinite; }
+
+  .sh-keys { position: fixed; left: 50%; bottom: calc(var(--safe-b) + calc(var(--rem)*2.5)); transform: translateX(-50%); display: flex; align-items: center; gap: calc(var(--rem)*1.75); padding: calc(var(--rem)*.625) calc(var(--rem)*1.5); background: rgba(3,23,11,.62); border-radius: 4px; font: 500 calc(var(--rem)*.9375)/1 var(--font-ui); color: var(--c-ink-2); white-space: nowrap; opacity: 0; transition: opacity .6s ease; }
+  .sh-keys.on { opacity: 1; }
+  .sh-keys span { display: flex; align-items: center; gap: calc(var(--rem)*.5); }
+
+  .sh-who, .sh-mhint, .sh-pause { display: none; }
+
+  @media (pointer: coarse) {
+    .sh-card, .sh-keys { display: none; }
+    .sh-who { position: fixed; left: calc(env(safe-area-inset-left, 0px) + 16px); bottom: calc(var(--pp-joystick-h, 160px) + 16px); display: flex; align-items: center; gap: 7px; white-space: nowrap; font: 700 13px/1 var(--font-display); letter-spacing: .08em; text-transform: uppercase; text-shadow: 0 1px 4px rgba(0,0,0,.6); }
+    .sh-who .num { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 2px; background: var(--c-home); font-size: 13px; text-shadow: none; }
+    .sh-who .val { color: var(--stam-c); font-variant-numeric: tabular-nums; }
+    [data-stam="crit"] .sh-who .val { animation: sc-pulse .6s ease-in-out infinite; }
+    .sh-mhint { position: fixed; left: calc(var(--safe-l) + 180px); bottom: calc(var(--safe-b) + 14px); display: block; padding: 9px 14px; border-radius: 999px; background: rgba(3,23,11,.72); font: 500 12px/1 var(--font-ui); color: var(--c-ink-2); white-space: nowrap; opacity: 0; transition: opacity .6s ease; }
+    .sh-mhint.on { opacity: 1; }
+    .sh-mhint b { font: 800 13px/1 var(--font-display); letter-spacing: .1em; color: var(--c-mint-400); text-transform: uppercase; }
+    .sc-root .sh-pause { position: fixed; top: calc(var(--safe-t) + 2px); right: calc(var(--safe-r) + 2px); width: 44px; height: 44px; display: grid; place-items: center; border-radius: 8px; background: rgba(3,23,11,.55); border: 2px solid rgba(220,252,231,.55); color: var(--c-ink); transition: transform 80ms; }
+    .sc-root .sh-pause:active { transform: scale(.92); background: var(--c-ink); color: var(--c-pitch); border-color: var(--c-mint-400); }
+    .sh-pause svg { width: 22px; height: 22px; }
+  }
+  /* The title card carries its own scorebug; the match HUD waits for kick-off, as in the template. */
+  .sc-root.off { display: none; }
+</style>
+<div class="sc-root sc-bug" data-class-off="on_title" data-attr-data-period="period_key" data-attr-data-away="away_key">
+  <div class="sc-bug__row">
+    <div class="sc-bug__name sc-bug__name--home"><span class="sc-full" data-bind="club"></span><span class="sc-abbr" data-bind="club_abbr"></span></div>
+    <div class="sc-bug__score sc-bug__score--home" data-bind="home_goals"></div>
+    <div class="sc-bug__clock"><span class="sc-bug__time" data-bind="clock"></span><span class="sc-bug__period" data-bind="period"></span></div>
+    <div class="sc-bug__score sc-bug__score--away" data-bind="away_goals"></div>
+    <div class="sc-bug__name sc-bug__name--away"><span class="sc-full" data-bind="opponent"></span><span class="sc-abbr" data-bind="opponent_abbr"></span></div>
+  </div>
+  <div class="sc-chip"><span data-bind="stage"></span><span class="sc-pips" data-each="pips"><template><i data-class-done="done" data-class-now="now" data-class-out="out" data-class-gold="gold"></i></template></span><b class="sc-desk"><span data-text="round"></span> <span data-bind="round"></span> / <span data-bind="rounds"></span></b><b class="sc-mob"><span data-bind="round"></span>/<span data-bind="rounds"></span></b></div>
+</div>
+<div class="sc-root" data-class-off="on_title" data-attr-data-stam="stamina_level" data-style---v="stamina">
+  <div class="sh-card">
+    <div class="sh-shirt"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M17 5l-11 6 4 9 5-2v25h18V18l5 2 4-9-11-6c-1 3-3.6 5-7 5s-6-2-7-5z" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><text x="24" y="34" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="800" font-size="17" fill="#fff" data-bind="number"></text></svg><span data-bind="pos"></span></div>
+    <div class="sh-body">
+      <span class="sh-k" data-text="controlling"></span>
+      <span class="sh-name" data-bind="position"></span>
+      <div class="sh-stam"><div class="sh-fill"></div></div>
+      <div class="sh-meta"><span data-text="stamina"></span><b data-bind="stamina_value"></b></div>
+    </div>
+  </div>
+  <div class="sh-keys" data-class-on="show_keys">
+    <span><kbd class="sc-kbd">WASD</kbd><span data-text="move_hint"></span></span><span><kbd class="sc-kbd">Space</kbd><span data-text="shoot_hint"></span></span><span><kbd class="sc-kbd">Q</kbd><span data-text="pass_hint"></span></span><span><kbd class="sc-kbd">E</kbd><span data-text="switch_hint"></span></span><span><kbd class="sc-kbd">Shift</kbd><span data-text="sprint_hint"></span></span><span><kbd class="sc-kbd">P</kbd><span data-text="pause"></span></span>
+  </div>
+  <div class="sh-who" aria-hidden="true"><span class="num" data-bind="number"></span><span data-bind="position"></span><span class="val" data-bind="stamina_value"></span></div>
+  <div class="sh-mhint" data-class-on="show_keys"><span data-text="stick_hint"></span> <b data-text="sprint_hint"></b></div>
+  <button class="sh-pause" data-action="pause" aria-label="Pause"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="5" width="3.5" height="14" rx="1"/><rect x="14" y="5" width="3.5" height="14" rx="1"/></svg></button>
+</div>

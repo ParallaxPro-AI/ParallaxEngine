@@ -1,0 +1,10 @@
+{
+  "id": "tableware_set",
+  "summary": "One dinner place setting: a 270 mm glazed plate with a coloured rim band, a 150 mm bowl standing in its well… options pieces, glaze, band; sockets socket_plate, socket_bowl.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tableware_set or place \"prefab\": \"tableware_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tableware_set"]
+}

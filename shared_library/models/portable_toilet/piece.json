@@ -1,0 +1,10 @@
+{
+  "id": "portable_toilet",
+  "summary": "A moulded-plastic portable toilet cabin, 1.12 x 1.18 m and 2.4 m to the vent: ribbed side walls on a skid bas… joints door, lid; options colour, occupancy.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portable_toilet or place \"prefab\": \"portable_toilet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portable_toilet"]
+}

@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/semi_tractor"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 8000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        3.44,
+        6.785
+      ],
+      "offset": [
+        0,
+        1.72,
+        0.1375
+      ]
+    },
+    "vehicle": {
+      "max_speed": 32,
+      "steering": 26
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.72,
+        0.1375
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

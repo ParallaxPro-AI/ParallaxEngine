@@ -1,0 +1,10 @@
+{
+  "id": "bunting_line",
+  "summary": "A line of triangular cloth pennants sewn onto a sagging cord between two freestanding festival poles, in a re… options mounts; sockets socket_end_l, socket_end_r, socket_mid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bunting_line or place \"prefab\": \"bunting_line\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bunting_line"]
+}

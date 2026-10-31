@@ -1,0 +1,10 @@
+{
+  "id": "rain_barrel",
+  "summary": "A rainwater barrel: a bulged oak-stave barrel with four iron hoops on a slatted timber stand, a lid with a sc… joints spigot; sockets socket_fill, spout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rain_barrel or place \"prefab\": \"rain_barrel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rain_barrel"]
+}

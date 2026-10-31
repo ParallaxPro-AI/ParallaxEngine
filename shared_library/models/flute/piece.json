@@ -1,0 +1,10 @@
+{
+  "id": "flute",
+  "summary": "A silver concert flute lying on its side: crowned head joint with a lip plate and dark embouchure hole, a bod… joints head_joint, finger_key_1, finger_key_2, finger_key_3, finger_key_4, finger_key_5, …; options plating.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flute or place \"prefab\": \"flute\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flute"]
+}

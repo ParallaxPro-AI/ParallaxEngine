@@ -1,0 +1,10 @@
+{
+  "id": "plough",
+  "summary": "A tractor-mounted four-furrow reversible-style mouldboard plough in red: a category-2 three-point headstock (… options paint; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.plough or place \"prefab\": \"plough\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:plough"]
+}

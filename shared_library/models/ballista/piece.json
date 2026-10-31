@@ -1,0 +1,10 @@
+{
+  "id": "ballista",
+  "summary": "A torsion bolt-thrower on a timber pedestal: a cross-footed stand with four raking braces and a traversing ir… joints traverse, elevation, arm_l, arm_r, claw, string, …; options timber; sockets socket_operator, bolt_launch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ballista or place \"prefab\": \"ballista\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ballista"]
+}

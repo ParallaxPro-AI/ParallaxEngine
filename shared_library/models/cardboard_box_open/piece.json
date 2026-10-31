@@ -1,0 +1,10 @@
+{
+  "id": "cardboard_box_open",
+  "summary": "An empty corrugated cardboard shipping box (regular slotted carton, 457 x 305 x 305 mm, the common 18x12x12 i… joints flap_front, flap_back, flap_left, flap_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cardboard_box_open or place \"prefab\": \"cardboard_box_open\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cardboard_box_open"]
+}

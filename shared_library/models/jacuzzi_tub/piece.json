@@ -1,0 +1,10 @@
+{
+  "id": "jacuzzi_tub",
+  "summary": "An indoor drop-in whirlpool bath: a gloss acrylic deck with a lofted bathing well whose head end rakes back i… joints access, hot, cold; options fill, acrylic, apron.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jacuzzi_tub or place \"prefab\": \"jacuzzi_tub\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jacuzzi_tub"]
+}

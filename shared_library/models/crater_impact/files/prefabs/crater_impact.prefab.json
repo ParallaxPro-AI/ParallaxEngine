@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crater_impact"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9, 1.0859, 9],
+      "offset": [0, 0.5429, 0]
+    }
+  }
+}

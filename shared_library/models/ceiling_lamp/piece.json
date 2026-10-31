@@ -1,0 +1,10 @@
+{
+  "id": "ceiling_lamp",
+  "summary": "A hanging ceiling lamp: a ceiling canopy, a drop cord and a lampholder with a bulb, plus swappable shade styl… options style, emissive.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ceiling_lamp or place \"prefab\": \"ceiling_lamp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ceiling_lamp"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/christmas_wreath"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5489, 0.6087, 0.2141],
+      "offset": [0.0005, 0.307, 0.0113]
+    }
+  }
+}

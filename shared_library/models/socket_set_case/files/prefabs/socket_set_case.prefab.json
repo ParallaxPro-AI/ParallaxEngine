@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/socket_set_case"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.42, 0.0835, 0.2805],
+      "offset": [0, 0.0418, 0.0037]
+    }
+  }
+}

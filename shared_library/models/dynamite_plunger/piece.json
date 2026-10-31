@@ -1,0 +1,10 @@
+{
+  "id": "dynamite_plunger",
+  "summary": "A push-down blasting machine: a varnished hardwood case with brass corner guards, felt feet, a black maker pl… joints plunger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dynamite_plunger or place \"prefab\": \"dynamite_plunger\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dynamite_plunger"]
+}

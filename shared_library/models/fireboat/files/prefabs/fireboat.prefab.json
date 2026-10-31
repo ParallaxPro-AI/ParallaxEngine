@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fireboat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.44, 11.657, 20.37],
+      "offset": [0, 5.8285, 0.025]
+    }
+  }
+}

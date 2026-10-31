@@ -1,0 +1,10 @@
+{
+  "id": "coconut_half",
+  "summary": "Half a dried coconut shell, cut side DOWN so the dome sits in the palm: a fibrous brown husk over a pale kern… sockets rim_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coconut_half or place \"prefab\": \"coconut_half\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coconut_half"]
+}

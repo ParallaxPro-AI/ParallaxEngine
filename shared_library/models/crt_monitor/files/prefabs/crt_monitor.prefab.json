@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crt_monitor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4, 0.422, 0.463],
+      "offset": [0, 0.211, -0.0235]
+    }
+  }
+}

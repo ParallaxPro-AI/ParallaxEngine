@@ -1,0 +1,10 @@
+{
+  "id": "ticket_machine",
+  "summary": "A self-service transit ticket vending machine for a station concourse or platform: a painted steel cabinet on… joints service_door, ticket_flap; options finish; sockets socket_ticket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ticket_machine or place \"prefab\": \"ticket_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ticket_machine"]
+}

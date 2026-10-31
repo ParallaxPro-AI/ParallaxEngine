@@ -1,0 +1,10 @@
+{
+  "id": "jail_cell_western",
+  "summary": "A wild-west town lockup: a free-standing 2.6 x 2.4 m cell of riveted strap-iron lattice (flat bars woven acro… joints cell_door; options furnishing, iron; sockets prisoner, seat_bunk, socket_keys.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jail_cell_western or place \"prefab\": \"jail_cell_western\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jail_cell_western"]
+}

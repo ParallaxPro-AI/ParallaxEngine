@@ -1,0 +1,10 @@
+{
+  "id": "house_roof_flat_parapet",
+  "summary": "A flat roof module with a 0.4 m parapet for the HOUSE modular kit, covering one 3 x 3 m module. options parapet_front, parapet_back, parapet_right, parapet_left, pier_front_right, pier_front_left, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_roof_flat_parapet or place \"prefab\": \"house_roof_flat_parapet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_roof_flat_parapet"]
+}

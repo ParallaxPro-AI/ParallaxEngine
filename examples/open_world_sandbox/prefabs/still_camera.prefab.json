@@ -1,0 +1,5 @@
+{
+  "components": {
+    "camera": { "rig": "fixed", "fov": 60 }
+  }
+}

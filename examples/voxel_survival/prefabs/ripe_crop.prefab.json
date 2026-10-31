@@ -1,0 +1,4 @@
+{
+  "components": { "model": { "model": "models/ripe_crop" } },
+  "behaviors": { "harvestable": { "yields": "wheat", "count": 3, "replant_as": "crop" } }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "spear",
+  "summary": "A 2.15 m infantry spear: a tapered ash shaft with a leather grip wrap at the balance point, an iron butt spik… options head_finish, shaft_wood, lugs; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.spear or place \"prefab\": \"spear\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:spear"]
+}

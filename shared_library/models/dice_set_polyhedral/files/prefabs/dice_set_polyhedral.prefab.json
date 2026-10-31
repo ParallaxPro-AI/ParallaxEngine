@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dice_set_polyhedral"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1104, 0.0192, 0.056],
+      "offset": [-0.0015, 0.0096, 0]
+    }
+  }
+}

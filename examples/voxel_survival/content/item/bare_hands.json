@@ -1,0 +1,1 @@
+{ "name": "Bare hands", "icon": "hand", "color": "#e8c39e", "stack_max": 1, "tool": "hand", "tier": 0, "mine_speed": 1, "damage": 5, "reach": 5 }

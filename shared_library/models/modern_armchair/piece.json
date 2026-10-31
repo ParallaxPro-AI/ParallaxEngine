@@ -1,0 +1,10 @@
+{
+  "id": "modern_armchair",
+  "summary": "A modern lounge armchair from the modern apartment set, matching modern_sofa: stone-grey woven upholstery wit… options fabric, accent, wood, dressing; sockets seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_armchair or place \"prefab\": \"modern_armchair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_armchair"]
+}

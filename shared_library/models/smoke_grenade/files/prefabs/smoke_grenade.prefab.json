@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/smoke_grenade"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.15, 0.35],
+      "hip_turn": [6.875494, 11.459156, -6.875494],
+      "eye_relief": 0.2,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0675, 0.1489, 0.068],
+      "offset": [0.002, 0.0745, 0.0022]
+    }
+  }
+}

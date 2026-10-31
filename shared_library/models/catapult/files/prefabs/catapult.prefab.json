@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/catapult"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.75, 2.51, 3.01],
+      "offset": [0, 1.255, -0.205]
+    }
+  }
+}

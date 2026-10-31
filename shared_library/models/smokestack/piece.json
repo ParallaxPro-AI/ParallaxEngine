@@ -1,0 +1,10 @@
+{
+  "id": "smokestack",
+  "summary": "A 60 m reinforced-concrete industrial chimney of a power station or factory: a tapered shell 5.6 m across at… joints access_door; options banding; sockets smoke.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.smokestack or place \"prefab\": \"smokestack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:smokestack"]
+}

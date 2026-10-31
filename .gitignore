@@ -1,0 +1,18 @@
+node_modules/
+build/
+dist/
+.parallax/cache/
+__pycache__/
+*.pyc
+.DS_Store
+.env
+.env.*
+.turbo/
+*.tsbuildinfo
+
+# Local agent tooling (worktrees, settings)
+.claude/
+
+# `library search`: the downloaded embedding model, and the index built on first search
+.cache/
+shared_library/_index/

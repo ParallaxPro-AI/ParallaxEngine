@@ -1,0 +1,10 @@
+{
+  "id": "augmentation_chair",
+  "summary": "A back-alley cybernetic augmentation chair: a hydraulic lift column on a lit floor plate carrying a padded vi… joints backrest, arm_l, arm_r; options glow, laser, upholstery; sockets seat_patient, socket_surgeon.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.augmentation_chair or place \"prefab\": \"augmentation_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:augmentation_chair"]
+}

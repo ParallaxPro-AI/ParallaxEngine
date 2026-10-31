@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spotlight_followspot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8814, 1.713, 1.4189],
+      "offset": [0, 0.8565, -0.1005]
+    }
+  }
+}

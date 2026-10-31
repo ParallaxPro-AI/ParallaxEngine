@@ -1,0 +1,10 @@
+{
+  "id": "sentry_turret_floor",
+  "summary": "A floor-standing automated sentry gun on a folding tripod, near-future / cyberpunk security hardware: three s… joints yaw, pitch; sockets socket_muzzle, socket_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sentry_turret_floor or place \"prefab\": \"sentry_turret_floor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sentry_turret_floor"]
+}

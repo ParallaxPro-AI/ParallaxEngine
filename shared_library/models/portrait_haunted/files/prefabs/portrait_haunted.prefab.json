@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portrait_haunted"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 0.875, 0.081],
+      "offset": [0, 0.4375, 0.0065]
+    }
+  }
+}

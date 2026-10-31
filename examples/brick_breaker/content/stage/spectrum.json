@@ -1,0 +1,5 @@
+{
+  "number": 2, "name": "Spectrum", "tagline": "Gaps to thread and a hard back row.",
+  "color": "#8cf299", "ball_speed_scale": 1.08,
+  "rows": ["1.1.1.1.1", "111111111", "222222222"]
+}

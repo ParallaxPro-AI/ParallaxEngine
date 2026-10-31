@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ouija_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.46, 0.0378, 0.3],
+      "offset": [0, 0.0189, 0]
+    }
+  }
+}

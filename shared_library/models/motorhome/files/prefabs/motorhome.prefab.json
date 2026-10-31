@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/motorhome"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 5200,
+      "linear_damping": 0.06,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.731,
+        3.51,
+        7.538
+      ],
+      "offset": [
+        0.1045,
+        1.755,
+        -0.051
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 28,
+      "steering": 32,
+      "grip": 8,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.1045,
+        1.755,
+        -0.051
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

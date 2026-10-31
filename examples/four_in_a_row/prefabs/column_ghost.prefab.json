@@ -1,0 +1,9 @@
+{
+  "z": 1,
+  "components": {
+    "sprite": { "image": "images/column_ghost", "size": [0.86, 0.86] }
+  },
+  "behaviors": {
+    "drop_preview": {"snap_to_slot": true, "breathe": 0.06, "breathe_period": 1.6}
+  }
+}

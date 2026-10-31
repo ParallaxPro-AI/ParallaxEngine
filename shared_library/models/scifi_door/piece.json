@@ -1,0 +1,10 @@
+{
+  "id": "scifi_door",
+  "summary": "A sci-fi blast door: two bowed pressure leaves with an interlocking dovetail seam that slide apart into batte… joints leaf_l, leaf_r; options light_colour; sockets socket_threshold.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_door or place \"prefab\": \"scifi_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_door"]
+}

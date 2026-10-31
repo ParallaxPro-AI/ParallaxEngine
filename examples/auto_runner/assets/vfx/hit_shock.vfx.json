@@ -1,0 +1,13 @@
+{
+  "burst": 1,
+  "lifetime": 0.4,
+  "speed": 0,
+  "size": 0.01,
+  "color": "#ffffff00",
+  "haze": {
+    "radius": 5.6,
+    "strength": 0.5,
+    "ring": 0.3,
+    "seconds": 0.4
+  }
+}

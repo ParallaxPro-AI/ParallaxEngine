@@ -1,0 +1,10 @@
+{
+  "id": "mail_cart",
+  "summary": "An office mail and file cart: a powder-coated steel frame of four square uprights on four swivel casters (joi… joints caster_fl_swivel, caster_fr_swivel, caster_bl_swivel, caster_br_swivel; options frame, contents; sockets socket_shelf, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mail_cart or place \"prefab\": \"mail_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mail_cart"]
+}

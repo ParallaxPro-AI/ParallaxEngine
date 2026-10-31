@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parallaxpro.ai/docs/engine/contracts/check_result.schema.json",
+  "title": "parallax check --json",
+  "description": "stdout of `parallax check <project> --json`. Exit code 1 when errors > 0, 0 otherwise, 2 on bad usage (then stdout is not JSON).",
+  "type": "object",
+  "required": ["errors", "warnings", "diagnostics"],
+  "additionalProperties": false,
+  "properties": {
+    "errors": { "type": "integer", "minimum": 0 },
+    "warnings": { "type": "integer", "minimum": 0 },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" }, "description": "Sorted by path, line, pointer." }
+  },
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "severity", "message", "docs"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string", "description": "PPnnnn, stable: PP1 project, PP2 references, PP3 runtime misuse, PP4 schema/hooks, PP5 budgets, PP6 language, PP9 internal." },
+        "severity": { "enum": ["error", "warning"] },
+        "message": { "type": "string" },
+        "fix": { "type": "string", "description": "What to change, as an instruction." },
+        "path": { "type": "string", "description": "Project-relative file." },
+        "pointer": { "type": "string", "description": "JSON pointer inside a data file." },
+        "line": { "type": "integer", "minimum": 1, "description": "1-based line inside a code file." },
+        "docs": { "type": "string" }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "vcr_vhs",
+  "summary": "A generic 1990s VHS video cassette recorder (no brand): a dark sheet-metal cover over a chassis with a separa… joints slot_flap; options tape, fascia_colour; sockets socket_slot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vcr_vhs or place \"prefab\": \"vcr_vhs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vcr_vhs"]
+}

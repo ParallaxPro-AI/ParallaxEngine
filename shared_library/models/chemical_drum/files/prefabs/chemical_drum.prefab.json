@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chemical_drum"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.602, 0.896, 0.6025],
+      "offset": [0, 0.448, 0.0003]
+    }
+  }
+}

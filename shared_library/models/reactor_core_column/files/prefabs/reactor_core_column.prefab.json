@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/reactor_core_column"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.04, 4.07, 2.3723],
+      "offset": [0, 2.035, 0.1662]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "crop_wheat_stages",
+  "summary": "A 1 x 1 m plot of wheat on tilled soil, in four growth stages selected by the `stage` axis: sprout (finger-hi… options stage, bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crop_wheat_stages or place \"prefab\": \"crop_wheat_stages\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crop_wheat_stages"]
+}

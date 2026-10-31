@@ -1,0 +1,1 @@
+{"name": "Ashen Sight", "desc": "+1 draft reroll per level.", "cost": 70, "cost_step": 60, "max_level": 3, "effect": {"reroll_add": 1}, "order": 6}

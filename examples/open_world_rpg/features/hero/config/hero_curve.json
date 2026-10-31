@@ -1,0 +1,11 @@
+{
+  "base_health": 200,
+  "base_mana": 100,
+  "base_damage": 28,
+  "base_attack_rate": 1.6,
+  "health_per_level": 20,
+  "mana_per_level": 10,
+  "first_level_xp": 100,
+  "xp_growth": 1.5,
+  "respawn_seconds": 3
+}

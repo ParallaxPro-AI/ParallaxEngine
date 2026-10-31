@@ -1,0 +1,10 @@
+{
+  "id": "medicine_cabinet",
+  "summary": "A wall-mounted bathroom medicine cabinet with a single framed mirror door on the left hinge and two glass she… joints door; sockets socket_shelf_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.medicine_cabinet or place \"prefab\": \"medicine_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:medicine_cabinet"]
+}

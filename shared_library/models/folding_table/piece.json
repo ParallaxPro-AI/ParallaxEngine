@@ -1,0 +1,10 @@
+{
+  "id": "folding_table",
+  "summary": "A portable folding table: a flat rectangular top on two end leg-frames that each fold flat up against the und… joints leg_frame_l, leg_frame_r; options style; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.folding_table or place \"prefab\": \"folding_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:folding_table"]
+}

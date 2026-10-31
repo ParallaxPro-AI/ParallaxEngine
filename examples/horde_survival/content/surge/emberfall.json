@@ -1,0 +1,2 @@
+{ "name": "EMBERFALL", "at_second": 0, "interval": 2.4, "hp_scale": 1.0, "speed_scale": 1.0,
+  "groups": { "swarmling": 6 } }

@@ -1,0 +1,10 @@
+{
+  "id": "car_lift",
+  "summary": "A clear-floor two-post vehicle lift for a garage bay: two formed-steel columns on anchored base plates with y… joints lift, arm_l_front, l_front_extend, arm_l_rear, l_rear_extend, arm_r_front, …; options paint; sockets vehicle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_lift or place \"prefab\": \"car_lift\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_lift"]
+}

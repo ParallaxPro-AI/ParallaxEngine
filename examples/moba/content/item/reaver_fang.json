@@ -1,0 +1,2 @@
+{ "name": "Reaver Fang", "blurb": "The edge and the grip, married badly and to great effect.",
+  "icon": "blade", "category": "attack", "tier": 2, "cost": 1250, "stats": { "damage": 30, "attack_interval": -0.1 }, "builds_from": ["copper_band"] }

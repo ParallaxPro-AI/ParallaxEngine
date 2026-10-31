@@ -1,0 +1,10 @@
+{
+  "id": "school_locker_bank",
+  "summary": "A bank of four two-tier painted steel school lockers (eight compartments) on a black plinth with a sloped ant… joints door_0_0, door_0_1, door_1_0, door_1_1, door_2_0, door_2_1, …; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.school_locker_bank or place \"prefab\": \"school_locker_bank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:school_locker_bank"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/atm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.55, 1.5015, 0.584],
+      "offset": [0, 0.7508, 0.042]
+    }
+  }
+}

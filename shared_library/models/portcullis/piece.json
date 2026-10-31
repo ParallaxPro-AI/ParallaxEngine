@@ -1,0 +1,10 @@
+{
+  "id": "portcullis",
+  "summary": "A medieval castle portcullis: a heavy iron lattice grille with pointed spikes that slides vertically up insid… joints grille.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portcullis or place \"prefab\": \"portcullis\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portcullis"]
+}

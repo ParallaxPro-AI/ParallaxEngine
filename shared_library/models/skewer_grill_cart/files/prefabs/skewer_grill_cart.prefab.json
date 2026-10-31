@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skewer_grill_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.721, 2.1223, 0.9408],
+      "offset": [0.0005, 1.0612, 0.0004]
+    }
+  }
+}

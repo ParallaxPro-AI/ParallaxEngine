@@ -1,0 +1,10 @@
+{
+  "id": "upright_bass",
+  "summary": "A 3/4 double bass on its endpin in a padded floor stand: an arched, varnished lofted body with the bass's slo… joints tuner_0, tuner_1, tuner_2, tuner_3, endpin; options varnish, stand; sockets bow_rest.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.upright_bass or place \"prefab\": \"upright_bass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:upright_bass"]
+}

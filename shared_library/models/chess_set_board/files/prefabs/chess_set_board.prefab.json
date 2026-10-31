@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chess_set_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.47, 0.1188, 0.47],
+      "offset": [0, 0.0594, 0]
+    }
+  }
+}

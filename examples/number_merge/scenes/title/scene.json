@@ -1,0 +1,4 @@
+{
+  "extends": "board",
+  "ui": ["title_screen"]
+}

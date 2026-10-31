@@ -1,0 +1,10 @@
+{
+  "id": "gas_station_ruined",
+  "summary": "A ruined, abandoned roadside filling station: the flat canopy has lost both front columns and collapsed forwa… joints nozzle_r_0_0, nozzle_l_0_0, nozzle_r_1_0, nozzle_l_1_0, nozzle_r_0_1, nozzle_l_0_1, …; sockets bay_0, bay_1, bay_2, bay_3, socket_shop_door, socket_till, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gas_station_ruined or place \"prefab\": \"gas_station_ruined\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gas_station_ruined"]
+}

@@ -1,0 +1,1 @@
+{ "name": "Round 1 — Warm-Up", "tagline": "Four grunts. Find your aim.", "number": 1, "frag_target": 5, "damage_mul": 1.0, "accuracy_mul": 0.9, "roster": [{ "bot": "grunt", "count": 4 }] }

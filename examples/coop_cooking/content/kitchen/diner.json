@@ -1,0 +1,3 @@
+{ "name": "The Diner", "brief": "Open room, easy tickets. Chop, plate, serve.",
+  "scene": "diner", "seconds": 90, "target": 40, "order_interval": 6,
+  "menu": ["tomato_plate", "lettuce_bowl", "garden_salad"] }

@@ -1,0 +1,10 @@
+{
+  "id": "oyster",
+  "summary": "A half-shell oyster: a chalky grey-white lower valve, teardrop in plan and hollowed into an irregular shallow…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.oyster or place \"prefab\": \"oyster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:oyster"]
+}

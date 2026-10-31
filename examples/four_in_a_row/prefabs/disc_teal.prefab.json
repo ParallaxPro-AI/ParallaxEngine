@@ -1,0 +1,6 @@
+{
+  "components": {
+    "sprite": { "image": "images/disc_teal", "size": [0.9, 0.9] }
+  },
+  "tags": ["piece"]
+}

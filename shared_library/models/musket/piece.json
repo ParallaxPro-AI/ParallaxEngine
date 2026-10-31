@@ -1,0 +1,10 @@
+{
+  "id": "musket",
+  "summary": "A smoothbore flintlock musket, 1.5 m: a walnut full stock with a brass butt plate, a 1.065 m round barrel wit… joints hammer, frizzen, trigger, ramrod; options stock_wood, furniture, barrel_finish, bayonet; sockets socket_muzzle, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.musket or place \"prefab\": \"musket\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:musket"]
+}

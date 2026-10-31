@@ -1,0 +1,10 @@
+{
+  "id": "moving_platform",
+  "summary": "A powered platform that travels back and forth along a straight ground rail: two steel rails on sleepers with… joints platform.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.moving_platform or place \"prefab\": \"moving_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:moving_platform"]
+}

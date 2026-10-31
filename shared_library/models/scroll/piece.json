@@ -1,0 +1,10 @@
+{
+  "id": "scroll",
+  "summary": "A parchment scroll with two states on the `state` partset: ROLLED (a real spiral-wound sheet lying on its sid… options state, rune, seal, ribbon; sockets socket_grip, socket_rune.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scroll or place \"prefab\": \"scroll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scroll"]
+}

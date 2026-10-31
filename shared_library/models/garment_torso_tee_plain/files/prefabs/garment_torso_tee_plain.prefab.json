@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_tee_plain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.738, 0.648, 0.2783],
+      "offset": [0, 1.224, 0.0016]
+    }
+  }
+}

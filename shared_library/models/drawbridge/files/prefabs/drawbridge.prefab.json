@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drawbridge"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4, 5.05, 4.0015],
+      "offset": [0, 2.525, 0.0008]
+    }
+  }
+}

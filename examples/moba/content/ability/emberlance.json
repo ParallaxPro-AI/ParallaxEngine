@@ -1,0 +1,13 @@
+{
+  "name": "Emberlance",
+  "blurb": "A line of fire. It goes where you aim it, and misses if you don't.",
+  "kind": "skillshot",
+  "cooldown": { "base": 6, "per_rank": -0.5 },
+  "mana": { "base": 55, "per_rank": 7 },
+  "damage": { "base": 95, "per_rank": 42 },
+  "damage_kind": "magic",
+  "range": { "base": 14, "per_rank": 0.8 },
+  "width": 1.5,
+  "cast_vfx": "vfx/bolt_shot",
+  "vfx": "vfx/bolt"
+}

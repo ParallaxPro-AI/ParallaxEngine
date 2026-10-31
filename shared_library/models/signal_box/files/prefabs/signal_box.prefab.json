@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/signal_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.095, 8.6, 5.8526],
+      "offset": [0.3775, 4.3, 0.5063]
+    }
+  }
+}

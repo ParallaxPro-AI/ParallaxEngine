@@ -1,0 +1,10 @@
+{
+  "id": "dj_deck",
+  "summary": "A DJ setup on a flight-case base: two direct-drive turntables (each with a platter that spins at 33 1/3 rpm c… joints deck_l_platter, deck_l_tonearm, deck_l_pitch, deck_r_platter, deck_r_tonearm, deck_r_pitch, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dj_deck or place \"prefab\": \"dj_deck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dj_deck"]
+}

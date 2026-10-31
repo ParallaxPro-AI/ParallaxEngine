@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gas_meter_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.873, 1.073, 0.5],
+      "offset": [0.0065, 0.5365, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_palm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.1336, 11.1706, 8.9837],
+      "offset": [0.4216, 5.5819, -0.1138]
+    }
+  }
+}

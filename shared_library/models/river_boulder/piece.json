@@ -1,0 +1,10 @@
+{
+  "id": "river_boulder",
+  "summary": "A rounded river boulder, ~1.9 m across and 1.4 m tall, its shoulder breaking the surface — the object the fis… options wear; sockets socket_lee.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.river_boulder or place \"prefab\": \"river_boulder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:river_boulder"]
+}

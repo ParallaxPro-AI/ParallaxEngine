@@ -1,0 +1,8 @@
+{
+  "components": {
+    "model": {
+      "model": "models/server_rack",
+      "cast_shadows": true
+    }
+  }
+}

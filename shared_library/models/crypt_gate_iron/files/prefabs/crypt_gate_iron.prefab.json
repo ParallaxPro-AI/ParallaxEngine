@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crypt_gate_iron"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.58, 3.135, 0.58],
+      "offset": [0, 1.5675, 0]
+    }
+  }
+}

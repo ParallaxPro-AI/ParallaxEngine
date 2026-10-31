@@ -1,0 +1,10 @@
+{
+  "id": "pickaxe",
+  "summary": "A miner's pick: a 0.62 m oak haft through a forged steel eye, a pick spike tapering to a chisel point on one… sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.pickaxe or place \"prefab\": \"pickaxe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:pickaxe"]
+}

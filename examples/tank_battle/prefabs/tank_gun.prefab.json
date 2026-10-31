@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_gun",
+      "scale": 0.7,
+      "cast_shadows": true
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cash_stack",
+  "summary": "A stack of banknote bundles (cash pile): nine bundles of generic green bills, each 156 x 66 mm (real banknote…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cash_stack or place \"prefab\": \"cash_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cash_stack"]
+}

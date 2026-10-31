@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pillow_throw_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6404, 0.2992, 0.5876],
+      "offset": [0.0136, 0.148, 0.02]
+    }
+  }
+}

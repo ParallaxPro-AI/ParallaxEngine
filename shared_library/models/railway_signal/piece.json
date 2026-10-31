@@ -1,0 +1,10 @@
+{
+  "id": "railway_signal",
+  "summary": "A lineside railway signal on a 7 m tapered steel post with a concrete footing, a back ladder and a lampman's… joints arm; options aspect, post_colour; sockets track_side.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.railway_signal or place \"prefab\": \"railway_signal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:railway_signal"]
+}

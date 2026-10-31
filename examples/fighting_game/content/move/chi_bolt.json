@@ -1,0 +1,8 @@
+{
+  "label": "CHI BOLT",
+  "clip": "clips/special", "swing_sound": "sfx/swing_charge", "hit_sound": "sfx/hit_bolt",
+  "startup": 17, "active": 2, "recovery": 28,
+  "damage": 9, "reach": 0.9, "box_height": 0.5,
+  "hitstun": 20, "blockstun": 14, "hitstop": 0.045, "knockback": 2.4, "shake": 0.085, "rumble": 0.025,
+  "throws_bolt": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "flamingo",
+  "summary": "A flamingo standing on one leg, 1.3 m tall, origin at the bottom-centre under the standing foot, beak facing… options plumage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flamingo or place \"prefab\": \"flamingo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flamingo"]
+}

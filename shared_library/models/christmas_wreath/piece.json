@@ -1,0 +1,10 @@
+{
+  "id": "christmas_wreath",
+  "summary": "A Christmas door wreath: a ring of layered fir-needle sprays (three greens) on a moss core, dressed with red…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.christmas_wreath or place \"prefab\": \"christmas_wreath\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:christmas_wreath"]
+}

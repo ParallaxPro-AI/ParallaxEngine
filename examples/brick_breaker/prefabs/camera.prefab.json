@@ -1,0 +1,11 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 60,
+      "background": "#858586",
+      "min_visible": [19.6, 0],
+      "focus_distance": 20
+    }
+  }
+}

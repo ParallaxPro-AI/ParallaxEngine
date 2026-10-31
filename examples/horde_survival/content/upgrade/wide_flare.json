@@ -1,0 +1,1 @@
+{"name": "Wide Flare", "desc": "+0.35m bolt hit radius -- clips the crowd.", "icon": "flare", "weight": 5, "max_stacks": 3, "effect": {"hit_radius_add": 0.35}}

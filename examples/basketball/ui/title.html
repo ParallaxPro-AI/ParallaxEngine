@@ -1,0 +1,94 @@
+<!-- Ported from the template: Court Clash title screen - chamfered asphalt card over the court with the Home 00 / Q1 12:00 / Away 00 mini scoreboard, Center Court / Tipoff fixture row, the Bebas Neue wordmark, a shot-meter graphic with its green window, Play, and the career strip once a game is in the books -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cct-scene { position: fixed; inset: 0; display: grid; place-items: center; pointer-events: auto; }
+  .cct { width: calc(var(--u) * 720); padding: calc(var(--u) * 28) calc(var(--u) * 48) 0; background: var(--cc-plate); clip-path: var(--cc-cut-lg); box-shadow: inset 0 0 0 1px var(--cc-line-faint); animation: cc-rise var(--cc-dur-med) var(--cc-ease-out) both; }
+  .cct-sb { display: grid; grid-template-columns: 1fr auto 1fr; height: calc(var(--u) * 58); background: var(--cc-asphalt-950); clip-path: var(--cc-cut-sm); }
+  .cct-sb .t { display: flex; align-items: center; gap: calc(var(--u) * 14); padding: 0 calc(var(--u) * 20); }
+  .cct-sb .home { box-shadow: inset calc(var(--u) * 5) 0 0 var(--cc-home); }
+  .cct-sb .away { justify-content: flex-end; box-shadow: inset calc(var(--u) * -5) 0 0 var(--cc-away); }
+  .cct-sb .lbl { font-size: calc(var(--u) * 24); color: var(--cc-chalk-dim); padding-top: calc(var(--u) * 3); }
+  .cct-sb .sc, .cct-sb .clk { font-size: calc(var(--u) * 32); }
+  .cct-sb .mid { display: flex; align-items: center; gap: calc(var(--u) * 12); padding: 0 calc(var(--u) * 24); box-shadow: inset 1px 0 0 var(--cc-line-faint), inset -1px 0 0 var(--cc-line-faint); }
+  .cct-sb .q { font-size: calc(var(--u) * 15); color: var(--cc-chalk-dim); }
+  .cct-fx { display: flex; justify-content: space-between; align-items: center; padding: calc(var(--u) * 16) 2px; border-bottom: 1px solid var(--cc-line-faint); }
+  .cct-fl { display: flex; align-items: center; gap: calc(var(--u) * 10); font: 600 max(10px, calc(var(--u) * 13))/1 var(--cc-font-body); letter-spacing: .14em; text-transform: uppercase; }
+  .cct-fl svg { width: calc(var(--u) * 20); height: calc(var(--u) * 20); color: var(--cc-hoop); }
+  .cct-title { font-size: calc(var(--u) * 136); text-align: center; margin-top: calc(var(--u) * 34); line-height: .8; }
+  .cct-sub { text-align: center; font-size: calc(var(--u) * 22); font-weight: 500; color: var(--cc-chalk-dim); margin-top: calc(var(--u) * 14); }
+  .cct .cc-meter { width: 100%; margin-top: calc(var(--u) * 40); --p: 73%; }
+  .cct .cc-meter-needle, .cct .cc-meter-fill { animation: cct-sweep 4s cubic-bezier(.45, 0, .85, 1) 1.2s infinite; }
+  @keyframes cct-sweep { 0% { left: 73%; } 6% { left: 0; } 40% { left: 73%; } 100% { left: 73%; } }
+  .cct .cc-meter-fill { animation-name: cct-fill; }
+  @keyframes cct-fill { 0% { width: calc(73% - 2px); } 6% { width: 0; } 40% { width: calc(73% - 2px); } 100% { width: calc(73% - 2px); } }
+  .cct-note { text-align: center; font-size: max(12px, calc(var(--u) * 15)); line-height: 1.5; color: var(--cc-chalk-dim); margin-top: calc(var(--u) * 20); }
+  .cct-note .cc-kbd { display: inline-grid; height: max(18px, calc(var(--u) * 22)); min-width: max(18px, calc(var(--u) * 22)); font-size: max(10px, calc(var(--u) * 11)); vertical-align: 1px; margin: 0 2px; }
+  .cc-root .cct-play { width: 100%; height: calc(var(--u) * 80); font-size: calc(var(--u) * 44); margin: calc(var(--u) * 28) 0 calc(var(--u) * 36); }
+  .cct-career { display: grid; grid-template-columns: repeat(5, 1fr); margin: 0 calc(var(--u) * -48); background: var(--cc-asphalt-950); }
+  .cct-career[hidden] { display: none; }
+  .cct-career div { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 8); padding: calc(var(--u) * 18) 0 calc(var(--u) * 20); box-shadow: inset 1px 0 0 var(--cc-line-faint); }
+  .cct-career div:first-child { box-shadow: none; }
+  .cct-career b { font-size: calc(var(--u) * 30); }
+  .cct-career .cc-eyebrow { font-size: max(9px, calc(var(--u) * 10)); }
+
+  @media (pointer: coarse) {
+    .cct { width: calc(var(--u) * 756); padding: calc(var(--u) * 18) calc(var(--u) * 22); display: grid; grid-template-columns: minmax(0, 1fr) calc(var(--u) * 240); gap: calc(var(--u) * 24); }
+    .cct-sb { height: calc(var(--u) * 36); }
+    .cct-sb .lbl { font-size: calc(var(--u) * 15); }
+    .cct-sb .sc, .cct-sb .clk { font-size: calc(var(--u) * 20); }
+    .cct-sb .t { padding: 0 calc(var(--u) * 12); gap: calc(var(--u) * 8); }
+    .cct-sb .mid { padding: 0 calc(var(--u) * 14); gap: calc(var(--u) * 8); }
+    .cct-sb .q { font-size: calc(var(--u) * 11); }
+    .cct-fx { padding: calc(var(--u) * 10) 2px; }
+    .cct-fl { font-size: max(9px, calc(var(--u) * 11)); }
+    .cct-fl svg { width: calc(var(--u) * 16); height: calc(var(--u) * 16); }
+    .cct-title { font-size: calc(var(--u) * 76); text-align: left; margin-top: calc(var(--u) * 16); }
+    .cct-sub { text-align: left; font-size: calc(var(--u) * 15); margin-top: calc(var(--u) * 6); }
+    .cct .cc-meter { margin-top: calc(var(--u) * 18); --m-h: 14; }
+    .cct-note { text-align: left; font-size: max(11px, calc(var(--u) * 12)); margin-top: calc(var(--u) * 12); }
+    .cct-r { display: flex; flex-direction: column; justify-content: flex-end; gap: calc(var(--u) * 12); }
+    .cc-root .cct-play { height: calc(var(--u) * 72); font-size: calc(var(--u) * 36); margin: 0; }
+    .cct-career { grid-template-columns: 1fr 1fr; margin: 0; gap: 1px; background: var(--cc-line-faint); }
+    .cct-career div { background: var(--cc-asphalt-950); box-shadow: none; padding: calc(var(--u) * 9) 0; gap: calc(var(--u) * 5); }
+    .cct-career div:last-child { grid-column: span 2; }
+    .cct-career b { font-size: calc(var(--u) * 20); }
+    .cct-career .cc-eyebrow { font-size: 9px; }
+  }
+</style>
+<div class="cc-root cct-scene">
+  <main class="cct">
+    <div class="cct-l">
+      <div class="cct-sb" aria-hidden="true">
+        <div class="t home"><span class="lbl cc-display">Home</span><span class="sc cc-num cc-led">00</span></div>
+        <div class="mid"><span class="q cc-num">Q1</span><span class="clk cc-num cc-led">12:00</span></div>
+        <div class="t away"><span class="sc cc-num cc-led">00</span><span class="lbl cc-display">Away</span></div>
+      </div>
+      <div class="cct-fx">
+        <span class="cct-fl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3v18M6 5.5c3 3.5 3 9.5 0 13M18 5.5c-3 3.5-3 9.5 0 13"/></svg>Center Court</span>
+        <span class="cc-eyebrow">Tipoff</span>
+      </div>
+      <h1 class="cc-display cct-title" data-text="court_clash"></h1>
+      <p class="cct-sub">Drive. Dish. Drain it.</p>
+      <div class="cc-meter" aria-hidden="true">
+        <div class="cc-meter-rail">
+          <div class="cc-meter-track"><i class="cc-meter-fill"></i><i class="cc-meter-y"></i><i class="cc-meter-g"></i></div>
+          <i class="cc-meter-needle"></i>
+        </div>
+      </div>
+      <p class="cct-note">Five crews. One loss ends the run.
+        <span class="d-only">Hold <span class="cc-kbd">Space</span>, release on green.</span>
+        <span class="m-only">Hold Shoot, release on green.</span>
+      </p>
+    </div>
+    <div class="cct-r">
+      <button class="cc-btn cc-btn-primary cct-play" data-action="play" data-key="Enter"><span data-text="play"></span> <span class="cc-kbd d-only">Enter</span></button>
+      <div class="cct-career" data-show="has_career">
+        <div><b class="cc-num" data-bind="titles"></b><span class="cc-eyebrow" data-text="titles"></span></div>
+        <div><b class="cc-num" data-bind="wins"></b><span class="cc-eyebrow">Wins</span></div>
+        <div><b class="cc-num" data-bind="points"></b><span class="cc-eyebrow">Career pts</span></div>
+        <div><b class="cc-num" data-bind="greens"></b><span class="cc-eyebrow">Greens</span></div>
+        <div><b class="cc-num" data-bind="best_run"></b><span class="cc-eyebrow">Best run</span></div>
+      </div>
+    </div>
+  </main>
+</div>

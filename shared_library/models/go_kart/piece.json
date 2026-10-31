@@ -1,0 +1,10 @@
+{
+  "id": "go_kart",
+  "summary": "A single-seat racing go-kart: an open tubular steel frame low to the ground, a moulded bucket seat, a small d… joints steer_l, spin_front_l, steer_r, spin_front_r, spin_rear_l, spin_rear_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.go_kart or place \"prefab\": \"go_kart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:go_kart"]
+}

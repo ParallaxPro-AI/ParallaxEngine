@@ -1,0 +1,108 @@
+/* Prism Smash "CRT Cabinet" kit: tokens and the shared .ps-* components every panel uses
+   (ported from the template's hud/prism_kit). */
+@import "fonts.css";
+/* Panels measure against the game view, not the page: the host is a size container and lengths use cqw / cqh. */
+:root { container-type: size; }
+:root {
+  --ps-black: #000;
+  --ps-glass: rgba(0,0,0,.74);
+  --ps-glass-strong: rgba(0,0,0,.88);
+  --ps-scrim: rgba(0,0,0,.58);
+  --ps-ink: #fff;
+  --ps-ink-2: rgba(255,255,255,.74);
+  --ps-ink-3: rgba(255,255,255,.52);
+  --ps-line: #fff;
+  --ps-line-2: rgba(255,255,255,.34);
+  --ps-line-3: rgba(255,255,255,.14);
+  --ps-accent: #7cc8ff;
+  --ps-accent-ink: #000;
+  --ps-accent-soft: rgba(124,200,255,.38);
+  --ps-stage-1: #73ccff;
+  --ps-stage-2: #8cf299;
+  --ps-stage-3: #f2cc59;
+  --ps-stage-4: #d973ff;
+  --ps-stage-5: #ff5959;
+  --ps-stage: var(--ps-stage-1);
+  --ps-prism: linear-gradient(90deg,#73ccff 0%,#8cf299 25%,#f2cc59 50%,#d973ff 75%,#ff5959 100%);
+  --ps-font: 'JetBrains Mono', Consolas, ui-monospace, monospace;
+  --ps-track-key: .16em;
+  --ps-track-wide: .24em;
+  --ps-track-title: .06em;
+  --ps-prism-h: 3px;
+  --ps-shadow-panel: 0 24px 64px rgba(0,0,0,.6);
+  --ps-accent-glow: 0 0 2px rgba(124,200,255,.9), 0 0 18px rgba(124,200,255,.55);
+  --ps-text-glow: 0 0 16px rgba(124,200,255,.6);
+  --ps-dur-fast: 120ms;
+  --ps-dur: 240ms;
+  --ps-dur-slow: 560ms;
+  --ps-ease: cubic-bezier(.2,.8,.2,1);
+  --u: min(calc(100cqw / 1920), calc(100cqh / 1080));
+  --fs-2xs: max(11px, calc(var(--u) * 14));
+  --fs-xs: max(12px, calc(var(--u) * 16));
+  --fs-sm: max(13px, calc(var(--u) * 20));
+  --fs-md: calc(var(--u) * 28);
+  --sp-2: calc(var(--u) * 8);
+  --sp-3: calc(var(--u) * 12);
+  --sp-6: calc(var(--u) * 32);
+  --safe: calc(var(--u) * 40);
+  --safe-t: calc(var(--u) * 40);
+  --btn-h: max(44px, calc(var(--u) * 64));
+}
+@media (pointer: coarse) {
+  :root {
+    --u: min(calc(100cqw / 844), calc(100cqh / 390));
+    --fs-2xs: max(9px, calc(var(--u) * 9.5));
+    --fs-xs: max(10px, calc(var(--u) * 11));
+    --fs-sm: max(11px, calc(var(--u) * 13));
+    --fs-md: calc(var(--u) * 16);
+    --sp-2: calc(var(--u) * 4);
+    --sp-3: calc(var(--u) * 6);
+    --sp-6: calc(var(--u) * 16);
+    --safe: max(env(safe-area-inset-left), env(safe-area-inset-right), calc(var(--u) * 44));
+    --safe-t: max(env(safe-area-inset-top), calc(var(--u) * 10));
+    --btn-h: 44px;
+  }
+}
+.ps-root, .ps-root *, .ps-root *::before, .ps-root *::after { box-sizing: border-box; }
+.ps-root { font-family: var(--ps-font); font-size: var(--fs-sm); color: var(--ps-ink); -webkit-font-smoothing: antialiased; user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent; }
+.ps-root h1, .ps-root p { margin: 0; }
+.ps-root button { font: inherit; color: inherit; background: none; border: 0; margin: 0; padding: 0; cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+.ps-scrim { position: fixed; inset: 0; background: var(--ps-scrim); pointer-events: auto; }
+.ps-center { position: fixed; inset: 0; display: grid; place-items: center; }
+.ps-panel { position: relative; background: var(--ps-glass); border: 2px solid var(--ps-line); box-shadow: var(--ps-shadow-panel); }
+.ps-panel::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px); }
+.ps-label { font-size: var(--fs-2xs); font-weight: 500; letter-spacing: var(--ps-track-key); text-transform: uppercase; color: var(--ps-ink-3); }
+.ps-num { font-variant-numeric: tabular-nums lining-nums; font-weight: 800; letter-spacing: 0; }
+.ps-dim { color: var(--ps-ink-3); }
+.ps-root .ps-btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-3); min-height: var(--btn-h); padding: 0 var(--sp-6); background: #000; border: 2px solid var(--ps-line); color: var(--ps-ink); font-size: var(--fs-sm); font-weight: 700; letter-spacing: var(--ps-track-key); text-transform: uppercase; transition: color var(--ps-dur-fast), border-color var(--ps-dur-fast), box-shadow var(--ps-dur), background var(--ps-dur-fast); }
+.ps-root .ps-btn:hover, .ps-root .ps-btn:focus-visible { outline: none; border-color: var(--ps-accent); color: var(--ps-accent); box-shadow: var(--ps-accent-glow); }
+.ps-root .ps-btn:active { background: #fff; color: #000; border-color: #fff; box-shadow: none; }
+.ps-btn--primary::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: var(--ps-prism-h); background: var(--ps-prism); }
+.ps-btn--primary:active::after { opacity: 0; }
+.ps-key { display: inline-flex; align-items: center; justify-content: center; min-width: 2em; height: 2em; padding: 0 .55em; border: 1px solid var(--ps-line-2); border-bottom-width: 3px; color: var(--ps-ink); font-weight: 700; font-size: .86em; letter-spacing: .06em; line-height: 1; background: #000; }
+.ps-key--accent { border-color: var(--ps-accent); color: var(--ps-accent); }
+.ps-segs { display: flex; gap: var(--sp-2); width: 100%; }
+.ps-seg { flex: 1; height: calc(var(--u) * 4); background: rgba(255,255,255,.14); }
+.ps-seg.done { background: var(--c); }
+.ps-seg.now { background: var(--c); box-shadow: 0 0 10px var(--c); }
+.ps-seg.lost { background: transparent; outline: 1px dashed var(--c); outline-offset: -1px; }
+.ps-pip { display: block; border-radius: 50%; background: radial-gradient(circle at 38% 35%, #fff 0 35%, #cfeaff 60%, var(--ps-accent) 100%); box-shadow: var(--ps-accent-glow); }
+.ps-pip.is-empty { background: transparent; border: 2px solid var(--ps-line-2); box-shadow: none; }
+.ps-plate { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--sp-3); background: var(--ps-glass-strong); border: 2px solid var(--ps-line); color: var(--ps-ink); font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--ps-track-key); text-transform: uppercase; transition: background var(--ps-dur-fast), color var(--ps-dur-fast), transform var(--ps-dur-fast); }
+.ps-plate:active { background: #fff; color: #000; border-color: #fff; transform: scale(.96); }
+@keyframes ps-pulse { 0% { transform: scale(1); } 30% { transform: scale(1.3); text-shadow: 0 0 26px var(--ps-accent); } 100% { transform: scale(1); } }
+@keyframes ps-breathe { 0%, 100% { opacity: .4; } 50% { opacity: 1; } }
+@keyframes ps-in { from { opacity: 0; transform: translateY(calc(var(--u) * 14)); } to { opacity: 1; transform: none; } }
+@keyframes ps-pop { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes ps-fade { from { opacity: 0; } to { opacity: 1; } }
+.ps-root .is-pulse { animation: ps-pulse 420ms var(--ps-ease); }
+@media (pointer: coarse) {
+  .ps-root .ps-btn:hover { border-color: var(--ps-line); color: var(--ps-ink); box-shadow: none; }
+  .ps-root .ps-btn:active { background: #fff; color: #000; border-color: #fff; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ps-root *, .ps-root *::before, .ps-root *::after { animation: none !important; transition: none !important; }
+}
+
+/* Content names are written in title case; the cabinet shows them in caps. */
+.psh-name, .psh-upg, .psd-name, .psd-next, .psg-stage { text-transform: uppercase; }

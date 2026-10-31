@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/norse_runestone_large"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6526, 2.46, 1.0192],
+      "offset": [-0.0099, 1.23, 0.0132]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/livestock_hurdle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.238, 1.06, 0.55],
+      "offset": [0.057, 0.53, 0]
+    }
+  }
+}

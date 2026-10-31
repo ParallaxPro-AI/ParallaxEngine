@@ -1,0 +1,16 @@
+{
+  "extends": "arena",
+  "exclude": ["zone_marker", "zone_marker_2", "zone_marker_3", "zone_marker_4", "zone_marker_5", "zone_marker_6", "ambience", "moba_camera", "player_start", "player_start_2", "blue_fountain", "blue_core", "tower_blue", "tower_blue_2", "tower_blue_3", "tower_blue_4", "tower_blue_5", "tower_blue_6", "tower_blue_7", "tower_blue_8", "red_fountain", "red_core", "tower_red", "tower_red_2", "tower_red_3", "tower_red_4", "tower_red_5", "tower_red_6", "tower_red_7", "tower_red_8", "camp_titan", "camp_titan_2", "camp_mana_font", "camp_mana_font_2", "camp_war_stone", "camp_war_stone_2", "camp_lurkers", "camp_lurkers_2", "camp_lurkers_3", "camp_lurkers_4", "bot_hero_blue", "bot_hero_blue_2", "bot_hero_blue_3", "bot_hero_blue_4", "bot_hero_red", "bot_hero_red_2", "bot_hero_red_3", "bot_hero_red_4"],
+  "ui": ["title_screen"],
+  "navmesh": null,
+  "entities": [
+    {"prefab": "moba_camera", "at": [-62, 25.3, 76], "rotation": [56.8, 180, 0], "components": {"camera": {"rig": "fixed"}}},
+    {"prefab": "scenery_core_blue", "at": [-55, 5.36, 55]},
+    {"prefab": "scenery_wellspring_blue", "at": [-62, 3.9, 62]},
+    {"prefab": "scenery_tower_blue", "at": [-48, 3.9, 55]},
+    {"prefab": "scenery_tower_blue", "at": [-55, 3.9, 48]},
+    {"prefab": "scenery_tower_blue", "at": [-32, 0.9, 32]},
+    {"prefab": "scenery_tower_blue", "at": [-20, 0.07, 55]},
+    {"prefab": "scenery_tower_blue", "at": [-55, 0.07, 20]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "computer",
+  "summary": "A desktop computer that ships in three interchangeable form factors: a mid-tower + flat monitor, an all-in-on… joints tower_door, disc_tray, monitor_tilt; options form.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.computer or place \"prefab\": \"computer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:computer"]
+}

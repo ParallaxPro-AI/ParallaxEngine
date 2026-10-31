@@ -1,0 +1,8 @@
+{
+ "components": {
+  "model": {
+   "model": "models/roof_kit",
+   "cast_shadows": true
+  }
+ }
+}

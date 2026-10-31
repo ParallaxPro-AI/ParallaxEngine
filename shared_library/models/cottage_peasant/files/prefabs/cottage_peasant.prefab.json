@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cottage_peasant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.199, 6.5808, 6.236],
+      "offset": [-0.5195, 3.2904, 0]
+    }
+  }
+}

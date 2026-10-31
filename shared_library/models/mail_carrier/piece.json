@@ -1,0 +1,10 @@
+{
+  "id": "mail_carrier",
+  "summary": "A mail carrier in summer uniform: short-sleeved blue-grey shirt with flapped chest pockets and a patch, navy… options skin, hair, headwear, shirt_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mail_carrier or place \"prefab\": \"mail_carrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mail_carrier"]
+}

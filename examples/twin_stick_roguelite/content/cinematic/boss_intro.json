@@ -1,0 +1,12 @@
+{
+  "duration": 3.0,
+  "skippable": true,
+  "bind": ["boss"],
+  "tracks": [
+    { "type": "camera", "keys": [
+      { "t": 0, "position": [4.2, 9, 7.5], "relative_to": "boss", "look_at": "boss", "fov": 60 },
+      { "t": 3.0, "position": [2.6, 1.6, 4.6], "relative_to": "boss", "look_at": "boss", "fov": 44, "ease": "in_out_cubic" }
+    ] },
+    { "type": "event", "keys": [ { "t": 0.35, "name": "reveal" } ] }
+  ]
+}

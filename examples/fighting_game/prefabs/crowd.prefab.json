@@ -1,0 +1,10 @@
+{
+  "components": {
+    "audio_source": {
+      "sound": "sfx/crowd_murmur",
+      "playing": true,
+      "loop": true,
+      "spatial": false
+    }
+  }
+}

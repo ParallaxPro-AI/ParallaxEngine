@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tin_sheet"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1.8,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.41, 0.7655, 0.087],
+      "offset": [0, 0.3822, 0]
+    }
+  }
+}

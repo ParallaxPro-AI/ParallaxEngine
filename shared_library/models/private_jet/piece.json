@@ -1,0 +1,10 @@
+{
+  "id": "private_jet",
+  "summary": "A twin-engine business jet about 20 m long: a lofted round-section fuselage with a drooped nose and dark wrap… joints door, wing_aileron_l, wing_aileron_r, fin_rudder, stabiliser_elevator_l, stabiliser_elevator_r, …; options stripe; sockets eye_point, door_step.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.private_jet or place \"prefab\": \"private_jet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:private_jet"]
+}

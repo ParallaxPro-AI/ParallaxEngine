@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/witch_broom"
+    },
+    "viewmodel_item": {
+      "hip": [0.22, -0.46, 0.4],
+      "hip_turn": [-20.053523, -24.064227, -35.523383],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2765, 0.2786, 1.594],
+      "offset": [0.0011, 0.1311, 0.795]
+    }
+  }
+}

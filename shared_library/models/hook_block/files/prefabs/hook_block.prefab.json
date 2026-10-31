@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hook_block"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.264, 0.8894, 0.2869],
+      "offset": [0, 0.4447, -0.0043]
+    }
+  }
+}

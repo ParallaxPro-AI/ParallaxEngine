@@ -1,0 +1,10 @@
+{
+  "id": "medieval_market_cart",
+  "summary": "A medieval market handcart: a two-wheeled plank-bed cart with twelve-spoke iron-tyred wheels on an axle tree… joints wheel_l, wheel_r, tailgate; options awning; sockets push.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.medieval_market_cart or place \"prefab\": \"medieval_market_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:medieval_market_cart"]
+}

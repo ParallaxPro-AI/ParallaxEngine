@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/passenger_boarding_stairs"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boardroom_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6953, 1.1085, 0.785],
+      "offset": [0, 0.5542, -0.0325]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Opening Sprint",
+  "blurb": "Two laps, dry road, midday light. Nothing to hide behind — just be quicker.",
+  "conditions": "Clear · Noon",
+  "number": 1, "track": "terrain_sprint", "laps": 2, "opponents": 3,
+  "weather": "clear", "time_of_day": "noon", "purse_scale": 1.0, "points_scale": 1
+}

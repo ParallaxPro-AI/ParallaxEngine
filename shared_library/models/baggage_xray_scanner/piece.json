@@ -1,0 +1,10 @@
+{
+  "id": "baggage_xray_scanner",
+  "summary": "A checkpoint baggage X-ray scanner: a 1.6 m two-tone housing with a 0.66 x 0.52 m tunnel, a rubber conveyor b… joints belt, curtain_in, curtain_out, monitor; options colour; sockets socket_entry, socket_exit, socket_operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baggage_xray_scanner or place \"prefab\": \"baggage_xray_scanner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baggage_xray_scanner"]
+}

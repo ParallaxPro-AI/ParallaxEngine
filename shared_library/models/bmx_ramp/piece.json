@@ -1,0 +1,10 @@
+{
+  "id": "bmx_ramp",
+  "summary": "A steel-framed BMX / MTB tabletop jump, 6.4 m long and 1.6 m wide: a 0.9 m kicker on a 2 m radius transition… options frame; sockets socket_kicker_toe, socket_kicker_lip, socket_table_centre, socket_landing_toe.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bmx_ramp or place \"prefab\": \"bmx_ramp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bmx_ramp"]
+}

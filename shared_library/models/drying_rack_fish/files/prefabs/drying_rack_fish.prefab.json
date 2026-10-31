@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drying_rack_fish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.592, 1.7218, 1.1039],
+      "offset": [0, 0.8609, 0.0006]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "elf_ranger",
+  "summary": "A rigged elf ranger on the canonical 17-bone humanoid rig (forked from `cowboy`/`civilian`): a tall, slender… options skin, hair, cloak, tunic; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elf_ranger or place \"prefab\": \"elf_ranger\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elf_ranger"]
+}

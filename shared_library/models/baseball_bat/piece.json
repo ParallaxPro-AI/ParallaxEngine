@@ -1,0 +1,10 @@
+{
+  "id": "baseball_bat",
+  "summary": "A 33-inch (0.842 m) turned-ash baseball bat: flared knob, thin handle under a wrapped grip tape, the long tap…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baseball_bat or place \"prefab\": \"baseball_bat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baseball_bat"]
+}

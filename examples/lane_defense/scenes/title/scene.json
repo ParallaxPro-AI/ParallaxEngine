@@ -1,0 +1,5 @@
+{
+  "extends": "garden",
+  "exclude": ["lawn_grid", "cell_highlight", "water_strip", "sky_pollen"],
+  "ui": ["title_screen"]
+}

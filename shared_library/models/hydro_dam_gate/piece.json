@@ -1,0 +1,10 @@
+{
+  "id": "hydro_dam_gate",
+  "summary": "One bay of a dam spillway with a 12 m steel radial (Tainter) gate: a curved skin plate with girders and ribs… joints gate_l, gate_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hydro_dam_gate or place \"prefab\": \"hydro_dam_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hydro_dam_gate"]
+}

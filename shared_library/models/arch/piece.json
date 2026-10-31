@@ -1,0 +1,10 @@
+{
+  "id": "arch",
+  "summary": "A modular masonry archway: two piers carry a semicircular ring of voussoir stones over a walk-through opening… options width.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.arch or place \"prefab\": \"arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:arch"]
+}

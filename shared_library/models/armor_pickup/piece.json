@@ -1,0 +1,10 @@
+{
+  "id": "armor_pickup",
+  "summary": "An armour pickup: a polished steel breastplate (cuirass, front and back plates) with a raised central keel, g… joints spinner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.armor_pickup or place \"prefab\": \"armor_pickup\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:armor_pickup"]
+}

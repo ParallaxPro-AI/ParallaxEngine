@@ -1,0 +1,10 @@
+{
+  "id": "classroom_desk_pair",
+  "summary": "A two-pupil classroom desk: a 1.2 m beech-laminate top with a dark edge band and a pencil groove, square stee… joints chair_l, chair_r; options frame_colour, chair_colour, top, chairs; sockets seat_l, seat_r, desktop_l, desktop_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.classroom_desk_pair or place \"prefab\": \"classroom_desk_pair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:classroom_desk_pair"]
+}

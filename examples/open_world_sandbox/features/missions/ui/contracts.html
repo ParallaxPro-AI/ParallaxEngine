@@ -1,0 +1,94 @@
+<!-- The contracts board, ported from the template's code/ui/contracts.html: the contact network headline,
+     cash, the notice line, a numbered card per contract, the services, the safehouse save and the footer.
+     A card's "contract" / a service's "service" fills the same-named parameter of accept() / buy_service(). -->
+<link rel="stylesheet" href="../../../ui/sunset_bay.css">
+<style>
+.sbk{position:fixed;inset:0;pointer-events:auto;font-family:var(--sb-font,'Inter',system-ui,sans-serif);color:var(--sb-ink,#f4efe6);-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
+.sbk *{box-sizing:border-box}
+.sbk-bd{position:absolute;inset:0;background:var(--sb-backdrop,rgba(4,10,14,.62));}
+.sbk-board{position:absolute;left:50%;top:50%;width:calc(1320 * var(--sb-u));max-height:calc(100% - calc(48 * var(--sb-u)));overflow-y:auto;transform:translate(-50%,-50%);padding:calc(48 * var(--sb-u)) calc(52 * var(--sb-u));display:flex;flex-direction:column;gap:calc(26 * var(--sb-u));border-radius:calc(22 * var(--sb-u));background:rgba(13,29,38,.96);border:1px solid var(--sb-line,rgba(147,216,189,.18));box-shadow:var(--sb-sh-panel);scrollbar-width:none}
+.sbk-board::-webkit-scrollbar{display:none}
+.sbk button{font:inherit;color:inherit;cursor:pointer}
+.sbk-btn{display:inline-flex;align-items:center;justify-content:center;gap:calc(10 * var(--sb-u));min-height:calc(48 * var(--sb-u));padding:0 calc(20 * var(--sb-u));border-radius:calc(10 * var(--sb-u));font:600 calc(16 * var(--sb-u))/1.1 var(--sb-font)!important;background:rgba(244,239,230,.08);border:1px solid rgba(244,239,230,.2);color:var(--sb-ink,#f4efe6)!important;white-space:nowrap;transition:background .12s,transform 80ms}
+.sbk-btn:hover,.sbk-btn[data-parallax-hover]{background:rgba(244,239,230,.15)}
+.sbk-btn:active{transform:scale(.97)}
+.sbk-btn:focus-visible{outline:calc(3 * var(--sb-u)) solid #fff;outline-offset:calc(3 * var(--sb-u))}
+.sbk-btn:disabled{opacity:.38;cursor:not-allowed;transform:none}
+.sbk-btn .sb-i{width:calc(18 * var(--sb-u));height:calc(18 * var(--sb-u));flex:none}
+.sbk-btn.primary{background:var(--sb-amber,#fbbf24);border-color:transparent;color:var(--sb-panel,#111f28)!important}
+.sbk-btn.primary:hover,.sbk-btn.primary[data-parallax-hover]{background:var(--sb-amber-hi,#fcd34d)}
+.sbk-btn.inprog{background:rgba(251,191,36,.12);border-color:rgba(251,191,36,.55);color:var(--sb-amber,#fbbf24)!important;opacity:1}
+.sbk-btn.again{border-color:rgba(141,227,192,.45);color:var(--sb-mint-2,#8de3c0)!important;background:rgba(141,227,192,.08)}
+.sbk-btn.danger{color:#fca5a5!important;border-color:rgba(220,38,38,.45);background:transparent}
+.sbk-btn b{color:var(--sb-mint-2,#8de3c0);font-weight:800}
+.sbk-btn:disabled b{color:inherit}
+.sbk-eyebrow{font:600 calc(13 * var(--sb-u))/1.2 var(--sb-font);letter-spacing:.16em;text-transform:uppercase;color:var(--sb-peach,#e7b77b)}
+.sbk-head{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(24 * var(--sb-u))}
+.sbk-head h1{margin:calc(12 * var(--sb-u)) 0 0;font:400 calc(76 * var(--sb-u))/.95 var(--sb-font-display);text-transform:uppercase;letter-spacing:.01em}
+.sbk-right{display:flex;align-items:center;gap:calc(16 * var(--sb-u))}
+.sbk-cash{text-align:right}
+.sbk-cash span{display:block;font:600 calc(12 * var(--sb-u))/1 var(--sb-font);letter-spacing:.16em;text-transform:uppercase;color:var(--sb-ink-3,#93a2a4)}
+.sbk-cash b{font:800 calc(44 * var(--sb-u))/1.1 var(--sb-font);color:var(--sb-mint-2,#8de3c0)}
+.sbk-close-m{display:none}
+.sbk-notice{display:flex;align-items:center;gap:calc(12 * var(--sb-u));padding:calc(14 * var(--sb-u)) calc(18 * var(--sb-u));border-radius:calc(12 * var(--sb-u));font:500 calc(16 * var(--sb-u))/1.3 var(--sb-font);background:rgba(147,216,189,.08);border:1px solid rgba(147,216,189,.25);min-height:calc(52 * var(--sb-u))}
+.sbk-notice i{width:calc(10 * var(--sb-u));height:calc(10 * var(--sb-u));border-radius:50%;background:var(--sb-mint-2,#8de3c0);flex:none;box-shadow:0 0 calc(16 * var(--sb-u)) rgba(141,227,192,.45)}
+.sbk-notice span{flex:1}
+.sbk-notice.amber{background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.3)}
+.sbk-notice.amber i{background:var(--sb-amber,#fbbf24);box-shadow:0 0 calc(18 * var(--sb-u)) rgba(251,191,36,.55)}
+.sbk-jobs{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(20 * var(--sb-u))}
+.sbk-job{position:relative;display:flex;flex-direction:column;gap:calc(12 * var(--sb-u));padding:calc(24 * var(--sb-u));border-radius:calc(16 * var(--sb-u));background:var(--sb-panel,#111f28);border:1px solid var(--sb-line,rgba(147,216,189,.18));overflow:hidden}
+.sbk-no{position:absolute;right:calc(20 * var(--sb-u));top:calc(6 * var(--sb-u));font:400 calc(96 * var(--sb-u))/1 var(--sb-font-display);color:rgba(231,183,123,.09)}
+.sbk-jtop{position:relative;display:flex;justify-content:space-between;align-items:center;font:600 calc(13 * var(--sb-u))/1 var(--sb-font);letter-spacing:.16em;text-transform:uppercase;color:var(--sb-peach,#e7b77b)}
+.sbk-jtop b{font:800 calc(20 * var(--sb-u))/1 var(--sb-font);letter-spacing:0;color:var(--sb-mint-2,#8de3c0)}
+.sbk-job h2{position:relative;margin:0;font:400 calc(42 * var(--sb-u))/1 var(--sb-font-display);text-transform:uppercase;letter-spacing:.01em}
+.sbk-job p{margin:0;font:400 calc(15 * var(--sb-u))/1.45 var(--sb-font);color:var(--sb-ink-2,#cdd3cf);flex:1}
+.sbk-job .sbk-btn{width:100%;margin-top:calc(8 * var(--sb-u))}
+.sbk-job.progress{border-color:var(--sb-amber,#fbbf24);box-shadow:0 0 0 1px var(--sb-amber,#fbbf24),0 0 calc(30 * var(--sb-u)) rgba(251,191,36,.12)}
+.sbk-job.locked h2,.sbk-job.locked p{opacity:.45}
+.sbk-lower{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(32 * var(--sb-u));padding-top:calc(24 * var(--sb-u));border-top:1px solid var(--sb-line,rgba(147,216,189,.18))}
+.sbk-svc .sbk-eyebrow{margin-bottom:calc(12 * var(--sb-u))}
+.sbk-row{display:flex;gap:calc(12 * var(--sb-u));flex-wrap:wrap}
+.sbk-svc small{display:block;margin-top:calc(10 * var(--sb-u));font:500 calc(13 * var(--sb-u))/1.3 var(--sb-font);color:var(--sb-ink-3,#93a2a4)}
+.sbk-save{display:flex;align-items:center;gap:calc(16 * var(--sb-u))}
+.sbk-save small{font:500 calc(14 * var(--sb-u))/1.3 var(--sb-font);color:var(--sb-ink-3,#93a2a4)}
+.sbk-foot{display:flex;justify-content:space-between;gap:calc(16 * var(--sb-u))}
+@media (pointer:coarse){
+.sbk-board{left:0;top:0;right:0;bottom:0;width:auto;max-height:none;transform:none;border-radius:0;border:0;padding:calc(20 * var(--sb-u)) calc(calc(32 * var(--sb-u)) + env(safe-area-inset-right,0px)) 0 calc(calc(32 * var(--sb-u)) + env(safe-area-inset-left,0px));gap:calc(16 * var(--sb-u))}
+.sbk-btn{min-height:calc(88 * var(--sb-u));padding:0 calc(28 * var(--sb-u));border-radius:calc(18 * var(--sb-u));font-size:calc(24 * var(--sb-u))!important;gap:calc(12 * var(--sb-u))}
+.sbk-btn .sb-i{width:calc(28 * var(--sb-u));height:calc(28 * var(--sb-u))}
+.sbk-eyebrow{font-size:calc(20 * var(--sb-u))}
+.sbk-head{align-items:center}
+.sbk-head h1{font-size:calc(48 * var(--sb-u));margin-top:calc(6 * var(--sb-u))}
+.sbk-cash span{font-size:calc(18 * var(--sb-u))}
+.sbk-cash b{font-size:calc(40 * var(--sb-u))}
+.sbk-close-m{display:inline-flex}
+.sbk-foot .sbk-close-d{display:none}
+.sbk-notice{padding:calc(14 * var(--sb-u)) calc(20 * var(--sb-u));gap:calc(16 * var(--sb-u));font-size:calc(22 * var(--sb-u));border-radius:calc(18 * var(--sb-u));min-height:0}
+.sbk-notice i{width:calc(14 * var(--sb-u));height:calc(14 * var(--sb-u))}
+.sbk-jobs{display:flex;overflow-x:auto;gap:calc(16 * var(--sb-u));scroll-snap-type:x mandatory;flex:none;scrollbar-width:none}
+.sbk-jobs::-webkit-scrollbar{display:none}
+.sbk-job{flex:0 0 calc(504 * var(--sb-u));scroll-snap-align:start;padding:calc(20 * var(--sb-u)) calc(24 * var(--sb-u));gap:calc(10 * var(--sb-u));border-radius:calc(20 * var(--sb-u))}
+.sbk-no{font-size:calc(96 * var(--sb-u))}
+.sbk-jtop{font-size:calc(19 * var(--sb-u))}
+.sbk-jtop b{font-size:calc(26 * var(--sb-u))}
+.sbk-job h2{font-size:calc(42 * var(--sb-u))}
+.sbk-job p{font-size:calc(22 * var(--sb-u));line-height:1.3;min-height:calc(86 * var(--sb-u));display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.sbk-job .sbk-btn{margin-top:calc(4 * var(--sb-u))}
+.sbk-lower{flex-wrap:wrap;gap:calc(16 * var(--sb-u));padding-top:calc(16 * var(--sb-u));align-items:center}
+.sbk-svc .sbk-eyebrow,.sbk-svc small{display:none}
+.sbk-row{gap:calc(12 * var(--sb-u));flex-wrap:nowrap}
+.sbk-save{gap:calc(16 * var(--sb-u))}
+.sbk-save small{font-size:calc(20 * var(--sb-u))}
+.sbk-foot{padding-bottom:calc(42 * var(--sb-u))}
+}
+</style>
+<div class="sbk"><div class="sbk-bd"></div><main class="sbk-board">
+<header class="sbk-head"><div><div class="sbk-eyebrow" data-text="board_eyebrow"></div><h1 data-text="board_headline"></h1></div><div class="sbk-right"><div class="sbk-cash"><span data-text="cash_label"></span><b>$<span data-bind="cash"></span></b></div><button class="sbk-btn primary sbk-close-m" data-action="close"><span class="sb-i sb-i-back"></span><span data-text="back_to_streets"></span></button></div></header>
+<div class="sbk-notice" data-class-amber="running"><i></i><span role="status" data-bind="notice"></span></div>
+<div class="sbk-jobs" data-each="contracts"><template>
+<article class="sbk-job" data-class-progress="progress" data-class-locked="locked" data-class-again="done"><span class="sbk-no" data-bind="number"></span><div class="sbk-jtop"><span data-bind="contact"></span><b>$<span data-bind="reward"></span></b></div><h2 data-bind="title"></h2><p data-bind="brief"></p>
+<button class="sbk-btn" data-class-primary="accept" data-class-inprog="progress" data-class-again="done" data-action="accept" data-attr-disabled="unavailable"><span data-show="accept" data-text="accept_contract"></span><span data-show="progress" data-text="in_progress"></span><span data-show="done" data-text="contract_done"></span><span data-show="locked"><span class="sb-i sb-i-lock"></span><span data-bind="locked_label"></span></span></button>
+</article></template></div>
+<div class="sbk-lower"><div class="sbk-svc"><div class="sbk-eyebrow" data-text="services_title"></div><div class="sbk-row" data-each="services"><template><button class="sbk-btn" data-action="service" data-attr-disabled="owned"><span data-bind="name"></span> <b data-hide="owned">$<span data-bind="price"></span></b><span data-show="owned" data-text="owned"></span></button></template></div><small data-text="services_note"></small></div><div class="sbk-save"><button class="sbk-btn" data-action="service" data-service="safehouse_save"><span class="sb-i sb-i-home"></span><span data-text="save_safehouse"></span></button><small data-bind="progress"></small></div></div>
+<footer class="sbk-foot"><button class="sbk-btn danger" data-action="abandon" data-attr-disabled="idle" data-text="abandon"></button><button class="sbk-btn primary sbk-close-d" data-action="close" data-text="back_to_streets"></button></footer>
+</main></div>

@@ -1,0 +1,10 @@
+{
+  "id": "monorail_car",
+  "summary": "A straddle-beam monorail car, 15 m long: a lofted crowned body that sweeps into a rounded bullet nose with a… joints door_lf, door_lr, door_rf, door_rr, bogie_f_tyre_a, bogie_f_tyre_b, …; options stripe; sockets socket_coupler_rear, seat_driver, beam_contact.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.monorail_car or place \"prefab\": \"monorail_car\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:monorail_car"]
+}

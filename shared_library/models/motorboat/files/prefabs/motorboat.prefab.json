@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/motorboat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.248, 1.3531, 6.0959],
+      "offset": [0, 0.6766, -0.272]
+    }
+  }
+}

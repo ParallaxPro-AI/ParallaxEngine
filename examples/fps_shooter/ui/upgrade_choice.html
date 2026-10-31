@@ -1,0 +1,65 @@
+<link rel="stylesheet" href="dustline.css">
+<style>
+  #dl-draft { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; padding: calc(24 * var(--u)); overflow-y: auto; overscroll-behavior: contain; pointer-events: auto; background: radial-gradient(ellipse at 50% 42%, rgba(10,23,27,.8), rgba(10,23,27,.97)); animation: dlDraftIn .28s ease forwards; }
+  @keyframes dlDraftIn { from { opacity: 0; } to { opacity: 1; } }
+  .dd-eyebrow { display: flex; align-items: center; gap: calc(16 * var(--u)); font-size: calc(16 * var(--u)); font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--dl-brass); flex-shrink: 0; }
+  .dd-eyebrow::before, .dd-eyebrow::after { content: ""; width: calc(48 * var(--u)); height: 1px; background: var(--dl-brass); }
+  .dd-title { margin-top: calc(12 * var(--u)); font: 400 calc(104 * var(--u))/1 var(--dl-f-display); letter-spacing: .02em; text-transform: uppercase; flex-shrink: 0; }
+  .dd-sub { margin-top: calc(12 * var(--u)); font-size: calc(22 * var(--u)); font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--dl-sage); text-align: center; flex-shrink: 0; }
+  .dd-cards { margin-top: calc(56 * var(--u)); display: grid; grid-template-columns: repeat(3, calc(400 * var(--u))); gap: calc(28 * var(--u)); flex-shrink: 0; }
+  .dd-card { position: relative; height: calc(460 * var(--u)); padding: calc(40 * var(--u)) calc(36 * var(--u)) calc(32 * var(--u)); display: flex; flex-direction: column; align-items: stretch; text-align: left; cursor: pointer; pointer-events: auto; border: 0; color: var(--dl-ink); font-family: inherit;
+             background: rgba(154,173,170,.3); clip-path: polygon(calc(18 * var(--u)) 0,100% 0,100% calc(100% - calc(18 * var(--u))),calc(100% - calc(18 * var(--u))) 100%,0 100%,0 calc(18 * var(--u)));
+             transition: transform 240ms var(--dl-ease-out), opacity 240ms, background 240ms; }
+  .dd-card::before { content: ""; position: absolute; inset: 1px; background: linear-gradient(180deg, rgba(22,40,45,.97), rgba(10,23,27,.96)); clip-path: inherit; transition: background 240ms; }
+  .dd-card > * { position: relative; }
+  .dd-glyph { width: calc(88 * var(--u)); height: calc(88 * var(--u)); display: grid; place-items: center; font-size: calc(48 * var(--u)); line-height: 1; color: var(--dl-brass); font-variant-emoji: text; box-shadow: inset 0 0 0 1px var(--dl-brass-line); background: var(--dl-brass-wash); }
+  .dd-ctitle { margin-top: calc(32 * var(--u)); font-size: calc(34 * var(--u)); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; line-height: 1.05; }
+  .dd-desc { margin-top: calc(14 * var(--u)); padding-top: calc(14 * var(--u)); border-top: 1px solid var(--dl-sage-line); font-size: calc(20 * var(--u)); line-height: 1.4; color: var(--dl-ink-2); }
+  .dd-foot { margin-top: auto; display: flex; justify-content: space-between; align-items: center; font-size: calc(14 * var(--u)); font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--dl-sage); }
+  .dd-keep { color: var(--dl-brass); opacity: 0; transform: translateX(calc(-6 * var(--u))); transition: opacity 240ms, transform 240ms var(--dl-ease-out); }
+  .dd-kept { display: none; position: absolute; top: calc(20 * var(--u)); right: calc(22 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); font-size: calc(13 * var(--u)); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; background: var(--dl-brass); color: var(--dl-brass-ink); }
+  .dd-card:hover, .dd-card[data-parallax-hover], .dd-card:focus-visible { outline: none; transform: translateY(calc(-8 * var(--u))); background: var(--dl-brass); }
+  .dd-card:hover .dd-keep, .dd-card[data-parallax-hover] .dd-keep, .dd-card:focus-visible .dd-keep { opacity: 1; transform: none; }
+  .dd-card:active { transform: translateY(calc(-8 * var(--u))); background: var(--dl-brass); }
+  .dd-card:active::before { background: linear-gradient(180deg, rgba(230,186,112,.3), rgba(10,23,27,.96) 55%); }
+  .dd-card:active .dd-glyph { background: var(--dl-brass); color: var(--dl-brass-ink); }
+  .dd-card:active .dd-kept { display: block; }
+  .dd-card:active .dd-keep { display: none; }
+  .dd-meta { margin-top: calc(48 * var(--u)); display: flex; flex-wrap: wrap; justify-content: center; gap: calc(16 * var(--u)) calc(40 * var(--u)); align-items: center; flex-shrink: 0; }
+  .dd-banked { display: flex; flex-wrap: wrap; gap: calc(8 * var(--u)); align-items: center; }
+  .dd-banked .dl-chip { background: transparent; }
+  @media (pointer: coarse) {
+    #dl-draft { padding: calc(16 * var(--u)) calc(calc(48 * var(--u)) + env(safe-area-inset-right, 0px)) calc(16 * var(--u)) calc(calc(48 * var(--u)) + env(safe-area-inset-left, 0px)); }
+    .dd-eyebrow { font-size: calc(20 * var(--u)); gap: calc(20 * var(--u)); }
+    .dd-eyebrow::before, .dd-eyebrow::after { width: calc(48 * var(--u)); height: calc(2 * var(--u)); }
+    .dd-title { margin-top: calc(8 * var(--u)); font-size: calc(80 * var(--u)); }
+    .dd-sub { margin-top: calc(8 * var(--u)); font-size: calc(24 * var(--u)); letter-spacing: .14em; }
+    .dd-cards { margin-top: calc(32 * var(--u)); width: 100%; max-width: calc(1560 * var(--u)); grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(24 * var(--u)); }
+    .dd-card { height: calc(424 * var(--u)); padding: calc(32 * var(--u)) calc(28 * var(--u)) calc(24 * var(--u)); clip-path: polygon(calc(24 * var(--u)) 0,100% 0,100% calc(100% - calc(24 * var(--u))),calc(100% - calc(24 * var(--u))) 100%,0 100%,0 calc(24 * var(--u))); }
+    .dd-ctitle { margin-top: calc(24 * var(--u)); font-size: calc(34 * var(--u)); letter-spacing: .08em; }
+    .dd-desc { margin-top: calc(16 * var(--u)); padding-top: calc(16 * var(--u)); font-size: calc(26 * var(--u)); line-height: 1.3; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .dd-foot { font-size: calc(20 * var(--u)); min-height: calc(40 * var(--u)); }
+    .dd-keep { opacity: 1; transform: none; }
+    .dd-kept { top: calc(24 * var(--u)); right: calc(24 * var(--u)); font-size: calc(18 * var(--u)); padding: calc(8 * var(--u)) calc(16 * var(--u)); }
+    .dd-card:hover { transform: none; background: rgba(154,173,170,.3); }
+    .dd-meta { margin-top: calc(28 * var(--u)); gap: calc(12 * var(--u)) calc(32 * var(--u)); }
+  }
+</style>
+<div id="dl-draft" class="dl">
+  <div class="dd-eyebrow" data-text="intermission"></div>
+  <div class="dd-title" data-text="field_upgrade"></div>
+  <div class="dd-sub" data-bind="sub"></div>
+  <div class="dd-cards" role="listbox" data-each="cards"><template>
+    <button class="dd-card" role="option" data-action="pick">
+      <span class="dd-kept" data-text="kept"></span>
+      <span class="dd-glyph" data-bind="icon"></span>
+      <span class="dd-ctitle" data-bind="name"></span>
+      <span class="dd-desc" data-bind="description"></span>
+      <span class="dd-foot"><span data-text="lasts_the_run"></span><span class="dd-keep" data-text="keep"></span></span>
+    </button>
+  </template></div>
+  <div class="dd-meta">
+    <span class="dd-banked" data-show="banked"><span class="lbl" data-text="banked"></span><span class="dd-banked" data-each="banked"><template><span class="dl-chip"><span class="g" data-bind="icon"></span><span data-bind="name"></span></span></template></span></span>
+    <span class="lbl"><span data-text="next_word"></span> · <b data-bind="next"></b></span>
+  </div>
+</div>

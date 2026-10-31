@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bread_slicer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.607, 1.442, 1.0297],
+      "offset": [-0.0035, 0.721, 0.0652]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "battle_ropes",
+  "summary": "A 9 m, 38 mm black poly-dacron battle rope doubled round a floor anchor: a bolted steel base plate with a red… options pose, rope; sockets socket_anchor, stand_user, grip_l, grip_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.battle_ropes or place \"prefab\": \"battle_ropes\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:battle_ropes"]
+}

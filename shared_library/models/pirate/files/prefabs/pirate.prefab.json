@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pirate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 1.895, 0.5095],
+      "offset": [0, 0.9475, -0.0213]
+    }
+  }
+}

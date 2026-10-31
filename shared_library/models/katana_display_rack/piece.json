@@ -1,0 +1,10 @@
+{
+  "id": "katana_display_rack",
+  "summary": "A three-tier lacquered sword stand (katana-kake), 1.1 m long and 0.6 m tall: a black urushi base board with a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.katana_display_rack or place \"prefab\": \"katana_display_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:katana_display_rack"]
+}

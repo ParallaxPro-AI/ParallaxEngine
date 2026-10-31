@@ -1,0 +1,1 @@
+{ "name": "Dragon", "prefab": "enemy_dragon", "health": 500, "speed": 1.7, "armor": 5, "reward": 100, "lives_cost": 5, "resists": { "chill": 0.5 } }

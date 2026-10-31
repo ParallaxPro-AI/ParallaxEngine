@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/energy_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.16, 2.93, 0.7],
+      "offset": [0, 1.465, 0]
+    }
+  }
+}

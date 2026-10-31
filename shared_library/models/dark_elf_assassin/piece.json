@@ -1,0 +1,10 @@
+{
+  "id": "dark_elf_assassin",
+  "summary": "A rigged dark-elf assassin on the canonical 17-bone humanoid rig (forked from `cowboy`/`civilian`, remapped t… options skin, hair, cloak, accent; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dark_elf_assassin or place \"prefab\": \"dark_elf_assassin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dark_elf_assassin"]
+}

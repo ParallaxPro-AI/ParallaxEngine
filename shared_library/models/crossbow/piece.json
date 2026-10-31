@@ -1,0 +1,10 @@
+{
+  "id": "crossbow",
+  "summary": "A modern repeating crossbow: a black polymer stock with a flight rail, a wide two-limb prod across the front… joints limb_l, limb_r, string, trigger, magazine; sockets socket_bolt, socket_scope, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.crossbow or place \"prefab\": \"crossbow\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:crossbow"]
+}

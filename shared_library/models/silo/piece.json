@@ -1,0 +1,10 @@
+{
+  "id": "silo",
+  "summary": "A hopper-bottom galvanised grain silo on four splayed legs: a corrugated cylindrical body with ringed seams… joints hatch, discharge_chute; sockets socket_outlet.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.silo or place \"prefab\": \"silo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:silo"]
+}

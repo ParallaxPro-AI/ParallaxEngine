@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/birthday_cake"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.292, 0.1795, 0.2904],
+      "offset": [0, 0.0897, 0]
+    }
+  }
+}

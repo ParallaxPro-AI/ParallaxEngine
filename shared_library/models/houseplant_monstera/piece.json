@@ -1,0 +1,10 @@
+{
+  "id": "houseplant_monstera",
+  "summary": "A mature potted monstera deliciosa: eleven glossy split leaves (lofted cordate blades with a basal sinus, cut… options pot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.houseplant_monstera or place \"prefab\": \"houseplant_monstera\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:houseplant_monstera"]
+}

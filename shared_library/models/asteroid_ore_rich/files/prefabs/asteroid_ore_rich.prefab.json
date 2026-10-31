@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/asteroid_ore_rich"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.2972, 2.6541, 2.5099],
+      "offset": [0, 1.327, 0]
+    }
+  }
+}

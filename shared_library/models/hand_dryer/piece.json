@@ -1,0 +1,10 @@
+{
+  "id": "hand_dryer",
+  "summary": "A wall-mounted automatic hand dryer for a public washroom: a crowned, rounded cover that swells forward from… joints nozzle; options finish; sockets air_out.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hand_dryer or place \"prefab\": \"hand_dryer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hand_dryer"]
+}

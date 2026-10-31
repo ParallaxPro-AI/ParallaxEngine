@@ -1,0 +1,29 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_helicopter",
+      "cast_shadows": true
+    },
+    "light": {
+      "kind": "spot",
+      "color": "#f4f7ff",
+      "intensity": 6,
+      "range": 70,
+      "angle": 18,
+      "shadows": true
+    },
+    "spotter": {
+      "range": 60,
+      "needs_line_of_sight": false
+    }
+  },
+  "tags": [
+    "chopper"
+  ],
+  "behaviors": {
+    "police_helicopter": {
+      "altitude": 35,
+      "speed": 14
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/monster_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 5400,
+      "linear_damping": 0.05,
+      "angular_damping": 0.6
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.61,
+        3.47,
+        4.78
+      ],
+      "offset": [
+        0,
+        1.735,
+        0
+      ],
+      "bounce": 0.15
+    },
+    "vehicle": {
+      "max_speed": 30,
+      "steering": 34,
+      "grip": 7,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.735,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "space_suit_locker",
+  "summary": "A walk-up EVA suit locker: a panel-lined white alcove on a dark plinth with a lit ceiling, glowing side strip… joints door; options accent, hull, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_suit_locker or place \"prefab\": \"space_suit_locker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_suit_locker"]
+}

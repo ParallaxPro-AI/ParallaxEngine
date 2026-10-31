@@ -1,0 +1,10 @@
+{
+  "id": "refinery_column",
+  "summary": "A 46 m refinery distillation column: an aluminium-jacketed pressure vessel (4 m below, swaged to 2.9 m above… joints manway_cover_hinge, davit.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.refinery_column or place \"prefab\": \"refinery_column\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:refinery_column"]
+}

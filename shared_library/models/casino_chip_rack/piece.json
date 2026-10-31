@@ -1,0 +1,10 @@
+{
+  "id": "casino_chip_rack",
+  "summary": "A casino bank chip rack: a smoked-acrylic block with ten half-round channels holding chips on edge in five co… joints lid; options fill, lid, acrylic; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.casino_chip_rack or place \"prefab\": \"casino_chip_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:casino_chip_rack"]
+}

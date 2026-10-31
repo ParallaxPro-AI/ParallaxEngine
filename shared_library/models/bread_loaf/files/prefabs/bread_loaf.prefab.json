@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bread_loaf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1254, 0.079, 0.3206],
+      "offset": [-0.0007, 0.0395, 0.0153]
+    }
+  }
+}

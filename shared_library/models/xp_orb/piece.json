@@ -1,0 +1,10 @@
+{
+  "id": "xp_orb",
+  "summary": "A game experience-point (XP) orb pickup: a glowing green energy core embossed with bright 'XP' lettering, sea… joints spinner; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.xp_orb or place \"prefab\": \"xp_orb\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:xp_orb"]
+}

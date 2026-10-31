@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/train_set_wooden"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.48, 0.163, 0.79],
+      "offset": [0, 0.0805, 0.01]
+    }
+  }
+}

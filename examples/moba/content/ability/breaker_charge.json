@@ -1,0 +1,15 @@
+{
+  "name": "Breaker Charge",
+  "blurb": "ULTIMATE. Charge in and shatter the ground where you land.",
+  "kind": "dash",
+  "ultimate": true,
+  "max_rank": 3,
+  "cooldown": { "base": 40, "per_rank": -6 },
+  "mana": { "base": 80, "per_rank": 10 },
+  "dash": { "base": 9, "per_rank": 1.5 },
+  "dash_seconds": 0.28,
+  "damage": { "base": 140, "per_rank": 70 },
+  "damage_kind": "physical",
+  "radius": { "base": 4.5 },
+  "vfx": "vfx/slash"
+}

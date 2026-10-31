@@ -1,0 +1,10 @@
+{
+  "id": "airport_seating_row",
+  "summary": "A row of four airport gate seats on a beam: pressed seat shells faced in black leather with a rolled front li… options seat_finish; sockets seat_0, seat_1, seat_2, seat_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airport_seating_row or place \"prefab\": \"airport_seating_row\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airport_seating_row"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "banner",
+  "summary": "A planted medieval heraldic banner: a turned wooden pole with a brass finial, a crossbar, and a crimson… joints pole, cloth; options heraldry, team; sockets socket_finial.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.banner or place \"prefab\": \"banner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:banner"
+  ]
+}

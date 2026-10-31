@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/training_dummy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0281, 1.585, 0.4659],
+      "offset": [-0.0026, 0.7925, -0.0008]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dock_cleat_bollard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9366, 0.59, 0.9666],
+      "offset": [0.015, 0.295, 0.015]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/health_pack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.326, 0.3, 0.225],
+      "offset": [0, 0.15, 0.0095]
+    }
+  }
+}

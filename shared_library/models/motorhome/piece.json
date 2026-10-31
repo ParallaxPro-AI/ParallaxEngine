@@ -1,0 +1,10 @@
+{
+  "id": "motorhome",
+  "summary": "A Class C motorhome: the library van's lofted cab with its bonnet, raked screen and opening cab doors, carryi… joints side_door, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, wheel_r_l_roll, …; options config, paint; sockets seat_driver, seat_pax_1, socket_driver, socket_cargo, socket_roof, socket_entry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.motorhome or place \"prefab\": \"motorhome\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:motorhome"]
+}

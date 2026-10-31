@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_face_sunglasses_aviator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2118, 0.0446, 0.1538],
+      "offset": [0, 1.7327, 0.027]
+    }
+  }
+}

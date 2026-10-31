@@ -1,0 +1,8 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/7d/a5/7da59deee07d930c37eaf39b8703e86eb8c4f1080dd82ef906edf201128d4668.glb",
+      "cast_shadows": true
+    }
+  }
+}

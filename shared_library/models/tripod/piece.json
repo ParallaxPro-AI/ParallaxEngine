@@ -1,0 +1,10 @@
+{
+  "id": "tripod",
+  "summary": "A full-size aluminium camera tripod: three two-section telescoping legs with flip-lock clamps and rubber feet… joints fold_0, fold_1, fold_2, column, pan, tilt.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tripod or place \"prefab\": \"tripod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tripod"]
+}

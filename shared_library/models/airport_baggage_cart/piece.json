@@ -1,0 +1,10 @@
+{
+  "id": "airport_baggage_cart",
+  "summary": "An airside covered baggage cart (towed dolly), 2.4 m deck: a steel ladder chassis with a checker-plate deck a… joints steer, drawbar; options curtains, body, load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airport_baggage_cart or place \"prefab\": \"airport_baggage_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airport_baggage_cart"]
+}

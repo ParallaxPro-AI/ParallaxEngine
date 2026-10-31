@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mail_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.015, 0.99, 0.512],
+      "offset": [0.0575, 0.495, -0.016]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "light_aircraft",
+  "summary": "A single-engine, four-seat, high-wing light aircraft: one lofted hull with a rounded cowl, a slab-sided cabin… joints wing_aileron_l, wing_aileron_r, hstab_elevator_l, hstab_elevator_r, fin_rudder, propeller, …; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.light_aircraft or place \"prefab\": \"light_aircraft\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:light_aircraft"]
+}

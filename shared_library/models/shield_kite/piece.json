@@ -1,0 +1,10 @@
+{
+  "id": "shield_kite",
+  "summary": "A Norman-style kite shield (11th-12th c.): a tall dished wooden board with a rounded top tapering to a long p… joints arm_straps; options heraldry; sockets socket_grip, socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_kite or place \"prefab\": \"shield_kite\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_kite"]
+}

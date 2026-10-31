@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/retro_handheld"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1628, 0.0888, 0.0398],
+      "offset": [-0.0008, 0.0475, -0.0007]
+    }
+  }
+}

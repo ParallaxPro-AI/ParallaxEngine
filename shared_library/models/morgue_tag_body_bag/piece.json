@@ -1,0 +1,10 @@
+{
+  "id": "morgue_tag_body_bag",
+  "summary": "A zipped black vinyl body bag lying on the floor with the implied shape of a body inside (shoulders, chest, n… joints zip, toe_tag.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.morgue_tag_body_bag or place \"prefab\": \"morgue_tag_body_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:morgue_tag_body_bag"]
+}

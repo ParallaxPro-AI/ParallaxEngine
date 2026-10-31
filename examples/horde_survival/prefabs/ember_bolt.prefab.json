@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.42, 0.42, 0.42], "color": "#ffdd89", "emissive": "#ffdd89" },
+    "rigidbody": { "kind": "kinematic" }
+  },
+  "behaviors": { "ember_bolt": { "lifetime": 1.1 } },
+  "pool": 90
+}

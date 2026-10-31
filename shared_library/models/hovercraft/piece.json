@@ -1,0 +1,10 @@
+{
+  "id": "hovercraft",
+  "summary": "A light utility hovercraft: an inflated black bag skirt round a lofted buoyancy hull with a rubbing strake, a… joints steering, fan, rudder_0, rudder_1, rudder_2; options paint; sockets seat_driver, seat_pax_1, seat_pax_2, eye_point, waterline, socket_tow, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hovercraft or place \"prefab\": \"hovercraft\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hovercraft"]
+}

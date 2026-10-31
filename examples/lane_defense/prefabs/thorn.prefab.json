@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.3, 0.3, 0.3], "color": "#7ced95", "cast_shadows": false },
+    "rigidbody": { "kind": "kinematic" },
+    "collider": { "shape": "sphere", "radius": 0.42, "trigger": true, "layer": "thorn", "collides_with": ["husk"] }
+  },
+  "behaviors": { "thorn": { "speed": 9 } },
+  "pool": 64
+}

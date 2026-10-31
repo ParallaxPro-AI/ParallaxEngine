@@ -1,0 +1,6 @@
+{
+  "extends": "board",
+  "exclude": ["cell_marker", "cell_marker_2", "cell_marker_3"],
+  "ui": ["title_screen"],
+  "music": null
+}

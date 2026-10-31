@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/centrifuge"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4, 0.292, 0.465],
+      "offset": [0, 0.146, 0.0095]
+    }
+  }
+}

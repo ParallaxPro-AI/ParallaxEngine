@@ -1,0 +1,10 @@
+{
+  "id": "tatami_platform",
+  "summary": "A raised tatami platform (koagari), 1.86 m square and 0.40 m high: two full igusa-rush tatami mats bound with… joints drawer_l, drawer_r; options heri, wood; sockets seat_1, seat_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tatami_platform or place \"prefab\": \"tatami_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tatami_platform"]
+}

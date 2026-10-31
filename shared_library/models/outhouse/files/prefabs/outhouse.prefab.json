@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/outhouse"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 2.3073, 1.6],
+      "offset": [0, 1.1537, 0]
+    }
+  }
+}

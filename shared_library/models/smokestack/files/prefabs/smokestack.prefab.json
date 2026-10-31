@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/smokestack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.6, 61.5, 8.8],
+      "offset": [0, 30.75, -0.6]
+    }
+  }
+}

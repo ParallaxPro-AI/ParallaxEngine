@@ -1,0 +1,10 @@
+{
+  "id": "airship",
+  "summary": "A 56 m non-rigid airship: a lathed envelope with a bluff nose, mooring cone and battens, accent cheatlines an… joints fin_top_rudder, fin_bottom_rudder, stabiliser_elevator_l, stabiliser_elevator_r, gondola_door, engine_l, …; options livery; sockets seat_driver, seat_pax_1, socket_door, socket_mooring, engine_l, engine_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airship or place \"prefab\": \"airship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airship"]
+}

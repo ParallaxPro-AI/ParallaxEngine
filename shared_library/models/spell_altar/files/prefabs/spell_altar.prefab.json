@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spell_altar",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.296,
+        1.5582,
+        1.2067
+      ],
+      "offset": [
+        0.0,
+        0.7791,
+        0.0
+      ]
+    }
+  }
+}

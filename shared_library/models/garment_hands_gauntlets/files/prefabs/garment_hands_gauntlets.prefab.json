@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hands_gauntlets"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.629, 0.12, 0.12],
+      "offset": [0, 1.45, -0.006]
+    }
+  }
+}

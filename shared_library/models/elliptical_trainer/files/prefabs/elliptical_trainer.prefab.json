@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elliptical_trainer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.765, 1.7411, 1.685],
+      "offset": [0, 0.8706, -0.0575]
+    }
+  }
+}

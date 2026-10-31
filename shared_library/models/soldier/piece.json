@@ -1,0 +1,10 @@
+{
+  "id": "soldier",
+  "summary": "A rigged humanoid soldier, built as station shells over the engine's canonical 17-bone humanoid skeleton and… options skin, jacket, trousers, hair, headgear, gear; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.soldier or place \"prefab\": \"soldier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:soldier"]
+}

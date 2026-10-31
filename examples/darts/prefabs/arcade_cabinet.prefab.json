@@ -1,0 +1,24 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arcade_cabinet",
+      "cast_shadows": true,
+      "options": {
+        "screen_art": "amber"
+      }
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6615,
+        1.723,
+        0.9215
+      ],
+      "offset": [
+        -0.00075,
+        0.86,
+        0.06925
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toaster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.263, 0.185, 0.1655],
+      "offset": [0, 0.0925, 0.0112]
+    }
+  }
+}

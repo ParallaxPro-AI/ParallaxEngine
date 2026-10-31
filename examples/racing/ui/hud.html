@@ -1,0 +1,261 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .srh { position: fixed; inset: 0; pointer-events: none; }
+  .srh-tl { position: absolute; left: var(--sr-hud-x); top: var(--sr-hud-y); display: flex; flex-direction: column; align-items: flex-start; gap: calc(10 * var(--u)); }
+  .srh-pos { padding: calc(14 * var(--u)) calc(30 * var(--u)) calc(12 * var(--u)) calc(26 * var(--u)); display: flex; align-items: flex-start; gap: calc(6 * var(--u)); }
+  .srh-pos-n { font-size: calc(128 * var(--u)); font-weight: 900; color: var(--sr-cream); }
+  .srh-pos-side { display: flex; flex-direction: column; gap: calc(8 * var(--u)); padding-top: calc(12 * var(--u)); }
+  .srh-pos-suf { font-size: calc(46 * var(--u)); color: var(--sr-orange); }
+  .srh-pos-tot { font-size: calc(32 * var(--u)); font-weight: 700; color: var(--sr-mute); }
+  .srh-lap { padding: calc(10 * var(--u)) calc(26 * var(--u)); display: flex; align-items: baseline; gap: calc(14 * var(--u)); }
+  .srh-lap .sr-lbl { font-size: calc(15 * var(--u)); }
+  .srh-lap .sr-num { font-size: calc(46 * var(--u)); color: var(--sr-cream); }
+  .srh-round { --s: calc(12 * var(--u)); position: absolute; left: 50%; top: var(--sr-hud-y); transform: translateX(-50%); display: flex; align-items: center; gap: calc(14 * var(--u)); height: calc(46 * var(--u)); padding: 0 calc(26 * var(--u)); background: var(--sr-plate); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); }
+  .srh-round svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); color: var(--sr-orange-hi); }
+  .srh-round .sr-lbl { font-size: calc(15 * var(--u)); color: var(--sr-cream); white-space: nowrap; }
+  .srh-round-n { --s: calc(5 * var(--u)); padding: calc(3 * var(--u)) calc(10 * var(--u)); background: rgba(249,115,22,0.18); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); }
+  .srh-round-n .sr-num { font-size: calc(20 * var(--u)); font-weight: 700; color: var(--sr-orange-hi); }
+  .srh-tr { position: absolute; right: var(--sr-hud-x); top: var(--sr-hud-y); }
+  .srh-times { width: calc(340 * var(--u)); padding: calc(12 * var(--u)) calc(24 * var(--u)) calc(8 * var(--u)); display: flex; flex-direction: column; }
+  .srh-row { display: flex; justify-content: space-between; align-items: center; gap: calc(24 * var(--u)); padding: calc(9 * var(--u)) 0; border-top: calc(1 * var(--u)) solid var(--sr-line); }
+  .srh-row:first-child { border-top: 0; }
+  .srh-row .sr-lbl { font-size: calc(14 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); }
+  .srh-row .sr-num { font-size: calc(38 * var(--u)); font-weight: 700; color: var(--sr-cream); }
+  .srh-row.is-lap .sr-num { font-size: calc(44 * var(--u)); font-weight: 800; }
+  .srh-row.is-best .sr-num { color: var(--sr-cream-2); }
+  .srh-rec { --s: calc(7 * var(--u)); display: none; height: calc(20 * var(--u)); padding: 0 calc(8 * var(--u)); align-items: center; clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); background: var(--sr-amber); color: var(--sr-ink); font: 700 calc(11 * var(--u))/1 var(--sr-f-ui); letter-spacing: .16em; white-space: nowrap; }
+  .srh-row.is-best.is-rec { margin: 0 calc(-24 * var(--u)); padding: calc(9 * var(--u)) calc(24 * var(--u)); background: rgba(251,191,36,0.16); box-shadow: inset calc(3 * var(--u)) 0 0 var(--sr-amber); }
+  .srh-row.is-best.is-rec .sr-lbl, .srh-row.is-best.is-rec .sr-num { color: var(--sr-amber); }
+  .srh-row.is-best.is-rec .srh-rec { display: inline-flex; }
+  .srh-row.is-flash { animation: sr-flash 600ms ease 2; }
+  .srh-br { position: absolute; right: var(--sr-hud-x); bottom: var(--sr-hud-y); display: flex; flex-direction: column; align-items: flex-end; gap: calc(18 * var(--u)); }
+  .srh-nitro { width: calc(520 * var(--u)); max-width: 42cqw; display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+  .srh-nhead { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .srh-nhead > svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); color: rgba(167,139,250,0.55); }
+  .srh-nhead .sr-lbl { font-size: calc(14 * var(--u)); color: var(--sr-cream); }
+  .srh-npct { font-size: calc(24 * var(--u)); font-weight: 700; color: var(--sr-mute); }
+  .srh-nflex { flex: 1; }
+  .srh-nhint { display: none; align-items: center; gap: calc(8 * var(--u)); }
+  .srh-nhint .sr-lbl { font-size: calc(12 * var(--u)); letter-spacing: .1em; color: var(--sr-dim); }
+  .srh-nhint.is-ready .sr-lbl { letter-spacing: .18em; color: var(--sr-mute); }
+  .srh-boost { --s: calc(7 * var(--u)); display: none; align-items: center; gap: calc(6 * var(--u)); height: calc(24 * var(--u)); padding: 0 calc(11 * var(--u)); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); background: var(--sr-nitro); color: var(--sr-ink); font: 700 calc(12 * var(--u))/1 var(--sr-f-ui); letter-spacing: .16em; text-transform: uppercase; }
+  .srh-boost svg { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
+  .srh-nitro[data-n="charging"] .srh-nhint.is-charging, .srh-nitro[data-n="ready"] .srh-nhint.is-ready { display: flex; }
+  .srh-nitro[data-n="active"] .srh-boost { display: inline-flex; }
+  .srh-nitro[data-n="ready"] .srh-nhead > svg, .srh-nitro[data-n="active"] .srh-nhead > svg { color: var(--sr-nitro); }
+  .srh-nitro[data-n="ready"] .srh-npct, .srh-nitro[data-n="active"] .srh-npct { color: var(--sr-cream); }
+  .srh-tank { position: relative; height: calc(18 * var(--u)); transform: skewX(-18deg); background: rgba(14,10,12,0.82); box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(167,139,250,0.30); }
+  .srh-tank-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--sr-nitro); opacity: .5; }
+  .srh-nitro[data-n="ready"] .srh-tank-fill { opacity: 1; box-shadow: 0 0 calc(16 * var(--u)) rgba(167,139,250,0.75); }
+  .srh-nitro[data-n="active"] .srh-tank-fill { opacity: 1; background: var(--sr-nitro-hi); animation: sr-glow-pulse 600ms ease-in-out infinite; }
+  .srh-tank-mark { position: absolute; left: 35%; top: calc(-4 * var(--u)); bottom: calc(-4 * var(--u)); width: calc(2 * var(--u)); background: var(--sr-cream); }
+  .srh-dash { display: flex; align-items: flex-end; gap: calc(26 * var(--u)); }
+  .srh-spd { display: flex; flex-direction: column; align-items: flex-end; gap: calc(10 * var(--u)); padding-bottom: calc(22 * var(--u)); }
+  .srh-chips { display: flex; gap: calc(8 * var(--u)); }
+  .srh-chip { --s: calc(8 * var(--u)); display: inline-flex; align-items: center; gap: calc(7 * var(--u)); height: calc(32 * var(--u)); padding: 0 calc(16 * var(--u)); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); background: rgba(18,13,15,0.78); color: rgba(255,247,237,0.45); font: 700 calc(15 * var(--u))/1 var(--sr-f-ui); letter-spacing: .14em; text-transform: uppercase; transition: background 200ms, color 200ms, box-shadow 200ms; }
+  .srh-chip i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); border-radius: 50%; background: rgba(255,247,237,0.3); }
+  .srh-chip.is-on { color: var(--sr-ink); transition-duration: 60ms; }
+  .srh-chip.is-on i { background: var(--sr-ink); }
+  .srh-chip.is-spin.is-on { background: var(--sr-amber); box-shadow: 0 0 calc(18 * var(--u)) var(--sr-amber); }
+  .srh-chip.is-drift.is-on { background: var(--sr-sky); box-shadow: 0 0 calc(18 * var(--u)) var(--sr-sky); }
+  .srh-speed { display: flex; align-items: baseline; gap: calc(10 * var(--u)); }
+  .srh-speed .sr-num { font-size: calc(148 * var(--u)); font-weight: 900; color: var(--sr-cream); }
+  .srh-speed .sr-lbl { font-size: calc(18 * var(--u)); color: var(--sr-cream-2); text-transform: none; letter-spacing: .18em; }
+  .srh-sbar { position: relative; width: calc(260 * var(--u)); height: calc(10 * var(--u)); transform: skewX(-20deg); background: rgba(14,10,12,0.8); }
+  .srh-sbar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, var(--sr-amber), var(--sr-orange)); }
+  .srh-tach { position: relative; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); }
+  .srh-shift { display: flex; gap: calc(8 * var(--u)); align-items: center; }
+  .srh-shift i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); border-radius: 50%; background: rgba(255,247,237,0.10); }
+  .srh-shift i.is-on { background: var(--c); box-shadow: 0 0 calc(14 * var(--u)) var(--c); }
+  .srh-tach svg { width: calc(300 * var(--u)); height: calc(300 * var(--u)); overflow: visible; }
+  .srh-keys { position: absolute; left: var(--sr-hud-x); bottom: var(--sr-hud-y); display: flex; align-items: center; gap: calc(18 * var(--u)); flex-wrap: wrap; max-width: 40cqw; }
+  .srh-key { display: flex; align-items: center; gap: calc(8 * var(--u)); }
+  .srh-key .sr-lbl { font-size: calc(12 * var(--u)); }
+  .srh-respawn { position: absolute; left: 50%; bottom: calc(var(--sr-hud-y) + calc(110 * var(--u))); transform: translateX(-50%) scale(.92); display: flex; flex-direction: column; align-items: center; gap: calc(12 * var(--u)); opacity: 0; transition: opacity 120ms, transform 120ms; }
+  .srh-respawn.is-on { opacity: 1; transform: translateX(-50%); }
+  .srh-ring { position: relative; width: calc(112 * var(--u)); height: calc(112 * var(--u)); }
+  .srh-ring svg { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+  .srh-ring-c { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .srh-ring-c svg { position: static; width: calc(32 * var(--u)); height: calc(32 * var(--u)); transform: none; color: var(--sr-cream); }
+  .srh-respawn .sr-lbl { font-size: calc(14 * var(--u)); color: var(--sr-cream); }
+  .srh-ghost-row .sr-num { color: var(--sr-sky); }
+  .srh-ghost-row .sr-lbl { color: var(--sr-sky); }
+  .srh-ww { --s: calc(14 * var(--u)); position: absolute; left: 50%; top: calc(var(--sr-hud-y) + calc(70 * var(--u))); transform: translateX(-50%); display: none; align-items: center; gap: calc(14 * var(--u)); height: calc(54 * var(--u)); padding: 0 calc(34 * var(--u)); background: var(--sr-redline); color: var(--sr-ink); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); animation: srh-ww 520ms ease-in-out infinite alternate; }
+  .srh-ww.is-on { display: inline-flex; }
+  .srh-ww svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+  .srh-ww .sr-num { font-size: calc(30 * var(--u)); font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+  @keyframes srh-ww { from { filter: none; } to { filter: brightness(1.35); } }
+  .srh-strip, .srh-mtimes, .srh-pause { display: none; }
+  @media (pointer: coarse) {
+    .srh-tl { left: var(--sr-safe-l); top: var(--sr-safe-t); gap: calc(16 * var(--u)); }
+    .srh-pos { --c: calc(16 * var(--u)); --tw: calc(52 * var(--u)); padding: calc(10 * var(--u)) calc(28 * var(--u)) calc(8 * var(--u)) calc(24 * var(--u)); gap: calc(6 * var(--u)); }
+    .srh-pos-n { font-size: calc(92 * var(--u)); }
+    .srh-pos-side { gap: calc(4 * var(--u)); padding-top: calc(8 * var(--u)); }
+    .srh-pos-suf { font-size: calc(36 * var(--u)); }
+    .srh-pos-tot { font-size: calc(28 * var(--u)); }
+    .srh-lap, .srh-round, .srh-tr, .srh-br, .srh-keys { display: none; }
+    .srh-ww { top: calc(var(--sr-safe-t) + calc(170 * var(--u))); height: calc(46 * var(--u)); }
+    .srh-ww .sr-num { font-size: calc(26 * var(--u)); }
+    .srh-strip { position: absolute; left: 50%; top: var(--sr-safe-t); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--u)); }
+    .srh-gauge { --c: calc(16 * var(--u)); padding: calc(10 * var(--u)) calc(24 * var(--u)) calc(14 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); }
+    .srh-gauge-row { display: flex; align-items: center; gap: calc(24 * var(--u)); }
+    .srh-gear { display: flex; flex-direction: column; align-items: center; padding: 0 calc(20 * var(--u)); border-right: calc(2 * var(--u)) solid var(--sr-line); }
+    .srh-gear .sr-num { font-size: calc(60 * var(--u)); font-weight: 900; color: var(--sr-cream); }
+    .srh-gear .sr-lbl, .srh-mspd .sr-lbl { font-size: calc(22 * var(--u)); letter-spacing: .16em; line-height: 1; }
+    .srh-mspd { display: flex; align-items: baseline; gap: calc(10 * var(--u)); }
+    .srh-mspd .sr-num { font-size: calc(80 * var(--u)); font-weight: 900; color: var(--sr-cream); }
+    .srh-mspd .sr-lbl { color: var(--sr-cream-2); text-transform: none; }
+    .srh-rpm { display: flex; gap: calc(4 * var(--u)); width: calc(380 * var(--u)); }
+    .srh-rpm i { flex: 1; height: calc(10 * var(--u)); transform: skewX(-24deg); background: rgba(255,247,237,0.12); }
+    .srh-rpm i.is-red { background: rgba(255,77,46,0.3); }
+    .srh-rpm i.is-on { background: var(--sr-orange); }
+    .srh-rpm i.is-red.is-on { background: var(--sr-redline); }
+    .srh-chips { gap: calc(10 * var(--u)); }
+    .srh-chip { --s: calc(12 * var(--u)); height: calc(44 * var(--u)); padding: 0 calc(20 * var(--u)); gap: calc(14 * var(--u)); font-size: calc(22 * var(--u)); }
+    .srh-chip i { width: calc(12 * var(--u)); height: calc(12 * var(--u)); }
+    .srh-mtimes { position: absolute; right: calc(var(--sr-safe-r) + calc(108 * var(--u))); top: var(--sr-safe-t); display: flex; flex-direction: column; align-items: flex-end; gap: calc(10 * var(--u)); }
+    .srh-mt { --c: calc(16 * var(--u)); --tw: calc(52 * var(--u)); padding: calc(12 * var(--u)) calc(24 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+    .srh-mrow { display: flex; align-items: baseline; gap: calc(20 * var(--u)); justify-content: space-between; }
+    .srh-mrow .sr-lbl { font-size: calc(22 * var(--u)); letter-spacing: .16em; line-height: 1; }
+    .srh-mrow .sr-num { font-size: calc(44 * var(--u)); color: var(--sr-cream); }
+    .srh-mrow .srh-div { width: calc(2 * var(--u)); height: calc(32 * var(--u)); background: var(--sr-line-2); }
+    .srh-mcell { display: flex; align-items: baseline; gap: calc(10 * var(--u)); padding: calc(2 * var(--u)) calc(12 * var(--u)); margin: 0 calc(-12 * var(--u)); }
+    .srh-mcell .sr-num { font-size: calc(32 * var(--u)); font-weight: 700; }
+    .srh-mcell.is-best .sr-num { color: var(--sr-cream-2); }
+    .srh-mcell.is-best.is-rec { background: rgba(251,191,36,0.18); box-shadow: inset calc(4 * var(--u)) 0 0 var(--sr-amber); }
+    .srh-mcell.is-best.is-rec .sr-lbl, .srh-mcell.is-best.is-rec .sr-num { color: var(--sr-amber); }
+    .srh-mcell.is-flash { animation: sr-flash 600ms ease 2; }
+    .srh-mround { --s: calc(12 * var(--u)); display: flex; align-items: center; gap: calc(12 * var(--u)); height: calc(44 * var(--u)); padding: 0 calc(20 * var(--u)); background: var(--sr-plate); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); }
+    .srh-mround .sr-lbl { font-size: calc(22 * var(--u)); letter-spacing: .16em; line-height: 1; color: var(--sr-cream); white-space: nowrap; }
+    .srh-mround .sr-num { font-size: calc(26 * var(--u)); font-weight: 700; color: var(--sr-orange-hi); }
+    .sr .srh-pause { position: absolute; right: var(--sr-safe-r); top: var(--sr-safe-t); width: calc(88 * var(--u)); height: calc(88 * var(--u)); display: flex; align-items: center; justify-content: center; color: var(--sr-cream); pointer-events: auto; }
+    .srh-pause::before { content: ''; position: absolute; inset: 0; background: rgba(255,247,237,0.26); clip-path: polygon(calc(18 * var(--u)) 0,100% 0,100% calc(100% - calc(18 * var(--u))),calc(100% - calc(18 * var(--u))) 100%,0 100%,0 calc(18 * var(--u))); }
+    .srh-pause::after { content: ''; position: absolute; inset: calc(3 * var(--u)); background: rgba(14,11,13,0.82); clip-path: polygon(calc(17 * var(--u)) 0,100% 0,100% calc(100% - calc(17 * var(--u))),calc(100% - calc(17 * var(--u))) 100%,0 100%,0 calc(17 * var(--u))); }
+    .srh-pause svg { position: relative; z-index: 1; width: calc(36 * var(--u)); height: calc(36 * var(--u)); }
+    .sr .srh-pause:active { transform: scale(.94); }
+    .sr .srh-pause:active::after { background: var(--sr-orange); }
+    .sr .srh-pause:active svg { color: var(--sr-ink); }
+    .srh-respawn { bottom: calc(var(--sr-safe-b) + calc(140 * var(--u))); gap: calc(8 * var(--u)); }
+    .srh-ring { width: calc(128 * var(--u)); height: calc(128 * var(--u)); }
+    .srh-ring-c svg { width: calc(44 * var(--u)); height: calc(44 * var(--u)); }
+    .srh-respawn .sr-lbl { font-size: calc(22 * var(--u)); letter-spacing: .16em; }
+  }
+
+  /* Ported from the template's script: the record row's flash and the hidden strips follow state. */
+  .srh-ghost-row:not(.on), .srh-round:not(.on), .srh-mround:not(.on), .srh-round-n:not(.on) { display: none; }
+</style>
+<div class="sr srh" id="srh">
+  <div class="srh-tl">
+    <div class="sr-plate is-tick srh-pos">
+      <span class="sr-num srh-pos-n" data-bind="pos_num"></span>
+      <div class="srh-pos-side">
+        <span class="sr-num srh-pos-suf" data-bind="pos_suffix"></span>
+        <span class="sr-num srh-pos-tot" data-bind="pos_total"></span>
+      </div>
+    </div>
+    <div class="sr-plate srh-lap">
+      <div class="sr-lbl" data-text="lap_label"></div>
+      <span class="sr-num"><span data-bind="lap_current"></span> / <span data-bind="lap_max"></span></span>
+    </div>
+  </div>
+
+  <div class="srh-round" data-class-on="has_round">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg>
+    <div class="sr-lbl" data-bind="round_name"></div>
+    <div class="srh-round-n" data-class-on="round_n"><span class="sr-num" data-bind="round_n"></span></div>
+  </div>
+
+  <div class="srh-ww" data-class-is-on="wrong_way" role="alert"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 10l7-7 7 7"/></svg><span class="sr-num" data-text="wrong_way"></span></div>
+
+  <div class="srh-tr">
+    <div class="sr-plate is-tick srh-times">
+      <div class="srh-row is-lap"><div class="sr-lbl" data-text="lap_label"></div><span class="sr-num" data-bind="lap_time"></span></div>
+      <div class="srh-row is-best" data-class-is-rec="record"><div class="sr-lbl"><span data-text="best_label"></span> <span class="srh-rec" data-text="new_record"></span></div><span class="sr-num" data-bind="best_lap"></span></div>
+      <div class="srh-row"><div class="sr-lbl" data-text="total_label"></div><span class="sr-num" data-bind="race_time"></span></div>
+      <div class="srh-row srh-ghost-row" data-class-on="has_ghost"><div class="sr-lbl" data-text="ghost"></div><span class="sr-num" data-bind="ghost_best"></span></div>
+    </div>
+  </div>
+
+  <div class="srh-br">
+    <div class="srh-nitro" data-attr-data-n="nitro_mode">
+      <div class="srh-nhead">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.8 3.6 5.5 5.6 5.5 11a5.5 5.5 0 0 1-11 0c0-2.4 1.2-3.9 2.4-5 .1 2 1 3.2 2.1 3.6-.8-3.4.2-6.8 1-9.6z"/></svg>
+        <div class="sr-lbl" data-text="nitro_label"></div>
+        <span class="sr-num srh-npct" data-bind="nitro_pct"></span>
+        <div class="srh-nflex"></div>
+        <div class="srh-nhint is-charging"><div class="sr-lbl" data-text="nitro_fill_hint"></div></div>
+        <div class="srh-nhint is-ready"><div class="sr-lbl" data-text="hold"></div><span class="sr-kbd">Shift</span></div>
+        <div class="srh-boost"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5c.8 3.6 5.5 5.6 5.5 11a5.5 5.5 0 0 1-11 0c0-2.4 1.2-3.9 2.4-5 .1 2 1 3.2 2.1 3.6-.8-3.4.2-6.8 1-9.6z"/></svg><span data-text="boost"></span></div>
+      </div>
+      <div class="srh-tank"><div class="srh-tank-fill" data-style-width="nitro_width"></div><div class="srh-tank-mark" data-style-left="nitro_mark"></div></div>
+    </div>
+    <div class="srh-dash">
+      <div class="srh-spd">
+        <div class="srh-chips">
+          <span class="srh-chip is-spin" data-class-is-on="wheelspin"><i></i><span data-text="wheelspin"></span></span>
+          <span class="srh-chip is-drift" data-class-is-on="drifting"><i></i><span data-text="drift"></span></span>
+        </div>
+        <div class="srh-speed"><span class="sr-num" data-bind="speed"></span><div class="sr-lbl" data-text="kmh"></div></div>
+        <div class="srh-sbar"><i data-style-width="speed_bar"></i></div>
+      </div>
+      <div class="srh-tach">
+        <div class="srh-shift" data-each="shift_lights"><template><i data-class-is-on="on" data-style---c="color"></i></template></div>
+        <svg viewBox="0 0 300 300" aria-hidden="true">
+          <circle cx="150" cy="150" r="146" fill="rgba(14,10,12,0.86)" stroke="rgba(255,247,237,0.14)" stroke-width="1.5"/>
+          <path d="M56.7 243.3 A132 132 0 1 1 243.3 243.3" fill="none" stroke="rgba(255,247,237,0.09)" stroke-width="10"/>
+          <path data-attr-d="tach_sweep" fill="none" stroke="#f97316" stroke-opacity="0.9" stroke-width="10"/>
+          <path data-attr-d="tach_red" fill="none" stroke="#ff4d2e" stroke-width="10"/>
+          <g><line x1="63.7" y1="236.3" x2="73.6" y2="226.4" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="86.4" y="220.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">0</text><line x1="42.4" y1="207.5" x2="48.6" y2="204.2" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="30.3" y1="173.8" x2="44.1" y2="171.1" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="61.7" y="174.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">1</text><line x1="28.6" y1="138.0" x2="35.6" y2="138.7" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="37.3" y1="103.3" x2="50.2" y2="108.7" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="66.9" y="122.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">2</text><line x1="55.7" y1="72.6" x2="61.1" y2="77.0" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="82.2" y1="48.6" x2="90.0" y2="60.2" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="100.0" y="82.2" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">3</text><line x1="114.6" y1="33.3" x2="116.6" y2="40.0" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="150.0" y1="28.0" x2="150.0" y2="42.0" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="150.0" y="67.0" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">4</text><line x1="185.4" y1="33.3" x2="183.4" y2="40.0" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="217.8" y1="48.6" x2="210.0" y2="60.2" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="200.0" y="82.2" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">5</text><line x1="244.3" y1="72.6" x2="238.9" y2="77.0" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="262.7" y1="103.3" x2="249.8" y2="108.7" stroke="rgba(255,247,237,0.75)" stroke-width="3"/><text x="233.1" y="122.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="rgba(255,247,237,0.8)">6</text><line x1="271.4" y1="138.0" x2="264.4" y2="138.7" stroke="rgba(255,247,237,0.75)" stroke-width="1.5"/><line x1="269.7" y1="173.8" x2="255.9" y2="171.1" stroke="#ff4d2e" stroke-width="3"/><text x="238.3" y="174.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="#ff4d2e">7</text><line x1="257.6" y1="207.5" x2="251.4" y2="204.2" stroke="#ff4d2e" stroke-width="1.5"/><line x1="236.3" y1="236.3" x2="226.4" y2="226.4" stroke="#ff4d2e" stroke-width="3"/><text x="213.6" y="220.6" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="#ff4d2e">8</text></g>
+          <g data-attr-transform="tach_needle"><line x1="205.4" y1="150" x2="284" y2="150" stroke="#fff7ed" stroke-width="5" stroke-linecap="round"/><line x1="205.4" y1="150" x2="229.2" y2="150" stroke="#f97316" stroke-width="5" stroke-linecap="round"/></g>
+          <text x="150" y="176" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="800" font-size="104" fill="#fff7ed" data-bind="gear"></text>
+          <text x="150" y="206" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-style="italic" font-weight="700" font-size="20" fill="#fed7aa" letter-spacing="1" data-bind="rpm_text"></text>
+          <text x="150" y="282" text-anchor="middle" font-family="Rajdhani, sans-serif" font-weight="700" font-size="11" letter-spacing="2" fill="rgba(255,247,237,0.55)">RPM &#215;1000</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="srh-keys">
+    <div class="srh-key"><span class="sr-kbd">Space</span><div class="sr-lbl" data-text="drift"></div></div>
+    <div class="srh-key"><span class="sr-kbd">Shift</span><div class="sr-lbl" data-text="nitro_label"></div></div>
+    <div class="srh-key"><span class="sr-kbd">E</span><div class="sr-lbl" data-text="respawn"></div></div>
+    <div class="srh-key"><span class="sr-kbd">P</span><div class="sr-lbl" data-text="pause_key"></div></div>
+  </div>
+
+  <div class="srh-strip">
+    <div class="sr-plate srh-gauge">
+      <div class="srh-gauge-row">
+        <div class="srh-gear"><span class="sr-num" data-bind="gear"></span><div class="sr-lbl" data-text="gear_label"></div></div>
+        <div class="srh-mspd"><span class="sr-num" data-bind="speed"></span><div class="sr-lbl" data-text="kmh"></div></div>
+      </div>
+      <div class="srh-rpm" data-each="rpm_segs"><template><i data-class-is-on="on" data-class-is-red="red"></i></template></div>
+    </div>
+    <div class="srh-chips">
+      <span class="srh-chip is-spin" data-class-is-on="wheelspin"><i></i><span data-text="wheelspin"></span></span>
+      <span class="srh-chip is-drift" data-class-is-on="drifting"><i></i><span data-text="drift"></span></span>
+    </div>
+  </div>
+
+  <div class="srh-mtimes">
+    <div class="sr-plate is-tick srh-mt">
+      <div class="srh-mrow"><div class="sr-lbl" data-text="lap_label"></div><span class="sr-num"><span data-bind="lap_current"></span>/<span data-bind="lap_max"></span></span><i class="srh-div"></i><span class="sr-num" data-bind="lap_time"></span></div>
+      <div class="srh-mrow">
+        <div class="srh-mcell is-best" data-class-is-rec="record"><div class="sr-lbl" data-bind="best_cell_label"></div><span class="sr-num" data-bind="best_lap"></span></div>
+        <div class="srh-mcell"><div class="sr-lbl" data-text="total_label"></div><span class="sr-num" data-bind="race_time"></span></div>
+      </div>
+    </div>
+    <div class="srh-mround" data-class-on="has_round"><div class="sr-lbl" data-bind="round_name"></div><span class="sr-num" data-bind="round_n"></span></div>
+  </div>
+
+  <button class="srh-pause" data-action="pause" aria-label="Pause race"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+  <div class="srh-respawn" data-class-is-on="respawn_active">
+    <div class="srh-ring">
+      <svg viewBox="0 0 112 112" aria-hidden="true"><circle cx="56" cy="56" r="48" fill="rgba(14,10,12,0.82)" stroke="rgba(255,247,237,0.14)" stroke-width="8"/><circle cx="56" cy="56" r="48" fill="none" stroke="#f97316" stroke-width="8" data-attr-stroke-dasharray="respawn_ring"/></svg>
+      <div class="srh-ring-c"><span class="sr-kbd">E</span></div>
+    </div>
+    <div class="sr-lbl" data-text="hold_to_respawn"></div>
+  </div>
+</div>

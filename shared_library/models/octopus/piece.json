@@ -1,0 +1,10 @@
+{
+  "id": "octopus",
+  "summary": "An octopus resting on the sea floor, ~1.2 m across its eight arms, origin at the bottom-centre, eyes facing -… options skin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.octopus or place \"prefab\": \"octopus\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:octopus"]
+}

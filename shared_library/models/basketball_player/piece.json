@@ -1,0 +1,10 @@
+{
+  "id": "basketball_player",
+  "summary": "A basketball player on the shared humanoid_17 character rig (the same body, skeleton and skin bindings as `ci… options skin, kit, trim, hair, headwear; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basketball_player or place \"prefab\": \"basketball_player\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basketball_player"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hose_reel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.701, 0.8951, 0.9125],
+      "offset": [0.0195, 0.4474, 0.0163]
+    }
+  }
+}

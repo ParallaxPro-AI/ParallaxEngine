@@ -1,0 +1,10 @@
+{
+  "id": "shipping_container",
+  "summary": "A 20-foot ISO shipping container: 6.058 x 2.438 x 2.591 m, corrugated sides and roof, a corner-post frame on… joints door_l, door_r; options livery, marking; sockets socket_stack, socket_interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shipping_container or place \"prefab\": \"shipping_container\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shipping_container"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "gramophone",
+  "summary": "A wind-up horn gramophone: a moulded wooden cabinet on a plinth with a brass-trimmed front panel and a side w… joints crank, turntable, tonearm; options wood, horn; sockets socket_record, socket_horn.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gramophone or place \"prefab\": \"gramophone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gramophone"]
+}

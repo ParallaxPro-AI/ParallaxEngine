@@ -1,0 +1,10 @@
+{
+  "id": "dolphin",
+  "summary": "A bottlenose dolphin, 2.45 m beak to fluke tips: a smooth torpedo body with a short beak, the rounded melon f… joints jaw, body_flex, tail_beat; options skin, cape, belly; sockets beak, dorsal_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dolphin or place \"prefab\": \"dolphin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dolphin"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "crows_nest",
+  "summary": "A crow's nest on a 5.7 m mast stub: a coopered lookout barrel (24 staves, three iron hoops, a rounded rim rai… joints hatch; options flag; sockets lookout, ladder_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crows_nest or place \"prefab\": \"crows_nest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crows_nest"]
+}

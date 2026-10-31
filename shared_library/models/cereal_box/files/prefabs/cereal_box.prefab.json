@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cereal_box"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.45,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1967, 0.293, 0.0745],
+      "offset": [0.0008, 0.1465, 0.0008]
+    }
+  }
+}

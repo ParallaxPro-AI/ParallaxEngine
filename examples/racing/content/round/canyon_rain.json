@@ -1,0 +1,7 @@
+{
+  "name": "Canyon Rain",
+  "blurb": "Wet canyon at dusk. The road gives up a fifth of its grip — brake earlier than your instincts want.",
+  "conditions": "Rain · Sunset",
+  "number": 2, "track": "canyon_carver", "laps": 3, "opponents": 3,
+  "weather": "rain", "time_of_day": "sunset", "purse_scale": 1.15, "points_scale": 1
+}

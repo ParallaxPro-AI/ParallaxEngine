@@ -1,0 +1,10 @@
+{
+  "id": "torii_gate",
+  "summary": "A freestanding myojin-style torii gate, 5 m wide and 4.9 m tall: two round vermilion pillars leaning slightly… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.torii_gate or place \"prefab\": \"torii_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:torii_gate"]
+}

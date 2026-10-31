@@ -1,0 +1,10 @@
+{
+  "id": "open_wheel_racer",
+  "summary": "A modern formula-style single-seater: a lofted survival cell that rises into an airbox behind the driver and… joints steering, rwing_drs_l, rwing_drs_r, steer_l, spin_front_l, steer_r, …; options livery, accent, compound; sockets seat_driver, eye_point, instrument_anchor, socket_onboard_cam, socket_jack_front, socket_jack_rear.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.open_wheel_racer or place \"prefab\": \"open_wheel_racer\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:open_wheel_racer"]
+}

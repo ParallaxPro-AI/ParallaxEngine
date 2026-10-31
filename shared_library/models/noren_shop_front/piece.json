@@ -1,0 +1,10 @@
+{
+  "id": "noren_shop_front",
+  "summary": "A small Japanese merchant shop front (machiya style), 4.4 m wide (3.6 m between corner posts), 4.1 m deep and… joints door_l.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.noren_shop_front or place \"prefab\": \"noren_shop_front\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:noren_shop_front"]
+}

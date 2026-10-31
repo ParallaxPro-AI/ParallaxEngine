@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/playground_roundabout"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3, 1.0625, 3.3],
+      "offset": [0, 0.5312, 0]
+    }
+  }
+}

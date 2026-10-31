@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/campfire_cooking_tripod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3597, 1.7089, 1.3058],
+      "offset": [0.0523, 0.8512, 0]
+    }
+  }
+}

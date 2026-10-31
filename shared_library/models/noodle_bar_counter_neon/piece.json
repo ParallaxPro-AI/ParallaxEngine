@@ -1,0 +1,10 @@
+{
+  "id": "noodle_bar_counter_neon",
+  "summary": "A neon-lit street ramen bar: a dark slat-fronted counter with a stainless customer ledge, glowing under-ledge… options neon_a, neon_b, noren_colour; sockets seat_0, seat_1, seat_2, socket_cook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.noodle_bar_counter_neon or place \"prefab\": \"noodle_bar_counter_neon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:noodle_bar_counter_neon"]
+}

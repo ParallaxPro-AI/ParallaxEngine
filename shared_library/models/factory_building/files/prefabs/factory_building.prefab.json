@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/factory_building"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [36.48, 23.66, 36.11],
+      "offset": [0, 11.83, 0.075]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rice_cooker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.27, 0.2679, 0.3],
+      "offset": [0, 0.1339, 0.003]
+    }
+  }
+}

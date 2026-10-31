@@ -1,0 +1,10 @@
+{
+  "id": "server_cabinet",
+  "summary": "A 24U 19-inch floor-standing network cabinet, 600 x 600 mm on swivel casters with levelling feet: black powde… joints server, front_door; options load, colour; sockets socket_top, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.server_cabinet or place \"prefab\": \"server_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:server_cabinet"]
+}

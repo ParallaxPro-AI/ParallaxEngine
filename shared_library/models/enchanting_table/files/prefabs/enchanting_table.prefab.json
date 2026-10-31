@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/enchanting_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3323, 1.1187, 1.3323],
+      "offset": [0, 0.5593, 0]
+    }
+  }
+}

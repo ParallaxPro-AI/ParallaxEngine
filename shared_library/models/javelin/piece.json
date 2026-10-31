@@ -1,0 +1,10 @@
+{
+  "id": "javelin",
+  "summary": "A 2.7 m, 800 g competition javelin lying on the ground: a steel ogive head, a tapering aluminium shaft (29 mm… options shaft, stripes; sockets grip, tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.javelin or place \"prefab\": \"javelin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:javelin"]
+}

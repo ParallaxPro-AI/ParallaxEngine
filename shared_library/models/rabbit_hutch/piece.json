@@ -1,0 +1,10 @@
+{
+  "id": "rabbit_hutch",
+  "summary": "A raised timber rabbit hutch on four legs: shiplap-clad body with a sloping felted pent roof, a wire-mesh run… joints run_door, bed_door; options finish, roof; sockets socket_rabbit_run, socket_rabbit_bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rabbit_hutch or place \"prefab\": \"rabbit_hutch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rabbit_hutch"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "battery_cell",
+  "summary": "A sci-fi energy cell standing upright: a dark anodised sleeve with a charge window cut through front and back… joints spinner; options energy, charge; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.battery_cell or place \"prefab\": \"battery_cell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:battery_cell"]
+}

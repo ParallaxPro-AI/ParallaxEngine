@@ -1,0 +1,31 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "color": "#efdfce",
+      "size": [
+        1,
+        1,
+        1
+      ],
+      "texture": "https://r2.parallaxpro.ai/assets/image_texture/ff/6f/ff6fd42a8638c5090b1c14e5569cb19f103c248f1ebee89f5f617996a0272c32.png",
+      "uv_scale": [
+        2,
+        2
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  },
+  "scale": [
+    4,
+    1,
+    4
+  ]
+}

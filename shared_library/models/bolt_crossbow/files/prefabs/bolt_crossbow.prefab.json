@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bolt_crossbow"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0283, 0.0248, 0.3659],
+      "offset": [0.0001, 0.0123, -0.0004]
+    }
+  }
+}

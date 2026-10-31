@@ -1,0 +1,10 @@
+{
+  "id": "alien_fighter_swarm",
+  "summary": "An original small alien swarm fighter, about 6.7 m long and 4 m across (a one-pilot drone, sized like a small… joints mandible_l, mandible_r, thrust; options carapace, glow; sockets engine, muzzle_eye.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alien_fighter_swarm or place \"prefab\": \"alien_fighter_swarm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alien_fighter_swarm"]
+}

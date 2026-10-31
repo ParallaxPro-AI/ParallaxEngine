@@ -1,0 +1,10 @@
+{
+  "id": "mushroom_creature",
+  "summary": "A MUSHROOM CREATURE, a walking toadstool about 1.0 m tall to the top of its cap (the size of a child, the usu… options cap; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mushroom_creature or place \"prefab\": \"mushroom_creature\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mushroom_creature"]
+}

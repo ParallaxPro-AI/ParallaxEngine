@@ -1,0 +1,10 @@
+{
+  "id": "hockey_stick",
+  "summary": "A senior ice-hockey stick: 1.45 m composite shaft (30 x 20 mm rounded-rectangle section, tapering into the ho… options shaft, tape; sockets socket_blade, socket_lower_hand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hockey_stick or place \"prefab\": \"hockey_stick\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hockey_stick"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "can_set_food",
+  "summary": "A small group of tinned food cans as they sit on a pantry shelf or kitchen counter: a 66 x 101 mm condensed-s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.can_set_food or place \"prefab\": \"can_set_food\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:can_set_food"]
+}

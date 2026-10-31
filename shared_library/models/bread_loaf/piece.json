@@ -1,0 +1,10 @@
+{
+  "id": "bread_loaf",
+  "summary": "A crusty bakery loaf (an oblong batard, 29 cm long): a deep-brown crust with a tucked base, rounded tapering… options cut; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bread_loaf or place \"prefab\": \"bread_loaf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bread_loaf"]
+}

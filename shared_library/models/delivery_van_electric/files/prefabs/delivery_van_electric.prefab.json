@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/delivery_van_electric"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2600,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.42,
+        2.5507,
+        5.538
+      ],
+      "offset": [
+        0,
+        1.2753,
+        -0.002
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 30,
+      "steering": 30,
+      "grip": 9,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.2753,
+        -0.002
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

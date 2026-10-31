@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cyber_deck_terminal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.456, 0.3598, 0.408],
+      "offset": [0, 0.1799, -0.001]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bus_wreck",
+  "summary": "An abandoned single-deck city bus wreck: chalky grime-streaked white paint with a faded blue fleet band and r… joints door_front, door_front_fold, door_rear, door_rear_fold.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bus_wreck or place \"prefab\": \"bus_wreck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bus_wreck"]
+}

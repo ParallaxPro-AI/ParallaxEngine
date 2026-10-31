@@ -1,0 +1,58 @@
+{
+ "components": {
+  "shape": {
+   "kind": "box",
+   "size": [
+    44,
+    16,
+    34
+   ],
+   "color": "#9a9eae",
+   "offset": [
+    0,
+    8.0,
+    0
+   ],
+   "metallic": 0.4,
+   "roughness": 0.6
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    44,
+    16,
+    34
+   ],
+   "offset": [
+    0,
+    8,
+    0
+   ]
+  }
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    16,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "box",
+     "size": [
+      46,
+      2.4,
+      36
+     ],
+     "color": "#bd6b4d",
+     "offset": [
+      0,
+      1.2,
+      0
+     ]
+    }
+   }
+  }
+ ]
+}

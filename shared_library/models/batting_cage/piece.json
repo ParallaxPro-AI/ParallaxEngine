@@ -1,0 +1,10 @@
+{
+  "id": "batting_cage",
+  "summary": "A 70 x 14 x 12 ft (21.3 x 4.3 x 3.7 m) baseball / softball batting cage: eight galvanised pipe goal-post fram… joints door_flap; options net; sockets socket_home_plate, socket_batter_r, socket_pitcher, socket_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.batting_cage or place \"prefab\": \"batting_cage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:batting_cage"]
+}

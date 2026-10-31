@@ -1,0 +1,10 @@
+{
+  "id": "cafe_terrace_barrier",
+  "summary": "A free-standing pavement-cafe terrace barrier, 1.8 m long: two brushed-steel posts on weighted domed cast bas… options style, banner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cafe_terrace_barrier or place \"prefab\": \"cafe_terrace_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cafe_terrace_barrier"]
+}

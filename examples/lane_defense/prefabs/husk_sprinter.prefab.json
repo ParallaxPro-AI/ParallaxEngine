@@ -1,0 +1,5 @@
+{
+  "extends": "husk",
+  "components": { "model": { "model": "models/husk_sprinter" } },
+  "behaviors": { "husk_walker": { "vaults": true } }
+}

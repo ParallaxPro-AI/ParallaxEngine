@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_feet_boots_armored"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.417, 0.425, 0.289],
+      "offset": [0, 0.2125, 0.0505]
+    }
+  }
+}

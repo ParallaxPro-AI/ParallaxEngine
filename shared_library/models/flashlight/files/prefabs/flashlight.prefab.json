@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flashlight"
+    },
+    "viewmodel_item": {
+      "hip": [0.13, -0.24, 0.42],
+      "hip_turn": [1.145916, -1.718873, 0.0],
+      "eye_relief": 0.34,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0432, 0.0432, 0.2],
+      "offset": [0, 0, 0.1]
+    }
+  }
+}

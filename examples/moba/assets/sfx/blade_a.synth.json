@@ -1,0 +1,1 @@
+{"duration":0.42,"seed":111,"gain":0.88,"layers":[{"wave":"noise","decay":0.011,"sustain":0,"gain":1,"filter":{"type":"highpass","freq":3200}},{"wave":"square","freq":1500,"freq_end":640,"attack":0.001,"decay":0.085,"sustain":0,"gain":0.5,"ring_hz":331,"drive":2.4},{"wave":"sine","freq":440,"attack":0.001,"decay":0.36,"sustain":0,"gain":0.32,"ring_hz":1310}]}

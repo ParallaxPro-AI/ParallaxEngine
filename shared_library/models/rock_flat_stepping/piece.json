@@ -1,0 +1,10 @@
+{
+  "id": "rock_flat_stepping",
+  "summary": "A single flat natural stepping stone, about 0.79 m by 0.67 m and 16 cm thick (garden and stream stepping ston…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rock_flat_stepping or place \"prefab\": \"rock_flat_stepping\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rock_flat_stepping"]
+}

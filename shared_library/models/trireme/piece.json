@@ -1,0 +1,10 @@
+{
+  "id": "trireme",
+  "summary": "An ancient Mediterranean war galley of the trireme type: a long, narrow pitch-black hull with red-ochre and b… joints steering_oars; sockets waterline, seat_driver, socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trireme or place \"prefab\": \"trireme\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trireme"]
+}

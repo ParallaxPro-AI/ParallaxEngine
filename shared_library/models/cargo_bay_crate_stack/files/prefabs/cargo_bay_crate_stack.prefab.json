@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cargo_bay_crate_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.526, 1.56, 1.217],
+      "offset": [0, 0.78, 0.0035]
+    }
+  }
+}

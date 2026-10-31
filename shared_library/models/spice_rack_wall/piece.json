@@ -1,0 +1,10 @@
+{
+  "id": "spice_rack_wall",
+  "summary": "A wall-mounted wooden spice rack: two side boards with half-round tops, a back panel, three shelves with bras… options wood_finish; sockets wall_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spice_rack_wall or place \"prefab\": \"spice_rack_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spice_rack_wall"]
+}

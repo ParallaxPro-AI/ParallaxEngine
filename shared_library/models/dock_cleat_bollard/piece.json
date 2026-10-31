@@ -1,0 +1,10 @@
+{
+  "id": "dock_cleat_bollard",
+  "summary": "A cast-iron quay mooring fitting bolted down on a flange plate with nuts, in four casting styles (partset `st… options style, paint; sockets line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dock_cleat_bollard or place \"prefab\": \"dock_cleat_bollard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dock_cleat_bollard"]
+}

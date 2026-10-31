@@ -1,0 +1,10 @@
+{
+  "id": "pizza_oven_brick",
+  "summary": "A wood-fired brick pizza oven: a brick plinth with an arched log store full of split logs, a cast hearth slab… joints oven_door; options dome_finish; sockets oven_floor, hearth_landing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pizza_oven_brick or place \"prefab\": \"pizza_oven_brick\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pizza_oven_brick"]
+}

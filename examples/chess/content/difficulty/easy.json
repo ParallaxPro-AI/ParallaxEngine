@@ -1,0 +1,9 @@
+{
+  "order": 1,
+  "name": "Easy",
+  "blurb": "A forgiving opponent that overlooks tactics and blunders often. Good for learning the pieces.",
+  "depth": 2,
+  "positional": 0.2,
+  "blunder": 0.35,
+  "aggression": 0.1
+}

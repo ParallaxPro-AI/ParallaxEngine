@@ -1,0 +1,10 @@
+{
+  "id": "cyborg",
+  "summary": "A rigged sci-fi cyborg on the canonical 17-bone humanoid rig (human body, face and hands forked from `civilia… options armour, optic, trousers, skin, hair; sockets eye_point, grip_r, grip_l, sling_back, pack_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyborg or place \"prefab\": \"cyborg\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyborg"]
+}

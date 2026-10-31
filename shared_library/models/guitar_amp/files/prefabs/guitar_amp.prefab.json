@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/guitar_amp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.568, 0.501, 0.268],
+      "offset": [0, 0.2505, 0]
+    }
+  }
+}

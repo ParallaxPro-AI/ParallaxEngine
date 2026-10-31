@@ -1,0 +1,10 @@
+{
+  "id": "oil_rig_derrick",
+  "summary": "A land drilling rig: a 38 m tapered red lattice derrick (four legs, X-braced faces, a V-door opening toward t… joints traveling_block, drill_lines; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.oil_rig_derrick or place \"prefab\": \"oil_rig_derrick\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:oil_rig_derrick"]
+}

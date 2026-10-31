@@ -1,0 +1,16 @@
+{
+  "name": "Starfall",
+  "blurb": "ULTIMATE. Drop the sky on a fight from most of a screen away.",
+  "kind": "ground",
+  "ultimate": true,
+  "max_rank": 3,
+  "cooldown": { "base": 45, "per_rank": -6 },
+  "mana": { "base": 110, "per_rank": 15 },
+  "damage": { "base": 250, "per_rank": 130 },
+  "damage_kind": "magic",
+  "range": { "base": 20 },
+  "radius": { "base": 6.5, "per_rank": 0.6 },
+  "cast_time": 0.5,
+  "cast_vfx": "vfx/bolt_cast",
+  "vfx": "vfx/bolt"
+}

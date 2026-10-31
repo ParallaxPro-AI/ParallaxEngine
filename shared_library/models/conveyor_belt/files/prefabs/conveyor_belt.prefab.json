@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/conveyor_belt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.8875, 1.0848, 2.34],
+      "offset": [-0.0638, 0.5409, 0]
+    }
+  }
+}

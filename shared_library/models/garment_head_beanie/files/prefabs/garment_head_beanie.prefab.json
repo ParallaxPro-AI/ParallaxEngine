@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_beanie"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2387, 0.1783, 0.259],
+      "offset": [0.0003, 1.8406, -0.0275]
+    }
+  }
+}

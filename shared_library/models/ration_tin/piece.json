@@ -1,0 +1,10 @@
+{
+  "id": "ration_tin",
+  "summary": "A tinned-food can with rolled seams top and bottom, a paper wrap label and a ring-pull lid. options label, state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ration_tin or place \"prefab\": \"ration_tin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ration_tin"]
+}

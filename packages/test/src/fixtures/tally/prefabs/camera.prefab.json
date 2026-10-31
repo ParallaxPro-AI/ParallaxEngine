@@ -1,0 +1,1 @@
+{ "components": { "camera": { "mode": "orthographic", "fit": [[-10, -5], [10, 5]] } } }

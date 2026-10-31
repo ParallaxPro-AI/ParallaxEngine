@@ -1,0 +1,10 @@
+{
+  "id": "lathe",
+  "summary": "A metalworking engine lathe on a cabinet base: a long cast bed with hardened ways, a headstock housing a 3-ja… joints chuck, carriage, tailstock.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lathe or place \"prefab\": \"lathe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lathe"]
+}

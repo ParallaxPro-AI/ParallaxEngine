@@ -1,0 +1,1 @@
+{"name": "Honed Staff", "desc": "+2 bolt damage per level.", "cost": 45, "cost_step": 35, "max_level": 5, "effect": {"damage_add": 2}, "order": 2}

@@ -1,0 +1,10 @@
+{
+  "id": "set_table",
+  "summary": "A restaurant table reset and waiting for its next party: a walnut table under a cloth with real drops, laid f…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.set_table or place \"prefab\": \"set_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:set_table"]
+}

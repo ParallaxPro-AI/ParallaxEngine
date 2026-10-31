@@ -1,0 +1,10 @@
+{
+  "id": "amp_stack_full",
+  "summary": "A classic rock full stack: a valve amp head on a slanted 4x12 cabinet on a straight 4x12 cabinet on casters. joints knob_presence, knob_bass, knob_middle, knob_treble, knob_gain, knob_master, …; options tolex, grille; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.amp_stack_full or place \"prefab\": \"amp_stack_full\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:amp_stack_full"]
+}

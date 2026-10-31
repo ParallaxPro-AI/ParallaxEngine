@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_suburban_a"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [12.88, 8.15, 11.085],
+      "offset": [0.01, 4.075, 0.4575]
+    }
+  }
+}

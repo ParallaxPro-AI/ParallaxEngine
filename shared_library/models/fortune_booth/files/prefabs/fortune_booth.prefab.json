@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fortune_booth"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 2.6734, 1.0184],
+      "offset": [0, 1.3367, 0.0492]
+    }
+  }
+}

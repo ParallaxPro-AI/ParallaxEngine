@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rotating_bridge"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4, 3.2715, 16.2],
+      "offset": [0, 1.6342, 0]
+    }
+  }
+}

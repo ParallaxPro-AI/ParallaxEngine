@@ -1,0 +1,10 @@
+{
+  "id": "truck_wreck_overturned",
+  "summary": "An overturned pickup truck wreck lying on its left side: the underside, chassis rails and four wheels face ou… joints door_front_l, door_front_r, door_rear_l, door_rear_r, tailgate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.truck_wreck_overturned or place \"prefab\": \"truck_wreck_overturned\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:truck_wreck_overturned"]
+}

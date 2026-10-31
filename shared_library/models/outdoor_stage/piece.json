@@ -1,0 +1,10 @@
+{
+  "id": "outdoor_stage",
+  "summary": "A 6 x 4 m outdoor event stage, 1 m high: twelve 2 x 1 m aluminium-framed stage decks with black anti-slip ply… joints truss_front_tilt_0, truss_front_tilt_1, truss_front_tilt_2, truss_front_tilt_3, truss_back_tilt_0, truss_back_tilt_1, …; options drape, backdrop, pa; sockets socket_centre_stage, socket_mic, socket_stair_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.outdoor_stage or place \"prefab\": \"outdoor_stage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:outdoor_stage"]
+}

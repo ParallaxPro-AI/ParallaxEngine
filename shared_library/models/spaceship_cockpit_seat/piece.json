@@ -1,0 +1,10 @@
+{
+  "id": "spaceship_cockpit_seat",
+  "summary": "A spaceship pilot seat on a swivel pedestal and bolted deck plate: a hard white composite shell with padded l… joints seat, armrest_l, throttle, armrest_r, stick; options upholstery, hull, glow; sockets seat_pilot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spaceship_cockpit_seat or place \"prefab\": \"spaceship_cockpit_seat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spaceship_cockpit_seat"]
+}

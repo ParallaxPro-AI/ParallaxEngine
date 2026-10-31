@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cctv_camera"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.112, 0.1487, 0.3025],
+      "offset": [0, 0.0761, -0.0112]
+    }
+  }
+}

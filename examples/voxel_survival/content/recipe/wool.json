@@ -1,0 +1,3 @@
+{ "name": "Woven Bedding", "order": 10, "category": "build", "station": "workbench",
+  "inputs": [{ "item": "leaves", "count": 8 }],
+  "output": { "item": "wool", "count": 2 } }

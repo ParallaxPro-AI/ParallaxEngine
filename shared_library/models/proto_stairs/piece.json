@@ -1,0 +1,10 @@
+{
+  "id": "proto_stairs",
+  "summary": "A greybox prototype staircase: a solid stepped block climbing 1 m in five 0.2 m risers on 0.3 m treads (1.5 m… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_stairs or place \"prefab\": \"proto_stairs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_stairs"]
+}

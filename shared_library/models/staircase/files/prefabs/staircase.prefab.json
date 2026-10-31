@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/staircase"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5, 3.1095, 3.0129],
+      "offset": [0.15, 1.5533, 0.0064]
+    }
+  }
+}

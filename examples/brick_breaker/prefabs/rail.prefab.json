@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.4, 0.7, 15], "color": "#9095aa" },
+    "collider": { "shape": "box", "size": [0.4, 2, 15], "friction": 0, "bounce": 1 }
+  },
+  "tags": ["rail"]
+}

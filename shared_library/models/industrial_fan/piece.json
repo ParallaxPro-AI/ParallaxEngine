@@ -1,0 +1,14 @@
+{
+  "id": "industrial_fan",
+  "summary": "A round industrial ventilation fan: a steel shroud ring with a front louvre grille, a spinning multi-blade… joints blades, louvres; options mount.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.industrial_fan or place \"prefab\": \"industrial_fan\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:industrial_fan"
+  ]
+}

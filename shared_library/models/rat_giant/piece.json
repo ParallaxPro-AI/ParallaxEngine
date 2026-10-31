@@ -1,0 +1,10 @@
+{
+  "id": "rat_giant",
+  "summary": "A giant sewer rat enemy on the quadruped_20 rig: a dungeon/sewer monster about 1.7 m nose to tail-tip (1.0 m… options coat; sockets mouth, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rat_giant or place \"prefab\": \"rat_giant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rat_giant"]
+}

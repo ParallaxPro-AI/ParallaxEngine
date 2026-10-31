@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cat_tree"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.676, 1.205, 0.536],
+      "offset": [-0.018, 0.6025, -0.018]
+    }
+  }
+}

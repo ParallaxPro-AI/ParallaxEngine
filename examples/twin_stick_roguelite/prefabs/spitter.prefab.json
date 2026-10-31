@@ -1,0 +1,19 @@
+{
+  "scale": [
+    1.05,
+    1.05,
+    1.05
+  ],
+  "extends": "foe",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/aa/ee/aaee9f242a24eede2714eba4e083bba5d4ac0eeaa22d6fc7eb4668708432925c.glb",
+      "tint": "#b859d9",
+      "rotation_offset": [
+        0,
+        90,
+        0
+      ]
+    }
+  }
+}

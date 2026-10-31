@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/exhibit_plaque"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 1.0818, 0.24],
+      "offset": [0, 0.5409, 0]
+    }
+  }
+}

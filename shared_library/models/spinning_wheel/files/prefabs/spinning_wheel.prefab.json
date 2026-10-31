@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spinning_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1303, 1.1596, 0.4845],
+      "offset": [0.0669, 0.5822, 0.0277]
+    }
+  }
+}

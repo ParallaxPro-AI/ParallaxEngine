@@ -1,0 +1,31 @@
+{
+  "title": "Wrong Plates",
+  "summary": "Recover the marked vehicle from Canal Loading Bay. Confirm the pickup, lose the police and deliver that exact car to my garage. A replacement will not pay.",
+  "contact": "mike",
+  "kind": "recovery",
+  "brief_node": "wrong_plates_brief",
+  "paid_node": "wrong_plates_paid",
+  "vehicle": "marked_taxi",
+  "pickup_crime": "job_heat",
+  "requires": "first_run",
+  "reward": 700,
+  "start": "car",
+  "steps": {
+    "car": {
+      "text": "Get the marked car at {place}.",
+      "verb": "in_car", "target": "canal_bay", "marker": "marked_taxi", "next": ["pickup"]
+    },
+    "pickup": {
+      "text": "Stop the taxi in {place}'s bay and press K to confirm the pickup.",
+      "verb": "pick_up", "target": "canal_bay", "marker": "canal_bay", "next": ["escape"]
+    },
+    "escape": {
+      "text": "Lose the police. Break line of sight and stay hidden.",
+      "verb": "lose_heat", "next": ["deliver"]
+    },
+    "deliver": {
+      "text": "Deliver that taxi to {place} ({distance} m). Stop in the bay and press K.",
+      "verb": "deliver", "target": "mikes_garage", "marker": "garage_bay"
+    }
+  }
+}

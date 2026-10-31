@@ -1,0 +1,5 @@
+{
+  "name": "Street Maps",
+  "blurb": "Find more power-ups on the street.",
+  "icon": "M12 1a8 8 0 00-8 8c0 6 8 14 8 14s8-8 8-14a8 8 0 00-8-8zm0 5a3 3 0 110 6 3 3 0 010-6z", "effect": "street_maps", "per_level": 0.03, "costs": [160, 420]
+}

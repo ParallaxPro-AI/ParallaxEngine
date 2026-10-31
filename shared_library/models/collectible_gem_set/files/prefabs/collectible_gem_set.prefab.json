@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/collectible_gem_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5114, 0.4298, 1.4474],
+      "offset": [-0.024, 0.2149, 0.0187]
+    }
+  }
+}

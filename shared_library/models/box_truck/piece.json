@@ -1,0 +1,16 @@
+{
+  "id": "box_truck",
+  "summary": "A rigid box lorry: a day cab over a 5.5 m dry-freight box with a roller shutter, on an 8 m chassis. joints cab_tilt, door_l, door_r; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1 …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.box_truck or place \"prefab\": \"box_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:box_truck"
+  ]
+}

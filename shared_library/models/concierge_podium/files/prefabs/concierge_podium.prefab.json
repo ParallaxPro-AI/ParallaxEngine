@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/concierge_podium"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.29, 1.532, 0.688],
+      "offset": [0, 0.766, 0.021]
+    }
+  }
+}

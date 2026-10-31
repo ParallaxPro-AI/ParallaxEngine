@@ -1,0 +1,10 @@
+{
+  "id": "tandem_bicycle",
+  "summary": "A two-rider road tandem bicycle: a long steel frame with the captain's diamond in front, a boom tube and a la… joints steering, wheel_front, wheel_rear, cranks_captain, cranks_stoker, chain; options frame_colour, accessories; sockets seat_driver, seat_pax_1, eye_point, socket_cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.tandem_bicycle or place \"prefab\": \"tandem_bicycle\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:tandem_bicycle"]
+}

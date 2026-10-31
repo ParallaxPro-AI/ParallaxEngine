@@ -1,0 +1,10 @@
+{
+  "id": "fence_post_rail",
+  "summary": "One 2.0 m bay of a rustic post-and-rail paddock fence: three hand-split timber rails, tapered at their ends… options end_post.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fence_post_rail or place \"prefab\": \"fence_post_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fence_post_rail"]
+}

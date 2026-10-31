@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_cap_plain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.202, 0.1294, 0.2896],
+      "offset": [0, 1.7533, 0.0398]
+    }
+  }
+}

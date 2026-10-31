@@ -1,0 +1,10 @@
+{
+  "id": "baby_monitor",
+  "summary": "A video baby monitor set: a round-headed nursery camera with little bear ears, a dark visor with a lens, a ri… joints cam_pan, cam_tilt, par_antenna; options accent.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baby_monitor or place \"prefab\": \"baby_monitor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baby_monitor"]
+}

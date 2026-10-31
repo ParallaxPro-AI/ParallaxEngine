@@ -1,0 +1,2 @@
+{ "name": "Thunderclap", "desc": "+45 Ember Nova damage.",
+  "icon": "bolt", "weight": 5, "max_stacks": 4, "effect": { "nova_damage_add": 45 } }

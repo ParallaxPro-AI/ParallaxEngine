@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alchemy_cauldron_large"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9755, 1.9584, 2.0243],
+      "offset": [0.0002, 0.9792, -0.0004]
+    }
+  }
+}

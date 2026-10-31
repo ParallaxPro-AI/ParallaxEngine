@@ -1,0 +1,10 @@
+{
+  "id": "pet_daybed",
+  "summary": "A soft sage three-seat daybed with rounded cushions, oak feet, and two accent pillows.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pet_daybed or place \"prefab\": \"pet_daybed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pet_daybed"]
+}

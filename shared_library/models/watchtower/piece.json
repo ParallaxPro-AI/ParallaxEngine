@@ -1,0 +1,10 @@
+{
+  "id": "watchtower",
+  "summary": "A timber lookout tower: four battered log legs on stone pads, X-braced on three sides, carrying a 3.1 m squar… joints bell; options roofing, roof; sockets lookout, ladder_bottom, ladder_top, beacon.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watchtower or place \"prefab\": \"watchtower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watchtower"]
+}

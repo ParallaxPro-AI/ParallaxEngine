@@ -1,0 +1,1 @@
+{"extends": "pedestrian", "components": {"model": {"model": "models/vagrant", "cast_shadows": true}}}

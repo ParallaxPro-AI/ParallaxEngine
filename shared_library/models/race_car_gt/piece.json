@@ -1,0 +1,10 @@
+{
+  "id": "race_car_gt",
+  "summary": "A GT-class race car built on the library sports car's lofted wedge body: a swan-neck rear wing (an inverted a… joints door_l, door_r, light_l, light_r, steering, wheel_f_l_roll, …; options livery; sockets seat_driver, seat_pax_1, eye_point, instrument_anchor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.race_car_gt or place \"prefab\": \"race_car_gt\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:race_car_gt"]
+}

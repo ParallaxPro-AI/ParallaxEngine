@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/zebra"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.676, 2.0241, 2.6483],
+      "offset": [0, 1.012, 0.246]
+    }
+  }
+}

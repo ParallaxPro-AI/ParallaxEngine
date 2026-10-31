@@ -1,0 +1,133 @@
+<!-- Run result, ported from the template's over/result_panel fork: a faceted card edged in win
+     green or loss red, the crest and Descent complete / Run over status, the title and stage
+     line, the six-stage descent track (cleared, failed, ahead), the run score counting up, the
+     best run with a gold New best ribbon and sparkles, the relic chips, and New Run / Menu.
+     Two columns on touch. -->
+<link rel="stylesheet" href="gem_kit.css">
+<style>
+  .gcr { --resw: 800px; --rspad: clamp(30px, 4.6cqh, 52px) 60px; --rsg: clamp(10px, 1.7cqh, 18px); --fs-rt: clamp(40px, 6cqh, 62px); --fs-rs: clamp(16px, 2cqh, 20px); --fs-sc: clamp(64px, 10cqh, 112px); --crest: clamp(72px, 11cqh, 120px);
+    position: fixed; inset: 0; z-index: 240; display: grid; place-items: center; padding: 16px calc(var(--gc-sa-r) + 16px) calc(var(--gc-sa-b) + 12px) calc(var(--gc-sa-l) + 16px); pointer-events: auto; }
+  .gcr-res { position: relative; width: min(100%, var(--resw)); max-height: calc(100cqh - 28px); --c: 26px; animation: gc-rise .5s var(--gc-ease-out) both; }
+  .gcr-res.won { --acc: var(--gc-win); --e1: #dff8cf; --e2: #2f6a3a; --e3: var(--gc-win); --e-in: rgba(126,217,87,.35); }
+  .gcr-res.lost { --acc: var(--gc-loss); --e1: #ffcdc6; --e2: #7a2f3c; --e3: var(--gc-loss); --e-in: rgba(255,107,94,.32); }
+  .gcr-res > .gc-body { padding: var(--rspad); display: grid; gap: var(--rsg); justify-items: center; text-align: center; overflow-y: auto; max-height: calc(100cqh - 38px); }
+  .gcr-res > .gc-body::after { content: ""; position: absolute; left: 50%; top: 0; width: 70%; height: 40%; transform: translateX(-50%); background: radial-gradient(ellipse at 50% 0, color-mix(in oklab, var(--acc) 22%, transparent), transparent 70%); pointer-events: none; }
+  .gcr-res > .gc-body > * { position: relative; z-index: 1; }
+  .gcr-col, .gcr-head { display: contents; }
+  .gcr-crest { width: var(--crest); height: var(--crest); filter: drop-shadow(0 0 22px rgba(126,217,87,.35)); }
+  .lost .gcr-crest { display: none; }
+  .gcr-status { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 800; letter-spacing: .32em; text-transform: uppercase; color: var(--acc); }
+  .gcr-status i { width: 7px; height: 7px; background: var(--acc); transform: rotate(45deg); box-shadow: 0 0 10px var(--acc); }
+  .gcr-title { font: 700 var(--fs-rt)/1.04 var(--gc-font-display); letter-spacing: .07em; text-transform: uppercase; text-wrap: balance; text-shadow: 0 0 28px color-mix(in oklab, var(--acc) 40%, transparent); }
+  .gcr-sub { font-size: var(--fs-rs); font-weight: 600; color: var(--gc-ink-2); }
+  .gcr-sub b { color: var(--gc-ink); font-weight: 800; }
+  .gcr-track { display: grid; grid-template-columns: repeat(var(--n, 6), 1fr); width: 100%; max-width: 640px; position: relative; margin: 4px 0; }
+  .gcr-track::before { content: ""; position: absolute; left: calc(50% / var(--n, 6)); right: calc(50% / var(--n, 6)); top: 9px; height: 1px; background: rgba(157,146,196,.4); }
+  .gcr-stp { display: grid; justify-items: center; gap: 9px; position: relative; }
+  .gcr-stp i { width: 18px; height: 18px; transform: rotate(45deg); border: 1.5px solid var(--gc-ink-3); background: var(--gc-night-1); }
+  .gcr-stp span { font-size: 10px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--gc-ink-3); white-space: nowrap; }
+  .gcr-stp.done i { background: var(--gc-cyan); border-color: var(--gc-cyan); }
+  .won .gcr-stp.done i { background: var(--gc-win); border-color: var(--gc-win); box-shadow: 0 0 10px rgba(126,217,87,.5); }
+  .gcr-stp.done span { color: var(--gc-ink-2); }
+  .gcr-stp.fail i { border-color: var(--gc-loss); background: #3a1426; box-shadow: 0 0 12px rgba(255,107,94,.7); }
+  .gcr-stp.fail span { color: var(--gc-loss); }
+  .gcr-res .gc-rule.wide { max-width: 520px; }
+  .gcr-scorebox { display: grid; gap: 6px; justify-items: inherit; }
+  .gcr-score { font-weight: 800; font-size: var(--fs-sc); line-height: .95; letter-spacing: -.03em; }
+  .won .gcr-score { background: linear-gradient(180deg, #fff 0 45%, #e9fbe0 45% 70%, #b6ec9b 70%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .gcr-best { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 800; letter-spacing: .24em; text-transform: uppercase; color: var(--gc-ink-3); }
+  .gcr-best b { color: var(--gc-ink-2); letter-spacing: .04em; font-size: 14px; }
+  .gcr-best .gc-sp, .gcr-ribbon { display: none; }
+  .gcr-best.new { position: relative; color: var(--gc-gold-soft); padding: 0 26px; }
+  .gcr-best.new b { color: var(--gc-gold); }
+  .gcr-best.new .gcr-ribbon { display: block; }
+  .gcr-best.new.on .gc-sp { display: block; }
+  .gcr-ribbon { --c: 6px; --k: var(--c); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); padding: 6px 14px; background: linear-gradient(180deg, #fff2cc 0 30%, var(--gc-gold) 30% 70%, var(--gc-gold-deep) 70%); color: var(--gc-ink-on-gem); letter-spacing: .24em; opacity: 0; }
+  .gcr-best.new.on .gcr-ribbon { animation: gcr-pop .6s var(--gc-ease-pop) both; }
+  .gcr-best .gc-sp { top: 50%; margin-top: -6px; }
+  .gcr-best .s1 { left: 0; }
+  .gcr-best .s2 { right: 0; animation-delay: .5s; }
+  @keyframes gcr-pop { 0% { transform: scale(1.6); opacity: 0; } 60% { transform: scale(.95); opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
+  .gcr-relics { display: grid; gap: 8px; justify-items: center; }
+  .gcr-relics .gc-chips { justify-content: center; }
+  .gcr-actions { display: flex; gap: 14px; justify-content: center; margin-top: 4px; }
+  .gc-root .gcr-actions .gc-btn-primary { min-width: 260px; }
+  .gc-root .gcr-actions .gc-btn-ghost { min-width: 180px; }
+  @media (pointer: coarse) {
+    .gcr { --resw: 760px; --rspad: 20px 28px; --rsg: 9px; --fs-rt: 28px; --fs-rs: 13px; --fs-sc: 52px; --lbl: 10.5px; }
+    .gcr-res { --c: 18px; }
+    .gcr-res > .gc-body { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); text-align: left; justify-items: start; align-items: center; column-gap: 26px; }
+    .gcr-col { display: grid; gap: var(--rsg); justify-items: start; align-content: center; min-width: 0; }
+    .gcr-head { display: flex; align-items: center; gap: 12px; }
+    .gcr-crest { width: 44px; height: 44px; }
+    .gcr-res .gc-rule.wide { display: none; }
+    .gcr-stp span { display: none; }
+    .gcr-track { max-width: 260px; margin: 2px 0; }
+    .gcr-stp i { width: 13px; height: 13px; }
+    .gcr-track::before { top: 6px; }
+    .gcr-relics { justify-items: start; }
+    .gcr-relics .gc-chips { justify-content: flex-start; }
+    .gcr-relics .gc-chip { height: 24px; font-size: 10px; padding: 0 8px 0 6px; }
+    .gcr-actions { width: 100%; justify-content: flex-start; }
+    .gc-root .gcr-actions .gc-btn { --bh: 48px; --bfs: 15px; padding: 0 18px; min-width: 0; }
+    .gc-root .gcr-actions .gc-btn-primary { flex: 1.4; }
+    .gc-root .gcr-actions .gc-btn-ghost { flex: 1; }
+    .gcr-best { font-size: 10.5px; letter-spacing: .18em; gap: 8px; }
+    .gcr-best.new { padding: 0; }
+    .gcr-best.new.on .gc-sp { display: none; }
+    .gcr-ribbon { padding: 4px 10px; }
+  }
+</style>
+<div class="gc-root gcr">
+  <div class="gc-dim"></div>
+  <div class="gc-facet gcr-res gc-shadow" data-class-won="won" data-class-lost="lost" role="dialog"><div class="gc-body">
+    <div class="gcr-col a">
+      <div class="gcr-head">
+        <svg class="gcr-crest" viewBox="-4 -4 128 128" aria-hidden="true" focusable="false"><defs><linearGradient id="gcr-cr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d9d4ff"/><stop offset="1" stop-color="#a6eaff"/></linearGradient></defs><g stroke="rgba(255,255,255,.55)" stroke-width=".8" stroke-linejoin="round"><polygon points="79.9,12.0 108.0,40.1 69.2,37.8" fill="#3f9fb0"/><polygon points="108.0,40.1 82.2,50.8 69.2,37.8" fill="#d090ff"/><polygon points="108.0,40.1 108.0,79.9 82.2,50.8" fill="#5f6cd0"/><polygon points="108.0,79.9 82.2,69.2 82.2,50.8" fill="#e8b5ea"/><polygon points="108.0,79.9 79.9,108.0 82.2,69.2" fill="#8a52cf"/><polygon points="79.9,108.0 69.2,82.2 82.2,69.2" fill="#89dcd9"/><polygon points="79.9,108.0 40.1,108.0 69.2,82.2" fill="#b77ec7"/><polygon points="40.1,108.0 50.8,82.2 69.2,82.2" fill="#8a97f0"/><polygon points="40.1,108.0 12.0,79.9 50.8,82.2" fill="#4aa7a8"/><polygon points="12.0,79.9 37.8,69.2 50.8,82.2" fill="#b98cf0"/><polygon points="12.0,79.9 12.0,40.1 37.8,69.2" fill="#4a55b8"/><polygon points="12.0,40.1 37.8,50.8 37.8,69.2" fill="#6fcbd8"/><polygon points="12.0,40.1 40.1,12.0 37.8,50.8" fill="#7a54c4"/><polygon points="40.1,12.0 50.8,37.8 37.8,50.8" fill="#83e7ef"/><polygon points="40.1,12.0 79.9,12.0 50.8,37.8" fill="#3f8fa6"/><polygon points="79.9,12.0 69.2,37.8 50.8,37.8" fill="#a9b6ff"/><polygon points="69.2,37.8 82.2,50.8 82.2,69.2 69.2,82.2 50.8,82.2 37.8,69.2 37.8,50.8 50.8,37.8" fill="url(#gcr-cr)"/></g><polygon points="79.9,12.0 108.0,40.1 108.0,79.9 79.9,108.0 40.1,108.0 12.0,79.9 12.0,40.1 40.1,12.0" fill="none" stroke="#ffdc9f" stroke-width="1.4"/><path d="M16 9 Q16 18 25 18 Q16 18 16 27 Q16 18 7 18 Q16 18 16 9Z" fill="#ffd683"/><path d="M104 18 Q104 24 110 24 Q104 24 104 30 Q104 24 98 24 Q104 24 104 18Z" fill="#ffd683"/><path d="M98 90 Q98 100 108 100 Q98 100 98 110 Q98 100 88 100 Q98 100 98 90Z" fill="#ffd683"/><path d="M22 92 Q22 96 26 96 Q22 96 22 100 Q22 96 18 96 Q22 96 22 92Z" fill="#ffd683"/></svg>
+        <div class="gcr-status"><i></i><span data-show="won" data-text="descent_complete"></span><span data-hide="won" data-text="run_over"></span><i></i></div>
+      </div>
+      <h1 class="gcr-title"><span data-show="won" data-text="result_won"></span><span data-hide="won" data-text="result_lost"></span></h1>
+      <p class="gcr-sub" data-show="won"><span data-text="all"></span> <b data-bind="stages"></b> <span data-text="stages_cleared"></span></p>
+      <p class="gcr-sub" data-hide="won"><span data-text="stopped_on_stage"></span> <b data-bind="failed_stage"></b> / <span data-bind="stages"></span> — <b data-bind="failed_name"></b></p>
+      <div class="gcr-track" data-style---n="stages" data-each="track"><template><div class="gcr-stp" data-class-done="done" data-class-fail="fail"><i></i><span data-bind="name"></span></div></template></div>
+    </div>
+    <div class="gc-rule wide"><i></i></div>
+    <div class="gcr-col b">
+      <div class="gcr-scorebox"><span class="gc-lbl" data-text="run_score"></span><div class="gcr-score" id="gcr-score">0</div></div>
+      <div class="gcr-best" id="gcr-best" data-class-new="new_best"><i class="gc-sp s1"></i><span class="gcr-ribbon" data-text="new_best"></span><span><span data-text="best_run"></span> <b data-bind="best"></b></span><i class="gc-sp s2"></i></div>
+      <div class="gcr-relics" data-show="carrying"><span class="gc-lbl" data-text="relics"></span><div class="gc-chips" data-each="relics"><template><span class="gc-chip" data-attr-data-relic="id" data-attr-title="name"><i class="gc-glyph"></i><span data-bind="name"></span></span></template></div></div>
+      <div class="gcr-actions">
+        <button class="gc-btn gc-btn-primary" data-action="retry"><span data-text="new_run"></span></button>
+        <button class="gc-btn gc-btn-ghost" data-action="quit"><span data-text="menu"></span></button>
+      </div>
+    </div>
+  </div></div>
+</div>
+<script>
+  // The run score counts up over 0.9 s; a new best then pops its ribbon and sparkles.
+  (function () {
+    var out = document.getElementById('gcr-score');
+    var best = document.getElementById('gcr-best');
+    var shown = null, raf = 0, timer = 0;
+    function fmt(v) { return Math.round(v).toLocaleString('en-US'); }
+    parallax.on_state(function (s) {
+      var score = Number(s && s.score) || 0;
+      var key = score + '|' + !!s.new_best;
+      if (key === shown) return;
+      shown = key;
+      if (raf) cancelAnimationFrame(raf);
+      clearTimeout(timer);
+      best.classList.remove('on');
+      var t0 = 0;
+      function step(t) {
+        if (!t0) t0 = t;
+        var k = Math.min(1, (t - t0) / 900);
+        out.textContent = fmt(score * (1 - Math.pow(1 - k, 3)));
+        if (k < 1) { raf = requestAnimationFrame(step); return; }
+        raf = 0;
+        if (s.new_best) timer = setTimeout(function () { best.classList.add('on'); }, 120);
+      }
+      raf = requestAnimationFrame(step);
+    });
+  })();
+</script>

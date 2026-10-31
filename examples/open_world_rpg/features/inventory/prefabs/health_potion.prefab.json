@@ -1,0 +1,19 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/39/70/397004d24cd19ac377728219bf6ebd61e35882f1609af8bb4c253ef7483b80fc.glb"
+    },
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.8,
+      "trigger": true
+    },
+    "pickup": {
+      "items": [
+        "health_potion"
+      ],
+      "xp": 5
+    }
+  },
+  "pool": 16
+}

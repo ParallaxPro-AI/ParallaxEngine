@@ -1,0 +1,10 @@
+{
+  "id": "tc_floor_cold",
+  "summary": "A 1.8 x 8.4 m interior surface slab, tile.floor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tc_floor_cold or place \"prefab\": \"tc_floor_cold\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tc_floor_cold"]
+}

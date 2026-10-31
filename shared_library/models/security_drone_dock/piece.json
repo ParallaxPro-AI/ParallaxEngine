@@ -1,0 +1,10 @@
+{
+  "id": "security_drone_dock",
+  "summary": "A street security-drone charging dock: an octagonal lathed pedestal with hazard chevrons on its plinth, a glo… joints clamp_r, clamp_l, drone; options glow, dock_colour, hull_colour; sockets socket_drone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_drone_dock or place \"prefab\": \"security_drone_dock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_drone_dock"]
+}

@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/obstacle_gantry",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

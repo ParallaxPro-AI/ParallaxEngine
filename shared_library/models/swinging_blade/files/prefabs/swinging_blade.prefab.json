@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/swinging_blade"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.24, 3.3115, 1.4],
+      "offset": [0, 1.6542, 0]
+    }
+  }
+}

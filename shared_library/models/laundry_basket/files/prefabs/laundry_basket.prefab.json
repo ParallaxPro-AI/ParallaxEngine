@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/laundry_basket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6166, 0.3169, 0.4798],
+      "offset": [0, 0.1584, -0.0215]
+    }
+  }
+}

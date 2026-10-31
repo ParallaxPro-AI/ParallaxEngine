@@ -1,0 +1,481 @@
+{
+  "ui": [
+    "title_screen"
+  ],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/fe/bd/febd58ec3d91ba06cb0022ef245633a83e36f00bc91328b1a1069af083596063.mp3",
+  "environment": {
+    "sky": "atmosphere",
+    "time_of_day": 16.1,
+    "ambient": "#737c8e",
+    "sun": {
+      "intensity": 2.6,
+      "color": "#fff3df",
+      "shadow_distance": 90
+    },
+    "post": {
+      "exposure": 1.08,
+      "contrast": 1.05,
+      "saturation": 1.08,
+      "temperature": 0.03,
+      "vignette": 0.16,
+      "bloom": 0.115
+    },
+    "fog": {
+      "density": 0.00078,
+      "height_falloff": 0.0017,
+      "color": "#b8b3a8"
+    }
+  },
+  "entities": [
+    {
+      "prefab": "court"
+    },
+    {
+      "prefab": "hoop",
+      "at": [
+        -21.2,
+        0,
+        0
+      ],
+      "components": {
+        "hoop": {
+          "defended_by": "home"
+        }
+      }
+    },
+    {
+      "prefab": "hoop",
+      "at": [
+        21.2,
+        0,
+        0
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "components": {
+        "hoop": {
+          "defended_by": "away"
+        }
+      }
+    },
+    {
+      "prefab": "scoreboard",
+      "at": [
+        0,
+        8,
+        -16
+      ]
+    },
+    {
+      "prefab": "lamp_post",
+      "at": [
+        -26,
+        0,
+        16
+      ]
+    },
+    {
+      "prefab": "trophy_chest",
+      "at": [
+        0,
+        0,
+        -14
+      ]
+    },
+    {
+      "prefab": "lamp_post",
+      "at": [
+        26,
+        0,
+        16
+      ]
+    },
+    {
+      "prefab": "lamp_post",
+      "at": [
+        -26,
+        0,
+        -16
+      ]
+    },
+    {
+      "prefab": "lamp_post",
+      "at": [
+        26,
+        0,
+        -16
+      ]
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -22,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        160,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -15,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "brown",
+            "jacket": "maroon",
+            "hair": "black",
+            "headwear": "cap"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -8,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        190,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "light",
+            "jacket": "teal",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        0,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        8,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        170,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "brown",
+            "jacket": "maroon",
+            "hair": "black",
+            "headwear": "cap"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        15,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "light",
+            "jacket": "teal",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        22,
+        0,
+        18
+      ],
+      "rotation": [
+        0,
+        200,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -22,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        20,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -15,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "brown",
+            "jacket": "maroon",
+            "hair": "black",
+            "headwear": "cap"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        -8,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        10,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "light",
+            "jacket": "teal",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        0,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        8,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        -20,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "brown",
+            "jacket": "maroon",
+            "hair": "black",
+            "headwear": "cap"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        15,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "light",
+            "jacket": "teal",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "prefab": "spectator",
+      "at": [
+        22,
+        0,
+        -18
+      ],
+      "rotation": [
+        0,
+        -20,
+        0
+      ],
+      "components": {
+        "model": {
+          "options": {
+            "skin": "deep",
+            "jacket": "navy",
+            "hair": "grey"
+          }
+        }
+      }
+    },
+    {
+      "id": "you",
+      "prefab": "you",
+      "at": [
+        -8,
+        0,
+        -4.5
+      ]
+    },
+    {
+      "id": "mate",
+      "prefab": "mate",
+      "at": [
+        -8,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "rival",
+      "at": [
+        -14,
+        0,
+        -4.5
+      ]
+    },
+    {
+      "prefab": "rival",
+      "at": [
+        -14,
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "ball",
+      "at": [
+        -8,
+        1,
+        -4.5
+      ]
+    },
+    {
+      "prefab": "courtside_camera",
+      "components": {
+        "camera": {
+          "follow": "you",
+          "offset": [
+            0,
+            14,
+            22
+          ],
+          "pitch": 0
+        }
+      }
+    }
+  ]
+}

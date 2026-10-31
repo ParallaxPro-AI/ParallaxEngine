@@ -1,0 +1,18 @@
+{
+  "name": "Runebreak",
+  "locked_hint": "Rescue the scout to learn Runebreak",
+  "slot": 1,
+  "form": "wave",
+  "mana_cost": 20,
+  "cooldown": 4,
+  "damage": 60,
+  "scaling_per_level": 0.133,
+  "kind": "frost",
+  "reach": 10,
+  "width": 1.6,
+  "spread": 0.25,
+  "stagger": 1.1,
+  "effect": "vfx/rune_wave",
+  "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a5/6d/a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6.ogg",
+  "volume": 0.4
+}

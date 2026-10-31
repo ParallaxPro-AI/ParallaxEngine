@@ -1,0 +1,10 @@
+{
+  "id": "training_dummy",
+  "summary": "A practice target dummy: a rough timber post on a lap-crossed base, a straw-stuffed sackcloth torso roped at… sockets socket_bull, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.training_dummy or place \"prefab\": \"training_dummy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:training_dummy"]
+}

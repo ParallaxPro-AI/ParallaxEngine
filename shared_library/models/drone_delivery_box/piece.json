@@ -1,0 +1,10 @@
+{
+  "id": "drone_delivery_box",
+  "summary": "A street drone-delivery parcel locker: a grubby locker carcass with six numbered steel cell doors (`locker_0`… joints locker_0, locker_1, locker_2, locker_3, locker_4, locker_5, …; options glow, accent, body_colour; sockets socket_drone_land, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drone_delivery_box or place \"prefab\": \"drone_delivery_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drone_delivery_box"]
+}

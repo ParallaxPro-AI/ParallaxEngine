@@ -1,0 +1,2 @@
+{ "name": "Widening Nova", "desc": "+3.5m Ember Nova radius.",
+  "icon": "ring", "weight": 5, "max_stacks": 4, "effect": { "nova_radius_add": 3.5 } }

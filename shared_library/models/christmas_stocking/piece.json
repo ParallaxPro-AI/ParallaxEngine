@@ -1,0 +1,10 @@
+{
+  "id": "christmas_stocking",
+  "summary": "A hanging Christmas stocking: a red knit boot-shaped stocking with a white toe, two green stripes and a holly…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.christmas_stocking or place \"prefab\": \"christmas_stocking\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:christmas_stocking"]
+}

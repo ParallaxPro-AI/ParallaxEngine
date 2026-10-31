@@ -1,0 +1,1 @@
+{ "prefab": "obstacle_hurdle", "avoid": "jump", "lanes_blocked": 3, "weight": 2, "from_distance": 900, "hard": true, "half_width": 0.98, "half_depth": 0.48, "clearance": 1.35 }

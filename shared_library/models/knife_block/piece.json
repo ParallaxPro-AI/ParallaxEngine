@@ -1,0 +1,10 @@
+{
+  "id": "knife_block",
+  "summary": "A raked hardwood knife block holding five riveted kitchen knives — chef, bread and slicer in the back row, ut… joints chef, bread, slicer, utility, paring; options wood, handles; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.knife_block or place \"prefab\": \"knife_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:knife_block"]
+}

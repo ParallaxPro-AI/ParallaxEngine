@@ -1,0 +1,69 @@
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+.hud, .hud *{margin:0;padding:0;box-sizing:border-box}
+:host{--text:#f5edd7;--text-dim:#b5c5be;--gold:#ffcf68;--edge:#536965;--panel:rgba(15,35,39,.96)}
+.hud{font-family:Georgia,'Times New Roman',serif;color:var(--text);pointer-events:none}
+button{font:inherit}button:focus-visible,[data-interactive]:focus-visible{outline:calc(4 * var(--u)) solid #fff;outline-offset:calc(4 * var(--u))}
+.top-bar{position:fixed;top:calc(22 * var(--u));left:calc(26 * var(--u));display:flex;gap:calc(12 * var(--u));z-index:5}
+.stat{background:var(--panel);border:calc(2 * var(--u)) solid var(--edge);border-radius:calc(12 * var(--u));padding:calc(12 * var(--u)) calc(20 * var(--u));display:flex;align-items:center;gap:calc(16 * var(--u));min-width:calc(180 * var(--u));box-shadow:0 calc(6 * var(--u)) calc(14 * var(--u)) #0003}
+.label{font:700 calc(19 * var(--u)) system-ui;letter-spacing:calc(1 * var(--u));text-transform:uppercase;color:var(--text-dim)}
+.value{font-size:calc(34 * var(--u));font-weight:700;font-variant-numeric:tabular-nums}.gold .value{color:var(--gold)}.lives .value{color:#ff9b82}.wave .value{color:#b9e2da}
+.sub,.alive{font:600 calc(18 * var(--u)) system-ui;color:#a4cbb1}.critical{border-color:#ff8268;background:#532c2b}
+.start-wave-btn{position:fixed;right:calc(28 * var(--u));top:calc(22 * var(--u));width:calc(278 * var(--u));min-height:calc(74 * var(--u));padding:calc(17 * var(--u)) calc(20 * var(--u));background:linear-gradient(#e4ba67,#b1833e);border:calc(2 * var(--u)) solid #ffe0a0;border-radius:calc(12 * var(--u));color:#202d2a;font-size:calc(25 * var(--u));font-weight:bold;text-align:center;cursor:pointer;pointer-events:auto;z-index:5;box-shadow:0 calc(5 * var(--u)) 0 #635032,0 calc(10 * var(--u)) calc(24 * var(--u)) #0003}
+.start-wave-btn.disabled{opacity:1;background:#253e40;color:#adc1bc;border-color:#4c6665;box-shadow:none;cursor:default}.start-wave-btn.boss{background:#8e3f32;color:#fff0d2;border-color:#efb06e}
+.intel{position:fixed;right:calc(28 * var(--u));top:calc(118 * var(--u));width:calc(278 * var(--u));padding:calc(16 * var(--u)) calc(20 * var(--u));background:var(--panel);border:calc(2 * var(--u)) solid var(--edge);border-radius:calc(12 * var(--u));z-index:5}.intel-title{font:700 calc(18 * var(--u)) system-ui;text-transform:uppercase;letter-spacing:calc(1 * var(--u));color:#cfb47e;margin-bottom:calc(10 * var(--u))}.row{display:flex;justify-content:space-between;font:600 calc(21 * var(--u)) system-ui;line-height:1.6}.n{color:var(--gold)}.hidden{display:none!important}
+.palette{position:fixed;bottom:calc(22 * var(--u));left:50%;transform:translateX(-50%);display:flex;gap:calc(10 * var(--u));z-index:5;pointer-events:auto}
+.card{width:calc(226 * var(--u));height:calc(104 * var(--u));padding:calc(14 * var(--u)) calc(16 * var(--u));border:calc(2 * var(--u)) solid #718b83;border-radius:calc(12 * var(--u));background:linear-gradient(150deg,#2f4847,#122c31);color:var(--text);text-align:left;cursor:pointer;box-shadow:0 calc(5 * var(--u)) 0 #0a1f23,0 calc(10 * var(--u)) calc(20 * var(--u)) #0003;transition:transform .12s,filter .12s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(calc(-5 * var(--u)));filter:brightness(1.18)}.card.disabled{filter:saturate(.3) brightness(.66)}.card.armed{border-color:#ffdf86!important;background:linear-gradient(150deg,#645e38,#273d35);transform:translateY(calc(-8 * var(--u)));box-shadow:0 0 0 calc(3 * var(--u)) #ffdb6b44,0 calc(8 * var(--u)) calc(20 * var(--u)) #0004}
+.top{display:flex;align-items:center;gap:calc(9 * var(--u))}.name{font-size:calc(25 * var(--u));font-weight:bold}.cost{margin-left:auto;font:700 calc(23 * var(--u)) system-ui;color:var(--gold)}.key-hint{font:700 calc(16 * var(--u)) system-ui;border:calc(1 * var(--u)) solid #81918a;padding:calc(1 * var(--u)) calc(5 * var(--u));border-radius:calc(4 * var(--u));color:#bdd0c7}.brief{font:500 calc(18 * var(--u)) system-ui;color:#b8cec6;margin-top:calc(10 * var(--u));white-space:nowrap}
+.spot-bar{position:fixed;bottom:calc(150 * var(--u));left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:calc(12 * var(--u));background:var(--panel);border:calc(2 * var(--u)) solid var(--edge);border-radius:calc(12 * var(--u));padding:calc(12 * var(--u)) calc(16 * var(--u));z-index:5;max-width:calc(100cqw - calc(40 * var(--u)))}
+.spot-info{min-width:calc(250 * var(--u))}.small{font:600 calc(23 * var(--u)) system-ui;color:var(--text)}.spot-action{font:700 calc(22 * var(--u)) system-ui;border:calc(2 * var(--u)) solid #78918a;background:#2a4845;border-radius:calc(8 * var(--u));padding:calc(13 * var(--u)) calc(20 * var(--u));min-height:calc(56 * var(--u));white-space:nowrap;pointer-events:auto;cursor:pointer}.upgrade{color:#c3edb3}.sell{color:var(--gold)}.spot-action.disabled{display:none}.spot-action:disabled{opacity:1}
+.hint{position:fixed;bottom:calc(151 * var(--u));left:50%;transform:translateX(-50%);font:600 calc(21 * var(--u)) system-ui;color:#ecedd6;background:rgba(15,35,39,.88);border-radius:calc(8 * var(--u));padding:calc(12 * var(--u)) calc(22 * var(--u));white-space:nowrap;z-index:4}.hint.armed{color:#ffdf86}.spot-bar:has(.disabled):not(:has(.spot-action:not(.disabled))){display:none}
+.utility{position:fixed;bottom:calc(26 * var(--u));left:calc(26 * var(--u));display:flex;gap:calc(8 * var(--u))}.utility button{height:calc(58 * var(--u));padding:calc(10 * var(--u)) calc(16 * var(--u));color:var(--text);background:var(--panel);border:calc(2 * var(--u)) solid var(--edge);border-radius:calc(10 * var(--u));font:600 calc(19 * var(--u)) system-ui;pointer-events:auto;cursor:pointer}.cancel-btn{display:none}.hud.armed .cancel-btn{display:block}
+@media(pointer:coarse){
+.top-bar{top:calc(16 * var(--u));left:calc(18 * var(--u));gap:calc(8 * var(--u))}.stat{padding:calc(8 * var(--u)) calc(14 * var(--u));min-width:calc(170 * var(--u));gap:calc(12 * var(--u));height:calc(70 * var(--u))}.label{font-size:calc(22 * var(--u))}.value{font-size:calc(34 * var(--u))}.sub,.alive{display:none}
+.start-wave-btn{top:calc(16 * var(--u));right:calc(calc(20 * var(--u)) + var(--pp-top-clear,calc(88 * var(--u))));min-height:calc(74 * var(--u));width:calc(278 * var(--u));font-size:calc(27 * var(--u));padding:calc(16 * var(--u))}.intel{top:calc(106 * var(--u));right:calc(20 * var(--u));width:calc(250 * var(--u));padding:calc(10 * var(--u)) calc(16 * var(--u))}.row{font-size:calc(23 * var(--u))}.intel-title{font-size:calc(20 * var(--u))}
+.palette{bottom:calc(14 * var(--u));gap:calc(8 * var(--u))}.card{width:calc(204 * var(--u));height:calc(100 * var(--u));padding:calc(12 * var(--u))}.name{font-size:calc(28 * var(--u))}.cost{font-size:calc(25 * var(--u))}.brief{font-size:calc(22 * var(--u));margin-top:calc(7 * var(--u))}.key-hint{display:none}
+.spot-bar{bottom:calc(132 * var(--u));padding:calc(8 * var(--u)) calc(12 * var(--u))}.small{font-size:calc(25 * var(--u))}.spot-action{font-size:calc(25 * var(--u));min-height:calc(80 * var(--u));padding:calc(18 * var(--u))}.hint{bottom:calc(133 * var(--u));font-size:calc(24 * var(--u));padding:calc(10 * var(--u)) calc(18 * var(--u))}.utility{left:calc(18 * var(--u));bottom:calc(14 * var(--u));flex-direction:column}.utility button{min-height:calc(88 * var(--u));font-size:calc(24 * var(--u));padding:calc(12 * var(--u));width:calc(150 * var(--u))}
+}
+@media(max-aspect-ratio:1/1){.top-bar{right:calc(18 * var(--u));justify-content:center}.stat{min-width:0}.label{display:none}.start-wave-btn{top:calc(106 * var(--u));right:calc(18 * var(--u));width:calc(270 * var(--u))}.intel{top:calc(199 * var(--u))}.palette{width:calc(100% - calc(32 * var(--u)));flex-wrap:wrap;justify-content:center}.card{width:calc(33% - calc(8 * var(--u)))}.hint{bottom:calc(244 * var(--u));white-space:normal;width:92%;text-align:center}.spot-bar{bottom:calc(244 * var(--u));flex-wrap:wrap;justify-content:center;width:94%}.utility{bottom:calc(126 * var(--u))}.brief{font-size:calc(20 * var(--u))}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
+.desk-only{} .touch-only{display:none}
+@media(pointer:coarse){.desk-only{display:none} .touch-only{display:inline}}
+</style>
+<div class="hud" data-class-armed="armed">
+<div class="top-bar">
+  <div class="stat gold"><span class="label" data-text="gold_label"></span><span class="value" data-bind="gold"></span><span class="sub" data-show="interest_text" data-bind="interest_text"></span></div>
+  <div class="stat lives" data-class-critical="lives_critical"><span class="label" data-text="lives_label"></span><span class="value" data-bind="lives"></span></div>
+  <div class="stat wave"><span class="label" data-text="wave_label"></span><span class="value"><span data-bind="wave"></span>/<span data-bind="wave_count"></span></span><span class="alive" data-bind="wave_status"></span></div>
+</div>
+
+<button class="start-wave-btn" data-action="send_wave" data-class-disabled="cannot_send" data-class-boss="boss_next" data-attr-disabled="cannot_send" data-bind="send_label"></button>
+
+<div class="intel" data-show="intel">
+  <div class="intel-title" data-bind="intel_title"></div>
+  <div data-each="intel"><template><div class="row"><span data-bind="name"></span><span class="n">×<span data-bind="count"></span></span></div></template></div>
+</div>
+
+<div class="palette" data-each="palette">
+  <template>
+    <button class="card" data-action="choose_tower" data-key="Digit{index1}" data-style-border-color="accent" data-class-armed="armed" data-class-disabled="unaffordable">
+      <div class="top"><span class="key-hint" data-bind="slot"></span><span class="name" data-bind="name"></span><span class="cost"><span data-bind="cost"></span>g</span></div>
+      <div class="brief" data-bind="brief"></div>
+    </button>
+  </template>
+</div>
+
+<div class="hint" data-show="show_hint" data-class-armed="armed"><span class="desk-only" data-bind="hint_desktop"></span><span class="touch-only" data-bind="hint_touch"></span></div>
+
+<div class="spot-bar" data-show="selected">
+  <div class="spot-info"><span class="small" data-bind="spot_detail"></span></div>
+  <button class="spot-action upgrade" data-action="upgrade" data-class-disabled="maxed" data-attr-disabled="maxed"><span data-text="upgrade"></span> · <span data-bind="upgrade_cost"></span>g</button>
+  <button class="spot-action sell" data-action="sell"><span data-text="sell"></span> · <span data-bind="sell_value"></span>g</button>
+</div>
+
+<div class="utility"><button data-action="pause" data-text="pause"></button><button data-action="camera_home" data-text="recenter"></button><button class="cancel-btn" data-action="cancel" data-text="cancel"></button></div>
+</div>

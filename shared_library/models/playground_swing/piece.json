@@ -1,0 +1,10 @@
+{
+  "id": "playground_swing",
+  "summary": "A galvanised-steel A-frame swing set. joints seat; options kind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.playground_swing or place \"prefab\": \"playground_swing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:playground_swing"]
+}

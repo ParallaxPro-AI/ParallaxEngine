@@ -1,0 +1,15 @@
+{
+  "depth": 4, "name": "Deep Crust", "hint": "Six gems now — and every crust cell takes two hits.",
+  "target": 3600, "moves": 24, "gem_kinds": 6,
+  "crust": [
+    "........",
+    "........",
+    ".##..##.",
+    "........",
+    "........",
+    ".##..##.",
+    "........",
+    "........"
+  ],
+  "crust_layers": 2
+}

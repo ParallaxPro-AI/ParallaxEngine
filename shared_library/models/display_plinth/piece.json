@@ -1,0 +1,10 @@
+{
+  "id": "display_plinth",
+  "summary": "A museum / gallery display plinth: a tall square painted column standing on a recessed shadow-gap kick, with… joints hood; options style, finish; sockets display.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.display_plinth or place \"prefab\": \"display_plinth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:display_plinth"]
+}

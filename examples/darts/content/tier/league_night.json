@@ -1,0 +1,8 @@
+{
+  "rank": 1,
+  "name": "League Night",
+  "blurb": "The doors are open and the card is tight. Ten darts of slack over nine legs.",
+  "budget_over_par": 10,
+  "draught_scale": 1.1,
+  "score_mult": 1.4
+}

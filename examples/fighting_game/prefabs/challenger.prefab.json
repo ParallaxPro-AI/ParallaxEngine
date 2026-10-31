@@ -1,0 +1,14 @@
+{
+  "extends": "fighter",
+  "tags": [
+    "challenger"
+  ],
+  "behaviors": {
+    "fighter_control": {},
+    "fighter_motion": {},
+    "fighter_stun": {},
+    "fighter_moves": {},
+    "fighter_animation": {},
+    "health_trail": {}
+  }
+}

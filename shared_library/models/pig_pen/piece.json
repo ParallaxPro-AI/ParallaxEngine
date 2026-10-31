@@ -1,0 +1,10 @@
+{
+  "id": "pig_pen",
+  "summary": "A traditional brick pig sty: a low walled yard with concrete coping and a timber gate between oak posts, open… joints gate; options walls, roof, gate; sockets socket_pig_yard, socket_pig_shelter, socket_trough.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pig_pen or place \"prefab\": \"pig_pen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pig_pen"]
+}

@@ -1,0 +1,12 @@
+{
+  "number": 1,
+  "name": "First Haul",
+  "hint": "One crate, one pad. Push right.",
+  "rows": [
+    "#######",
+    "#     #",
+    "# @$. #",
+    "#     #",
+    "#######"
+  ]
+}

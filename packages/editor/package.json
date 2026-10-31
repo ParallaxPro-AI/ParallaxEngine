@@ -1,0 +1,27 @@
+{
+  "name": "@parallax/editor",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The Parallax editor: the project's scenes in a viewport with a hierarchy, inspector, assets and console, and Play / Pause / Step / Stop on the top bar. `parallax edit <project>` serves it.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts",
+    "./session": "./src/session/index.ts",
+    "./session/browser": "./src/session/browser.ts",
+    "./styles.css": "./src/styles.css"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@parallax/runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

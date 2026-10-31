@@ -1,0 +1,10 @@
+{
+  "id": "water_trough",
+  "summary": "A galvanised-steel livestock water trough with a rolled rim, a filled water surface, and a working ball-float… joints float_valve; sockets socket_supply.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_trough or place \"prefab\": \"water_trough\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_trough"]
+}

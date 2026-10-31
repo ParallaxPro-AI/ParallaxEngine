@@ -1,0 +1,6 @@
+{
+  "number": 2, "name": "Sunscar Spiral", "tagline": "Armored columns", "land": "#87633a", "scene": "desert", "unlocked_by": "meadow",
+  "start_gold": 475, "start_lives": 18,
+  "hp_mul": 1.3, "speed_mul": 1.05, "armor_add": 1, "bounty_mul": 1.1,
+  "waves": ["wave_01", "wave_02", "wave_03", "desert_04", "wave_05", "wave_06", "wave_07", "wave_08", "wave_09", "wave_10", "wave_11", "desert_12"]
+}

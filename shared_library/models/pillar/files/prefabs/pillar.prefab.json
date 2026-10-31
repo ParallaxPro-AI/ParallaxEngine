@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pillar",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.64,
+        3.0,
+        0.64
+      ],
+      "offset": [
+        0.0,
+        1.5,
+        0.0
+      ]
+    }
+  }
+}

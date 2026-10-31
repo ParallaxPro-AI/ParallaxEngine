@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/car_jack_trolley"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.38, 0.977, 1.0784],
+      "offset": [0, 0.4885, -0.0192]
+    }
+  }
+}

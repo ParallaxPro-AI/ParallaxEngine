@@ -1,0 +1,10 @@
+{
+  "id": "hopscotch_numeral",
+  "summary": "A painted playground numeral, 1 through 8, lying flat on the ground: seven shallow painted bars in a seven-se… options digit.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hopscotch_numeral or place \"prefab\": \"hopscotch_numeral\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hopscotch_numeral"]
+}

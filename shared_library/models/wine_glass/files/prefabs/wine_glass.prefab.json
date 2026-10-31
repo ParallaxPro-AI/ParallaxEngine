@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wine_glass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0776, 0.1855, 0.0776],
+      "offset": [0, 0.0927, 0]
+    }
+  }
+}

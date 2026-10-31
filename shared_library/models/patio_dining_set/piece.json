@@ -1,0 +1,10 @@
+{
+  "id": "patio_dining_set",
+  "summary": "An outdoor dining set: a 1.1 m round slatted-teak table on a splayed aluminium frame, four slatted teak-and-a… options parasol, canopy_colour, frame_finish; sockets socket_table, seat_s, seat_n, seat_e, seat_w.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.patio_dining_set or place \"prefab\": \"patio_dining_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:patio_dining_set"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "office_worker",
+  "summary": "An office worker in a fitted charcoal suit — lapels over a white shirt front and a blue tie, breast pocket, t… options skin, hair, suit_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.office_worker or place \"prefab\": \"office_worker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:office_worker"]
+}

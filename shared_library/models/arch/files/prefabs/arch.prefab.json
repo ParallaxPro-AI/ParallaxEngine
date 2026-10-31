@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4, 2.8, 0.41],
+      "offset": [0, 1.4, 0]
+    }
+  }
+}

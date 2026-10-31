@@ -1,0 +1,1 @@
+{"extends": "effect/sparks", "burst": 14, "max": 14, "radius": 0.55, "speed": [3, 10], "lifetime": [0.25, 0.7], "size": [0.16, 0.256], "size_end": 0.056, "color": "#dbe6f5", "color_end": "#84737a00", "light": {"color": "#dbe6f5", "intensity": 5, "range": 7, "seconds": 0.13}, "shake": {"intensity": 0.0075, "seconds": 0.18, "radius": 60}}

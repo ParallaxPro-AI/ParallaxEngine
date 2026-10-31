@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scrap_metal_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.1412, 2.5907, 0.789],
+      "offset": [0.0098, 1.2954, -0.0125]
+    }
+  }
+}

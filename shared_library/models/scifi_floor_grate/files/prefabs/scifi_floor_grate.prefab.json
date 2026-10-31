@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scifi_floor_grate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.99, 0.278, 3.99],
+      "offset": [0, 0.139, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/nightstand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.48, 0.58, 0.4475],
+      "offset": [0, 0.29, 0.0222]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "convenience_store",
+  "summary": "A single-storey corner convenience store: dark granite base course, a full-width glazed shopfront in six bays… joints display_chiller_leaf_0_0, display_chiller_leaf_1_0, display_chiller_leaf_0_1, display_chiller_leaf_1_1, display_chiller_leaf_0_2, display_chiller_leaf_1_2, …; options precast_colour; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.convenience_store or place \"prefab\": \"convenience_store\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:convenience_store"]
+}

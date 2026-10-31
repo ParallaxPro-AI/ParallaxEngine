@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/papers",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.9466,
+        0.0352,
+        0.8272
+      ],
+      "offset": [
+        -0.0294,
+        0.0176,
+        -0.0186
+      ]
+    }
+  }
+}

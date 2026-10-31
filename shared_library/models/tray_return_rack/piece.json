@@ -1,0 +1,10 @@
+{
+  "id": "tray_return_rack",
+  "summary": "A mobile cafeteria tray-return trolley: a stainless frame of four square uprights with top and bottom rails… joints castor_fl_swivel, castor_fl_wheel, castor_fr_swivel, castor_fr_wheel, castor_bl_swivel, castor_bl_wheel, …; options trays, load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tray_return_rack or place \"prefab\": \"tray_return_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tray_return_rack"]
+}

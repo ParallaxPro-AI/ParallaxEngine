@@ -1,0 +1,10 @@
+{
+  "id": "playground_gate",
+  "summary": "Timber pergola entrance with a green PARK sign and a string of coloured pennants.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.playground_gate or place \"prefab\": \"playground_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:playground_gate"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_spiky"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2497, 0.2798, 0.2765],
+      "offset": [0.0028, 1.8147, -0.0327]
+    }
+  }
+}

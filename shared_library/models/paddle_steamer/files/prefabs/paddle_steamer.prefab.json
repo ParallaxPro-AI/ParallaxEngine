@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paddle_steamer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 180000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.78, 15.325, 33.0122],
+      "offset": [0, 7.6625, -1.6538]
+    }
+  }
+}

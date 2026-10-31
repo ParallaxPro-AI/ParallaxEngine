@@ -1,0 +1,10 @@
+{
+  "id": "pet_egg_hatch",
+  "summary": "A hatching pet egg: a large mint-green egg with purple spots, cracked open round its waist along a jagged zig… joints cap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pet_egg_hatch or place \"prefab\": \"pet_egg_hatch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pet_egg_hatch"]
+}

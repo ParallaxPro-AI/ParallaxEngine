@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toy_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.824, 0.456, 0.506],
+      "offset": [0, 0.228, 0.008]
+    }
+  }
+}

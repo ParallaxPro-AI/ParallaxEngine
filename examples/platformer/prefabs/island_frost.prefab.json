@@ -1,0 +1,23 @@
+{
+  "components": {
+    "model": {
+      "model": "models/island_frost"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        8,
+        0.7,
+        7
+      ],
+      "offset": [
+        0,
+        -0.35,
+        0
+      ]
+    }
+  },
+  "tags": [
+    "safe_ground"
+  ]
+}

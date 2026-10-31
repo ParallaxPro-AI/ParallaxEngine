@@ -1,0 +1,10 @@
+{
+  "id": "mine_track",
+  "summary": "A 4 m straight section of narrow-gauge mine railway: two steel flat-bottom rails (worn bright on the head) at… sockets cart_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mine_track or place \"prefab\": \"mine_track\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mine_track"]
+}

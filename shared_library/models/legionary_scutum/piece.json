@@ -1,0 +1,10 @@
+{
+  "id": "legionary_scutum",
+  "summary": "A Roman legionary's curved rectangular shield (scutum): a laminated board bent on a 0.42 m radius so it wraps… options field; sockets socket_grip, socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.legionary_scutum or place \"prefab\": \"legionary_scutum\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:legionary_scutum"]
+}

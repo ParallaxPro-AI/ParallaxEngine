@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/office_block"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [30.76, 31.6385, 20.76],
+      "offset": [0, 15.8193, 0]
+    }
+  }
+}

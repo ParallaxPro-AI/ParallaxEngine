@@ -1,0 +1,5 @@
+{
+  "name": "Physio Table",
+  "description": "Start every kickoff with a full tank and faster recovery.",
+  "max_stacks": 2, "stamina_regen": 3, "fresh_start": true
+}

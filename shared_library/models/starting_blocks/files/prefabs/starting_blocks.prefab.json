@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/starting_blocks"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.348, 0.1627, 0.9438],
+      "offset": [0.027, 0.0814, -0.0419]
+    }
+  }
+}

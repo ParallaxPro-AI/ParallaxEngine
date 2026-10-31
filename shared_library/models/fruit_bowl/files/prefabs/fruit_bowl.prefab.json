@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fruit_bowl"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.293, 0.154, 0.293],
+      "offset": [0, 0.077, 0]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/city_bus"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 12000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3,
+        3.33,
+        12.07
+      ],
+      "offset": [
+        0,
+        1.665,
+        0
+      ]
+    },
+    "vehicle": {
+      "max_speed": 26,
+      "steering": 30
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.665,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

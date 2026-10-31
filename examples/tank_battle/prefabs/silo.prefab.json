@@ -1,0 +1,1 @@
+{ "components": {"model": {"model": "models/silo", "cast_shadows": true}, "collider": {"shape": "box", "size": [2.86, 6.73, 2.9], "offset": [0, 3.37, -0.02], "layer": "prop"}, "grounded": {"lift": 0}}}

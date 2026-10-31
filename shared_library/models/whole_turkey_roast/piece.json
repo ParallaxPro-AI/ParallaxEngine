@@ -1,0 +1,10 @@
+{
+  "id": "whole_turkey_roast",
+  "summary": "A whole roast turkey on an oval glazed serving platter with a gilded rim: a golden basted carcass with a brea… options platter, garnish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.whole_turkey_roast or place \"prefab\": \"whole_turkey_roast\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:whole_turkey_roast"]
+}

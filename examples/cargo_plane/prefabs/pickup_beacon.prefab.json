@@ -1,0 +1,50 @@
+{
+ "tags": [
+  "objective_beacon"
+ ],
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    2.6,
+    16,
+    2.6
+   ],
+   "offset": [
+    0,
+    8,
+    0
+   ],
+   "color": "#ffbd1a52",
+   "emissive": [
+    1.6,
+    1.18,
+    0.16
+   ],
+   "cast_shadows": false
+  }
+ },
+ "behaviors": {
+  "objective_beacon": {
+   "drop_off": false
+  }
+ },
+ "children": [
+  {
+   "name": "tag",
+   "at": [
+    0,
+    16.5,
+    0
+   ],
+   "components": {
+    "marker": {
+     "icon": "diamond",
+     "label": "Pickup",
+     "color": "#ffbe2e",
+     "shown": false
+    }
+   }
+  }
+ ]
+}

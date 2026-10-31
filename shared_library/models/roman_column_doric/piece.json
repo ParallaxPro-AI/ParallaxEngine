@@ -1,0 +1,10 @@
+{
+  "id": "roman_column_doric",
+  "summary": "A full-size Roman Doric column after Vitruvius, 7 diameters (4.2 m) tall: square plinth and torus base, a 20-… options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roman_column_doric or place \"prefab\": \"roman_column_doric\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roman_column_doric"]
+}

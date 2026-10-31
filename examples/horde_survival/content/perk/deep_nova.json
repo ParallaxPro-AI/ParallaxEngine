@@ -1,0 +1,1 @@
+{"name": "Deep Nova", "desc": "Ember Nova cools 6% faster per level.", "cost": 60, "cost_step": 45, "max_level": 4, "effect": {"nova_cooldown_mul": 0.94}, "order": 5}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/washbasin_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.83, 1.122, 0.5275],
+      "offset": [0, 0.561, 0.0272]
+    }
+  }
+}

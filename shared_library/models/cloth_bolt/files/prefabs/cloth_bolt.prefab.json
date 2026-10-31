@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cloth_bolt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6748, 0.1772, 0.2803],
+      "offset": [0, 0.0884, -0.0005]
+    }
+  }
+}

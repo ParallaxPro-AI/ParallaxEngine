@@ -1,0 +1,10 @@
+{
+  "id": "garment_back_jetpack",
+  "summary": "A back-mounted thruster pack: two domed propellant tanks, a converging nozzle bell under each with an emissiv… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_back_jetpack or place \"prefab\": \"garment_back_jetpack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_back_jetpack"]
+}

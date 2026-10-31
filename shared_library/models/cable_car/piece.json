@@ -1,0 +1,10 @@
+{
+  "id": "cable_car",
+  "summary": "A gondola-lift cabin for eight: a lofted capsule with a crowned roof and panoramic recessed windows on three… joints sway, door_a, door_b; options paint; sockets socket_rope, socket_door, seat_pax_1, seat_pax_2, seat_pax_3, seat_pax_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cable_car or place \"prefab\": \"cable_car\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cable_car"]
+}

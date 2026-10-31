@@ -1,0 +1,10 @@
+{
+  "id": "crowbar",
+  "summary": "A 0.6 m hex-steel wrecking bar (crowbar): a straight painted shaft with a flattened, slightly bent chisel at… options paint; sockets socket_grip, socket_claw, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.crowbar or place \"prefab\": \"crowbar\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:crowbar"]
+}

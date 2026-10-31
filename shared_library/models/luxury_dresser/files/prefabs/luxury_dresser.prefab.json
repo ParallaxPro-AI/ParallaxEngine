@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_dresser"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 1.3045, 0.501],
+      "offset": [0, 0.6522, 0.0005]
+    }
+  }
+}

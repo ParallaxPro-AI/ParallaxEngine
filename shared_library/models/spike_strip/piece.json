@@ -1,0 +1,10 @@
+{
+  "id": "spike_strip",
+  "summary": "A 3 m police tyre-deflation spike strip deployed across a lane: six trapezoid-section moulded housings linked… options housing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spike_strip or place \"prefab\": \"spike_strip\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spike_strip"]
+}

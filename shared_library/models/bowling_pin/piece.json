@@ -1,0 +1,10 @@
+{
+  "id": "bowling_pin",
+  "summary": "A regulation ten-pin bowling pin: 0.381 m (15 in) tall, 0.121 m (4.766 in) at the belly, 0.0456 m at the neck… options stripe; sockets socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bowling_pin or place \"prefab\": \"bowling_pin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bowling_pin"]
+}

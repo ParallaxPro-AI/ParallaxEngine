@@ -1,0 +1,15 @@
+{
+  "depth": 3, "name": "The Vault", "hint": "Crust off in the shoulders. Let a cascade reach it.",
+  "target": 3400, "moves": 22, "gem_kinds": 5,
+  "crust": [
+    "........",
+    ".#....#.",
+    "........",
+    "...#....",
+    "....#...",
+    "........",
+    ".#....#.",
+    "........"
+  ],
+  "crust_layers": 1
+}

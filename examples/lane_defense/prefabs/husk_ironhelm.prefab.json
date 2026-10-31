@@ -1,0 +1,5 @@
+{
+  "extends": "husk",
+  "components": { "model": { "model": "models/husk_ironhelm" } },
+  "behaviors": { "husk_walker": { "armored": true } }
+}

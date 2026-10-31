@@ -1,0 +1,10 @@
+{
+  "id": "crab_trap_pot",
+  "summary": "A Chesapeake-style square crab pot (24 in cube, 0.61 m): green vinyl-coated 1.5 in wire mesh on a coated reba… joints top_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crab_trap_pot or place \"prefab\": \"crab_trap_pot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crab_trap_pot"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "steam_locomotive",
+  "summary": "A classic 4-4-0 tender steam locomotive at standard gauge: a lathed boiler with brass bands, a smokebox with… joints drivers_front, rod_l, rod_r, drivers_rear, lead_axle_0, lead_axle_1, …; options livery, wheels, tender; sockets seat_driver, seat_crew_1, eye_point, socket_coupler_front, socket_coupler_rear, smoke, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.steam_locomotive or place \"prefab\": \"steam_locomotive\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:steam_locomotive"]
+}

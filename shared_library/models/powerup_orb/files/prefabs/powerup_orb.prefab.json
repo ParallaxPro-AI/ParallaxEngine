@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/powerup_orb"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.254, 0.38, 0.2526],
+      "offset": [0, 0.19, 0]
+    }
+  }
+}

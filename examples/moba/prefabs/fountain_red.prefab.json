@@ -1,0 +1,1 @@
+{"extends": "fountain", "components": {"side": {"side": "red"}, "map_icon": {"icon": "ring", "color": "#ff6a5a", "size": 2}, "model": {"model": "models/wellspring_red"}}}

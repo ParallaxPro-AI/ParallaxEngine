@@ -1,0 +1,10 @@
+{
+  "id": "seed_packet_set",
+  "summary": "A set of five generic illustrated garden seed packets: four standing in a small wooden display tray (carrot…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.seed_packet_set or place \"prefab\": \"seed_packet_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:seed_packet_set"]
+}

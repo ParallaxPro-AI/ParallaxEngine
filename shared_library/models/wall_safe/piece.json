@@ -1,0 +1,10 @@
+{
+  "id": "wall_safe",
+  "summary": "A steel wall safe: a heavy 5-sided body with a lit interior and a shelf, a thick plug door hinged on the left… joints door, keypad.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wall_safe or place \"prefab\": \"wall_safe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wall_safe"]
+}

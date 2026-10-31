@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_facehair_mustache_handlebar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1183, 0.0329, 0.0358],
+      "offset": [0, 1.6912, 0.0895]
+    }
+  }
+}

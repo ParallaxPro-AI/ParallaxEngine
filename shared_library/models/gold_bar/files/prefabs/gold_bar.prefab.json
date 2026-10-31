@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gold_bar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2503, 0.05, 0.093],
+      "offset": [0, 0.025, 0]
+    }
+  }
+}

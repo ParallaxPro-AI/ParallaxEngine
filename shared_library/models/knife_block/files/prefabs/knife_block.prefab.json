@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/knife_block"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.115, 0.3727, 0.2587],
+      "offset": [0, 0.1863, -0.0115]
+    }
+  }
+}

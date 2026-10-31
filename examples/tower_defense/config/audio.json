@@ -1,0 +1,14 @@
+{
+  "tower_arm": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg",
+  "build_blocked": "https://r2.parallaxpro.ai/assets/audio_sfx/0b/57/0b574cea597d96507e782ae9764f88482ce49f46e931e57054bf7150047f2d69.ogg",
+  "tower_build": "https://r2.parallaxpro.ai/assets/audio_sfx/98/51/9851a69d0c613e13bceef08060ecc4148f098ef487927cbebe270d642398a3b3.ogg",
+  "tower_upgrade": "https://r2.parallaxpro.ai/assets/audio_sfx/ba/9b/ba9ba60b172b3ebc131a940f25793cd2e207aca7af73dc80d637277f060f1708.ogg",
+  "tower_sell": "https://r2.parallaxpro.ai/assets/audio_sfx/8a/91/8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab.ogg",
+  "enemy_die": "https://r2.parallaxpro.ai/assets/audio_sfx/5e/9f/5e9f2b4a0b14e65a157d0bbcb28cf816926583afa96e753489c722ec3d810a78.ogg",
+  "enemy_leak": "https://r2.parallaxpro.ai/assets/audio_sfx/d2/d0/d2d046cd0247045f8819905fc9719a7237ccbd590b3128ce58a61a81f50d208b.ogg",
+  "bonus_gold": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg",
+  "boss_warning": "https://r2.parallaxpro.ai/assets/audio_sfx/be/2b/be2b8ddc62e4a24c91e2e77793de98549ce216faf2f323a917e7d6f34321ff97.ogg",
+  "spot_move": "https://r2.parallaxpro.ai/assets/audio_sfx/4a/c4/4ac4d1cef7e936965cbf795852ca2020300b9e2ba7daa59f2bf4f1f7bf416218.ogg",
+  "victory": "https://r2.parallaxpro.ai/assets/audio_tts/9e/84/9e8421f498ec6434a7c3d5101e29960e13301154076b927180a25fb6d6578e26.ogg",
+  "defeat": "https://r2.parallaxpro.ai/assets/audio_tts/cf/a5/cfa5557052e6ee604fe53925ef79edc2901f7c8288f51a7429b1cabab4da311d.ogg"
+}

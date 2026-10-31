@@ -1,0 +1,10 @@
+{
+  "id": "hedge_maze_segment",
+  "summary": "A straight clipped hedge-maze wall module, 2 m long: a dense box/yew hedge 2.2 m tall and 0.76 m thick at the…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hedge_maze_segment or place \"prefab\": \"hedge_maze_segment\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hedge_maze_segment"]
+}

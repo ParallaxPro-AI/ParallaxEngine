@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coffee_beans_sack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.45, 0.5903, 0.3765],
+      "offset": [0, 0.2951, 0.0003]
+    }
+  }
+}

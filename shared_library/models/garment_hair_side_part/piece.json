@@ -1,0 +1,10 @@
+{
+  "id": "garment_hair_side_part",
+  "summary": "A classic side-parted men's cut: a sharp parting on the left, the top combed across and back from it with a s… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_hair_side_part or place \"prefab\": \"garment_hair_side_part\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_hair_side_part"]
+}

@@ -1,0 +1,1 @@
+{"components": {"model": {"model": "models/windmill", "cast_shadows": true}, "collider": {"shape": "box", "size": [4, 7.35, 4.45], "offset": [0, 3.675, -0.025], "layer": "terrain"}}}

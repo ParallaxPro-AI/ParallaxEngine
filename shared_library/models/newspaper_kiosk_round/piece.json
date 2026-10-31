@@ -1,0 +1,10 @@
+{
+  "id": "newspaper_kiosk_round",
+  "summary": "An octagonal Parisian-style news kiosk: a granite plinth, a panelled green lower body with a moulded ledge, g… joints shutter_l, shutter_r; options paint; sockets socket_counter, socket_vendor, socket_customer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.newspaper_kiosk_round or place \"prefab\": \"newspaper_kiosk_round\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:newspaper_kiosk_round"]
+}

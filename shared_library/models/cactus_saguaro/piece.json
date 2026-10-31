@@ -1,0 +1,10 @@
+{
+  "id": "cactus_saguaro",
+  "summary": "A mature saguaro cactus (Carnegiea gigantea) of the Sonoran desert: a 5.3 m fluted trunk with 12 pleated ribs…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cactus_saguaro or place \"prefab\": \"cactus_saguaro\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cactus_saguaro"]
+}

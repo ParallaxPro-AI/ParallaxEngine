@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cardboard_box_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5652, 1.2784, 0.4241],
+      "offset": [0.0006, 0.6392, -0.0004]
+    }
+  }
+}

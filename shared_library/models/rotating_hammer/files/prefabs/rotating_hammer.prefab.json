@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rotating_hammer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.9619, 1.55, 1],
+      "offset": [0, 0.775, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_stairs",
+  "summary": "A full-storey stone staircase from the DUNGEON_KIT: twenty chamfered, hand-laid stone steps (0.2 m rise, 0.4… options sides, stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_stairs or place \"prefab\": \"dungeon_stairs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_stairs"]
+}

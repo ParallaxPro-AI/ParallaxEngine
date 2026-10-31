@@ -1,0 +1,10 @@
+{
+  "id": "rowing_shell",
+  "summary": "A racing single scull, 8.2 m long and 0.3 m in the beam: a needle-thin lofted gel-coat hull with a crowned de… joints seat, oar_l, oar_r; options hull; sockets seat_rower, socket_bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rowing_shell or place \"prefab\": \"rowing_shell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rowing_shell"]
+}

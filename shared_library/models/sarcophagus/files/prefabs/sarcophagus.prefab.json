@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sarcophagus"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.21, 1.003, 0.99],
+      "offset": [0, 0.5015, 0]
+    }
+  }
+}

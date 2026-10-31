@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/windmill_water_pump"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.8, 9.72, 6.265],
+      "offset": [0, 4.86, -0.0925]
+    }
+  }
+}

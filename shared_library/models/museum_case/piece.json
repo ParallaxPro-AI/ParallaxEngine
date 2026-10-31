@@ -1,0 +1,10 @@
+{
+  "id": "museum_case",
+  "summary": "A lit museum display vitrine: a dark stone plinth on a shadow-gap reveal, a four-post glazed case with four s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.museum_case or place \"prefab\": \"museum_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:museum_case"]
+}

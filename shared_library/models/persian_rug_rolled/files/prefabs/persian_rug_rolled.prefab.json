@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/persian_rug_rolled"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.506, 0.2616, 0.8137],
+      "offset": [0, 0.1307, -0.0087]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Avalanche",
+  "description": "Each step of a cascade adds +1 to the multiplier instead of the usual jump — long chains pay double.",
+  "short": "Cascades climb +1 a step: long chains pay double.",
+  "highlight": "long chains pay double",
+  "cascade_bonus": 1.0
+}

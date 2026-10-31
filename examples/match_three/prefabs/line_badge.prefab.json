@@ -1,0 +1,5 @@
+{
+  "components": {
+    "sprite": { "image": "images/line_badge", "size": [0.95, 0.95], "color": "#ffffffe6" }
+  }
+}

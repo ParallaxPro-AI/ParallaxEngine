@@ -1,0 +1,77 @@
+<!-- Ported from the template: Canyon Dash Outfitter - a sandstone poster card listing the courier's outfits (swatch runner, name, price in coins) with Buy / Equip / Equipped buttons, the banked coin wallet and Back; driven by the unlocks kit's `unlocks` key and meta_update.outfits -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cdo[data-slot] { background: radial-gradient(circle at 50% 45%, rgba(113,56,41,.5), rgba(20,13,8,.82) 72%); animation: cd-fade 160ms ease-out both; }
+  .cdo[data-slot] > .cdo-card { overflow: visible; max-height: none; }
+  .cdo-card { width: calc(1560 * var(--u)); max-width: 100%; padding: calc(36 * var(--u)) calc(48 * var(--u)) calc(44 * var(--u)); display: flex; flex-direction: column; gap: calc(24 * var(--u)); animation: cd-pop 180ms ease-out both; }
+  .cdo-head { display: flex; align-items: center; justify-content: space-between; gap: calc(24 * var(--u)); }
+  .cdo-title { margin: 0; font: 400 calc(108 * var(--u))/1 var(--cd-font-display); letter-spacing: calc(4 * var(--u)); text-transform: uppercase; color: var(--cd-rust); transform: skewX(-8deg); text-shadow: calc(6 * var(--u)) calc(6 * var(--u)) 0 var(--cd-brown); }
+  .cdo-wallet { display: flex; align-items: center; gap: calc(14 * var(--u)); padding: calc(10 * var(--u)) calc(28 * var(--u)); background: var(--cd-brown); border-radius: calc(8 * var(--u)); }
+  .cdo-wallet .cd-coin { width: calc(52 * var(--u)); height: calc(52 * var(--u)); }
+  .cdo-wallet span { font-size: calc(22 * var(--u)); font-weight: 900; letter-spacing: calc(3 * var(--u)); color: var(--cd-sand); }
+  .cdo-wallet b { font: 400 calc(56 * var(--u))/1.1 var(--cd-font-display); color: var(--cd-gold); font-variant-numeric: tabular-nums; }
+  .cdo-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: calc(22 * var(--u)); }
+  .cdo-item { position: relative; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); padding: calc(18 * var(--u)) calc(14 * var(--u)) calc(16 * var(--u)); background: var(--cd-cream-2); border: calc(4 * var(--u)) solid var(--cd-rust-dark); box-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-brown); color: var(--cd-brown); }
+  .cdo-item.is-worn { background: #ffe9a8; border-color: var(--cd-orange); }
+  .cdo-item.is-locked .cdo-figure { opacity: .45; filter: grayscale(.6); }
+  .cdo-figure { width: calc(120 * var(--u)); height: calc(150 * var(--u)); display: block; }
+  .cdo-name { font: 400 calc(34 * var(--u))/1.1 var(--cd-font-display); letter-spacing: 2px; text-transform: uppercase; text-align: center; color: var(--cd-rust-dark); }
+  .cdo-blurb { min-height: calc(52 * var(--u)); font-size: calc(20 * var(--u)); font-weight: 700; line-height: 1.25; text-align: center; color: var(--cd-brown-soft); }
+  .cdo-price { display: flex; align-items: center; gap: calc(8 * var(--u)); min-height: calc(36 * var(--u)); font: 400 calc(32 * var(--u))/1.1 var(--cd-font-display); color: var(--cd-rust); }
+  .cdo-price .cd-coin { width: calc(30 * var(--u)); height: calc(30 * var(--u)); }
+  .cdo-item .cd-skew { width: 100%; padding: calc(4 * var(--u)) 0; font-size: calc(30 * var(--u)); line-height: 1.25; letter-spacing: 2px; }
+  .cdo-item .cd-skew[disabled] { cursor: default; opacity: .55; pointer-events: none; }
+  .cdo-item .cd-skew.is-worn-btn { color: var(--cd-cream); text-shadow: 2px 2px 0 var(--cd-rust-dark); }
+  .cdo-item .cd-skew.is-worn-btn::before { background: var(--cd-orange); }
+  .cdo-foot { display: flex; align-items: center; justify-content: space-between; gap: calc(24 * var(--u)); }
+  .cdo-msg { min-height: calc(36 * var(--u)); font: 400 calc(36 * var(--u))/1 var(--cd-font-display); letter-spacing: 2px; color: var(--cd-rust); }
+  .cdo-back { padding: calc(6 * var(--u)) calc(90 * var(--u)); font-size: calc(48 * var(--u)); line-height: 1.25; letter-spacing: calc(4 * var(--u)); }
+  @media (pointer: coarse) {
+    .cdo-card { padding: calc(26 * var(--u)) calc(36 * var(--u)) calc(32 * var(--u)); gap: calc(18 * var(--u)); }
+    .cdo-title { font-size: calc(92 * var(--u)); }
+    .cdo-grid { gap: calc(16 * var(--u)); }
+    .cdo-item { padding: calc(12 * var(--u)) calc(10 * var(--u)) calc(12 * var(--u)); gap: calc(4 * var(--u)); }
+    .cdo-figure { width: calc(96 * var(--u)); height: calc(112 * var(--u)); }
+    .cdo-name { font-size: calc(30 * var(--u)); }
+    .cdo-blurb { font-size: calc(19 * var(--u)); min-height: calc(48 * var(--u)); }
+    .cdo-item .cd-skew { min-height: calc(80 * var(--u)); font-size: calc(32 * var(--u)); }
+    .cdo-back { min-height: calc(96 * var(--u)); padding: 0 calc(90 * var(--u)); }
+  }
+  @media (prefers-reduced-motion: reduce) { .cdo[data-slot], .cdo-card { animation: none; } }
+</style>
+<div class="cdo">
+  <div class="cd-card cdo-card" role="dialog">
+    <div class="cdo-head">
+      <h2 class="cdo-title" data-text="outfitter_title"></h2>
+      <div class="cdo-wallet">
+        <svg class="cd-coin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="#ffcf49" stroke="#713829" stroke-width="4"/><circle cx="26" cy="26" r="13" fill="none" stroke="#d99a1e" stroke-width="4"/></svg>
+        <span>COINS</span><b data-bind="wallet"></b>
+      </div>
+    </div>
+    <div class="cdo-grid" data-each="outfits">
+      <template>
+        <div class="cdo-item" data-class-is-worn="equipped" data-class-is-locked="not_owned">
+          <svg class="cdo-figure" viewBox="0 0 80 100" aria-hidden="true">
+            <g stroke="#713829" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M24 86 L30 58 L46 58 L52 86 Z" data-attr-fill="swatch"/>
+              <rect x="26" y="34" width="28" height="30" rx="8" data-attr-fill="swatch"/>
+              <circle cx="40" cy="20" r="13" fill="#ffe3a6"/>
+              <path d="M54 40 L72 52" fill="none"/><path d="M26 40 L10 54" fill="none"/>
+              <path d="M30 20 Q40 6 52 18" fill="none"/>
+            </g>
+          </svg>
+          <div class="cdo-name" data-bind="name"></div>
+          <div class="cdo-blurb" data-bind="blurb"></div>
+          <div class="cdo-price"><span style="display:contents" data-hide="owned"><svg class="cd-coin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="#ffcf49" stroke="#713829" stroke-width="4"/><circle cx="26" cy="26" r="13" fill="none" stroke="#d99a1e" stroke-width="4"/></svg><span data-bind="cost"></span></span></div>
+          <button class="cd-skew" data-action="buy" data-hide="owned" data-bind="buy_label"></button>
+          <button class="cd-skew" data-action="equip" data-show="can_equip" data-text="outfitter_equip"></button>
+          <button class="cd-skew is-worn-btn" disabled data-show="equipped" data-text="outfitter_equipped"></button>
+        </div>
+      </template>
+    </div>
+    <div class="cdo-foot">
+      <div class="cdo-msg" role="status"></div>
+      <button class="cd-skew is-primary cdo-back" data-action="close" data-key="KeyP" data-text="outfitter_close"></button>
+    </div>
+  </div>
+</div>

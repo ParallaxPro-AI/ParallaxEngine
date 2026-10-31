@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_dining_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.6, 0.984, 1.1],
+      "offset": [0, 0.492, 0]
+    }
+  }
+}

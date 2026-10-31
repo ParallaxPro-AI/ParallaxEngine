@@ -1,0 +1,26 @@
+{
+  "tags": ["kraken"],
+  "replicate_transform": true,
+  "components": {
+    "model": { "model": "models/kraken_tentacle", "cast_shadows": true },
+    "collider": { "shape": "capsule", "radius": 0.7, "height": 5.8, "offset": [0, 2.9, 0] },
+    "health": { "current": 130, "max": 130 },
+    "health_bar": { "offset": [0, 7, 0], "color": "#a3261b" },
+    "side": { "side": "side_sea" },
+    "bounty": { "gold": 95 }
+  },
+  "behaviors": {
+    "sea_monster": {
+      "sight": 24,
+      "reach": 9,
+      "damage": 22,
+      "lash_every": 1,
+      "hidden_depth": -3,
+      "surfaced_height": 1.2,
+      "rise_time": 1.5,
+      "lash_time": 1.2,
+      "sink_time": 1.7,
+      "rest_time": 7
+    }
+  }
+}

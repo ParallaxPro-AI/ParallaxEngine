@@ -1,0 +1,2 @@
+{ "name": "Oaken Ward", "blurb": "Cut from the shelf oaks above the river. It remembers the axe.",
+  "icon": "aegis", "category": "guard", "tier": 1, "cost": 480, "stats": { "max_health": 160 }, "builds_from": ["rough_hide"] }

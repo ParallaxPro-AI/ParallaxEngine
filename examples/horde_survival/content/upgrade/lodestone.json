@@ -1,0 +1,2 @@
+{ "name": "Lodestone", "desc": "+2.5m soul-mote pickup radius.",
+  "icon": "magnet", "weight": 7, "max_stacks": 4, "effect": { "pickup_add": 2.5 } }

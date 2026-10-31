@@ -1,0 +1,10 @@
+{
+  "id": "gallery_bench",
+  "summary": "A backless museum gallery bench: a deep buttoned leather cushion with a rolled, piped edge sitting on a solid… options upholstery, wood; sockets seat_l, seat_c, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gallery_bench or place \"prefab\": \"gallery_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gallery_bench"]
+}

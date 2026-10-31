@@ -1,0 +1,10 @@
+{
+  "id": "street_vendor",
+  "summary": "A street-market vendor: mustard short-sleeved blouse, an indigo checked mid-calf wrap skirt, an off-white can… options skin, hair, headwear, skirt_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_vendor or place \"prefab\": \"street_vendor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_vendor"]
+}

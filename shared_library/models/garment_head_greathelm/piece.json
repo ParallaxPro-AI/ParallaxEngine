@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_greathelm",
+  "summary": "A closed great helm: a straight-sided steel drum from below the jaw to a coned crown, a vision band split int… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_greathelm or place \"prefab\": \"garment_head_greathelm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_greathelm"]
+}

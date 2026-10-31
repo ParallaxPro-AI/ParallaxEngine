@@ -1,0 +1,10 @@
+{
+  "id": "pizza",
+  "summary": "A whole 30 cm pizza cut into eight slices on a round serving pan: a puffy rolled crust, a ring of tomato sauc… joints slice; options toppings, slice, base; sockets socket_top, socket_slice.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pizza or place \"prefab\": \"pizza\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pizza"]
+}

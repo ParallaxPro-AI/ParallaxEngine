@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/leg_press"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.48, 1.6617, 2.5165],
+      "offset": [0, 0.8308, 0.0574]
+    }
+  }
+}

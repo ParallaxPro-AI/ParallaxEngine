@@ -1,0 +1,18 @@
+{
+  "name": "Cargo Yards",
+  "blurb": "Containers, gantries, and a guard who knows the shortcuts.",
+  "tint": "#f5c518",
+  "end_distance": 1800,
+  "speed_scale": 1.12,
+  "gap_scale": 0.86,
+  "hard_bias": 0.35,
+  "powerup_scale": 0.85,
+  "fog_color": "#ada290",
+  "fog_near": 40,
+  "fog_far": 120,
+  "road": "road_cargo",
+  "buildings": ["building_cargo_0", "building_cargo_1"],
+  "encounters": ["truck", "dumpster", "gantry", "rest", "hurdle", "truck", "rest"],
+  "landmark": "landmark_crane",
+  "landmark_x": 20
+}

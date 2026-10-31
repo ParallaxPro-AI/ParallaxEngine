@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.3, 0.036],
+      "offset": [0, 0.15, 0]
+    }
+  }
+}

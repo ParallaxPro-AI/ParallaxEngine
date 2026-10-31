@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pinball_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.756, 1.9927, 1.446],
+      "offset": [0, 0.9964, 0.0615]
+    }
+  }
+}

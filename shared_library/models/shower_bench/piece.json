@@ -1,0 +1,10 @@
+{
+  "id": "shower_bench",
+  "summary": "A free-standing teak shower bench: six rounded seat slats with drainage gaps on a square-legged frame with en… options finish, decor; sockets seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shower_bench or place \"prefab\": \"shower_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shower_bench"]
+}

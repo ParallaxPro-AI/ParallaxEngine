@@ -1,0 +1,10 @@
+{
+  "id": "floor_lamp",
+  "summary": "A standing floor lamp with an adjustable tilting head and three interchangeable stands — a wooden tripod, a c… joints arm; options style, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.floor_lamp or place \"prefab\": \"floor_lamp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:floor_lamp"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "aircraft_carrier",
+  "summary": "A 330 m nuclear-style aircraft carrier: a lofted grey hull with a fine bow, bulbous forefoot, red antifouling… joints jbd_1, jbd_2, jbd_3, jbd_4, radar, elevator_1, …; options paint; sockets waterline, seat_driver, eye_point, socket_catapult_1, socket_catapult_2, socket_catapult_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.aircraft_carrier or place \"prefab\": \"aircraft_carrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:aircraft_carrier"]
+}

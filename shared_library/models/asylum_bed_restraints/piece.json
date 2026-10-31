@@ -1,0 +1,10 @@
+{
+  "id": "asylum_bed_restraints",
+  "summary": "An old asylum ward bed with leather restraints (real single hospital bed, about 1.96 x 0.92 m, head end 1.1 m… joints chest_strap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.asylum_bed_restraints or place \"prefab\": \"asylum_bed_restraints\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:asylum_bed_restraints"]
+}

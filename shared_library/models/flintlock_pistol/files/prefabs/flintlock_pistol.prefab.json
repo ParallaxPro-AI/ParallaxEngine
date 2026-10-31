@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flintlock_pistol"
+    },
+    "viewmodel_item": {
+      "hip": [0.0987, -0.2347, 0.4431],
+      "hip_turn": [-2.864789, -3.781521, -6.589015],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0473, 0.1527, 0.4308],
+      "offset": [0.0011, 0.0764, 0.0346]
+    }
+  }
+}

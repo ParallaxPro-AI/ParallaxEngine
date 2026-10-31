@@ -1,0 +1,10 @@
+{
+  "id": "flip_chart_easel",
+  "summary": "A tripod flip-chart easel for a meeting room: a white magnetic backing board in an aluminium frame, leaning b… joints page, rear_leg; options writing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flip_chart_easel or place \"prefab\": \"flip_chart_easel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flip_chart_easel"]
+}

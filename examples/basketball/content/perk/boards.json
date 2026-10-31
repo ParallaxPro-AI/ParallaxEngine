@@ -1,0 +1,2 @@
+{ "name": "Boards", "description": "Loose balls fall to you from further out.",
+  "category": "rebounding", "max_stacks": 2, "pickup_radius": 0.9 }

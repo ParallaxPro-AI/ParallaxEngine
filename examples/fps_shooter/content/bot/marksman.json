@@ -1,0 +1,1 @@
+{"name": "Marksman", "scale": 1.0, "health": 80, "damage": 24, "fire_interval": 2.3, "accuracy": 0.58, "reaction": 0.65, "sight_range": 62, "shoot_range": 60, "move_speed": 3.4, "stop_range": 24, "patrol_radius": 10, "score": 170, "tracer": "#8cd9ff", "look": {"headgear": "beret", "gear": "plain", "jacket": "ranger", "trousers": "ranger"}, "jacket_tint": "#344d4d"}

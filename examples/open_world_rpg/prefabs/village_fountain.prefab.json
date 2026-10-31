@@ -1,0 +1,39 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/6f/45/6f45ebaa46b3546400ce77364d654ae6958cf9a02a020ca93a5553dfda9e74f4.glb",
+      "scale": 1.6
+    },
+    "collider": {
+      "shape": "convex"
+    }
+  },
+  "children": [
+    {
+      "at": [
+        0,
+        3.0,
+        0
+      ],
+      "components": {
+        "particles": {
+          "effect": "vfx/fountain_jet",
+          "emitting": true
+        }
+      }
+    },
+    {
+      "at": [
+        0,
+        3.0,
+        0
+      ],
+      "components": {
+        "particles": {
+          "effect": "vfx/fountain_arcs",
+          "emitting": true
+        }
+      }
+    }
+  ]
+}

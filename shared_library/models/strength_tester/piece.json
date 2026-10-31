@@ -1,0 +1,10 @@
+{
+  "id": "strength_tester",
+  "summary": "A carnival high-striker / strongman game: a wooden base with a striker pad, two tall painted rails carrying a… joints puck, bell.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.strength_tester or place \"prefab\": \"strength_tester\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:strength_tester"]
+}

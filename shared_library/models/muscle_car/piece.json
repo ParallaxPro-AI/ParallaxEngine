@@ -1,0 +1,10 @@
+{
+  "id": "muscle_car",
+  "summary": "A classic two-door fastback muscle car: long bonnet with a raised intake scoop, a low roof sweeping into a sh… joints door_fl, door_fr, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.muscle_car or place \"prefab\": \"muscle_car\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:muscle_car"]
+}

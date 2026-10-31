@@ -1,0 +1,10 @@
+{
+  "id": "bike_rack",
+  "summary": "A 5-bay galvanised steel cycle stand: 5 inverted-U hoops of 48 mm tube bent on a 300 mm radius, welded with c… options finish; sockets socket_bay_0_l, socket_bay_0_r, socket_bay_1_l, socket_bay_1_r, socket_bay_2_l, socket_bay_2_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bike_rack or place \"prefab\": \"bike_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bike_rack"]
+}

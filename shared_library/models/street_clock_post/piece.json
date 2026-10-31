@@ -1,0 +1,10 @@
+{
+  "id": "street_clock_post",
+  "summary": "A Victorian two-faced street clock: a granite plinth, an octagonal cast-iron base, a tapered column with twel… joints minute, hour, minute_back, hour_back; options paint; sockets socket_dial_front, socket_dial_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_clock_post or place \"prefab\": \"street_clock_post\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_clock_post"]
+}

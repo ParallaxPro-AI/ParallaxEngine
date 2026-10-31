@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stock_car_racer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1550,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.13,
+        1.308,
+        5.07
+      ],
+      "offset": [
+        0,
+        0.654,
+        0
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 60,
+      "steering": 26,
+      "grip": 9,
+      "turn_rate": 1.7
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.654,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

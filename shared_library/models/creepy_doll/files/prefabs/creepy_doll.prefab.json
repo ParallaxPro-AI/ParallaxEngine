@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/creepy_doll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.182, 0.456, 0.1296],
+      "offset": [0, 0.228, 0]
+    }
+  }
+}

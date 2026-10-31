@@ -1,0 +1,7 @@
+{ "extends": "foe", "pool": 46,
+  "components": { "health_bar": { "offset": [0, 2.6, 0] } },
+  "children": [
+    { "at": [0, 0, 0], "scale": [1.3, 1.3, 1.3],
+      "components": { "model": { "model": "https://r2.parallaxpro.ai/assets/model_static/c2/00/c200ca24090387cc4b81c1c8b8575ee91abcc3396906a60e064628f017533c6f.glb", "cast_shadows": true } } }
+  ]
+}

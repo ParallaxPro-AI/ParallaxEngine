@@ -1,0 +1,10 @@
+{
+  "id": "gatehouse",
+  "summary": "A brick site-entrance gatehouse on a kerbed island: a 3.0 x 2.6 m lodge with a stone plinth course, a hipped… joints door, hatch, barrier_arm; options brick.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gatehouse or place \"prefab\": \"gatehouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gatehouse"]
+}

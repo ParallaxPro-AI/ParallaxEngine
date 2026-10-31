@@ -1,0 +1,78 @@
+<!-- Wayfinding and the carry chip in each chef's half, ported from the template's
+     hud/chef_guide and hud/chef_held_floating (one PlayerPanel, so it lives in its seat's
+     viewport; positions come from that seat's camera). Every station in range gets a glass
+     pin (station-colour dot, short name, a stem and a foot dot) hung over it; the station
+     that advances THIS chef is filled with its colour and its foot pulses; when it is off
+     the edge of the half, a station-coloured arrow + tag (name and distance) points at it.
+     The cream "carrying" pill hangs over the chef with the item's dot and name. -->
+<link rel="stylesheet" href="kitchen_kit.css">
+<style>
+  /* One seat's half of the vertical split: the design unit is the full screen's. */
+  .kr-root { --kr-u: min(calc(200cqw / 1920), calc(100cqh / 1080)); --kr-safe-l: calc(var(--kr-u) * 28); --kr-safe-r: calc(var(--kr-u) * 28); --kr-safe-t: calc(var(--kr-u) * 28); --kr-safe-b: calc(var(--kr-u) * 28); }
+  @media (pointer: coarse) { .kr-root { --kr-u: min(calc(200cqw / 844), calc(100cqh / 390)); } }
+  .krg-seat { position: fixed; inset: 0; overflow: hidden; pointer-events: none; z-index: 2; }
+  .krg-pin { position: absolute; transform: translate(-50%, -100%); display: none; flex-direction: column; align-items: center; --c: var(--kr-st-bin); }
+  .krg-pin.on { display: flex; }
+  .krg-tag { display: flex; align-items: center; gap: calc(var(--kr-u) * 7); padding: calc(var(--kr-u) * 5) calc(var(--kr-u) * 12) calc(var(--kr-u) * 5) calc(var(--kr-u) * 8); border-radius: 999px; background: var(--kr-glass); border: 1px solid var(--kr-glass-line); font: 800 calc(var(--kr-u) * 15)/1.2 var(--kr-font-body); color: var(--kr-text); white-space: nowrap; }
+  .krg-tag b { font-weight: 700; color: var(--kr-text-dim); }
+  .krg-tag b:empty { display: none; }
+  .krg-dot { width: calc(var(--kr-u) * 11); height: calc(var(--kr-u) * 11); border-radius: 50%; background: currentColor; flex: none; }
+  .krg-stem { width: 2px; height: calc(var(--kr-u) * 18); background: linear-gradient(currentColor, transparent); }
+  .krg-foot { width: calc(var(--kr-u) * 8); height: calc(var(--kr-u) * 8); border-radius: 50%; background: currentColor; box-shadow: 0 0 0 calc(var(--kr-u) * 3) rgba(0,0,0,.35); }
+  .krg-pin.goal { z-index: 2; }
+  .krg-pin.goal .krg-tag { color: #14110e; border-color: transparent; font-size: calc(var(--kr-u) * 18); padding: calc(var(--kr-u) * 7) calc(var(--kr-u) * 16) calc(var(--kr-u) * 7) calc(var(--kr-u) * 10); box-shadow: 0 0 0 calc(var(--kr-u) * 4) rgba(255,255,255,.18), 0 calc(var(--kr-u) * 8) calc(var(--kr-u) * 18) rgba(0,0,0,.4); }
+  .krg-pin.goal .krg-tag b { color: rgba(20,17,14,.7); }
+  .krg-pin.goal .krg-dot { background: #14110e; }
+  .krg-pin.goal .krg-stem { height: calc(var(--kr-u) * 26); width: 3px; }
+  .krg-pin.goal .krg-foot { animation: kr-ring 1.4s ease-out infinite; }
+  .krg-pin.ready .krg-tag { border-color: rgba(255,227,138,.75); color: var(--kr-ready); }
+  .krg-pin.burnt .krg-tag { border-color: rgba(239,68,68,.8); color: #ffd2c4; }
+  .krg-pin.cooking .krg-dot { animation: kr-cook 1.2s linear infinite; }
+  .krg-pin.goal.ready .krg-tag, .krg-pin.goal.burnt .krg-tag { color: #14110e; }
+  .krg-edge { position: absolute; display: none; align-items: center; gap: calc(var(--kr-u) * 8); transform: translate(-50%, -50%); animation: kr-nudge 1.2s ease-in-out infinite; }
+  .krg-edge.on { display: flex; }
+  .krg-edge.col { flex-direction: column; }
+  .krg-edge.rev { flex-direction: row-reverse; }
+  .krg-edge.col.rev { flex-direction: column-reverse; }
+  .krg-arr { width: 0; height: 0; border-left: calc(var(--kr-u) * 14) solid transparent; border-right: calc(var(--kr-u) * 14) solid transparent; border-bottom: calc(var(--kr-u) * 20) solid currentColor; filter: drop-shadow(0 calc(var(--kr-u) * 2) calc(var(--kr-u) * 6) rgba(0,0,0,.55)); flex: none; }
+  .krg-etag { position: relative; color: #14110e; font: 800 calc(var(--kr-u) * 17)/1.2 var(--kr-font-body); padding: calc(var(--kr-u) * 6) calc(var(--kr-u) * 14); border-radius: 999px; white-space: nowrap; box-shadow: 0 calc(var(--kr-u) * 4) calc(var(--kr-u) * 10) rgba(0,0,0,.35); }
+  @media (pointer: coarse) {
+    .krg-tag { font-size: max(10px, calc(var(--kr-u) * 11)); padding: calc(var(--kr-u) * 3) calc(var(--kr-u) * 9) calc(var(--kr-u) * 3) calc(var(--kr-u) * 6); gap: calc(var(--kr-u) * 5); }
+    .krg-dot { width: calc(var(--kr-u) * 8); height: calc(var(--kr-u) * 8); }
+    .krg-stem { height: calc(var(--kr-u) * 10); }
+    .krg-foot { width: calc(var(--kr-u) * 6); height: calc(var(--kr-u) * 6); }
+    .krg-pin.goal .krg-tag { font-size: calc(var(--kr-u) * 13); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 11) calc(var(--kr-u) * 4) calc(var(--kr-u) * 7); }
+    .krg-pin.goal .krg-stem { height: calc(var(--kr-u) * 14); }
+    .krg-arr { border-left-width: calc(var(--kr-u) * 9); border-right-width: calc(var(--kr-u) * 9); border-bottom-width: calc(var(--kr-u) * 13); }
+    .krg-etag { font-size: max(10px, calc(var(--kr-u) * 12)); padding: calc(var(--kr-u) * 4) calc(var(--kr-u) * 10); }
+  }
+  /* The goal tag's and the edge tag's fill: a layer coloured with the station colour. */
+  .krg-tag, .krg-etag { position: relative; isolation: isolate; }
+  .krg-fill { position: absolute; inset: 0; border-radius: inherit; background: currentColor; display: none; z-index: -1; }
+  .krg-pin.goal .krg-fill, .krg-etag .krg-fill { display: block; }
+  .krg-tag > span, .krg-tag > b, .krg-etag > span { position: relative; }
+  .krh { position: fixed; top: 0; left: 0; z-index: 3; pointer-events: none; transform: translate(-50%, -100%); display: none; align-items: center; gap: calc(var(--kr-u) * 7); padding: calc(var(--kr-u) * 5) calc(var(--kr-u) * 12) calc(var(--kr-u) * 5) calc(var(--kr-u) * 7); border-radius: 999px; background: var(--kr-cream); color: var(--kr-ink); font: 800 calc(var(--kr-u) * 15)/1.2 var(--kr-font-body); white-space: nowrap; box-shadow: 0 calc(var(--kr-u) * 4) calc(var(--kr-u) * 10) rgba(0,0,0,.4); }
+  .krh.on { display: inline-flex; }
+  .krh i { width: calc(var(--kr-u) * 14); height: calc(var(--kr-u) * 14); border-radius: 50%; background: var(--kr-st-bin); box-shadow: inset 0 calc(var(--kr-u) * -2) 0 rgba(0,0,0,.2); flex: none; }
+  @media (pointer: coarse) {
+    .krh { font-size: max(10px, calc(var(--kr-u) * 11)); padding: calc(var(--kr-u) * 3) calc(var(--kr-u) * 9) calc(var(--kr-u) * 3) calc(var(--kr-u) * 5); gap: calc(var(--kr-u) * 5); }
+    .krh i { width: calc(var(--kr-u) * 10); height: calc(var(--kr-u) * 10); }
+  }
+</style>
+<div class="kr-root">
+  <div class="krg-seat">
+    <div data-each="pins">
+      <template>
+        <div class="krg-pin on" data-class-goal="goal" data-class-cooking="cooking" data-class-ready="ready" data-class-burnt="burnt" data-style-left="x" data-style-top="y">
+          <div class="krg-tag"><i class="krg-fill" data-style-color="color"></i><i class="krg-dot" data-style-color="color"></i><span data-bind="label"></span><b data-bind="distance"></b></div>
+          <span class="krg-stem" data-style-color="color"></span><span class="krg-foot" data-style-color="color"></span>
+        </div>
+      </template>
+    </div>
+    <div class="krg-edge" data-class-on="edge" data-class-col="edge_col" data-class-rev="edge_rev" data-style-left="edge_x" data-style-top="edge_y">
+      <span class="krg-arr" data-style-color="edge_color" data-style-transform="edge_turn"></span>
+      <span class="krg-etag"><i class="krg-fill" data-style-color="edge_color"></i><span data-bind="edge_label"></span></span>
+    </div>
+    <div class="krh" data-class-on="carrying" data-style-left="held_x" data-style-top="held_y"><i data-style-background="held_color"></i><span data-bind="held"></span></div>
+  </div>
+</div>

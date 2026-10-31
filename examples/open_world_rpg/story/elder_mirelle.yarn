@@ -1,0 +1,20 @@
+title: start
+---
+<<if not $welcome_hero_done>>
+Elder Mirelle: You came. Good — the lanterns told me you would.
+Elder Mirelle: Our scout, Rowan, never came back from the caravan road.
+Elder Mirelle: Follow the lanterns past the gate and find the broken caravan.
+<<elseif not $goblin_menace_done>>
+Elder Mirelle: Raiders hold the caravan. Clear all three before you look for Rowan.
+<<elseif not $restless_barrow_done>>
+Elder Mirelle: The road is clear. Rowan should be beside the broken cart.
+<<elseif not $shaman_circle_done>>
+Elder Mirelle: Two channelers feed the rift at the blue beacon in the woods. Break their circle.
+<<elseif not $ironhold_done>>
+Elder Mirelle: The binding is broken. The Gatekeeper still holds the first hall of the ruins.
+<<elseif not $shadow_dungeon_done>>
+Elder Mirelle: Malakar wakes. Stop the ritual before the light goes out.
+<<else>>
+Elder Mirelle: The rift is silent. The lanterns of Sundermere will burn another night.
+<<endif>>
+===

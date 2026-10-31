@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/otter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2399, 0.2899, 1.3956],
+      "offset": [0, 0.145, -0.0733]
+    }
+  }
+}

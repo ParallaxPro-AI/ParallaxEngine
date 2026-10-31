@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arrow_marker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9375, 1.305, 0.42],
+      "offset": [0.0088, 0.6525, 0]
+    }
+  }
+}

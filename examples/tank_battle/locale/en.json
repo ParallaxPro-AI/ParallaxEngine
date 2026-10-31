@@ -1,0 +1,21 @@
+{
+  "pause": "Pause",
+  "resume": "Resume",
+  "victory": "VICTORY!",
+  "defeat": "DESTROYED",
+  "wave_number": "WAVE {number}",
+  "engage": "ENGAGE!",
+  "wave_clear": "WAVE CLEAR",
+  "flawless": "FLAWLESS — +{bonus}",
+  "critical": "Critical",
+  "repair_ready": "Repair ready",
+  "no_upgrades": "none",
+  "next_assault": "Prepare for next assault",
+  "all_hostiles": "All hostiles eliminated",
+  "advancing": "Advancing to the next battlefield",
+  "ammo_resupplied": "AMMO RESUPPLIED",
+  "drum_detonated": "FUEL DRUM DETONATED",
+  "caught_in_blast": "CAUGHT IN THE BLAST",
+  "hull_repaired": "HULL REPAIRED +{amount}",
+  "fire_zone": "FIRE CONTROL ZONE — +{bonus}% DAMAGE"
+}

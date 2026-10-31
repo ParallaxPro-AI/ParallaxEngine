@@ -1,0 +1,10 @@
+{
+  "id": "baby_stroller",
+  "summary": "A four-wheel pushchair: an aluminium tube frame (front legs, rear legs and handle tubes meeting at folding hu… joints canopy, brake, caster_f_l, wheel_f_l, caster_f_r, wheel_f_r, …; options fabric; sockets seat_child, push_handle, socket_basket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baby_stroller or place \"prefab\": \"baby_stroller\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baby_stroller"]
+}

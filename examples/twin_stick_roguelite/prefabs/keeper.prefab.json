@@ -1,0 +1,86 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/6d/db/6ddb9d649c0c917cc1c57a02ca3aced99ceffd3099f04951cda11a41b3e5911a.glb",
+      "cast_shadows": true
+    },
+    "character": {
+      "mode": "3d",
+      "walk_speed": 7,
+      "acceleration": 32,
+      "radius": 0.4,
+      "height": 1.7
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.4,
+      "height": 1.7,
+      "layer": "keeper",
+      "collides_with": [
+        "wall",
+        "prop",
+        "foe",
+        "spit",
+        "pickup"
+      ]
+    },
+    "health": {
+      "current": 6,
+      "max": 6,
+      "invulnerable_after_hit": 1.2,
+      "destroy_on_death": false
+    },
+    "side": {
+      "side": "side_keepers"
+    },
+    "light": {
+      "kind": "point",
+      "color": "#ffa64d",
+      "intensity": 1.6,
+      "range": 16
+    },
+    "animator": {
+      "params": {
+        "speed": 0
+      },
+      "layers": [
+        {
+          "name": "base",
+          "states": {
+            "move": {
+              "blend": {
+                "param": "speed",
+                "clips": [
+                  {
+                    "at": 0,
+                    "clip": "Idle"
+                  },
+                  {
+                    "at": 3,
+                    "clip": "Walk"
+                  },
+                  {
+                    "at": 7,
+                    "clip": "Run"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "tags": [
+    "keeper"
+  ],
+  "behaviors": {
+    "keeper_movement": {},
+    "shard_shooter": {},
+    "bomb_thrower": {
+      "radius": 4.5,
+      "damage": 24
+    },
+    "keeper_feedback": {}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bounce_mushroom",
+  "summary": "A giant fantasy bounce mushroom for platformers: a 1.6 m wide glossy violet-magenta dome cap with cream spots… joints cap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bounce_mushroom or place \"prefab\": \"bounce_mushroom\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bounce_mushroom"]
+}

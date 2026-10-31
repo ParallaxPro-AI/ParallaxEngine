@@ -1,0 +1,1 @@
+{ "name": "Wooden Pickaxe", "icon": "pickaxe", "color": "#99663a", "stack_max": 1, "tool": "pickaxe", "view": "pickaxe_view", "tier": 0, "mine_speed": 1.55, "damage": 7, "reach": 5 }

@@ -1,0 +1,8 @@
+{
+  "id": "humanoid_combat",
+  "summary": "Humanoid melee swings, thrust, bow shot, spell casts and channels, guard, evade leap/recover, downed and get-up clips, with hit/release markers.",
+  "version": "2026.10.23",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.channel_cast) or \"clip\": \"clips/overhead_swing\" in an animation graph. They retarget onto any humanoid skeleton by bone name."
+  ]
+}

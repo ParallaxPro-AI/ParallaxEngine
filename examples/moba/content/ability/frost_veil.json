@@ -1,0 +1,15 @@
+{
+  "name": "Frost Veil",
+  "blurb": "A patch of ground nobody wants to stand on.",
+  "kind": "ground",
+  "cooldown": { "base": 14, "per_rank": -1 },
+  "mana": { "base": 60, "per_rank": 6 },
+  "damage": { "base": 55, "per_rank": 30 },
+  "damage_kind": "magic",
+  "range": { "base": 12 },
+  "radius": { "base": 4.5, "per_rank": 0.3 },
+  "effect": "chilled",
+  "effect_seconds": 2,
+  "cast_vfx": "vfx/bolt_cast",
+  "vfx": "vfx/bolt"
+}

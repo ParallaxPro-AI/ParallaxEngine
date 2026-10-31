@@ -1,0 +1,10 @@
+{
+  "id": "flower_bucket_stand",
+  "summary": "A florist's three-tier bucket stand: a black steel ladder frame with weathered plank tiers stepping up toward… options frame_finish, contents; sockets socket_tier_0, socket_tier_1, socket_tier_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flower_bucket_stand or place \"prefab\": \"flower_bucket_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flower_bucket_stand"]
+}

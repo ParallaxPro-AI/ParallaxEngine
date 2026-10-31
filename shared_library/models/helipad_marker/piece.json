@@ -1,0 +1,10 @@
+{
+  "id": "helipad_marker",
+  "summary": "A 12 x 12 m helicopter landing pad: an 80 mm concrete slab with flush expansion joints, a white touchdown rin… options surface, marking; sockets touchdown, approach.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.helipad_marker or place \"prefab\": \"helipad_marker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:helipad_marker"]
+}

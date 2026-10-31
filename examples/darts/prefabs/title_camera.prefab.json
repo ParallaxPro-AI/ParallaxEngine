@@ -1,0 +1,9 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 31,
+      "background": "#141217"
+    }
+  }
+}

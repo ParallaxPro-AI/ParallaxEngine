@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/road_block_sandbags_cars"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.9025, 1.33, 3.8817],
+      "offset": [0.0206, 0.665, 0.1289]
+    }
+  }
+}

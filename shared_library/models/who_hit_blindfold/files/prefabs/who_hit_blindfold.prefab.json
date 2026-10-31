@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/who_hit_blindfold"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.235, 0.1641, 0.2986],
+      "offset": [0, -0.0421, 0.0343]
+    }
+  }
+}

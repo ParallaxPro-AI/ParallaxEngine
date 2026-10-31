@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/houseplant_fiddle_leaf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8534, 1.8398, 0.7379],
+      "offset": [0.0342, 0.9199, -0.003]
+    }
+  }
+}

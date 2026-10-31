@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cement_bag_pallet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2292, 1.117, 1.0294],
+      "offset": [-0.0004, 0.5585, -0.0007]
+    }
+  }
+}

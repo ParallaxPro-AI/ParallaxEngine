@@ -1,0 +1,10 @@
+{
+  "id": "radar_dish",
+  "summary": "A 4 m tracking radar on a steel pedestal: a concrete pad, a tapered column with an access door and ladder up… joints azimuth, elevation; sockets beam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.radar_dish or place \"prefab\": \"radar_dish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:radar_dish"]
+}

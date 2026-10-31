@@ -1,0 +1,1 @@
+{ "name": "Extra Bloom", "description": "+1 bomb capacity, and grant one now.", "stat": "max_bombs", "add": 1, "max_stacks": 2, "grant_bombs": 1 }

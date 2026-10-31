@@ -1,0 +1,10 @@
+{
+  "id": "thatched_cottage",
+  "summary": "An English thatched cottage, 8.4 x 5 m: limewashed cob walls with soft rounded corners on a dark tarred plint… joints door; sockets socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.thatched_cottage or place \"prefab\": \"thatched_cottage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:thatched_cottage"]
+}

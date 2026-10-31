@@ -1,0 +1,1 @@
+{ "name": "Ironhelm", "prefab": "husk_ironhelm", "health": 540, "speed": 0.42, "bite_damage": 14, "bite_interval": 0.8, "bounty": 35 }

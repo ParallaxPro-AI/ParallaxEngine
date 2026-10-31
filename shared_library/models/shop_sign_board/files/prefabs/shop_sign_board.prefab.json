@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shop_sign_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1026, 1.0307, 0.964],
+      "offset": [0.0063, 0.5147, 0.016]
+    }
+  }
+}

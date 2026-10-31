@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hedgehog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.184, 0.1447, 0.2876],
+      "offset": [0, 0.0715, 0.0152]
+    }
+  }
+}

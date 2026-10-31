@@ -1,0 +1,14 @@
+{
+  "id": "seesaw",
+  "summary": "A playground seesaw: a long painted plank that rocks on a central A-frame fulcrum, with a seat pad and a… joints plank.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.seesaw or place \"prefab\": \"seesaw\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:seesaw"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hospital_curtain_screen"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9005, 1.7725, 0.3933],
+      "offset": [0, 0.8862, -0.0086]
+    }
+  }
+}

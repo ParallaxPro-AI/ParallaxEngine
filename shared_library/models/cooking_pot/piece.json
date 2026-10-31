@@ -1,0 +1,10 @@
+{
+  "id": "cooking_pot",
+  "summary": "A 5 litre stainless stockpot: a lathed hollow body with a rolled rim and a thick encapsulated base, two rivet… joints lid; options lid, finish; sockets socket_contents, socket_lid_top, steam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cooking_pot or place \"prefab\": \"cooking_pot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cooking_pot"]
+}

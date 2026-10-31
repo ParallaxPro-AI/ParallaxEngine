@@ -1,0 +1,10 @@
+{
+  "id": "cipher_wheel",
+  "summary": "A three-ring cipher wheel (substitution decoder disk) lying flat: a 150 mm brass base disc engraved A-Z, a co… joints ring_middle, ring_inner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cipher_wheel or place \"prefab\": \"cipher_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cipher_wheel"]
+}

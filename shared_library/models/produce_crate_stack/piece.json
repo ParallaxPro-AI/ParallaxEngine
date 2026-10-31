@@ -1,0 +1,10 @@
+{
+  "id": "produce_crate_stack",
+  "summary": "A small stack of three slatted wooden field crates of fresh harvest: two side by side - one heaped with red a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.produce_crate_stack or place \"prefab\": \"produce_crate_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:produce_crate_stack"]
+}

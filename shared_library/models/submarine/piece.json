@@ -1,0 +1,10 @@
+{
+  "id": "submarine",
+  "summary": "A small military submarine: a capsule pressure hull with a rounded bow, a conning tower (sail) carrying an op… joints conning_hatch, planes, propeller; sockets socket_bridge, socket_bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.submarine or place \"prefab\": \"submarine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:submarine"]
+}

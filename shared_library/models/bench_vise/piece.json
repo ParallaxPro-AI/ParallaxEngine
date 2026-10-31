@@ -1,0 +1,10 @@
+{
+  "id": "bench_vise",
+  "summary": "A 125 mm engineer's bench vise: a cast swivel base with two bolt-down ears and a lock lever, a fixed jaw body… joints swivel, jaw, handle; options paint; sockets workpiece.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bench_vise or place \"prefab\": \"bench_vise\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bench_vise"]
+}

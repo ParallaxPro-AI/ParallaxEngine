@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_headphones"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.295, 0.23, 0.09],
+      "offset": [0, 1.783, -0.005]
+    }
+  }
+}

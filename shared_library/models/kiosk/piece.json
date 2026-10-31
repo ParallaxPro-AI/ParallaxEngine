@@ -1,0 +1,10 @@
+{
+  "id": "kiosk",
+  "summary": "A painted-steel street kiosk (newsstand), 2.0 x 1.5 m: glazed side windows, a front opening closed by two fla… joints awning_flap, counter_flap, rear_door; options colour; sockets socket_counter, socket_vendor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kiosk or place \"prefab\": \"kiosk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kiosk"]
+}

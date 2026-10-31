@@ -1,0 +1,10 @@
+{
+  "id": "luxury_dresser",
+  "summary": "Luxury six-drawer dresser: a smoked-walnut chest of three columns by two rows of drawers with brass bar pulls… joints drawer_00, drawer_01, drawer_10, drawer_11, drawer_20, drawer_21; options styling, wood, metal, top; sockets surface_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_dresser or place \"prefab\": \"luxury_dresser\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_dresser"]
+}

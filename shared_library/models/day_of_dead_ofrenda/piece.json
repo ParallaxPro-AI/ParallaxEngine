@@ -1,0 +1,10 @@
+{
+  "id": "day_of_dead_ofrenda",
+  "summary": "A Day of the Dead ofrenda: a three-tier cloth-draped altar (purple, white and magenta with lace-scalloped val…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.day_of_dead_ofrenda or place \"prefab\": \"day_of_dead_ofrenda\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:day_of_dead_ofrenda"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "slot_machine",
+  "summary": "An upright casino slot machine: black cabinet with coloured side panels and chrome corner mouldings, a lit 77… joints belly_door, spin_button, reel_1, reel_2, reel_3, lever; options trim, topper; sockets player_spot, payout_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.slot_machine or place \"prefab\": \"slot_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:slot_machine"]
+}

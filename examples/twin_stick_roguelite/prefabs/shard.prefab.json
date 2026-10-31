@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.4, 0.4, 0.4], "color": "#99ccff", "emissive": "#80c0ff" },
+    "rigidbody": { "kind": "kinematic", "continuous": true },
+    "collider": { "shape": "sphere", "radius": 0.2, "trigger": true, "layer": "shard", "collides_with": ["foe", "prop", "wall"] }
+  },
+  "behaviors": { "projectile": {} },
+  "pool": 32
+}

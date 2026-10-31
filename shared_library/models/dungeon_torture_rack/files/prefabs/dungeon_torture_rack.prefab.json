@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dungeon_torture_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4051, 1.2476, 1.28],
+      "offset": [0, 0.6238, 0]
+    }
+  }
+}

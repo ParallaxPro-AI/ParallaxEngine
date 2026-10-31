@@ -1,0 +1,10 @@
+{
+  "id": "shovel",
+  "summary": "A long-handled round-point digging shovel, 1.45 m: a straight ash shaft into a pressed-steel socket whose ton… options blade_colour, shaft_wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.shovel or place \"prefab\": \"shovel\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:shovel"]
+}

@@ -1,0 +1,24 @@
+{
+  "pieces": {
+    "kitchen_bin": {
+      "from": "shared_library/models/kitchen_bin",
+      "version": "2026.10.23",
+      "sha": "9ec897a8e9bed90a8bdf445591d138eb5d74ef4a8143cf959186fbfc364be7eb",
+      "files": {
+        "assets/models/kitchen_bin.model.json": "9d68393cf1106ca0f10015e02cdf41c430af255cf6673c23818e75444e52dafc",
+        "prefabs/kitchen_bin.prefab.json": "4c6d98957820437ed6c4b6d7fa2306679e3f89f44140af62ae14e4d36799758f"
+      },
+      "text": {}
+    },
+    "model_ambient": {
+      "from": "shared_library/props/model_ambient",
+      "version": "2026.10.23",
+      "sha": "a418e8b0f169752af3b9067babaf2da4a788c67cc0466c40dd9f31af97f5540a",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/model_ambient.py": "dde4a86a3aba3bbbb2894042d425db7347dd65202d817c796d762680e753f4c4"
+      },
+      "text": {}
+    }
+  }
+}

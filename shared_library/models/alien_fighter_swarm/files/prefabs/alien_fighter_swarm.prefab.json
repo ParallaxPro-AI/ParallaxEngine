@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alien_fighter_swarm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.9743, 1.4057, 6.7007],
+      "offset": [0, 0.7029, 0.4004]
+    }
+  }
+}

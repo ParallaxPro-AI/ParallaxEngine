@@ -1,0 +1,10 @@
+{
+  "id": "cordless_drill_set",
+  "summary": "A cordless drill-driver kit in its blow-moulded carry case, shown open: a rounded two-piece case with a mould… joints lid, latch_l, latch_r; options case; sockets socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cordless_drill_set or place \"prefab\": \"cordless_drill_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cordless_drill_set"]
+}

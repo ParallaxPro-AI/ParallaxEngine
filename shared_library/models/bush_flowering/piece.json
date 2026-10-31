@@ -1,0 +1,10 @@
+{
+  "id": "bush_flowering",
+  "summary": "A flowering garden shrub of the mophead-hydrangea type, about 1.2 m across and 1.05 m tall: a rounded mass of…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bush_flowering or place \"prefab\": \"bush_flowering\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bush_flowering"]
+}

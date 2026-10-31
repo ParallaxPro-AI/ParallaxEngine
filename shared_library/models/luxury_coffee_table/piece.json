@@ -1,0 +1,10 @@
+{
+  "id": "luxury_coffee_table",
+  "summary": "Luxury nesting coffee table: a honed travertine slab on a reeded travertine drum, and a lower waisted brass-d… joints side_table; options styling, stone, metal; sockets surface_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_coffee_table or place \"prefab\": \"luxury_coffee_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_coffee_table"]
+}

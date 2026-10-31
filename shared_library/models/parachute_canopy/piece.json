@@ -1,0 +1,10 @@
+{
+  "id": "parachute_canopy",
+  "summary": "An inflated round military parachute in descent: a 7.6 m olive canopy of 24 ballooning gores with hard radial… options payload; sockets socket_harness, socket_cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parachute_canopy or place \"prefab\": \"parachute_canopy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parachute_canopy"]
+}

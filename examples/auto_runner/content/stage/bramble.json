@@ -1,0 +1,13 @@
+{
+  "name": "Bramble Wash",
+  "subtitle": "the scrub thickens",
+  "from_distance": 150,
+  "speed_cap": 13.0,
+  "speed_ramp": 0.46,
+  "gap_scale": 1.2,
+  "air_chance": 0.0,
+  "coin_chance": 0.6,
+  "sky": [0.98, 0.79, 0.55],
+  "ground": [0.585, 0.316, 0.171],
+  "weights": {"rock": 8, "cactus": 5, "bramble": 3}
+}

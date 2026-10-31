@@ -1,0 +1,24 @@
+{
+  "rate": 120,
+  "duration": 0.14,
+  "lifetime": [
+    0.3,
+    0.7
+  ],
+  "speed": [
+    1.0,
+    4.0
+  ],
+  "direction": 150,
+  "spread": 120,
+  "gravity": [
+    -3,
+    -1
+  ],
+  "size": 0.35,
+  "size_end": 0,
+  "color": "#d99e6bcc",
+  "color_end": "#b3734700",
+  "max": 80,
+  "image": "https://r2.parallaxpro.ai/assets/image_sprite/07/1f/071fc6d601b650b6aad5bf1e5ff83bcaaed37c126bfd67320e8395b4fac37bbf.png"
+}

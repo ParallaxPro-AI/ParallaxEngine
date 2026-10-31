@@ -1,0 +1,10 @@
+{
+  "id": "bastion",
+  "summary": "A squat drum keep guarding a lane mouth: a splayed octagonal footing, a battered drum body, a corbelled machi… options team, trim, damage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bastion or place \"prefab\": \"bastion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bastion"]
+}

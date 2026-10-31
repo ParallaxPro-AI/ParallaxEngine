@@ -1,0 +1,10 @@
+{
+  "id": "camo_net",
+  "summary": "A field camouflage-net canopy (6 x 5 m, 2.75 m at the ridge): a loose olive net draped over five sectional st… sockets under.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camo_net or place \"prefab\": \"camo_net\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camo_net"]
+}

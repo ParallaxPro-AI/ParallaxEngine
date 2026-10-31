@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mech_hangar_gantry"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.6, 7.55, 4.6],
+      "offset": [0, 3.775, 0]
+    }
+  }
+}

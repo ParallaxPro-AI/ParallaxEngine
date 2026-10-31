@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/thatched_cottage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.862, 7.96, 6.64],
+      "offset": [0.071, 3.98, 0.16]
+    }
+  }
+}

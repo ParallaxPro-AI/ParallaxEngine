@@ -1,0 +1,10 @@
+{
+  "id": "alien_plant_pod",
+  "summary": "A xenobotany specimen pod: a faceted white tech base with a lit ring, vents and a status screen carries a cle… joints seed_pod, dome; options bio, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alien_plant_pod or place \"prefab\": \"alien_plant_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alien_plant_pod"]
+}

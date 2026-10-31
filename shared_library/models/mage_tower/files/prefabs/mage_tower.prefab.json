@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mage_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 4, 2.4],
+      "offset": [0, 2, 0]
+    }
+  }
+}

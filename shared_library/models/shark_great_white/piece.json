@@ -1,0 +1,10 @@
+{
+  "id": "shark_great_white",
+  "summary": "A great white shark, 4.4 m snout to tail fork: a torpedo station-ladder body, deepest behind the gills, slate… joints jaw, body_flex, tail_beat; options skin; sockets mouth, dorsal_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shark_great_white or place \"prefab\": \"shark_great_white\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shark_great_white"]
+}

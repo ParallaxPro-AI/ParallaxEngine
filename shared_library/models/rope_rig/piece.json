@@ -1,0 +1,10 @@
+{
+  "id": "rope_rig",
+  "summary": "A steel gantry frame — two raked posts and a crossbeam, cross-braced — with a rope hanging dead-centre from t… sockets socket_anchor, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rope_rig or place \"prefab\": \"rope_rig\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rope_rig"]
+}

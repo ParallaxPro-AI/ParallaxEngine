@@ -1,0 +1,10 @@
+{
+  "id": "bat_swarm_unit",
+  "summary": "A swarm of six bats as ONE enemy unit, about 1.5 m across and 1.1 m tall: six dark-brown microbats (0.56 m wi… joints b0_wing_flap_l, b0_wing_flap_r, b1_wing_flap_l, b1_wing_flap_r, b2_wing_flap_l, b2_wing_flap_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bat_swarm_unit or place \"prefab\": \"bat_swarm_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bat_swarm_unit"]
+}

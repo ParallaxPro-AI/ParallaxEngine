@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basic_bookcase"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.81, 1.6, 0.31],
+      "offset": [0, 0.8, 0]
+    }
+  }
+}

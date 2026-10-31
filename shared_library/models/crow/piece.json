@@ -1,0 +1,10 @@
+{
+  "id": "crow",
+  "summary": "A common crow (carrion / American crow) standing on the ground, life size: 0.46 m beak to tail tip (real 0.40… joints head_turn, beak_open; sockets beak.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crow or place \"prefab\": \"crow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crow"]
+}

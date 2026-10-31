@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/asteroid_large"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.4396, 4.5323, 5.2975],
+      "offset": [0, 2.2661, 0]
+    }
+  }
+}

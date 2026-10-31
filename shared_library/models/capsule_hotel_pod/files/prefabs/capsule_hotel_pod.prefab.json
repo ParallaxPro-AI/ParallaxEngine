@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/capsule_hotel_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.263, 2.6, 2.213],
+      "offset": [0.0115, 1.3, 0.0465]
+    }
+  }
+}

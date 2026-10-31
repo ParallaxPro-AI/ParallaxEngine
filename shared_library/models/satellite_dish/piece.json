@@ -1,0 +1,10 @@
+{
+  "id": "satellite_dish",
+  "summary": "A 90 cm satellite TV dish on a galvanised mast: a white pressed-steel reflector with a rolled rim and a ribbe… joints azimuth, elevation; options mount, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.satellite_dish or place \"prefab\": \"satellite_dish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:satellite_dish"]
+}

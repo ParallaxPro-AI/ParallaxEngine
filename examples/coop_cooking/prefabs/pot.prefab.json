@@ -1,0 +1,11 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/10/cf/10cf9b1d34bd1756967abdd75da7b71a0952bb3c9faa89f875cd63bc9c3bfa60.glb",
+      "cast_shadows": true,
+      "colors": {
+        "Grey": "#ffffff"
+      }
+    }
+  }
+}

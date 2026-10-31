@@ -1,0 +1,10 @@
+{
+  "id": "bipod",
+  "summary": "A folding rifle bipod for a bottom rail, deployed: a black rail clamp and yoke with a swivel tension knob and… joints leg_l, extend_l, leg_r, extend_r; sockets socket_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bipod or place \"prefab\": \"bipod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bipod"]
+}

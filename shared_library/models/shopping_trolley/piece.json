@@ -1,0 +1,10 @@
+{
+  "id": "shopping_trolley",
+  "summary": "A supermarket shopping trolley: a tapered zinc wire basket (lower and shorter at the nose so carts nest), a r… joints child_seat_flap, castor_0, castor_1, castor_2, castor_3; options body; sockets socket_basket, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shopping_trolley or place \"prefab\": \"shopping_trolley\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shopping_trolley"]
+}

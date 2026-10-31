@@ -1,0 +1,10 @@
+{
+  "id": "craps_table",
+  "summary": "A casino craps table: a deep oval veneered cabinet on bun feet with a sunken green play well, diamond-pyramid… options felt, leather; sockets stand_0, stand_1, stand_2, stand_3, stand_4, stand_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.craps_table or place \"prefab\": \"craps_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:craps_table"]
+}

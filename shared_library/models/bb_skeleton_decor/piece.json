@@ -1,0 +1,10 @@
+{
+  "id": "bb_skeleton_decor",
+  "summary": "Standing skeletal pirate remains, with readable rib cage, pelvis and skull sockets; no unseen rig or high-den…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_skeleton_decor or place \"prefab\": \"bb_skeleton_decor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_skeleton_decor"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "boxing_ring",
+  "summary": "A regulation boxing ring: a 7.3 m square platform raised 1.0 m on a black skirt with a padded canvas, four st… options canvas_colour, rope_colour, skirt_colour; sockets socket_centre, socket_corner_red, socket_corner_blue, socket_corner_neutral_a, socket_corner_neutral_b, socket_apron_red, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boxing_ring or place \"prefab\": \"boxing_ring\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boxing_ring"]
+}

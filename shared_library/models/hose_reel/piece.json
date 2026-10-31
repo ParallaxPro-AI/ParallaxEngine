@@ -1,0 +1,10 @@
+{
+  "id": "hose_reel",
+  "summary": "A wheeled garden hose-reel cart: two tubular side frames on rubber feet and a pair of rear wheels, a U push h… joints wheel_l, wheel_r, drum; options frame_colour, hose_colour; sockets socket_handle, socket_nozzle, spray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hose_reel or place \"prefab\": \"hose_reel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hose_reel"]
+}

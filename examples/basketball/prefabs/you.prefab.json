@@ -1,0 +1,72 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baller",
+      "options": {
+        "skin": "tan",
+        "kit": "white",
+        "trim": "red"
+      },
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "character": {
+      "walk_speed": 6.5,
+      "run_speed": 9.8,
+      "radius": 0.4,
+      "height": 1.9
+    },
+    "stamina": {
+      "current": 100,
+      "max": 100,
+      "drain": 26,
+      "regen": 16,
+      "floor": 0.08
+    },
+    "meter": {
+      "green_low": 0.72,
+      "green_high": 0.95,
+      "yellow_low": 0.5,
+      "yellow_high": 0.98
+    },
+    "world_bar": {
+      "offset": [
+        0.9,
+        2.2,
+        0
+      ],
+      "color": "#f5f2ea",
+      "shown": false
+    },
+    "edge": {},
+    "box_score": {},
+    "nameplate": {
+      "text": "YOU",
+      "offset": [
+        0,
+        2.4,
+        0
+      ],
+      "health": false,
+      "color": "#f24d4d",
+      "range": 80
+    }
+  },
+  "tags": [
+    "home",
+    "you"
+  ],
+  "behaviors": {
+    "human_baller": {
+      "handle_pace": 0.85
+    },
+    "shot_meter": {
+      "charge_time": 1.6,
+      "yellow": "#e8c94a",
+      "green": "#4ade6b"
+    },
+    "baller_animation": {}
+  }
+}

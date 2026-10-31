@@ -1,0 +1,10 @@
+{
+  "id": "spell_orb",
+  "summary": "A glowing magic orb: an opaque emissive energy core inside a clear transmissive glass shell, girdled by two c… joints ring_a, ring_b; options element, bands, band_metal; sockets socket_core, socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spell_orb or place \"prefab\": \"spell_orb\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spell_orb"]
+}

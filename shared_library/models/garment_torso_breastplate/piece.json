@@ -1,0 +1,10 @@
+{
+  "id": "garment_torso_breastplate",
+  "summary": "A plate cuirass worn over a padded gambeson: a separate breastplate and backplate with the padding showing be… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_torso_breastplate or place \"prefab\": \"garment_torso_breastplate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_torso_breastplate"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chariot",
+  "summary": "A light two-wheeled ancient war or racing chariot WITHOUT the horses: a D-shaped car open at the back, its le… joints wheel_l, wheel_r; options siding; sockets seat_driver, socket_yoke_l, socket_yoke_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chariot or place \"prefab\": \"chariot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chariot"]
+}

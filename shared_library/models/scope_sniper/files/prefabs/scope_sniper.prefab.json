@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scope_sniper"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0836, 0.0978, 0.375],
+      "offset": [0.0025, 0.0384, 0.0175]
+    }
+  }
+}

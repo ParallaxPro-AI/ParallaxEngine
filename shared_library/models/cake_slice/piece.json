@@ -1,0 +1,10 @@
+{
+  "id": "cake_slice",
+  "summary": "A wedge of layer cake standing on its base: three warm-tan sponge layers with two cream-white filling bands s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cake_slice or place \"prefab\": \"cake_slice\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cake_slice"]
+}

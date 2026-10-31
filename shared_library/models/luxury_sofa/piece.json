@@ -1,0 +1,10 @@
+{
+  "id": "luxury_sofa",
+  "summary": "Luxury three-seat sofa in ivory boucle: rounded arms and back rail, three deep crowned seat cushions and thre… options fabric, accent, metal; sockets seat_1, seat_2, seat_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_sofa or place \"prefab\": \"luxury_sofa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_sofa"]
+}

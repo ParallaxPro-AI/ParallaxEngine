@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/frying_pan_weapon"
+    },
+    "viewmodel_item": {
+      "hip": [0.14, -0.32, 0.26],
+      "hip_turn": [-12.605071, -17.188734, -31.512679],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.278, 0.0896, 0.4583],
+      "offset": [0, 0.0448, 0.2278]
+    }
+  }
+}

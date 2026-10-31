@@ -1,0 +1,10 @@
+{
+  "id": "checkers_board",
+  "summary": "A checkers (draughts) set ready to play: an 8x8 board of red and black squares with 40 mm squares inside a gl…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.checkers_board or place \"prefab\": \"checkers_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:checkers_board"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pergola_wooden",
+  "summary": "A freestanding 3.6 m square timber pergola: four 140 mm posts in galvanised shoes on concrete pads, paired th… options finish, shade; sockets socket_centre, socket_hang.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pergola_wooden or place \"prefab\": \"pergola_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pergola_wooden"]
+}

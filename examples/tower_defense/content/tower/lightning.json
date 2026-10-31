@@ -1,0 +1,10 @@
+{
+  "name": "Bolt", "role": "Chain", "accent": "#a78bfa", "slot": 4,
+  "prefab": "tower_lightning", "attack": "chain", "shot": "bolt",
+  "impact": "vfx/spark_gold", "fire_sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a5/6d/a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6.ogg",
+  "levels": [
+    { "cost": 300, "damage": 15, "range": 22, "fire_interval": 2.0, "chain_count": 3, "chain_range": 6, "chain_falloff": 0.7,  "model": "models/tower_lightning" },
+    { "cost": 200, "damage": 25, "range": 23, "fire_interval": 2.0, "chain_count": 4, "chain_range": 6, "chain_falloff": 0.7,  "model": "models/tower_lightning" },
+    { "cost": 380, "damage": 43, "range": 25, "fire_interval": 2.0, "chain_count": 6, "chain_range": 6, "chain_falloff": 0.85, "model": "models/tower_lightning" }
+  ]
+}

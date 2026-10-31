@@ -1,0 +1,10 @@
+{
+  "id": "station_canopy",
+  "summary": "A 12 m island-platform canopy: three tubular steel columns on cast plinths, each branching into a Y of raking… options fascia; sockets seat_a, seat_b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.station_canopy or place \"prefab\": \"station_canopy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:station_canopy"]
+}

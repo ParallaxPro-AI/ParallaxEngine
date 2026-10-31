@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_bones_decor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.7483, 1.9049, 5.1],
+      "offset": [0, 0.9525, 0.15]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cardboard_box_open"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5916, 0.4552, 0.4728],
+      "offset": [0.0208, 0.2266, 0.0102]
+    }
+  }
+}

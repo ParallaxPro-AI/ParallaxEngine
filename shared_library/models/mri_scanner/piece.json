@@ -1,0 +1,10 @@
+{
+  "id": "mri_scanner",
+  "summary": "A closed-bore MRI scanner: a large rounded gantry with a real 70 cm bore through it, a flared front bezel wit… joints table_height, cradle; options accent; sockets socket_patient, socket_operator, socket_bore.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mri_scanner or place \"prefab\": \"mri_scanner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mri_scanner"]
+}

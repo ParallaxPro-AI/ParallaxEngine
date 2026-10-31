@@ -1,0 +1,10 @@
+{
+  "id": "corkboard_wall",
+  "summary": "A wall-hung cork notice board, 1.2 x 0.9 m: a chamfered oak frame round a recessed cork panel on a backing bo… options content, frame; sockets socket_pin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.corkboard_wall or place \"prefab\": \"corkboard_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:corkboard_wall"]
+}

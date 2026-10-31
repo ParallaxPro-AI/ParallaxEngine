@@ -1,0 +1,10 @@
+{
+  "id": "skee_ball_lane",
+  "summary": "An arcade roll-ball alley: a long cabinet with striped side skirts and chrome rail caps, a ball trough across… joints ball_gate, coin_door; options trim; sockets player, ball_release, ticket_out.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skee_ball_lane or place \"prefab\": \"skee_ball_lane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skee_ball_lane"]
+}

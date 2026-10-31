@@ -1,0 +1,10 @@
+{
+  "id": "greek_amphora",
+  "summary": "An Attic black-figure neck-amphora, 0.62 m: glazed torus foot, ovoid belly widest high on the shoulder, an of… options slip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.greek_amphora or place \"prefab\": \"greek_amphora\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:greek_amphora"]
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pirate_galleon"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 400000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [13.392, 27.6, 37.1244],
+      "offset": [0, 13.8, -1.2878]
+    }
+  }
+}

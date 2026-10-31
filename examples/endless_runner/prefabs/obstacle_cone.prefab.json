@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/obstacle_cone",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

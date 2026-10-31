@@ -1,0 +1,19 @@
+{
+  "extends": "mate",
+  "components": {
+    "model": {
+      "options": {
+        "skin": "light",
+        "kit": "black",
+        "trim": "gold"
+      }
+    },
+    "barker": {
+      "voice": "rival",
+      "cooldown": 7
+    }
+  },
+  "tags": [
+    "away"
+  ]
+}

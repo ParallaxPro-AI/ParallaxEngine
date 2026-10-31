@@ -1,0 +1,10 @@
+{
+  "id": "curtain",
+  "summary": "A pair of heavy pleated drapes on a turned pole with finials and rings. joints panel_l, panel_r; options state, fabric, pole_finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.curtain or place \"prefab\": \"curtain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:curtain"]
+}

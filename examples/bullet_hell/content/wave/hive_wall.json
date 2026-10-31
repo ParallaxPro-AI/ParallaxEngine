@@ -1,0 +1,4 @@
+{
+  "number": 5, "name": "Hive Wall", "act": 2, "guardian": "briarhive", "flight": "root", "count": 3,
+  "speed": 2.20, "amp": 2.4, "freq": 0.50, "fire_rate": 2.6, "hp_mul": 1.0, "drop_chance": 0.70
+}

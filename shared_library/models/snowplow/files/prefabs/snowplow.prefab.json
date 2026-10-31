@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/snowplow"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 13500,
+      "linear_damping": 0.06,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.02,
+        3.05,
+        9.8166
+      ],
+      "offset": [
+        0,
+        1.525,
+        0.5183
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 30,
+      "grip": 7,
+      "turn_rate": 1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.525,
+        0.5183
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

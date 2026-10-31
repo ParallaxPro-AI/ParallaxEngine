@@ -1,0 +1,59 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sundermere_hero"
+    },
+    "animator": {},
+    "character": {
+      "walk_speed": 5.5,
+      "run_speed": 8,
+      "jump_height": 1.6,
+      "radius": 0.4,
+      "height": 1.9
+    },
+    "health": {
+      "current": 200,
+      "max": 200,
+      "destroy_on_death": false
+    },
+    "mana": {
+      "current": 100,
+      "max": 100
+    },
+    "offense": {},
+    "spellbook": {
+      "known": [
+        "mend"
+      ]
+    },
+    "hurt_feedback": {
+      "flash": 0.6,
+      "shake": 0,
+      "direction": false,
+      "low_health": 0.3,
+      "color": "#c81010"
+    },
+    "dodge": {}
+  },
+  "tags": [
+    "hero"
+  ],
+  "behaviors": {
+    "hero_movement": {
+      "dodge_speed": 9,
+      "dodge_invulnerable": 0.35,
+      "dodge_cooldown": 0.9
+    },
+    "hero_vitals": {
+      "mana_regen": 3,
+      "health_regen": 1,
+      "regen_delay": 5
+    },
+    "hero_sword": {
+      "reach": 3.6,
+      "arc": 160,
+      "impact_at": 0.19
+    },
+    "hero_spells": {}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tavern_sign"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.072, 0.74, 1.07],
+      "offset": [0, 0.37, 0.035]
+    }
+  }
+}

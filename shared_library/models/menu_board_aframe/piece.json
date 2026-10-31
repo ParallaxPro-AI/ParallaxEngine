@@ -1,0 +1,10 @@
+{
+  "id": "menu_board_aframe",
+  "summary": "A pavement A-frame menu board (sandwich board), 0.6 m wide and 1.0 m tall: two timber-framed chalkboard leave… joints fold; options frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.menu_board_aframe or place \"prefab\": \"menu_board_aframe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:menu_board_aframe"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sun_lounger"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.73, 0.528, 1.9575],
+      "offset": [0, 0.264, -0.0013]
+    }
+  }
+}

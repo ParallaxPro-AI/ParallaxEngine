@@ -1,0 +1,10 @@
+{
+  "id": "turnstile",
+  "summary": "A waist-high tripod turnstile: a stainless pedestal post with a canted mechanism head, and three tubular arms… joints spindle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.turnstile or place \"prefab\": \"turnstile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:turnstile"]
+}

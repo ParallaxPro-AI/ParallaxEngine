@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/signpost"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6872, 2.66, 0.9542],
+      "offset": [0, 1.33, -0.0182]
+    }
+  }
+}

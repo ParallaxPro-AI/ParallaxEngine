@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "plane", "size": [1.25, 1, 1.25], "color": "#c4ffbc6b", "cast_shadows": false } },
+  "behaviors": { "cell_highlight": {} }
+}

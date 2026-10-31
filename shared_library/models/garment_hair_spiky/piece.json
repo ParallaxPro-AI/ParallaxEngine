@@ -1,0 +1,10 @@
+{
+  "id": "garment_hair_spiky",
+  "summary": "Short spiky hair: a close base cut with ~30 gelled spikes standing out of the crown and upper sides, raked up… options channel0; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_hair_spiky or place \"prefab\": \"garment_hair_spiky\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_hair_spiky"]
+}

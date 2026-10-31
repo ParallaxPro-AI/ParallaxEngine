@@ -1,0 +1,10 @@
+{
+  "id": "smartphone_rts",
+  "summary": "A modern slab smartphone, lying flat screen-up: a slim black case, an edge-to-edge glass screen with a runtim… options brightness.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.smartphone_rts or place \"prefab\": \"smartphone_rts\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:smartphone_rts"]
+}

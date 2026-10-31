@@ -1,0 +1,10 @@
+{
+  "id": "karaoke_machine",
+  "summary": "A rolling karaoke tower: a rounded black speaker cabinet on four casters with two LED-ringed woofers and a tw… joints mic_l, mic_r, monitor, trolley_handle; options lights; sockets singer, mic_l_grip, mic_r_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.karaoke_machine or place \"prefab\": \"karaoke_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:karaoke_machine"]
+}

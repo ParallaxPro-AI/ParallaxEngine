@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tombstone_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8286, 2.004, 0.8671],
+      "offset": [-0.0071, 0.998, 0.0635]
+    }
+  }
+}

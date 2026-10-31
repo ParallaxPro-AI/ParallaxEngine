@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/easter_egg_basket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3716, 0.3561, 0.349],
+      "offset": [-0.0104, 0.1776, 0]
+    }
+  }
+}

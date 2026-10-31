@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bottle",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.086,
+        0.298,
+        0.0797
+      ],
+      "offset": [
+        0.0,
+        0.149,
+        0.0001
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "gyrocopter",
+  "summary": "An open two-seat tandem autogyro (gyroplane): a lofted fibreglass pod with an open cockpit tub, curved windsc… joints rotor, propeller, fin_rudder; sockets seat_driver, seat_pax_1, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gyrocopter or place \"prefab\": \"gyrocopter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gyrocopter"]
+}

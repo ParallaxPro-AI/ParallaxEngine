@@ -1,0 +1,10 @@
+{
+  "id": "chemistry_glassware",
+  "summary": "A bench-top set of chemistry glassware: a wooden test-tube rack holding six tubes (four with coloured reagent… options contents, reagent; sockets socket_flask, socket_beaker, socket_round_flask.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chemistry_glassware or place \"prefab\": \"chemistry_glassware\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chemistry_glassware"]
+}

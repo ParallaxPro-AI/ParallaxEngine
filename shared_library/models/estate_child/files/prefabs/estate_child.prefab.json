@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/estate_child"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.718, 1.226, 0.3753],
+      "offset": [0, 0.613, -0.0198]
+    }
+  }
+}

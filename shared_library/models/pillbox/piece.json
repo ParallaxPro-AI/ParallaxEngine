@@ -1,0 +1,10 @@
+{
+  "id": "pillbox",
+  "summary": "A hexagonal reinforced-concrete pillbox (4.0 m across the corners on a 4.2 m footing, 2.1 m high): battered c… sockets loophole_front, loophole_front_right, loophole_front_left, loophole_rear_right, loophole_rear_left, entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pillbox or place \"prefab\": \"pillbox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pillbox"]
+}

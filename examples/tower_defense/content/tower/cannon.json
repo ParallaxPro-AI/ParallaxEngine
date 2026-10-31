@@ -1,0 +1,10 @@
+{
+  "name": "Cannon", "role": "Splash", "accent": "#fbbf24", "slot": 2,
+  "prefab": "tower_cannon", "attack": "splash", "shot": "cannon_ball",
+  "impact": "vfx/explosion_small", "fire_sound": "https://r2.parallaxpro.ai/assets/audio_sfx/4b/59/4b597d658d0ae101f0a030fbeea5fc3a4292ab85f017470a8254a8e7959cbd69.ogg",
+  "levels": [
+    { "cost": 200, "damage": 20, "range": 18, "fire_interval": 1.5,  "splash_radius": 3, "model": "models/tower_cannon" },
+    { "cost": 150, "damage": 30, "range": 19, "fire_interval": 1.5,  "splash_radius": 4, "model": "models/tower_cannon" },
+    { "cost": 320, "damage": 52, "range": 20, "fire_interval": 1.25, "splash_radius": 5, "model": "models/tower_cannon" }
+  ]
+}

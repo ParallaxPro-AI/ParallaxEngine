@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grain_trailer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.6, 2.35, 7.395],
+      "offset": [0, 1.175, 0.6225]
+    }
+  }
+}

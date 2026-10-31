@@ -1,0 +1,10 @@
+{
+  "id": "dartboard",
+  "summary": "A wall dartboard in a two-door wooden cabinet. joints board, door_l, door_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dartboard or place \"prefab\": \"dartboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dartboard"]
+}

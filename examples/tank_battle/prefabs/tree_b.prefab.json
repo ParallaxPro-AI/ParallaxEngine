@@ -1,0 +1,3 @@
+{
+  "components": {"model": {"model": "https://r2.parallaxpro.ai/assets/model_static/9f/bb/9fbb688f3fadbb7b9e7d0b3072ea7df6b263801fa58374879dea65b743aa6c3a.glb", "cast_shadows": true}, "collider": {"shape": "box", "size": [1, 9, 1], "offset": [0, 4.5, 0], "layer": "prop"}, "grounded": {"lift": 0}}
+}

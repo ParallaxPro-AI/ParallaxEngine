@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/craps_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.98, 1.02, 1.78],
+      "offset": [0, 0.51, 0]
+    }
+  }
+}

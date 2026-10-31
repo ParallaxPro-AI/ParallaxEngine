@@ -1,0 +1,10 @@
+{
+  "id": "traffic_barrel",
+  "summary": "A 1.0 m roadworks channelizer drum: a ribbed, slightly tapered orange plastic barrel with two white retrorefl… options colour, lamp; sockets lamp_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.traffic_barrel or place \"prefab\": \"traffic_barrel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:traffic_barrel"]
+}

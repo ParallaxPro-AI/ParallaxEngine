@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_palm_b"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.7093, 2.4741, 2.7336],
+      "offset": [-0.296, 1.2371, 0.022]
+    }
+  }
+}

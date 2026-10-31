@@ -1,0 +1,10 @@
+{
+  "id": "riot_shield",
+  "summary": "A clear polycarbonate riot shield, curved across its width, with a black rubber edge channel all round, a ver… joints arm_cuff; options marking, tint; sockets socket_grip, socket_front.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.riot_shield or place \"prefab\": \"riot_shield\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:riot_shield"]
+}

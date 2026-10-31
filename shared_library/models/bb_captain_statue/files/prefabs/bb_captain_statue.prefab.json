@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_captain_statue"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1, 2.16, 0.85],
+      "offset": [0, 1.08, 0]
+    }
+  }
+}

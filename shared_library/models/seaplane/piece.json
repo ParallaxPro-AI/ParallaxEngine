@@ -1,0 +1,10 @@
+{
+  "id": "seaplane",
+  "summary": "A single-engine, high-wing four-seat floatplane: a lofted slab-sided fuselage with a round cowl and tapering… joints door_l, propeller, wing_aileron_l, wing_aileron_r, hstab_elevator_l, hstab_elevator_r, …; options livery; sockets seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, eye_point, instrument_anchor, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.seaplane or place \"prefab\": \"seaplane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:seaplane"]
+}

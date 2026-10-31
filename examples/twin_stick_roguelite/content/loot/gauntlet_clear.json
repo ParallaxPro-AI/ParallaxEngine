@@ -1,0 +1,7 @@
+{ "rolls": 2, "drops": [
+  { "item": "coin", "weight": 25, "count": [6, 14] },
+  { "item": "hollow_vessel", "weight": 20 },
+  { "item": "soul_ember", "weight": 20 },
+  { "item": "swift_shard", "weight": 20 },
+  { "item": "iron_shard", "weight": 15 }
+] }

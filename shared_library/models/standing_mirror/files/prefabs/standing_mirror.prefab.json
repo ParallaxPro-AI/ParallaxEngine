@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/standing_mirror"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.756, 1.698, 0.46],
+      "offset": [0, 0.849, 0]
+    }
+  }
+}

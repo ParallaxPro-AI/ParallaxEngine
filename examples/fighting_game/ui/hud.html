@@ -1,0 +1,44 @@
+<link rel="stylesheet" href="hud.css">
+<div class="fch" data-show="bout" data-class-has-bar="has_bar">
+  <header class="hud">
+    <div class="side l" data-class-ready="you.super_ready">
+      <div class="id"><span class="nm" data-text="you_name"></span><span class="hp" data-bind="you.hp"></span>
+        <span class="pips" data-each="you.pips"><template><i class="pip" data-class-on="on"></i></template></span></div>
+      <div class="hpwrap"><div class="hpbar"><div class="track"><i class="trail" data-style-width="you.trail"></i><i class="fill" data-style-width="you.health"></i></div></div></div>
+      <div class="spirit"><span class="sp-lab" data-text="spirit"></span><div class="spbar" data-class-full="you.super_ready"><i data-style-width="you.spirit"></i><b></b></div><span class="sp-val" data-bind="you_meter_label"></span></div>
+      <span class="rtag" data-text="super_ready"></span>
+    </div>
+    <div class="clock">
+      <span class="ck-round" data-show="circuit" data-bind="round_label"></span>
+      <span class="ck-num" data-class-inf="clock_inf" data-class-low="clock_low" data-bind="clock"></span>
+      <span class="ck-sub" data-show="circuit"><em data-text="rival_label"></em><span data-bind="rung"></span> / <span data-bind="rungs"></span></span>
+      <span class="ck-sub" data-hide="circuit" data-text="practice_label"></span>
+    </div>
+    <div class="side r">
+      <div class="id"><span class="nm" data-bind="rival.name"></span><span class="hp" data-bind="rival.hp"></span>
+        <span class="pips" data-each="rival.pips"><template><i class="pip" data-class-on="on"></i></template></span></div>
+      <div class="hpwrap"><div class="hpbar"><div class="track"><i class="trail" data-style-width="rival.trail"></i><i class="fill" data-style-width="rival.health"></i></div></div></div>
+      <div class="spirit"><span class="sp-lab" data-text="spirit"></span><div class="spbar" data-class-full="rival.super_ready"><i data-style-width="rival.spirit"></i><b></b></div><span class="sp-val" data-bind="rival.meter"></span></div>
+    </div>
+  </header>
+  <button class="pause" data-action="pause" aria-label="Pause fight"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg></button>
+  <div class="combo" data-show="combo"><b data-bind="combo"></b><span><span data-text="combo_hit"></span><br><span data-text="combo_word"></span></span></div>
+  <div class="notice" data-show="notice" data-class-cyan="notice_cyan" data-class-warn="notice_warn" data-bind="notice"></div>
+  <div class="toast" data-show="toast"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-bind="toast"></span></div>
+  <div class="lesson in" data-show="in_lesson">
+    <span class="ls-step" data-bind="lesson_step"></span>
+    <span class="ls-text" data-bind="lesson_hint"></span>
+    <span class="ls-key"><span data-bind="lesson_verb"></span><span class="kc" data-bind="lesson_key"></span></span>
+    <div class="ls-prog" data-each="lesson_progress"><template><i data-class-done="done" data-class-cur="cur"></i></template></div>
+  </div>
+  <div class="pbar" data-show="practice">
+    <div class="seg" role="tablist">
+      <button role="tab" data-class-on="dummy_idle" data-action="dummy" data-dummy="idle" data-text="dummy_idle"></button><button role="tab" data-class-on="dummy_guard" data-action="dummy" data-dummy="guard" data-text="dummy_guard"></button><button role="tab" data-class-on="dummy_spar" data-action="dummy" data-dummy="spar" data-text="dummy_spar"></button>
+    </div>
+    <span class="pdesc" data-bind="dummy_desc"></span>
+  </div>
+  <div class="banner" data-show="banner"><span class="b-role" data-bind="banner_role"></span><span class="b-big" data-class-p2="banner_rival" data-class-win="banner_won" data-bind="banner_big"></span><span class="b-tip" data-bind="banner_tip"></span></div>
+  <div class="legend" data-each="legend">
+    <template><span class="dot" data-hide="first">&middot;</span><span class="lg" data-class-hl="hl"><span class="kc" data-bind="cap"></span><span data-bind="label"></span></span></template>
+  </div>
+</div>

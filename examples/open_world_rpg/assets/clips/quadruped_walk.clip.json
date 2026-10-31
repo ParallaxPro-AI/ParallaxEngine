@@ -1,0 +1,10 @@
+{
+  "rig": "quadruped", "duration": 0.85, "loop": true,
+  "keys": [
+    {"time":0,"ease":"linear","pose":{"FL_UpperLeg":[-16,0,0],"FL_LowerLeg":[30,0,0],"BR_UpperLeg":[-16,0,0],"BR_LowerLeg":[30,0,0],"FR_UpperLeg":[14,0,0],"FR_LowerLeg":[-22,0,0],"BL_UpperLeg":[14,0,0],"BL_LowerLeg":[-22,0,0],"Spine":[3,0,0],"Head":[-2,0,0],"Tail1":[-9.98,-0.7,4.06],"Tail2":[-5.99,0.32,-3.02]}},
+    {"time":0.21,"pose":{"FL_UpperLeg":[0,0,0],"FL_LowerLeg":[0,0,0],"BR_UpperLeg":[0,0,0],"BR_LowerLeg":[0,0,0],"FR_UpperLeg":[3,0,0],"FR_LowerLeg":[-6,0,0],"BL_UpperLeg":[3,0,0],"BL_LowerLeg":[-6,0,0],"Spine":[0,0,0],"Head":[0,0,0],"Tail1":[-8,0,0],"Tail2":[-8,0,0]}},
+    {"time":0.425,"pose":{"FL_UpperLeg":[14,0,0],"FL_LowerLeg":[-22,0,0],"BR_UpperLeg":[14,0,0],"BR_LowerLeg":[-22,0,0],"FR_UpperLeg":[-16,0,0],"FR_LowerLeg":[30,0,0],"BL_UpperLeg":[-16,0,0],"BL_LowerLeg":[30,0,0],"Spine":[3,0,0],"Head":[-2,0,0],"Tail1":[-9.98,0.7,-4.06],"Tail2":[-5.99,-0.32,3.02]}},
+    {"time":0.635,"pose":{"FL_UpperLeg":[3,0,0],"FL_LowerLeg":[-6,0,0],"BR_UpperLeg":[3,0,0],"BR_LowerLeg":[-6,0,0],"FR_UpperLeg":[0,0,0],"FR_LowerLeg":[0,0,0],"BL_UpperLeg":[0,0,0],"BL_LowerLeg":[0,0,0],"Spine":[0,0,0],"Head":[0,0,0],"Tail1":[-8,0,0],"Tail2":[-8,0,0]}},
+    {"time":0.85,"pose":{"FL_UpperLeg":[-16,0,0],"FL_LowerLeg":[30,0,0],"BR_UpperLeg":[-16,0,0],"BR_LowerLeg":[30,0,0],"FR_UpperLeg":[14,0,0],"FR_LowerLeg":[-22,0,0],"BL_UpperLeg":[14,0,0],"BL_LowerLeg":[-22,0,0],"Spine":[3,0,0],"Head":[-2,0,0],"Tail1":[-9.98,-0.7,4.06],"Tail2":[-5.99,0.32,-3.02]}}
+  ]
+}

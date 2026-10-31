@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grass_tuft"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4842, 0.5603, 0.4792],
+      "offset": [-0.002, 0.2756, -0.0033]
+    }
+  }
+}

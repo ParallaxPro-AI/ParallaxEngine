@@ -1,0 +1,10 @@
+{
+  "id": "stone_block_cut",
+  "summary": "A hand-dressed sandstone block, 0.90 x 0.45 x 0.50 m (a typical masonry block of ~0.5 t): every visible face…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_block_cut or place \"prefab\": \"stone_block_cut\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_block_cut"]
+}

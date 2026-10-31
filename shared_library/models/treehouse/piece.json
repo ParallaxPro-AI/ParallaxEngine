@@ -1,0 +1,10 @@
+{
+  "id": "treehouse",
+  "summary": "A stylised treehouse: a fat lathed trunk with flaring roots and four branches crowned with real (engine-grown… joints hut_door, chest_lid, swing; options hut_colour; sockets socket_ladder_foot, socket_deck, socket_hut, socket_swing_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.treehouse or place \"prefab\": \"treehouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:treehouse"]
+}

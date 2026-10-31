@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/loot_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4994, 0.3721, 0.615],
+      "offset": [0.0047, 0.1859, -0.0064]
+    }
+  }
+}

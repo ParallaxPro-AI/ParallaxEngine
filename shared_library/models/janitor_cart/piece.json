@@ -1,0 +1,10 @@
+{
+  "id": "janitor_cart",
+  "summary": "A custodian's cleaning cart: a moulded grey deck on four swivel casters with bumper strips, a central shelvin… joints wringer_handle; options body, accent; sockets socket_push, socket_top_tray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.janitor_cart or place \"prefab\": \"janitor_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:janitor_cart"]
+}

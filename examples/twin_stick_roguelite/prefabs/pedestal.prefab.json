@@ -1,0 +1,49 @@
+{
+  "components": {
+    "shape": {
+      "kind": "sphere",
+      "size": [
+        0.6,
+        0.6,
+        0.6
+      ],
+      "offset": [
+        0,
+        1.1,
+        0
+      ]
+    },
+    "collider": {
+      "shape": "sphere",
+      "radius": 1.6,
+      "trigger": true,
+      "layer": "pickup",
+      "collides_with": [
+        "keeper"
+      ]
+    }
+  },
+  "behaviors": {
+    "pedestal": {}
+  },
+  "children": [
+    {
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            0.9,
+            0.8,
+            0.9
+          ],
+          "offset": [
+            0,
+            0.4,
+            0
+          ],
+          "color": "#4d4038"
+        }
+      }
+    }
+  ]
+}

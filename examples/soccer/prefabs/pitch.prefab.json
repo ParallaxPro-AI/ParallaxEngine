@@ -1,0 +1,28 @@
+{
+  "components": {
+    "shape": {
+      "kind": "plane",
+      "size": [
+        110,
+        0,
+        70
+      ],
+      "color": "#7cc476",
+      "roughness": 0.92
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        140,
+        1,
+        100
+      ],
+      "offset": [
+        0,
+        -0.5,
+        0
+      ],
+      "friction": 0.6
+    }
+  }
+}

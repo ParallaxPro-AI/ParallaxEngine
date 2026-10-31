@@ -1,0 +1,10 @@
+{
+  "house_x": -6.65,
+  "spawn_x": 7,
+  "house_health": 100,
+  "leak_damage": 34,
+  "dig_refund": 0.5,
+  "water_cooldown": 6,
+  "three_star_health": 100,
+  "two_star_health": 66
+}

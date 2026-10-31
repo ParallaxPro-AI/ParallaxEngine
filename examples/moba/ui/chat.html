@@ -1,0 +1,25 @@
+<link rel="stylesheet" href="lane_siege.css">
+<div class="ls-root ls-chat">
+  <div class="log" data-each="lines">
+    <template><div class="line" data-class-me="me"><b class="user" data-bind="name"></b>: <span class="body" data-bind="text"></span></div></template>
+  </div>
+  <div class="input-row" id="chat-row" hidden><input id="chat-input" maxlength="200" autocomplete="off"></div>
+  <span class="hint" data-bind="hint"></span>
+  <span class="tx" data-show="transmitting"><i></i><span data-text="voice_on_air"></span></span>
+  <span class="talker" data-show="talking" data-bind="talking"></span>
+  <span class="err" data-show="mic_denied" data-text="voice_denied"></span>
+</div>
+<script>
+  // An <input>'s value can't fill an action parameter, so Enter sends the line by hand.
+  const row = document.getElementById("chat-row");
+  const box = document.getElementById("chat-input");
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && document.activeElement !== box) { row.hidden = false; box.focus(); e.preventDefault(); }
+  });
+  box.addEventListener("keydown", (e) => {
+    e.stopPropagation();
+    if (e.key !== "Enter") return;
+    if (box.value.trim()) parallax.action("send", { text: box.value });
+    box.value = ""; box.blur(); row.hidden = true;
+  });
+</script>

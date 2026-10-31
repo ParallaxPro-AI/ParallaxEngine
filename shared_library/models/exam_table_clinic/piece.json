@@ -1,0 +1,10 @@
+{
+  "id": "exam_table_clinic",
+  "summary": "A clinic examination table: a plinth-recessed melamine cabinet with a kick plate, three drawers (`drawer_0..2… joints door_l, door_r, drawer_0, drawer_1, drawer_2, step, …; options upholstery, cabinet; sockets seat_0, patient, clinician.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.exam_table_clinic or place \"prefab\": \"exam_table_clinic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:exam_table_clinic"]
+}

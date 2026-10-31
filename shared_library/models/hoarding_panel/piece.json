@@ -1,0 +1,10 @@
+{
+  "id": "hoarding_panel",
+  "summary": "One 2.44 m module of solid timber construction-site hoarding: two painted plywood sheets with a joint line, a… options paint, end, sign.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hoarding_panel or place \"prefab\": \"hoarding_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hoarding_panel"]
+}

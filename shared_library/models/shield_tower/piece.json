@@ -1,0 +1,10 @@
+{
+  "id": "shield_tower",
+  "summary": "A tall curved tower shield (heavy-infantry / fantasy-tank style, after the Roman scutum and the late-medieval… joints arm_straps; options heraldry; sockets socket_grip, socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_tower or place \"prefab\": \"shield_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_tower"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sitar",
+  "summary": "A long-necked North Indian sitar stood upright on its gourd: a turned gourd resonator sliced flat for a sound… joints peg_f1, peg_f2, peg_l0, peg_l1, peg_l2, peg_r0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sitar or place \"prefab\": \"sitar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sitar"]
+}

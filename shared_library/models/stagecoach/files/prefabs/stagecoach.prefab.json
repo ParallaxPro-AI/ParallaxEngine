@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stagecoach"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1100,
+      "linear_damping": 0.08,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.33,
+        3.04,
+        7.34
+      ],
+      "offset": [
+        0,
+        1.52,
+        0
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 9,
+      "steering": 35,
+      "grip": 6,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.52,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

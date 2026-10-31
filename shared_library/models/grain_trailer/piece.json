@@ -1,0 +1,10 @@
+{
+  "id": "grain_trailer",
+  "summary": "A tandem-axle tipping grain trailer: a flared steel tub with pressed side ribs, a yellow top rail, a top-hung… joints bed, grain_fill; options body_colour; sockets socket_eye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grain_trailer or place \"prefab\": \"grain_trailer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grain_trailer"]
+}

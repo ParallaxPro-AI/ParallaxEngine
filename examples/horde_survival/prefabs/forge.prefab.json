@@ -1,0 +1,39 @@
+{
+  "components": {
+    "model": {
+      "model": "models/forge",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.135,
+        2.55,
+        1.14
+      ],
+      "offset": [
+        0.0125,
+        1.275,
+        -0.01
+      ]
+    },
+    "ambient_motion": {
+      "moves": [
+        {
+          "joint": "bellows",
+          "mode": "oscillate",
+          "period": 3.6,
+          "low": 0.05,
+          "high": 0.8
+        },
+        {
+          "joint": "flames",
+          "mode": "oscillate",
+          "period": 1.6,
+          "low": 0.25,
+          "high": 0.9
+        }
+      ]
+    }
+  }
+}

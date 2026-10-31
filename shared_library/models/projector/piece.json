@@ -1,0 +1,10 @@
+{
+  "id": "projector",
+  "summary": "A compact presentation/data projector: two-tone plastic body, a stepped lens barrel offset to one side with a… joints focus_ring, tilt_foot; sockets socket_lens.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.projector or place \"prefab\": \"projector\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:projector"]
+}

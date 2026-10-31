@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_dolphin_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.668, 1.2, 3.8],
+      "offset": [0, 0.6, 0]
+    }
+  }
+}

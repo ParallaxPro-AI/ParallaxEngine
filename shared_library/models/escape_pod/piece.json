@@ -1,0 +1,10 @@
+{
+  "id": "escape_pod",
+  "summary": "A one-seat sci-fi lifepod: an upright lathed white hull on four splayed landing legs, a gull-wing hatch on th… joints hatch; options hull_paint, glow; sockets seat_occupant.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.escape_pod or place \"prefab\": \"escape_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:escape_pod"]
+}

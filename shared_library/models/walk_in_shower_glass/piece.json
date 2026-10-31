@@ -1,0 +1,10 @@
+{
+  "id": "walk_in_shower_glass",
+  "summary": "A walk-in shower corner: a low-profile stone-resin tray with a linear drain, a tiled back wall with a recesse… joints temp, handshower; options walls, fixtures, decor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.walk_in_shower_glass or place \"prefab\": \"walk_in_shower_glass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:walk_in_shower_glass"]
+}

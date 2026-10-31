@@ -1,0 +1,10 @@
+{
+  "id": "hover_bike",
+  "summary": "A single-seat sci-fi hover bike (speeder): a lofted teardrop hull floating on downward-vectoring hover jets… joints steering, thrusters.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hover_bike or place \"prefab\": \"hover_bike\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hover_bike"]
+}

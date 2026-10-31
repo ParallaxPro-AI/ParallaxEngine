@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camp_stove"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.838, 0.137, 0.348],
+      "offset": [0, 0.0685, 0.001]
+    }
+  }
+}

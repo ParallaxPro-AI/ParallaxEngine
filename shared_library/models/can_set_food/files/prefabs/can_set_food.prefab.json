@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/can_set_food"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1871, 0.113, 0.1888],
+      "offset": [-0.0017, 0.0565, 0.0106]
+    }
+  }
+}

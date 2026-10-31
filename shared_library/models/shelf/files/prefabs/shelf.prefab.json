@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shelf",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.9015,
+        1.8015,
+        0.3645
+      ],
+      "offset": [
+        -0.0008,
+        0.9008,
+        0.0208
+      ]
+    }
+  }
+}

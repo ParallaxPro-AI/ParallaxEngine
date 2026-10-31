@@ -1,0 +1,10 @@
+{
+  "id": "stasis_pod",
+  "summary": "A horizontal sci-fi stasis / cryosleep pod: a raised dark chassis carrying a white tech shell with a padded b… joints status_lamps, canopy; sockets socket_bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stasis_pod or place \"prefab\": \"stasis_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stasis_pod"]
+}

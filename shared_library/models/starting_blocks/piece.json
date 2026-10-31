@@ -1,0 +1,10 @@
+{
+  "id": "starting_blocks",
+  "summary": "Track-and-field sprint starting blocks: an 0.82 m aluminium T-rail with position notches, spike heads and a c… joints carriage_front, pedal_front, carriage_rear, pedal_rear; options pads; sockets socket_front_foot, socket_rear_foot, socket_start_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.starting_blocks or place \"prefab\": \"starting_blocks\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:starting_blocks"]
+}

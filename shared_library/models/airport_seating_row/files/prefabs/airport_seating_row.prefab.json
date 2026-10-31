@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/airport_seating_row"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.644, 0.8839, 0.62],
+      "offset": [0, 0.442, 0]
+    }
+  }
+}

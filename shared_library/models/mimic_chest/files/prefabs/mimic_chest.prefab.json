@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mimic_chest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.956, 0.705, 0.578],
+      "offset": [0, 0.3505, 0.006]
+    }
+  }
+}

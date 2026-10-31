@@ -1,0 +1,2 @@
+{ "name": "Ember Heart", "desc": "+25 max health, and heal it.",
+  "icon": "heart", "weight": 8, "max_stacks": 5, "effect": { "max_health_add": 25, "heal_pct": 0.25 } }

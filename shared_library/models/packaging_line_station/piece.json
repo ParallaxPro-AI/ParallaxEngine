@@ -1,0 +1,10 @@
+{
+  "id": "packaging_line_station",
+  "summary": "A 3.0 m end-of-line packaging station: a gravity roller infeed with a shelf of knocked-down cartons, a side-b… joints head; options paint; sockets socket_infeed, socket_discharge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.packaging_line_station or place \"prefab\": \"packaging_line_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:packaging_line_station"]
+}

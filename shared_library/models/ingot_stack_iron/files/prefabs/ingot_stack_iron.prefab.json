@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ingot_stack_iron"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2972, 0.2449, 0.4614],
+      "offset": [0.0017, 0.1184, 0]
+    }
+  }
+}

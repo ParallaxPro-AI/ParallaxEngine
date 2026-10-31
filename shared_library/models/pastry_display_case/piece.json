@@ -1,0 +1,10 @@
+{
+  "id": "pastry_display_case",
+  "summary": "A bakery / patisserie display case: a base cabinet with a stainless front bumper rail, a louvred vent grille… joints door_l, door_r; options body, stock; sockets top_socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pastry_display_case or place \"prefab\": \"pastry_display_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pastry_display_case"]
+}

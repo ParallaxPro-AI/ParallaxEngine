@@ -1,0 +1,10 @@
+{
+  "id": "road_t_junction",
+  "summary": "A 12 m T-junction tile from the ROAD_KIT: the through road runs along Z (open at z = -6 and z = +6) and a sid… options markings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_t_junction or place \"prefab\": \"road_t_junction\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_t_junction"]
+}

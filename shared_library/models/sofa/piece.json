@@ -1,0 +1,10 @@
+{
+  "id": "sofa",
+  "summary": "An upholstered sofa built from per-module seat/back/base segments so one asset covers a 2-seat, a 3-seat and… joints footrest; options layout, fabric; sockets socket_seat_l, socket_seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sofa or place \"prefab\": \"sofa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sofa"]
+}

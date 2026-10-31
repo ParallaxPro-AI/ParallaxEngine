@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/battle_ropes"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8213, 0.9532, 4.5953],
+      "offset": [-0.0022, 0.4764, -0.1745]
+    }
+  }
+}

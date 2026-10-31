@@ -1,0 +1,67 @@
+<!-- Ported from the template: Tungsten Alley pause card - the leg you are on with its remaining total and to-par, Resume, an inline Low / Medium / High graphics selector and Main Menu -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, p { margin: 0; }
+  .wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .card { width: calc(540 * var(--u)); padding: calc(48 * var(--u)); display: flex; flex-direction: column; gap: calc(28 * var(--u)); border-radius: calc(18 * var(--u)); box-shadow: var(--ta-shadow-sheet); pointer-events: auto; animation: ta-sheet 240ms var(--ta-ease-out) both; }
+  .head { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .kick { font: 500 calc(14 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .26em; text-transform: uppercase; color: var(--ta-amber); }
+  .title { font: 700 calc(52 * var(--u))/1 var(--ta-font-display); color: var(--ta-ink); }
+  .title em { font-style: italic; }
+  .ctx { font: 500 calc(17 * var(--u))/1.3 var(--ta-font-body); color: rgba(241,233,221,.7); }
+  .gfx { display: flex; flex-direction: column; gap: calc(14 * var(--u)); padding: calc(22 * var(--u)) 0; border-top: 1px solid var(--ta-hairline); border-bottom: 1px solid var(--ta-hairline); }
+  .gfx .m { display: none; }
+  .seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(6 * var(--u)); padding: calc(5 * var(--u)); border-radius: calc(12 * var(--u)); background: rgba(0,0,0,.35); border: 1px solid var(--ta-hairline); }
+  .opt { height: calc(48 * var(--u)); border: 0; border-radius: calc(9 * var(--u)); background: transparent; color: var(--ta-ink); font: 600 calc(16 * var(--u))/1 var(--ta-font-body); cursor: pointer; pointer-events: auto; transition: background 120ms var(--ta-ease-out); }
+  .opt:hover { background: var(--ta-ghost-fill); }
+  .opt[aria-pressed="true"] { background: var(--ta-amber); color: var(--ta-amber-ink); }
+  .main, .actions { display: contents; }
+  .resume { width: 100%; order: 1; }
+  .head { order: 0; } .gfx { order: 2; }
+  .quit { width: 100%; height: calc(60 * var(--u)); font-size: calc(19 * var(--u)); order: 3; }
+  @media (pointer: coarse) {
+    .card { width: calc(1120 * var(--u)); padding: calc(44 * var(--u)) calc(48 * var(--u)); display: grid; grid-template-columns: minmax(0,1fr) calc(440 * var(--u)); gap: calc(44 * var(--u)); border-radius: calc(28 * var(--u)); }
+    .main { display: flex; flex-direction: column; gap: calc(28 * var(--u)); justify-content: center; }
+    .head { gap: calc(28 * var(--u)); }
+    .kick { font-size: calc(20 * var(--u)); letter-spacing: .24em; }
+    .title { font-size: calc(64 * var(--u)); }
+    .ctx { font-size: calc(24 * var(--u)); }
+    .gfx { padding: 0; border: 0; gap: calc(16 * var(--u)); margin-top: calc(8 * var(--u)); }
+    .gfx .d { display: none; }
+    .gfx .m { display: inline; }
+    .seg { gap: calc(8 * var(--u)); padding: calc(8 * var(--u)); border-radius: calc(20 * var(--u)); }
+    .opt { height: calc(88 * var(--u)); border-radius: calc(14 * var(--u)); font-size: calc(26 * var(--u)); }
+    .opt:hover { background: transparent; }
+    .opt[aria-pressed="true"] { background: var(--ta-amber); }
+    .actions { display: flex; flex-direction: column; gap: calc(20 * var(--u)); justify-content: center; }
+    .resume { height: calc(112 * var(--u)); font-size: calc(32 * var(--u)); }
+    .quit { height: calc(96 * var(--u)); font-size: calc(28 * var(--u)); }
+  }
+</style>
+<div class="ta-root">
+<div class="ta-scrim"></div>
+<div class="wrap">
+  <div class="card ta-card">
+    <div class="main">
+      <div class="head">
+        <div class="kick" data-text="paused"></div>
+        <div class="title"><span data-bind="title_head"></span> <em data-bind="title_tail"></em></div>
+        <div class="ctx" data-bind="context"></div>
+      </div>
+      <div class="gfx">
+        <div class="ta-lbl"><span class="d">Settings · Graphics</span><span class="m">Graphics</span></div>
+        <div class="seg">
+          <button class="opt" data-action="quality" data-quality="low" data-attr-aria-pressed="quality_low">Low</button>
+          <button class="opt" data-action="quality" data-quality="medium" data-attr-aria-pressed="quality_medium">Medium</button>
+          <button class="opt" data-action="quality" data-quality="high" data-attr-aria-pressed="quality_high">High</button>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="ta-btn resume" data-action="resume" data-text="resume"></button>
+      <button class="ta-btn ghost quit" data-action="quit" data-text="main_menu"></button>
+    </div>
+  </div>
+</div>
+</div>

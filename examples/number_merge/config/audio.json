@@ -1,0 +1,9 @@
+{
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/c7/e1/c7e19c9d3b6828b31c9309bbe2c7e97938209c1ddebd52aa175a01d3481d6ae5.mp3",
+  "move": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/52/5b/525be859c53b1f9f8ae9dbb7566ca942cb65feb8202d2372aec645fe3636e880.mp3", "volume": 0.16 },
+  "merge": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/f4/da/f4da53d62922535f4fed898334751f4cb1b824bb5eaa7212d02fc93a192d770f.mp3", "volume": 0.3 },
+  "spawn": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg", "volume": 0.22 },
+  "milestone": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.4 },
+  "win": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3", "volume": 0.45 },
+  "lose": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg", "volume": 0.35 }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "teepee_play_tent",
+  "summary": "A children's canvas play teepee: five wooden poles lashed with rope where they cross above a pentagonal cotto… options canvas, accent; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.teepee_play_tent or place \"prefab\": \"teepee_play_tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:teepee_play_tent"]
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bow",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.061,
+        1.4214,
+        0.1592
+      ],
+      "offset": [
+        0.0055,
+        0.71,
+        -0.0114
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "water_pump_station",
+  "summary": "An outdoor skid-mounted water booster pump station on a concrete pad under a steel canopy: two blue centrifug… joints p0_coupling, p0_suction_wheel, p0_discharge_wheel, p1_coupling, p1_suction_wheel, p1_discharge_wheel, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_pump_station or place \"prefab\": \"water_pump_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_pump_station"]
+}

@@ -1,0 +1,1 @@
+{"extends": "core", "components": {"side": {"side": "blue"}, "map_icon": {"icon": "diamond", "color": "#5aa0ff", "size": 2.4, "edge": true}, "model": {"model": "models/core_blue"}}}

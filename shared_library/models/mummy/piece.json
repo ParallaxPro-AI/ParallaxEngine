@@ -1,0 +1,10 @@
+{
+  "id": "mummy",
+  "summary": "A bandage-wrapped mummy on the canonical 17-bone humanoid rig: separate aged linen strips wound round every l… options linen, eyes; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mummy or place \"prefab\": \"mummy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mummy"]
+}

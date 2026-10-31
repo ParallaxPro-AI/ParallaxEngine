@@ -1,0 +1,10 @@
+{
+  "id": "ruined_stairs",
+  "summary": "A broken temple stair: eight worn stone steps (0.18 m rise, 0.36 m going) climbing toward +Z to a 1.44 m land…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ruined_stairs or place \"prefab\": \"ruined_stairs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ruined_stairs"]
+}

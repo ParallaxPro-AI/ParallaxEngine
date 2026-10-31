@@ -1,0 +1,10 @@
+{
+  "id": "debris_concrete_pile",
+  "summary": "A pile of collapsed reinforced-concrete debris: a low heap of crushed concrete and dust with broken floor-sla…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.debris_concrete_pile or place \"prefab\": \"debris_concrete_pile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:debris_concrete_pile"]
+}

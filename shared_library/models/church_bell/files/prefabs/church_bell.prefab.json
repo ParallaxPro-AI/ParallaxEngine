@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/church_bell"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.66, 2.128, 1.72],
+      "offset": [0, 1.064, 0]
+    }
+  }
+}

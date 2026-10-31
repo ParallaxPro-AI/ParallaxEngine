@@ -1,0 +1,10 @@
+{
+  "id": "bike_share_dock",
+  "summary": "A docked bike-share station: a surface-mounted aluminium base rail with rubber end ramps carrying five brand-… options brand; sockets dock_0, dock_1, dock_2, dock_3, dock_4, socket_kiosk.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bike_share_dock or place \"prefab\": \"bike_share_dock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bike_share_dock"]
+}

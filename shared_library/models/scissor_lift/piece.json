@@ -1,0 +1,10 @@
+{
+  "id": "scissor_lift",
+  "summary": "A compact electric slab scissor lift (1.83 x 0.76 m chassis): blue chassis with wheel wells, side trays, poth… joints lift_0, arm_a0, arm_b0, lift_1, arm_a1, arm_b1, …; options paint; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.scissor_lift or place \"prefab\": \"scissor_lift\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:scissor_lift"]
+}

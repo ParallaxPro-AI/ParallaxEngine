@@ -1,0 +1,10 @@
+{
+  "id": "balloon_bunch",
+  "summary": "A bunch of seven glossy latex party balloons (red, yellow, blue, green, pink, orange, purple) on matching rib… joints balloon_pivot_0, balloon_pivot_1, balloon_pivot_2, balloon_pivot_3, balloon_pivot_4, balloon_pivot_5, …; options count, top_balloon.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.balloon_bunch or place \"prefab\": \"balloon_bunch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:balloon_bunch"]
+}

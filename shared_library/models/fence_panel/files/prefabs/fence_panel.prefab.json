@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fence_panel",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.05,
+        1.35,
+        0.15
+      ],
+      "offset": [
+        0.0,
+        0.675,
+        0.0
+      ]
+    }
+  }
+}

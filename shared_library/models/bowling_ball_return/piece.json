@@ -1,0 +1,10 @@
+{
+  "id": "bowling_ball_return",
+  "summary": "A bowling-alley ball return: a rounded fibreglass hood with a domed top, an arched chrome-trimmed ball mouth… joints flap; options hood; sockets ball_slot_0, ball_slot_1, ball_slot_2, ball_slot_3, ball_slot_4, ball_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bowling_ball_return or place \"prefab\": \"bowling_ball_return\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bowling_ball_return"]
+}

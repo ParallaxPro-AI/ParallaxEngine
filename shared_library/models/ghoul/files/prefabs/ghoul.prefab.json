@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ghoul"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5245, 1.7174, 0.4811],
+      "offset": [0, 0.8587, 0.0829]
+    }
+  }
+}

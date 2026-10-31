@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sundial"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.52, 1.0555, 0.52],
+      "offset": [0, 0.5277, 0]
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+ "duration": 0.26,
+ "seed": 620,
+ "gain": 0.85,
+ "layers": [
+  {
+   "wave": "noise",
+   "attack": 0.015,
+   "decay": 0.19,
+   "sustain": 0,
+   "gain": 0.9,
+   "filter": {
+    "type": "bandpass",
+    "freq": 300,
+    "freq_end": 2600,
+    "q": 1.5
+   }
+  },
+  {
+   "wave": "sine",
+   "freq": 130,
+   "freq_end": 50,
+   "attack": 0.001,
+   "decay": 0.18,
+   "sustain": 0,
+   "gain": 0.4,
+   "drive": 1.6
+  },
+  {
+   "wave": "triangle",
+   "freq": 500,
+   "freq_end": 1400,
+   "attack": 0.02,
+   "decay": 0.22,
+   "sustain": 0,
+   "gain": 0.22,
+   "detune_cents": 8
+  }
+ ]
+}

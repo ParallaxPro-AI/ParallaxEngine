@@ -1,0 +1,10 @@
+{
+  "id": "vip_rope_lounge_sofa",
+  "summary": "A VIP lounge booth: a semicircular channel-tufted velvet sofa (sixteen raked back pads, five seat cushions, a… joints rope; options velvet, rope; sockets seat_0, seat_1, seat_2, seat_3, seat_4, rope_gap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vip_rope_lounge_sofa or place \"prefab\": \"vip_rope_lounge_sofa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vip_rope_lounge_sofa"]
+}

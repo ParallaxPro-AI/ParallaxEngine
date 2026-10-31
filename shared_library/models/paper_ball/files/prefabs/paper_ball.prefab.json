@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paper_ball"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5267, 0.4889, 0.5559],
+      "offset": [0.0136, 0.2444, 0.0053]
+    }
+  }
+}

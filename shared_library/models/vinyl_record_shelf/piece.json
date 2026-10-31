@@ -1,0 +1,10 @@
+{
+  "id": "vinyl_record_shelf",
+  "summary": "A vinyl record station: a 2x2 cube shelf on black hairpin legs holding about 78 LP sleeves in three cubes (on… joints cover, tonearm; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vinyl_record_shelf or place \"prefab\": \"vinyl_record_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vinyl_record_shelf"]
+}

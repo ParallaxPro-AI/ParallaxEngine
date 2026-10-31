@@ -1,0 +1,10 @@
+{
+  "id": "star_collectible",
+  "summary": "A chunky 0.55 m \"power star\" collectible: a thick five-point star with flat faces and a bevel all round, a gi… joints spinner; options colour, gem; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.star_collectible or place \"prefab\": \"star_collectible\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:star_collectible"]
+}

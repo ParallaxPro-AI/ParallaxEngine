@@ -1,0 +1,10 @@
+{
+  "id": "rolling_boulder",
+  "summary": "A temple rolling-boulder trap: a roughly 2 m natural rock mass, lumpy and irregularly faceted rather than a t… joints roll.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rolling_boulder or place \"prefab\": \"rolling_boulder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rolling_boulder"]
+}

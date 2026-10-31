@@ -1,0 +1,10 @@
+{
+  "id": "fish_catfish",
+  "summary": "A channel catfish, a catchable freshwater bottom feeder: 0.62 m snout to tail fork (a good river catch; adult… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_catfish or place \"prefab\": \"fish_catfish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_catfish"]
+}

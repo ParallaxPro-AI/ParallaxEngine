@@ -1,0 +1,8 @@
+{
+  "ui": ["hud"],
+  "entities": [
+    { "prefab": "camera", "at": [0, 0] },
+    { "prefab": "arena", "at": [0, 0] },
+    { "id": "player", "prefab": "player", "at": [0, -4] }
+  ]
+}

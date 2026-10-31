@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_legs_workwear_cargo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5039, 0.987, 0.2878],
+      "offset": [0, 0.5685, -0.0101]
+    }
+  }
+}

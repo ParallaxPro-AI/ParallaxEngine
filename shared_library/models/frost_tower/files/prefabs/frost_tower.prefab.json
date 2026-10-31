@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/frost_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 3.0656, 2.4],
+      "offset": [0, 1.5328, 0]
+    }
+  }
+}

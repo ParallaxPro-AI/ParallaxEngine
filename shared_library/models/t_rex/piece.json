@@ -1,0 +1,10 @@
+{
+  "id": "t_rex",
+  "summary": "A living tyrannosaur on the engine's quadruped_20 rig used as a biped: about 11 m snout to tail tip and 3.9 m… options skin; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.t_rex or place \"prefab\": \"t_rex\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:t_rex"]
+}

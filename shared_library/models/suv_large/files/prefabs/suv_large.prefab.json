@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/suv_large"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2100
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.21,
+        1.93,
+        5.0143
+      ],
+      "offset": [
+        0,
+        0.965,
+        0.0329
+      ]
+    },
+    "vehicle": {
+      "max_speed": 36,
+      "steering": 30
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.965,
+        0.0329
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+{"format":"parallax.model","version":1,"source":"parallax migrate: tc_floor_living.prefab.json (CodeModel 'tc_floor_living')","materials":{"slab":{"color":[0.935741,0.896244,0.832284],"metallic":0.0,"roughness":0.95}},"meshes":{},"parts":[{"name":"slab","position":[0.0,0.01,0.0],"shape":"box","size":[6.8,0.02,8.4],"material":"slab"}]}

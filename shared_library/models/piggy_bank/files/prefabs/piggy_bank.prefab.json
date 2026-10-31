@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/piggy_bank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1559, 0.194, 0.2468],
+      "offset": [0, 0.097, -0.0049]
+    }
+  }
+}

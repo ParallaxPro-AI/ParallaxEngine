@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/breaker_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 1.32, 0.1475],
+      "offset": [0, 0.66, -0.0043]
+    }
+  }
+}

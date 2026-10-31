@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/moped"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 95
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.765,
+        1.277,
+        2.0684
+      ],
+      "offset": [
+        0,
+        0.6384,
+        0.0367
+      ]
+    },
+    "vehicle": {
+      "max_speed": 17,
+      "steering": 45
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.6384,
+        0.0367
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

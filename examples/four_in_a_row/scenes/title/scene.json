@@ -1,0 +1,6 @@
+{
+  "extends": "well",
+  "exclude": ["column_glow", "column_ghost", "well"],
+  "ui": ["title"],
+  "music": null
+}

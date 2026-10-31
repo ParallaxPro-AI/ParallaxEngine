@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/parking_meter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.221, 1.487, 0.18],
+      "offset": [0.0155, 0.7435, 0]
+    }
+  }
+}

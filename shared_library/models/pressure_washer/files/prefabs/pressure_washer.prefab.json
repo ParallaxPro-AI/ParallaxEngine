@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pressure_washer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.571, 1.0091, 0.6559],
+      "offset": [0, 0.5046, 0.0006]
+    }
+  }
+}

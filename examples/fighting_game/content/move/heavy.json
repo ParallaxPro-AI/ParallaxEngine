@@ -1,0 +1,8 @@
+{
+  "label": "HEAVY",
+  "clip": "clips/heavy", "swing_sound": "sfx/swing_heavy", "hit_sound": "sfx/hit_heavy",
+  "startup": 18, "active": 4, "recovery": 26,
+  "damage": 16, "reach": 1.45, "box_height": 2.0,
+  "hitstun": 38, "blockstun": 16, "hitstop": 0.09, "knockback": 5.2, "shake": 0.085, "rumble": 0.025,
+  "knocks_down": true
+}

@@ -1,0 +1,10 @@
+{
+  "id": "hurdle",
+  "summary": "A regulation track hurdle: two L-frame sides with 700 mm feet pointing at the runner, sliding counterweights… joints tip_over, gate; options stripes, frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hurdle or place \"prefab\": \"hurdle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hurdle"]
+}

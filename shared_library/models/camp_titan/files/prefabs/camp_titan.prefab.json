@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camp_titan"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.44, 2.7711, 0.481],
+      "offset": [0, 1.3856, 0.003]
+    }
+  }
+}

@@ -1,0 +1,130 @@
+<link rel="stylesheet" href="prism.css">
+<style>
+  .psh { position: fixed; inset: 0; pointer-events: none; }
+  .psh-m { display: none !important; }
+
+  .psh-block { position: absolute; top: var(--safe-t); width: calc(var(--u) * 360); padding: calc(var(--u) * 22) calc(var(--u) * 26); display: flex; flex-direction: column; gap: calc(var(--u) * 8); }
+  .psh-tl { left: var(--safe); }
+  .psh-tr { right: var(--safe); }
+  .psh-score { font-size: calc(var(--u) * 70); line-height: 1; }
+  .psh-sep { height: 1px; background: var(--ps-line-3); margin: calc(var(--u) * 10) 0; }
+  .psh-pair { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: calc(var(--u) * 16); }
+  .psh-cell { display: flex; flex-direction: column; gap: calc(var(--u) * 6); }
+  .psh-cell-r { align-items: flex-end; }
+  .psh-best { font-size: var(--fs-md); color: var(--ps-ink-3); }
+  .psh-combo { display: flex; align-items: baseline; gap: calc(var(--u) * 6); }
+  .psh-combo-x { font-size: var(--fs-sm); color: var(--ps-ink-3); font-weight: 700; }
+  .psh-combo-n { display: inline-block; font-size: calc(var(--u) * 46); line-height: .9; color: var(--ps-accent); text-shadow: var(--ps-text-glow); transform-origin: 50% 60%; }
+  .psh-combo.is-zero .psh-combo-n, .psh-msub.is-zero .psh-combo-n { color: var(--ps-ink-3); text-shadow: none; }
+
+  .psh-strip { position: absolute; top: var(--safe-t); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 14); padding: calc(var(--u) * 16) calc(var(--u) * 32); }
+  .psh-row { display: flex; align-items: center; gap: calc(var(--u) * 24); white-space: nowrap; }
+  .psh-div { width: 1px; height: calc(var(--u) * 34); background: var(--ps-line-2); }
+  .psh-inline { display: flex; align-items: baseline; gap: calc(var(--u) * 10); }
+  .psh-inline .ps-num { font-size: var(--fs-md); }
+  .psh-name { font-size: calc(var(--u) * 36); font-weight: 800; letter-spacing: .14em; color: var(--ps-stage); text-shadow: 0 0 18px color-mix(in oklab, var(--ps-stage) 55%, transparent); }
+
+  .psh-pips { display: flex; gap: calc(var(--u) * 10); }
+  .psh-pips .ps-pip { width: calc(var(--u) * 24); height: calc(var(--u) * 24); }
+  .psh-orbs { display: flex; justify-content: space-between; align-items: center; }
+  .psh-orbs-n { font-size: var(--fs-md); }
+  .psh-upg { font-size: var(--fs-sm); font-weight: 700; letter-spacing: .1em; line-height: 1.5; text-transform: uppercase; }
+  .psh-upg.is-none { color: var(--ps-ink-3); }
+  .psh-upg-n { white-space: nowrap; }
+
+  .psh-legend { position: absolute; left: 50%; bottom: calc(var(--u) * 28); transform: translateX(-50%); display: flex; align-items: center; gap: calc(var(--u) * 20); padding: calc(var(--u) * 12) calc(var(--u) * 24); background: var(--ps-glass); border: 1px solid var(--ps-line-3); font-size: var(--fs-xs); color: var(--ps-ink-2); white-space: nowrap; }
+  .psh-li { display: flex; align-items: center; gap: calc(var(--u) * 8); }
+  .psh-dot { color: var(--ps-ink-3); }
+
+  .psh-serve { position: absolute; left: 50%; bottom: calc(var(--u) * 300); transform: translateX(-50%); display: none; align-items: center; gap: calc(var(--u) * 12); font-size: var(--fs-xs); font-weight: 700; letter-spacing: var(--ps-track-wide); color: var(--ps-accent); text-shadow: var(--ps-text-glow); animation: ps-breathe 1.6s ease-in-out infinite; }
+  .psh-serve.is-on { display: flex; }
+
+  .psh-pause { display: none; }
+
+  @media (pointer: coarse) {
+    .psh-d { display: none !important; }
+    .psh-m { display: flex !important; }
+
+    .psh-mtl { position: absolute; left: var(--safe); top: var(--safe-t); width: calc(var(--u) * 126); padding: calc(var(--u) * 7) calc(var(--u) * 10) calc(var(--u) * 8); flex-direction: column; gap: calc(var(--u) * 3); }
+    .psh-mscore { font-size: calc(var(--u) * 24); line-height: 1; margin-bottom: calc(var(--u) * 3); }
+    .psh-msub { display: flex; justify-content: space-between; align-items: baseline; font-size: var(--fs-xs); }
+    .psh-msub .psh-combo-n { font-size: var(--fs-sm); line-height: 1.2; }
+
+    .psh-mstrip { position: absolute; top: var(--safe-t); left: 50%; transform: translateX(-50%); height: calc(var(--u) * 32); padding: 0 calc(var(--u) * 14); align-items: center; gap: calc(var(--u) * 8); font-size: var(--fs-sm); white-space: nowrap; }
+    .psh-mstrip .psh-name { font-size: inherit; text-shadow: 0 0 12px color-mix(in oklab, var(--ps-stage) 55%, transparent); }
+
+    .ps-root .psh-pause { position: absolute; right: var(--safe); top: var(--safe-t); width: 44px; height: 44px; display: flex; gap: 0; background: var(--ps-glass-strong); border: 2px solid var(--ps-line); color: var(--ps-ink); pointer-events: auto; }
+    .ps-root .psh-pause:active { background: #fff; color: #000; border-color: #fff; transform: scale(.96); }
+    .psh-pause svg { width: 20px; height: 20px; display: block; }
+
+    .psh-mtr { position: absolute; right: var(--safe); top: calc(var(--safe-t) + 44px + calc(var(--u) * 8)); flex-direction: column; align-items: flex-end; gap: calc(var(--u) * 6); }
+    .psh-mtr .psh-pips { gap: calc(var(--u) * 5); padding: calc(var(--u) * 5) calc(var(--u) * 6); background: var(--ps-glass); }
+    .psh-mtr .ps-pip { width: calc(var(--u) * 12); height: calc(var(--u) * 12); }
+    .psh-mupg { font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .16em; padding: calc(var(--u) * 3) calc(var(--u) * 6); border: 1px solid var(--ps-line-2); background: var(--ps-glass); }
+  }
+</style>
+<div class="ps-root psh" data-style---ps-stage="stage_color">
+  <section class="ps-panel psh-block psh-tl psh-d">
+    <span class="ps-label" data-text="score"></span>
+    <span class="ps-num psh-score" data-bind="score" data-format="int"></span>
+    <div class="psh-sep"></div>
+    <div class="psh-pair">
+      <div class="psh-cell"><span class="ps-label" data-text="best"></span><span class="ps-num psh-best" data-bind="best" data-format="int"></span></div>
+      <div class="psh-cell psh-cell-r"><span class="ps-label" data-text="combo"></span><span class="psh-combo" data-class-is-zero="combo_zero"><span class="psh-combo-x">×</span><span class="ps-num psh-combo-n" data-bind="combo"></span></span></div>
+    </div>
+  </section>
+
+  <section class="ps-panel psh-strip psh-d">
+    <div class="psh-row">
+      <span class="psh-inline"><span class="ps-label" data-text="stage"></span><span class="ps-num" data-bind="stage"></span></span>
+      <span class="psh-div"></span>
+      <span class="psh-name" data-bind="stage_name"></span>
+      <span class="psh-div"></span>
+      <span class="psh-inline"><span class="ps-num" data-bind="bricks_left"></span><span class="ps-label" data-text="bricks_left"></span></span>
+    </div>
+    <div class="ps-segs" aria-hidden="true" data-each="segments">
+      <template><i class="ps-seg" data-class-done="done" data-class-now="now" data-class-lost="lost" data-style---c="color"></i></template>
+    </div>
+  </section>
+
+  <section class="ps-panel psh-block psh-tr psh-d">
+    <div class="psh-orbs">
+      <span class="ps-label" data-text="orbs"></span>
+      <span class="ps-num psh-orbs-n" data-bind="orbs"></span>
+    </div>
+    <div class="psh-pips" data-each="pips"><template><i class="ps-pip" data-class-is-empty="empty"></i></template></div>
+    <div class="psh-sep"></div>
+    <span class="ps-label" data-text="upgrades"></span>
+    <span class="psh-upg" data-class-is-none="no_upgrades" data-bind="upgrades"></span>
+  </section>
+
+  <div class="psh-serve psh-d" data-class-is-on="serving"><span class="ps-key ps-key--accent" data-text="space"></span><span data-text="launch"></span></div>
+
+  <footer class="psh-legend psh-d">
+    <span class="psh-li"><span class="ps-key">A</span>/<span class="ps-key">←</span><span data-text="legend_left"></span></span><span class="psh-dot">·</span>
+    <span class="psh-li"><span class="ps-key">D</span>/<span class="ps-key">→</span><span data-text="legend_right"></span></span><span class="psh-dot">·</span>
+    <span class="psh-li" data-text="legend_mouse"></span><span class="psh-dot">·</span>
+    <span class="psh-li"><span class="ps-key" data-text="space"></span><span data-text="legend_launch"></span></span><span class="psh-dot">·</span>
+    <span class="psh-li"><span class="ps-key">P</span><span data-text="pause"></span></span>
+  </footer>
+
+  <section class="ps-panel psh-mtl psh-m">
+    <span class="ps-label" data-text="score"></span>
+    <span class="ps-num psh-mscore" data-bind="score" data-format="int"></span>
+    <div class="psh-msub"><span class="ps-label" data-text="best"></span><span class="ps-num ps-dim" data-bind="best" data-format="int"></span></div>
+    <div class="psh-msub" data-class-is-zero="combo_zero"><span class="ps-label" data-text="combo"></span><span class="ps-num psh-combo-n" data-bind="combo"></span></div>
+  </section>
+
+  <section class="ps-panel psh-mstrip psh-m">
+    <span class="ps-num" data-bind="stage"></span>
+    <span class="psh-name" data-bind="stage_name"></span>
+    <span class="ps-dim">·</span>
+    <span class="ps-num" data-bind="bricks_left"></span>
+  </section>
+
+  <button class="ps-plate psh-pause" data-action="pause" aria-label="Pause"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+  <div class="psh-mtr psh-m">
+    <div class="psh-pips" data-each="pips"><template><i class="ps-pip" data-class-is-empty="empty"></i></template></div>
+    <span class="psh-mupg"><span data-text="upg"></span> <span data-bind="upgrade_count"></span></span>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "id": "coffee_machine",
+  "summary": "A countertop coffee machine. joints portafilter, lever, drip_tray; options type; sockets socket_cup.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffee_machine or place \"prefab\": \"coffee_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffee_machine"]
+}

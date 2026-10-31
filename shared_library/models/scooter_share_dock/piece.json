@@ -1,0 +1,10 @@
+{
+  "id": "scooter_share_dock",
+  "summary": "An e-scooter share charging hub: a low steel platform with a ribbed rubber deck and yellow nose, four parking… options brand, charging; sockets bay_0, bay_1, bay_2, bay_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scooter_share_dock or place \"prefab\": \"scooter_share_dock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scooter_share_dock"]
+}

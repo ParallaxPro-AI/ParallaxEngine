@@ -1,0 +1,10 @@
+{
+  "id": "christmas_tree_decorated",
+  "summary": "A tall (2.3 m) decorated spruce in a ribbed brass collar: thirteen drooping tiers with ragged, star-shaped ri… options lights, gifts.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.christmas_tree_decorated or place \"prefab\": \"christmas_tree_decorated\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:christmas_tree_decorated"]
+}

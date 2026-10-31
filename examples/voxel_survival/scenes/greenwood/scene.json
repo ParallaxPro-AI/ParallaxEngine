@@ -1,0 +1,205 @@
+{
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/b3/45/b345a7da4548be05c2c6e9baeb1041e31f9fbd273ae43c7765eb2938b7935ebd.mp3",
+  "ui": [
+    "hud",
+    "hotbar"
+  ],
+  "environment": {
+    "ambient": "#dbecff",
+    "time_of_day": 8,
+    "sun": {
+      "color": "#fff5e1",
+      "intensity": 0.792,
+      "shadow_distance": 48
+    },
+    "fog": {
+      "color": "#cedee6",
+      "near": 52,
+      "far": 104
+    },
+    "post": {
+      "exposure": 1.05,
+      "contrast": 1.04,
+      "saturation": 0.824,
+      "temperature": 0.1,
+      "bloom": 0.02,
+      "vignette": 0.12
+    },
+    "clouds": {
+      "density": 0.5
+    },
+    "sky": "clear_day",
+    "day_length": 720,
+    "weather": {
+      "preset": "clear",
+      "clouds": 0.3,
+      "cycle": {
+        "clear": 2,
+        "cloudy": 1,
+        "rain": 1
+      },
+      "hold": [
+        100,
+        240
+      ],
+      "blend": 15
+    }
+  },
+  "voxels": {
+    "y_range": [
+      -32,
+      64
+    ],
+    "render_distance": 6,
+    "generator": {
+      "type": "landscape",
+      "seed": 1337,
+      "noise": "lattice",
+      "base_height": 4,
+      "amplitude": 7,
+      "frequency": 0.035,
+      "octaves": 3,
+      "sea_level": 0,
+      "bottom": "bedrock",
+      "strata": [
+        {
+          "block": "grass",
+          "depth": 1
+        },
+        {
+          "block": "dirt",
+          "depth": 3
+        },
+        {
+          "block": "stone"
+        }
+      ],
+      "shore": "sand",
+      "shore_height": 2,
+      "water": "water",
+      "ores": [
+        {
+          "block": "crystal_ore",
+          "chance": 0.02,
+          "min_depth": 5
+        },
+        {
+          "block": "iron_ore",
+          "chance": 0.06,
+          "min_depth": 3
+        },
+        {
+          "block": "coal_ore",
+          "chance": 0.11,
+          "min_depth": 2
+        }
+      ],
+      "trees": {
+        "trunk": "wood_log",
+        "leaves": "leaves",
+        "on": "grass",
+        "spacing": 11,
+        "density": 0.6,
+        "min_height": 4,
+        "max_height": 6,
+        "radius": 2
+      },
+      "ruins": {
+        "block": "relic",
+        "walls": "bricks"
+      },
+      "slopes": [
+        {
+          "direction": 180,
+          "start": 34,
+          "width": 55,
+          "rise": 18,
+          "variation": 0.5,
+          "surface": "stone",
+          "surface_above": 0.45,
+          "spires": {
+            "block": "stone",
+            "spacing": [
+              23,
+              19
+            ],
+            "size": 2,
+            "height": 3
+          }
+        },
+        {
+          "direction": 90,
+          "start": 34,
+          "width": 38,
+          "rise": -11
+        }
+      ],
+      "tunnels": {
+        "y": -8,
+        "spacing": 64,
+        "width": 3.87,
+        "height": 3.16,
+        "min_depth": 5,
+        "cross_y": -10,
+        "cross_radius": 3.46
+      },
+      "galleries": [
+        {
+          "from": [
+            12,
+            -12
+          ],
+          "to": [
+            64,
+            -12
+          ],
+          "width": 2,
+          "height": 4,
+          "slope": 0.48,
+          "lowest": -12
+        }
+      ]
+    }
+  },
+  "entities": [
+    {
+      "id": "player",
+      "prefab": "player",
+      "at": [
+        0.5,
+        24,
+        0.5
+      ],
+      "rotation": [
+        0,
+        180,
+        0
+      ]
+    },
+    {
+      "prefab": "eye_camera",
+      "components": {
+        "camera": {
+          "follow": "player"
+        }
+      }
+    },
+    {
+      "prefab": "block_cursor",
+      "params": {
+        "block_cursor": {
+          "shows": "target"
+        }
+      }
+    },
+    {
+      "prefab": "block_cursor",
+      "params": {
+        "block_cursor": {
+          "shows": "placement",
+          "color": "#40d96626"
+        }
+      }
+    }
+  ]
+}

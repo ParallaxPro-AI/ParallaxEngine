@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bastion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.2, 6.4, 5.2],
+      "offset": [0, 3.2, 0]
+    }
+  }
+}

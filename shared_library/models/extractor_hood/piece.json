@@ -1,0 +1,10 @@
+{
+  "id": "extractor_hood",
+  "summary": "A stainless kitchen extractor / cooker hood with a lit underside (two baffle grease filters, two downlights… options style; sockets socket_underside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.extractor_hood or place \"prefab\": \"extractor_hood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:extractor_hood"]
+}

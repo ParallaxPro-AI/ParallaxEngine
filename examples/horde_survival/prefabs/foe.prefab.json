@@ -1,0 +1,10 @@
+{
+  "components": {
+    "health": {"current": 10, "max": 10},
+    "side": {"side": "side_horde"},
+    "health_bar": {"offset": [0, 1.6, 0], "enemy_color": "#f97316"},
+    "surface_fx": {"rim": 1.6, "rim_color": "#ff8a5c", "rim_power": 1.5}
+  },
+  "tags": ["horde"],
+  "behaviors": {"swarm_chase": {}}
+}

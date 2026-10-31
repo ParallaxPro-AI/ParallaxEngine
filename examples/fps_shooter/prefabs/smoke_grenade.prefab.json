@@ -1,0 +1,30 @@
+{
+ "components": {
+  "model": {
+   "model": "models/smoke_grenade",
+   "offset": [0, -0.055, -0.007]
+  },
+  "rigidbody": {
+   "kind": "dynamic",
+   "mass": 0.4,
+   "continuous": true
+  },
+  "collider": {
+   "shape": "sphere",
+   "radius": 0.09,
+   "bounce": 0.35,
+   "layer": "grenade",
+   "collides_with": [
+    "world"
+   ]
+  }
+ },
+ "behaviors": {
+  "grenade": {
+   "fuse": 1.8,
+   "radius": 3,
+   "smoke": 9
+  }
+ },
+ "pool": 8
+}

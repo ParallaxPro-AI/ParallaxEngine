@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parallaxpro.ai/docs/engine/contracts/observation.schema.json",
+  "title": "Parallax observation (format parallax.observation, version 1)",
+  "description": "What a running game shows: camera, entities with drawn bounds and screen boxes, open panels. Produced by observe() in @parallax/editor/session, and by its browser module with panel controls.",
+  "type": "object",
+  "required": ["format", "version", "scene", "time", "drawnFrame", "screen", "camera", "entities", "panels"],
+  "additionalProperties": false,
+  "properties": {
+    "format": { "const": "parallax.observation" },
+    "version": { "const": 1 },
+    "scene": { "type": ["string", "null"] },
+    "time": {
+      "type": "object",
+      "required": ["frame", "now", "scale", "frozen", "logic"],
+      "additionalProperties": false,
+      "properties": {
+        "frame": { "type": "integer", "minimum": 0 },
+        "now": { "type": "number" },
+        "scale": { "type": "number", "minimum": 0 },
+        "frozen": { "type": "boolean" },
+        "logic": { "type": "boolean", "description": "False in edit mode or while paused: nothing of the game runs." }
+      }
+    },
+    "drawnFrame": { "type": ["integer", "null"], "description": "The kernel frame the renderer last drew." },
+    "screen": { "$ref": "#/$defs/size" },
+    "camera": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/camera" }] },
+    "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } },
+    "panels": { "type": "array", "items": { "$ref": "#/$defs/panel" } },
+    "page": {
+      "type": "object",
+      "description": "Browser observations only: the canvas in the page (CSS pixels) and surface pixels per CSS pixel. pageX = canvas.x + surfaceX / pixelRatio.",
+      "required": ["canvas", "pixelRatio"], "additionalProperties": false,
+      "properties": { "canvas": { "$ref": "#/$defs/rect" }, "pixelRatio": { "type": "number" } }
+    }
+  },
+  "$defs": {
+    "size": {
+      "type": "object", "required": ["width", "height"], "additionalProperties": false,
+      "properties": { "width": { "type": "number", "minimum": 0 }, "height": { "type": "number", "minimum": 0 } }
+    },
+    "rect": {
+      "type": "object", "required": ["x", "y", "width", "height"], "additionalProperties": false,
+      "description": "Pixels, top-left origin: surface pixels for entities and viewports, CSS page pixels for panel controls.",
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" }, "width": { "type": "number" }, "height": { "type": "number" } }
+    },
+    "xyz": { "type": "array", "items": { "type": "number" } },
+    "matrix": { "type": "array", "items": { "type": "number" }, "description": "Column-major 4x4 (m[col * 4 + row]); clip depth 0..1." },
+    "camera": {
+      "type": "object",
+      "required": ["entity", "dimension", "perspective", "position", "right", "up", "forward", "viewport", "near", "far", "fov", "viewProjection", "view", "projection"],
+      "additionalProperties": false,
+      "properties": {
+        "entity": { "type": ["integer", "null"] },
+        "dimension": { "enum": ["2d", "3d"] },
+        "perspective": { "type": "boolean" },
+        "position": { "$ref": "#/$defs/xyz" },
+        "right": { "$ref": "#/$defs/xyz" },
+        "up": { "$ref": "#/$defs/xyz" },
+        "forward": { "$ref": "#/$defs/xyz" },
+        "viewport": { "$ref": "#/$defs/rect" },
+        "near": { "type": ["number", "null"] },
+        "far": { "type": ["number", "null"] },
+        "fov": { "type": ["number", "null"], "description": "Vertical field of view in degrees (perspective)." },
+        "viewProjection": { "$ref": "#/$defs/matrix" },
+        "view": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/matrix" }] },
+        "projection": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/matrix" }] }
+      }
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "placedId", "prefab", "name", "parent", "tags", "components", "behaviors", "visible", "position", "drawn", "bounds", "screen", "center", "onScreen"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "integer" },
+        "placedId": { "type": ["string", "null"] },
+        "prefab": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "parent": { "type": ["integer", "null"] },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "components": { "type": "array", "items": { "type": "string" } },
+        "behaviors": { "type": "array", "items": { "type": "string" } },
+        "visible": { "type": "boolean" },
+        "position": { "$ref": "#/$defs/xyz" },
+        "drawn": { "type": "boolean", "description": "Something of the entity was drawn in the last frame." },
+        "bounds": {
+          "anyOf": [
+            { "type": "null" },
+            { "type": "object", "required": ["min", "max"], "additionalProperties": false, "properties": { "min": { "$ref": "#/$defs/xyz" }, "max": { "$ref": "#/$defs/xyz" } } }
+          ]
+        },
+        "screen": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/rect" }] },
+        "center": { "anyOf": [{ "type": "null" }, { "type": "array", "items": { "type": "number" } }] },
+        "onScreen": { "type": "boolean" }
+      }
+    },
+    "panel": {
+      "type": "object",
+      "required": ["id", "html", "layer", "modal", "actions", "state"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "html": { "type": "string" },
+        "layer": { "enum": ["hud", "menu", "overlay"] },
+        "modal": { "type": "boolean" },
+        "actions": {
+          "type": "array",
+          "items": {
+            "type": "object", "required": ["name", "kind", "enabled"], "additionalProperties": false,
+            "properties": { "name": { "type": "string" }, "kind": { "enum": ["command", "call"] }, "enabled": { "type": "boolean" } }
+          }
+        },
+        "state": { "description": "The panel's state() for seat 0 as JSON; other values as their text." },
+        "controls": {
+          "type": "array",
+          "description": "Browser observations only: every data-action element of the panel as laid out in the page.",
+          "items": {
+            "type": "object", "required": ["action", "text", "rect", "clickable", "point", "reason"], "additionalProperties": false,
+            "properties": {
+              "action": { "type": "string" },
+              "text": { "type": "string" },
+              "rect": { "$ref": "#/$defs/rect" },
+              "clickable": { "type": "boolean" },
+              "point": { "anyOf": [{ "type": "null" }, { "type": "array", "items": { "type": "number" } }] },
+              "reason": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

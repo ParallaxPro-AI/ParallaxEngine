@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hover_bike"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7456, 1.0027, 2.15],
+      "offset": [0, 0.5013, 0.005]
+    }
+  }
+}

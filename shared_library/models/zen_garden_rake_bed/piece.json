@@ -1,0 +1,10 @@
+{
+  "id": "zen_garden_rake_bed",
+  "summary": "A 3 x 2 m Japanese dry rock garden (karesansui) bed: white crushed-granite gravel inside a weathered cedar ke… options gravel, rake.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.zen_garden_rake_bed or place \"prefab\": \"zen_garden_rake_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:zen_garden_rake_bed"]
+}

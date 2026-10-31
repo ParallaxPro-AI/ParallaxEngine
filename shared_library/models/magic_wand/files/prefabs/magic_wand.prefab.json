@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magic_wand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0266, 0.348, 0.027],
+      "offset": [0, 0.174, 0]
+    }
+  }
+}

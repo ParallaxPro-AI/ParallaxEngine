@@ -1,0 +1,10 @@
+{
+  "id": "wooden_bridge",
+  "summary": "A 4.0 m TILING module of timber plank footbridge: three longitudinal stringers, a deck of twenty sawn planks… sockets socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wooden_bridge or place \"prefab\": \"wooden_bridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wooden_bridge"]
+}

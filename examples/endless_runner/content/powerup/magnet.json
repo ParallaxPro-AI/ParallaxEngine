@@ -1,0 +1,1 @@
+{ "name": "COIN MAGNET", "prefab": "powerup_magnet", "effect": "coin_magnet", "seconds": 8, "power": 1, "weight": 3, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/51/305102e4e8758e66ed980548e801eae56fc2dcbcbe852765e426caee9fcc555b.mp3", "volume": 0.45 }

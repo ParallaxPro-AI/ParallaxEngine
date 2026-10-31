@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roll_cage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.72, 1.72, 0.864],
+      "offset": [0, 0.86, 0.002]
+    }
+  }
+}

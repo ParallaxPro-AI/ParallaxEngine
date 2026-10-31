@@ -1,0 +1,10 @@
+{
+  "id": "stone_trilithon",
+  "summary": "A megalithic trilithon from a prehistoric stone circle, 5.6 m wide and 6.3 m tall: two weathered grey sarsen… options lintel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_trilithon or place \"prefab\": \"stone_trilithon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_trilithon"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "garment_hair_bob",
+  "summary": "A classic chin-length bob with blunt bangs: the hair falls straight and full from the crown to the jawline al… options channel0; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_hair_bob or place \"prefab\": \"garment_hair_bob\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_hair_bob"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "mushroom_cluster",
+  "summary": "A clump of seven wild woodland mushrooms sprouting from one mossy patch of forest floor: honey-brown caps wit…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mushroom_cluster or place \"prefab\": \"mushroom_cluster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mushroom_cluster"]
+}

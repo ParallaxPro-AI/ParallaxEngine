@@ -1,0 +1,10 @@
+{
+  "id": "tesla_tower",
+  "summary": "A tower-defense tesla (lightning) tower on the set's common 2.4 m stone footing: an octagonal steel generator… joints turret_yaw; options tier, arc; sockets socket_muzzle, socket_top, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tesla_tower or place \"prefab\": \"tesla_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tesla_tower"]
+}

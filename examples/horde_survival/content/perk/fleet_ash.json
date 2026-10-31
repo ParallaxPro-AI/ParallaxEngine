@@ -1,0 +1,1 @@
+{"name": "Fleet Ash", "desc": "+4% movement speed per level.", "cost": 50, "cost_step": 40, "max_level": 4, "effect": {"speed_mul": 1.04}, "order": 3}

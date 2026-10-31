@@ -1,0 +1,10 @@
+{
+  "id": "checkpoint_ring",
+  "summary": "A free-standing checkpoint gate: a 6.4 m torus ring on two splayed legs and cast footpads, with an emissive a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.checkpoint_ring or place \"prefab\": \"checkpoint_ring\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:checkpoint_ring"]
+}

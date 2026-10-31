@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sword",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.212,
+        0.95,
+        0.045
+      ],
+      "offset": [
+        0.003,
+        0.475,
+        -0.0045
+      ]
+    }
+  }
+}

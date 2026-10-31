@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/seashell_starfish_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7196, 0.1551, 0.5393],
+      "offset": [0.0349, 0.0733, 0.0154]
+    }
+  }
+}

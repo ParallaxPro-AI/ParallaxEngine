@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/log_single_cut"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0215, 0.6422, 0.6063],
+      "offset": [0.009, 0.3211, -0.0073]
+    }
+  }
+}

@@ -1,0 +1,172 @@
+{
+ "components": {
+  "structure": {
+   "cell": 0.5,
+   "slab": 0.2,
+   "door_height": 2.1,
+   "layer": "world",
+   "roof": {
+    "kind": "flat",
+    "access": true,
+    "parapet": 0.75,
+    "coping": true
+   },
+   "facade": {
+    "plinth": 0.55,
+    "mullions": {},
+    "shutters": {
+     "levels": [
+      1
+     ]
+    },
+    "awnings": {
+     "on": "windows",
+     "depth": 1.2,
+     "levels": [
+      0
+     ]
+    }
+   },
+   "materials": {
+    "wall": {
+     "color": [
+      0.9547,
+      0.9309,
+      0.8756,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/92/79/92790effbe1fc40b6a38f3cf9e14eccbdb196b00a3196c5ea7eebc53629cb5b3.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/33/45/3345d450a1f4cb03b75422881a43fc9f0cd89d45d108a7425daa146cfe4ebb99.jpg",
+     "tile": 3.2,
+     "roughness": 0.92
+    },
+    "glass": {
+     "color": [
+      0.8095,
+      0.865,
+      0.8962,
+      0.28
+     ],
+     "tile": 2,
+     "roughness": 0.08
+    },
+    "tile": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/2e/8b/2e8b4425070938018e8cec0193fcb9565f27ab2fff51e7ec33202afeb9fdb9b2.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/aa/82/aa82777209ac23a5b0b11dad32070ac3352f989ae816ba337f2e7f070b47a18e.jpg",
+     "tile": 1.6,
+     "roughness": 0.8
+    },
+    "concrete": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/45/ef/45ef8951432f0b692dc461178a898fb83b2e5a873ba53fb19041e9356e118e4a.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/d3/c1/d3c157904afca269836192f27ac02363e15f0661256298948f81335a9c666a30.jpg",
+     "tile": 3.2,
+     "roughness": 0.91
+    },
+    "boards": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/e6/95/e6952149cd1bb02e485a183f526e9dbe8d90d2a22bfac564cc3874cfb8eddd03.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/0b/59/0b59c7f0aad751a769062c22f78a2d225bd4e802ba443fbb1fff6fb738221207.jpg",
+     "tile": 2,
+     "roughness": 0.88
+    },
+    "stair": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/2e/8b/2e8b4425070938018e8cec0193fcb9565f27ab2fff51e7ec33202afeb9fdb9b2.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/aa/82/aa82777209ac23a5b0b11dad32070ac3352f989ae816ba337f2e7f070b47a18e.jpg",
+     "tile": 1.6,
+     "roughness": 0.8
+    },
+    "roof": {
+     "color": [
+      0.865,
+      0.821,
+      0.722,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/a1/39/a1399a26a60b5024a832c8dd0f1a27bc7ad6c4d06fd60143d803ff6d93b778ed.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/c3/19/c3190ba9edbc0d1b6eff2a0976bdc307661dbfc98ecf4e2fed9b346c1d81a52f.jpg",
+     "tile": 2.0,
+     "roughness": 0.85
+    },
+    "coping": {
+     "color": [
+      0.8095,
+      0.7977,
+      0.7736,
+      1
+     ],
+     "tile": 2,
+     "roughness": 0.9
+    },
+    "plinth": {
+     "color": [
+      0.865,
+      0.821,
+      0.722,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/a1/39/a1399a26a60b5024a832c8dd0f1a27bc7ad6c4d06fd60143d803ff6d93b778ed.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/c3/19/c3190ba9edbc0d1b6eff2a0976bdc307661dbfc98ecf4e2fed9b346c1d81a52f.jpg",
+     "tile": 2.0,
+     "roughness": 0.85
+    },
+    "mullion": {
+     "color": [
+      0.964,
+      0.9593,
+      0.9453,
+      1
+     ],
+     "tile": 2,
+     "roughness": 0.6
+    },
+    "shutter": {
+     "color": [
+      0.7858,
+      0.865,
+      0.8756,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/73/11/7311e60ec0ca3de10383dd5f2d398819e2198ea78244cf4f6627d1cb26cf4b53.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/6d/56/6d56e3d05fe08ca1f54bc890b0d01f9b6c66a451e4737d2a7b84bfd5e4cf384e.jpg",
+     "tile": 1.2,
+     "roughness": 0.9
+    },
+    "awning": {
+     "color": [
+      0.8095,
+      0.886,
+      0.8703,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/ef/9a/ef9ac1a0129b6d0f44b6d5beb68db7be7a0adf11e09fe52fd2cdc9370b27d4ba.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/73/64/73648cbe74f20fc17ef99a15b4cd700242ac94960e89460e4d61f491cc486d9f.jpg",
+     "tile": 1.2,
+     "roughness": 0.95
+    }
+   }
+  }
+ }
+}

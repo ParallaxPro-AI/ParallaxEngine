@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chinese_lion_statue"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.74, 1.4678, 0.98],
+      "offset": [0, 0.7339, 0]
+    }
+  }
+}

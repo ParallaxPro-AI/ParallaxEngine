@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/loom"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.525, 1.69, 1.7],
+      "offset": [0, 0.845, -0.01]
+    }
+  }
+}

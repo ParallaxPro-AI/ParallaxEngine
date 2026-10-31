@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fuel_pump_island"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.45, 3.025, 1.26],
+      "offset": [0, 1.5125, 0]
+    }
+  }
+}

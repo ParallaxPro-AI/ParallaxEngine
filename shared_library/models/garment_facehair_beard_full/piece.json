@@ -1,0 +1,10 @@
+{
+  "id": "garment_facehair_beard_full",
+  "summary": "A full beard: a thick close-trimmed mass covering the cheeks, jaw and chin, joined to a moustache over the up… options channel0; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_facehair_beard_full or place \"prefab\": \"garment_facehair_beard_full\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_facehair_beard_full"]
+}

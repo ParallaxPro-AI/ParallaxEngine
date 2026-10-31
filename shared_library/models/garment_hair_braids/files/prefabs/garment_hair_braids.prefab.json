@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_braids"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2904, 0.5996, 0.3095],
+      "offset": [-0.0001, 1.5862, 0.0341]
+    }
+  }
+}

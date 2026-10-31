@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/air_hockey_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 0.886, 2.424],
+      "offset": [0, 0.443, 0]
+    }
+  }
+}

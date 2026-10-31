@@ -1,0 +1,10 @@
+{
+  "id": "brazier",
+  "summary": "A standing iron fire bowl: three splayed cast legs tied by a ring, a riveted bowl hollowed to a real basin, a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.brazier or place \"prefab\": \"brazier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:brazier"]
+}

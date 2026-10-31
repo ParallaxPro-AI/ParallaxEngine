@@ -1,0 +1,10 @@
+{
+  "id": "pets_parakeet",
+  "summary": "Little Paw House stylized parakeet. sockets head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pets_parakeet or place \"prefab\": \"pets_parakeet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pets_parakeet"]
+}

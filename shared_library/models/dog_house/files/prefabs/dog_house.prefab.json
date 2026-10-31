@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dog_house"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0128, 0.9849, 1.18],
+      "offset": [0, 0.4925, 0]
+    }
+  }
+}

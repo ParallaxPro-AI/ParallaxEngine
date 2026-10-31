@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/barricade",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.44,
+        1.2809,
+        0.7453
+      ],
+      "offset": [
+        0.0,
+        0.6389,
+        -0.0273
+      ]
+    }
+  }
+}

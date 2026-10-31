@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/battle_tank"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 60000,
+      "linear_damping": 0.12,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.72,
+        3.2249,
+        10.26
+      ],
+      "offset": [
+        0,
+        1.6125,
+        1.37
+      ],
+      "bounce": 0.02
+    },
+    "vehicle": {
+      "max_speed": 18,
+      "steering": 30,
+      "grip": 10,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.6125,
+        1.37
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "lane_minion",
+  "summary": "A small rigged lane minion on the engine's canonical 17-bone humanoid rig — about two-thirds the height of a… options team, trim, role; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lane_minion or place \"prefab\": \"lane_minion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lane_minion"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "seashell_starfish_set",
+  "summary": "A beachcombing set of shells and sea stars: two five-armed sea stars (an orange one and a smaller purple one…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.seashell_starfish_set or place \"prefab\": \"seashell_starfish_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:seashell_starfish_set"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camping_tent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.7692, 1.311, 3.7392],
+      "offset": [0, 0.6545, -0.015]
+    }
+  }
+}

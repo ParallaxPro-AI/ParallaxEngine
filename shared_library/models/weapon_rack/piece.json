@@ -1,0 +1,14 @@
+{
+  "id": "weapon_rack",
+  "summary": "A freestanding wooden medieval arms rack: a floor tray with a front retaining lip, two end posts capped by… options contents; sockets socket_slot.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.weapon_rack or place \"prefab\": \"weapon_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:weapon_rack"
+  ]
+}

@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's game_over panel: VICTORY in gold glow or DEFEAT in red between two
+     hairline rules over a team-tinted radial wash, the winning faction named in its colour,
+     the match card as a seamed 4-column grid and the Play again / Main menu plates. */
+  .lsg { position: fixed; inset: 0; pointer-events: auto; white-space: nowrap; --lsg-acc: #f2c14e; --lsg-glow: rgba(51,140,242,.28); }
+  .lsg.lost { --lsg-acc: #f24d4d; --lsg-glow: rgba(242,77,77,.22); }
+  .lsg-wash { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 35%, var(--lsg-glow), rgba(7,11,20,.88) 65%); animation: ls-fade 420ms var(--ls-ease) both; }
+  .lsg-wrap { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(760 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(28 * var(--u)); }
+  .lsg-hd { display: flex; flex-direction: column; align-items: center; gap: calc(12 * var(--u)); animation: lsg-in 520ms var(--ls-ease) both; }
+  @keyframes lsg-in { from { opacity: 0; transform: scale(1.06); } to { opacity: 1; transform: none; } }
+  .lsg-rule { width: calc(560 * var(--u)); height: calc(2 * var(--u)); background: linear-gradient(90deg, transparent, var(--lsg-acc), transparent); }
+  .lsg-t { font: 800 calc(140 * var(--u))/1 var(--ls-display); letter-spacing: .1em; color: #fff; text-shadow: 0 0 calc(40 * var(--u)) var(--lsg-acc), 0 calc(4 * var(--u)) 0 rgba(0,0,0,.5); }
+  .lsg-w { font: 700 calc(20 * var(--u))/1 var(--ls-ui); letter-spacing: .28em; text-transform: uppercase; color: var(--ls-blue-hi); }
+  .lsg.red-won .lsg-w { color: var(--ls-red-hi); }
+  .lsg-grid { width: 100%; display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: calc(2 * var(--u)); border-radius: var(--ls-r2); overflow: hidden; background: var(--ls-line); box-shadow: var(--ls-elev); animation: ls-fade 420ms 180ms var(--ls-ease) both; }
+  .lsg-s { display: flex; flex-direction: column; gap: calc(8 * var(--u)); padding: calc(18 * var(--u)) calc(20 * var(--u)); background: var(--ls-panel-solid); }
+  .lsg-s.wide { grid-column: span 2; }
+  .lsg-s span { font: 700 calc(12 * var(--u))/1 var(--ls-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--ls-ink3); }
+  .lsg-s b { font: 700 calc(26 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink); overflow: hidden; text-overflow: ellipsis; }
+  .lsg-s b.res { color: var(--ls-gold); }
+  .lsg.lost .lsg-s b.res { color: var(--ls-red-hi); }
+  .lsg-s b.gold { color: var(--ls-gold); }
+  .lsg-acts { display: flex; gap: calc(12 * var(--u)); }
+  .lsg-acts .ls-btn { height: calc(64 * var(--u)); width: calc(220 * var(--u)); font-size: calc(20 * var(--u)); }
+  .lsg-acts .ls-btn.is-primary { width: calc(280 * var(--u)); font-size: calc(22 * var(--u)); }
+  @media (pointer: coarse) {
+    .lsg-wash { background: radial-gradient(ellipse at 30% 40%, var(--lsg-glow), rgba(7,11,20,.9) 70%); }
+    .lsg-wrap { left: 0; top: 0; right: 0; bottom: 0; transform: none; width: auto; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); align-items: center; gap: calc(40 * var(--u)); padding: calc(40 * var(--u)) max(calc(48 * var(--u)), calc(env(safe-area-inset-right) * 2)) calc(40 * var(--u)) max(calc(48 * var(--u)), calc(env(safe-area-inset-left) * 2)); }
+    .lsg-hd { align-items: flex-start; gap: calc(20 * var(--u)); }
+    .lsg-rule.top { display: none; }
+    .lsg-rule { width: calc(480 * var(--u)); height: calc(4 * var(--u)); background: linear-gradient(90deg, var(--lsg-acc), transparent); order: 2; }
+    .lsg-t { font-size: calc(128 * var(--u)); text-shadow: 0 0 calc(56 * var(--u)) var(--lsg-acc), 0 calc(6 * var(--u)) 0 rgba(0,0,0,.5); order: 1; }
+    .lsg-w { font-size: calc(28 * var(--u)); letter-spacing: .24em; order: 3; }
+    .lsg-acts { grid-column: 1; margin-top: calc(28 * var(--u)); gap: calc(16 * var(--u)); width: 100%; }
+    .lsg-acts .ls-btn, .lsg-acts .ls-btn.is-primary { flex: 1; width: auto; height: calc(104 * var(--u)); font-size: calc(32 * var(--u)); letter-spacing: .12em; }
+    .lsg-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: calc(4 * var(--u)); }
+    .lsg-s { gap: calc(10 * var(--u)); padding: calc(20 * var(--u)) calc(28 * var(--u)); }
+    .lsg-s span { font-size: calc(20 * var(--u)); letter-spacing: .18em; }
+    .lsg-s b { font-size: calc(36 * var(--u)); }
+  }
+</style>
+<div class="ls-root lsg" data-class-lost="lost" data-class-red-won="red_won">
+  <div class="lsg-wash"></div>
+  <div class="lsg-wrap">
+    <div class="lsg-hd">
+      <div class="lsg-rule top"></div>
+      <div class="lsg-t"><span data-show="won" data-text="game_over_victory"></span><span data-hide="won" data-text="game_over_defeat"></span></div>
+      <div class="lsg-w" data-bind="winner_line"></div>
+      <div class="lsg-rule"></div>
+    </div>
+    <div class="lsg-grid">
+      <div class="lsg-s wide"><span data-text="go_result"></span><b class="res"><span data-show="won" data-text="go_won"></span><span data-hide="won" data-text="go_lost"></span></b></div>
+      <div class="lsg-s"><span data-text="go_match_time"></span><b data-bind="match_time"></b></div>
+      <div class="lsg-s"><span data-text="go_team_kills"></span><b data-bind="team_kills"></b></div>
+      <div class="lsg-s"><span data-text="go_objectives"></span><b data-bind="objectives"></b></div>
+      <div class="lsg-s"><span data-text="go_gold"></span><b class="gold" data-bind="gold"></b></div>
+      <div class="lsg-s"><span data-text="go_takedowns"></span><b data-bind="takedowns"></b></div>
+      <div class="lsg-s"><span data-text="go_record"></span><b data-bind="record"></b></div>
+    </div>
+    <div class="lsg-acts">
+      <button class="ls-btn is-primary" data-action="play_again" data-text="go_play_again"></button>
+      <button class="ls-btn" data-action="main_menu" data-text="go_main_menu"></button>
+    </div>
+  </div>
+</div>

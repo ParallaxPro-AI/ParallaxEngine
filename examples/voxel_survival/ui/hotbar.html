@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="greenwood.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+#gw-bar{position:fixed;left:50%;bottom:calc(2.4 * var(--gw-r));transform:translateX(-50%);display:flex;flex-direction:column;gap:calc(1 * var(--gw-r));pointer-events:none}
+#gw-bar .top{display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:calc(1.2 * var(--gw-r))}
+#gw-bar .tool{justify-self:start;display:flex;align-items:center;gap:calc(.8 * var(--gw-r));padding:calc(.5 * var(--gw-r)) calc(1.2 * var(--gw-r)) calc(.5 * var(--gw-r)) calc(.8 * var(--gw-r));border-radius:calc(999 * var(--u));background:var(--gw-panel);border:calc(1.5 * var(--u)) solid var(--gw-wood);font:800 calc(1.4 * var(--gw-r))/1.2 var(--gw-font-ui);color:var(--gw-gold-soft);white-space:nowrap}
+#gw-bar .tool .gw-ic{width:calc(2 * var(--gw-r));height:calc(2 * var(--gw-r))}
+#gw-bar .tool b,#gw-bar .cur b{color:var(--gw-gold);font-weight:800}
+#gw-bar .cur{font:900 calc(2.1 * var(--gw-r))/1.2 var(--gw-font-ui);text-shadow:0 calc(.2 * var(--gw-r)) 0 #0b100d,0 0 calc(.8 * var(--gw-r)) rgba(0,0,0,.7);white-space:nowrap}
+#gw-bar .cur .tl{display:none}
+#gw-bar .tray{display:flex;gap:calc(.6 * var(--gw-r));padding:calc(1 * var(--gw-r));border-radius:calc(1.8 * var(--gw-r))}
+#gw-bar .slot{position:relative;width:calc(6.8 * var(--gw-r));height:calc(6.8 * var(--gw-r));display:grid;place-items:center;border-radius:calc(1.2 * var(--gw-r));border:calc(2 * var(--u)) solid var(--gw-wood);background:var(--gw-well);box-shadow:inset 0 calc(.2 * var(--gw-r)) 0 rgba(0,0,0,.25);pointer-events:auto;transition:transform .12s var(--gw-ease),border-color .12s,background-color .12s}
+#gw-bar .slot.sel{border-color:var(--gw-gold);background:rgba(245,207,118,.16);transform:translateY(calc(-.6 * var(--gw-r)));box-shadow:0 0 0 calc(3 * var(--u)) rgba(245,207,118,.25),0 calc(.8 * var(--gw-r)) calc(1.8 * var(--gw-r)) rgba(0,0,0,.4)}
+#gw-bar .slot .gw-ic{width:calc(3.8 * var(--gw-r));height:calc(3.8 * var(--gw-r))}
+#gw-bar .slot .k{position:absolute;top:calc(.3 * var(--gw-r));left:calc(.7 * var(--gw-r));font:900 calc(1.2 * var(--gw-r))/1.2 var(--gw-font-ui);color:rgba(245,240,223,.6)}
+#gw-bar .slot .eq{position:absolute;top:calc(.2 * var(--gw-r));right:calc(.6 * var(--gw-r));font-size:calc(1.2 * var(--gw-r));line-height:1.2;color:var(--gw-gold)}
+#gw-bar .slot .n{position:absolute;right:calc(.6 * var(--gw-r));bottom:calc(.2 * var(--gw-r));font:900 calc(1.7 * var(--gw-r))/1.2 var(--gw-font-ui);text-shadow:var(--gw-text-outline)}
+#gw-bar .more{display:none}
+#gw-bar .strip{display:none}
+@media (pointer:coarse){
+#gw-bar{bottom:calc(2.6 * var(--gw-r));align-items:center;gap:calc(.6 * var(--gw-r))}
+#gw-bar .top{display:block}
+#gw-bar .tool{display:none}
+#gw-bar .cur{font-size:calc(1.2 * var(--gw-r));font-weight:800;text-shadow:0 calc(.1 * var(--gw-r)) 0 #0b100d,0 0 calc(.6 * var(--gw-r)) rgba(0,0,0,.8)}
+#gw-bar .cur .tl{display:inline;color:var(--gw-gold-soft)}
+#gw-bar .tray{gap:calc(.4 * var(--gw-r));padding:calc(.4 * var(--gw-r));border-radius:calc(1.2 * var(--gw-r))}
+#gw-bar .slot{width:calc(4.4 * var(--gw-r));height:calc(4.4 * var(--gw-r));border-radius:calc(.9 * var(--gw-r))}
+#gw-bar .tray .slot.sel{transform:none;box-shadow:0 0 0 calc(2 * var(--u)) rgba(245,207,118,.25)}
+#gw-bar .tray .slot.out{display:none}
+#gw-bar .slot .gw-ic{width:calc(2.6 * var(--gw-r));height:calc(2.6 * var(--gw-r))}
+#gw-bar .slot .k{display:none}
+#gw-bar .slot .eq{top:0;right:calc(.3 * var(--gw-r));font-size:calc(.9 * var(--gw-r))}
+#gw-bar .slot .n{right:calc(.3 * var(--gw-r));bottom:0;font-size:calc(1.1 * var(--gw-r));text-shadow:0 calc(.1 * var(--gw-r)) 0 #0b100d,0 0 calc(.3 * var(--gw-r)) #0b100d}
+#gw-bar .more{width:calc(4.4 * var(--gw-r));height:calc(4.4 * var(--gw-r));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(.1 * var(--gw-r));border-radius:calc(.9 * var(--gw-r));border:calc(2 * var(--u)) dashed rgba(244,223,170,.3);pointer-events:auto}
+#gw-bar .more svg{width:calc(1.4 * var(--gw-r));height:calc(1 * var(--gw-r));transition:transform .12s}
+#gw-bar .more b{font:900 calc(1 * var(--gw-r))/1 var(--gw-font-ui);color:var(--gw-gold-soft)}
+#gw-bar.open .more svg{transform:rotate(180deg)}
+#gw-bar .strip{gap:calc(.4 * var(--gw-r));padding:calc(.4 * var(--gw-r));margin-bottom:calc(.4 * var(--gw-r));border-radius:calc(1.2 * var(--gw-r));background:rgba(23,34,29,.95);animation:gw-rise .16s var(--gw-ease) both}
+#gw-bar.open .strip{display:flex}
+#gw-bar .strip .slot.sel{transform:none}
+}
+</style>
+<div class="gw" id="gw-bar">
+<div class="top"><div class="tool"><img class="gw-ic" data-show="tool_picture" data-attr-src="tool_picture" alt=""><span><b>◆</b> <span data-bind="tool"></span></span></div><div class="cur"><span data-bind="selected_name"></span><span class="tl"> · <b>◆</b> <span data-bind="tool"></span></span></div><div></div></div>
+<div class="tray gw-panel" data-each="slots">
+<template><button class="slot" data-action="select" data-key="Digit{index1}" data-class-sel="selected" data-attr-title="name"><span class="k" data-bind="key"></span><img class="gw-ic" data-show="picture" data-attr-src="picture" alt=""><span class="eq" data-show="equipped">◆</span><span class="n" data-bind="count_label"></span></button></template>
+</div>
+</div>

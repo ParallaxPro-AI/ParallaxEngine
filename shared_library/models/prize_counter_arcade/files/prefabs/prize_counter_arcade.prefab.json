@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/prize_counter_arcade"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 2.55, 1.542],
+      "offset": [0, 1.275, 0.006]
+    }
+  }
+}

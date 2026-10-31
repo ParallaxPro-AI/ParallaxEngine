@@ -1,0 +1,22 @@
+{
+ "components": {
+  "model": {
+   "model": "models/barrel",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.588,
+    0.85,
+    0.605
+   ],
+   "offset": [
+    0.0,
+    0.42,
+    0.0085
+   ],
+   "layer": "world"
+  }
+ }
+}

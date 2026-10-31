@@ -1,0 +1,10 @@
+{
+  "id": "bank_vault_door",
+  "summary": "A round bank vault door 2 m across in a painted steel wall portal 2.6 m square: a machined steel door with V-… joints door, wheel, dial.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bank_vault_door or place \"prefab\": \"bank_vault_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bank_vault_door"]
+}

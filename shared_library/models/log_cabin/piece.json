@@ -1,0 +1,10 @@
+{
+  "id": "log_cabin",
+  "summary": "A one-room log cabin, 6 x 5 m: round peeled logs saddle-notched at the corners and running past them, laid on… joints table_leaf, chair_a_lift, chair_a_swivel, chair_b_lift, chair_b_swivel; options log_finish; sockets socket_porch, socket_hearth, socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.log_cabin or place \"prefab\": \"log_cabin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:log_cabin"]
+}

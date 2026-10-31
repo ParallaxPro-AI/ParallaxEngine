@@ -1,0 +1,10 @@
+{
+  "id": "fallen_log_mossy",
+  "summary": "A fallen tree trunk lying on the forest floor: 2.6 m long and about 0.43 m across at the root end, tapering t…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fallen_log_mossy or place \"prefab\": \"fallen_log_mossy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fallen_log_mossy"]
+}

@@ -1,0 +1,14 @@
+{
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    1.2,
+    2.4,
+    1.2
+   ],
+   "color": "#26cc4d",
+   "emissive": "#06400f"
+  }
+ }
+}

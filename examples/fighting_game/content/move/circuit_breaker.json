@@ -1,0 +1,8 @@
+{
+  "label": "CIRCUIT BREAKER",
+  "clip": "clips/super", "swing_sound": "sfx/swing_super", "hit_sound": "sfx/hit_super",
+  "startup": 12, "active": 6, "recovery": 30,
+  "damage": 30, "reach": 1.8, "box_height": 1.8,
+  "hitstun": 48, "blockstun": 20, "hitstop": 0.12, "knockback": 7.2, "shake": 0.085, "rumble": 0.025,
+  "meter_cost": 50, "knocks_down": true, "called_out": true
+}

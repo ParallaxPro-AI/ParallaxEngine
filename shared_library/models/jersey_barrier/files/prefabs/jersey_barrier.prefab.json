@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jersey_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.122, 0.849, 0.61],
+      "offset": [0.039, 0.4245, 0]
+    }
+  }
+}

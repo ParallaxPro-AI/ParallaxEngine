@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hang_glider"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [10.07, 3.045, 3.47],
+      "offset": [0, 1.5225, 0]
+    }
+  }
+}

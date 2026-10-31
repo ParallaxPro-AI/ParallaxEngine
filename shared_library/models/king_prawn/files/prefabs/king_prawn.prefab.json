@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/king_prawn"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0917, 0.0244, 0.0887],
+      "offset": [-0.0062, 0.0143, -0.0018]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{ "name": "Bed", "texture": "images/blocks/cloth_993324", "color": "#993324", "hardness": 0.8, "preferred_tool": "axe", "prefab": "bed",
+  "loot": [{ "item": "bed" }], "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d0/0c/d00c2b3c9fff07e376145c8c8c45c90e5084ec192f6ce0387db233f7b86f1486.ogg" }

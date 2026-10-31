@@ -1,0 +1,4 @@
+{
+  "name": "Thornkite", "animation": "thornkite", "hp": 2, "scale": 0.95, "score": 150,
+  "fire": "aimed", "arms": 1, "spread": 0, "spin_step": 0, "petal_speed": 6.5
+}

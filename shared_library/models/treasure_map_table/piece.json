@@ -1,0 +1,10 @@
+{
+  "id": "treasure_map_table",
+  "summary": "A ship captain's chart table with a treasure map spread on it: a worn oak top on four turned walnut baluster… joints drawer; options frame; sockets socket_map, stand_captain.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.treasure_map_table or place \"prefab\": \"treasure_map_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:treasure_map_table"]
+}

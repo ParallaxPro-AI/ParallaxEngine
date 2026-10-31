@@ -1,0 +1,10 @@
+{
+  "id": "sunflower",
+  "summary": "A single common sunflower plant (Helianthus annuus): a 1.76 m green stem 60 mm thick at the base with nine al…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sunflower or place \"prefab\": \"sunflower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sunflower"]
+}

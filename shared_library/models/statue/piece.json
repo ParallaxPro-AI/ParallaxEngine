@@ -1,0 +1,10 @@
+{
+  "id": "statue",
+  "summary": "A monument statue: a hooded, robed sentinel standing on a three-step pedestal with a greatsword reversed, poi…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.statue or place \"prefab\": \"statue\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:statue"]
+}

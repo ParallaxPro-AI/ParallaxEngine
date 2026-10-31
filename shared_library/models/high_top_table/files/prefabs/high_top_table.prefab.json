@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/high_top_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7, 1.05, 0.7],
+      "offset": [0, 0.525, 0]
+    }
+  }
+}

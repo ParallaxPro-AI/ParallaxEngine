@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dumpling_stall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.36, 2.647, 1.7464],
+      "offset": [0, 1.3235, 0.0224]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crop_wheat_stages"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/treant_small"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6462, 2.0288, 0.7639],
+      "offset": [0, 1.0106, -0.0521]
+    }
+  }
+}

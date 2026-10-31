@@ -1,0 +1,14 @@
+{
+  "id": "papers",
+  "summary": "Loose paper, in the three arrangements a room actually shows it: strewn across the floor, squared into a… options arrangement, age.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.papers or place \"prefab\": \"papers\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:papers"
+  ]
+}

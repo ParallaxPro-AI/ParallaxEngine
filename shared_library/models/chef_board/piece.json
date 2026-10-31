@@ -1,0 +1,10 @@
+{
+  "id": "chef_board",
+  "summary": "A 440 x 300 mm end-grain chopping board — a cut juice groove 12 mm in from the edge with a dark floor, a scal…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chef_board or place \"prefab\": \"chef_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chef_board"]
+}

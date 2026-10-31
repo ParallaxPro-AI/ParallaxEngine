@@ -1,0 +1,10 @@
+{
+  "id": "luggage_cart_brass",
+  "summary": "A hotel bellman's luggage cart: a burgundy-carpeted rounded deck wrapped in a polished brass bumper tube, two… joints caster_fl_wheel, caster_fr_wheel, caster_bl_wheel, caster_br_wheel; options metal, carpet, luggage; sockets deck_top, rail_hang, push_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luggage_cart_brass or place \"prefab\": \"luggage_cart_brass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luggage_cart_brass"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dressing_table",
+  "summary": "A wooden dressing table (vanity): a tabletop on four legs with a wide centre drawer that slides out, and a fr… joints drawer, mirror_tilt.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dressing_table or place \"prefab\": \"dressing_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dressing_table"]
+}

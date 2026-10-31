@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.49, 0.6725, 0.27],
+      "offset": [0, 0.3362, 0]
+    }
+  }
+}

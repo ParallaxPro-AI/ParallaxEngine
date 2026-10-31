@@ -1,0 +1,10 @@
+{
+  "id": "produce_stand",
+  "summary": "A three-tier greengrocer produce stand: a dark hardwood frame with stepped decks laid with green display gras… options frame_finish, sign_colour; sockets socket_header, socket_till_side.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.produce_stand or place \"prefab\": \"produce_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:produce_stand"]
+}

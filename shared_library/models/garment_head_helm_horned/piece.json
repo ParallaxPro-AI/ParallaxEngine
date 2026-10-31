@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_helm_horned",
+  "summary": "A horned fantasy helm (generic barbarian / Norse-fantasy look, not any one franchise's): a raised steel bowl… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_helm_horned or place \"prefab\": \"garment_head_helm_horned\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_helm_horned"]
+}

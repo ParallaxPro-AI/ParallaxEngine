@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/pallet_load",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    1.2,
+    0.8351,
+    1.0
+   ],
+   "offset": [
+    0,
+    0.4175,
+    0
+   ]
+  }
+ }
+}

@@ -1,0 +1,28 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 50,
+      "offset": [
+        0,
+        6,
+        -8
+      ],
+      "world_offset": true,
+      "smoothing": 0.08,
+      "min_visible": [
+        8.8,
+        0
+      ],
+      "focus_distance": 9.5
+    }
+  },
+  "behaviors": {
+    "speed_lens": {
+      "slow_fov": 50,
+      "fast_fov": 60,
+      "slow_speed": 14,
+      "fast_speed": 32
+    }
+  }
+}

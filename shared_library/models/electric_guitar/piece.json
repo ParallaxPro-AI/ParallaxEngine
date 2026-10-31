@@ -1,0 +1,10 @@
+{
+  "id": "electric_guitar",
+  "summary": "A solid-body electric guitar stood on its tail strap button: an offset double-cutaway body with bevelled rim… joints peg_l0, peg_l1, peg_l2, peg_r0, peg_r1, peg_r2, …; options finish, pickguard.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.electric_guitar or place \"prefab\": \"electric_guitar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:electric_guitar"]
+}

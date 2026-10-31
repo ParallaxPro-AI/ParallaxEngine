@@ -1,0 +1,1 @@
+{"duration":0.16,"seed":141,"gain":0.5,"layers":[{"wave":"noise","decay":0.05,"sustain":0,"gain":1,"filter":{"type":"bandpass","freq":1500,"q":0.9}},{"wave":"triangle","freq":330,"freq_end":150,"attack":0.001,"decay":0.11,"sustain":0,"gain":0.6}]}

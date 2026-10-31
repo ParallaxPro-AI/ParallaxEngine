@@ -1,0 +1,10 @@
+{
+  "id": "bb_player_ship",
+  "summary": "Two-masted pirate brig with tapered keel, raised stern cabin, six broadside cannons and individually hoisted… joints hoist_0, trim_0, hoist_1, trim_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_player_ship or place \"prefab\": \"bb_player_ship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_player_ship"]
+}

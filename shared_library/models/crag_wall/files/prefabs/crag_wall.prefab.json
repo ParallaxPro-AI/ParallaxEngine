@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crag_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6, 6.6, 4.164],
+      "offset": [0, 3.3, 0.0491]
+    }
+  }
+}

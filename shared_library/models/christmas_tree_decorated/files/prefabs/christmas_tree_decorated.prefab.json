@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/christmas_tree_decorated"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7348, 2.6535, 1.653],
+      "offset": [-0.04, 1.3233, -0.0277]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "key_ornate",
+  "summary": "An ornate brass skeleton key hanging on a small forged-iron key stand: a lobed quatrefoil bow with a cross in…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.key_ornate or place \"prefab\": \"key_ornate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:key_ornate"]
+}

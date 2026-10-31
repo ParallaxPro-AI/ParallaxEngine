@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/team_core"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4, 3.575, 3.4],
+      "offset": [0, 1.7875, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/punching_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.56, 2.3225, 1.675],
+      "offset": [0, 1.1607, -0.2475]
+    }
+  }
+}

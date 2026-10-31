@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pedestrian",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/walk_cycle"
+    },
+    "nav_agent": {
+      "speed": 2,
+      "radius": 0.35,
+      "avoid_others": true
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.35,
+      "height": 1.8,
+      "offset": [
+        0,
+        0.9,
+        0
+      ]
+    },
+    "health": {
+      "current": 50,
+      "max": 50,
+      "destroy_on_death": false
+    }
+  },
+  "tags": [
+    "pedestrian"
+  ],
+  "behaviors": {
+    "pedestrian": {
+      "walk_speed": 2,
+      "flee_speed": 6,
+      "hearing": 30
+    }
+  },
+  "pool": 48
+}

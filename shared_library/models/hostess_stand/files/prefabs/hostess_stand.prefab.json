@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hostess_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.693, 1.1461, 0.523],
+      "offset": [0.0215, 0.5711, -0.0145]
+    }
+  }
+}

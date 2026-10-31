@@ -1,0 +1,8 @@
+{
+  "draught_bearings": [0, 180],
+  "draught_bearing_jitter": 8,
+  "gust_seconds_min": 2.4,
+  "gust_seconds_max": 5.2,
+  "gust_spread": 0.4,
+  "draught_seed": 5309
+}

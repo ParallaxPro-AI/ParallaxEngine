@@ -1,0 +1,10 @@
+{
+  "id": "sumo_ring",
+  "summary": "A regulation sumo dohyō: a 0.55 m clay mound (6.7 m square at the base, 5.7 m on top) with the 4.55 m ring of… sockets rikishi_w, rikishi_e, socket_ring_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sumo_ring or place \"prefab\": \"sumo_ring\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sumo_ring"]
+}

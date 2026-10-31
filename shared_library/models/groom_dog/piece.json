@@ -1,0 +1,10 @@
+{
+  "id": "groom_dog",
+  "summary": "A mid-size house dog built to BE GROOMED: thirteen coat zones each wearing a real SurfaceMask layer that come… options coat, nails.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.groom_dog or place \"prefab\": \"groom_dog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:groom_dog"]
+}

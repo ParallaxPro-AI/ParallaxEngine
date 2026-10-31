@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/oil_pumpjack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.555, 6.1977, 7.65],
+      "offset": [0.0975, 3.0989, -0.175]
+    }
+  }
+}

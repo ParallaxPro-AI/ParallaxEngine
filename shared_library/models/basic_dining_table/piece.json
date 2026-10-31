@@ -1,0 +1,10 @@
+{
+  "id": "basic_dining_table",
+  "summary": "A budget four-seat dining table from the 'basic' apartment set: a solid light-pine top with a softly rounded… options centrepiece; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_dining_table or place \"prefab\": \"basic_dining_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_dining_table"]
+}

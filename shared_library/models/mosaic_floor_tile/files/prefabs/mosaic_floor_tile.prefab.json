@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mosaic_floor_tile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 0.0368, 2],
+      "offset": [0, 0.0184, 0]
+    }
+  }
+}

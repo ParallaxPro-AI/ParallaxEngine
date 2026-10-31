@@ -1,0 +1,10 @@
+{
+  "id": "gas_meter_cabinet",
+  "summary": "A free-standing gas meter cabinet on a concrete plinth: a beige moulded GRP box with a rain hood, side vent s… joints valve_lever, door; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gas_meter_cabinet or place \"prefab\": \"gas_meter_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gas_meter_cabinet"]
+}

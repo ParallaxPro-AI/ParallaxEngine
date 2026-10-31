@@ -1,0 +1,19 @@
+{
+  "components": {
+    "camera": {
+      "rig": "orbit",
+      "fov": 55,
+      "offset": [
+        0,
+        1.5,
+        -8.75
+      ],
+      "pitch_limits": [
+        -55,
+        10
+      ],
+      "smoothing": 0.08,
+      "pitch": -19
+    }
+  }
+}

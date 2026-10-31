@@ -1,0 +1,14 @@
+{
+  "id": "bucket",
+  "summary": "A galvanised pail: tapered swaged body, rolled rim, and a swing bail handle on a real hinge. joints bail; options contents, finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bucket or place \"prefab\": \"bucket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bucket"
+  ]
+}

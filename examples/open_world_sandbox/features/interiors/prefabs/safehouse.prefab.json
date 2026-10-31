@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/sunset_safehouse" },
+    "collider": { "shape": "mesh" }
+  }
+}

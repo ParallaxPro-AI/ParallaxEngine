@@ -1,0 +1,10 @@
+{
+  "id": "merchant_scales",
+  "summary": "A brass counter balance on a wooden plinth with a drawer for its weights: a turned column, a forked fulcrum w… joints drawer, beam, pan_l, pan_r; options load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.merchant_scales or place \"prefab\": \"merchant_scales\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:merchant_scales"]
+}

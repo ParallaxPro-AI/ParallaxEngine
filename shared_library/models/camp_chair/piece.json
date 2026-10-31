@@ -1,0 +1,10 @@
+{
+  "id": "camp_chair",
+  "summary": "A folding quad camp chair: a tubular steel frame with X-braced sides, back and front on pivot pins, a sagging… options fabric; sockets seat_0, socket_cup.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camp_chair or place \"prefab\": \"camp_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camp_chair"]
+}

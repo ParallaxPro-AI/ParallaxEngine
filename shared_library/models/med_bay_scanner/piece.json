@@ -1,0 +1,10 @@
+{
+  "id": "med_bay_scanner",
+  "summary": "A sci-fi med-bay diagnostic bed: a white panelled pedestal and bed frame with a padded mattress, sheet and pi… joints scanner_arch, monitor; options hull, glow; sockets bed_patient.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.med_bay_scanner or place \"prefab\": \"med_bay_scanner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:med_bay_scanner"]
+}

@@ -1,0 +1,1 @@
+{ "name": "Rubble City", "scene": "rubble_city", "waves": ["w08", "w09", "w10", "w11"], "hp_mul": 1.35, "damage_mul": 1.2 }

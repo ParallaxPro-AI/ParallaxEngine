@@ -1,0 +1,10 @@
+{
+  "id": "trophy",
+  "summary": "A two-handled presentation cup on a stepped plinth with an engraved nameplate: a lathed bowl hollowed out to… options metal; sockets socket_bowl, socket_plate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trophy or place \"prefab\": \"trophy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trophy"]
+}

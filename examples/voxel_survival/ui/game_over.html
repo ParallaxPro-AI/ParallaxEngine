@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="greenwood.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+#gw-over{position:fixed;inset:0;pointer-events:auto}
+#gw-over .veil{position:absolute;inset:0;background:radial-gradient(ellipse 80% 75% at 50% 50%,rgba(14,22,40,.6) 0%,rgba(6,9,14,.94) 100%);animation:gw-fade .4s ease-out both}
+#gw-over .card{position:absolute;left:50%;top:50%;width:calc(56 * var(--gw-r));padding:calc(4 * var(--gw-r)) calc(4 * var(--gw-r)) calc(3.6 * var(--gw-r));display:flex;flex-direction:column;align-items:center;gap:calc(1.8 * var(--gw-r));text-align:center;transform:translate(-50%,-50%)}
+#gw-over .card>*{animation:gw-rise .3s var(--gw-ease) both}
+#gw-over .kick{font:900 calc(1.4 * var(--gw-r))/1 var(--gw-font-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--gw-gold)}
+#gw-over h1{font:900 calc(5.8 * var(--gw-r))/1 var(--gw-font-display);white-space:nowrap}
+#gw-over .spent{display:flex;align-items:center;gap:calc(1 * var(--gw-r));font:800 calc(1.5 * var(--gw-r))/1.2 var(--gw-font-ui);color:var(--gw-bad)}
+#gw-over .spent .hearts{display:flex;gap:calc(.6 * var(--gw-r))}
+#gw-over .spent .gw-ic{width:calc(2.4 * var(--gw-r));height:calc(2.4 * var(--gw-r))}
+#gw-over .score{width:100%;margin:calc(.6 * var(--gw-r)) 0;padding:calc(2.2 * var(--gw-r)) 0 calc(1.8 * var(--gw-r));border-radius:calc(1.6 * var(--gw-r));background:rgba(0,0,0,.28);border:calc(1.5 * var(--u)) solid var(--gw-line)}
+#gw-over .score b{display:block;font:900 calc(12 * var(--gw-r))/.9 var(--gw-font-ui);color:var(--gw-gold);font-variant-numeric:tabular-nums;text-shadow:0 calc(.5 * var(--gw-r)) 0 #6b5220}
+#gw-over .score span{display:block;margin-top:calc(.8 * var(--gw-r));font:900 calc(1.5 * var(--gw-r))/1 var(--gw-font-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--gw-gold-soft)}
+#gw-over .acts{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:calc(1.2 * var(--gw-r))}
+#gw-over .acts .gw-btn{height:calc(5.8 * var(--gw-r));padding:0}
+#gw-over #btn-play-again{font-size:calc(1.9 * var(--gw-r))}
+@media (pointer:coarse){
+#gw-over .card{top:calc(50% - calc(1 * var(--gw-r)));width:calc(60 * var(--gw-r));padding:calc(2.2 * var(--gw-r)) calc(2.6 * var(--gw-r));display:grid;grid-template-columns:auto 1fr;gap:calc(2.6 * var(--gw-r));align-items:center;text-align:left;border-radius:calc(2 * var(--gw-r))}
+#gw-over .score{width:calc(15 * var(--gw-r));margin:0;padding:calc(1.6 * var(--gw-r)) 0 calc(1.4 * var(--gw-r));text-align:center;border-radius:calc(1.4 * var(--gw-r))}
+#gw-over .score b{font-size:calc(8.4 * var(--gw-r));text-shadow:0 calc(.4 * var(--gw-r)) 0 #6b5220}
+#gw-over .score span{margin-top:calc(.6 * var(--gw-r));font-size:calc(1.1 * var(--gw-r));letter-spacing:.14em}
+#gw-over .side{display:flex;flex-direction:column;gap:calc(1 * var(--gw-r))}
+#gw-over .kick{font-size:calc(1.1 * var(--gw-r));letter-spacing:.18em}
+#gw-over h1{font-size:calc(3.6 * var(--gw-r))}
+#gw-over .spent{gap:calc(.6 * var(--gw-r));font-size:calc(1.2 * var(--gw-r))}
+#gw-over .spent .gw-ic{width:calc(1.6 * var(--gw-r));height:calc(1.6 * var(--gw-r))}
+#gw-over .acts{gap:calc(.8 * var(--gw-r));margin-top:calc(.4 * var(--gw-r))}
+#gw-over .acts .gw-btn{height:calc(4.8 * var(--gw-r));font-size:calc(1.4 * var(--gw-r))}
+#gw-over #btn-play-again{font-size:calc(1.5 * var(--gw-r))}
+}
+@media not all and (pointer:coarse){#gw-over .side{display:contents}#gw-over .kick{order:1}#gw-over h1{order:2}#gw-over .spent{order:3}#gw-over .score{order:4}#gw-over .acts{order:5}}
+</style>
+<div class="gw" id="gw-over">
+<div class="veil"></div>
+<div class="card gw-sheet">
+<div class="score"><b data-bind="days"></b><span data-text="game_over_days"></span></div>
+<div class="side">
+<div class="kick" data-text="expedition_kick"></div>
+<h1 data-text="game_over_title"></h1>
+<div class="spent"><span class="hearts" data-each="hearts"><template><img class="gw-ic" data-attr-src="picture" alt=""></template></span><span data-bind="lives_spent"></span></div>
+<div class="acts"><button class="gw-btn secondary" data-action="title" data-text="main_menu"></button><button class="gw-btn primary" data-action="play_again" data-text="game_over_again"></button></div>
+</div>
+</div>
+</div>

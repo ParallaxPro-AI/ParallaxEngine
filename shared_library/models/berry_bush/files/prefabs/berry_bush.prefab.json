@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/berry_bush"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1335, 0.9845, 1.0403],
+      "offset": [0.0664, 0.4902, 0.03]
+    }
+  }
+}

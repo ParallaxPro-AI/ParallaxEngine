@@ -1,0 +1,8 @@
+{
+  "name": "Canyon Carver",
+  "blurb": "A longer terrain course with sweeping hills and rougher elevation changes.",
+  "scene": "canyon_carver",
+  "difficulty": "medium",
+  "laps": 3,
+  "order": 2
+}

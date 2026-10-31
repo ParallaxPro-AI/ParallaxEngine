@@ -1,0 +1,8 @@
+{
+  "rolls": 1,
+  "entries": [
+    { "weight": 60 },
+    { "weight": 30, "prefab": "gold_pile" },
+    { "weight": 10, "prefab": "health_potion" }
+  ]
+}

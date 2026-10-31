@@ -1,0 +1,10 @@
+{
+  "id": "neon_vending_machine",
+  "summary": "A rain-worn Japanese-style street drink vending machine: three backlit shelves of dummy cans behind glass fra… joints door, flap; options neon, accent, body_colour; sockets socket_user, socket_dispense.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.neon_vending_machine or place \"prefab\": \"neon_vending_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:neon_vending_machine"]
+}

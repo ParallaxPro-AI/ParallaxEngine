@@ -1,0 +1,10 @@
+{
+  "id": "paper_glider",
+  "summary": "A wide-span paper glider: long thin barely-swept panels on a shallow keel, with a blunt folded nose and prono… joints crease_wing_l, crease_wing_r, crease_nose, crease_tail; options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_glider or place \"prefab\": \"paper_glider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_glider"]
+}

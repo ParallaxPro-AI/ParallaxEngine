@@ -1,0 +1,10 @@
+{
+  "id": "armor_stand",
+  "summary": "A full suit of plate armour on a wooden display stand: a closed helm with a hinged visor (eye slits, `visor`… joints visor; options finish, crest.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.armor_stand or place \"prefab\": \"armor_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:armor_stand"]
+}

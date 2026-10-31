@@ -1,0 +1,2 @@
+{ "name": "Soft Touch", "description": "The green window on the shot meter gets wider.",
+  "category": "shooting", "max_stacks": 2, "green_low": -0.05, "green_high": 0.015 }

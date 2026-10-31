@@ -1,0 +1,10 @@
+{
+  "id": "interrogation_table",
+  "summary": "A police interview-room set: a 1.2 x 0.76 m brushed-steel table on square-tube legs bolted through floor flan… options top, chairs, props; sockets seat_suspect, seat_officer, socket_cuff, socket_tabletop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.interrogation_table or place \"prefab\": \"interrogation_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:interrogation_table"]
+}

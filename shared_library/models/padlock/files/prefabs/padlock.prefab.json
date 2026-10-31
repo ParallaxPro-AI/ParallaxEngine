@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/padlock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.056, 0.0887, 0.0316],
+      "offset": [0, 0.0443, 0.0018]
+    }
+  }
+}

@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .gsx { position: fixed; inset: 0; pointer-events: none; }
+  .gsx-dim { position: absolute; inset: 0; background: rgba(10,8,9,0.55); }
+  .gsx-wrap { position: absolute; inset: var(--sr-edge-y) var(--sr-edge); display: flex; flex-direction: column; gap: clamp(calc(18 * var(--u)),3cqh,calc(32 * var(--u))); }
+  .gsx-head { display: flex; justify-content: space-between; align-items: flex-start; gap: calc(24 * var(--u)); animation: sr-fade 300ms ease both; }
+  .gsx-title { display: flex; flex-direction: column; gap: calc(10 * var(--u)); min-width: 0; }
+  .gsx-wallet { display: flex; flex-direction: column; align-items: flex-end; gap: calc(10 * var(--u)); flex: none; }
+  .gsx-grid { flex: 1; min-height: 0; max-height: calc(560 * var(--u)); display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: calc(20 * var(--u)); align-items: stretch; }
+  .gsx-card { --c: calc(18 * var(--u)); --tw: calc(72 * var(--u)); height: 100%; padding: clamp(calc(18 * var(--u)),2.6cqh,calc(26 * var(--u))) calc(24 * var(--u)); display: flex; flex-direction: column; gap: clamp(calc(12 * var(--u)),2cqh,calc(18 * var(--u))); pointer-events: auto; animation: sr-rise 360ms var(--sr-ease) both; }
+  .gsx-card-head { display: flex; align-items: center; gap: calc(16 * var(--u)); }
+  .gsx-icon { --c: calc(12 * var(--u)); width: calc(60 * var(--u)); height: calc(60 * var(--u)); flex: none; display: flex; align-items: center; justify-content: center; background: rgba(249,115,22,0.14); color: var(--sr-orange-hi); clip-path: polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c)); font: italic 800 calc(28 * var(--u))/1 var(--sr-f-display); }
+  .gsx-icon svg { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+  .gsx-name-col { display: flex; flex-direction: column; gap: calc(4 * var(--u)); min-width: 0; }
+  .gsx-name { font: italic 900 calc(42 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .gsx-tierlbl { font-size: calc(12 * var(--u)); }
+  .gsx-desc { font: 500 calc(17 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .gsx-track { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: calc(5 * var(--u)); }
+  .gsx-step { display: flex; flex-direction: column; gap: calc(6 * var(--u)); min-width: 0; }
+  .gsx-step i { height: calc(8 * var(--u)); transform: skewX(-24deg); background: rgba(255,247,237,0.12); }
+  .gsx-step b { font: italic 700 calc(17 * var(--u))/1 var(--sr-f-display); text-transform: uppercase; color: var(--sr-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .gsx-step.is-past i { background: rgba(249,115,22,0.45); }
+  .gsx-step.is-past b { color: var(--sr-mute); }
+  .gsx-step.is-now i { background: var(--sr-orange); box-shadow: 0 0 calc(12 * var(--u)) var(--sr-orange); }
+  .gsx-step.is-now b { color: var(--sr-cream); }
+  .gsx-step.is-new i { animation: gsx-new 400ms ease-out both; }
+  @keyframes gsx-new { 0% { background: #fff7ed; box-shadow: 0 0 calc(28 * var(--u)) #f97316, 0 0 calc(10 * var(--u)) #fff7ed; } 100% { background: #f97316; box-shadow: 0 0 calc(12 * var(--u)) #f97316; } }
+  .gsx-flex { flex: 1; }
+  .gsx-next { border-top: calc(1 * var(--u)) solid var(--sr-line); padding-top: clamp(calc(12 * var(--u)),2cqh,calc(16 * var(--u))); display: flex; flex-direction: column; gap: calc(8 * var(--u)); min-height: calc(84 * var(--u)); }
+  .gsx-next .sr-lbl { font-size: calc(12 * var(--u)); color: var(--sr-orange-hi); }
+  .gsx-next p { font: 500 calc(16 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .gsx-next p b { font: italic 700 calc(22 * var(--u))/1 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .sr .gsx-card .sr-btn { --h: calc(56 * var(--u)); --s: calc(14 * var(--u)); width: 100%; font-size: calc(22 * var(--u)); padding: 0 calc(20 * var(--u)); }
+  .gsx-card .sr-btn svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+  .gsx-maxed { --s: calc(14 * var(--u)); height: calc(56 * var(--u)); display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); background: rgba(255,247,237,0.06); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); color: var(--sr-orange-hi); font: italic 800 calc(24 * var(--u))/1 var(--sr-f-display); letter-spacing: .08em; }
+  .gsx-maxed svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+  .gsx-foot { display: flex; align-items: center; gap: calc(16 * var(--u)); pointer-events: auto; }
+  .gsx-m { display: none; }
+  @media (pointer: coarse) {
+    .gsx-dim { background: rgba(10,8,9,0.6); }
+    .gsx-wrap { inset: var(--sr-safe-t) var(--sr-safe-r) var(--sr-safe-b) var(--sr-safe-l); gap: calc(16 * var(--u)); }
+    .gsx-head { gap: calc(24 * var(--u)); }
+    .gsx-title { gap: calc(6 * var(--u)); }
+    .gsx-title .sr-kicker, .gsx-wallet .sr-lbl, .gsx-desc, .gsx-tierlbl { display: none; }
+    .gsx-title .sr-h1 { font-size: calc(60 * var(--u)); }
+    .gsx-title .sr-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .gsx-grid { max-height: none; gap: calc(16 * var(--u)); }
+    .gsx-card { --c: calc(20 * var(--u)); --tw: calc(80 * var(--u)); padding: calc(24 * var(--u)); gap: calc(18 * var(--u)); }
+    .gsx-card-head { gap: calc(16 * var(--u)); }
+    .gsx-icon { --c: calc(14 * var(--u)); width: calc(64 * var(--u)); height: calc(64 * var(--u)); }
+    .gsx-icon svg { width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+    .gsx-name { font-size: calc(48 * var(--u)); }
+    .gsx-track { gap: calc(6 * var(--u)); }
+    .gsx-step { gap: calc(8 * var(--u)); }
+    .gsx-step i { height: calc(12 * var(--u)); }
+    .gsx-step.is-now i { box-shadow: none; }
+    .gsx-step b { font-size: calc(26 * var(--u)); }
+    .gsx-flex { display: none; }
+    .gsx-next { flex: 1; min-height: 0; gap: calc(6 * var(--u)); padding-top: calc(16 * var(--u)); }
+    .gsx-next .sr-lbl { font-size: calc(22 * var(--u)); letter-spacing: .12em; }
+    .gsx-next p { font-size: calc(24 * var(--u)); }
+    .gsx-next p b { display: none; }
+    .sr .gsx-card .sr-btn { --h: calc(88 * var(--u)); --s: calc(22 * var(--u)); font-size: calc(36 * var(--u)); padding: 0 calc(20 * var(--u)); gap: calc(12 * var(--u)); }
+    .gsx-card .sr-btn svg { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+    .gsx-maxed { --s: calc(22 * var(--u)); height: calc(88 * var(--u)); font-size: calc(36 * var(--u)); gap: calc(12 * var(--u)); }
+    .gsx-maxed svg { width: calc(30 * var(--u)); height: calc(30 * var(--u)); }
+    .gsx-d { display: none; }
+    .gsx-m { display: inline; }
+  }
+  [data-off] {}
+  .is-hidden { display: none !important; }
+</style>
+<div class="sr gsx">
+  <div class="sr-vignette"></div>
+  <div class="gsx-dim"></div>
+  <div class="gsx-wrap">
+    <div class="gsx-head">
+      <div class="gsx-title">
+        <div class="sr-kicker" data-text="brand"></div>
+        <h1 class="sr-h1" data-text="garage"></h1>
+        <p class="sr-sub" data-text="garage_sub"></p>
+      </div>
+      <div class="gsx-wallet">
+        <div class="sr-pill"><svg class="sr-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fbbf24"/><circle cx="12" cy="12" r="6" fill="none" stroke="#7c2d12" stroke-width="2.2"/></svg><span class="sr-num" data-bind="credits"></span><span class="sr-cr">CR</span></div>
+        <div class="sr-lbl" data-bind="car"></div>
+      </div>
+    </div>
+    <div class="gsx-grid" data-each="parts">
+      <template>
+        <div class="sr-plate is-tick gsx-card">
+          <div class="gsx-card-head"><div class="gsx-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-attr-d="icon"/></svg></div>
+            <div class="gsx-name-col"><div class="gsx-name" data-bind="name"></div><div class="sr-lbl gsx-tierlbl" data-bind="tier_label"></div></div></div>
+          <div class="gsx-desc" data-bind="desc"></div>
+          <div class="gsx-track" data-each="steps"><template><div class="gsx-step" data-class-is-past="past" data-class-is-now="now"><i></i><b data-bind="name"></b></div></template></div>
+          <div class="gsx-flex"></div>
+          <div class="gsx-next">
+            <div class="sr-lbl" data-bind="next_label"></div>
+            <p><b data-bind="next_name"></b> <span class="gsx-d">— </span><span data-bind="next_blurb"></span></p>
+          </div>
+          <div class="gsx-maxed" data-class-is-hidden="buyable"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-text="maxed_tag"></span></div>
+          <button class="sr-btn" data-class-is-hidden="maxed" data-class-is-buy="affordable" data-class-is-off="short" data-action="buy_part"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fbbf24"/><circle cx="12" cy="12" r="6" fill="none" stroke="#7c2d12" stroke-width="2.2"/></svg><span><span class="gsx-d" data-text="buy_dot"></span><span data-bind="price"></span></span></button>
+        </div>
+      </template>
+    </div>
+    <div class="gsx-foot">
+      <button class="sr-btn" data-action="back" data-key="KeyP"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><span data-text="back_to_car"></span></button>
+    </div>
+  </div>
+</div>

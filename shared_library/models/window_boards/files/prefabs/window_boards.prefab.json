@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/window_boards"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4108, 1.2014, 0.062],
+      "offset": [0.0151, 0.6, 0.003]
+    }
+  }
+}

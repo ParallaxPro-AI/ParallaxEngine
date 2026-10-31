@@ -1,0 +1,10 @@
+{
+  "id": "laundry_pile",
+  "summary": "A heap of dirty laundry dumped on the bedroom floor, about 0.9 x 0.26 x 0.7 m: a white T-shirt slumped over t…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laundry_pile or place \"prefab\": \"laundry_pile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laundry_pile"]
+}

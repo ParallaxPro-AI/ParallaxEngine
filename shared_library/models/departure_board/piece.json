@@ -1,0 +1,10 @@
+{
+  "id": "departure_board",
+  "summary": "A terminal flight-information board: a 2.6 m aluminium housing with a recessed dark display carrying a lit DE… options mount, legend.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.departure_board or place \"prefab\": \"departure_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:departure_board"]
+}

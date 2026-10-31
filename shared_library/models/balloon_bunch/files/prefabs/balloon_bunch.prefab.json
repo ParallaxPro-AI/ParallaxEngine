@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/balloon_bunch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8021, 1.884, 0.8754],
+      "offset": [0, 0.942, 0]
+    }
+  }
+}

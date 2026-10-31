@@ -1,0 +1,10 @@
+{
+  "id": "passport_booth",
+  "summary": "An airport passport-control booth: a 1.8 x 1.6 m glazed officer cabin on a raised plinth, veneered lower wall… joints door, gate_swing; options panel_finish; sockets seat_officer, socket_passenger, socket_document.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.passport_booth or place \"prefab\": \"passport_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:passport_booth"]
+}

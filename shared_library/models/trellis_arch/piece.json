@@ -1,0 +1,10 @@
+{
+  "id": "trellis_arch",
+  "summary": "A timber garden arch: four posts on galvanised shoes, a diamond-lattice trellis panel on each side between ra… options finish, planting.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trellis_arch or place \"prefab\": \"trellis_arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trellis_arch"]
+}

@@ -1,0 +1,7 @@
+{
+  "z": 1,
+  "components": {
+    "shape": { "kind": "rect", "size": [0.96, 0.96], "color": "#292e3d" }
+  },
+  "pool": 120
+}

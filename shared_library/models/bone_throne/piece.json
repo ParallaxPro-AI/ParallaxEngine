@@ -1,0 +1,10 @@
+{
+  "id": "bone_throne",
+  "summary": "A stylized throne built of bones on a stone dais: a fan of long bones radiating up the back and crowned by fi… sockets socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bone_throne or place \"prefab\": \"bone_throne\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bone_throne"]
+}

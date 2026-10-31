@@ -1,0 +1,10 @@
+{
+  "id": "flintlock_pistol",
+  "summary": "An 18th-century flintlock pistol: a walnut full stock with a raked grip and brass butt cap, a 285 mm round ba… joints hammer, frizzen, trigger; options stock_wood, furniture, barrel_finish, belt_hook; sockets socket_muzzle, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.flintlock_pistol or place \"prefab\": \"flintlock_pistol\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:flintlock_pistol"]
+}

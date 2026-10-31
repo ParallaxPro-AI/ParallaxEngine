@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pharaoh"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.899, 0.4839],
+      "offset": [0, 0.9455, 0.0081]
+    }
+  }
+}

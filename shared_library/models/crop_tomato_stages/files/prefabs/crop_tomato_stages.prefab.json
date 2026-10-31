@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crop_tomato_stages"
+    }
+  }
+}

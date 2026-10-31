@@ -1,0 +1,10 @@
+{
+  "id": "sandwich",
+  "summary": "A sandwich cut corner to corner into two triangle halves set side by side with their cut faces to the front… options bread, filling, pick; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sandwich or place \"prefab\": \"sandwich\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sandwich"]
+}

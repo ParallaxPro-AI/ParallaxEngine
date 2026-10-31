@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crusher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.503, 1.703, 0.916],
+      "offset": [0, 0.85, 0.008]
+    }
+  }
+}

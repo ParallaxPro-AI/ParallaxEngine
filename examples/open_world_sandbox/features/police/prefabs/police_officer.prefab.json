@@ -1,0 +1,55 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_officer",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/run_cycle"
+    },
+    "nav_agent": {
+      "speed": 4.6,
+      "radius": 0.35
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.35,
+      "height": 1.85,
+      "offset": [
+        0,
+        0.925,
+        0
+      ]
+    },
+    "health": {
+      "current": 150,
+      "max": 150,
+      "destroy_on_death": false
+    },
+    "map_icon": {
+      "icon": "dot",
+      "color": "#3b6cff"
+    },
+    "spotter": {
+      "range": 32,
+      "fov": 140,
+      "needs_line_of_sight": true
+    }
+  },
+  "tags": [
+    "officer"
+  ],
+  "behaviors": {
+    "police_officer": {
+      "weapon": "pistol",
+      "damage": 11,
+      "fire_range": 18,
+      "fire_interval": 1.25,
+      "accuracy": 0.62,
+      "armed_from": 2,
+      "arrest_range": 2.6,
+      "search_radius": 14
+    }
+  },
+  "pool": 16
+}

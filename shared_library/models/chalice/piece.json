@@ -1,0 +1,10 @@
+{
+  "id": "chalice",
+  "summary": "An ornate metal chalice: a lathed bowl hollowed to a real rolled rim, a gem band of six cabochons round the b… options metal, fill; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chalice or place \"prefab\": \"chalice\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chalice"]
+}

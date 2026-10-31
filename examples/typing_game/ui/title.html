@@ -1,0 +1,48 @@
+<!-- Keystrike title: terminal card with the [Endless typing defense] tag, the glowing
+     KEYSTRIKE wordmark with its blinking caret and glitching strike line, the blurb, a
+     per-device key legend, the START button and the best score / fastest WPM row (hidden
+     until a best exists). -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .kt-card { width: min(calc(var(--u) * 1080), 100%); display: flex; flex-direction: column; align-items: center; gap: var(--ks-sp-6); text-align: center; padding: calc(var(--u) * 72) calc(var(--u) * 96) calc(var(--u) * 56); }
+  .kt-wordmark { position: relative; font-family: var(--ks-font-display); font-size: var(--ks-fs-wordmark); font-weight: 700; line-height: .9; letter-spacing: var(--ks-track-display); text-transform: uppercase; white-space: nowrap; color: var(--ks-teal-pale); text-shadow: 0 0 2px #fff, 0 0 18px rgba(92,242,200,.7), 0 0 60px rgba(92,242,200,.35); }
+  .kt-caret { display: inline-block; width: .4em; height: .74em; margin-left: .1em; vertical-align: -.02em; background: var(--ks-teal); box-shadow: 0 0 18px var(--ks-teal); animation: ks-blink 1.05s steps(1) infinite; }
+  .kt-strike { position: absolute; left: -3%; right: -3%; top: 50%; height: .05em; background: linear-gradient(90deg, transparent, var(--ks-magenta) 18%, var(--ks-teal) 50%, var(--ks-packet) 82%, transparent); box-shadow: 0 0 14px var(--ks-teal); mix-blend-mode: screen; animation: ks-strike 4.5s infinite; }
+  .kt-blurb { max-width: 58ch; font-size: var(--ks-fs-blurb); line-height: 1.6; color: var(--ks-ink-2); }
+  .kt-actions { display: flex; flex-direction: column; align-items: center; gap: var(--ks-sp-6); width: 100%; }
+  .kt-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--ks-sp-7); font-size: var(--ks-fs-small); letter-spacing: .1em; text-transform: uppercase; color: var(--ks-muted); }
+  .kt-li { display: flex; align-items: center; gap: .7em; white-space: nowrap; }
+  .ks-root .kt-start { height: max(48px, calc(var(--u) * 72)); min-width: calc(var(--u) * 340); font-size: max(15px, calc(var(--u) * 22)); }
+  .kt-best { font-size: var(--ks-fs-small); letter-spacing: .06em; color: var(--ks-muted); white-space: nowrap; }
+  .kt-best b { color: var(--ks-cipher); font-weight: 700; }
+  .kt-sep { color: var(--ks-faint); margin: 0 .5em; }
+
+  @media (pointer: coarse) {
+    .kt-card { width: min(calc(var(--u) * 720), 100%); gap: var(--ks-sp-3); padding: calc(var(--u) * 22) calc(var(--u) * 32) calc(var(--u) * 18); }
+    .kt-wordmark { letter-spacing: .03em; }
+    .kt-actions { flex-direction: row; justify-content: space-between; gap: var(--ks-sp-5); margin-top: var(--ks-sp-1); }
+    .kt-legend { gap: var(--ks-sp-4); justify-content: flex-start; flex-wrap: nowrap; }
+    .ks-root .kt-start { height: 48px; min-width: calc(var(--u) * 200); font-size: 15px; }
+  }
+</style>
+<div class="ks-root ks-stage">
+  <div class="ks-scrim ks-scrim--soft"></div>
+  <div class="ks-center">
+    <main class="ks-card ks-corners kt-card">
+      <span class="ks-tag" data-text="tag"></span>
+      <h1 class="kt-wordmark"><span data-text="title"></span><i class="kt-caret" aria-hidden="true"></i><span class="kt-strike" aria-hidden="true"></span></h1>
+      <p class="kt-blurb" data-text="blurb"></p>
+      <div class="kt-actions">
+        <div class="kt-legend">
+          <span class="kt-li ks-desk"><kbd class="ks-kbd">A–Z</kbd><span data-text="legend_type"></span></span>
+          <span class="kt-li ks-desk"><kbd class="ks-kbd">0</kbd><span data-text="legend_pause"></span></span>
+          <span class="kt-li ks-touch"><kbd class="ks-kbd" data-text="tap"></kbd><span data-text="legend_touch"></span></span>
+          <span class="kt-li ks-touch"><kbd class="ks-kbd">☰</kbd><span data-text="legend_pause"></span></span>
+        </div>
+        <button class="ks-btn ks-btn--primary kt-start" data-action="play"><span data-text="start"></span> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg></button>
+      </div>
+      <p class="kt-best" data-show="has_best"><span data-text="best"></span> <b data-bind="best_score"></b><span class="kt-sep">·</span><span data-text="fastest"></span> <b data-bind="best_wpm"></b> <span data-text="wpm"></span></p>
+    </main>
+  </div>
+  <div class="ks-crt" aria-hidden="true"></div>
+</div>

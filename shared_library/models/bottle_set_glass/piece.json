@@ -1,0 +1,10 @@
+{
+  "id": "bottle_set_glass",
+  "summary": "A group of three glass bottles standing together on a counter: a 750 ml green wine bottle (76 mm x 300 mm) wi…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bottle_set_glass or place \"prefab\": \"bottle_set_glass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bottle_set_glass"]
+}

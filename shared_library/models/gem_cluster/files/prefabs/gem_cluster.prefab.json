@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gem_cluster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2616, 0.372, 0.27],
+      "offset": [0.01, 0.186, 0.0043]
+    }
+  }
+}

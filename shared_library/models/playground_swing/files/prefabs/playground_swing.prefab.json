@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/playground_swing"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.45, 2.3074, 1.3769],
+      "offset": [0, 1.1543, 0]
+    }
+  }
+}

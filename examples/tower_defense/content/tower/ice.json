@@ -1,0 +1,10 @@
+{
+  "name": "Ice", "role": "Slow", "accent": "#22d3ee", "slot": 3,
+  "prefab": "tower_ice", "attack": "single", "shot": "ice_shard",
+  "impact": "vfx/spark_ice", "fire_sound": "https://r2.parallaxpro.ai/assets/audio_sfx/c2/91/c2916f2a062c8ddd1aca2826d134fe90847037db31342726ffb0f9097afe339c.ogg",
+  "levels": [
+    { "cost": 150, "damage": 3, "range": 18, "fire_interval": 1.0, "effect": "chill", "effect_strength": 0.5,  "effect_seconds": 2, "model": "models/tower_ice" },
+    { "cost": 100, "damage": 4, "range": 19, "fire_interval": 1.0, "effect": "chill", "effect_strength": 0.65, "effect_seconds": 2, "model": "models/tower_ice" },
+    { "cost": 240, "damage": 8, "range": 21, "fire_interval": 1.0, "effect": "chill", "effect_strength": 0.78, "effect_seconds": 3, "model": "models/tower_ice" }
+  ]
+}

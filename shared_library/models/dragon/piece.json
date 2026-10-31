@@ -1,0 +1,10 @@
+{
+  "id": "dragon",
+  "summary": "A DRAGON - a boss-scale winged quadruped, about 12 m nose to tail-blade, 3.5 m at the shoulder spines, wings… joints neck, head, jaw, wing_l, wing_fold_l, wing_r, …; options scales, wings, eyes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dragon or place \"prefab\": \"dragon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dragon"]
+}

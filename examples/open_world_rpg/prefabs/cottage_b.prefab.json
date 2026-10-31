@@ -1,0 +1,35 @@
+{
+  "components": {
+    "structure": {
+      "plan": "buildings/cottage_b.plan",
+      "materials": {
+        "wall": {
+          "color": "#b89976",
+          "roughness": 0.95
+        },
+        "roof": {
+          "color": "#617e79",
+          "roughness": 0.9
+        },
+        "slab": {
+          "color": "#a68661",
+          "roughness": 0.95
+        },
+        "stair": {
+          "color": "#a68661",
+          "roughness": 0.95
+        },
+        "boards": {
+          "color": "#a68661",
+          "roughness": 0.95
+        }
+      },
+      "cell": 1,
+      "slab": 0.2,
+      "roof": {
+        "kind": "gable",
+        "pitch": 38
+      }
+    }
+  }
+}

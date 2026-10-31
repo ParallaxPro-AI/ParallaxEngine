@@ -1,0 +1,37 @@
+<!-- PAUSED card over the dimmed maze: the Low / Medium / High graphics switch, Resume and
+     Menu, and the desktop-only "Press P to resume" line. The HUD stays mounted behind it. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ggp { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .ggp-card { width: calc(640 * var(--gg-u)); }
+  .ggp-h1 { font-size: calc(56 * var(--gg-u)); text-transform: uppercase; }
+  .ggp-gfx { display: flex; flex-direction: column; align-items: center; gap: calc(14 * var(--gg-u)); align-self: stretch; }
+  .ggp-foot { font: 500 calc(15 * var(--gg-u))/1 var(--gg-font-mono); color: var(--gg-ink-3); letter-spacing: .08em; }
+  .ggp-foot .gg-kbd { padding: calc(3 * var(--gg-u)) calc(8 * var(--gg-u)); background: none; }
+  .gg-seg button.on { background: rgba(127,220,255,.14); color: var(--gg-cyan); box-shadow: inset 0 0 0 1px rgba(127,220,255,.55), 0 0 calc(14 * var(--gg-u)) rgba(127,220,255,.2); }
+  @media (pointer: coarse) { .ggp-foot { display: none; } }
+  @container (max-height: 500px) {
+    .ggp-card { width: min(calc(460 * var(--gg-u)), calc(100cqw - 24px)); }
+    .ggp-h1 { font-size: calc(26 * var(--gg-u)); }
+    .ggp-gfx { gap: calc(8 * var(--gg-u)); }
+  }
+</style>
+<div class="gg-root ggp">
+  <div class="gg-veil"></div>
+  <main class="gg-card ggp-card" role="dialog" aria-modal="true">
+    <h1 class="ggp-h1 gg-arc gg-t-cyan" data-text="paused"></h1>
+    <div class="ggp-gfx">
+      <div class="gg-lbl c" data-text="graphics"></div>
+      <div class="gg-seg" role="group">
+        <button data-action="quality" data-quality="low" data-class-on="low" data-text="low"></button>
+        <button data-action="quality" data-quality="medium" data-class-on="medium" data-text="medium"></button>
+        <button data-action="quality" data-quality="high" data-class-on="high" data-text="high"></button>
+      </div>
+    </div>
+    <div class="gg-btns">
+      <button class="gg-btn pri" data-action="resume" data-text="resume"></button>
+      <button class="gg-btn ghost" data-action="quit" data-text="menu"></button>
+    </div>
+    <div class="ggp-foot"><span data-text="press"></span> <kbd class="gg-kbd">P</kbd> <span data-text="to_resume"></span></div>
+  </main>
+</div>

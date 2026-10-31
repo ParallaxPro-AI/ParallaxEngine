@@ -1,0 +1,5 @@
+{
+  "name": "Magnet Coil",
+  "blurb": "Nearby coins drift into your path.",
+  "icon": "M12 2a10 10 0 110 20 10 10 0 010-20zm0 4.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11z", "effect": "magnet_radius", "per_level": 2.2, "costs": [110, 280, 600]
+}

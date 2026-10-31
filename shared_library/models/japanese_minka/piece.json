@@ -1,0 +1,10 @@
+{
+  "id": "japanese_minka",
+  "summary": "A traditional Japanese farmhouse (minka), 11.8 m wide, 8.3 m deep and 8.8 m to the ridge: a timber frame rais… joints shoji_1a, shoji_1b, door_2a, door_2b, shoji_3a, shoji_3b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.japanese_minka or place \"prefab\": \"japanese_minka\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:japanese_minka"]
+}

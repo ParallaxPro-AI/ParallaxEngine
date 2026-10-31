@@ -1,0 +1,10 @@
+{
+  "id": "passenger_ferry",
+  "summary": "A 62 m double-ended strait ferry: a full-width vehicle deck open at both ends with a bow ramp, a glazed passe… joints bow_ramp; sockets eye_point, waterline, seat_stand, seat_driver, socket_ramp_foot, socket_vehicle_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.passenger_ferry or place \"prefab\": \"passenger_ferry\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:passenger_ferry"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "reception_sofa_office",
+  "summary": "A three-seat office reception sofa: a crisp contract-upholstered body with square box arms and a tight back… options fabric, legs; sockets seat_l, seat_c, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reception_sofa_office or place \"prefab\": \"reception_sofa_office\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reception_sofa_office"]
+}

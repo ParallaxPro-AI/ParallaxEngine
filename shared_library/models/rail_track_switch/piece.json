@@ -1,0 +1,10 @@
+{
+  "id": "rail_track_switch",
+  "summary": "A standard-gauge (1.435 m) railway turnout, the junction piece of the rail_track kit: 12 m long, a straight r… joints points; options sleepers; sockets joint_a, joint_b, joint_c, train_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rail_track_switch or place \"prefab\": \"rail_track_switch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rail_track_switch"]
+}

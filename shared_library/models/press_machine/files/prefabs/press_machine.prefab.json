@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/press_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.135, 2.26, 0.88],
+      "offset": [0.0275, 1.13, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "space_capsule",
+  "summary": "A crewed reentry space capsule: a lathed gumdrop hull (dark heat-shield underside, white tech shell, cylindri… joints hatch, panel_r, panel_l; options canopy; sockets socket_dock, socket_hatch, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_capsule or place \"prefab\": \"space_capsule\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_capsule"]
+}

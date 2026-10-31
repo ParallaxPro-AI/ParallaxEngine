@@ -1,0 +1,10 @@
+{
+  "id": "tricycle_kids",
+  "summary": "A toddler's pedal tricycle: a swept single-tube frame from the raked head tube down to a rear axle with a rib… joints wheel_rear_l, wheel_rear_r, steering, wheel_front; options paint, seat; sockets seat_rider.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tricycle_kids or place \"prefab\": \"tricycle_kids\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tricycle_kids"]
+}

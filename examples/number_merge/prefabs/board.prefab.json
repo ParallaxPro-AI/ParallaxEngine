@@ -1,0 +1,7 @@
+{
+  "z": 1,
+  "components": {
+    "grid": { "cols": 4, "rows": 4, "cell_size": [1.15, 1.15] },
+    "shape": { "kind": "rect", "size": [5.05, 5.05], "color": "#2b2938" }
+  }
+}

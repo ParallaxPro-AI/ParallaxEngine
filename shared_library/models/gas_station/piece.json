@@ -1,0 +1,10 @@
+{
+  "id": "gas_station",
+  "summary": "A roadside filling station on a concrete forecourt: a flat white canopy with a lit brand band and recessed li… joints nozzle_r_0_0, nozzle_l_0_0, nozzle_r_1_0, nozzle_l_1_0, nozzle_r_0_1, nozzle_l_0_1, …; options brand_colour; sockets bay_0, bay_1, bay_2, bay_3, socket_shop_door, socket_till, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gas_station or place \"prefab\": \"gas_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gas_station"]
+}

@@ -1,0 +1,3 @@
+{ "name": "Storage Chest", "order": 7, "category": "build", "station": "workbench",
+  "inputs": [{ "item": "planks", "count": 8 }],
+  "output": { "item": "chest", "count": 1 } }

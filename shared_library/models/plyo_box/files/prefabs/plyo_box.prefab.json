@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plyo_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.76, 0.6113, 0.5127],
+      "offset": [0, 0.3057, 0]
+    }
+  }
+}

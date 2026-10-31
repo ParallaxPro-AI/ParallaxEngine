@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/katana_display_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0598, 0.586, 0.2657],
+      "offset": [0.0706, 0.293, -0.0141]
+    }
+  }
+}

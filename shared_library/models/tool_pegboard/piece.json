@@ -1,0 +1,10 @@
+{
+  "id": "tool_pegboard",
+  "summary": "A wall-mounted 1.2 m x 0.8 m perforated pegboard in a softwood frame on furring strips, hung with a garage's… options board; sockets socket_free_hook_area.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tool_pegboard or place \"prefab\": \"tool_pegboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tool_pegboard"]
+}

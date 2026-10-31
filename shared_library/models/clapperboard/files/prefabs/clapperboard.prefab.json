@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/clapperboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3253, 0.3844, 0.024],
+      "offset": [-0.0226, 0.1922, 0]
+    }
+  }
+}

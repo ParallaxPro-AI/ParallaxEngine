@@ -1,0 +1,10 @@
+{
+  "id": "figurehead",
+  "summary": "A carved and painted ship's figurehead mounted on a stem post: an original mermaid figure leaning out at 16 d…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.figurehead or place \"prefab\": \"figurehead\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:figurehead"]
+}

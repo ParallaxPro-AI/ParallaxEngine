@@ -1,0 +1,10 @@
+{
+  "id": "runway_windsock",
+  "summary": "An airfield windsock: a 6 m white tilt-down mast with orange bands on a concrete footing, a counterweighted b… joints mast, sock_yaw; options stripe_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.runway_windsock or place \"prefab\": \"runway_windsock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:runway_windsock"]
+}

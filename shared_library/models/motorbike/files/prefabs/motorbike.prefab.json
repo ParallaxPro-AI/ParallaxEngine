@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/motorbike",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.675,
+        1.1914,
+        2.0767
+      ],
+      "offset": [
+        0.0,
+        0.5957,
+        -0.0283
+      ]
+    }
+  }
+}

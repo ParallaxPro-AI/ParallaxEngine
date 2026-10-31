@@ -1,0 +1,4 @@
+{ "name": "Dock Street Dockers", "taunt": "We play through people, not around them.",
+  "color": "#3d8fe0", "speed": 4.9,
+  "style": { "shoot_range": 7.0, "skill": 0.88, "perfect_rate": 0.26, "good_rate": 0.54,
+             "steal_chance": 0.36, "close_pressure": 0.7, "pass_chance": 0.35 } }

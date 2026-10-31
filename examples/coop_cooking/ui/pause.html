@@ -1,0 +1,79 @@
+<!-- Pause, ported from the template's pause_menu fork: the frozen kitchen dimmed under a
+     rail-green wash, a cream enamel card with a dark rail header (kitchen name and seconds
+     left, PAUSED in mustard) and Resume / Settings / Main Menu enamel buttons; Settings
+     switches to a Graphics Low / Medium / High switch with Back. Desktop adds the
+     "Press P to resume" key cap. -->
+<link rel="stylesheet" href="kitchen_kit.css">
+<style>
+  .krz-dim { position: fixed; inset: 0; background: rgba(5,14,8,.72); pointer-events: auto; animation: kr-fade 200ms ease-out both; }
+  .krz-wrap { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(var(--kr-u) * 30); }
+  .krz-panel { width: calc(var(--kr-u) * 560); border-radius: calc(var(--kr-u) * 28); background: var(--kr-cream); color: var(--kr-ink); overflow: hidden; pointer-events: auto; box-shadow: inset 0 calc(var(--kr-u) * -5) 0 rgba(0,0,0,.16), 0 calc(var(--kr-u) * 6) 0 rgba(0,0,0,.38), 0 calc(var(--kr-u) * 14) calc(var(--kr-u) * 26) rgba(0,0,0,.35); animation: kr-panel-in 320ms var(--kr-ease-out) both; }
+  .krz-ph { background: var(--kr-rail-950); padding: calc(var(--kr-u) * 26) calc(var(--kr-u) * 32) calc(var(--kr-u) * 22); text-align: center; border-bottom: calc(var(--kr-u) * 6) solid var(--kr-mustard); }
+  .krz-k { font: 800 calc(var(--kr-u) * 14)/1.3 var(--kr-font-body); letter-spacing: .3em; text-transform: uppercase; color: var(--kr-rail-200); white-space: nowrap; }
+  .krz-ph h1 { font: 400 calc(var(--kr-u) * 92)/1 var(--kr-font-display); color: var(--kr-mustard); letter-spacing: .04em; margin-top: calc(var(--kr-u) * 4); }
+  .krz-ph h1.sm { font-size: calc(var(--kr-u) * 64); }
+  .krz-pb { padding: calc(var(--kr-u) * 32) calc(var(--kr-u) * 40) calc(var(--kr-u) * 36); display: flex; flex-direction: column; gap: calc(var(--kr-u) * 18); }
+  .kr-root .krz-pb .kr-btn { width: 100%; }
+  .krz-two { display: contents; }
+  .krz-lbl { display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--kr-u) * 12); font: 800 calc(var(--kr-u) * 15)/1.2 var(--kr-font-body); letter-spacing: .18em; text-transform: uppercase; color: var(--kr-ink-soft); }
+  .krz-lbl .krz-lt { letter-spacing: inherit; text-transform: inherit; font-weight: inherit; color: inherit; }
+  .krz-lbl span { letter-spacing: 0; text-transform: none; font-weight: 700; color: var(--kr-ink-faint); }
+  .kr-root .krz-back { margin-top: calc(var(--kr-u) * 10); }
+  @media (pointer: coarse) { .krz-hint { display: none !important; } }
+  .krz-hint { display: flex; align-items: center; gap: calc(var(--kr-u) * 12); font: 700 calc(var(--kr-u) * 22)/1 var(--kr-font-body); color: var(--kr-cream); animation: kr-fade 400ms 200ms ease-out both; }
+  .krz-view { animation: kr-fade 150ms ease-out both; }
+  .krz-settings { display: none; }
+  .krz-root[data-view="settings"] .krz-main { display: none; }
+  .krz-root[data-view="settings"] .krz-settings { display: block; }
+  .krz-panel .krz-mob { display: none; }
+  @media (pointer: coarse) {
+    .krz-wrap { inset: var(--kr-safe-t) var(--kr-safe-r) var(--kr-safe-b) var(--kr-safe-l); }
+    .krz-panel { width: calc(var(--kr-u) * 400); border-radius: calc(var(--kr-u) * 22); box-shadow: inset 0 calc(var(--kr-u) * -4) 0 rgba(0,0,0,.14), 0 calc(var(--kr-u) * 5) 0 rgba(0,0,0,.38), 0 calc(var(--kr-u) * 12) calc(var(--kr-u) * 22) rgba(0,0,0,.35); }
+    .krz-ph { padding: calc(var(--kr-u) * 12) calc(var(--kr-u) * 20) calc(var(--kr-u) * 10); display: flex; align-items: baseline; justify-content: space-between; flex-direction: row-reverse; border-bottom-width: calc(var(--kr-u) * 4); text-align: left; }
+    .krz-ph h1 { font-size: calc(var(--kr-u) * 40); margin: 0; }
+    .krz-ph h1.sm { font-size: calc(var(--kr-u) * 32); }
+    .krz-k { font-size: max(9px, calc(var(--kr-u) * 11)); letter-spacing: .2em; }
+    .krz-pb { padding: calc(var(--kr-u) * 16) calc(var(--kr-u) * 20) calc(var(--kr-u) * 20); gap: calc(var(--kr-u) * 12); }
+    .kr-root .krz-pb .kr-btn { font-size: calc(var(--kr-u) * 22); padding: calc(var(--kr-u) * 13) calc(var(--kr-u) * 20) calc(var(--kr-u) * 11); border-radius: calc(var(--kr-u) * 14); box-shadow: inset 0 calc(var(--kr-u) * -4) 0 rgba(0,0,0,.16), inset 0 calc(var(--kr-u) * 2) 0 rgba(255,255,255,.5), 0 calc(var(--kr-u) * 4) 0 rgba(0,0,0,.38); }
+    .kr-root .krz-pb .kr-btn.cream { box-shadow: inset 0 calc(var(--kr-u) * -4) 0 rgba(0,0,0,.1), inset 0 0 0 calc(var(--kr-u) * 2) rgba(31,23,18,.14), 0 calc(var(--kr-u) * 4) 0 rgba(0,0,0,.3); }
+    .krz-two { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--kr-u) * 12); }
+    .krz-lbl { font-size: max(9px, calc(var(--kr-u) * 11)); }
+    .kr-root .krz-panel .kr-seg button { font-size: calc(var(--kr-u) * 18); padding: calc(var(--kr-u) * 12) calc(var(--kr-u) * 8) calc(var(--kr-u) * 10); }
+    .kr-root .krz-back { margin-top: 0; }
+  }
+</style>
+<div class="kr-root krz-root" id="krz" data-view="main">
+  <div class="krz-dim"></div>
+  <div class="krz-wrap">
+    <section class="krz-panel krz-view krz-main" role="dialog" aria-label="Paused">
+      <div class="krz-ph"><div class="krz-k" data-bind="where"></div><h1 data-text="paused"></h1></div>
+      <div class="krz-pb">
+        <button class="kr-btn green" data-action="resume" data-text="resume"></button>
+        <div class="krz-two">
+          <button class="kr-btn cream" id="krz-open-settings" data-text="settings"></button>
+          <button class="kr-btn cream" data-action="main_menu" data-text="main_menu"></button>
+        </div>
+      </div>
+    </section>
+    <section class="krz-panel krz-view krz-settings" role="dialog" aria-label="Settings">
+      <div class="krz-ph"><div class="krz-k" data-text="paused"></div><h1 class="sm" data-text="settings"></h1></div>
+      <div class="krz-pb">
+        <div class="krz-lbl"><span class="krz-lt" data-text="graphics"></span> <span data-bind="quality_desc"></span></div>
+        <div class="kr-seg" role="group" aria-label="Graphics quality">
+          <button data-action="quality" data-quality="low" data-attr-aria-pressed="quality_low" data-text="low"></button><button data-action="quality" data-quality="medium" data-attr-aria-pressed="quality_medium" data-text="medium"></button><button data-action="quality" data-quality="high" data-attr-aria-pressed="quality_high" data-text="high"></button>
+        </div>
+        <button class="kr-btn cream krz-back" id="krz-back" data-text="back"></button>
+      </div>
+    </section>
+    <div class="krz-hint"><span data-text="press"></span> <span class="kr-key lg">P</span> <span data-text="to_resume"></span></div>
+  </div>
+</div>
+<script>
+  // Settings and Back switch the card's two views, as in the template.
+  (function () {
+    var root = document.getElementById('krz');
+    function view(v) { root.setAttribute('data-view', v); }
+    document.getElementById('krz-open-settings').addEventListener('click', function () { view('settings'); });
+    document.getElementById('krz-back').addEventListener('click', function () { view('main'); });
+  })();
+</script>

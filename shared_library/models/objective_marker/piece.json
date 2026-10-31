@@ -1,0 +1,10 @@
+{
+  "id": "objective_marker",
+  "summary": "A waypoint / capture marker: a four-footed emitter base with a slim hexagonal obelisk hovering above it, carr… joints spin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.objective_marker or place \"prefab\": \"objective_marker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:objective_marker"]
+}

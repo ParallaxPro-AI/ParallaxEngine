@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spice_rack_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 0.565, 0.1115],
+      "offset": [0, 0.2825, -0.0008]
+    }
+  }
+}

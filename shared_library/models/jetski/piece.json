@@ -1,0 +1,10 @@
+{
+  "id": "jetski",
+  "summary": "A sit-down personal watercraft (runabout): a lofted fibreglass V-hull with a crowned deck, a saddle seat, a f… joints trim, steering; sockets waterline, seat_driver, seat_pax_1, socket_rider, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jetski or place \"prefab\": \"jetski\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jetski"]
+}

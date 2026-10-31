@@ -1,0 +1,10 @@
+{
+  "id": "arcade_cabinet",
+  "summary": "A stand-up arcade cabinet: colored side panels, an emissive CRT screen in a black bezel, a lit marquee, an an… joints joystick, buttons, coin_door; options form, screen_art.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.arcade_cabinet or place \"prefab\": \"arcade_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:arcade_cabinet"]
+}

@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's pause_menu in its online mode: "Menu" with the running clock, the
+     pulsing red note that the match keeps going, Resume and Main menu (which asks to
+     confirm: Stay / Leave match). */
+  .lsp { position: fixed; inset: 0; pointer-events: auto; white-space: nowrap; }
+  .lsp-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(500 * var(--u)); display: flex; flex-direction: column; gap: calc(22 * var(--u)); padding: calc(32 * var(--u)); background: var(--ls-panel-solid); box-shadow: var(--ls-elev); border-radius: var(--ls-r2); animation: lsp-in 220ms var(--ls-ease) both; }
+  @keyframes lsp-in { from { opacity: 0; transform: translate(-50%, -48%); } to { opacity: 1; transform: translate(-50%, -50%); } }
+  .lsp-hd { display: flex; align-items: baseline; justify-content: space-between; }
+  .lsp-hd b { font: 700 calc(40 * var(--u))/1 var(--ls-display); letter-spacing: .04em; }
+  .lsp-hd span { font: 600 calc(18 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink2); }
+  .lsp-note { display: flex; gap: calc(12 * var(--u)); align-items: flex-start; padding: calc(14 * var(--u)) calc(16 * var(--u)); border-radius: calc(4 * var(--u)); background: rgba(242,77,77,.08); box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(242,77,77,.4); white-space: normal; }
+  .lsp-note i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); margin-top: calc(5 * var(--u)); flex: none; border-radius: 50%; background: var(--ls-red); animation: ls-pulse 1.2s ease-in-out infinite; }
+  .lsp-note.is-calm { background: rgba(51,140,242,.08); box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(51,140,242,.4); }
+  .lsp-note.is-calm i { background: var(--ls-blue); animation: none; }
+  .lsp-note div { display: flex; flex-direction: column; gap: calc(5 * var(--u)); }
+  .lsp-note b { font: 700 calc(17 * var(--u))/1.2 var(--ls-ui); }
+  .lsp-note span { font: 500 calc(15 * var(--u))/1.35 var(--ls-ui); color: var(--ls-ink2); }
+  .lsp-acts { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+  .lsp-acts .ls-btn { height: calc(52 * var(--u)); }
+  .lsp-acts .ls-btn.is-primary { height: calc(60 * var(--u)); font-size: calc(21 * var(--u)); }
+  .lsp-q { font: 600 calc(16 * var(--u))/1.35 var(--ls-ui); white-space: normal; }
+  .lsp-two { display: grid; grid-template-columns: 1fr 1fr; gap: calc(10 * var(--u)); }
+  .lsp-two .ls-btn { height: calc(52 * var(--u)); font-size: calc(17 * var(--u)); }
+  .lsp-ask { list-style: none; }
+  .lsp-ask::-webkit-details-marker { display: none; }
+  .lsp-ask::marker { content: ""; }
+  details[open] > .lsp-ask { display: none; }
+  details[open] { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+  .lsp-confirm:has(details[open]) .lsp-resume { display: none; }
+  @media (pointer: coarse) {
+    .lsp-card { width: min(calc(1120 * var(--u)), calc(100cqw - calc(64 * var(--u)))); padding: calc(40 * var(--u)); gap: calc(32 * var(--u)); }
+    .lsp-hd b { font-size: calc(56 * var(--u)); }
+    .lsp-hd span { font-size: calc(28 * var(--u)); }
+    .lsp-note b { font-size: calc(30 * var(--u)); }
+    .lsp-note span { font-size: calc(26 * var(--u)); line-height: 1.3; }
+    .lsp-acts .ls-btn { height: calc(96 * var(--u)); font-size: calc(32 * var(--u)); }
+    .lsp-acts .ls-btn.is-primary { height: calc(112 * var(--u)); font-size: calc(36 * var(--u)); }
+    .lsp-q { font-size: calc(26 * var(--u)); }
+    .lsp-two .ls-btn { height: calc(96 * var(--u)); font-size: calc(32 * var(--u)); }
+  }
+</style>
+<div class="ls-root lsp">
+  <div class="ls-scrim"></div>
+  <div class="lsp-card" role="dialog" aria-modal="true">
+    <div class="lsp-hd"><b data-hide="training" data-text="menu_title"></b><b data-show="training" data-text="menu_paused"></b><span data-bind="clock"></span></div>
+    <div class="lsp-note" data-hide="training"><i></i><div><b data-text="menu_note_title"></b><span data-text="menu_note"></span></div></div>
+    <div class="lsp-note is-calm" data-show="training"><i></i><div><b data-text="menu_training_title"></b><span data-text="menu_training_note"></span></div></div>
+    <div class="lsp-acts lsp-confirm">
+      <button class="ls-btn is-primary lsp-resume" data-action="resume" data-text="menu_resume"></button>
+      <details>
+        <summary class="ls-btn lsp-ask" data-text="menu_main_menu"></summary>
+        <span class="lsp-q" data-text="menu_leave_q"></span>
+        <div class="lsp-two">
+          <button class="ls-btn" data-action="resume" data-text="menu_stay"></button>
+          <button class="ls-btn is-danger" data-action="main_menu" data-text="menu_leave"></button>
+        </div>
+      </details>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/champion_assassin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 1.798, 0.4107],
+      "offset": [0, 0.899, 0.0034]
+    }
+  }
+}

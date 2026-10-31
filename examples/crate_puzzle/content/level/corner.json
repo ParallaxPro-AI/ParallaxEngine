@@ -1,0 +1,13 @@
+{
+  "number": 2,
+  "name": "Around the Corner",
+  "hint": "Get above the crate and push it down.",
+  "rows": [
+    "#######",
+    "#     #",
+    "# @$  #",
+    "#  .  #",
+    "#     #",
+    "#######"
+  ]
+}

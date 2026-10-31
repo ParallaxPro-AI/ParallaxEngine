@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/deep_fryer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.32, 0.431],
+      "offset": [0, 0.16, 0.0155]
+    }
+  }
+}

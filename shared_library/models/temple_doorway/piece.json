@@ -1,0 +1,10 @@
+{
+  "id": "temple_doorway",
+  "summary": "A forest-temple entrance: a 5.4 m masonry wall with a 1.6 x 2.6 m doorway framed by stepped jamb stones under… joints stone_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.temple_doorway or place \"prefab\": \"temple_doorway\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:temple_doorway"]
+}

@@ -1,0 +1,2 @@
+{ "name": "Strider's Sole", "blurb": "Stitched for the causeway, worn thin on the jungle paths.",
+  "icon": "boot", "category": "swift", "tier": 1, "cost": 420, "stats": { "move_speed": 0.7 }, "builds_from": ["worn_tread"] }

@@ -1,0 +1,10 @@
+{
+  "id": "audio_guide_stand",
+  "summary": "A museum audio-guide stop: a rounded floor column on a weighted plate with a raked top cap and a big PLAY but… joints handset.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.audio_guide_stand or place \"prefab\": \"audio_guide_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:audio_guide_stand"]
+}

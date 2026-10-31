@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/truck_wreck_overturned"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9378, 2.21, 6.0136],
+      "offset": [0.0001, 1.105, -0.1618]
+    }
+  }
+}

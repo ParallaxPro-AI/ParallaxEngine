@@ -1,0 +1,14 @@
+{
+  "id": "sawhorse",
+  "summary": "A wooden carpenter's sawhorse: a stout top beam on two splayed leg pairs. joints fold; sockets socket_top.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.sawhorse or place \"prefab\": \"sawhorse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:sawhorse"
+  ]
+}

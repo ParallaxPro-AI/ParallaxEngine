@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scuba_gear"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0861, 0.7608, 0.8542],
+      "offset": [0.001, 0.3804, 0.0529]
+    }
+  }
+}

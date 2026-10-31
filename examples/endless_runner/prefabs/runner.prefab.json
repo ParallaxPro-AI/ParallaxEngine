@@ -1,0 +1,65 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/1d/8d/1d8dfc8aea187208faa2549f7174f051f07f9025b54d2905251b8e6a5c28fd71.glb",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "Idle"
+    },
+    "runner": {
+      "lane": 1
+    }
+  },
+  "scale": [
+    1.65,
+    1.65,
+    1.65
+  ],
+  "children": [
+    {
+      "name": "board",
+      "visible": false,
+      "at": [
+        0,
+        0.06,
+        0
+      ],
+      "components": {
+        "model": {
+          "model": "models/board"
+        }
+      },
+      "scale": [
+        0.667,
+        0.667,
+        0.667
+      ]
+    }
+  ],
+  "behaviors": {
+    "surf_runner": {
+      "base_speed": 14,
+      "max_speed": 32,
+      "speed_gain": 0.18,
+      "lane_switch_rate": 16,
+      "jump_speed": 11.5,
+      "gravity": 30,
+      "fast_fall_speed": 28,
+      "jump_buffer": 0.14,
+      "slide_seconds": 0.72,
+      "stumble_seconds": 0.8,
+      "stumble_speed_scale": 0.55,
+      "recover_rate": 3.0,
+      "stumble_recover_rate": 1.1,
+      "lean_per_mps": 1.6,
+      "max_lean": 12,
+      "run_clip": "Run",
+      "jump_clip": "Jump",
+      "slide_clip": "Roll",
+      "stumble_clip": "Roll",
+      "won_clip": "Idle",
+      "caught_clip": "Death"
+    }
+  }
+}

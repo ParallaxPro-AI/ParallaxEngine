@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/table", "cast_shadows": true }
+  }
+}

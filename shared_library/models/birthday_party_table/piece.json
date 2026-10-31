@@ -1,0 +1,10 @@
+{
+  "id": "birthday_party_table",
+  "summary": "A 1.8 m folding banquet table dressed for a birthday party: a royal-blue plastic tablecloth with a 30 cm drop… options cloth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.birthday_party_table or place \"prefab\": \"birthday_party_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:birthday_party_table"]
+}

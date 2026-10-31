@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bumper_car"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3, 2.325, 2],
+      "offset": [0, 1.1625, 0]
+    }
+  }
+}

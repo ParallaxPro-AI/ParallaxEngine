@@ -1,0 +1,10 @@
+{
+  "id": "mesoamerican_altar",
+  "summary": "An Olmec table-top altar in basalt, 2.7 x 1.45 x 1.75 m: a battered block under a thick overhanging ledge car… options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mesoamerican_altar or place \"prefab\": \"mesoamerican_altar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mesoamerican_altar"]
+}

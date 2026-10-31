@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dental_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3678, 1.925, 1.4625],
+      "offset": [-0.0139, 0.9625, -0.0015]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tycoon_upgrader_conveyor",
+  "summary": "A tycoon-game upgrader: a straight 2.4 m cleated belt conveyor on steel legs with an upgrade gate straddling… joints roller_head, roller_tail, belt; sockets socket_infeed, socket_discharge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tycoon_upgrader_conveyor or place \"prefab\": \"tycoon_upgrader_conveyor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tycoon_upgrader_conveyor"]
+}

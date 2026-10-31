@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bulldozer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4687, 2.7765, 4.6561],
+      "offset": [0, 1.3867, 0.072]
+    }
+  }
+}

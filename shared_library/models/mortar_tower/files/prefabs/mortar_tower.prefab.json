@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mortar_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 2.255, 2.4],
+      "offset": [0, 1.1275, 0]
+    }
+  }
+}

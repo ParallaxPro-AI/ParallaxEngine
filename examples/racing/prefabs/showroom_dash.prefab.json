@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kart",
+      "cast_shadows": true,
+      "colors": {
+        "helmet": "#2f3540",
+        "chassis_body_merged": "#3fa85c",
+        "chassis_accent_merged": "#f2ece0",
+        "chassis_suit_merged": "#22331f"
+      }
+    }
+  },
+  "tags": [
+    "showroom_car"
+  ]
+}

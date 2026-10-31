@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stegosaurus"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8033, 3.3754, 7.8858],
+      "offset": [0, 1.6837, -0.2071]
+    }
+  }
+}

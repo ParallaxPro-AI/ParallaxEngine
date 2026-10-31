@@ -1,0 +1,10 @@
+{
+  "id": "runway_light",
+  "summary": "An elevated airfield edge light: a small concrete pad with a bolted galvanised base plate, a cast frangible b… options lens_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.runway_light or place \"prefab\": \"runway_light\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:runway_light"]
+}

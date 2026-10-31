@@ -1,0 +1,10 @@
+{
+  "id": "biplane",
+  "summary": "A vintage single-engine biplane (WWI/barnstormer style): a lofted body-of-revolution fuselage, TWO braced win… joints upper_wing_aileron_l, upper_wing_aileron_r, hstab_elevator_l, hstab_elevator_r, fin_rudder, propeller.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.biplane or place \"prefab\": \"biplane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:biplane"]
+}

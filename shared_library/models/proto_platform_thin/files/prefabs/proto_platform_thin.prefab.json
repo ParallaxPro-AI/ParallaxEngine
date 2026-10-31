@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/proto_platform_thin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4, 0.25, 4],
+      "offset": [0, 0.125, 0]
+    }
+  }
+}

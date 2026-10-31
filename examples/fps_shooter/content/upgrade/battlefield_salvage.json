@@ -1,0 +1,1 @@
+{ "name": "Battlefield Salvage", "description": "Every frag strips 15 rifle rounds off the corpse.", "icon": "⚙", "ammo_on_kill": [{ "weapon": "carbine", "rounds": 15 }] }

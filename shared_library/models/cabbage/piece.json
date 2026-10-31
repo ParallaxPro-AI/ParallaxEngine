@@ -1,0 +1,10 @@
+{
+  "id": "cabbage",
+  "summary": "A head of green cabbage: a dense pale core wrapped in five loose outer leaves that curl away from it, with a… options variety.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cabbage or place \"prefab\": \"cabbage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cabbage"]
+}

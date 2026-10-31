@@ -1,0 +1,10 @@
+{
+  "id": "samurai_armor_stand",
+  "summary": "A full suit of samurai armour displayed seated on its black lacquered armour chest (yoroi-bitsu), 1.7 m tall…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.samurai_armor_stand or place \"prefab\": \"samurai_armor_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:samurai_armor_stand"]
+}

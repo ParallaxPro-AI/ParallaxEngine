@@ -1,0 +1,10 @@
+{
+  "id": "kotatsu_table",
+  "summary": "A Japanese kotatsu heated low table: a light ash frame with an infrared heater under its centre, a quilted ko… options futon, season, dressing; sockets seat_s, seat_n, seat_w, seat_e.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kotatsu_table or place \"prefab\": \"kotatsu_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kotatsu_table"]
+}

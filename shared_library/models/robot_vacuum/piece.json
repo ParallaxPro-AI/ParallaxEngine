@@ -1,0 +1,10 @@
+{
+  "id": "robot_vacuum",
+  "summary": "A domestic robot vacuum: a low graphite disc on a rubber bumper ring, a spinning lidar puck on top, a brass t… joints wheel_l, wheel_r, brush_l, brush_r, lidar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.robot_vacuum or place \"prefab\": \"robot_vacuum\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:robot_vacuum"]
+}

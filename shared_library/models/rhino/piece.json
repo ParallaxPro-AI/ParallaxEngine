@@ -1,0 +1,10 @@
+{
+  "id": "rhino",
+  "summary": "A rhinoceros on the engine's quadruped_20 rig: ~3.6 m nose-horn to tail, ~1.7 m at the shoulder hump. options hide; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rhino or place \"prefab\": \"rhino\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rhino"]
+}

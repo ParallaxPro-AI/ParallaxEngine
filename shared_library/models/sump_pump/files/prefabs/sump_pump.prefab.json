@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sump_pump"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.297, 1.47, 0.3775],
+      "offset": [0.0115, 0.735, -0.0112]
+    }
+  }
+}

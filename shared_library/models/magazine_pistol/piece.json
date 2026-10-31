@@ -1,0 +1,10 @@
+{
+  "id": "magazine_pistol",
+  "summary": "A loaded 15-round 9 mm double-stack pistol magazine: a hollow blued-steel tube with a rounded front that tape…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magazine_pistol or place \"prefab\": \"magazine_pistol\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magazine_pistol"]
+}

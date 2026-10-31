@@ -1,0 +1,10 @@
+{
+  "id": "stone_axe",
+  "summary": "A hafted stone axe of the kind a survivor or a Neolithic woodworker makes: a 0.58 m peeled hardwood haft (rea… options haft_wood; sockets edge, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.stone_axe or place \"prefab\": \"stone_axe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:stone_axe"]
+}

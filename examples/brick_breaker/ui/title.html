@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="prism.css">
+<style>
+  .pst-scene { position: fixed; inset: 0; display: grid; place-items: center; pointer-events: auto; background: radial-gradient(110% 90% at 50% 50%, rgba(11,16,23,.32) 0%, rgba(4,5,7,.5) 62%, rgba(0,0,0,.62) 100%); }
+  .pst-card { width: calc(var(--u) * 860); max-width: calc(100cqw - 32px); padding: calc(var(--u) * 56) calc(var(--u) * 76) calc(var(--u) * 60); display: flex; flex-direction: column; align-items: center; text-align: center; gap: calc(var(--u) * 28); animation: ps-in var(--ps-dur-slow) var(--ps-ease) both; }
+  .pst-col { display: contents; }
+  .pst-bricks { display: flex; gap: calc(var(--u) * 10); }
+  .pst-brick { display: block; width: calc(var(--u) * 96); height: calc(var(--u) * 32); position: relative; border: 2px solid; }
+  .pst-brick::after { content: ''; position: absolute; inset: 0; background: linear-gradient(115deg, rgba(255,255,255,.5) 0 10%, transparent 10% 68%, rgba(255,255,255,.14) 68% 100%); }
+  .pst-brick.h1 { border-color: rgba(124,200,255,.5); background: rgba(124,200,255,.1); }
+  .pst-brick.h2 { border-color: rgba(124,200,255,.9); background: rgba(124,200,255,.4); }
+  .pst-brick.h3 { border-color: #fff; background: var(--ps-accent); box-shadow: var(--ps-accent-glow); }
+  .pst-tag { font-size: var(--fs-2xs); font-weight: 700; letter-spacing: .34em; padding: calc(var(--u) * 6) calc(var(--u) * 13.2); border: 1px solid var(--ps-line-2); color: var(--ps-ink-2); }
+  .pst-title { font-size: calc(var(--u) * 156); font-weight: 800; line-height: .86; letter-spacing: .02em; display: flex; flex-direction: column; }
+  .pst-title-b { color: var(--ps-accent); text-shadow: 0 0 28px rgba(124,200,255,.55); }
+  .pst-court { width: 100%; }
+  .pst-rally { position: relative; height: calc(var(--u) * 110); }
+  .pst-trail { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; }
+  .pst-trail polyline { fill: none; stroke: rgba(124,200,255,.55); stroke-width: 1.5; stroke-dasharray: 4 5; vector-effect: non-scaling-stroke; }
+  .pst-trail polyline:first-child { stroke: rgba(255,255,255,.18); }
+  .pst-orb { position: absolute; left: 63%; top: 8%; transform: translate(-50%, -50%); width: calc(var(--u) * 16); height: calc(var(--u) * 16); border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px rgba(124,200,255,.35), 0 0 18px var(--ps-accent); }
+  .pst-paddle { position: absolute; left: 50%; bottom: calc(var(--u) * 3); transform: translateX(-50%); width: calc(var(--u) * 150); height: calc(var(--u) * 9.6); background: #fff; box-shadow: 0 0 14px rgba(255,255,255,.35); }
+  .pst-line { height: 2px; background: linear-gradient(90deg, transparent, var(--ps-line-2) 10%, var(--ps-line-2) 90%, transparent); }
+  .pst-hint { max-width: calc(var(--u) * 640); font-size: var(--fs-sm); line-height: 1.6; color: var(--ps-ink-2); text-wrap: pretty; }
+  .ps-root .pst-btn { min-width: calc(var(--u) * 340); min-height: max(48px, calc(var(--u) * 78)); font-size: var(--fs-md); margin-top: calc(var(--u) * 6); }
+
+  @media (pointer: coarse) {
+    .pst-card { width: calc(var(--u) * 756); max-width: calc(100cqw - 24px); padding: calc(var(--u) * 26) calc(var(--u) * 30); display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 34); align-items: center; text-align: center; }
+    .pst-col { display: flex; flex-direction: column; gap: calc(var(--u) * 14); }
+    .pst-col-l { align-items: flex-start; text-align: left; }
+    .pst-bricks { gap: calc(var(--u) * 5); }
+    .pst-brick { width: calc(var(--u) * 46); height: calc(var(--u) * 16); }
+    .pst-tag { padding: calc(var(--u) * 3) calc(var(--u) * 6.6); }
+    .pst-title { font-size: calc(var(--u) * 66); }
+    .pst-rally { height: calc(var(--u) * 62); }
+    .pst-orb { width: calc(var(--u) * 10); height: calc(var(--u) * 10); }
+    .pst-paddle { width: calc(var(--u) * 84); height: calc(var(--u) * 6); }
+    .pst-hint { max-width: none; font-size: var(--fs-xs); line-height: 1.55; }
+    .ps-root .pst-btn { width: 100%; min-width: 0; min-height: 44px; margin-top: 0; font-size: var(--fs-sm); }
+  }
+</style>
+<div class="ps-root pst-scene">
+  <main class="ps-panel pst-card">
+    <div class="pst-col pst-col-l">
+      <div class="pst-bricks" aria-hidden="true"><i class="pst-brick h3"></i><i class="pst-brick h2"></i><i class="pst-brick h1"></i><i class="pst-brick h1"></i><i class="pst-brick h2"></i><i class="pst-brick h3"></i></div>
+      <div class="pst-tag" data-text="title_tag"></div>
+      <h1 class="pst-title"><span data-text="title_first"></span><span class="pst-title-b" data-text="title_second"></span></h1>
+    </div>
+    <div class="pst-col">
+      <div class="pst-court" aria-hidden="true">
+        <div class="pst-rally">
+          <svg class="pst-trail" viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="22,6 50,90" /><polyline points="50,90 63,8" /></svg>
+          <i class="pst-orb"></i>
+          <i class="pst-paddle"></i>
+        </div>
+        <div class="pst-line"></div>
+      </div>
+      <p class="pst-hint" data-text="title_hint"></p>
+      <button class="ps-btn ps-btn--primary pst-btn" data-action="start" data-text="title_start"></button>
+    </div>
+  </main>
+</div>

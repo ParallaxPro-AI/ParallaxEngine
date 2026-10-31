@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kite"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7061, 2.1057, 0.1975],
+      "offset": [0, 1.0498, -0.0013]
+    }
+  }
+}

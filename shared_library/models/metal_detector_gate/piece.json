@@ -1,0 +1,10 @@
+{
+  "id": "metal_detector_gate",
+  "summary": "A walk-through security metal-detector arch: two rounded moulded side panels on steel foot plates, joined by… options status, colour; sockets socket_pass.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.metal_detector_gate or place \"prefab\": \"metal_detector_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:metal_detector_gate"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/checkpoint_flag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 2.595, 0.68],
+      "offset": [0, 1.2975, 0]
+    }
+  }
+}

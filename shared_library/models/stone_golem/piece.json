@@ -1,0 +1,10 @@
+{
+  "id": "stone_golem",
+  "summary": "A STONE GOLEM, about 2.6 m tall: a rigid humanoid built of chunky faceted rock masses on the canonical 17-bon… options runes; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_golem or place \"prefab\": \"stone_golem\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_golem"]
+}

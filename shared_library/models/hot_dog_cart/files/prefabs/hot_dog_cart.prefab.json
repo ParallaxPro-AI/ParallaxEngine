@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hot_dog_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.948, 2.315, 1.912],
+      "offset": [-0.018, 1.1575, -0.05]
+    }
+  }
+}

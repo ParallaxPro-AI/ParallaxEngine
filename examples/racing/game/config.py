@@ -1,0 +1,40 @@
+"""Game-wide tunables (config/race.json): championship scoring, the economy, and how a
+race feels."""
+
+from parallax import config, field
+
+
+@config("race")
+class RaceRules:
+    points_by_place: list[int] = field(doc="Index 0 = the winner.")
+    purse: list[int] = field(doc="Credits by finishing place, before difficulty and round scaling.")
+    finish_bonus: int = field(100, min=0)
+    record_bonus: int = field(500, min=0)
+    champion_prize: int = field(5000, min=0)
+    showroom_spin: float = field(12, unit="deg/s", doc="How fast the picked car turns in the garage lineup.")
+    lap_options: list[int] = field(doc="Quick race: the laps the garage offers.")
+    opponent_options: list[int] = field(doc="Quick race: rival counts (a track grids at most 3).")
+    countdown_step: float = field(1, unit="s")
+    wrong_way_after: float = field(1, unit="s")
+    grid_first_row: float = field(20, unit="m", doc="Distance from the line to the front row.")
+    grid_row_gap: float = field(8, unit="m")
+    grid_lane_offset: float = field(4, unit="m")
+    spawn_height: float = field(1.4, unit="m", doc="Drop height above the terrain when placing a car.")
+    respawn_hold: float = field(0.9, unit="s")
+    respawn_before_gate: float = field(24, unit="m")
+    nitro_drift_gain: float = field(0.6, unit="s/s")
+    nitro_drift_min_speed: float = field(6, unit="m/s")
+    nitro_slipstream_gain: float = field(0.45, unit="s/s")
+    nitro_slipstream_range: float = field(26, unit="m")
+    nitro_slipstream_min_speed: float = field(14, unit="m/s")
+    nitro_slipstream_alignment: float = field(0.8, min=0, max=1, doc="Dot product with the car ahead.")
+    nitro_drain: float = field(1, unit="s/s")
+    nitro_force: float = field(9600, unit="N")
+    nitro_min_charge: float = field(0.35, unit="s")
+    road_half_width: float = field(9, unit="m", doc="Tarmac either side of the racing line; past it the kerb.")
+    verge_from: float = field(11, unit="m", doc="Past this from the racing line the car is off the track (dust, verge rumble).")
+    smoke_every: float = field(0.08, unit="s", doc="Tyre smoke / dust puff interval.")
+    smoke_sparks_from: float = field(0.45, min=0, max=1, doc="Nitro tank fraction above which a slide also throws sparks.")
+    hit_speed_drop: float = field(3, unit="m/s", doc="A hit: at least this much speed lost in one step ...")
+    hit_deceleration: float = field(40, unit="m/s²", doc="... at least this fast (braking never sheds speed like this).")
+    hit_cooldown: float = field(0.4, unit="s")

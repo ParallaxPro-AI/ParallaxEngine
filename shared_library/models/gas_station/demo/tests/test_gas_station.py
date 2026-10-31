@@ -1,0 +1,18 @@
+from parallax import Model, vec3
+from parallax.test import playtest
+from project import Prefabs, Scenes
+
+
+@playtest("gas_station: the prefab spawns and its model's controls work")
+async def test_gas_station(game):
+    await game.start(scene=Scenes.yard)
+    thing = game.ctx.world.spawn(Prefabs.gas_station, at=vec3(0, 0.0, 0))
+    await game.advance(frames=1)
+    model = thing.get(Model)
+    model.pose("nozzle_r_0_0", 37.5)
+    assert abs(model.joint("nozzle_r_0_0") - 37.5) < 1e-3
+    model.set_option("brand_colour", "blue")
+    assert model.option("brand_colour") == "blue"
+    assert model.socket_position("bay_0").distance_to(thing.transform.position) < 50.0
+    await game.advance(seconds=1)
+    assert thing.transform.position.is_close(vec3(0, 0, 0))

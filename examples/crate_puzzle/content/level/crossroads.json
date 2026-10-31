@@ -1,0 +1,14 @@
+{
+  "number": 5,
+  "name": "Crossroads",
+  "hint": "Four crates, four ways out. Mind your order.",
+  "rows": [
+    "#######",
+    "#  .  #",
+    "#  $  #",
+    "#.$@$.#",
+    "#  $  #",
+    "#  .  #",
+    "#######"
+  ]
+}

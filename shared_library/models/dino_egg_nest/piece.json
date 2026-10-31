@@ -1,0 +1,10 @@
+{
+  "id": "dino_egg_nest",
+  "summary": "A dinosaur ground nest about 1.25 m across: a packed-mud ring with a raised lip around a leaf-lined bowl, eig… options clutch, mud, eggs; sockets centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dino_egg_nest or place \"prefab\": \"dino_egg_nest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dino_egg_nest"]
+}

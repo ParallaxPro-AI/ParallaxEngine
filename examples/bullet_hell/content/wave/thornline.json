@@ -1,0 +1,4 @@
+{
+  "number": 2, "name": "Thornline", "act": 1, "guardian": "thornkite", "flight": "vee", "count": 5,
+  "speed": 0.80, "amp": 2.0, "freq": 0.70, "fire_rate": 2.6, "hp_mul": 1.0, "drop_chance": 0.45
+}

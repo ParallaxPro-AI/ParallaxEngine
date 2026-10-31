@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skid_steer_loader"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 3300,
+      "linear_damping": 0.12,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.833,
+        2.02,
+        3.1992
+      ],
+      "offset": [
+        0,
+        1.01,
+        0.0004
+      ],
+      "bounce": 0.04
+    },
+    "vehicle": {
+      "max_speed": 3.4,
+      "steering": 30,
+      "grip": 8,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.01,
+        0.0004
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

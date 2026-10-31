@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="theme.css">
+<div class="lib-modal">
+  <div class="lib-card">
+    <h2 data-text="save_slots_title"></h2>
+    <div class="lib-rows" data-each="slots">
+      <template>
+        <div class="lib-row">
+          <span><span data-text="save_slots_slot"></span> <span data-bind="number"></span>
+            <span data-show="used"> · <span data-bind="scene"></span> · <span data-bind="play_seconds" data-format="time"></span><span data-show="label"> · <span data-bind="label"></span></span></span>
+            <span data-hide="used" data-text="save_slots_empty"></span>
+            <span class="lib-chip lib-good" data-show="latest" data-text="save_slots_latest"></span></span>
+          <span>
+            <button class="lib-button" data-action="save" data-show="can_save" data-text="save_slots_save"></button>
+            <button class="lib-button lib-button--primary" data-action="load" data-show="used" data-text="save_slots_load"></button>
+            <button class="lib-button" data-action="delete" data-show="used" data-text="save_slots_delete"></button>
+          </span>
+        </div>
+      </template>
+    </div>
+    <button class="lib-button" data-action="back" data-key="KeyP" data-text="save_slots_back"></button>
+  </div>
+</div>

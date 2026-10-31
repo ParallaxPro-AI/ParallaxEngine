@@ -1,0 +1,10 @@
+{
+  "id": "cultist_hooded",
+  "summary": "A rigged hooded cultist - an occult acolyte in ceremonial robes - on the canonical 17-bone humanoid rig (fork… options skin, robe; sockets eye_point, grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cultist_hooded or place \"prefab\": \"cultist_hooded\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cultist_hooded"]
+}

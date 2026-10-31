@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jack_in_the_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.214, 0.178, 0.167],
+      "offset": [0, 0.089, 0.0005]
+    }
+  }
+}

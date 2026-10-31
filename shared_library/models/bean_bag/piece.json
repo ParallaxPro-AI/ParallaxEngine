@@ -1,0 +1,10 @@
+{
+  "id": "bean_bag",
+  "summary": "A big fabric bean bag chair: a soft slumped blob with a raised back lobe and a sat-in seat hollow, a carry ha… joints squash, spread; options cover; sockets socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bean_bag or place \"prefab\": \"bean_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bean_bag"]
+}

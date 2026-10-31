@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pagoda_shrine_small"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.317, 1.835, 1.1226],
+      "offset": [0, 0.9175, 0.0187]
+    }
+  }
+}

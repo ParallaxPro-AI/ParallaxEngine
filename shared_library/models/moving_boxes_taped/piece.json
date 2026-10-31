@@ -1,0 +1,10 @@
+{
+  "id": "moving_boxes_taped",
+  "summary": "A small pile of sealed moving boxes on moving day: two medium double-wall moving cartons (460 x 420 x 420 mm…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.moving_boxes_taped or place \"prefab\": \"moving_boxes_taped\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:moving_boxes_taped"]
+}

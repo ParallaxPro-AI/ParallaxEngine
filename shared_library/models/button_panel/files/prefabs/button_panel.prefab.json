@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/button_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.34, 0.531, 0.1685],
+      "offset": [0, 0.2655, -0.0008]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bucket",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.3694,
+        0.404,
+        0.314
+      ],
+      "offset": [
+        0.0,
+        0.202,
+        0.0
+      ]
+    }
+  }
+}

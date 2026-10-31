@@ -1,0 +1,10 @@
+{
+  "id": "tower_crane_section",
+  "summary": "A tileable 1.8 x 1.8 x 4.0 m lattice mast section for a hammerhead tower crane: four square chords with bolte… joints slew, trolley, hook_block; options top, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tower_crane_section or place \"prefab\": \"tower_crane_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tower_crane_section"]
+}

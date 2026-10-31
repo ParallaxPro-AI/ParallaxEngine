@@ -1,0 +1,10 @@
+{
+  "id": "cutlass",
+  "summary": "A 0.75 m naval cutlass: a broad 0.61 m single-edged blade, 40 mm deep, with a gentle sabre curve, a fuller un… options hilt; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.cutlass or place \"prefab\": \"cutlass\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:cutlass"]
+}

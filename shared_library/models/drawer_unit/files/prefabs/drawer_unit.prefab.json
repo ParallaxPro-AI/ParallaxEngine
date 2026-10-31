@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drawer_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 1.12, 0.5115],
+      "offset": [0, 0.56, 0.0243]
+    }
+  }
+}

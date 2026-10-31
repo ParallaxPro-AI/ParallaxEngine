@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6562, 1.2723, 2.4099],
+      "offset": [0, 0.6362, -0.0866]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "fitting_room",
+  "summary": "A freestanding clothes-shop fitting room cubicle: three oak-veneer wall panels in a brushed-aluminium post fr… joints curtain; options curtain_fabric, panel_finish; sockets seat_bench, socket_floor, socket_hook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fitting_room or place \"prefab\": \"fitting_room\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fitting_room"]
+}

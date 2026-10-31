@@ -1,0 +1,215 @@
+{
+  "pieces": {
+    "apartment_midrise": {
+      "from": "shared_library/models/apartment_midrise",
+      "version": "2026.10.25",
+      "sha": "4d9932902edbd5af622fac8b9dd11a6d5a65eedd6c59fecb673c917e15ceea8c",
+      "files": {
+        "assets/models/apartment_midrise.model.json": "e0b6d41ede9b6ca0dae2932e2e1099d04d71f2f53bfd60e3764f5a009e3bc39e",
+        "prefabs/apartment_midrise.prefab.json": "4251898af168df43ae27461266b582b64a34b8f2dcfcd701887548af1207b944"
+      },
+      "text": {}
+    },
+    "bus": {
+      "from": "shared_library/models/bus",
+      "version": "2026.10.23",
+      "sha": "8c8f14f83ede7a3dfc5d399305d9c7413abc0e8f9f341ebf715d1eef15e27bd5",
+      "files": {
+        "assets/models/bus.model.json": "9c3988dc5a734547dd3d10bac59e5ce4b692a7cc6a3366a18850efb78f67d08c",
+        "prefabs/bus.prefab.json": "7447982ca15f8078d73a6538e9e4897a50506e5825caeb9a58a7120117e2ada5"
+      },
+      "text": {}
+    },
+    "hatchback": {
+      "from": "shared_library/models/hatchback",
+      "version": "2026.10.23",
+      "sha": "5122c605c26722d3cdb69449cadf61d63e145cc8b897612b51e30dbaef5fce9c",
+      "files": {
+        "assets/models/hatchback.model.json": "d3af12ad0880eedbfaa4e68a727b05831db217e4d778516669f78cf3c5e955f7",
+        "prefabs/hatchback.prefab.json": "0cdd63337c9acb8e2c8ee4708f01734b2e083174f041b3ce1ea79969c50e7b03"
+      },
+      "text": {}
+    },
+    "humanoid_locomotion": {
+      "from": "shared_library/clips/humanoid_locomotion",
+      "version": "2026.10.23",
+      "sha": "e864b1171ebc5699b1bd8738f413c1eb07cf8af32f15fb3a62a6445bfbef8a52",
+      "files": {
+        "assets/clips/carry_walk.clip.json": "7d1a5446fb966111beab14751a73c20f00faa250651b8a7cc4085c23facf0399",
+        "assets/clips/human_fall.clip.json": "ab65de5627533fa7a9d85fd1a6e961e34c42d6d38308160b6663e93a36035883",
+        "assets/clips/run_cycle.clip.json": "68582aebb7c08dfc44b633fb166a7d89960e5591adfb2a232de26784c4bad243",
+        "assets/clips/stand_idle.clip.json": "04b3895e48aa5bde478abe1426844ceb8e3ebbf3f752adfa56c41a52be76bbfd",
+        "assets/clips/stand_idle_left.clip.json": "9423c2ffa815baf84c8088458ca64ab221fd7c7eaaa801a367930a4abed69029",
+        "assets/clips/walk_cycle.clip.json": "5f21442def2327494bb733ba1f045ca18d4179625586aff64aef49ee4482c817"
+      },
+      "text": {}
+    },
+    "map_screen": {
+      "from": "shared_library/ui/map_screen",
+      "version": "2026.10.23",
+      "sha": "c7244a76f4c96bba62efec527419c76f971648ba3efc36cb2bc395187d455ecb",
+      "files": {
+        "config/map_screen.json": "ba04b9dc1b07c973a254abd824197953387e9b25eab7ca29eec3903e3f113543",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/map_screen.py": "6af97e6d3d12564bd44a55737ad76538980823c216d1b67f77c19d64b4c62bab",
+        "ui/lib/map_corner.html": "759813760b7d00085376b4aafe575188fdba4a4e309e2f274b73c47e7d512332",
+        "ui/lib/map_screen.html": "8c7ba2cec259b168437ad897484afd8f6f15c0249674bdb3fb6d49dd6700dec3"
+      },
+      "text": {}
+    },
+    "office_block": {
+      "from": "shared_library/models/office_block",
+      "version": "2026.10.25",
+      "sha": "ca3bbf955616cc8937240fbe8769638df2957bc4c6d6fbde0f8470a3b1dd9ce2",
+      "files": {
+        "assets/models/office_block.model.json": "dfe179cc6601d1d72f55ad6743b1bb45d281bb164b623f6c4bdf4ccf88deda3b",
+        "prefabs/office_block.prefab.json": "a7f4de643f4c089f405ef6c5bf988c8e531f32aadd13f6b2c0ebbcb80b4db3ab"
+      },
+      "text": {}
+    },
+    "pickup": {
+      "from": "shared_library/models/pickup",
+      "version": "2026.10.23",
+      "sha": "3241b4c886db13754fe6604b1f8b4767eb8320fb28ef9ce1f6186cf30b7fd205",
+      "files": {
+        "assets/models/pickup.model.json": "3fea8b661ad06593cdd268c8bee483ac70e0a2c206dd5b703497ad5b242f6f70",
+        "prefabs/pickup.prefab.json": "50c108e3990ef2764820787caa0b3d4c7e0eb302dbaa413c12673104f54d06f8"
+      },
+      "text": {}
+    },
+    "police_car": {
+      "from": "shared_library/models/police_car",
+      "version": "2026.10.23",
+      "sha": "601c6e18a62f3ab75e96fd4523a0029e7863640e203d5d21ea3e9d0b03b2cdd6",
+      "files": {
+        "assets/models/police_car.model.json": "e6d045e74936a072963317f3257bc215ae75e93c2956708c7e876ecf627be577",
+        "prefabs/police_car.prefab.json": "8db5e4146ed3f5a4ef63f4fae2b421969e2fcdd543c8b766e08bc93914643378"
+      },
+      "text": {}
+    },
+    "radial_menu": {
+      "from": "shared_library/ui/radial_menu",
+      "version": "2026.10.23",
+      "sha": "bbe2d8d8b53bca4a47b320c3792f5d7e44180f127a2eaa9e379f01bc7281d4e4",
+      "files": {
+        "config/radial_menu.json": "f60a6101b270cb1c2f0c3160c35b761668d0b1a4a653e4de83de03d975f3a4a7",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/radial_menu.py": "d1460ba0e5a2cb23b919b69207b1ef6303af3eae037fbfe68fafe4197f7a0149",
+        "ui/lib/radial_menu.html": "3e9ba0ec61defb7ebb5d430af34efb1e6300906f0aee676a0e3a7b4833c91dc8"
+      },
+      "text": {}
+    },
+    "save_slots": {
+      "from": "shared_library/ui/save_slots",
+      "version": "2026.10.23",
+      "sha": "a67e8838bcf019f9bd7a97560dbd2c44743a34236844ee81e7dfd7f11c58c788",
+      "files": {
+        "config/save_slots.json": "987d10e59ec5fecd084b016b58e996a7c33fda2c51aef2665c48c41c0161b7d0",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/save_slots.py": "0f2ba0f55d89fd0fc6c0a946ee8e743faea0300ea797981284d2a06b83e13711",
+        "ui/lib/save_slots.html": "351f7fac8fc9d846ea2db3922f7b1e208607564ac61023b2659413a7312b2db5"
+      },
+      "text": {
+        "locale/en.json": [
+          "save_slots_title",
+          "save_slots_slot",
+          "save_slots_empty",
+          "save_slots_latest",
+          "save_slots_save",
+          "save_slots_load",
+          "save_slots_delete",
+          "save_slots_back"
+        ]
+      }
+    },
+    "scene_tags": {
+      "from": "shared_library/core/scene_tags",
+      "version": "2026.10.23",
+      "sha": "0f056ebed781b197ffa0cbe8dee207ccde08a6e6b2c4e895249b8f1012f6c359",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/scene_tags.py": "6a0b14ef26d2a90ce86402cd4b2e60c1ad40e5d10dd85a5c9480aab7165ef378"
+      },
+      "text": {}
+    },
+    "sedan": {
+      "from": "shared_library/models/sedan",
+      "version": "2026.10.23",
+      "sha": "7353cadcf7540f4b0ee04b8a50b7cd50486791833ccaf2a57dfbb69488d0f46a",
+      "files": {
+        "assets/models/sedan.model.json": "da9720d75d969337112e3a994b9851f461b35010c452868afc13cb2dad878aa9",
+        "prefabs/sedan.prefab.json": "f90e9c16483d384c202344258e3765bff2ea36e7c53e727b0ad3c57195626cd3"
+      },
+      "text": {}
+    },
+    "streetlight": {
+      "from": "shared_library/models/streetlight",
+      "version": "2026.10.23",
+      "sha": "2ecd299d47eee77cd4c145d4582c9425eea6d09b3321d6d62f4801b534f12e22",
+      "files": {
+        "assets/models/streetlight.model.json": "1078f3d1bfc443d313be1e1a9104d29871422893a0c78fa3d981d7c7ce8ca9c0",
+        "prefabs/streetlight.prefab.json": "b0a2e48f045571f5da03b2e797e7a181f6f27a27f726ad6e9a98a1f27c45793b"
+      },
+      "text": {}
+    },
+    "suv": {
+      "from": "shared_library/models/suv",
+      "version": "2026.10.23",
+      "sha": "4d0c6f341eb1c83de61ca81c3953021f061abe3e30a6d0b422938f38ec98bcd1",
+      "files": {
+        "assets/models/suv.model.json": "d90539b3b8f801a8ddf104545447b3774ef674593560cbec2f7d99aa28f53771",
+        "prefabs/suv.prefab.json": "82a2ae8087ff09dca65e7be614b675ea01a048c175be7e16a2e697de2500964a"
+      },
+      "text": {}
+    },
+    "taxi": {
+      "from": "shared_library/models/taxi",
+      "version": "2026.10.23",
+      "sha": "935f6a8d33d08c75593879b67fd2f100501f04eeea49e5bf582d45611538ba09",
+      "files": {
+        "assets/models/taxi.model.json": "d109c044409c42612d621a8e336da83d6af5ec0d466b3491630625ede6e18968",
+        "prefabs/taxi.prefab.json": "3bf833c82d7e6e401cc391ef7b52e0f70e5029589969482ed14f5851fa2ce0d1"
+      },
+      "text": {}
+    },
+    "tree_birch": {
+      "from": "shared_library/models/tree_birch",
+      "version": "2026.10.25",
+      "sha": "2f836ac453efbc23cd75a7a8aa4fa7ef407a82cccc4edfbcaa669fbf6f52a7df",
+      "files": {
+        "assets/models/tree_birch.model.json": "5ea1df116643ddf158f8b1d9e76caad38fefbabc2ee1dc68d3e1ac5ed4ac4b79",
+        "prefabs/tree_birch.prefab.json": "bb9104f6cada1e0eab893dc96d60aa6ee11cb59838a4003ea1cf74887a5039ea"
+      },
+      "text": {}
+    },
+    "ui_theme": {
+      "from": "shared_library/core/ui_theme",
+      "version": "2026.10.23",
+      "sha": "c4c9f52e853af817702f701e9c4d3b4e74435f284420ace9722ba5bf0c195288",
+      "files": {
+        "ui/lib/theme.css": "c5be7110d951bf6ec20229526256c6943d5a87bd76c659119d4f94152b54107b"
+      },
+      "text": {}
+    },
+    "van": {
+      "from": "shared_library/models/van",
+      "version": "2026.10.23",
+      "sha": "87d9ef9fb129b0a3c76d48706b0c25f920c21b5d0fe5bdee003ef16c4049c855",
+      "files": {
+        "assets/models/van.model.json": "8bb70786eef5460eb64a56172075d6d4be3a05810b5c1b47d5e7b0f2fc92211c",
+        "prefabs/van.prefab.json": "e8ed89d61bafbfd74f2a237984d39cbb325cc054e67d19d2306c8a8c2db8974f"
+      },
+      "text": {}
+    },
+    "warehouse": {
+      "from": "shared_library/models/warehouse",
+      "version": "2026.10.25",
+      "sha": "7c63dc2b1d9ed9f8df584400eb1c886683dc4baae5a77ba2a4c5a86d53593eb7",
+      "files": {
+        "assets/models/warehouse.model.json": "7668fcef95ead459d85a8650e3caa8a929c2e073e99578dd61841b26d765a172",
+        "prefabs/warehouse.prefab.json": "2ce1c2ddba9ba27978b5429b2c05e0aba8903ca8fe2a994e52be63ffd7f21740"
+      },
+      "text": {}
+    }
+  }
+}

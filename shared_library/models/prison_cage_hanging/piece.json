@@ -1,0 +1,10 @@
+{
+  "id": "prison_cage_hanging",
+  "summary": "A hanging gibbet cage: a round iron-barred cage with a domed crown of half-hoops, a riveted floor grate and a… joints swing, cage_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.prison_cage_hanging or place \"prefab\": \"prison_cage_hanging\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:prison_cage_hanging"]
+}

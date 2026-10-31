@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 0.5755, 0.585],
+      "offset": [0, 0.2863, 0.0225]
+    }
+  }
+}

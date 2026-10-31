@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/metro_car_shanghai"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9133, 3.6, 15.6],
+      "offset": [0, 1.8, 0]
+    }
+  }
+}

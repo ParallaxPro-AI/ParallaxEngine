@@ -1,0 +1,92 @@
+<!-- Ported from the template: Cellar Purge Vault - the between-run boon shop: banked coin purse, six permanent boons with icon, blurb, level pips and an azure buy button (dimmed when unaffordable, green tag when owned or maxed), close returns to the title -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--cp-font-ui); color: var(--cp-ink); pointer-events: none; overflow: hidden; -webkit-font-smoothing: antialiased; }
+  .cpv { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5,4,3,.72); pointer-events: auto; animation: cp-fade 250ms ease both; }
+  .cpv-card { width: calc(1240 * var(--u)); border-color: rgba(76,201,240,.4); box-shadow: 0 calc(40 * var(--u)) calc(100 * var(--u)) rgba(0,0,0,.8), inset 0 0 0 calc(7 * var(--u)) rgba(11,9,8,.7), inset 0 0 0 calc(8 * var(--u)) rgba(148,130,114,.2); background: var(--cp-panel-solid); animation: cp-rise 400ms var(--cp-ease-out) both; display: flex; flex-direction: column; max-height: calc(100cqh - calc(40 * var(--u))); }
+  .cpv-head { display: flex; align-items: center; justify-content: space-between; margin: calc(8 * var(--u)) calc(8 * var(--u)) 0; padding: calc(26 * var(--u)) calc(36 * var(--u)) calc(24 * var(--u)); border-bottom: 1px solid var(--cp-rule); flex: none; }
+  .cpv-titles { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+  .cpv-title { font: 900 calc(56 * var(--u))/1 var(--cp-font-display); letter-spacing: .08em; }
+  .cpv-sub { font-size: calc(22 * var(--u)); line-height: 1.2; color: var(--cp-umber); }
+  .cpv-tools { display: flex; align-items: center; gap: calc(20 * var(--u)); }
+  .cpv-purse { display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(10 * var(--u)) calc(22 * var(--u)); border: 1px solid rgba(245,197,24,.45); background: rgba(245,197,24,.06); }
+  .cpv-purse svg { width: calc(30 * var(--u)); height: calc(30 * var(--u)); display: block; }
+  .cpv-purse b { font: 700 calc(40 * var(--u))/1 var(--cp-font-ui); color: var(--cp-gold); font-variant-numeric: tabular-nums; }
+  .cpv-close { width: calc(60 * var(--u)); height: calc(60 * var(--u)); display: flex; align-items: center; justify-content: center; margin: 0; padding: 0; background: transparent; border: 1px solid rgba(148,130,114,.5); color: var(--cp-ink); font: 500 calc(30 * var(--u))/1 var(--cp-font-ui); cursor: pointer; pointer-events: auto; }
+  .cpv-close:hover, .cpv-close:focus-visible { border-color: var(--cp-gold); color: var(--cp-gold); outline: none; }
+  .cpv-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(20 * var(--u)); padding: calc(30 * var(--u)) calc(36 * var(--u)) calc(36 * var(--u)); overflow-y: auto; }
+  .boon { display: flex; flex-direction: column; gap: calc(16 * var(--u)); padding: calc(24 * var(--u)); min-height: calc(250 * var(--u)); background: rgba(11,9,8,.55); border: 1px solid rgba(148,130,114,.22); transition: opacity 200ms; }
+  .boon.poor { opacity: .45; }
+  .boon-top { display: flex; gap: calc(18 * var(--u)); align-items: flex-start; }
+  .boon-icon { flex: none; width: calc(76 * var(--u)); height: calc(76 * var(--u)); display: flex; align-items: center; justify-content: center; background: var(--cp-stone-3); border: 1px solid rgba(148,130,114,.3); box-shadow: inset 0 0 calc(18 * var(--u)) rgba(0,0,0,.6); }
+  .boon-icon svg { width: calc(48 * var(--u)); height: calc(48 * var(--u)); display: block; }
+  .boon-text { display: flex; flex-direction: column; gap: calc(8 * var(--u)); min-width: 0; }
+  .boon-name { display: flex; align-items: baseline; gap: calc(8 * var(--u)); font: 700 calc(26 * var(--u))/1.1 var(--cp-font-display); }
+  .boon-name em { display: none; font-style: normal; font: 600 calc(12 * var(--u)) var(--cp-font-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--cp-umber); }
+  .boon-blurb { font-size: calc(20 * var(--u)); line-height: 1.3; color: var(--cp-umber); text-wrap: pretty; }
+  .boon-foot { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--u)); }
+  .boon-level { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .pips { display: flex; gap: calc(6 * var(--u)); }
+  .pip { width: calc(14 * var(--u)); height: calc(14 * var(--u)); transform: rotate(45deg); border: 1.5px solid rgba(148,130,114,.6); }
+  .pip.on { background: var(--cp-gold); border-color: var(--cp-gold); }
+  .pip.fresh { animation: cpv-flash 200ms ease-out; }
+  @keyframes cpv-flash { 0% { box-shadow: 0 0 0 0 rgba(245,197,24,.9); transform: rotate(45deg) scale(1.6); } 100% { box-shadow: 0 0 calc(12 * var(--u)) 2px rgba(245,197,24,0); transform: rotate(45deg); } }
+  .lvl { font-size: calc(18 * var(--u)); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--cp-umber); }
+  .price { display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); height: calc(50 * var(--u)); padding: 0 calc(22 * var(--u)); margin: 0; border: 1px solid rgba(148,130,114,.4); background: transparent; font: 700 calc(26 * var(--u))/1 var(--cp-font-ui); color: var(--cp-umber); white-space: nowrap; }
+  .price i { width: calc(20 * var(--u)); height: calc(20 * var(--u)); border-radius: 50%; background: var(--cp-umber); flex: none; }
+  .price.buy { background: linear-gradient(180deg, #1b4a5a, #0f2c37); border-color: var(--cp-azure); color: var(--cp-ink); cursor: pointer; pointer-events: auto; }
+  .price.buy i { background: var(--cp-gold); }
+  .price.buy:hover, .price.buy:focus-visible { filter: brightness(1.25); outline: none; }
+  .price.buy:active { transform: scale(.97); }
+  .price.done { padding: 0 calc(20 * var(--u)); border-color: rgba(74,222,128,.5); font-size: calc(20 * var(--u)); letter-spacing: .2em; text-transform: uppercase; color: var(--cp-green); }
+
+  @media (pointer: coarse) {
+    .cpv { background: rgba(5,4,3,.85); align-items: stretch; justify-content: stretch; padding: calc(20 * var(--u)) calc(88 * var(--u)); }
+    .cpv-card { width: 100%; max-height: none; box-shadow: inset 0 0 0 calc(8 * var(--u)) rgba(11,9,8,.7), inset 0 0 0 calc(10 * var(--u)) rgba(148,130,114,.2); }
+    .cpv-head { margin: calc(10 * var(--u)) calc(10 * var(--u)) 0; padding: calc(16 * var(--u)) calc(20 * var(--u)) calc(16 * var(--u)) calc(36 * var(--u)); }
+    .cpv-title { font-size: calc(52 * var(--u)); }
+    .cpv-sub { display: none; }
+    .cpv-tools { gap: calc(20 * var(--u)); }
+    .cpv-purse { gap: calc(14 * var(--u)); padding: calc(10 * var(--u)) calc(24 * var(--u)); }
+    .cpv-purse svg { width: calc(36 * var(--u)); height: calc(36 * var(--u)); }
+    .cpv-purse b { font-size: calc(44 * var(--u)); }
+    .cpv-close { width: calc(88 * var(--u)); height: calc(88 * var(--u)); font-size: calc(44 * var(--u)); }
+    .cpv-grid { flex: 1; grid-template-columns: 1fr 1fr; gap: calc(16 * var(--u)); padding: calc(20 * var(--u)) calc(24 * var(--u)) calc(24 * var(--u)); align-content: start; }
+    .boon { flex-direction: row; align-items: center; gap: calc(20 * var(--u)); padding: calc(18 * var(--u)) calc(20 * var(--u)); min-height: 0; }
+    .boon-top { flex: 1; min-width: 0; align-items: center; gap: calc(20 * var(--u)); }
+    .boon-icon { width: calc(88 * var(--u)); height: calc(88 * var(--u)); box-shadow: none; }
+    .boon-icon svg { width: calc(56 * var(--u)); height: calc(56 * var(--u)); }
+    .boon-text { gap: calc(4 * var(--u)); }
+    .boon-name { font-size: calc(30 * var(--u)); gap: calc(16 * var(--u)); }
+    .boon-name em { display: inline; font-size: calc(24 * var(--u)); }
+    .boon-blurb { font-size: calc(26 * var(--u)); line-height: 1.25; }
+    .boon-foot { margin: 0; flex: none; }
+    .boon-level { display: none; }
+    .price { min-width: calc(120 * var(--u)); height: calc(88 * var(--u)); padding: 0 calc(20 * var(--u)); gap: calc(10 * var(--u)); font-size: calc(38 * var(--u)); }
+    .price i { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+    .price.done { min-width: calc(120 * var(--u)); padding: 0 calc(16 * var(--u)); font-size: calc(26 * var(--u)); letter-spacing: .14em; }
+  }
+</style>
+<div class="cpv">
+  <div class="cp-panel cpv-card">
+    <div class="cpv-head">
+      <div class="cpv-titles">
+        <div class="cpv-title">THE VAULT</div>
+        <div class="cpv-sub cp-flavor">Permanent boons, paid for in banked coin.</div>
+      </div>
+      <div class="cpv-tools">
+        <div class="cpv-purse"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f5c518"/><circle cx="12" cy="12" r="6" fill="none" stroke="#9a7406" stroke-width="2"/></svg><b data-bind="coins"></b></div>
+        <button class="cpv-close" data-action="close" data-key="KeyP" aria-label="Close">✕</button>
+      </div>
+    </div>
+    <div class="cpv-grid" data-each="boons">
+      <template>
+        <div class="boon" data-class-poor="poor">
+          <div class="boon-top"><div class="boon-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f5c518"/><circle cx="12" cy="12" r="6" fill="none" stroke="#9a7406" stroke-width="2"/></svg></div><div class="boon-text"><div class="boon-name"><span data-bind="name"></span><em data-bind="level_text"></em></div><div class="boon-blurb cp-flavor" data-bind="blurb"></div></div></div>
+          <div class="boon-foot"><div class="boon-level"><div class="pips" data-each="pips"><template><div class="pip" data-class-on="on"></div></template></div><span class="lvl" data-bind="lvl"></span></div><button class="price" data-class-buy="can_buy" data-class-done="maxed" data-action="buy" data-attr-disabled="unaffordable"><i></i><span data-bind="price"></span></button></div>
+        </div>
+      </template>
+    </div>
+  </div>
+</div>

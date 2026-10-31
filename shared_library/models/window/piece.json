@@ -1,0 +1,10 @@
+{
+  "id": "window",
+  "summary": "A single casement window in its frame: the sash swings out on a side hinge, a cockspur handle latch turns to… joints sash, latch; options frame_material, panes, blinds; sockets socket_stay.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.window or place \"prefab\": \"window\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:window"]
+}

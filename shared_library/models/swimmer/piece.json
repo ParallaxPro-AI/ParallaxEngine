@@ -1,0 +1,10 @@
+{
+  "id": "swimmer",
+  "summary": "Swimwear variant forked from civilian on the same humanoid_17 skeleton. options skin, hair, swimwear, headwear, eyewear; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.swimmer or place \"prefab\": \"swimmer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:swimmer"]
+}

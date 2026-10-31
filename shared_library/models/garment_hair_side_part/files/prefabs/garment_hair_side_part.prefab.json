@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_side_part"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1908, 0.225, 0.2026],
+      "offset": [0.0053, 1.7763, -0.0188]
+    }
+  }
+}

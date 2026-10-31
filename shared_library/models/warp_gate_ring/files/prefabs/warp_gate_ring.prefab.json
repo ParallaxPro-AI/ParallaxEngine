@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/warp_gate_ring"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.64, 6.8, 8.117],
+      "offset": [0, 3.4, 0]
+    }
+  }
+}

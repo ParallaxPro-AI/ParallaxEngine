@@ -1,0 +1,81 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_hull",
+      "scale": 0.7,
+      "cast_shadows": true,
+      "offset": [0, -0.55, 0]
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1200,
+      "lock_rotation": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 1.1, 4.4],
+      "layer": "hull"
+    },
+    "vehicle": {
+      "kind": "tracked",
+      "max_speed": 12,
+      "reverse_speed": 5,
+      "turn_rate": 80,
+      "acceleration": 25,
+      "braking": 40
+    },
+    "health": {
+      "current": 250,
+      "max": 250,
+      "destroy_on_death": false
+    },
+    "health_bar": {
+      "offset": [0, 3.0, 0],
+      "color": "#4ade80",
+      "hide_when_full": false
+    },
+    "side": {
+      "side": "allies"
+    },
+    "gunnery": {},
+    "lock_on": {
+      "range": 55,
+      "angle": 40,
+      "break_range": 66,
+      "line_of_sight": true
+    },
+    "crosshair": {
+      "style": "circle",
+      "color": "#22c55e"
+    },
+    "hurt_feedback": {
+      "flash": 0.6,
+      "shake": 0.45,
+      "low_health": 0.25
+    }
+  },
+  "tags": ["player_tank"],
+  "children": [
+    {
+      "name": "turret",
+      "prefab": "tank_turret",
+      "at": [0, 0.332, 0.175]
+    }
+  ],
+  "behaviors": {
+    "tank_drive": {},
+    "tank_gun": {
+      "damage": 35,
+      "range": 50,
+      "fire_interval": 2,
+      "rack": 5,
+      "reload_time": 3,
+      "traverse_rate": 150,
+      "elevate_rate": 120,
+      "elevation_limits": [-20, 45],
+      "repair_amount": 50,
+      "repair_cooldown": 15
+    },
+    "player_hull": {}
+  }
+}

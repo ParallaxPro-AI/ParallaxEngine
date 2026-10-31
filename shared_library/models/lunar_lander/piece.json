@@ -1,0 +1,10 @@
+{
+  "id": "lunar_lander",
+  "summary": "A two-stage crewed lunar lander, about 7 m tall and 9 m across its footpads: an octagonal gold-foil descent s… joints ascent_stage, hatch, top_hatch, rendezvous_radar, sband_antenna; sockets seat_driver, seat_pax_1, eye_point, socket_porch, socket_ladder_foot, socket_dock, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lunar_lander or place \"prefab\": \"lunar_lander\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lunar_lander"]
+}

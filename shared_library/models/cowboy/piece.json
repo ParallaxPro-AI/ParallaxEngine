@@ -1,0 +1,10 @@
+{
+  "id": "cowboy",
+  "summary": "A rigged Wild-West cowboy on the canonical 17-bone humanoid rig (forked from `civilian`): wide-brim felt hat… options skin, hair, hat, bandana, vest, headwear; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cowboy or place \"prefab\": \"cowboy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cowboy"]
+}

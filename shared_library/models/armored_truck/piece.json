@@ -1,0 +1,10 @@
+{
+  "id": "armored_truck",
+  "summary": "A cash-in-transit armoured truck: a lofted steel body with a short bonnet, a steeply raked armoured windscree… joints rear_door_l, rear_door_r, side_door, roof_hatch, wheel_f_l_roll, wheel_f_l_steer, …; options paint, band; sockets seat_driver, seat_crew_1, seat_crew_2, eye_point, socket_cargo, socket_rear_door, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.armored_truck or place \"prefab\": \"armored_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:armored_truck"]
+}

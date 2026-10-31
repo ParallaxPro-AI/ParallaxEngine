@@ -1,0 +1,52 @@
+<!-- The shared service strip, ported from the template's hud/kitchen_top: the round clock
+     hanging from the top edge on the split (kitchen name, n / total, seconds; red pulse at
+     25 s or less), the team score-vs-target strip with the frying-pan badge (amber while
+     short, green once banked; bottom-left on desktop, top-left on touch), the 6px split
+     divider on desktop and the touch-only pause plate. -->
+<link rel="stylesheet" href="kitchen_kit.css">
+<style>
+  .krt-divider { position: fixed; left: calc(50% - calc(var(--kr-u) * 3)); top: 0; width: calc(var(--kr-u) * 6); height: 100%; background: #0a0a0c; box-shadow: inset 1px 0 0 rgba(255,255,255,.08), inset -1px 0 0 rgba(255,255,255,.08); pointer-events: none; z-index: 3; }
+  .krt-timer { position: fixed; top: 0; left: 50%; transform: translateX(-50%); text-align: center; padding: calc(var(--kr-u) * 12) calc(var(--kr-u) * 30); border-radius: 0 0 calc(var(--kr-u) * 24) calc(var(--kr-u) * 24); background: var(--kr-glass-strong); border: 1px solid var(--kr-glass-line); border-top: 0; box-shadow: 0 calc(var(--kr-u) * 8) calc(var(--kr-u) * 24) rgba(0,0,0,.35); pointer-events: none; z-index: 8; }
+  .krt-cap { display: flex; gap: calc(var(--kr-u) * 12); justify-content: center; align-items: center; font: 800 calc(var(--kr-u) * 14)/1.3 var(--kr-font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--kr-text-dim); white-space: nowrap; }
+  .krt-cap b { color: var(--kr-cream); font-weight: 800; }
+  .krt-sec { font: 400 calc(var(--kr-u) * 78)/1 var(--kr-font-display); color: var(--kr-cream); margin-top: calc(var(--kr-u) * 4); font-variant-numeric: tabular-nums; }
+  .krt-timer.warn { border-color: rgba(239,68,68,.6); }
+  .krt-timer.warn .krt-sec { color: var(--kr-bar-bad); animation: kr-pulse 1s ease-in-out infinite; }
+  .krt-score { position: fixed; left: var(--kr-safe-l); bottom: var(--kr-safe-b); display: flex; align-items: center; gap: calc(var(--kr-u) * 14); padding: calc(var(--kr-u) * 10) calc(var(--kr-u) * 22) calc(var(--kr-u) * 10) calc(var(--kr-u) * 12); border-radius: 999px; --sc: var(--kr-amber); pointer-events: none; z-index: 6; }
+  .krt-pan { width: calc(var(--kr-u) * 44); height: calc(var(--kr-u) * 44); border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.08); flex: none; }
+  .krt-pan svg { width: calc(var(--kr-u) * 30); height: calc(var(--kr-u) * 24); display: block; }
+  .krt-num { font: 400 calc(var(--kr-u) * 34)/1 var(--kr-font-display); color: var(--sc); white-space: nowrap; }
+  .krt-num small { font-size: .62em; color: var(--kr-text-dim); }
+  .krt-score .kr-bar { width: calc(var(--kr-u) * 150); height: calc(var(--kr-u) * 6); margin-top: calc(var(--kr-u) * 6); --c: var(--sc); }
+  .krt-lbl { font: 800 calc(var(--kr-u) * 12)/1 var(--kr-font-body); letter-spacing: .16em; text-transform: uppercase; color: var(--kr-text-dim); }
+  .krt-score.banked { --sc: var(--kr-positive); border-color: rgba(158,228,147,.45); }
+  .krt-pause { display: none; }
+  @media (pointer: coarse) {
+    .krt-divider { display: none; }
+    .krt-timer { padding: calc(var(--kr-u) * 5) calc(var(--kr-u) * 18) calc(var(--kr-u) * 6); border-radius: 0 0 calc(var(--kr-u) * 16) calc(var(--kr-u) * 16); }
+    .krt-cap { font-size: max(9px, calc(var(--kr-u) * 10)); gap: calc(var(--kr-u) * 6); letter-spacing: .12em; }
+    .krt-sec { font-size: calc(var(--kr-u) * 34); margin-top: calc(var(--kr-u) * 1); }
+    .krt-score { top: var(--kr-safe-t); bottom: auto; gap: calc(var(--kr-u) * 8); padding: calc(var(--kr-u) * 5) calc(var(--kr-u) * 14) calc(var(--kr-u) * 5) calc(var(--kr-u) * 5); }
+    .krt-pan { width: calc(var(--kr-u) * 30); height: calc(var(--kr-u) * 30); }
+    .krt-pan svg { width: calc(var(--kr-u) * 20); height: calc(var(--kr-u) * 16); }
+    .krt-num { font-size: calc(var(--kr-u) * 20); }
+    .krt-score .kr-bar { width: calc(var(--kr-u) * 72); height: calc(var(--kr-u) * 4); margin-top: calc(var(--kr-u) * 3); }
+    .krt-lbl { font-size: max(8px, calc(var(--kr-u) * 9)); letter-spacing: .14em; }
+    .kr-root .krt-pause { display: grid; place-items: center; position: fixed; right: var(--kr-safe-r); top: var(--kr-safe-t); width: max(44px, calc(var(--kr-u) * 44)); height: max(44px, calc(var(--kr-u) * 44)); border-radius: calc(var(--kr-u) * 14); z-index: 9; transition: transform 80ms; }
+    .kr-root .krt-pause:active { transform: scale(.92); }
+    .krt-pause svg { width: calc(var(--kr-u) * 16); height: calc(var(--kr-u) * 18); display: block; }
+  }
+</style>
+<div class="kr-root">
+  <div class="krt-divider"></div>
+  <div class="krt-timer" data-class-warn="warn">
+    <div class="krt-cap"><b data-bind="kitchen"></b><span data-bind="number"></span></div>
+    <div class="krt-sec" data-bind="seconds"></div>
+  </div>
+  <div class="krt-score kr-glass" data-class-banked="banked">
+    <span class="krt-pan"><svg viewBox="0 0 32 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#2b2b30" stroke="#55555c" stroke-width="2"/><rect x="21" y="10" width="11" height="4" rx="2" fill="#55555c"/><circle cx="12" cy="12" r="5.5" fill="#fff7ed"/><circle cx="12" cy="12" r="2.6" fill="#facc15"/></svg></span>
+    <div><div class="krt-num"><span data-bind="score"></span> <small data-bind="target"></small></div><div class="kr-bar on-dark"><i data-style-width="fill"></i></div></div>
+    <span class="krt-lbl" data-text="score_label"></span>
+  </div>
+  <button class="krt-pause kr-glass" data-action="pause" aria-label="Pause"><svg viewBox="0 0 16 18" fill="#fff7ed" aria-hidden="true"><rect x="1" y="1" width="5" height="16" rx="1.5"/><rect x="10" y="1" width="5" height="16" rx="1.5"/></svg></button>
+</div>

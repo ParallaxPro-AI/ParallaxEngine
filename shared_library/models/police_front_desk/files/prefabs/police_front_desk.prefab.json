@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_front_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.86, 1.97, 0.887],
+      "offset": [0.01, 0.985, 0.0265]
+    }
+  }
+}

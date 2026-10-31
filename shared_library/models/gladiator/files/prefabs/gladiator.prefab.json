@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gladiator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.744, 2.135, 0.402],
+      "offset": [-0.069, 1.0675, -0.049]
+    }
+  }
+}

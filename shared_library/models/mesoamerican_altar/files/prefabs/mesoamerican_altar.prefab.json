@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mesoamerican_altar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.76, 1.45, 1.84],
+      "offset": [0, 0.725, 0.02]
+    }
+  }
+}

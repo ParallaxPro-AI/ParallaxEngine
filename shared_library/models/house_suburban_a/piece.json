@@ -1,0 +1,10 @@
+{
+  "id": "house_suburban_a",
+  "summary": "A two-storey suburban house with an attached single-storey garage: concrete foundation and driveway apron, a… joints door, garage; options siding_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_suburban_a or place \"prefab\": \"house_suburban_a\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_suburban_a"]
+}

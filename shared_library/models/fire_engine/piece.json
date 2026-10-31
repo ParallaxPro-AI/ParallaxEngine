@@ -1,0 +1,14 @@
+{
+  "id": "fire_engine",
+  "summary": "A fire engine / aerial ladder truck: a crowned-roof crew cab with four door leaves and real glazing, a red… joints front_locker_l, front_locker_r, rear_locker_l, rear_locker_r, ladder_rotate …; sockets seat_driver, seat_crew_1, seat_crew_2, seat_crew_3 ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fire_engine or place \"prefab\": \"fire_engine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fire_engine"
+  ]
+}

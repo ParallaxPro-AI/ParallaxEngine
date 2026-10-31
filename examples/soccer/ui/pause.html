@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="kit.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .sp-scrim { pointer-events: auto; animation: sc-fade .2s ease-out both; }
+  .sp { display: flex; flex-direction: column; align-items: center; gap: calc(var(--rem)*2.25); min-width: calc(var(--rem)*38); padding: calc(var(--rem)*3.5) calc(var(--rem)*5) calc(var(--rem)*3); background: var(--c-panel-solid); border-top: 4px solid var(--c-ink); box-shadow: var(--sh-panel); pointer-events: auto; animation: sc-fadeUp .25s var(--ease-out) both; }
+  .sp-a, .sp-b { display: flex; flex-direction: column; align-items: center; gap: calc(var(--rem)*1); width: 100%; }
+  .sp-b { gap: calc(var(--rem)*2); }
+  .sp-h { font: italic 800 calc(var(--rem)*7.5)/.8 var(--font-display); text-transform: uppercase; }
+  .sp-ctx { font: 600 calc(var(--rem)*1)/1 var(--font-display); letter-spacing: .2em; text-transform: uppercase; color: var(--c-mint-200); text-align: center; }
+  .sp-ctx .m { display: none; }
+  .sp-btns { display: flex; flex-direction: column; gap: calc(var(--rem)*.875); width: 100%; }
+  .sc-root .sp-btns .sc-btn { width: 100%; }
+  .sp-seg { display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--rem)*.75); width: 100%; padding-top: calc(var(--rem)*1.75); border-top: 1px solid var(--c-line); }
+  .sp-seg-k { font: 600 calc(var(--rem)*.875)/1 var(--font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--c-ink-3); text-align: center; }
+  .sp-seg-g { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(var(--rem)*.25); padding: calc(var(--rem)*.25); background: rgba(220,252,231,.06); border: 1px solid var(--c-line); border-radius: 4px; }
+  .sc-root .sp-seg-g button { height: calc(var(--rem)*3); border-radius: 2px; text-align: center; font: 700 calc(var(--rem)*1.125)/1 var(--font-display); letter-spacing: .14em; text-transform: uppercase; color: var(--c-ink-3); transition: background var(--dur-fast), color var(--dur-fast); }
+  .sc-root .sp-seg-g button:hover { color: var(--c-ink); background: rgba(220,252,231,.08); }
+  .sc-root .sp-seg-g button:focus-visible { box-shadow: inset 0 0 0 2px var(--c-gold); }
+  .sc-root .sp-seg-g [aria-checked="true"], .sc-root .sp-seg-g [aria-checked="true"]:hover { background: var(--c-mint-400); color: var(--c-pitch); }
+  @media (pointer: coarse) {
+    .sp { flex-direction: row; align-items: stretch; gap: 28px; min-width: 0; padding: 24px 28px 22px; margin-bottom: var(--safe-b); }
+    .sp-a { justify-content: center; width: auto; gap: 10px; padding-right: 28px; border-right: 1px solid var(--c-line); }
+    .sp-b { width: 300px; gap: 14px; }
+    .sp-h { font-size: 64px; }
+    .sp-ctx { font-size: 11px; letter-spacing: .18em; line-height: 1.5; }
+    .sp-ctx .d { display: none; }
+    .sp-ctx .m { display: inline; }
+    .sp-btns { gap: 10px; }
+    .sp-seg { padding-top: 12px; gap: 8px; }
+    .sp-seg-k { font-size: 10px; }
+    .sc-root .sp-seg-g button { height: 44px; font-size: 14px; }
+    .sp-b .sc-hint { display: none; }
+  }
+</style>
+<div class="sc-root">
+  <div class="sc-scrim sp-scrim"></div>
+  <div class="sc-center">
+    <section class="sp" role="dialog">
+      <div class="sp-a">
+        <h1 class="sp-h" data-text="paused"></h1>
+        <p class="sp-ctx"><span class="d" data-bind="context"></span><span class="m"><span data-bind="stage"></span><br><span data-bind="score"></span><br><span data-bind="clock"></span></span></p>
+      </div>
+      <div class="sp-b">
+        <div class="sp-btns">
+          <button class="sc-btn sc-btn--primary" data-action="resume" data-text="resume"></button>
+          <button class="sc-btn" data-action="main_menu" data-text="main_menu"></button>
+        </div>
+        <div class="sp-seg"><span class="sp-seg-k" data-text="graphics"></span><div class="sp-seg-g" role="radiogroup" data-each="qualities"><template><button role="radio" data-action="quality" data-attr-aria-checked="checked" data-bind="label"></button></template></div></div>
+        <span class="sc-hint"><kbd class="sc-kbd">P</kbd> <span data-text="pause_hint"></span></span>
+      </div>
+    </section>
+  </div>
+</div>

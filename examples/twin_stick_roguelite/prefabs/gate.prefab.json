@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [4, 3, 0.4], "offset": [0, 1.5, 0] },
+    "rigidbody": { "kind": "kinematic" },
+    "collider": { "shape": "box", "size": [4, 3, 0.4], "offset": [0, 1.5, 0], "layer": "wall" }
+  },
+  "behaviors": { "gate": { "open_height": -4, "speed": 6 } }
+}

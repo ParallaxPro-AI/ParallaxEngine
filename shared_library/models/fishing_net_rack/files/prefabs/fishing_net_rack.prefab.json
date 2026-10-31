@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fishing_net_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.1, 2.2404, 2.1073],
+      "offset": [0, 1.1152, 0.0663]
+    }
+  }
+}

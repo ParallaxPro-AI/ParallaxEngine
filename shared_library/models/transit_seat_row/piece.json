@@ -1,0 +1,10 @@
+{
+  "id": "transit_seat_row",
+  "summary": "A bolted-down row of individual transit seats sharing one floor rail and a set of vertical dividers that doub…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.transit_seat_row or place \"prefab\": \"transit_seat_row\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:transit_seat_row"]
+}

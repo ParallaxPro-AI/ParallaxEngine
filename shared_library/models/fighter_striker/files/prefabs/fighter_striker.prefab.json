@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fighter_striker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6057, 1.876, 0.2944],
+      "offset": [0, 0.942, 0.0144]
+    }
+  }
+}

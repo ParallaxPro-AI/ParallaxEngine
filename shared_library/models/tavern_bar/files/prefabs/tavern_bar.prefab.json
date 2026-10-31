@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tavern_bar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.275, 1.48, 0.9933],
+      "offset": [0, 0.74, 0]
+    }
+  }
+}

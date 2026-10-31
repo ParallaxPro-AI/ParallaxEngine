@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_wizard_hat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4432, 0.4334, 0.4489],
+      "offset": [0, 1.9594, -0.0265]
+    }
+  }
+}

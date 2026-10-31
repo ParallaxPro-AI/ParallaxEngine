@@ -1,0 +1,10 @@
+{
+  "name": "Venom", "role": "Poison", "accent": "#4ade80", "slot": 5,
+  "prefab": "tower_venom", "attack": "single", "shot": "venom_dart",
+  "impact": "vfx/spark_venom", "fire_sound": "https://r2.parallaxpro.ai/assets/audio_sfx/15/e3/15e3fe971ffd3415e5ab641d3a4d043fb31f6712b0956315b524ba29c3889cda.ogg",
+  "levels": [
+    { "cost": 250, "damage": 4,  "range": 19, "fire_interval": 1.2, "effect": "venom", "effect_strength": 12, "effect_seconds": 4, "model": "models/tower_venom" },
+    { "cost": 180, "damage": 6,  "range": 20, "fire_interval": 1.2, "effect": "venom", "effect_strength": 22, "effect_seconds": 4, "model": "models/tower_venom" },
+    { "cost": 340, "damage": 10, "range": 21, "fire_interval": 1.0, "effect": "venom", "effect_strength": 38, "effect_seconds": 5, "model": "models/tower_venom" }
+  ]
+}

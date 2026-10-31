@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/generator",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.77,
+    0.8195,
+    0.7504
+   ],
+   "offset": [
+    0,
+    0.4083,
+    0.0452
+   ]
+  }
+ }
+}

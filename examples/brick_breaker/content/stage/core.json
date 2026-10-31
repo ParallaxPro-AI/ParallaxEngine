@@ -1,0 +1,5 @@
+{
+  "number": 5, "name": "Prism Core", "tagline": "The last wall. Nothing here cracks easily.",
+  "color": "#ff5959", "ball_speed_scale": 1.32,
+  "rows": ["333333333", "322222223", "321111123", "322222223", "333333333"]
+}

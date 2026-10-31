@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/combination_lock_dial"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.05, 0.0871, 0.0289],
+      "offset": [0, 0.0435, 0.004]
+    }
+  }
+}

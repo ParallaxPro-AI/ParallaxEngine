@@ -1,0 +1,13 @@
+{
+  "cell_size": 256,
+  "streaming": { "radius": 200 },
+  "layers": {
+    "base": {},
+    "chapter_welcome": { "active_when": { "quest_active": "welcome_hero" } },
+    "chapter_caravan": { "active_when": { "quest_active": "goblin_menace" } },
+    "chapter_rowan": { "active_when": { "quest_active": "restless_barrow" } },
+    "chapter_beacon": { "active_when": { "quest_active": "shaman_circle" } },
+    "chapter_gate": { "active_when": { "quest_active": "ironhold" } },
+    "chapter_rift": { "active_when": { "quest_active": "shadow_dungeon" } }
+  }
+}

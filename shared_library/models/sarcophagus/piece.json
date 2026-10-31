@@ -1,0 +1,10 @@
+{
+  "id": "sarcophagus",
+  "summary": "A stone coffin on a plinth: a tapered chest carved with pilasters, hollowed to a real cavity with a shrouded… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sarcophagus or place \"prefab\": \"sarcophagus\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sarcophagus"]
+}

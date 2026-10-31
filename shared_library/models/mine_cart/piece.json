@@ -1,0 +1,10 @@
+{
+  "id": "mine_cart",
+  "summary": "A narrow-gauge mine tub cart: a tapered, riveted steel tub with a rolled rim, side straps and end grab bars… joints wheels_front, wheels_rear, tub; options load, load_type, paint; sockets coupler_front, coupler_back, cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mine_cart or place \"prefab\": \"mine_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mine_cart"]
+}

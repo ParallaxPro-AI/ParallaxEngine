@@ -1,0 +1,10 @@
+{
+  "id": "energy_barrier",
+  "summary": "A sci-fi energy-barrier gate: two dark emitter towers with spinning emitter heads and a translucent glowing f… joints field, rotor_l, rotor_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.energy_barrier or place \"prefab\": \"energy_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:energy_barrier"]
+}

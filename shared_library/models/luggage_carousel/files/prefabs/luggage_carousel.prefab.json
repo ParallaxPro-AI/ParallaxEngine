@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luggage_carousel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.004, 1.13, 1.315],
+      "offset": [0, 0.565, -0.0175]
+    }
+  }
+}

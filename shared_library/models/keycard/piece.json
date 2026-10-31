@@ -1,0 +1,10 @@
+{
+  "id": "keycard",
+  "summary": "A security access keycard standing in a small brushed-steel desk holder: a rounded ISO-sized card with a lany… options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.keycard or place \"prefab\": \"keycard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:keycard"]
+}

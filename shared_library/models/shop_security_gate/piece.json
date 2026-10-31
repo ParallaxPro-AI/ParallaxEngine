@@ -1,0 +1,10 @@
+{
+  "id": "shop_security_gate",
+  "summary": "A shop-entrance anti-theft (EAS) gate: two clear acrylic antenna pedestals facing each other across the lane… options status_light, shell; sockets socket_lane_0.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shop_security_gate or place \"prefab\": \"shop_security_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shop_security_gate"]
+}

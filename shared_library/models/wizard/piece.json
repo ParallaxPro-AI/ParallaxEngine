@@ -1,0 +1,10 @@
+{
+  "id": "wizard",
+  "summary": "A rigged elderly wizard NPC on the canonical 17-bone humanoid rig: a tall pointed hat with a wide brim and a… options robe, mantle, trim, skin, hair, headgear, …; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wizard or place \"prefab\": \"wizard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wizard"]
+}

@@ -1,0 +1,3 @@
+{ "name": "Workbench", "order": 3, "category": "build", "station": "hand",
+  "inputs": [{ "item": "planks", "count": 4 }],
+  "output": { "item": "workbench", "count": 1 } }

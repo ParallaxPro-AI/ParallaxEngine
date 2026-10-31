@@ -1,0 +1,10 @@
+{
+  "id": "buffer_stop",
+  "summary": "A railway buffer stop on its own 3.6 m standard-gauge track stub, the dead end of the rail_track kit: two rai… joints buffers; options sleepers, beam_colour; sockets joint_a, stop_face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.buffer_stop or place \"prefab\": \"buffer_stop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:buffer_stop"]
+}

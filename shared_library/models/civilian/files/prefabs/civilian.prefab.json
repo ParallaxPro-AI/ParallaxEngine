@@ -1,0 +1,13 @@
+{
+  "components": {
+    "model": {
+      "model": "models/civilian",
+      "cast_shadows": true
+    },
+    "character": {
+      "mode": "3d",
+      "radius": 0.35,
+      "height": 1.8
+    }
+  }
+}

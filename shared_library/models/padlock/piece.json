@@ -1,0 +1,10 @@
+{
+  "id": "padlock",
+  "summary": "A keyed brass padlock: a cast brass case with rounded lower corners and chamfered faces, a hardened steel U-s… joints shackle, shackle_swing; options finish; sockets socket_hasp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.padlock or place \"prefab\": \"padlock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:padlock"]
+}

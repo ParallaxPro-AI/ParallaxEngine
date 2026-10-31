@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_feet_boots_work"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.358, 0.29, 0.241],
+      "offset": [0, 0.145, 0.0315]
+    }
+  }
+}

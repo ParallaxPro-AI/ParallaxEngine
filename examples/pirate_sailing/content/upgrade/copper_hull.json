@@ -1,0 +1,5 @@
+{
+  "name": "Copper Sheathing",
+  "blurb": "Take 12% less damage from everything.",
+  "stat": "armor", "amount": 0.12, "max_level": 3
+}

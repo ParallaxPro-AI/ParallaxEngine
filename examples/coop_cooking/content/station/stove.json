@@ -1,0 +1,5 @@
+{ "label": "Stove", "color": "#ff8a3d",
+  "steps": [
+  {"prompt": "Start Tomato Soup", "takes": "chopped_tomato", "gives": "tomato_soup", "cook_seconds": 5, "burn_seconds": 9, "feedback": "Pot's on!", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.45}},
+  {"prompt": "Start Onion Soup", "takes": "chopped_onion", "gives": "onion_soup", "cook_seconds": 6, "burn_seconds": 9, "feedback": "Pot's on!", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.45}}
+] }

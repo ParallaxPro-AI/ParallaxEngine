@@ -1,0 +1,10 @@
+{
+  "id": "battle_tank",
+  "summary": "A generic modern main battle tank: a low welded hull with a sloped glacis, sponsons over two full-length trac… joints driver_hatch, sprocket_l, idler_l, sprocket_r, idler_r, turret, …; options camo; sockets seat_driver, seat_crew_1, seat_crew_2, seat_crew_3, eye_point, muzzle, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.battle_tank or place \"prefab\": \"battle_tank\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:battle_tank"]
+}

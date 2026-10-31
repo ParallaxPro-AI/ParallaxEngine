@@ -1,0 +1,10 @@
+{
+  "id": "steam_pan",
+  "summary": "A stainless steam-table insert pan, heaped with food and with a serving spoon left in it. options contents.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.steam_pan or place \"prefab\": \"steam_pan\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:steam_pan"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/speed_camera"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5, 3.078, 0.9391],
+      "offset": [0, 1.539, 0.0455]
+    }
+  }
+}

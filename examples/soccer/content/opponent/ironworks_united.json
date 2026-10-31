@@ -1,0 +1,8 @@
+{
+  "name": "Ironworks United",
+  "stage": "Quarter-Final",
+  "scout_report": "They tackle hard and never stop running. Move the ball early.",
+  "shirt": "#c4bccb", "kit": "violet", "half_seconds": 90, "accuracy": 0.65,
+  "speed_mul": 1.05, "kick_mul": 1.05, "keeper_speed_mul": 1.05,
+  "press_radius": 26, "shot_range_bonus": 6
+}

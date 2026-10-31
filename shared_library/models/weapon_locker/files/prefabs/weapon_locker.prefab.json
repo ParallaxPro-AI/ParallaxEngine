@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/weapon_locker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.036, 1.905, 0.6235],
+      "offset": [0, 0.9525, 0.0267]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/service_run"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [15, 1.35, 1.33],
+      "offset": [0, 0.675, 0]
+    }
+  }
+}

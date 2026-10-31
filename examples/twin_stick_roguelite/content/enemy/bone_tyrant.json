@@ -1,0 +1,11 @@
+{
+  "name": "The Bone Tyrant", "prefab": "bone_tyrant", "boss": true,
+  "hp": 110, "contact_damage": 2, "move_speed": 1.45, "standoff": 5.0, "enrage_below": 0.5,
+  "shot": "boss_bolt", "shot_cooldown": 2.2, "burst_count": 5, "burst_spread": 30,
+  "tactics": [
+    { "within": 3.5, "move": "retreat", "attack": "burst" },
+    { "wounded": true, "move": "strafe", "attack": "burst" },
+    { "within": 16, "move": "standoff", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

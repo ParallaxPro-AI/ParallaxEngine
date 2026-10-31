@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/concrete_pump_truck_boom"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 26000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        4,
+        9.95
+      ],
+      "offset": [
+        0,
+        2,
+        -0.595
+      ]
+    },
+    "vehicle": {
+      "max_speed": 25,
+      "steering": 28
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        2,
+        -0.595
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

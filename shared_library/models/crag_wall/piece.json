@@ -1,0 +1,10 @@
+{
+  "id": "crag_wall",
+  "summary": "A modular jungle wall: a natural rock bluff of stepped-back strata on a splayed foot, ringed by a talus apron… options crest.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crag_wall or place \"prefab\": \"crag_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crag_wall"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "conveyor_belt",
+  "summary": "A cleated belt conveyor on a steel leg frame: two end rollers, a rubber belt with raised slats, a drive motor… joints straight_roller_head, straight_roller_tail, straight_belt; options shape; sockets socket_infeed, socket_discharge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.conveyor_belt or place \"prefab\": \"conveyor_belt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:conveyor_belt"]
+}

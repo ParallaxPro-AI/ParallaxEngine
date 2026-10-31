@@ -1,0 +1,6 @@
+{
+  "name": "Reinforced Gear",
+  "blurb": "Oleo struts that forgive an arrival. Fewer smashed crates, fewer smashed aeroplanes.",
+  "effect": "+2.5 m/s sink",
+  "stat": "gear", "per_tier": 2.5, "costs": [1200, 2400]
+}

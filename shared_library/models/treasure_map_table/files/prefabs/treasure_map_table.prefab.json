@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/treasure_map_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.0614, 0.969],
+      "offset": [0, 0.5307, -0.0095]
+    }
+  }
+}

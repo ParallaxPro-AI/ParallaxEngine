@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/farmer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.946, 0.524],
+      "offset": [0, 0.972, -0.008]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "modern_dining_chair",
+  "summary": "A modern dining chair from the modern apartment set: a curved walnut barrel back lined with stone-grey woven… options fabric, accent, wood; sockets seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_dining_chair or place \"prefab\": \"modern_dining_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_dining_chair"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "footlocker",
+  "summary": "A metal-bound footlocker / military trunk: a hollow body with a flat lift lid hinged at the back, two draw la… joints lid, latch_l, latch_r; options style; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.footlocker or place \"prefab\": \"footlocker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:footlocker"]
+}

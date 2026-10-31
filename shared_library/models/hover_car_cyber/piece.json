@@ -1,0 +1,10 @@
+{
+  "id": "hover_car_cyber",
+  "summary": "A cyberpunk two-seat hover car: a lofted, crowned deep-burgundy body with tumblehome flanks and a low wedge n… joints canopy; sockets seat_driver, seat_passenger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hover_car_cyber or place \"prefab\": \"hover_car_cyber\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hover_car_cyber"]
+}

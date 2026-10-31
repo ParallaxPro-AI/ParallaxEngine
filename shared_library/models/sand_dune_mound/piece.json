@@ -1,0 +1,10 @@
+{
+  "id": "sand_dune_mound",
+  "summary": "A barchan sand dune mound about 6.9 m long, 1.4 m high and 5.7 m wide, a small crescent dune (barchans run fr…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sand_dune_mound or place \"prefab\": \"sand_dune_mound\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sand_dune_mound"]
+}

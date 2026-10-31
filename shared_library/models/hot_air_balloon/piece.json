@@ -1,0 +1,10 @@
+{
+  "id": "hot_air_balloon",
+  "summary": "A hot air balloon: a gore-striped envelope over a suspended wicker basket with a gimballed burner. joints basket, burner; options pattern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hot_air_balloon or place \"prefab\": \"hot_air_balloon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hot_air_balloon"]
+}

@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="twofold.css">
+<style>
+  /* The template's pause menu (the shared pause kit): indigo gradient title, stacked buttons, key hint. */
+  .overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+             background: rgba(6, 6, 12, 0.72); font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+             color: #eaf0f6; -webkit-font-smoothing: antialiased; animation: fade 0.25s ease both; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  .ambient { position: absolute; width: min(calc(520 * var(--u)), calc(1728 * var(--u))); height: calc(260 * var(--u)); border-radius: 50%; filter: blur(calc(60 * var(--u)));
+             background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.25) 0%, rgba(139, 92, 246, 0.15) 40%, transparent 70%);
+             animation: pulse 4s ease-in-out infinite alternate; }
+  @keyframes pulse { from { transform: scale(1); opacity: 0.8; } to { transform: scale(1.08); opacity: 1; } }
+  .card { position: relative; display: flex; flex-direction: column; align-items: center; min-width: calc(360 * var(--u));
+          padding: calc(48 * var(--u)) calc(56 * var(--u)) calc(40 * var(--u)); border-radius: calc(20 * var(--u)); border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.06);
+          background: linear-gradient(180deg, rgba(20, 20, 28, 0.85), rgba(12, 12, 18, 0.85));
+          box-shadow: 0 calc(30 * var(--u)) calc(80 * var(--u)) rgba(0, 0, 0, 0.6), 0 0 calc(60 * var(--u)) rgba(99, 102, 241, 0.08), inset 0 calc(1 * var(--u)) 0 rgba(255, 255, 255, 0.04);
+          animation: cardIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+  @keyframes cardIn { from { opacity: 0; transform: translateY(calc(20 * var(--u))) scale(0.96); } to { opacity: 1; transform: none; } }
+  .title { margin: 0; font-size: calc(44 * var(--u)); font-weight: 900; text-transform: uppercase; letter-spacing: calc(8 * var(--u)); line-height: 1;
+           background: linear-gradient(135deg, #e0e7ff 0%, #6366f1 40%, #8b5cf6 100%);
+           -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+           filter: drop-shadow(0 0 calc(20 * var(--u)) rgba(99, 102, 241, 0.4)); }
+  .line { width: calc(60 * var(--u)); height: calc(2 * var(--u)); margin: calc(18 * var(--u)) auto 0; border-radius: calc(1 * var(--u)); opacity: 0.7;
+          background: linear-gradient(90deg, transparent, #6366f1, #8b5cf6, transparent); }
+  .buttons { display: flex; flex-direction: column; gap: calc(10 * var(--u)); width: calc(260 * var(--u)); margin-top: calc(32 * var(--u)); }
+  .btn { position: relative; width: 100%; padding: calc(14 * var(--u)) calc(22 * var(--u)); border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.06); border-radius: calc(10 * var(--u));
+         background: rgba(255, 255, 255, 0.03); color: #eaf0f6; font: 600 calc(13 * var(--u))/1.2 inherit; font-family: inherit;
+         letter-spacing: calc(1.5 * var(--u)); text-transform: uppercase; cursor: pointer;
+         transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1); animation: btnIn 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) both; }
+  .btn:nth-child(1) { animation-delay: 0.12s; }
+  .btn:nth-child(2) { animation-delay: 0.18s; }
+  .btn:nth-child(3) { animation-delay: 0.24s; }
+  @keyframes btnIn { from { opacity: 0; transform: translateY(calc(8 * var(--u))); } to { opacity: 1; transform: none; } }
+  .btn:hover { border-color: rgba(255, 255, 255, 0.15); transform: translateY(-1px);
+               box-shadow: 0 calc(6 * var(--u)) calc(20 * var(--u)) rgba(0, 0, 0, 0.35), 0 0 calc(18 * var(--u)) rgba(139, 92, 246, 0.3); }
+  .btn.primary { padding: calc(16 * var(--u)) calc(22 * var(--u)); border-color: transparent; font-weight: 700; letter-spacing: calc(2 * var(--u));
+                 background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+  .btn.primary:hover { box-shadow: 0 calc(8 * var(--u)) calc(30 * var(--u)) rgba(0, 0, 0, 0.35), 0 0 calc(28 * var(--u)) rgba(99, 102, 241, 0.4); filter: brightness(1.1); }
+  .btn:focus-visible { outline: calc(2 * var(--u)) solid #6366f1; outline-offset: calc(3 * var(--u)); }
+  .hint { margin-top: calc(22 * var(--u)); font-size: calc(10 * var(--u)); letter-spacing: calc(2 * var(--u)); text-transform: uppercase; color: #3e4550;
+          animation: hintIn 0.5s ease 0.5s both; }
+  @keyframes hintIn { from { opacity: 0; } to { opacity: 0.7; } }
+  .kbd { display: inline-block; padding: calc(2 * var(--u)) calc(7 * var(--u)); margin: 0 calc(2 * var(--u)); border: calc(1 * var(--u)) solid rgba(255, 255, 255, 0.15); border-radius: calc(4 * var(--u));
+         background: rgba(255, 255, 255, 0.03); font: calc(10 * var(--u)) ui-monospace, "SF Mono", Menlo, monospace; color: #6b7280; }
+  @media (pointer: coarse) {
+    .card { min-width: 0; max-width: calc(calc(1920 * var(--u)) - calc(32 * var(--u))); }
+    .title { font-size: clamp(calc(28 * var(--u)), calc(153.6 * var(--u)), calc(44 * var(--u))); }
+    .buttons { width: min(calc(260 * var(--u)), calc(calc(1920 * var(--u)) - calc(64 * var(--u)))); }
+  }
+</style>
+<div class="view">
+<div class="overlay">
+  <div class="ambient"></div>
+  <div class="card">
+    <h2 class="title" data-text="paused"></h2>
+    <div class="line"></div>
+    <div class="buttons">
+      <button class="btn primary" data-action="resume" data-text="resume"></button>
+      <button class="btn" data-action="quit" data-text="quit_game"></button>
+      <button class="btn" data-action="settings" data-text="settings"></button>
+    </div>
+    <div class="hint"><span class="desktop-only"><span data-text="pause_hint_press"></span><span class="kbd">P</span><span data-text="pause_hint_resume"></span></span><span class="mobile-only" data-text="pause_hint_touch"></span></div>
+  </div>
+</div>
+</div>

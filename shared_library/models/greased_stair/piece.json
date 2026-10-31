@@ -1,0 +1,10 @@
+{
+  "id": "greased_stair",
+  "summary": "The television obstacle-course flight: twenty 0.42 m risers over a 0.85 m going, 10 m wide, climbing toward -…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.greased_stair or place \"prefab\": \"greased_stair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:greased_stair"]
+}

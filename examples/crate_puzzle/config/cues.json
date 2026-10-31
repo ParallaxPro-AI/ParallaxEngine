@@ -1,0 +1,38 @@
+{
+  "step": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/52/5b/525be859c53b1f9f8ae9dbb7566ca942cb65feb8202d2372aec645fe3636e880.mp3",
+    "volume": 0.14
+  },
+  "push": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3",
+    "volume": 0.24
+  },
+  "place": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg",
+    "volume": 0.36
+  },
+  "lift": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/44/23/4423d459fc15fdd8593a4584d71e272ec2e5f8bdc11b759db623fc613ffd957c.ogg",
+    "volume": 0.22
+  },
+  "blocked": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg",
+    "volume": 0.2
+  },
+  "undo": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/15/e3/15e3fe971ffd3415e5ab641d3a4d043fb31f6712b0956315b524ba29c3889cda.ogg",
+    "volume": 0.24
+  },
+  "reset": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/51/305102e4e8758e66ed980548e801eae56fc2dcbcbe852765e426caee9fcc555b.mp3",
+    "volume": 0.3
+  },
+  "level_clear": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg",
+    "volume": 0.45
+  },
+  "win": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3",
+    "volume": 0.45
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wheelchair_rusted"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.706, 0.991, 0.927],
+      "offset": [0, 0.4955, 0.0285]
+    }
+  }
+}

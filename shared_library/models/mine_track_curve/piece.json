@@ -1,0 +1,10 @@
+{
+  "id": "mine_track_curve",
+  "summary": "A 90-degree curved section of narrow-gauge mine railway, the bend piece for mine_track: the same 600 mm gauge… sockets cart_entry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mine_track_curve or place \"prefab\": \"mine_track_curve\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mine_track_curve"]
+}

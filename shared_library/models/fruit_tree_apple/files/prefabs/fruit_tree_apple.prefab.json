@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fruit_tree_apple"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3144, 3.2081, 3.3777],
+      "offset": [0.141, 1.6006, 0.0381]
+    }
+  }
+}

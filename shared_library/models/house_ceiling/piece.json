@@ -1,0 +1,10 @@
+{
+  "id": "house_ceiling",
+  "summary": "A HOUSE kit ceiling tile for the top storey: 3 x 3 m, 0.15 m thick. joints hatch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_ceiling or place \"prefab\": \"house_ceiling\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_ceiling"]
+}

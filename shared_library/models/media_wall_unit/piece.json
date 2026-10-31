@@ -1,0 +1,10 @@
+{
+  "id": "media_wall_unit",
+  "summary": "A 3 m living-room media wall: a low console with two push-to-open doors and two centre drawers under a walnut… joints door_l, door_r, drawer_l, drawer_r, glass_l, glass_r; options finish, accent, decor, tv.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.media_wall_unit or place \"prefab\": \"media_wall_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:media_wall_unit"]
+}

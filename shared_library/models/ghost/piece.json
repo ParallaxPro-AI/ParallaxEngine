@@ -1,0 +1,10 @@
+{
+  "id": "ghost",
+  "summary": "A GHOST - a classic floating sheet-phantom, about 1.8 m tall with its tattered hem brushing the floor at rest… joints mouth_pivot, arm_l, arm_r; options spirit; sockets head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ghost or place \"prefab\": \"ghost\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ghost"]
+}

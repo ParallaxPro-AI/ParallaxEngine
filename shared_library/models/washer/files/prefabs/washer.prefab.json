@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/washer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 0.85, 0.6735],
+      "offset": [0, 0.425, 0.0367]
+    }
+  }
+}

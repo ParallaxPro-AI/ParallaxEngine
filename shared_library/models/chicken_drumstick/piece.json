@@ -1,0 +1,10 @@
+{
+  "id": "chicken_drumstick",
+  "summary": "A roasted chicken drumstick lying on its side — a glazed meat lobe, a visible white bone with a knuckle end…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chicken_drumstick or place \"prefab\": \"chicken_drumstick\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chicken_drumstick"]
+}

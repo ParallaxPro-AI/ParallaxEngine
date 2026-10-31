@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/valve_puzzle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.723, 0.505, 0.264],
+      "offset": [0, 0.2525, 0]
+    }
+  }
+}

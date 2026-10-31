@@ -1,0 +1,2 @@
+{ "name": "Motor", "description": "Faster feet and a wind that comes back quicker.",
+  "category": "conditioning", "max_stacks": 2, "speed": 0.7, "stamina_regen": 5.6 }

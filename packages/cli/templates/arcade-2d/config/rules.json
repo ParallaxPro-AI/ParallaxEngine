@@ -1,0 +1,7 @@
+{
+  "spawn_every": 0.6,
+  "fall_speed": 5,
+  "spawn_height": 6.5,
+  "floor": -6.5,
+  "spread": 4.5
+}

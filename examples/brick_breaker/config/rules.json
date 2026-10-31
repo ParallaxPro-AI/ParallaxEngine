@@ -1,0 +1,8 @@
+{
+  "lives": 3,
+  "brick_score": 100,
+  "combo_score": 25,
+  "clear_bonus": 500,
+  "draft_size": 3,
+  "rail_shade": 0.3
+}

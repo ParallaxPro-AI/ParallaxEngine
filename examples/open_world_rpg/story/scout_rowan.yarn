@@ -1,0 +1,12 @@
+title: start
+---
+<<if not $goblin_menace_done>>
+Scout Rowan: Behind you — there are still raiders on the road!
+<<elseif not $restless_barrow_done>>
+Scout Rowan: You came back for me. Take my rune.
+Scout Rowan: Runebreak sends a wave through an enemy mid-swing. Use it when the ground turns red.
+Scout Rowan: Follow the blue light into the woods, and stop the channelers.
+<<else>>
+Scout Rowan: The rune serves you well. Keep Ember close; they hate the fox.
+<<endif>>
+===

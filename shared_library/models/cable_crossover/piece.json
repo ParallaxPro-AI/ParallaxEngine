@@ -1,0 +1,10 @@
+{
+  "id": "cable_crossover",
+  "summary": "A dual-tower cable crossover station (3.6 m wide, 2.4 m tall): two weight-stack towers, each with 18 selector… joints stack_l, pulley_l, stack_r, pulley_r; options frame, accent, shroud; sockets socket_handle_l, socket_handle_r, stand_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cable_crossover or place \"prefab\": \"cable_crossover\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cable_crossover"]
+}

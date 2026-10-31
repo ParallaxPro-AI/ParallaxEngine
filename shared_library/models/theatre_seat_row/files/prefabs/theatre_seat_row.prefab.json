@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/theatre_seat_row"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.27, 1.055, 0.6613],
+      "offset": [0, 0.5275, -0.0057]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scythe"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.42, 0.36],
+      "hip_turn": [-17.188734, -26.356059, -40.107046],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8082, 0.171, 1.5575],
+      "offset": [0.3559, 0.0645, 0.7788]
+    }
+  }
+}

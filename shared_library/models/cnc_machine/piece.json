@@ -1,0 +1,10 @@
+{
+  "id": "cnc_machine",
+  "summary": "An enclosed vertical CNC machining centre, 2.3 m wide, 2.9 m to the top of its stack light and 1.9 m deep: a… joints head, spindle, door_l, door_r, pendant; options accent.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cnc_machine or place \"prefab\": \"cnc_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cnc_machine"]
+}

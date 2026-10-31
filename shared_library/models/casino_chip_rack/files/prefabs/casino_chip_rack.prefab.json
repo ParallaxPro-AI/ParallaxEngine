@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/casino_chip_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.566, 0.085, 0.34],
+      "offset": [0, 0.0425, 0.001]
+    }
+  }
+}

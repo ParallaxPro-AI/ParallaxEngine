@@ -1,0 +1,10 @@
+{
+  "id": "laser_grid",
+  "summary": "A laser security grid: two 2.2 m emitter posts on bolted footplates, 3 m apart, each with five hooded emitter… joints beams.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laser_grid or place \"prefab\": \"laser_grid\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laser_grid"]
+}

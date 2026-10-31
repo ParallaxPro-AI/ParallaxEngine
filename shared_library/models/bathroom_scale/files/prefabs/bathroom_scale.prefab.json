@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bathroom_scale"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.0275, 0.3],
+      "offset": [0, 0.0138, 0]
+    }
+  }
+}

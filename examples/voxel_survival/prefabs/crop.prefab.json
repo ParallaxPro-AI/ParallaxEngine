@@ -1,0 +1,4 @@
+{
+  "components": { "model": { "model": "models/crop" } },
+  "behaviors": { "growing": { "seconds": 150, "becomes": "ripe_crop" } }
+}

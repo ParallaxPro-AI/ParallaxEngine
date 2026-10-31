@@ -1,0 +1,33 @@
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1) x uiScale 2; --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: calc(2 * min(100cqw / 1920, 100cqh / 1080, 1px)); }
+/* Ported verbatim from the shared hud/choice draft panel the template uses (shared_ui/hud/choice.html). */
+.lib, .lib * { margin:0; padding:0; box-sizing:border-box; }
+  .lib { pointer-events:none; overflow:hidden; font-family:'Inter',system-ui,sans-serif; }
+  #pp-choice { position:fixed; inset:0; display:none; flex-direction:column; align-items:center; justify-content:safe center;
+               padding:calc(24 * var(--u)); overflow-y:auto; overscroll-behavior:contain; background:radial-gradient(circle at 50% 38%, rgba(8,11,18,0.62), rgba(2,4,8,0.9));
+               pointer-events:auto; }
+  #pp-choice.on { display:flex; animation:choiceIn 0.28s ease forwards; }
+  @keyframes choiceIn { from { opacity:0; } to { opacity:1; } }
+  .choice-title { font-size:clamp(calc(22 * var(--u)),4cqw,calc(34 * var(--u))); font-weight:900; letter-spacing:0.06em; text-transform:uppercase;
+                  color:#f2f6fb; text-shadow:0 calc(2 * var(--u)) calc(18 * var(--u)) rgba(0,0,0,0.6); text-align:center; }
+  .choice-sub { margin-top:calc(6 * var(--u)); font-size:calc(26 * var(--u)); font-weight:700; letter-spacing:calc(2.5 * var(--u)); text-transform:uppercase; color:#9fb0c3; text-align:center; }
+  .choice-title, .choice-sub, .choice-row { flex-shrink:0; }
+  .choice-row { display:flex; gap:calc(16 * var(--u)); margin-top:calc(26 * var(--u)); flex-wrap:wrap; justify-content:center; max-width:96cqw; }
+  .choice-card { pointer-events:auto; cursor:pointer; width:calc(340 * var(--u)); min-height:calc(240 * var(--u)); flex-shrink:0; padding:calc(20 * var(--u)) calc(18 * var(--u)); text-align:left;
+                 display:flex; flex-direction:column; align-items:flex-start; color:#eef3f9;
+                 background:rgba(15,20,29,0.94); border:calc(1 * var(--u)) solid var(--cc,#9aa4b0); border-top:calc(4 * var(--u)) solid var(--cc,#9aa4b0);
+                 border-radius:calc(12 * var(--u)); box-shadow:0 calc(16 * var(--u)) calc(42 * var(--u)) rgba(0,0,0,0.5);
+                 transition:transform 0.14s ease, box-shadow 0.14s ease, background 0.14s ease; }
+  .choice-card:hover { transform:translateY(calc(-5 * var(--u))); background:rgba(22,29,41,0.96);
+                       box-shadow:0 calc(22 * var(--u)) calc(54 * var(--u)) rgba(0,0,0,0.55),0 0 calc(26 * var(--u)) calc(-4 * var(--u)) var(--cc,#9aa4b0); }
+  .choice-ico { width:calc(56 * var(--u)); height:calc(56 * var(--u)); border-radius:calc(12 * var(--u)); display:grid; place-items:center; font-size:calc(30 * var(--u)); line-height:1;
+                background:rgba(6,9,14,0.85); border:calc(2 * var(--u)) solid var(--cc,#9aa4b0); box-shadow:0 0 calc(18 * var(--u)) calc(-6 * var(--u)) var(--cc,#9aa4b0); }
+  .choice-rar { margin-top:calc(12 * var(--u)); font-size:calc(22 * var(--u)); font-weight:900; letter-spacing:calc(1.6 * var(--u)); text-transform:uppercase; color:var(--cc,#9aa4b0); }
+  .choice-name { margin-top:calc(3 * var(--u)); font-size:calc(30 * var(--u)); font-weight:900; letter-spacing:calc(0.5 * var(--u)); color:#fff; }
+  .choice-desc { margin-top:calc(8 * var(--u)); font-size:calc(26 * var(--u)); line-height:1.45; color:#b8c4d2; }
+  .choice-take { margin-top:auto; padding-top:calc(14 * var(--u)); font-size:calc(22 * var(--u)); font-weight:900; letter-spacing:calc(2.5 * var(--u)); text-transform:uppercase; color:var(--cc,#9aa4b0); }
+  @media (pointer: coarse) {
+    .choice-row { gap:calc(10 * var(--u)); }
+    .choice-card { width:min(calc(340 * var(--u)),90cqw); min-height:0; padding:calc(15 * var(--u)); }
+    .choice-desc { margin-top:calc(6 * var(--u)); }
+  }

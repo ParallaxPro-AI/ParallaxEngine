@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ore_rock_copper"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.382, 0.6569, 0.9677],
+      "offset": [0.0303, 0.3284, 0.0321]
+    }
+  }
+}

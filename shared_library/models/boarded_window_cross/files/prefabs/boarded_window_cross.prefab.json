@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boarded_window_cross"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1212, 1.3933, 0.225],
+      "offset": [-0.0001, 0.6967, -0.0005]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/assembly_robot_cell"
+    }
+  }
+}

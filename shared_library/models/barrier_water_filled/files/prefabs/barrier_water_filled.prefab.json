@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/barrier_water_filled"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.27, 0.8495, 0.543],
+      "offset": [0, 0.4248, -0.0115]
+    }
+  }
+}

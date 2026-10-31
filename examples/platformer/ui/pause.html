@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="sky.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+      .shp{position:fixed;inset:0;display:grid;place-items:center}
+      .shp .pause-card{position:relative;width:calc(44*var(--su));padding:calc(3.25*var(--su)) calc(3.5*var(--su)) calc(2.5*var(--su));animation:sh-pop-in var(--sh-dur-med) var(--sh-ease-spring) both}
+      .shp .pause-h{line-height:1.02;font-size:calc(4.5*var(--su));margin:calc(.75*var(--su)) 0 calc(2.25*var(--su))}
+      .shp .sh-btn--block{width:100%}
+      .shp .pause-actions{display:flex;flex-direction:column;gap:calc(.85*var(--su))}
+      .shp .pause-row{display:grid;grid-template-columns:1fr 1fr;gap:calc(.85*var(--su))}
+      .shp .toggles{display:grid;grid-template-columns:1fr 1fr;gap:calc(.85*var(--su));margin-top:calc(1.75*var(--su))}
+      .shp .toggle{appearance:none;border:0;cursor:pointer;pointer-events:auto;display:flex;align-items:center;background:var(--sh-paper-2);border-radius:var(--sh-r-md);text-align:left;min-height:44px;gap:calc(1*var(--su));padding:calc(1*var(--su)) calc(1.1*var(--su)) calc(1*var(--su)) calc(1.35*var(--su));margin:0}
+      .shp .toggle:focus-visible{outline:3px solid var(--sh-ink);outline-offset:4px}
+      .shp .toggle-label{flex:1;font-family:var(--sh-font-display);font-weight:600;color:var(--sh-ink);font-size:calc(1.35*var(--su))}
+      .shp .toggle-state{font-weight:800;color:var(--sh-sage-2);text-transform:uppercase;letter-spacing:.1em;font-size:calc(.85*var(--su))}
+      .shp .switch{position:relative;flex:none;border-radius:999px;background:var(--sh-sage);transition:background-color var(--sh-dur-med);width:calc(3.4*var(--su));height:calc(2*var(--su))}
+      .shp .switch i{position:absolute;top:50%;border-radius:50%;background:var(--sh-paper);box-shadow:0 2px 0 rgba(22,63,67,.25);transition:transform var(--sh-dur-med) var(--sh-ease-spring);left:calc(.25*var(--su));width:calc(1.5*var(--su));height:calc(1.5*var(--su));margin-top:calc(-.75*var(--su));transform:translateX(calc(1.4*var(--su)))}
+      .shp .toggle[aria-checked="false"] .switch{background:var(--sh-paper-edge)}
+      .shp .toggle[aria-checked="false"] .switch i{transform:none}
+      .shp .legend{margin-top:calc(1.75*var(--su));padding-top:calc(1.5*var(--su));border-top:2px dashed var(--sh-line);display:grid;grid-template-columns:auto 1fr;gap:calc(.8*var(--su)) calc(1.5*var(--su));align-items:center;font-size:calc(1.1*var(--su));color:var(--sh-ink-2)}
+      .shp .legend dt{font-weight:800;font-size:calc(.85*var(--su));letter-spacing:.13em;text-transform:uppercase;color:var(--sh-sage)}
+      .shp .legend dd{display:flex;align-items:center;gap:.35rem;font-weight:700;flex-wrap:wrap}
+      .shp .legend .or{color:var(--sh-sage-2);margin:0 .3em}
+      .shp .resume{margin-top:calc(1.5*var(--su));display:flex;align-items:center;justify-content:center;gap:.4em;font-size:calc(1*var(--su));font-weight:700;color:var(--sh-sage-2)}
+      .shp .col-head{display:contents}
+      @media (pointer:coarse),(max-height:500px){
+        .shp .pause-card{width:calc(37*var(--su));max-width:calc(100cqw - var(--sh-safe-l) - var(--sh-safe-r));margin-bottom:calc(var(--sh-safe-b) - var(--sh-safe-t));padding:calc(1.4*var(--su)) calc(1.5*var(--su)) calc(1.3*var(--su));border-radius:var(--sh-r-lg);display:grid;grid-template-columns:1fr 1fr;gap:calc(1.4*var(--su));align-items:center}
+        .shp .col-head{display:block;grid-column:1;grid-row:1}
+        .shp .pause-actions{grid-column:2;grid-row:1;gap:calc(.55*var(--su))}
+        .shp .pause-h{font-size:calc(2.05*var(--su));margin:calc(.4*var(--su)) 0 calc(1*var(--su))}
+        .shp .toggles{grid-template-columns:1fr;gap:calc(.5*var(--su));margin-top:0}
+        .shp .toggle{gap:calc(.6*var(--su));padding:calc(.4*var(--su)) calc(.6*var(--su)) calc(.4*var(--su)) calc(.9*var(--su));min-height:max(44px,calc(2.875*var(--su)))}
+        .shp .toggle-label{font-size:calc(.98*var(--su))}
+        .shp .toggle-state{font-size:calc(.62*var(--su))}
+        .shp .switch{width:calc(2.6*var(--su));height:calc(1.55*var(--su))}
+        .shp .switch i{left:calc(.2*var(--su));width:calc(1.15*var(--su));height:calc(1.15*var(--su));margin-top:calc(-.575*var(--su));transform:translateX(calc(1.05*var(--su)))}
+        .shp .pause-actions .sh-btn--lg{--sh-btn-h:max(44px,calc(3.25*var(--su)));--sh-fs-btn:calc(1.2*var(--su));padding:0 1.3em}
+        .shp .pause-row{display:flex;flex-direction:column;gap:calc(.55*var(--su))}
+      }
+    </style>
+<div class="sh-root shp">
+  <div class="sh-scrim"></div>
+  <section class="sh-paper pause-card" role="dialog">
+    <div class="col-head">
+      <p class="sh-eyebrow" data-text="pause_eyebrow"></p>
+      <h1 class="sh-display pause-h" data-text="pause_title"></h1>
+      <div class="toggles sh-touch">
+      <button class="toggle" role="switch" data-attr-aria-checked="sound_checked" data-action="sound"><span class="toggle-label" data-text="sound"></span><span class="toggle-state" data-bind="sound_label"></span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <button class="toggle" role="switch" data-attr-aria-checked="shake_checked" data-action="shake"><span class="toggle-label" data-text="camera_shake"></span><span class="toggle-state" data-bind="shake_label"></span><span class="switch" aria-hidden="true"><i></i></span></button>
+      </div>
+    </div>
+    <div class="pause-actions">
+      <button class="sh-btn sh-btn--primary sh-btn--lg sh-btn--block" data-action="resume"><span data-text="pause_resume"></span> <span class="sh-arr">→</span></button>
+      <div class="pause-row">
+        <button class="sh-btn sh-btn--block" data-action="retry" data-text="pause_retry"></button>
+        <button class="sh-btn sh-btn--block" data-action="quit" data-text="sky_atlas"></button>
+      </div>
+    </div>
+    <div class="toggles sh-desk">
+      <button class="toggle" role="switch" data-attr-aria-checked="sound_checked" data-action="sound"><span class="toggle-label" data-text="sound"></span><span class="toggle-state" data-bind="sound_label"></span><span class="switch" aria-hidden="true"><i></i></span></button>
+      <button class="toggle" role="switch" data-attr-aria-checked="shake_checked" data-action="shake"><span class="toggle-label" data-text="camera_shake"></span><span class="toggle-state" data-bind="shake_label"></span><span class="switch" aria-hidden="true"><i></i></span></button>
+    </div>
+    <dl class="legend sh-desk">
+      <dt data-text="legend_move"></dt><dd><span class="sh-kbd">W</span><span class="sh-kbd">A</span><span class="sh-kbd">S</span><span class="sh-kbd">D</span><span class="or">/</span><span data-text="stick"></span></dd>
+      <dt data-text="legend_jump"></dt><dd><span class="sh-kbd">Space</span><span class="or">/</span><span class="sh-kbd sh-kbd--pad">A</span></dd>
+      <dt data-text="legend_dash"></dt><dd><span class="sh-kbd">Shift</span><span class="or" data-text="or_word"></span><span class="sh-kbd">X</span><span class="or">/</span><span data-text="controller"></span><span class="sh-kbd sh-kbd--pad">X</span></dd>
+    </dl>
+    <p class="resume sh-desk"><span class="sh-kbd">P</span> <span data-text="to_resume"></span></p>
+  </section>
+</div>

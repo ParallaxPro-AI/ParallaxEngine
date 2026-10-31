@@ -1,0 +1,10 @@
+{
+  "id": "solar_panel_array",
+  "summary": "A ground-mounted photovoltaic table: ten 1.0 x 1.7 m framed panels in two portrait rows on rails and rafters… joints tilt; options cells, frame; sockets socket_combiner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.solar_panel_array or place \"prefab\": \"solar_panel_array\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:solar_panel_array"]
+}

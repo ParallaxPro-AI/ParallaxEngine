@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hieroglyph_wall_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.86, 2.47, 0.56],
+      "offset": [0, 1.235, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "mage_tower",
+  "summary": "A tower-defense mage tower on the set's common 2.4 m stone footing: a slender tapering octagonal marble spire… joints turret_yaw; options tier, glow, banner; sockets socket_muzzle, socket_orb, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mage_tower or place \"prefab\": \"mage_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mage_tower"]
+}

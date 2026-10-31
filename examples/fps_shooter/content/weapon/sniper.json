@@ -1,0 +1,24 @@
+{
+  "name": "Sniper",
+  "short": "Sniper",
+  "slot": 2,
+  "kind": "hitscan",
+  "damage": 100,
+  "fire_interval": 1.0,
+  "magazine": 5,
+  "reserve": 25,
+  "max_reserve": 30,
+  "reload_time": 3,
+  "range": 400,
+  "spread": 4,
+  "recoil": 3,
+  "zoom_fov": 25,
+  "zoom_time": 0.34,
+  "scoped": true,
+  "view": "sniper_view",
+  "tracer": "#8cd9ff",
+  "report": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a5/6d/a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6.ogg",
+    "volume": 0.5
+  }
+}

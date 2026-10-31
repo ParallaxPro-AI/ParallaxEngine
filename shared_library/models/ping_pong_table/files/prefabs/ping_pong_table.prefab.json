@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ping_pong_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.864, 0.9235, 2.74],
+      "offset": [0, 0.4617, 0]
+    }
+  }
+}

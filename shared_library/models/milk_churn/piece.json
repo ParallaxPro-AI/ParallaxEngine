@@ -1,0 +1,10 @@
+{
+  "id": "milk_churn",
+  "summary": "A ten-gallon galvanised dairy churn, 70 cm tall with its lid: a straight drum on a rolled foot, three swaged… joints lid; options contents, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.milk_churn or place \"prefab\": \"milk_churn\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:milk_churn"]
+}

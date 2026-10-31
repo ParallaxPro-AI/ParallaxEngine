@@ -1,0 +1,9 @@
+{
+  "order": 3,
+  "name": "Hard",
+  "blurb": "Searches deeper, never blunders, and plays for the initiative. Bring your best.",
+  "depth": 3,
+  "positional": 1.2,
+  "blunder": 0.0,
+  "aggression": 0.45
+}

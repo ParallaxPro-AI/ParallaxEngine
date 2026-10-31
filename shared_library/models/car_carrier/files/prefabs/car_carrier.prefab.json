@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/car_carrier"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9500
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.81,
+        3.15,
+        10.34
+      ],
+      "offset": [
+        0,
+        1.575,
+        0.11
+      ]
+    },
+    "vehicle": {
+      "max_speed": 27,
+      "steering": 26
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.575,
+        0.11
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

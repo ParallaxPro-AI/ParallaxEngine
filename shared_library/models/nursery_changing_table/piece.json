@@ -1,0 +1,10 @@
+{
+  "id": "nursery_changing_table",
+  "summary": "A nursery changing table: four rounded square legs with ball caps, raised guard sides and back round a padded… joints drawer; options frame, accent, pad; sockets socket_changing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.nursery_changing_table or place \"prefab\": \"nursery_changing_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:nursery_changing_table"]
+}

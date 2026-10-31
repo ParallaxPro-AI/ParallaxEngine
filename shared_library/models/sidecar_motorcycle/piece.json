@@ -1,0 +1,10 @@
+{
+  "id": "sidecar_motorcycle",
+  "summary": "A motorcycle-and-sidecar outfit: the library's cruiser-style motorbike with a boat-shaped single-seat sidecar… joints bike_steer, bike_wheel_front, bike_wheel_rear, bike_kickstand, sc_wheel; sockets seat_driver, seat_pax_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sidecar_motorcycle or place \"prefab\": \"sidecar_motorcycle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sidecar_motorcycle"]
+}

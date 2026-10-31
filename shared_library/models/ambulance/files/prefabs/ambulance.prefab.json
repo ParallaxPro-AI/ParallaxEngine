@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ambulance",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.5,
+        2.9,
+        6.357
+      ],
+      "offset": [
+        0.0,
+        1.45,
+        -0.0615
+      ]
+    }
+  }
+}

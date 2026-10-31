@@ -1,0 +1,10 @@
+{
+  "id": "barn",
+  "summary": "A 12 x 18 m red timber gambrel barn on a stone base: white corner boards, door surrounds and belly band, big… joints door_front_l, door_front_r, door_back_l, door_back_r, gate_l0, gate_l1, …; options siding_colour; sockets socket_door_outside, socket_aisle, socket_loft, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.barn or place \"prefab\": \"barn\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:barn"]
+}

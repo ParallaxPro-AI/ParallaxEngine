@@ -1,0 +1,10 @@
+{
+  "id": "lawn_mower",
+  "summary": "A petrol push lawn mower: a pressed-steel cutting deck with a rolled shoulder, a small engine under a moulded… joints wheel_fl, wheel_fr, wheel_rl, wheel_rr, bail; options deck_colour, catcher; sockets socket_handle, exhaust.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lawn_mower or place \"prefab\": \"lawn_mower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lawn_mower"]
+}

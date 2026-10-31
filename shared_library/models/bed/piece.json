@@ -1,0 +1,10 @@
+{
+  "id": "bed",
+  "summary": "A wooden bed with three interchangeable size configurations (single, double, bunk) and a swappable headboard… options size, headboard; sockets socket_pillow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bed or place \"prefab\": \"bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bed"]
+}

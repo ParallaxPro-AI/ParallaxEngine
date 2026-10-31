@@ -1,0 +1,26 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/32/9f/329f9ff970713b74c893b3aa9276d1359db9fdbb5ce8c89e0a1abbb2e28745ac.glb",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "cylinder",
+      "radius": 0.45,
+      "height": 1.2,
+      "offset": [
+        0,
+        0.6,
+        0
+      ],
+      "layer": "prop"
+    },
+    "health": {
+      "current": 8,
+      "max": 8
+    }
+  },
+  "tags": [
+    "breakable"
+  ]
+}

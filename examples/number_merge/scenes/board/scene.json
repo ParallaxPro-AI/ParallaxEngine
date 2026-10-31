@@ -1,0 +1,8 @@
+{
+  "ui": ["hud"],
+  "entities": [
+    { "prefab": "camera", "at": [0, 0, -10] },
+    { "prefab": "backdrop", "at": [0, 0] },
+    { "id": "board", "prefab": "board", "at": [0, 0] }
+  ]
+}

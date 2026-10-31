@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stone_golem"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4884, 2.5878, 0.9234],
+      "offset": [0, 1.2939, -0.0513]
+    }
+  }
+}

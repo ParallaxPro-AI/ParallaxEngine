@@ -1,0 +1,10 @@
+{
+  "id": "gatehouse_village",
+  "summary": "A fantasy-medieval village gatehouse astride the road: a 6.8 x 5.6 m gate tower whose coursed-rubble ground s… joints gate_l, gate_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gatehouse_village or place \"prefab\": \"gatehouse_village\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gatehouse_village"]
+}

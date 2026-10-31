@@ -1,0 +1,10 @@
+{
+  "id": "crystal_ball",
+  "summary": "A fortune-teller's crystal ball on a turned stand: a clear glass sphere holding a glowing core wrapped by two… options aura, swirl, stand; sockets socket_vision, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crystal_ball or place \"prefab\": \"crystal_ball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crystal_ball"]
+}

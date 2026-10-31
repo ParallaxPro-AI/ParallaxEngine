@@ -1,0 +1,1 @@
+{"extends": "effect/smoke", "burst": 16, "max": 24, "lifetime": [0.3, 0.8], "speed": [1, 4], "direction": 90, "spread": 90, "color": "#cce6ffcc", "color_end": "#cce6ff00", "rate": 0}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/security_drone_dock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0975, 1.49, 1.1488],
+      "offset": [0, 0.745, -0.0256]
+    }
+  }
+}

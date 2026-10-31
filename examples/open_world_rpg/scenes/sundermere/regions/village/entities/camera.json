@@ -1,0 +1,1 @@
+{"prefab": "camera", "at": [0, 16, -78], "always_loaded": true, "components": {"camera": {"follow": "hero"}}}

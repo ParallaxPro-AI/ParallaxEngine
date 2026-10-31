@@ -1,0 +1,10 @@
+{
+  "id": "asteroid_ore_rich",
+  "summary": "A mineable ore-rich space asteroid for a space mining / shooter game, about 4.3 m long and 2.7 m tall includi…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.asteroid_ore_rich or place \"prefab\": \"asteroid_ore_rich\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:asteroid_ore_rich"]
+}

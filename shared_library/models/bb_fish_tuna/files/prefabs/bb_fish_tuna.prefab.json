@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_fish_tuna"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.012, 0.48, 1.1],
+      "offset": [0, 0.24, 0]
+    }
+  }
+}

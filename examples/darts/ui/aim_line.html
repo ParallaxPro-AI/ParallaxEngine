@@ -1,0 +1,25 @@
+<!-- Ported from the template: aim-line overlay — the predicted dart parabola, its landing ring and the aim reticle drawn as IN-GAME UI. The panel projects each bead of the flight to the screen (last point = predicted landing). -->
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { pointer-events: none; overflow: hidden; background: transparent; }
+  /* Full-viewport SVG in screen pixels: the panel projects each bead with
+     camera.world_to_screen, so the beads line up with the world board. */
+  #aim { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; z-index: 2; }
+  /* A dashed polyline reads as a bead trail (round caps → dots); the drop and
+     the draught drift are both visible in its curve. */
+  #trail { fill: none; stroke: rgba(255, 217, 138, 0.75); stroke-width: 4;
+           stroke-linecap: round; stroke-dasharray: 1 14; }
+  #land-ring { fill: none; stroke: #ffd98a; stroke-width: 2; }
+  #land { fill: #ffd98a; }
+  #reticle { fill: none; stroke: #f1e9dd; stroke-width: 2; stroke-linecap: round; }
+  @media (pointer: coarse) {
+    #trail { stroke-width: 5; stroke-dasharray: 2 18; }
+    #land-ring, #reticle { stroke-width: 3; }
+  }
+</style>
+<svg id="aim">
+  <polyline id="trail" data-attr-points="trail"></polyline>
+  <circle id="land-ring" data-attr-cx="land_x" data-attr-cy="land_y" data-attr-r="ring_r"></circle>
+  <circle id="land" data-attr-cx="land_x" data-attr-cy="land_y" data-attr-r="land_r"></circle>
+  <g id="reticle" data-show="reticle_on" data-attr-transform="reticle"><circle r="11"></circle><path d="M0 -20v10M0 10v10M-20 0h10M10 0h10"></path></g>
+</svg>

@@ -1,0 +1,1 @@
+{"extends": "effect/dust", "burst": 18, "max": 24, "rate": 0, "lifetime": [0.25, 0.6], "speed": [0.6, 2], "size": [0.16, 0.32], "size_end": 0.035, "color": "#d9cc9eb2", "color_end": "#998c7300", "radius": 0.9}

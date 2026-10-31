@@ -1,0 +1,10 @@
+{
+  "id": "price_marker",
+  "summary": "A 0.92 m glass-and-chrome trend token: a segmented chrome bezel around a lit glass lens, with a bevelled chev… joints arrow; options mood, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.price_marker or place \"prefab\": \"price_marker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:price_marker"]
+}

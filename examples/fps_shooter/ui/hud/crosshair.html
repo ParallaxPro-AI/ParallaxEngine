@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="../dustline.css">
+<style>
+  /* The engine's crosshair (lines, dot, ring, hit and kill markers, reload bar) with the
+     template's forked sniper optic (code/ui/hud/sniper_scope.html) in place of the stock
+     scope: an opaque teal-black mask, a 43%-of-height lens with a warm tint, a fine etched reticle
+     with heavy outer posts and mil dots labelled at 2 and 4. */
+  .root { position: absolute; inset: 0; pointer-events: none; }
+  .root.calm * { animation: none !important; transition: none !important; }
+  .cross { position: absolute; left: 50%; top: 50%; width: 0; height: 0; --gap: calc(4 * var(--u)); }
+  .dot { position: absolute; width: calc(4 * var(--u)); height: calc(4 * var(--u)); margin: calc(-2 * var(--u)); border-radius: 50%; background: currentColor; box-shadow: 0 0 calc(2 * var(--u)) #000; }
+  .lines i { position: absolute; background: currentColor; box-shadow: 0 0 calc(2 * var(--u)) #000; }
+  .lines .t, .lines .b { width: calc(2 * var(--u)); height: 0.6em; left: calc(-1 * var(--u)); }
+  .lines .t { bottom: var(--gap); }
+  .lines .b { top: var(--gap); }
+  .lines .l, .lines .r { height: calc(2 * var(--u)); width: 0.6em; top: calc(-1 * var(--u)); }
+  .lines .l { right: var(--gap); }
+  .lines .r { left: var(--gap); }
+  .ring { position: absolute; width: calc(var(--gap) * 2 + 0.8em); height: calc(var(--gap) * 2 + 0.8em); transform: translate(-50%, -50%); border: calc(2 * var(--u)) solid currentColor; border-radius: 50%; }
+  .hit { position: absolute; }
+  .hit i { position: absolute; width: 0.7em; height: calc(2 * var(--u)); background: #fff; box-shadow: 0 0 calc(2 * var(--u)) #000; }
+  .hit i:nth-child(1) { transform: translate(0.35em, -0.6em) rotate(45deg); }
+  .hit i:nth-child(2) { transform: translate(-1.05em, -0.6em) rotate(-45deg); }
+  .hit i:nth-child(3) { transform: translate(0.35em, 0.6em) rotate(-45deg); }
+  .hit i:nth-child(4) { transform: translate(-1.05em, 0.6em) rotate(45deg); }
+  .hit.kill i { background: #ff3b30; }
+  .reload { position: absolute; top: 1.6em; left: -2em; display: flex; flex-direction: column; align-items: center; gap: calc(4 * var(--u)); width: 4em; }
+  .reload b { font: 700 calc(14 * var(--u))/1 var(--dl-f-hud); letter-spacing: .24em; text-transform: uppercase; color: var(--dl-brass); white-space: nowrap; }
+  .reload span { display: block; width: 100%; height: calc(3 * var(--u)); background: rgba(0, 0, 0, 0.5); overflow: hidden; }
+  .reload span i { display: block; height: 100%; background: var(--dl-brass); }
+
+  #dl-scope { --lens: 43cqh; position: fixed; inset: 0; }
+  #dl-scope .ds-mask { position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, transparent calc(var(--lens) - 1px), #020404 calc(var(--lens) + 1px)); }
+  #dl-scope .ds-lens { position: absolute; left: 50%; top: 50%; width: calc(var(--lens) * 2); height: calc(var(--lens) * 2); transform: translate(-50%, -50%); border-radius: 50%; overflow: hidden; box-shadow: inset 0 0 0 calc(3 * var(--u)) #000, inset 0 0 calc(90 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.8); background: radial-gradient(circle at 42% 38%, rgba(230,186,112,.06), transparent 60%); }
+  #dl-scope .ds-reticle { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #dl-scope .ds-shadow { position: absolute; inset: calc(-1 * var(--u)); border-radius: 50%; background: radial-gradient(circle at 50% 50%, transparent 49%, rgba(0,0,0,.35) 60%, rgba(0,0,0,.92) 70%, #000 74%); }
+  @media (pointer: coarse) { #dl-scope { --lens: 44cqh; } }
+</style>
+<div class="root" data-class-calm="a11y.calm" data-style-font-size="a11y.font" data-show="shown">
+  <div id="dl-scope" data-show="scope">
+    <div class="ds-mask"></div>
+    <div class="ds-lens">
+      <img class="ds-reticle" alt="" src="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1000 1000%22%3E %3Cg fill=%22%23050808%22%3E %3Crect x=%220%22 y=%22499.25%22 width=%221000%22 height=%221.5%22/%3E %3Crect x=%22499.25%22 y=%220%22 width=%221.5%22 height=%221000%22/%3E %3Crect x=%220%22 y=%22497%22 width=%22320%22 height=%226%22/%3E %3Crect x=%22680%22 y=%22497%22 width=%22320%22 height=%226%22/%3E %3Crect x=%22497%22 y=%22680%22 width=%226%22 height=%22320%22/%3E %3Ccircle cx=%22576%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22576%22 r=%224%22/%3E%3Ccircle cx=%22424%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22424%22 r=%224%22/%3E%3Crect x=%22651%22 y=%22489%22 width=%222%22 height=%2222%22/%3E%3Crect x=%22489%22 y=%22651%22 width=%2222%22 height=%222%22/%3E%3Crect x=%22347%22 y=%22489%22 width=%222%22 height=%2222%22/%3E%3Crect x=%22489%22 y=%22347%22 width=%2222%22 height=%222%22/%3E%3Ccircle cx=%22728%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22728%22 r=%224%22/%3E%3Ccircle cx=%22272%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22272%22 r=%224%22/%3E%3Crect x=%22803%22 y=%22489%22 width=%222%22 height=%2222%22/%3E%3Crect x=%22489%22 y=%22803%22 width=%2222%22 height=%222%22/%3E%3Crect x=%22195%22 y=%22489%22 width=%222%22 height=%2222%22/%3E%3Crect x=%22489%22 y=%22195%22 width=%2222%22 height=%222%22/%3E%3Ccircle cx=%22880%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22880%22 r=%224%22/%3E%3Ccircle cx=%22120%22 cy=%22500%22 r=%224%22/%3E%3Ccircle cx=%22500%22 cy=%22120%22 r=%224%22/%3E %3C/g%3E %3Cg fill=%22%23050808%22 font-family=%22%27Barlow Condensed%27,%27Arial Narrow%27,sans-serif%22 font-weight=%22600%22 font-size=%2222%22%3E %3Ctext x=%22656%22 y=%22482%22%3E2%3C/text%3E%3Ctext x=%22808%22 y=%22482%22%3E4%3C/text%3E %3C/g%3E %3C/svg%3E">
+      <div class="ds-shadow"></div>
+    </div>
+  </div>
+  <div class="cross" data-style-color="color" data-style---gap="gap">
+    <div class="dot" data-show="dot"></div>
+    <div class="lines" data-show="cross"><i class="t"></i><i class="b"></i><i class="l"></i><i class="r"></i></div>
+    <div class="ring" data-show="circle"></div>
+    <div class="hit" data-style-opacity="hit" data-class-kill="kill"><i></i><i></i><i></i><i></i></div>
+    <div class="reload" data-show="reloading"><b data-text="reloading"></b><span><i data-style-width="reload"></i></span></div>
+  </div>
+</div>

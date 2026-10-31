@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grey_alien"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3907, 1.4006, 0.2383],
+      "offset": [0, 0.7003, 0.0102]
+    }
+  }
+}

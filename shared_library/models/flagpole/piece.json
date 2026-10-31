@@ -1,0 +1,10 @@
+{
+  "id": "flagpole",
+  "summary": "A 7.5 m tapered aluminium flagpole on a concrete plinth: gold ball finial and pulley truck, a halyard running… joints flag_raise; options design, field, accent; sockets socket_base.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flagpole or place \"prefab\": \"flagpole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flagpole"]
+}

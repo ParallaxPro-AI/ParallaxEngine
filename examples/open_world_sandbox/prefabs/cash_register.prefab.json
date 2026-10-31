@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/cash_register", "cast_shadows": true }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camp_lurker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 1.5442, 0.291],
+      "offset": [0, 0.7721, 0.003]
+    }
+  }
+}

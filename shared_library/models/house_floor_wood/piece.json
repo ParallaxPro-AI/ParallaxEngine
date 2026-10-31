@@ -1,0 +1,10 @@
+{
+  "id": "house_floor_wood",
+  "summary": "A HOUSE kit floor tile: 3 x 3 m, 0.15 m thick, laid with 150 mm oak strip boards in three tones with staggere…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_floor_wood or place \"prefab\": \"house_floor_wood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_floor_wood"]
+}

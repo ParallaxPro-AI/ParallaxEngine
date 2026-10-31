@@ -1,0 +1,10 @@
+{
+  "id": "garment_hair_ponytail",
+  "summary": "A high ponytail: hair combed back smooth from the hairline in clumps that converge on a gather high on the ba… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_hair_ponytail or place \"prefab\": \"garment_hair_ponytail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_hair_ponytail"]
+}

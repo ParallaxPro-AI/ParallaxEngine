@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/smartphone_rts"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0781, 0.0098, 0.155],
+      "offset": [0, 0.0049, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tree_stump",
+  "summary": "A chainsaw-felled tree stump: a 0.54 m-diameter trunk cut 0.42 m above the ground, its flat face showing grow…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_stump or place \"prefab\": \"tree_stump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_stump"]
+}

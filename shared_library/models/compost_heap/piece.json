@@ -1,0 +1,10 @@
+{
+  "id": "compost_heap",
+  "summary": "A garden compost heap in an open-fronted timber bay: four corner posts with gapped boards on the back and sid…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.compost_heap or place \"prefab\": \"compost_heap\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:compost_heap"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sliding_door",
+  "summary": "A two-leaf automatic sliding door (storefront/entrance): an aluminium frame with two fixed sidelites and two… joints leaf_left, leaf_right; options infill, frame_finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sliding_door or place \"prefab\": \"sliding_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sliding_door"]
+}

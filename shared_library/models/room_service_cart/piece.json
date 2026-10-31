@@ -1,0 +1,10 @@
+{
+  "id": "room_service_cart",
+  "summary": "A hotel room-service table, 0.87 m round with both drop leaves up: a mahogany top under a white tablecloth th… joints leaf_back, leaf_front, cloche; options wood, metal, setting; sockets table_top, push_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.room_service_cart or place \"prefab\": \"room_service_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:room_service_cart"]
+}

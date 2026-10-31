@@ -1,0 +1,10 @@
+{
+  "id": "apothecary_shelf",
+  "summary": "An apothecary dresser: a lower cabinet of twelve small drawers with pulls and label frames under a counter, a… joints drawer_r1c1, drawer_r1c2, drawer_r1c3, drawer_r1c4, drawer_r2c1, drawer_r2c2, …; options stock, wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.apothecary_shelf or place \"prefab\": \"apothecary_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:apothecary_shelf"]
+}

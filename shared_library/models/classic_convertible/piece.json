@@ -1,0 +1,10 @@
+{
+  "id": "classic_convertible",
+  "summary": "A 1950s-style two-door convertible: a long low body with chrome blade bumpers, a chrome side spear, rising ta… joints door_fl, door_fr, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, …; options paint, trim_level, top; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.classic_convertible or place \"prefab\": \"classic_convertible\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:classic_convertible"]
+}

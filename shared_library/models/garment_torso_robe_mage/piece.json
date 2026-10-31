@@ -1,0 +1,10 @@
+{
+  "id": "garment_torso_robe_mage",
+  "summary": "A long hooded mage/monk robe: a full body over wide bell sleeves, a hem that falls to mid-shin, a knotted rop… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_torso_robe_mage or place \"prefab\": \"garment_torso_robe_mage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_torso_robe_mage"]
+}

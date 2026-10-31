@@ -1,0 +1,10 @@
+{
+  "id": "paddling_pool",
+  "summary": "A 1.5 m inflatable three-ring paddling pool: stacked vinyl tubes in alternating colours with welded seams, ai… options ring_colour, stripe_colour, water; sockets socket_water, seat_rim.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paddling_pool or place \"prefab\": \"paddling_pool\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paddling_pool"]
+}

@@ -1,0 +1,6 @@
+{
+  "z": -2,
+  "components": {
+    "sprite": { "image": "images/well_frame", "size": [7.6, 6.6] }
+  }
+}

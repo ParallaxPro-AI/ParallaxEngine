@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bait_bucket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.348, 0.3873, 0.3589],
+      "offset": [0.017, 0.1936, 0.0032]
+    }
+  }
+}

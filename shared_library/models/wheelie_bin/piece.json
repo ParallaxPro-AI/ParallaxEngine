@@ -1,0 +1,10 @@
+{
+  "id": "wheelie_bin",
+  "summary": "A 240 litre two-wheeled kerbside refuse bin: a moulded hollow body on a pair of 200 mm wheels, a top-hinged l… joints lid; options stream, contents; sockets socket_comb, socket_handle, socket_contents.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wheelie_bin or place \"prefab\": \"wheelie_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wheelie_bin"]
+}

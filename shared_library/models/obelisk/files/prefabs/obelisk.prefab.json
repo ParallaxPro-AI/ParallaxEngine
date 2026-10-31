@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/obelisk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.62, 4.23, 1.62],
+      "offset": [0, 2.115, 0]
+    }
+  }
+}

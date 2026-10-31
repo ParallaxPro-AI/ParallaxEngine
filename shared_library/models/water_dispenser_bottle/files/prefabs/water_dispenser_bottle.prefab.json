@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_dispenser_bottle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2744, 0.527, 0.2744],
+      "offset": [0, 0.2635, 0]
+    }
+  }
+}

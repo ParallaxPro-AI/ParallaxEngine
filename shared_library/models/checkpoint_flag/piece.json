@@ -1,0 +1,10 @@
+{
+  "id": "checkpoint_flag",
+  "summary": "A game checkpoint post: a stepped round steel plinth with an emissive ring, a 2.3 m tapered pole with a colla… joints flag.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.checkpoint_flag or place \"prefab\": \"checkpoint_flag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:checkpoint_flag"]
+}

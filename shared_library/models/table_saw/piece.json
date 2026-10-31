@@ -1,0 +1,10 @@
+{
+  "id": "table_saw",
+  "summary": "A 254 mm cabinet table saw: a ground cast-iron table with two miter slots, extension wings and a throat plate… joints motor_door, height_wheel, bevel_wheel, blade_height, blade, guard, …; options paint; sockets workpiece.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.table_saw or place \"prefab\": \"table_saw\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:table_saw"]
+}

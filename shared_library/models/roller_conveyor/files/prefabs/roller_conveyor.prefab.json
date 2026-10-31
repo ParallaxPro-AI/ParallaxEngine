@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roller_conveyor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.974, 0.91, 6.6],
+      "offset": [-0.0145, 0.455, 0]
+    }
+  }
+}

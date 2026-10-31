@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/soccer_ball"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2164, 0.2164, 0.2164],
+      "offset": [0, 0.108, 0]
+    }
+  }
+}

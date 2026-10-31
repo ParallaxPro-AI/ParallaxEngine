@@ -1,0 +1,10 @@
+{
+  "id": "garage_door",
+  "summary": "A sectional overhead garage door in its jamb, with side tracks that curve back under the ceiling. options panels, windows.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garage_door or place \"prefab\": \"garage_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garage_door"]
+}

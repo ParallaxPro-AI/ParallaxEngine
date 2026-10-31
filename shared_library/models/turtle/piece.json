@@ -1,0 +1,10 @@
+{
+  "id": "turtle",
+  "summary": "A land turtle (0.46 m long, 0.25 m tall) on the engine's quadruped_20 rig, so the built-in quadruped Idle/Wal… options shell, skin; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.turtle or place \"prefab\": \"turtle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:turtle"]
+}

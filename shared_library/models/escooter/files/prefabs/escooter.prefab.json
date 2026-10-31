@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/escooter"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 22
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.612,
+        1.1362,
+        1.2185
+      ],
+      "offset": [
+        0,
+        0.5681,
+        -0.0242
+      ]
+    },
+    "vehicle": {
+      "max_speed": 7,
+      "steering": 40
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.5681,
+        -0.0242
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "temple_altar",
+  "summary": "An ancient stepped temple altar: a two-step stone dais carries a carved die with a sunk front panel bearing a… sockets socket_offering, socket_altar_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.temple_altar or place \"prefab\": \"temple_altar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:temple_altar"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_wrap"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.48, 0.142, 0.47],
+      "offset": [0, 0.07, 0]
+    }
+  }
+}

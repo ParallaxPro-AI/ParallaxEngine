@@ -1,0 +1,1 @@
+{ "announce": "THE EMBER MATRIARCH", "boss": true, "groups": [{ "enemy": "dragon", "count": 6 }, { "enemy": "ogre", "count": 8 }, { "enemy": "skeleton", "count": 14 }] }

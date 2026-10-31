@@ -1,0 +1,10 @@
+{
+  "id": "tractor",
+  "summary": "A utility farm tractor: long engine hood with a vertical exhaust stack, a glazed operator cab, big lugged rea… joints loader, steer_l, spin_front_l, steer_r, spin_front_r, spin_rear_l, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tractor or place \"prefab\": \"tractor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tractor"]
+}

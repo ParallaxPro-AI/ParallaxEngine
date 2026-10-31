@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/build_wall_wood"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.08, 3, 0.3215],
+      "offset": [0, 1.5, 0.0182]
+    }
+  }
+}

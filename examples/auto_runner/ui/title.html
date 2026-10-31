@@ -1,0 +1,142 @@
+<!-- Ported from the template: Canyon Dash title - the sun-and-mesa pennant wordmark over the attract canyon, a skewed PLAY button, the Endless button once the far rim has been reached, best distances and a ? toggle for the how-to-play card, and the Outfits button (coin wallet) that opens the Outfitter -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cdt { position: fixed; inset: 0; pointer-events: none; font-family: var(--cd-font); color: var(--cd-cream); }
+  .cdt [hidden] { display: none !important; }
+  .cdt-tint { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(220,115,55,.38) 0%, rgba(182,79,47,.12) 45%, rgba(29,20,12,0) 70%, rgba(29,20,12,.55) 100%); }
+  .cdt-mark { position: absolute; left: 50%; top: calc(70 * var(--u)); width: calc(1100 * var(--u)); height: calc(420 * var(--u)); margin-left: calc(-550 * var(--u)); animation: cdt-drop 350ms cubic-bezier(.3,1.5,.6,1) both; transform-origin: 50% 0; }
+  @keyframes cdt-drop { 0% { opacity: 0; transform: translateY(calc(-40 * var(--u))) rotate(3deg); } 70% { opacity: 1; transform: translateY(calc(4 * var(--u))) rotate(-1deg); } 100% { transform: none; } }
+  .cdt-sun { position: absolute; left: calc(420 * var(--u)); top: 0; width: calc(260 * var(--u)); height: calc(150 * var(--u)); }
+  .cdt-pennant { position: absolute; left: 0; top: calc(96 * var(--u)); width: calc(1100 * var(--u)); height: calc(360 * var(--u)); overflow: visible; }
+  .cdt-word { position: absolute; left: 0; right: 0; top: calc(150 * var(--u)); margin: 0; text-align: center; font: 400 calc(206 * var(--u))/1 var(--cd-font-display); letter-spacing: calc(4 * var(--u)); color: var(--cd-cream); transform: rotate(-4deg) skewX(-10deg); text-shadow: calc(10 * var(--u)) calc(10 * var(--u)) 0 var(--cd-shadow-ink); white-space: nowrap; }
+
+  .cdt-actions { position: absolute; left: 0; right: 0; top: calc(560 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(36 * var(--u)); }
+  .cdt-buttons { display: flex; flex-direction: column; align-items: center; gap: calc(36 * var(--u)); }
+  .cdt-play { padding: calc(10 * var(--u)) calc(120 * var(--u)); font-size: calc(96 * var(--u)); line-height: 1.15; letter-spacing: calc(6 * var(--u)); text-shadow: calc(5 * var(--u)) calc(5 * var(--u)) 0 var(--cd-rust-dark); animation: cdt-bob 2.4s ease-in-out 400ms infinite; }
+  .cdt-play::before { transform: skewX(-12deg); border-width: calc(6 * var(--u)); box-shadow: calc(14 * var(--u)) calc(14 * var(--u)) 0 var(--cd-brown); }
+  .cdt-play:active { transform: translate(calc(14 * var(--u)),calc(14 * var(--u))); animation: none; }
+  @keyframes cdt-bob { 0%, 80%, 100% { transform: translateY(0); } 90% { transform: translateY(-2px); } }
+  .cdt-endless { padding: calc(6 * var(--u)) calc(64 * var(--u)); font-size: calc(54 * var(--u)); line-height: 1.2; letter-spacing: calc(5 * var(--u)); color: var(--cd-rust-dark); }
+  .cdt-endless::before { transform: skewX(-12deg); background: var(--cd-cream); border-width: calc(5 * var(--u)); box-shadow: calc(10 * var(--u)) calc(10 * var(--u)) 0 var(--cd-brown); }
+  .cdt-endless:hover::before { background: #ffe9b0; }
+  .cdt-endless:active { transform: translate(calc(10 * var(--u)),calc(10 * var(--u))); }
+  .cdt-bests { display: flex; gap: calc(16 * var(--u)); }
+  .cdt-best { display: flex; align-items: baseline; gap: calc(14 * var(--u)); padding: calc(8 * var(--u)) calc(22 * var(--u)); background: rgba(51,37,24,.78); border-radius: calc(10 * var(--u)); }
+  .cdt-best span { font-size: calc(20 * var(--u)); font-weight: 900; letter-spacing: calc(3 * var(--u)); color: var(--cd-sand); }
+  .cdt-best b { font: 400 calc(40 * var(--u))/1.2 var(--cd-font-display); color: var(--cd-cream); }
+
+  .cdt-outfits { position: absolute; left: calc(64 * var(--u)); top: calc(56 * var(--u)); padding: calc(6 * var(--u)) calc(30 * var(--u)) calc(6 * var(--u)) calc(24 * var(--u)); gap: calc(14 * var(--u)); font-size: calc(44 * var(--u)); line-height: 1.2; letter-spacing: calc(4 * var(--u)); }
+  .cdt-outfits .cd-coin { width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+  .cdt-outfits b { font: 400 calc(40 * var(--u))/1.2 var(--cd-font-display); color: var(--cd-rust); letter-spacing: 2px; }
+  .cdt-helpwrap { position: absolute; right: calc(64 * var(--u)); top: calc(56 * var(--u)); display: flex; flex-direction: column; align-items: flex-end; gap: calc(22 * var(--u)); }
+  .cdt-q { width: calc(84 * var(--u)); height: calc(84 * var(--u)); box-sizing: border-box; margin: 0; padding: 0; display: flex; align-items: center; justify-content: center; border-radius: 50%; background: var(--cd-cream); border: calc(5 * var(--u)) solid var(--cd-rust-dark); box-shadow: calc(6 * var(--u)) calc(6 * var(--u)) 0 var(--cd-brown); font: 400 calc(50 * var(--u))/1 var(--cd-font-display); color: var(--cd-rust-dark); cursor: pointer; pointer-events: auto; -webkit-tap-highlight-color: transparent; transition: transform 70ms linear, box-shadow 70ms linear; }
+  .cdt-q[aria-expanded="true"] { background: var(--cd-sand); }
+  .cdt-q:active { transform: translate(calc(6 * var(--u)),calc(6 * var(--u))); box-shadow: 0 0 0 var(--cd-brown); }
+  .cdt-q:focus-visible { outline: calc(4 * var(--u)) solid var(--cd-cream); outline-offset: calc(5 * var(--u)); }
+  .cdt-help { width: calc(470 * var(--u)); box-sizing: border-box; padding: calc(28 * var(--u)) calc(32 * var(--u)); display: flex; flex-direction: column; gap: calc(18 * var(--u)); background: var(--cd-cream); border: calc(5 * var(--u)) solid var(--cd-rust-dark); box-shadow: calc(12 * var(--u)) calc(12 * var(--u)) 0 var(--cd-brown); color: var(--cd-brown); transform-origin: 100% 0; animation: cdt-help 160ms ease-out both; pointer-events: auto; }
+  .cdt-help[hidden] { display: none; }
+  @keyframes cdt-help { from { opacity: 0; transform: scale(.6); } to { opacity: 1; transform: none; } }
+  .cdt-help h2 { margin: 0; font: 400 calc(38 * var(--u))/1.1 var(--cd-font-display); letter-spacing: 2px; color: var(--cd-rust); }
+  .cdt-row { display: flex; align-items: center; gap: calc(18 * var(--u)); }
+  .cdt-key { min-width: calc(110 * var(--u)); box-sizing: border-box; text-align: center; font-weight: 900; font-size: calc(20 * var(--u)); letter-spacing: 2px; border: calc(3 * var(--u)) solid var(--cd-rust-dark); border-bottom-width: calc(7 * var(--u)); border-radius: calc(9 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)); background: var(--cd-cream-2); }
+  .cdt-key.is-arrow { font-size: calc(22 * var(--u)); letter-spacing: 0; padding: calc(4 * var(--u)) calc(14 * var(--u)); }
+  .cdt-chip { min-width: calc(168 * var(--u)); box-sizing: border-box; text-align: center; font-weight: 900; font-size: calc(24 * var(--u)); letter-spacing: 2px; color: var(--cd-cream); background: var(--cd-orange); border: calc(4 * var(--u)) solid var(--cd-rust-dark); border-radius: calc(16 * var(--u)); padding: calc(8 * var(--u)) calc(12 * var(--u)); }
+  .cdt-chip.is-duck { background: var(--cd-sandstone); }
+  .cdt-row em { font-style: normal; font-size: calc(28 * var(--u)); font-weight: 800; }
+  .cdt-rule { height: calc(3 * var(--u)); background: #e6c58c; }
+  .cdt-goal { margin: 0; font-size: calc(26 * var(--u)); font-weight: 800; line-height: 1.35; }
+
+  @media (pointer: coarse) {
+    .cdt-mark { top: calc(24 * var(--u)); width: calc(1040 * var(--u)); height: calc(400 * var(--u)); margin-left: calc(-520 * var(--u)); }
+    .cdt-sun { left: calc(396 * var(--u)); width: calc(248 * var(--u)); height: calc(144 * var(--u)); }
+    .cdt-pennant { top: calc(92 * var(--u)); width: calc(1040 * var(--u)); height: calc(340 * var(--u)); }
+    .cdt-word { top: calc(140 * var(--u)); font-size: calc(196 * var(--u)); letter-spacing: calc(4 * var(--u)); text-shadow: calc(10 * var(--u)) calc(10 * var(--u)) 0 var(--cd-shadow-ink); }
+    .cdt-actions { top: calc(472 * var(--u)); gap: calc(32 * var(--u)); }
+    .cdt-buttons { flex-direction: row; gap: calc(52 * var(--u)); }
+    .cdt-play { padding: calc(4 * var(--u)) calc(108 * var(--u)); font-size: calc(92 * var(--u)); line-height: 1.2; letter-spacing: calc(8 * var(--u)); text-shadow: calc(6 * var(--u)) calc(6 * var(--u)) 0 var(--cd-rust-dark); }
+    .cdt-play::before { border-width: calc(8 * var(--u)); box-shadow: calc(14 * var(--u)) calc(14 * var(--u)) 0 var(--cd-brown); }
+    .cdt-endless { padding: calc(4 * var(--u)) calc(60 * var(--u)); font-size: calc(64 * var(--u)); line-height: 1.3; letter-spacing: calc(6 * var(--u)); }
+    .cdt-endless::before { border-width: calc(8 * var(--u)); box-shadow: calc(12 * var(--u)) calc(12 * var(--u)) 0 var(--cd-brown); }
+    .cdt-endless:active { transform: translate(calc(12 * var(--u)),calc(12 * var(--u))); }
+    .cdt-bests { gap: calc(20 * var(--u)); }
+    .cdt-best { gap: calc(16 * var(--u)); padding: calc(6 * var(--u)) calc(24 * var(--u)); border-radius: calc(16 * var(--u)); }
+    .cdt-best span { font-size: calc(24 * var(--u)); letter-spacing: calc(4 * var(--u)); }
+    .cdt-best b { font-size: calc(40 * var(--u)); }
+    .cdt-outfits { left: max(calc(88 * var(--u)), calc(env(safe-area-inset-left, 0px) * 2)); top: calc(28 * var(--u)); font-size: calc(40 * var(--u)); padding: calc(4 * var(--u)) calc(26 * var(--u)) calc(4 * var(--u)) calc(22 * var(--u)); }
+    .cdt-helpwrap { right: max(calc(88 * var(--u)), calc(env(safe-area-inset-right, 0px) * 2)); top: calc(28 * var(--u)); gap: calc(20 * var(--u)); }
+    .cdt-q { width: calc(92 * var(--u)); height: calc(92 * var(--u)); border-width: calc(6 * var(--u)); box-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-brown); font-size: calc(56 * var(--u)); }
+    .cdt-q:active { transform: translate(calc(8 * var(--u)),calc(8 * var(--u))); }
+    .cdt-help { width: calc(480 * var(--u)); padding: calc(20 * var(--u)) calc(26 * var(--u)); gap: calc(14 * var(--u)); border-width: calc(6 * var(--u)); box-shadow: calc(12 * var(--u)) calc(12 * var(--u)) 0 var(--cd-brown); }
+    .cdt-help h2 { font-size: calc(38 * var(--u)); }
+    .cdt-chip { min-width: calc(164 * var(--u)); font-size: calc(22 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); border-radius: calc(14 * var(--u)); }
+    .cdt-row { gap: calc(20 * var(--u)); }
+    .cdt-row em { font-size: calc(30 * var(--u)); }
+    .cdt-rule { height: calc(4 * var(--u)); }
+    .cdt-goal { font-size: calc(26 * var(--u)); line-height: 1.25; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cdt-mark, .cdt-play, .cdt-help { animation: none; }
+  }
+</style>
+<div class="cdt">
+  <div class="cdt-tint"></div>
+  <div class="cdt-mark" aria-hidden="true">
+    <svg class="cdt-sun" viewBox="0 0 260 150" focusable="false">
+      <rect x="0" y="38" width="96" height="9" fill="#ffc979"/>
+      <rect x="22" y="58" width="74" height="9" fill="#ffc979"/>
+      <rect x="44" y="78" width="52" height="9" fill="#ffc979"/>
+      <circle cx="160" cy="72" r="48" fill="#ffcf49" stroke="#713829" stroke-width="7"/>
+      <polygon points="70,150 112,100 214,100 252,150" fill="#713829"/>
+    </svg>
+    <svg class="cdt-pennant" viewBox="0 0 1100 360" focusable="false">
+      <defs>
+        <linearGradient id="cdt-pennant-fill" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffc979"/><stop offset="0.38" stop-color="#ffc979"/>
+          <stop offset="0.38" stop-color="#dc7337"/><stop offset="0.7" stop-color="#dc7337"/>
+          <stop offset="0.7" stop-color="#b64f2f"/><stop offset="1" stop-color="#b64f2f"/>
+        </linearGradient>
+      </defs>
+      <polygon transform="translate(16,16)" points="30,30 1070,8 1038,70 1086,122 1030,176 1082,232 1034,290 1062,338 20,328 62,262 8,192 56,124 14,62" fill="#713829"/>
+      <polygon points="30,30 1070,8 1038,70 1086,122 1030,176 1082,232 1034,290 1062,338 20,328 62,262 8,192 56,124 14,62" fill="url(#cdt-pennant-fill)"/>
+    </svg>
+    <h1 class="cdt-word" data-text="title_name"></h1>
+  </div>
+
+  <div class="cdt-actions">
+    <div class="cdt-buttons">
+      <button class="cd-skew is-primary cdt-play" data-action="play" data-endless="false" data-key="Enter" data-text="title_journey"></button>
+      <button class="cd-skew cdt-endless" data-action="play" data-endless="true" data-show="endless_unlocked" data-text="title_endless"></button>
+    </div>
+    <div class="cdt-bests">
+      <div class="cdt-best" data-show="has_best"><span>BEST</span><b data-bind="best_journey"></b></div>
+      <div class="cdt-best" data-show="has_best_endless"><span>ENDLESS BEST</span><b data-bind="best_endless"></b></div>
+    </div>
+  </div>
+
+  <button class="cd-skew cdt-outfits" data-action="outfits" aria-label="Open the Outfitter">
+    <svg class="cd-coin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="#ffcf49" stroke="#713829" stroke-width="4"/><circle cx="26" cy="26" r="13" fill="none" stroke="#d99a1e" stroke-width="4"/></svg>
+    <span data-text="title_outfits"></span><b data-bind="wallet"></b>
+  </button>
+  <div class="cdt-helpwrap">
+    <button class="cdt-q" id="help-toggle" aria-label="How to play" aria-expanded="false">?</button>
+    <div class="cdt-help" id="help" hidden>
+      <h2>HOW TO PLAY</h2>
+      <div class="cdt-row d-only"><span class="cdt-key">SPACE</span><em>hop</em></div>
+      <div class="cdt-row d-only"><span class="cdt-key is-arrow">↓</span><em>duck / drop</em></div>
+      <div class="cdt-row m-only"><span class="cdt-chip">HOP</span><em>jump</em></div>
+      <div class="cdt-row m-only"><span class="cdt-chip is-duck">HOLD DUCK</span><em>slide / drop</em></div>
+      <div class="cdt-rule"></div>
+      <p class="cdt-goal">Collect coins. Reach the far rim.</p>
+    </div>
+  </div>
+</div>
+<script>
+  // Presentation only: the ? button opens the How to Play card.
+  (function () {
+    var button = document.getElementById('help-toggle'), help = document.getElementById('help');
+    button.addEventListener('click', function () {
+      help.hidden = !help.hidden;
+      button.setAttribute('aria-expanded', String(!help.hidden));
+    });
+  })();
+</script>

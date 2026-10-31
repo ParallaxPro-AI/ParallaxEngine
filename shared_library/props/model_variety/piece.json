@@ -1,0 +1,7 @@
+{
+  "id": "model_variety",
+  "summary": "Every copy of a prop or character looks different: picks Model option choices (skin, outfit, paint), material colours from palettes, a height spread and an animation-speed spread per instance — seeded, so replays and peers agree.",
+  "version": "2026.10.23",
+  "setup": ["Add { \"use\": \"model_variety\" } to the prefab: every option the model declares varies; narrow it with \"params\": { \"options\": [\"skin\"], \"choices\": {\"skin\": [\"light\", \"tan\"]} }."],
+  "replaces": ["lib:models/model_variety", "lib:units/unit_appearance"]
+}

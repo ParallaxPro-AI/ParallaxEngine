@@ -1,0 +1,11 @@
+{
+  "name": "Warlord",
+  "prefab": "enemy_tank_boss", "role": "boss",
+  "health": 1400, "armor": 25, "speed": 3, "damage": 70, "range": 60, "fire_interval": 5.0,
+  "detect": 65, "ride": 1.52, "standoff": 0.85, "shell_speed": 30, "spread": 2.86, "score": 1500,
+  "phases": [
+    { "at_health": 1.0, "name": "ARMORED" },
+    { "at_health": 0.6, "name": "BREACHED — the boss changes tactics!", "speed_mul": 1.5, "fire_interval_mul": 0.7, "salvo": 3, "spread": 8.02 },
+    { "at_health": 0.3, "name": "ENRAGED — the boss changes tactics!", "speed_mul": 2.0, "fire_interval_mul": 0.45, "salvo": 5, "spread": 11.46 }
+  ]
+}

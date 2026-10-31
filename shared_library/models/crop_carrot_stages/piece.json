@@ -1,0 +1,10 @@
+{
+  "id": "crop_carrot_stages",
+  "summary": "A 1 x 1 m plot of eight carrots in two rows on tilled soil, in four growth stages selected by the `stage` axi… options stage, bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crop_carrot_stages or place \"prefab\": \"crop_carrot_stages\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crop_carrot_stages"]
+}

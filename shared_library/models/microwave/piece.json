@@ -1,0 +1,10 @@
+{
+  "id": "microwave",
+  "summary": "Countertop microwave with a hinged door, a modelled cooking cavity, a glass window and an emissive display. joints door, turntable; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.microwave or place \"prefab\": \"microwave\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:microwave"]
+}

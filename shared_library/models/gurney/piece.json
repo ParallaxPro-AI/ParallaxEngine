@@ -1,0 +1,10 @@
+{
+  "id": "gurney",
+  "summary": "A hospital transport gurney / stretcher: a chrome tubular litter with a padded medical mattress on a height-a… joints lift, rail_l, rail_r, castor_0, castor_1, castor_2, …; sockets socket_patient, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gurney or place \"prefab\": \"gurney\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gurney"]
+}

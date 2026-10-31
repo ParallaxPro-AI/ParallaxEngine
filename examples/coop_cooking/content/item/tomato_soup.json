@@ -1,0 +1,2 @@
+{ "name": "Tomato Soup", "stage": 4, "task": "Deliver the soup", "hint": "to the blue window",
+  "carry_shape": "cylinder", "carry_color": "#f19e86", "carry_size": [0.34, 0.2, 0.34] }

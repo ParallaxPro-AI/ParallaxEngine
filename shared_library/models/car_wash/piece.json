@@ -1,0 +1,10 @@
+{
+  "id": "car_wash",
+  "summary": "A drive-through automatic car wash, 8.3 x 13.5 m: a painted blockwork wash bay with 4.5 m open archways at bo… joints brush_l, brush_r, brush_top; options accent_colour; sockets socket_wash_position, socket_pay, socket_entry, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_wash or place \"prefab\": \"car_wash\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_wash"]
+}

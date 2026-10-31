@@ -1,0 +1,10 @@
+{
+  "id": "dumpster",
+  "summary": "A 3 cubic-yard front-load commercial dumpster: a hollow welded steel body with a sloped front, a rolled top r… joints lid_l, lid_r; options paint, base, contents; sockets socket_contents, socket_fork_l, socket_fork_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dumpster or place \"prefab\": \"dumpster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dumpster"]
+}

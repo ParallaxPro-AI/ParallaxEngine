@@ -1,0 +1,10 @@
+{
+  "id": "jersey_barrier",
+  "summary": "A 3.0 m precast concrete safety-shape road barrier: the classic stepped profile (vertical toe, shallow lower… options finish, markers.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jersey_barrier or place \"prefab\": \"jersey_barrier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jersey_barrier"]
+}

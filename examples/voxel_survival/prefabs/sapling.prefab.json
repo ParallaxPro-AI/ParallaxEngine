@@ -1,0 +1,7 @@
+{
+  "components": { "model": { "model": "models/sapling" } },
+  "behaviors": {
+    "grows_tree": { "seconds": 210, "trunk": "wood_log", "leaves": "leaves",
+                    "trunk_height": 4, "crown_radius": 2 }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "game_controller",
+  "summary": "A generic twin-stick gamepad (original design, no branding or button glyphs): a smooth moulded body blended f… joints stick_l, stick_r, trigger_l, trigger_r; options colour, light.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.game_controller or place \"prefab\": \"game_controller\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:game_controller"]
+}

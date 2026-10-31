@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/razor_wire_fence"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.26, 2.31, 0.2473],
+      "offset": [0, 1.155, 0]
+    }
+  }
+}

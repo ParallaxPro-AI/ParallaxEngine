@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chef_knife"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0253, 0.045, 0.321],
+      "offset": [0, 0.0225, 0]
+    }
+  }
+}

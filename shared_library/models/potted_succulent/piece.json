@@ -1,0 +1,10 @@
+{
+  "id": "potted_succulent",
+  "summary": "A small potted succulent for a desk or windowsill: an echeveria rosette about 105 mm across of plump, pointed…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.potted_succulent or place \"prefab\": \"potted_succulent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:potted_succulent"]
+}

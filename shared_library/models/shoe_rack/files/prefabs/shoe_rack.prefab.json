@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shoe_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.808, 0.591, 0.3235],
+      "offset": [0, 0.2945, 0.0097]
+    }
+  }
+}

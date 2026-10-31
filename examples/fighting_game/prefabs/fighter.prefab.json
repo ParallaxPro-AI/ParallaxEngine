@@ -1,0 +1,44 @@
+{
+  "components": {
+    "model": {
+      "model": "models/striker",
+      "options": {
+        "skin": "tan",
+        "kit": "bone",
+        "trim": "crimson",
+        "hair": "black"
+      },
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/guard"
+    },
+    "character": {
+      "mode": "3d",
+      "walk_speed": 3.6,
+      "acceleration": 60,
+      "jump_height": 1.15,
+      "air_control": 1,
+      "face_movement": false,
+      "radius": 0.35,
+      "height": 1.8
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.35,
+      "height": 1.8,
+      "layer": "fighter",
+      "collides_with": [
+        "fighter",
+        "stage"
+      ]
+    },
+    "health": {
+      "current": 100,
+      "max": 100,
+      "destroy_on_death": false
+    },
+    "fighter": {},
+    "intent": {}
+  }
+}

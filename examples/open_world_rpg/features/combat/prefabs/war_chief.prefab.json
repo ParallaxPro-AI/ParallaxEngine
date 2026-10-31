@@ -1,0 +1,71 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gatekeeper"
+    },
+    "nav_agent": {
+      "speed": 2.6,
+      "radius": 0.8
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.8,
+      "height": 2.9,
+      "offset": [
+        0,
+        1.45,
+        0
+      ]
+    },
+    "health": {
+      "current": 500,
+      "max": 500
+    },
+    "threat": {},
+    "nameplate": {
+      "text": "The Gatekeeper",
+      "offset": [
+        0,
+        2.6,
+        0
+      ],
+      "range": 35,
+      "color": "#e2584a"
+    },
+    "affinity": {
+      "multipliers": {
+        "arcane": 2.0,
+        "physical": 0.65
+      }
+    },
+    "bounty": {
+      "gold_min": 200,
+      "gold_max": 320,
+      "xp": 400,
+      "loot": "champion",
+      "gear": [
+        "gatekeeper_plate",
+        "lantern_sunstone"
+      ]
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    }
+  },
+  "tags": [
+    "hostile",
+    "boss"
+  ],
+  "behaviors": {
+    "encounter_enemy": {
+      "attacks": [
+        "gatekeeper_cleave",
+        "gatekeeper_cleave",
+        "gatekeeper_slam"
+      ],
+      "damage": 30,
+      "reach": 4.5,
+      "poise": 0.5
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cash_register"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.434, 0.578, 0.4805],
+      "offset": [0, 0.289, 0.0187]
+    }
+  }
+}

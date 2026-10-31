@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_cape"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.69, 1.281, 0.3013],
+      "offset": [0, 0.9025, -0.2203]
+    }
+  }
+}

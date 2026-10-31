@@ -1,0 +1,10 @@
+{
+  "id": "game_console",
+  "summary": "A generic home video-game console (original design, no branding): a dark chamfered base with cut side vents… joints power_button, disc_tray; options shell, light; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.game_console or place \"prefab\": \"game_console\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:game_console"]
+}

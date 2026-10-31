@@ -1,0 +1,10 @@
+{
+  "id": "voodoo_doll",
+  "summary": "A hand-sewn burlap curse poppet, 0.25 m tall: a stuffed hessian figure with stub arms and legs, twine cinched… options cloth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.voodoo_doll or place \"prefab\": \"voodoo_doll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:voodoo_doll"]
+}

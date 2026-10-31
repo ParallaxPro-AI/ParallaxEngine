@@ -1,0 +1,10 @@
+{
+  "id": "space_cruiser_capital",
+  "summary": "An original capital-class space cruiser. joints turret_fore_a, turret_fore_b, turret_aft, turret_side_l, turret_side_r, thrust; options hull, accent; sockets engine_0, engine_1, engine_2, engine_3, engine_4.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_cruiser_capital or place \"prefab\": \"space_cruiser_capital\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_cruiser_capital"]
+}

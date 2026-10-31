@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/throwing_axe"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.36, 0.3],
+      "hip_turn": [-14.896903, -22.918312, -35.523383],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.134, 0.0362, 0.403],
+      "offset": [0.037, 0, 0.2015]
+    }
+  }
+}

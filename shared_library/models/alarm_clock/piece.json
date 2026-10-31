@@ -1,0 +1,10 @@
+{
+  "id": "alarm_clock",
+  "summary": "A classic 0.12 m twin-bell wind-up alarm clock: a lacquered drum case with a chromed bezel and crystal, a whi… joints alarm_hand, hour_hand, minute_hand, second_hand, hammer; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alarm_clock or place \"prefab\": \"alarm_clock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alarm_clock"]
+}

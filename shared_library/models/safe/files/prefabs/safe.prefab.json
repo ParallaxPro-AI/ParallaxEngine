@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/safe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.743, 0.706, 0.6525],
+      "offset": [0, 0.35, 0.0198]
+    }
+  }
+}

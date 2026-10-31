@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mars_rover"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 900,
+      "linear_damping": 0.08,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.94,
+        2.44,
+        3.1684
+      ],
+      "offset": [
+        0,
+        1.22,
+        -0.1992
+      ],
+      "bounce": 0.02
+    },
+    "vehicle": {
+      "max_speed": 1.5,
+      "steering": 35,
+      "grip": 4,
+      "turn_rate": 0.8
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.22,
+        -0.1992
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

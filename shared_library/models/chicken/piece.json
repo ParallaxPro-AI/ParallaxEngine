@@ -1,0 +1,10 @@
+{
+  "id": "chicken",
+  "summary": "A plump farmyard hen: a deep egg-shaped body with folded wing coverts, an articulated neck carrying a small h… joints neck, leg_l, leg_r; options plumage; sockets socket_back, socket_perch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chicken or place \"prefab\": \"chicken\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chicken"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_rock_a"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9362, 0.595, 0.8384],
+      "offset": [-0.0393, 0.2975, 0]
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "number": 3, "name": "Frozen Comb", "tagline": "Swift, cold-resistant foes", "land": "#456d7d", "scene": "frozen", "unlocked_by": "desert",
+  "start_gold": 450, "start_lives": 16,
+  "hp_mul": 1.7, "speed_mul": 1.1, "armor_add": 2, "bounty_mul": 1.2,
+  "waves": ["wave_01", "wave_02", "frozen_03", "wave_04", "wave_05", "wave_06", "wave_07", "frozen_08", "wave_09", "wave_10", "wave_11", "wave_12", "wave_13", "wave_14"]
+}

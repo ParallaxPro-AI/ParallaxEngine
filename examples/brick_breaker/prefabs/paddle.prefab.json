@@ -1,0 +1,11 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [2.4, 0.5, 0.6], "color": "#a0daff" },
+    "rigidbody": { "kind": "kinematic" },
+    "collider": { "shape": "box", "size": [2.4, 2, 0.6], "friction": 0, "bounce": 1 }
+  },
+  "tags": ["paddle"],
+  "behaviors": {
+    "paddle_control": { "speed": 14, "half_width": 1.2, "rail_x": 9.0 }
+  }
+}

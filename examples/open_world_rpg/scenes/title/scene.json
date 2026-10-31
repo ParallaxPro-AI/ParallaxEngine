@@ -1,0 +1,754 @@
+{
+  "ui": [
+    "title"
+  ],
+  "environment": {
+    "sky": "atmosphere",
+    "time_of_day": 14.5,
+    "sun": {
+      "direction": [
+        0.4,
+        -0.8,
+        0.3
+      ],
+      "color": "#fff9ed",
+      "intensity": 2.3
+    },
+    "ambient": "#adbac8",
+    "clouds": {
+      "density": 0.35
+    },
+    "weather": {
+      "preset": "clear",
+      "clouds": 0.22
+    },
+    "post": {
+      "saturation": 1.12,
+      "contrast": 1.08,
+      "bloom": 0.02,
+      "vignette": 0.16
+    },
+    "atmosphere": {
+      "haze": 1.1
+    }
+  },
+  "terrain": {
+    "size": [
+      480,
+      480
+    ],
+    "resolution": 128,
+    "base_height": 8,
+    "noise": [
+      {
+        "kind": "fbm",
+        "amplitude": 1.2,
+        "wavelength": 50,
+        "octaves": 3,
+        "seed": 7
+      }
+    ],
+    "hills": [
+      {
+        "center": [
+          -125,
+          70
+        ],
+        "radius": 91,
+        "height": 28,
+        "feather": 55
+      },
+      {
+        "center": [
+          125,
+          120
+        ],
+        "radius": 91,
+        "height": 35,
+        "feather": 55
+      },
+      {
+        "center": [
+          0,
+          210
+        ],
+        "radius": 75,
+        "height": 45,
+        "feather": 45
+      }
+    ],
+    "flats": [
+      {
+        "center": [
+          0,
+          -12
+        ],
+        "size": [
+          135,
+          165
+        ],
+        "height": 8,
+        "feather": 12
+      },
+      {
+        "center": [
+          0,
+          115
+        ],
+        "size": [
+          90,
+          135
+        ],
+        "height": 8,
+        "feather": 15
+      }
+    ],
+    "water_level": 0,
+    "layers": [
+      {
+        "name": "grass",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/cf/a4/cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a.jpg",
+        "tile": 6,
+        "roughness": 0.95,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/03/dc/03dc0449bb5dcac7819b62ca7a272f6160118c13537a1b31b01fedf3e4ee597b.jpg"
+      },
+      {
+        "name": "dirt",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/58/af/58af2e40100f7f405703a86d593af64379f822c4786850def23ecfc921450d54.jpg",
+        "tile": 5,
+        "roughness": 0.9,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/19/ca/19ca020fbffa44cb041d5f2e9cfeec25ab9d18a3a381c9f8d509339fb406bde9.jpg"
+      },
+      {
+        "name": "stone",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/42/93/429315865fd89c150272592f6d93def174c6f69804a565ff08e53627a885579b.jpg",
+        "tile": 5,
+        "roughness": 0.9,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/84/df/84df2a6c3329566302d248509694bfec3f3ea1000b27ff11b173408c0fdf867d.jpg"
+      },
+      {
+        "name": "cobble",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/42/93/429315865fd89c150272592f6d93def174c6f69804a565ff08e53627a885579b.jpg",
+        "tile": 2.5,
+        "roughness": 0.8,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/84/df/84df2a6c3329566302d248509694bfec3f3ea1000b27ff11b173408c0fdf867d.jpg"
+      }
+    ],
+    "default_layer": "grass",
+    "paint": [
+      {
+        "layer": "cobble",
+        "center": [
+          0,
+          -45
+        ],
+        "radius": 18,
+        "feather": 3
+      },
+      {
+        "layer": "dirt",
+        "center": [
+          0,
+          15
+        ],
+        "size": [
+          35,
+          28
+        ],
+        "feather": 4
+      },
+      {
+        "layer": "dirt",
+        "center": [
+          -12,
+          65
+        ],
+        "radius": 15,
+        "feather": 3
+      },
+      {
+        "layer": "stone",
+        "center": [
+          0,
+          125
+        ],
+        "size": [
+          46,
+          82
+        ],
+        "feather": 3
+      }
+    ],
+    "paths": [
+      {
+        "paint": "dirt",
+        "points": [
+          [
+            0,
+            -78
+          ],
+          [
+            0,
+            -45
+          ],
+          [
+            0,
+            -15
+          ],
+          [
+            -6,
+            15
+          ],
+          [
+            -12,
+            40
+          ],
+          [
+            -12,
+            65
+          ],
+          [
+            0,
+            85
+          ],
+          [
+            0,
+            160
+          ]
+        ],
+        "width": 7,
+        "feather": 2
+      },
+      {
+        "paint": "cobble",
+        "points": [
+          [
+            -32,
+            -43
+          ],
+          [
+            0,
+            -43
+          ],
+          [
+            30,
+            -43
+          ]
+        ],
+        "width": 5,
+        "feather": 1
+      }
+    ]
+  },
+  "foliage": {
+    "layers": [
+      {
+        "id": "meadow_grass",
+        "kind": "grass",
+        "on": "grass",
+        "density": 12,
+        "blade_height": [
+          0.18,
+          0.26
+        ],
+        "seed": 71
+      },
+      {
+        "id": "woodland",
+        "kind": "tree",
+        "species": "broadleaf",
+        "on": "grass",
+        "density": 0.002,
+        "max": 160,
+        "scale": [
+          0.85,
+          1.15
+        ],
+        "seed": 72,
+        "collide": true
+      },
+      {
+        "id": "undergrowth",
+        "kind": "bush",
+        "on": "grass",
+        "density": 0.001,
+        "max": 65,
+        "scale": [
+          0.5,
+          0.8
+        ],
+        "seed": 73
+      }
+    ]
+  },
+  "entities": [
+    {"prefab": "sun_fill", "rotation": [0, -140, 0]},
+    {
+      "id": "title_camera",
+      "prefab": "camera",
+      "at": [
+        0,
+        12.35,
+        -70.27
+      ],
+      "rotation": [
+        19,
+        0,
+        0
+      ],
+      "components": {
+        "camera": {
+          "rig": "fixed"
+        }
+      }
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        0,
+        8,
+        -62
+      ],
+      "components": {
+        "model": {
+          "model": "models/sundermere_hero"
+        },
+        "animator": {
+          "default_clip": "clips/stand_idle"
+        }
+      }
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        2.5,
+        8,
+        -64
+      ],
+      "scale": 1.35,
+      "components": {
+        "model": {
+          "model": "models/ember"
+        },
+        "animator": {
+          "default_clip": "clips/quadruped_idle"
+        }
+      }
+    },
+    {
+      "prefab": "banner",
+      "at": [
+        -8,
+        8,
+        -15
+      ],
+      "scale": 1.5
+    },
+    {
+      "prefab": "banner",
+      "at": [
+        8,
+        8,
+        -15
+      ],
+      "scale": 1.5
+    },
+    {
+      "prefab": "barrel",
+      "at": [
+        -29,
+        8,
+        -52
+      ],
+      "scale": 1.2
+    },
+    {
+      "prefab": "barrel",
+      "at": [
+        -23,
+        8,
+        -36
+      ],
+      "scale": 1.2
+    },
+    {
+      "prefab": "barrel",
+      "at": [
+        28,
+        8,
+        -54
+      ],
+      "scale": 1.2
+    },
+    {
+      "prefab": "bell_tower",
+      "at": [
+        -35,
+        8,
+        -72
+      ],
+      "scale": 0.65
+    },
+    {
+      "prefab": "bench",
+      "at": [
+        -12,
+        8,
+        -43
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "scale": 4.5
+    },
+    {
+      "prefab": "bench",
+      "at": [
+        12,
+        8,
+        -43
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "scale": 4.5
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        -18,
+        8,
+        -69
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        18,
+        8,
+        -70
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        -43,
+        8,
+        -48
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        43,
+        8,
+        -44
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        -43,
+        8,
+        -15
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        44,
+        8,
+        -16
+      ],
+      "scale": 2.24
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        -37.8,
+        8,
+        -9
+      ],
+      "scale": 1.899
+    },
+    {
+      "prefab": "common_tree",
+      "at": [
+        32.91,
+        8,
+        -9
+      ],
+      "scale": 2.172
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        -12,
+        8,
+        -55
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        10,
+        8,
+        -54
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        -19,
+        8,
+        -29
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        18,
+        8,
+        -28
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        -28,
+        8,
+        -64
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "flowers",
+      "at": [
+        23,
+        8,
+        -68
+      ],
+      "scale": 0.8
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        8,
+        8,
+        -56
+      ]
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        -9,
+        8,
+        -28
+      ]
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        9,
+        8,
+        -28
+      ]
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        -10,
+        8,
+        -8
+      ]
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        10,
+        8,
+        -8
+      ]
+    },
+    {
+      "prefab": "lantern_post",
+      "at": [
+        -8,
+        8,
+        -56
+      ]
+    },
+    {
+      "prefab": "market",
+      "at": [
+        -29,
+        8,
+        -44
+      ],
+      "rotation": [
+        0,
+        -90,
+        0
+      ],
+      "scale": 0.7
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        -82.42,
+        8,
+        -35.3
+      ],
+      "scale": 1.416
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        -83.06,
+        8,
+        -52.36
+      ],
+      "scale": 2.174
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        -66.56,
+        8,
+        -41.21
+      ],
+      "scale": 1.715
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        54.07,
+        8,
+        -4.47
+      ],
+      "scale": 1.476
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        68.55,
+        8,
+        -58.95
+      ],
+      "scale": 1.474
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        -87.92,
+        8,
+        -58.17
+      ],
+      "scale": 1.335
+    },
+    {
+      "prefab": "scenery",
+      "at": [
+        -76.13,
+        8,
+        -27.03
+      ],
+      "scale": 1.883
+    },
+    {
+      "prefab": "sail_windmill",
+      "at": [
+        39,
+        8,
+        -74
+      ],
+      "scale": 1.2
+    },
+    {
+      "prefab": "village_fountain",
+      "at": [
+        0,
+        8,
+        -39
+      ],
+      "scale": 1.1
+    },
+    {
+      "prefab": "blacksmith",
+      "at": [
+        30.0,
+        8.05,
+        -52.5
+      ]
+    },
+    {
+      "prefab": "cottage_a",
+      "at": [
+        -29.5,
+        8.05,
+        -64.5
+      ]
+    },
+    {
+      "prefab": "cottage_a",
+      "at": [
+        -29.5,
+        8.05,
+        -22.5
+      ]
+    },
+    {
+      "prefab": "cottage_a",
+      "at": [
+        28.5,
+        8.05,
+        -64.5
+      ]
+    },
+    {
+      "prefab": "cottage_a",
+      "at": [
+        30.5,
+        8.05,
+        -12.5
+      ]
+    },
+    {
+      "prefab": "cottage_b",
+      "at": [
+        -28.0,
+        8.05,
+        -5.0
+      ]
+    },
+    {
+      "prefab": "cottage_b",
+      "at": [
+        30.0,
+        8.05,
+        -35.0
+      ]
+    },
+    {
+      "prefab": "inn",
+      "at": [
+        -29.0,
+        8.05,
+        -42.0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "bollard",
+  "summary": "A steel street bollard with a domed cap and a reflective safety band. joints riser; options mount.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bollard or place \"prefab\": \"bollard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bollard"
+  ]
+}

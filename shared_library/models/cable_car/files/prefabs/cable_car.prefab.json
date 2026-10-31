@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cable_car"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.117, 3.84, 1.854],
+      "offset": [0.0315, 1.92, 0]
+    }
+  }
+}

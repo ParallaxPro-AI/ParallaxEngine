@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6573, 1.9865, 0.5079],
+      "offset": [0, 0.9913, -0.0829]
+    }
+  }
+}

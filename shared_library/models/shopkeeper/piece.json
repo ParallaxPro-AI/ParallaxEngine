@@ -1,0 +1,10 @@
+{
+  "id": "shopkeeper",
+  "summary": "A middle-aged shopkeeper in a bottle-green bib apron (waist tie bowed at the back, neck straps, a name badge… options skin, hair, apron_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shopkeeper or place \"prefab\": \"shopkeeper\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shopkeeper"]
+}

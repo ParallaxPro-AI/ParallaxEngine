@@ -1,0 +1,10 @@
+{
+  "id": "samurai",
+  "summary": "A rigged feudal-era samurai on the canonical 17-bone humanoid rig (forked from `cowboy`/`civilian`): laced la… options skin, hair, lacing, headwear; sockets eye_point, grip_r, grip_l, sling_back, pack_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.samurai or place \"prefab\": \"samurai\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:samurai"]
+}

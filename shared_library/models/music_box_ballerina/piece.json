@@ -1,0 +1,10 @@
+{
+  "id": "music_box_ballerina",
+  "summary": "An antique wind-up music box, 17 x 12 cm: a French-polished walnut case with bombe (gently swelling) rounded… joints lid, dancer, key; options wood, lining; sockets socket_tune.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.music_box_ballerina or place \"prefab\": \"music_box_ballerina\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:music_box_ballerina"]
+}

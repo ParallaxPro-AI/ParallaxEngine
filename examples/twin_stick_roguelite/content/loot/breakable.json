@@ -1,0 +1,5 @@
+{ "rolls": 1, "drops": [
+  { "item": "coin", "weight": 28 },
+  { "item": "heart", "weight": 8 },
+  { "item": null, "weight": 64 }
+] }

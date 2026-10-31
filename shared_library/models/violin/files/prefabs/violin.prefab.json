@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/violin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.241, 0.583, 0.0488],
+      "offset": [0.0155, 0.2955, 0.0054]
+    }
+  }
+}

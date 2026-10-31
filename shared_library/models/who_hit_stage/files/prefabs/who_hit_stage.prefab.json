@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/who_hit_stage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [18, 3.7, 14.595],
+      "offset": [0, 1.85, 0.8525]
+    }
+  }
+}

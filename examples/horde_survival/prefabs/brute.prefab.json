@@ -1,0 +1,1 @@
+{ "extends": "foe", "pool": 60, "scale": [0.7217, 0.7217, 0.7217], "components": { "model": { "model": "models/ash_titan", "cast_shadows": true }, "animator": { "default_clip": "clips/walk_cycle" }, "health_bar": { "offset": [0, 2.4, 0] } } }

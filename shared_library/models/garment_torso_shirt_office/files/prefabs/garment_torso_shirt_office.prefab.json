@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_shirt_office"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.376, 0.676, 0.2766],
+      "offset": [0, 1.218, 0.0052]
+    }
+  }
+}

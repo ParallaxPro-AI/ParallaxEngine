@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/waiting_room_chairs"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.395, 0.8869, 0.568],
+      "offset": [0, 0.4434, -0.02]
+    }
+  }
+}

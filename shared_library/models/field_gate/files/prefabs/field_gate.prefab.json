@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/field_gate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.2815, 1.45, 0.145],
+      "offset": [0.0008, 0.725, 0.0025]
+    }
+  }
+}

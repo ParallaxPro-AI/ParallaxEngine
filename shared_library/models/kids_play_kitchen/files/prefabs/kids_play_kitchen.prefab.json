@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kids_play_kitchen"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.89, 0.98, 0.394],
+      "offset": [0, 0.49, 0.027]
+    }
+  }
+}

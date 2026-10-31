@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="garden.css">
+<div id="garden-hud" class="ld-root" data-class-ld-reduced="reduced_motion">
+  <div class="top">
+    <div class="pollen"><span class="coin">✺</span><span class="balance" data-bind="pollen"></span><span class="unit" data-text="pollen_unit"></span></div>
+    <div class="chapter glass">
+      <span class="wave"><span class="long" data-bind="wave_label"></span><span class="short" data-bind="wave_short"></span></span>
+      <span class="gtitle" data-bind="level_title"></span>
+      <div class="segs" data-each="segments">
+        <template><i><b data-style-width="fill"></b></i></template>
+      </div>
+    </div>
+    <div class="right">
+      <div class="health glass">
+        <div class="hrow"><span data-text="garden_label"></span><b class="hpct" data-bind="health_label"></b></div>
+        <div class="hbar"><b data-style-width="health_width" data-style-background-color="health_color"></b></div>
+        <span class="status" data-bind="status"></span>
+      </div>
+      <button class="pause" data-action="pause" aria-label="Pause game"><b>Ⅱ</b><span data-text="pause"></span></button>
+    </div>
+  </div>
+  <div class="notice-wrap"><div class="notice" data-class-show="notice_shown" data-class-danger="danger" data-bind="notice"></div></div>
+  <div class="message glass" data-show="message"><span data-bind="message"></span></div>
+  <div class="tray">
+    <div class="seeds">
+      <div class="ld-list" data-each="seeds">
+        <template>
+          <button class="card" data-action="choose_seed" data-class-armed="armed" data-class-unready="unready"
+                  data-class-broke="broke" data-style---tint="tint">
+            <span class="band"><span class="key" data-bind="key"></span></span>
+            <i data-attr-class="art"></i>
+            <span class="name" data-bind="name"></span>
+            <span class="cost"><span class="desk">✺ <span data-bind="cost"></span></span><span class="mob" data-bind="cost"></span></span>
+            <span class="veil" data-style-height="veil"></span>
+            <span class="rech" data-show="cooling" data-bind="recharge_label"></span>
+          </button>
+        </template>
+      </div>
+      <button class="card trowel" data-action="dig" data-class-armed="trowel_armed" style="--tint:#e7d8ac">
+        <span class="band"><span class="key" data-bind="trowel_key"></span></span>
+        <i class="art ld-a-trowel"></i>
+        <span class="name" data-text="trowel"></span>
+        <span class="cost"><span class="desk" data-text="dig_up"></span><span class="mob" data-text="dig"></span></span>
+      </button>
+    </div>
+    <div class="divider" data-show="divider"></div>
+    <div class="tools">
+      <button class="card water" data-show="irrigation" data-action="water" data-class-armed="water_armed"
+              data-class-live="water_live" data-class-unready="water_unready" aria-label="Irrigate a row">
+        <span class="band"></span><i class="art ld-a-water"></i><span class="name" data-text="irrigate"></span>
+        <span class="cost" data-bind="water_label"></span>
+      </button>
+      <button class="card cancel" data-show="armed" data-action="cancel" aria-label="Cancel seed">
+        <span class="band"></span><i class="art ld-a-cancel"></i><span class="name" data-text="cancel"></span>
+        <span class="cost">ESC</span>
+      </button>
+    </div>
+  </div>
+</div>

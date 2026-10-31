@@ -1,0 +1,10 @@
+{
+  "id": "cement_mixer",
+  "summary": "A portable electric cement mixer: a hollow pear-shaped drum on a wheeled A-frame stand, a motor/gearbox at th… joints drum_tip, drum_spin; sockets socket_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cement_mixer or place \"prefab\": \"cement_mixer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cement_mixer"]
+}

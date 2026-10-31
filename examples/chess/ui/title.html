@@ -1,0 +1,84 @@
+<!-- Ported from the template: Chess title screen - tournament-hall card with a board-square strip, the saved win/loss/draw record and Easy/Medium/Hard difficulty buttons that start the game -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .tt { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(12,10,9,.55); pointer-events: auto; animation: cx-fade var(--cx-t-slow) var(--cx-ease) both; }
+  .tt-card {
+    display: flex; width: min(calc(1240 * var(--cx-u)), calc(100cqw - 32px)); height: calc(700 * var(--cx-u)); max-height: calc(100cqh - 16px);
+    background: var(--cx-bg-1); border: 1px solid var(--cx-line-2); box-shadow: var(--cx-shadow-modal);
+  }
+  .tt-strip { flex: none; width: calc(88 * var(--cx-u)); display: grid; grid-template-rows: repeat(8, 1fr); border-right: 1px solid var(--cx-line-2); }
+  .tt-strip i { display: grid; place-items: center; font-style: normal; font-family: var(--cx-f-glyph); font-size: var(--cx-fs-strip); line-height: 1; }
+  .tt-strip i:nth-child(odd) { background: var(--cx-sq-light); color: var(--cx-bg-2); }
+  .tt-strip i:nth-child(even) { background: var(--cx-sq-dark); color: var(--cx-ink); }
+  .tt-body { flex: 1; min-width: 0; padding: calc(56 * var(--cx-u)) calc(72 * var(--cx-u)); display: flex; flex-direction: column; }
+  .tt-left { display: flex; flex-direction: column; min-width: 0; }
+  .tt-title { font: 500 var(--cx-fs-title)/.9 var(--cx-f-display); letter-spacing: .16em; margin-top: var(--cx-s-7); }
+  .tt-sub { font: italic 400 var(--cx-fs-sub)/1.2 var(--cx-f-display); color: var(--cx-ink-2); margin-top: var(--cx-s-3); }
+  .tt-record { display: flex; flex-wrap: wrap; align-items: center; gap: var(--cx-s-2) var(--cx-s-3); margin-top: var(--cx-s-6); }
+  .tt-dot { color: var(--cx-ink-3); font-style: normal; }
+  .tt-choose { margin-top: auto; }
+  .tt-diffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--cx-s-4); margin-top: var(--cx-s-4); }
+  .tt-diff { height: calc(96 * var(--cx-u)); justify-content: space-between; padding: 0 var(--cx-s-6); font-size: calc(36 * var(--cx-u)); }
+  .tt-lvl { display: flex; gap: calc(6 * var(--cx-u)); flex: none; }
+  .tt-lvl b { width: calc(8 * var(--cx-u)); height: calc(8 * var(--cx-u)); border: 1px solid var(--cx-ink-3); transform: rotate(45deg); transition: all var(--cx-t-fast); }
+  .tt-lvl b.on { background: var(--cx-ink-2); border-color: var(--cx-ink-2); }
+  .tt-diff:hover, .tt-diff:focus-visible, .tt-diff.is-active { border-color: var(--cx-accent); background: var(--cx-bg-3); }
+  .tt-diff:hover .tt-lvl b.on, .tt-diff:focus-visible .tt-lvl b.on, .tt-diff.is-active .tt-lvl b.on { background: var(--cx-accent); border-color: var(--cx-accent); }
+  .tt-dd { display: none; }
+  .tt-desc { font: italic 400 var(--cx-fs-body)/1.35 var(--cx-f-display); color: var(--cx-ink-2); margin-top: var(--cx-s-4); min-height: 2.7em; text-wrap: pretty; }
+
+  @container (max-height: 500px) {
+    .tt { background: rgba(12,10,9,.62); }
+    .tt-card { width: min(calc(796 * var(--cx-u)), calc(100cqw - 2 * max(16px, env(safe-area-inset-left, 0px)))); height: calc(350 * var(--cx-u)); }
+    .tt-strip { width: calc(44 * var(--cx-u)); }
+    .tt-body { padding: calc(24 * var(--cx-u)) calc(28 * var(--cx-u)); display: grid; grid-template-columns: 1fr 1.2fr; gap: var(--cx-s-7); }
+    .tt-chip { display: none; }
+    .tt-title { margin-top: var(--cx-s-4); }
+    .tt-record { margin-top: auto; }
+    .tt-left { height: 100%; }
+    .tt-choose { margin-top: 0; display: flex; flex-direction: column; min-height: 0; }
+    .tt-diffs { display: flex; flex-direction: column; gap: var(--cx-s-2); margin-top: var(--cx-s-3); }
+    .tt-diff { height: auto; min-height: 44px; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 3px var(--cx-s-3); padding: calc(9 * var(--cx-u)) calc(14 * var(--cx-u)); text-align: left; font-size: calc(20 * var(--cx-u)); font-weight: 600; }
+    .tt-dd { display: block; grid-column: 1 / -1; font: italic 400 calc(12.5 * var(--cx-u))/1.3 var(--cx-f-display); color: var(--cx-ink-2); letter-spacing: 0; }
+    .tt-desc { display: none; }
+  }
+</style>
+<div class="cx-root tt">
+  <main class="tt-card">
+    <div class="tt-strip" aria-hidden="true"><i>&#9812;&#xFE0E;</i><i></i><i>&#9822;&#xFE0E;</i><i></i><i>&#9820;&#xFE0E;</i><i></i><i>&#9817;&#xFE0E;</i><i></i></div>
+    <div class="tt-body">
+      <div class="tt-left">
+        <div class="cx-row"><span class="cx-label" data-text="subtitle"></span><span class="cx-chip tt-chip" data-bind="record"></span></div>
+        <h1 class="tt-title">CHESS</h1>
+        <p class="tt-sub">You vs the AI</p>
+        <div class="tt-record"><span class="cx-chip"><strong data-bind="wins"></strong><span data-bind="wins_label"></span></span><i class="tt-dot">&middot;</i><span class="cx-chip"><strong data-bind="losses"></strong><span data-bind="losses_label"></span></span><i class="tt-dot">&middot;</i><span class="cx-chip"><strong data-bind="draws"></strong><span data-bind="draws_label"></span></span></div>
+      </div>
+      <div class="tt-choose">
+        <div class="cx-label" data-text="choose_difficulty"></div>
+        <div class="tt-diffs" data-each="difficulties">
+          <template>
+            <button class="cx-btn tt-diff" data-action="choose"><span data-bind="name"></span><span class="tt-lvl" aria-hidden="true"><b class="on"></b><b data-class-on="two"></b><b data-class-on="three"></b></span><span class="tt-dd" data-bind="blurb"></span></button>
+          </template>
+        </div>
+        <p class="tt-desc" id="tt-desc" aria-live="polite" data-text="start_hint"></p>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+  // Presentation only: hovering a difficulty shows its blurb under the buttons.
+  (function () {
+    var desc = document.getElementById('tt-desc'), idle = null;
+    function show(btn) {
+      if (idle === null) idle = desc.textContent;
+      desc.textContent = btn.querySelector('.tt-dd').textContent;
+      document.querySelectorAll('.tt-diff').forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+    }
+    function reset() {
+      if (idle !== null) desc.textContent = idle;
+      document.querySelectorAll('.tt-diff').forEach(function (b) { b.classList.remove('is-active'); });
+    }
+    document.addEventListener('mouseover', function (e) { var b = e.target.closest && e.target.closest('.tt-diff'); if (b) show(b); });
+    document.addEventListener('mouseout', function (e) { var b = e.target.closest && e.target.closest('.tt-diff'); if (b && !b.contains(e.relatedTarget)) reset(); });
+  })();
+</script>

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/limousine"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2700,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.05,
+        1.5026,
+        6.4632
+      ],
+      "offset": [
+        0,
+        0.7513,
+        -0.0014
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 34,
+      "steering": 30,
+      "grip": 8,
+      "turn_rate": 1.3
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.7513,
+        -0.0014
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "military_radio",
+  "summary": "A field radio set: an olive-drab receiver-transmitter on a latched battery box, its recessed front panel carr… joints tune_mhz, tune_khz, function_knob, volume_knob, antenna; options housing; sockets handset, operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.military_radio or place \"prefab\": \"military_radio\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:military_radio"]
+}

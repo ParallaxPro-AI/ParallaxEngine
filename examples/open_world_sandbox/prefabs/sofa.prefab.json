@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/sofa", "cast_shadows": true }
+  }
+}

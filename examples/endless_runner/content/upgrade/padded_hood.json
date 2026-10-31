@@ -1,0 +1,5 @@
+{
+  "name": "Padded Hood",
+  "blurb": "Start each run with an extra shield.",
+  "icon": "M12 1l9 3.5v6.5c0 6-4 10.5-9 12-5-1.5-9-6-9-12V4.5z", "effect": "start_shield", "per_level": 1, "costs": [320, 900]
+}

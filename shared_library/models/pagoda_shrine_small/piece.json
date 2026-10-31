@@ -1,0 +1,10 @@
+{
+  "id": "pagoda_shrine_small",
+  "summary": "A small two-tier pagoda-roofed roadside shrine, 1.85 m tall: a stepped granite plinth with a front step, a li… joints door_l, door_r; options lacquer, roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pagoda_shrine_small or place \"prefab\": \"pagoda_shrine_small\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pagoda_shrine_small"]
+}

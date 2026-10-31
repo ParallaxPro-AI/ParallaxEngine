@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/clothing_display_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.0036, 0.85],
+      "offset": [0, 0.5018, 0]
+    }
+  }
+}

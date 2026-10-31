@@ -1,0 +1,10 @@
+{
+  "id": "dock_crane_wooden",
+  "summary": "A hand-wound timber jib crane for a quay: a dressed-stone plinth with a timber collar, and turning in it a sq… joints slew, winch, fall, hook; options load; sockets operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dock_crane_wooden or place \"prefab\": \"dock_crane_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dock_crane_wooden"]
+}

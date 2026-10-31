@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [36, 15, 0.8], "color": "#3f5059" }
+  },
+  "behaviors": {
+    "word_pulse": { "punch": 0.015, "decay": 4.0, "idle_color": "#3f5059", "hit_color": "#69959e" }
+  }
+}

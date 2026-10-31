@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_hood_cowl",
+  "summary": "A raised cowl hood: a peaked crown over the skull and a crescent that wraps the nape and both cheeks and drap… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_hood_cowl or place \"prefab\": \"garment_head_hood_cowl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_hood_cowl"]
+}

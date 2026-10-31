@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/brick_block_breakable"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1, 1, 1.0065],
+      "offset": [0, 0.5, 0.0032]
+    }
+  }
+}

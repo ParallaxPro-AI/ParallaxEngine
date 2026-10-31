@@ -1,0 +1,10 @@
+{
+  "id": "garage_shelving_unit",
+  "summary": "A five-level boltless steel garage shelving unit: angle-iron corner legs with punched keyhole slots and plast… options frame; sockets socket_shelf_0, socket_shelf_1, socket_shelf_2, socket_shelf_3, socket_shelf_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garage_shelving_unit or place \"prefab\": \"garage_shelving_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garage_shelving_unit"]
+}

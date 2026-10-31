@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cricket_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2509, 0.9026, 0.3584],
+      "offset": [0.0106, 0.4504, -0.002]
+    }
+  }
+}

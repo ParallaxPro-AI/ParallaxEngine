@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "models/semi_trailer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 7200,
+      "linear_damping": 0.02,
+      "angular_damping": 0.6
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.648,
+        4.166,
+        13.7
+      ],
+      "offset": [
+        0,
+        2.083,
+        -0.05
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 32,
+      "steering": 0
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        2.083,
+        -0.05
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

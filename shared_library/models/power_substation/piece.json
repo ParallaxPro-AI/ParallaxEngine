@@ -1,0 +1,10 @@
+{
+  "id": "power_substation",
+  "summary": "A fenced distribution substation on an 18 x 14 m gravel yard: a main power transformer (ribbed tank, radiator… joints gate_l, gate_r; sockets line_in_0, line_in_1, line_in_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.power_substation or place \"prefab\": \"power_substation\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:power_substation"]
+}

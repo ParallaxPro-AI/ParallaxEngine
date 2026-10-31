@@ -1,0 +1,10 @@
+{
+  "z": 0.5,
+  "components": {
+    "sprite": { "image": "https://r2.parallaxpro.ai/assets/image_sprite/19/6a/196aee99fb9cf06e90477ffc29b25c09ef64a12f7f9ffad479793225195b1fb7.png", "size": [0.72, 0.72] }
+  },
+  "behaviors": {
+    "bloom_drop": { "fall_speed": 2.2, "draw_speed": 2.4, "draw_reach": 2.4, "draw_beyond": 0.8, "pulse": 0.08, "pulse_rate": 8 }
+  },
+  "pool": 8
+}

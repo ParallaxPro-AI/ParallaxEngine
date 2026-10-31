@@ -1,0 +1,54 @@
+{
+  "number": 1,
+  "name": "The Crown's Navy",
+  "start": 0,
+  "min": -100,
+  "max": 100,
+  "rivals": [
+    {
+      "faction": "brethren",
+      "share": 0.35
+    }
+  ],
+  "ranks": [
+    {
+      "at": -100,
+      "name": "Wanted",
+      "perk": -0.5,
+      "hostile": true
+    },
+    {
+      "at": -60,
+      "name": "Outlaw",
+      "perk": -0.3,
+      "hostile": true
+    },
+    {
+      "at": -20,
+      "name": "Suspect",
+      "perk": -0.15
+    },
+    {
+      "at": 0,
+      "name": "Unknown",
+      "perk": 0
+    },
+    {
+      "at": 25,
+      "name": "Privateer",
+      "perk": 0.15
+    },
+    {
+      "at": 55,
+      "name": "Corsair",
+      "perk": 0.3
+    },
+    {
+      "at": 85,
+      "name": "Commodore",
+      "perk": 0.5
+    }
+  ],
+  "perk_label": "Bounties",
+  "perk_kind": "pct"
+}

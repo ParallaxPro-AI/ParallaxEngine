@@ -1,0 +1,24 @@
+{
+  "extends": "tank_turret",
+  "components": {
+    "model": {
+      "colors": {
+        "camo_hull": "#2b2622"
+      },
+      "tint": "#6e6660"
+    }
+  },
+  "children": [
+    {
+      "name": "gun",
+      "prefab": "tank_gun",
+      "at": [0, 0.35, 1.19],
+      "rotation": [9, 0, 0],
+      "components": {
+        "model": {
+          "tint": "#4a4644"
+        }
+      }
+    }
+  ]
+}

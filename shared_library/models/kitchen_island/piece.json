@@ -1,0 +1,10 @@
+{
+  "id": "kitchen_island",
+  "summary": "A freestanding shaker kitchen island: a painted carcass with a pale 40 mm stone worktop that overhangs 300 mm… joints drawer_1, drawer_2, drawer_3, drawer_4, door_l, door_r, …; options cabinet_colour, worktop, hardware; sockets counter_top, stool_1, stool_2, stool_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kitchen_island or place \"prefab\": \"kitchen_island\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kitchen_island"]
+}

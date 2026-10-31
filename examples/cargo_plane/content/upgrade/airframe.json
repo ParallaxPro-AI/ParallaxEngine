@@ -1,0 +1,6 @@
+{
+  "name": "Spare Airframe",
+  "blurb": "A second-hand hull in the corner of the hangar. Buy it before you need it.",
+  "effect": "+1 airframe",
+  "stat": "airframe", "per_tier": 1, "costs": [2400]
+}

@@ -1,0 +1,4 @@
+{
+  "name": "Surge", "blurb": "Top-speed monster",
+  "prefab": "car_surge", "showroom": "showroom_surge", "top_speed": 36, "acceleration": 44, "handling": 105
+}

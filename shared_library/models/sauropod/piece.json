@@ -1,0 +1,10 @@
+{
+  "id": "sauropod",
+  "summary": "A generic long-necked sauropod dinosaur on the engine's quadruped_20 rig: about 20 m from snout to the tip of… options skin; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sauropod or place \"prefab\": \"sauropod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sauropod"]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "map_screen",
+  "summary": "Corner minimap that opens into a full-screen, north-up map while M (or Select) is held or toggled: a restyled copy of the HUD kit's MinimapPanel, the same derived base map, icons and route, with the zoom set from config.",
+  "version": "2026.10.23",
+  "requires": ["ui_theme", "scene_tags"],
+  "plugins": ["hud"],
+  "setup": [
+    "Give the player a \"minimap\" component; list MapZoom in Game(systems=[...]) (from game.lib.map_screen import MapZoom).",
+    "Choose \"hold\" or \"toggle\" and the two ranges in config/map_screen.json."
+  ],
+  "replaces": ["lib:ui/map_screen", "lib:map_screen", "lib:hud/minimap", "lib:hud/moba_minimap"]
+}

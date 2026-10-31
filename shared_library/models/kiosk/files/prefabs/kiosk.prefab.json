@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kiosk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.56, 2.94, 2.3105],
+      "offset": [0, 1.47, 0.1253]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "car_showroom",
+  "summary": "A single-storey new-car showroom: a 24 x 12 m hall, 5.2 m to the ceiling, glazed floor to ceiling across most… sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_showroom or place \"prefab\": \"car_showroom\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_showroom"]
+}

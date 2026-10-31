@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pet_egg_hatch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3622, 0.668, 0.4411],
+      "offset": [-0.0011, 0.334, -0.0352]
+    }
+  }
+}

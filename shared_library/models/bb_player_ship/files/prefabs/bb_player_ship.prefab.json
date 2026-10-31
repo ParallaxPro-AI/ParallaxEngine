@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_player_ship"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.4, 9.725, 14.4241],
+      "offset": [0, 4.8625, 0.3121]
+    }
+  }
+}

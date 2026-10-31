@@ -1,0 +1,10 @@
+{
+  "id": "bike_shelter",
+  "summary": "A 4.1 m cantilevered cycle shelter: three steel portal frames (rear post, knee brace and a curved cantilever… options roof, frame; sockets bay_0_l, bay_0_r, bay_1_l, bay_1_r, bay_2_l, bay_2_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bike_shelter or place \"prefab\": \"bike_shelter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bike_shelter"]
+}

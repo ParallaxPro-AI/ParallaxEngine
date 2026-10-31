@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tractor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.92, 2.49, 4.6116],
+      "offset": [0, 1.245, 0.2516]
+    }
+  }
+}

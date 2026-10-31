@@ -1,0 +1,5 @@
+{
+  "number": 3, "name": "Refraction", "tagline": "A layered prism. The core is armoured.",
+  "color": "#f2cc59", "ball_speed_scale": 1.16,
+  "rows": ["....1....", "...212...", "..21212..", ".2121212.", "212121212"]
+}

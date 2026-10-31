@@ -1,0 +1,34 @@
+{
+  "components": {
+    "model": {
+      "model": "models/banner",
+      "parts": {
+        "cloth": false
+      }
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.86,
+        2.72,
+        0.114
+      ],
+      "offset": [
+        0,
+        1.36,
+        0.007
+      ]
+    }
+  },
+  "children": [
+    {
+      "name": "cloth",
+      "prefab": "banner_cloth",
+      "at": [
+        0,
+        2.3,
+        0.036
+      ]
+    }
+  ]
+}

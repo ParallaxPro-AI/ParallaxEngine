@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_cooler"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.34, 1.595, 0.375],
+      "offset": [0, 0.7975, 0.0175]
+    }
+  }
+}

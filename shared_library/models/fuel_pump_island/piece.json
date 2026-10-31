@@ -1,0 +1,10 @@
+{
+  "id": "fuel_pump_island",
+  "summary": "A free-standing fuel pump island: a raised concrete island with rounded yellow ends and chevron kerbs, a doub… joints nozzle_f_0, nozzle_f_1, nozzle_f_2, nozzle_b_0, nozzle_b_1, nozzle_b_2; options brand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fuel_pump_island or place \"prefab\": \"fuel_pump_island\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fuel_pump_island"]
+}

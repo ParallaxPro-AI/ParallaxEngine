@@ -1,0 +1,10 @@
+{
+  "id": "zebra",
+  "summary": "A zebra (1.45 m at the withers, Grevy's size) on the engine's quadruped_20 rig, so the built-in quadruped Idl… options stripes, coat; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.zebra or place \"prefab\": \"zebra\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:zebra"]
+}

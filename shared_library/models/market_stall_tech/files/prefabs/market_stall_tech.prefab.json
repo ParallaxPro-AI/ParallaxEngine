@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/market_stall_tech"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.46, 2.4906, 1.7497],
+      "offset": [0, 1.2453, 0.0657]
+    }
+  }
+}

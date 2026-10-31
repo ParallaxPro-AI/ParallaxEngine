@@ -1,0 +1,22 @@
+{
+ "components": {
+  "model": {
+   "model": "models/sandbag_cover",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    2.1901,
+    1.0256,
+    0.8973
+   ],
+   "offset": [
+    0.0055,
+    0.5128,
+    -0.0249
+   ],
+   "layer": "world"
+  }
+ }
+}

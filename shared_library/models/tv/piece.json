@@ -1,0 +1,10 @@
+{
+  "id": "tv",
+  "summary": "A flat-panel television that swivels on its stand. joints swivel; options mount, size, screen_state; sockets socket_screen.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tv or place \"prefab\": \"tv\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tv"]
+}

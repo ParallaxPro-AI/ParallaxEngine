@@ -1,0 +1,10 @@
+{
+  "id": "trench_section",
+  "summary": "A tileable 4 m straight segment of a revetted fighting trench: a 1.1 m wide floor with two duckboard units ov… sockets fire_position, floor, joint_neg_x, joint_pos_x.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trench_section or place \"prefab\": \"trench_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trench_section"]
+}

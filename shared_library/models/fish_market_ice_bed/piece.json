@@ -1,0 +1,10 @@
+{
+  "id": "fish_market_ice_bed",
+  "summary": "A fishmonger's ice-bed display: a steel cabinet whose top slopes toward the customer, carrying a rimmed stain… options body.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_market_ice_bed or place \"prefab\": \"fish_market_ice_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_market_ice_bed"]
+}

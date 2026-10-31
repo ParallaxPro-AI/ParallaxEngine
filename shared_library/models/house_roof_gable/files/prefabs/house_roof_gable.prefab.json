@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_roof_gable"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.93, 2.0179, 4.09],
+      "offset": [0, 1.009, 0]
+    }
+  }
+}

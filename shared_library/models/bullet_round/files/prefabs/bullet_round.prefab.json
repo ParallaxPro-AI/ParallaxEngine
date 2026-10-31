@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bullet_round"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.012, 0.012, 0.0712],
+      "offset": [0, 0.006, 0]
+    }
+  }
+}

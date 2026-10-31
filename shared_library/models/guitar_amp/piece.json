@@ -1,0 +1,10 @@
+{
+  "id": "guitar_amp",
+  "summary": "A 1x12 valve combo guitar amplifier: a chamfered tolex cabinet with steel corner protectors, a recessed brush… joints knob_0, knob_1, knob_2, knob_3, knob_4, knob_5, …; options tolex.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.guitar_amp or place \"prefab\": \"guitar_amp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:guitar_amp"]
+}

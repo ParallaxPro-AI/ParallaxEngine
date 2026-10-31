@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/canoe"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 32,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.924, 0.5615, 4.9],
+      "offset": [0, 0.2787, 0]
+    }
+  }
+}

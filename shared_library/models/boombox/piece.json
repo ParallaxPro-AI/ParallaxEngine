@@ -1,0 +1,10 @@
+{
+  "id": "boombox",
+  "summary": "An 80s silver stereo boombox: twin 8-inch woofers with chrome trim rings, real lathed cones and dust caps on… joints deck_door, handle, aerial; options body_finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boombox or place \"prefab\": \"boombox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boombox"]
+}

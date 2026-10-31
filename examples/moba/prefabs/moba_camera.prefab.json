@@ -1,0 +1,6 @@
+{
+  "components": {
+    "camera": {"rig": "follow", "fov": 60, "offset": [0, 21.4, 14], "world_offset": true, "smoothing": 0.08,
+               "min_visible": [14, 0], "focus_distance": 24.41}
+  }
+}

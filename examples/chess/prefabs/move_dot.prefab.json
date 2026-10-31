@@ -1,0 +1,5 @@
+{
+  "z": -0.4,
+  "components": {"sprite": {"image": "images/move_dot", "size": [1.0, 1.0]}},
+  "tags": ["highlight"]
+}

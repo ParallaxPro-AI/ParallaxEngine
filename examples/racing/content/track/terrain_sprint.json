@@ -1,0 +1,8 @@
+{
+  "name": "Terrain Sprint",
+  "blurb": "A fast open-terrain route over rolling grass and rock. Keep speed through the wide bends.",
+  "scene": "terrain_sprint",
+  "difficulty": "easy",
+  "laps": 3,
+  "order": 1
+}

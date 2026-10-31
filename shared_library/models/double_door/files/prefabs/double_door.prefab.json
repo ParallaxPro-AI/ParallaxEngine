@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/double_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7215, 2.1615, 0.1415],
+      "offset": [-0.0008, 1.0808, -0.0008]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/curtain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5286, 2.5055, 0.9009],
+      "offset": [0.0883, 1.2532, 0.042]
+    }
+  }
+}

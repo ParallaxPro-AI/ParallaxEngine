@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tennis_racket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.256, 0.685, 0.039],
+      "offset": [0, 0.3425, 0]
+    }
+  }
+}

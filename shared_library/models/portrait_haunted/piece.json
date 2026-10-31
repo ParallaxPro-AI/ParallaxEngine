@@ -1,0 +1,10 @@
+{
+  "id": "portrait_haunted",
+  "summary": "A Victorian ancestor portrait in a tarnished carved gilt frame with corner rosettes and a scrolled crest: a d… joints hang; options eyes, damage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portrait_haunted or place \"prefab\": \"portrait_haunted\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portrait_haunted"]
+}

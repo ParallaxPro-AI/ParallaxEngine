@@ -1,0 +1,10 @@
+{
+  "id": "salad_bar",
+  "summary": "A self-serve salad bar: a laminate cabinet with a stainless deck whose cold well holds ten gastronorm pans of… joints door_1, door_2; options body_finish; sockets tray_slide.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.salad_bar or place \"prefab\": \"salad_bar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:salad_bar"]
+}

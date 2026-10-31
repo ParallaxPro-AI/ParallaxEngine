@@ -1,0 +1,10 @@
+{
+  "id": "olive_press",
+  "summary": "An ancient Roman stone olive mill: a turned grey stone basin with a moulded foot and rolled rim, a round trou… joints rotor, wheel_r, wheel_l.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.olive_press or place \"prefab\": \"olive_press\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:olive_press"]
+}

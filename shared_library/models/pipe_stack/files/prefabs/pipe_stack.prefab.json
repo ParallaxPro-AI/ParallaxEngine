@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pipe_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.1153, 1.2334, 1.5029],
+      "offset": [0.0006, 0.6127, 0]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "coat_stand",
+  "summary": "A freestanding coat stand: a weighted round base, a slender central pole, and two rings of ball-tipped… options finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.coat_stand or place \"prefab\": \"coat_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:coat_stand"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bear_trap",
+  "summary": "A steel leg-hold trap with toothed jaws: two half-ring jaws on pins between two posts lie open round a round… joints pan, dog, jaw_front, jaw_back, spring_r, spring_l; options finish, chain.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bear_trap or place \"prefab\": \"bear_trap\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bear_trap"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lighthouse_lens"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.064, 2.86, 1.06],
+      "offset": [0, 1.43, 0]
+    }
+  }
+}

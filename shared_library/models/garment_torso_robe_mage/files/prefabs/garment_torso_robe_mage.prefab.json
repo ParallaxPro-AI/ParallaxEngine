@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_robe_mage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.504, 1.374, 0.4918],
+      "offset": [0, 0.939, -0.0059]
+    }
+  }
+}

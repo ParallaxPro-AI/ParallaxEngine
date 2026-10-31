@@ -1,0 +1,10 @@
+{
+  "id": "proto_arch",
+  "summary": "A greybox prototype archway: a 4 m wide, 3 m tall, 1 m deep level-design block with a 2 m wide round-headed p… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_arch or place \"prefab\": \"proto_arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_arch"]
+}

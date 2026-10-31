@@ -1,0 +1,88 @@
+<!-- The template's Ember Shrine over the dimmed title: the dust balance, the six perks as cards
+     (name, description, LV n / max with pips, the price, or MAXED in ice), and the close button. -->
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ember.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .shrine-modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; font-family: var(--ec-font-ui); color: var(--ec-ink); -webkit-font-smoothing: antialiased; animation: ec-fade var(--ec-dur) ease both; }
+  :where(.shrine-modal button:not(.ec-btn)) { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .ec-scrim { pointer-events: auto; backdrop-filter: blur(calc(2 * var(--ec-u))) brightness(.6); }
+  .shrine { position: relative; width: calc(1000 * var(--ec-u)); max-height: calc(100cqh - calc(48 * var(--ec-u))); overflow-y: auto; padding: calc(28 * var(--ec-u)) calc(32 * var(--ec-u)) calc(32 * var(--ec-u)); pointer-events: auto; animation: ec-rise var(--ec-dur) var(--ec-ease-out) both; }
+  .sh-head { display: flex; align-items: center; gap: calc(20 * var(--ec-u)); }
+  .sh-head h2 { font: 700 calc(30 * var(--ec-u))/1 var(--ec-font-display); letter-spacing: .12em; flex: 1; }
+  .dust { display: flex; align-items: baseline; gap: calc(8 * var(--ec-u)); padding: calc(8 * var(--ec-u)) calc(14 * var(--ec-u)); border: calc(1 * var(--ec-u)) solid var(--ec-line-strong); border-radius: calc(4 * var(--ec-u)); background: rgba(249,115,22,.08); }
+  .dust .ec-lbl { color: var(--ec-ember-hi); }
+  .dust .ec-mono { font-size: calc(20 * var(--ec-u)); color: var(--ec-peach); text-shadow: 0 0 calc(12 * var(--ec-u)) rgba(249,115,22,.6); }
+  .x { width: calc(40 * var(--ec-u)); height: calc(40 * var(--ec-u)); display: grid; place-items: center; border: calc(1 * var(--ec-u)) solid var(--ec-line) !important; border-radius: calc(4 * var(--ec-u)); color: var(--ec-ink-dim); pointer-events: auto; }
+  .x:hover { color: var(--ec-ember-hi); border-color: var(--ec-line-strong) !important; }
+  .sh-sub { font: 400 calc(15 * var(--ec-u))/1.5 var(--ec-font-ui); color: var(--ec-ink-dim); margin: calc(14 * var(--ec-u)) 0 calc(24 * var(--ec-u)); max-width: calc(640 * var(--ec-u)); text-wrap: pretty; }
+  .perks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: calc(16 * var(--ec-u)); }
+  .perk { display: flex; flex-direction: column; gap: calc(10 * var(--ec-u)); padding: calc(20 * var(--ec-u)); min-height: calc(184 * var(--ec-u)); border: calc(1 * var(--ec-u)) solid var(--ec-line) !important; border-radius: calc(8 * var(--ec-u)); background: rgba(0,0,0,.3) !important; text-align: left; pointer-events: auto; transition: all var(--ec-dur) var(--ec-ease-out); }
+  .perk-n { font: 700 calc(20 * var(--ec-u))/1.1 var(--ec-font-display); letter-spacing: .06em; color: var(--ec-ink); }
+  .perk-d { font: 400 calc(14 * var(--ec-u))/1.45 var(--ec-font-ui); color: var(--ec-ink-dim); flex: 1; }
+  .perk-f { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--ec-u)); }
+  .lv { display: flex; flex-direction: column; gap: calc(6 * var(--ec-u)); }
+  .lv .ec-mono { font-size: calc(12 * var(--ec-u)); color: var(--ec-ink-dim); }
+  .pips { display: flex; gap: calc(4 * var(--ec-u)); }
+  .pips i { width: calc(14 * var(--ec-u)); height: calc(5 * var(--ec-u)); border-radius: calc(1 * var(--ec-u)); background: rgba(255,255,255,.1); }
+  .pips i.f { background: var(--ec-ember); box-shadow: 0 0 calc(6 * var(--ec-u)) rgba(249,115,22,.6); }
+  .cost { height: calc(38 * var(--ec-u)); padding: 0 calc(14 * var(--ec-u)); font-size: calc(12 * var(--ec-u)); pointer-events: none; }
+  .perk.afford:hover { border-color: var(--ec-line-strong) !important; background: rgba(249,115,22,.05) !important; }
+  .perk.afford .cost { background: var(--ec-grad-btn); color: var(--ec-ember-ink); border-color: var(--ec-ember-hi); }
+  .perk.afford .cost b { color: var(--ec-ember-ink); }
+  .perk.poor { opacity: .5; }
+  .perk.poor .cost { border-style: dashed; color: var(--ec-ink-mute); border-color: var(--ec-line); }
+  .perk.poor .cost b { color: var(--ec-ink-mute); }
+  .perk.maxed { border-color: rgba(125,211,252,.5) !important; box-shadow: var(--ec-glow-ice); background: rgba(12,40,56,.18) !important; }
+  .perk.maxed .pips i.f { background: var(--ec-ice); box-shadow: 0 0 calc(6 * var(--ec-u)) rgba(125,211,252,.6); }
+  .perk.maxed .cost { border-color: rgba(125,211,252,.5); color: var(--ec-ice); background: transparent; }
+  .perk.maxed .lv .ec-mono { color: var(--ec-ice); }
+
+  @media (pointer: coarse) {
+    .shrine { width: calc(100cqw - calc(192 * var(--ec-u))); max-height: calc(100cqh - calc(32 * var(--ec-u))); padding: 0 calc(36 * var(--ec-u)) calc(32 * var(--ec-u)); border-radius: calc(24 * var(--ec-u)); }
+    .sh-top { position: sticky; top: 0; z-index: 2; padding: calc(28 * var(--ec-u)) 0 calc(20 * var(--ec-u)); background: linear-gradient(180deg, rgba(26,12,7,1) 80%, rgba(26,12,7,0)); }
+    .sh-head { gap: calc(28 * var(--ec-u)); }
+    .sh-head h2 { font-size: calc(36 * var(--ec-u)); }
+    .dust { padding: calc(10 * var(--ec-u)) calc(20 * var(--ec-u)); gap: calc(14 * var(--ec-u)); border-radius: calc(8 * var(--ec-u)); }
+    .dust .ec-mono { font-size: calc(30 * var(--ec-u)); }
+    .x { width: calc(88 * var(--ec-u)); height: calc(88 * var(--ec-u)); border-radius: calc(8 * var(--ec-u)); }
+    .x svg { width: calc(36 * var(--ec-u)); height: calc(36 * var(--ec-u)); }
+    .sh-sub { font-size: calc(24 * var(--ec-u)); margin: calc(16 * var(--ec-u)) 0 0; max-width: none; }
+    .perks { grid-template-columns: 1fr; gap: calc(16 * var(--ec-u)); }
+    .perk { min-height: 0; display: grid; grid-template-columns: 1fr auto; gap: calc(4 * var(--ec-u)) calc(32 * var(--ec-u)); padding: calc(24 * var(--ec-u)) calc(28 * var(--ec-u)); border-radius: calc(16 * var(--ec-u)); }
+    .perk-n { font-size: calc(30 * var(--ec-u)); }
+    .perk-d { font-size: calc(24 * var(--ec-u)); grid-column: 1; }
+    .perk-f { grid-column: 2; grid-row: 1 / span 2; gap: calc(24 * var(--ec-u)); }
+    .lv { gap: calc(12 * var(--ec-u)); min-width: calc(150 * var(--ec-u)); }
+    .lv .ec-mono { font-size: calc(22 * var(--ec-u)); }
+    .pips { gap: calc(8 * var(--ec-u)); }
+    .pips i { width: calc(28 * var(--ec-u)); height: calc(10 * var(--ec-u)); }
+    .cost { height: calc(88 * var(--ec-u)); min-width: calc(200 * var(--ec-u)); font-size: calc(24 * var(--ec-u)); padding: 0 calc(28 * var(--ec-u)); }
+  }
+</style>
+<div class="shrine-modal">
+  <button class="ec-scrim" data-action="close" aria-label="Close"></button>
+  <section class="shrine ec-solid">
+    <div class="sh-top">
+      <div class="sh-head">
+        <h2 class="ec-grad" data-text="shrine_title"></h2>
+        <div class="dust"><span class="ec-lbl" data-text="dust_label"></span><span class="ec-mono" data-bind="dust"></span></div>
+        <button class="x" data-action="close" data-key="KeyP" aria-label="Close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <p class="sh-sub" data-text="shrine_sub"></p>
+    </div>
+    <div class="perks" data-each="perks">
+      <template>
+        <button class="perk" data-action="buy" data-class-maxed="maxed" data-class-afford="affordable" data-class-poor="poor">
+          <span class="perk-n" data-bind="name"></span>
+          <span class="perk-d" data-bind="desc"></span>
+          <span class="perk-f">
+            <span class="lv"><span class="ec-mono"><span data-text="level_short"></span> <span data-bind="level"></span> / <span data-bind="max_level"></span></span>
+              <span class="pips" data-each="pips"><template><i data-class-f="filled"></i></template></span></span>
+            <span class="ec-btn cost"><span data-show="maxed" data-text="maxed"></span><span data-hide="maxed"><b data-bind="cost"></b> <span data-text="dust_word"></span></span></span>
+          </span>
+        </button>
+      </template>
+    </div>
+  </section>
+</div>

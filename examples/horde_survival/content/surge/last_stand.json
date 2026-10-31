@@ -1,0 +1,2 @@
+{ "name": "LAST STAND", "at_second": 165, "interval": 1.05, "hp_scale": 2.6, "speed_scale": 1.2,
+  "groups": { "swarmling": 22, "spitter": 4, "brute": 5, "brood": 3 } }

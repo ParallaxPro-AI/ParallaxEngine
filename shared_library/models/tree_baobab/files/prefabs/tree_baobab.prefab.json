@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_baobab"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.8365, 8.9845, 9.0582],
+      "offset": [-0.1554, 4.4963, 0.0016]
+    }
+  }
+}

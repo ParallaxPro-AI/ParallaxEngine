@@ -1,0 +1,1 @@
+{ "name": "Thick Stem", "description": "+1 max petal, and mend one now.", "stat": "max_lives", "add": 1, "max_stacks": 2, "heal": 1 }

@@ -1,0 +1,56 @@
+{
+  "points_by_place": [
+    10,
+    7,
+    5,
+    3,
+    2,
+    1
+  ],
+  "purse": [
+    1400,
+    900,
+    600,
+    400,
+    300,
+    200
+  ],
+  "finish_bonus": 100,
+  "record_bonus": 500,
+  "champion_prize": 5000,
+  "lap_options": [
+    1,
+    2,
+    3,
+    5
+  ],
+  "opponent_options": [
+    1,
+    2,
+    3
+  ],
+  "countdown_step": 1,
+  "wrong_way_after": 1,
+  "grid_first_row": 20,
+  "grid_row_gap": 8,
+  "grid_lane_offset": 4,
+  "spawn_height": 1.4,
+  "respawn_hold": 0.9,
+  "respawn_before_gate": 24,
+  "nitro_drift_gain": 0.6,
+  "nitro_drift_min_speed": 6,
+  "nitro_slipstream_gain": 0.45,
+  "nitro_slipstream_range": 26,
+  "nitro_slipstream_min_speed": 14,
+  "nitro_slipstream_alignment": 0.8,
+  "nitro_drain": 1,
+  "nitro_force": 9600,
+  "nitro_min_charge": 0.35,
+  "road_half_width": 9,
+  "verge_from": 11,
+  "smoke_every": 0.08,
+  "smoke_sparks_from": 0.45,
+  "hit_speed_drop": 3,
+  "hit_deceleration": 40,
+  "hit_cooldown": 0.4
+}

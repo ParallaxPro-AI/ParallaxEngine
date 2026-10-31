@@ -1,0 +1,10 @@
+{
+  "id": "chef_range_six_burner",
+  "summary": "A 36-inch commercial six-burner gas range: a stainless body on four legs with bullet feet, three cast-iron gr… joints knob_1, knob_2, knob_3, knob_4, knob_5, knob_6, …; options finish, backguard; sockets burner_1, burner_2, burner_3, burner_4, burner_5, burner_6.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chef_range_six_burner or place \"prefab\": \"chef_range_six_burner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chef_range_six_burner"]
+}

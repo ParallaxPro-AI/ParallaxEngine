@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wall_clock",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.416,
+        0.416,
+        0.115
+      ],
+      "offset": [
+        0.0,
+        0.208,
+        0.0005
+      ]
+    }
+  }
+}

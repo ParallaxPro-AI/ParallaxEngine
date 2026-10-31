@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_vanity"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 1.447, 0.493],
+      "offset": [0, 0.7235, -0.0045]
+    }
+  }
+}

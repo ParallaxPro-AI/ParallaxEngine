@@ -1,0 +1,14 @@
+{
+  "id": "server_rack",
+  "summary": "A 19-inch server rack: a steel enclosure on a plinth with a hinged smoked-glass front door, a stack of… joints door, blade_0, blade_1, blade_2, blade_3 …; options height, populated; sockets socket_top.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.server_rack or place \"prefab\": \"server_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:server_rack"
+  ]
+}

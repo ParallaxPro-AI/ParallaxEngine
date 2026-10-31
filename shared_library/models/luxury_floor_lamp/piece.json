@@ -1,0 +1,10 @@
+{
+  "id": "luxury_floor_lamp",
+  "summary": "Luxury floor lamp: a slim polished-brass stem with a turned knuckle on a round cream-marble base, carrying a… options metal, base.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_floor_lamp or place \"prefab\": \"luxury_floor_lamp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_floor_lamp"]
+}

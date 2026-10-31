@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/octopus"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1652, 0.3524, 1.2154],
+      "offset": [0.0006, 0.1721, 0.0199]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/child_boy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0216, 1.2961, 0.3631],
+      "offset": [0, 0.6467, -0.0525]
+    }
+  }
+}

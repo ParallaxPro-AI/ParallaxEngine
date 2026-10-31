@@ -1,0 +1,10 @@
+{
+  "id": "pier",
+  "summary": "A 5.0 m TILING module of timber jetty: four bents of raked piles with weed collars at the tide line, a pile c… sockets socket_bollard_l, socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pier or place \"prefab\": \"pier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pier"]
+}

@@ -1,0 +1,1 @@
+{ "name": "Wraith", "prefab": "enemy_wraith", "health": 70, "speed": 5.2, "armor": 0, "reward": 35, "lives_cost": 2, "resists": { "chill": 1 } }

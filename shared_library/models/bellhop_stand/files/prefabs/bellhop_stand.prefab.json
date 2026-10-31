@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bellhop_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.586, 1.105, 0.48],
+      "offset": [0.003, 0.5525, 0]
+    }
+  }
+}

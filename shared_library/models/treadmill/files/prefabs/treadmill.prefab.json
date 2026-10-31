@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/treadmill"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 1.43, 1.94],
+      "offset": [0, 0.715, -0.02]
+    }
+  }
+}

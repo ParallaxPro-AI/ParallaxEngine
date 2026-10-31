@@ -1,0 +1,69 @@
+{
+  "deeds": [
+    {
+      "deed": "kill_ghost",
+      "faction": "crown",
+      "amount": 6
+    },
+    {
+      "deed": "kill_ghost",
+      "faction": "merchants",
+      "amount": 2
+    },
+    {
+      "deed": "kill_kraken",
+      "faction": "crown",
+      "amount": 3
+    },
+    {
+      "deed": "kill_kraken",
+      "faction": "merchants",
+      "amount": 4
+    },
+    {
+      "deed": "kill_shark",
+      "faction": "merchants",
+      "amount": 2
+    },
+    {
+      "deed": "haul",
+      "faction": "brethren",
+      "amount": 1.5
+    },
+    {
+      "deed": "contract_ghost",
+      "faction": "crown",
+      "amount": 10
+    },
+    {
+      "deed": "contract_monster",
+      "faction": "merchants",
+      "amount": 10
+    },
+    {
+      "deed": "contract_treasure",
+      "faction": "brethren",
+      "amount": 10
+    },
+    {
+      "deed": "leg_cleared",
+      "faction": "merchants",
+      "amount": 8
+    },
+    {
+      "deed": "leg_cleared",
+      "faction": "crown",
+      "amount": 4
+    },
+    {
+      "deed": "ship_sunk",
+      "faction": "merchants",
+      "amount": -8
+    },
+    {
+      "deed": "ship_sunk",
+      "faction": "crown",
+      "amount": -5
+    }
+  ]
+}

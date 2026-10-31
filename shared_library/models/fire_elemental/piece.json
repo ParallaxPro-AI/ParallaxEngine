@@ -1,0 +1,10 @@
+{
+  "id": "fire_elemental",
+  "summary": "A FIRE ELEMENTAL, about 2.3 m to the tips of its flame mane (a 2.0 m body, the size of a large man, the usual… options flame; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fire_elemental or place \"prefab\": \"fire_elemental\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fire_elemental"]
+}

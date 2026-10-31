@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/duck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.208, 0.3477, 0.4919],
+      "offset": [0, 0.1769, -0.001]
+    }
+  }
+}

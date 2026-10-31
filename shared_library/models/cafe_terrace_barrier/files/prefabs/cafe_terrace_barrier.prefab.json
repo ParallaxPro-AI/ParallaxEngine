@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cafe_terrace_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.02, 1.554, 0.34],
+      "offset": [0, 0.777, 0]
+    }
+  }
+}

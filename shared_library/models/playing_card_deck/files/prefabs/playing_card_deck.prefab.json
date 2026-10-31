@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/playing_card_deck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2489, 0.017, 0.125],
+      "offset": [-0.0046, 0.0085, -0.0047]
+    }
+  }
+}

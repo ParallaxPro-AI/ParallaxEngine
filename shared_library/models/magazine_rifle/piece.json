@@ -1,0 +1,10 @@
+{
+  "id": "magazine_rifle",
+  "summary": "A loaded curved 30-round rifle magazine for a 5.56 mm carbine: a matte black polymer body (24 x 56 mm section…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magazine_rifle or place \"prefab\": \"magazine_rifle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magazine_rifle"]
+}

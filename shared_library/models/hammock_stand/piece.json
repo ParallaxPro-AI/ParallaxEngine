@@ -1,0 +1,10 @@
+{
+  "id": "hammock_stand",
+  "summary": "A freestanding steel hammock stand with a striped spreader-bar hammock: a square-tube base beam on two cross… joints hammock; options stripe, frame_finish; sockets socket_lie, seat_side.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hammock_stand or place \"prefab\": \"hammock_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hammock_stand"]
+}

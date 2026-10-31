@@ -1,0 +1,10 @@
+{
+  "id": "dental_chair",
+  "summary": "A complete dental treatment unit: an upholstered patient chair on a lift column (seat, reclining backrest wit… joints lift, backrest, headrest, legrest, tray_arm, lamp_arm; options upholstery; sockets socket_patient, socket_dentist, socket_assistant.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dental_chair or place \"prefab\": \"dental_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dental_chair"]
+}

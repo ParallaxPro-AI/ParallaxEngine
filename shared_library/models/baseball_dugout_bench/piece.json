@@ -1,0 +1,10 @@
+{
+  "id": "baseball_dugout_bench",
+  "summary": "A 3.6 m baseball dugout bench: three aluminium seat planks and two back planks on four powder-coated steel pe… options frame, helmet; sockets seat_0, seat_1, seat_2, seat_3, seat_4, seat_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baseball_dugout_bench or place \"prefab\": \"baseball_dugout_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baseball_dugout_bench"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "kettlebell",
+  "summary": "A 16 kg cast-iron kettlebell: a 0.21 m ball body with a flattened base, a round 34 mm handle arching 0.28 m h… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kettlebell or place \"prefab\": \"kettlebell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kettlebell"]
+}

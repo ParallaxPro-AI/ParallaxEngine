@@ -1,0 +1,7 @@
+{
+  "components": {
+    "sprite": { "image": "images/dot", "size": [0.16, 0.16], "color": "#ffdb8c" }
+  },
+  "tags": ["pip"],
+  "pool": 192
+}

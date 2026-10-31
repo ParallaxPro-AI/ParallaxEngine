@@ -1,0 +1,10 @@
+{
+  "id": "ac_condenser_unit",
+  "summary": "The outdoor half of a split-system air conditioner: a pressed-steel cabinet with a round front fan opening be… joints fan; options mount, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ac_condenser_unit or place \"prefab\": \"ac_condenser_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ac_condenser_unit"]
+}

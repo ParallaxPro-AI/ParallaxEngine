@@ -1,0 +1,7 @@
+{
+  "extends": "plant",
+  "components": {
+    "model": { "model": "models/barkshell" },
+    "health": { "current": 600, "max": 600 }
+  }
+}

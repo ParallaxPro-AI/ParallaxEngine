@@ -1,0 +1,10 @@
+{
+  "id": "bonsai_pot",
+  "summary": "A bonsai on a display stand, 0.62 m tall: an informal-upright juniper with a twisting, tapering trunk flaring… options glaze, foliage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bonsai_pot or place \"prefab\": \"bonsai_pot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bonsai_pot"]
+}

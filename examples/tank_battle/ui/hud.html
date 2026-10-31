@@ -1,0 +1,247 @@
+<!-- Ported from the template: Armor Assault battle HUD — sector/wave/kills/score strip, hostiles, fire-control zone badge, event toast, loadout chips, HULL bar with low-hull pulse, RELOADING meter, repair badge, cannon ready rack + speed, desktop controls legend -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif);
+    color: #e8e8e8;
+    pointer-events: none;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  .num { font-family: var(--aa-font-num, 'Inter', sans-serif); font-variant-numeric: tabular-nums; }
+  .dim { color: #888; }
+  .glass { background: rgba(5,10,8,.55); border: 1px solid rgba(255,255,255,.14); }
+  .off { display: none !important; }
+
+  .legend { position: fixed; left: calc(32 * var(--u)); top: calc(32 * var(--u)); width: calc(250 * var(--u)); padding: calc(14 * var(--u)) calc(16 * var(--u)); display: flex; flex-direction: column; gap: calc(9 * var(--u)); }
+  .legend-h { font-weight: 700; font-size: calc(13 * var(--u)); letter-spacing: .28em; color: #888; }
+  .lg-row { display: flex; align-items: center; justify-content: space-between; gap: calc(8 * var(--u)); }
+  .lg-keys { display: flex; gap: calc(3 * var(--u)); }
+  .cap { min-width: calc(22 * var(--u)); height: calc(22 * var(--u)); padding: 0 calc(5 * var(--u)); display: flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.28); border-bottom-width: 2px; font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 600; font-size: calc(11 * var(--u)); }
+  .lg-act { font-weight: 600; font-size: calc(15 * var(--u)); letter-spacing: .12em; text-transform: uppercase; }
+
+  .strip { position: fixed; left: 50%; top: calc(28 * var(--u)); transform: translateX(-50%); display: flex; align-items: stretch; }
+  .cell { padding: calc(10 * var(--u)) calc(28 * var(--u)); display: flex; flex-direction: column; gap: 2px; }
+  .sep { width: 1px; background: rgba(255,255,255,.14); }
+  .k { font-weight: 600; font-size: calc(13 * var(--u)); letter-spacing: .26em; color: #888; }
+  .sector { display: flex; align-items: baseline; gap: calc(10 * var(--u)); white-space: nowrap; }
+  .sector-name { font-weight: 700; font-size: calc(26 * var(--u)); letter-spacing: .08em; text-transform: uppercase; }
+  .sector-idx { font-weight: 600; font-size: calc(16 * var(--u)); color: #888; }
+  .v { font-weight: 700; font-size: calc(26 * var(--u)); }
+  .v .dim { font-weight: 600; }
+
+  .strip-m { display: none; position: fixed; left: 50%; top: calc(20 * var(--u)); transform: translateX(-50%); flex-direction: column; align-items: center; padding: calc(10 * var(--u)) calc(32 * var(--u)) calc(12 * var(--u)); }
+  .sm-l1 { display: flex; align-items: baseline; gap: calc(20 * var(--u)); white-space: nowrap; }
+  .sm-k { font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .2em; color: #888; }
+  .sm-name { font-weight: 700; font-size: calc(32 * var(--u)); letter-spacing: .06em; text-transform: uppercase; }
+  .sm-idx { font-weight: 600; font-size: calc(22 * var(--u)); color: #888; }
+  .sm-v { font-weight: 700; font-size: calc(30 * var(--u)); }
+  .sm-bar { color: rgba(255,255,255,.25); font-size: calc(26 * var(--u)); }
+  .sm-l2 { display: flex; gap: calc(24 * var(--u)); font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .2em; color: #888; }
+  .sm-l2 .num { color: #e8e8e8; }
+  .sm-l2 .red { color: #ef4444; }
+
+  .mid { position: fixed; left: 50%; top: calc(116 * var(--u)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--u)); }
+  .hostiles { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)); background: rgba(5,10,8,.55); border: 1px solid rgba(239,68,68,.45); white-space: nowrap; }
+  .hostiles i { width: calc(8 * var(--u)); height: calc(8 * var(--u)); background: #ef4444; transform: rotate(45deg); }
+  .hostiles span { font-weight: 600; font-size: calc(16 * var(--u)); letter-spacing: .22em; }
+  .hostiles b { color: #ef4444; font-weight: 700; }
+  .zone { display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(7 * var(--u)) calc(18 * var(--u)); background: linear-gradient(rgba(245,158,11,.14), rgba(245,158,11,.14)), rgba(5,10,8,.55); border: 1px solid #f59e0b; color: #f59e0b; white-space: nowrap; animation: aaZone 1.6s ease-in-out infinite; }
+  .zone span { font-weight: 700; font-size: calc(17 * var(--u)); letter-spacing: .24em; }
+  .zone svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+  @keyframes aaZone { 0%,100% { box-shadow: 0 0 0 rgba(245,158,11,0); } 50% { box-shadow: 0 0 calc(14 * var(--u)) rgba(245,158,11,.45); } }
+
+  .toast { position: fixed; left: 50%; top: calc(270 * var(--u)); display: flex; align-items: center; gap: calc(16 * var(--u)); transform: translate(-50%, calc(12 * var(--u))); opacity: 0; transition: opacity .3s ease, transform .2s var(--aa-ease-out, ease-out); --tc: #22d3ee; }
+  .toast.on { opacity: 1; transform: translate(-50%, 0); transition: opacity .2s ease, transform .2s var(--aa-ease-out, ease-out); }
+  .toast .wing { width: calc(60 * var(--u)); height: 1px; background: var(--tc); }
+  .toast .tx { padding: calc(10 * var(--u)) calc(24 * var(--u)); background: rgba(5,10,8,.6); border: 1px solid rgba(255,255,255,.14); border-top: 2px solid var(--tc); font-weight: 700; font-size: calc(30 * var(--u)); letter-spacing: .2em; color: var(--tc); white-space: nowrap; text-transform: uppercase; }
+
+  .loadout { position: fixed; right: calc(32 * var(--u)); top: calc(400 * var(--u)); display: flex; flex-direction: column; align-items: flex-end; gap: calc(8 * var(--u)); }
+  .lo-h { font-weight: 700; font-size: calc(13 * var(--u)); letter-spacing: .28em; color: #888; }
+  .chip { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(8 * var(--u)) calc(14 * var(--u)); }
+  .chip svg { width: calc(14 * var(--u)); height: calc(14 * var(--u)); flex: none; }
+  .chip span { font-weight: 600; font-size: calc(17 * var(--u)); letter-spacing: .1em; white-space: nowrap; }
+
+  .hull { position: fixed; left: calc(32 * var(--u)); bottom: calc(32 * var(--u)); width: calc(460 * var(--u)); padding: calc(16 * var(--u)) calc(20 * var(--u)); }
+  .hull.low { animation: aaPulse .52s ease-in-out infinite alternate; }
+  @keyframes aaPulse { from { opacity: 1; } to { opacity: .6; } }
+  .hull-top { display: flex; align-items: baseline; justify-content: space-between; }
+  .hull-l { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .hull-l svg { width: calc(16 * var(--u)); height: calc(18 * var(--u)); }
+  .hull-k { font-weight: 700; font-size: calc(18 * var(--u)); letter-spacing: .3em; }
+  .crit { padding: 1px calc(8 * var(--u)); background: #ef4444; color: #1a0505; font-weight: 700; font-size: calc(13 * var(--u)); letter-spacing: .2em; }
+  .hull-v { font-weight: 700; font-size: calc(28 * var(--u)); }
+  .hull-v .dim { font-size: calc(18 * var(--u)); font-weight: 600; }
+  .hull-track { position: relative; margin-top: calc(10 * var(--u)); height: calc(16 * var(--u)); background: rgba(0,0,0,.55); border: 1px solid rgba(255,255,255,.18); }
+  .hull-fill { height: 100%; width: 100%; background: #22c55e; transition: width .18s ease; }
+  .hull.low .hull-fill { background: #ef4444; }
+  .hull-seg { position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 calc(10% - 2px), rgba(5,10,8,.9) calc(10% - 2px) 10%); }
+
+  .reload { position: fixed; left: 50%; bottom: calc(40 * var(--u)); transform: translateX(-50%); width: calc(440 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+  .rl-top { display: flex; justify-content: space-between; font-weight: 700; font-size: calc(17 * var(--u)); letter-spacing: .3em; color: #f59e0b; }
+  .rl-top .num { letter-spacing: 0; }
+  .rl-track { height: calc(10 * var(--u)); background: rgba(5,10,8,.7); border: 1px solid rgba(255,255,255,.2); }
+  .rl-fill { height: 100%; width: 0; background: #f59e0b; box-shadow: 0 0 calc(12 * var(--u)) rgba(245,158,11,.6); }
+
+  .br { position: fixed; right: calc(32 * var(--u)); bottom: calc(32 * var(--u)); width: calc(380 * var(--u)); display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+  .rep { padding: calc(9 * var(--u)) calc(14 * var(--u)); }
+  .rep-row { display: flex; align-items: center; gap: calc(12 * var(--u)); }
+  .rep .cap { width: calc(24 * var(--u)); height: calc(24 * var(--u)); font-weight: 700; font-size: calc(13 * var(--u)); }
+  .rep-t { font-weight: 700; font-size: calc(17 * var(--u)); letter-spacing: .22em; }
+  .rep-cd { margin-left: auto; font-weight: 700; font-size: calc(16 * var(--u)); color: #e8e8e8; }
+  .rep-bar { margin-top: calc(8 * var(--u)); height: calc(3 * var(--u)); background: rgba(255,255,255,.1); }
+  .rep-bar div { height: 100%; width: 0; background: #888; }
+  .rep.ready { background: linear-gradient(rgba(34,197,94,.12), rgba(34,197,94,.12)), rgba(5,10,8,.55); border-color: #22c55e; color: #22c55e; }
+  .rep.ready .cap { border-color: #22c55e; }
+  .rep.ready .rep-cd, .rep.ready .rep-bar { display: none; }
+  .rep.cool { color: #888; }
+  .rep.cool .cap { border-color: rgba(255,255,255,.25); }
+
+  .gun { display: flex; }
+  .gun-a { flex: 1; padding: calc(14 * var(--u)) calc(18 * var(--u)); }
+  .gun-s { width: calc(120 * var(--u)); padding: calc(14 * var(--u)) calc(18 * var(--u)); }
+  .gk { font-weight: 700; font-size: calc(15 * var(--u)); letter-spacing: .3em; color: #888; }
+  .ammo-row { display: flex; align-items: flex-end; gap: calc(14 * var(--u)); margin-top: calc(4 * var(--u)); }
+  .ammo-n { font-weight: 800; font-size: calc(52 * var(--u)); line-height: 1; }
+  .ammo-n.empty .cur { color: #ef4444; }
+  .ammo-n .dim { font-size: calc(26 * var(--u)); font-weight: 600; }
+  .pips { display: flex; gap: calc(5 * var(--u)); padding-bottom: calc(6 * var(--u)); flex-wrap: nowrap; }
+  .pip { width: calc(10 * var(--u)); height: calc(28 * var(--u)); background: #e8e8e8; border-radius: calc(5 * var(--u)) calc(5 * var(--u)) 0 0; }
+  .pip.out { background: transparent; border: 1px solid rgba(239,68,68,.6); }
+  .spd { margin-top: calc(4 * var(--u)); font-weight: 800; font-size: calc(52 * var(--u)); line-height: 1; }
+  .spd-u { font-weight: 600; font-size: calc(14 * var(--u)); letter-spacing: .2em; color: #888; }
+  .gun-sep { width: 1px; background: rgba(255,255,255,.14); }
+  .pause { display: none; position: fixed; right: calc(24 * var(--u)); top: calc(24 * var(--u)); width: calc(88 * var(--u)); height: calc(88 * var(--u)); padding: 0; flex-direction: column; align-items: center; justify-content: center; gap: calc(10 * var(--u)); background: rgba(5,10,8,.6); border: 0; box-shadow: inset 0 0 0 2px rgba(255,255,255,.2); clip-path: polygon(calc(16 * var(--u)) 0,100% 0,100% calc(100% - calc(16 * var(--u))),calc(100% - calc(16 * var(--u))) 100%,0 100%,0 calc(16 * var(--u))); cursor: pointer; pointer-events: auto; touch-action: manipulation; }
+  .pause i { display: block; width: calc(36 * var(--u)); height: calc(4 * var(--u)); background: #e8e8e8; }
+  .pause:active { background: rgba(96,106,42,.95); transform: scale(.94); }
+
+  @media (pointer: coarse) {
+    .legend, .strip, .rep, .lo-h, .chip span, .mid .hostiles { display: none !important; }
+    .strip-m { display: flex; }
+    .mid { top: calc(132 * var(--u)); gap: 0; }
+    .zone { gap: calc(16 * var(--u)); padding: calc(6 * var(--u)) calc(24 * var(--u)); }
+    .zone svg { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+    .zone span { font-size: calc(24 * var(--u)); letter-spacing: .2em; }
+    .toast { top: calc(200 * var(--u)); }
+    .toast .wing { display: none; }
+    .toast .tx { padding: calc(10 * var(--u)) calc(28 * var(--u)); font-size: calc(34 * var(--u)); letter-spacing: .18em; border-top-width: calc(4 * var(--u)); }
+    .loadout { left: calc(24 * var(--u)); right: auto; top: calc(24 * var(--u)); align-items: flex-start; gap: calc(12 * var(--u)); }
+    .chip { width: calc(60 * var(--u)); height: calc(60 * var(--u)); padding: 0; justify-content: center; }
+    .chip svg { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+    .hull { left: calc(32 * var(--u)); bottom: max(calc(412 * var(--u)), calc(var(--pp-joystick-h, 0px) + calc(24 * var(--u)))); width: calc(380 * var(--u)); padding: calc(12 * var(--u)) calc(20 * var(--u)) calc(16 * var(--u)); }
+    .hull-l { gap: calc(12 * var(--u)); }
+    .hull-l svg { display: none; }
+    .hull-k { font-size: calc(24 * var(--u)); letter-spacing: .28em; }
+    .crit { font-size: calc(20 * var(--u)); padding: 0 calc(10 * var(--u)); letter-spacing: .14em; }
+    .hull-v { font-size: calc(30 * var(--u)); }
+    .hull-v .dim { font-size: calc(22 * var(--u)); }
+    .hull-track { margin-top: calc(10 * var(--u)); height: calc(18 * var(--u)); }
+    .reload { bottom: calc(32 * var(--u)); width: calc(480 * var(--u)); gap: calc(8 * var(--u)); }
+    .rl-top { font-size: calc(24 * var(--u)); letter-spacing: .26em; }
+    .rl-track { height: calc(14 * var(--u)); }
+    .pause { display: flex; right: calc(calc(24 * var(--u)) + env(safe-area-inset-right, 0px)); top: calc(calc(24 * var(--u)) + env(safe-area-inset-top, 0px)); }
+    .br { right: calc(calc(24 * var(--u)) + env(safe-area-inset-right, 0px)); top: calc(calc(152 * var(--u)) + env(safe-area-inset-top, 0px)); bottom: auto; width: calc(264 * var(--u)); }
+    .gun { flex-direction: column; }
+    .gun-a { padding: calc(12 * var(--u)) calc(20 * var(--u)); }
+    .gk { font-size: calc(20 * var(--u)); letter-spacing: .26em; }
+    .ammo-row { justify-content: space-between; gap: calc(8 * var(--u)); margin-top: 0; }
+    .ammo-n { font-size: calc(52 * var(--u)); }
+    .ammo-n .dim { font-size: calc(28 * var(--u)); }
+    .pips { gap: calc(6 * var(--u)); padding-bottom: calc(6 * var(--u)); }
+    .pip { width: calc(12 * var(--u)); height: calc(32 * var(--u)); border-radius: calc(6 * var(--u)) calc(6 * var(--u)) 0 0; }
+    .gun-sep { width: auto; height: 1px; }
+    .gun-s { width: auto; padding: calc(10 * var(--u)) calc(20 * var(--u)); display: flex; align-items: baseline; justify-content: space-between; }
+    .spd { margin-top: 0; font-size: calc(40 * var(--u)); }
+    .spd-u { margin-left: calc(8 * var(--u)); font-size: calc(22 * var(--u)); letter-spacing: .14em; }
+  }
+</style>
+<div class="legend glass d-only">
+  <div class="legend-h">CONTROLS</div>
+  <div class="lg-row"><div class="lg-keys"><span class="cap">WASD</span><span class="cap">&uarr;&darr;&larr;&rarr;</span></div><span class="lg-act">Drive</span></div>
+  <div class="lg-row"><span class="cap">MOUSE</span><span class="lg-act">Aim</span></div>
+  <div class="lg-row"><span class="cap">LMB</span><span class="lg-act">Fire</span></div>
+  <div class="lg-row"><div class="lg-keys"><span class="cap">Q</span><span class="cap">E</span></div><span class="lg-act">Traverse</span></div>
+  <div class="lg-row"><span class="cap" style="padding:0 10px">SPACE</span><span class="lg-act">Brake</span></div>
+  <div class="lg-row"><span class="cap">R</span><span class="lg-act">Repair</span></div>
+  <div class="lg-row"><span class="cap">F</span><span class="lg-act">Lock on</span></div>
+  <div class="lg-row"><div class="lg-keys"><span class="cap">Z</span><span class="cap">X</span></div><span class="lg-act">Cycle</span></div>
+  <div class="lg-row"><span class="cap">P</span><span class="lg-act">Pause</span></div>
+</div>
+
+<div class="strip glass">
+  <div class="cell">
+    <div class="k">SECTOR</div>
+    <div class="sector"><span class="sector-name" data-bind="battlefield"></span><span class="sector-idx num"><span data-bind="battlefield_number"></span> / <span data-bind="battlefield_count"></span></span></div>
+  </div>
+  <div class="sep"></div>
+  <div class="cell"><div class="k">WAVE</div><div class="v num"><span data-bind="wave"></span><span class="dim"> / <span data-bind="wave_count"></span></span></div></div>
+  <div class="sep"></div>
+  <div class="cell"><div class="k">KILLS</div><div class="v num" data-bind="kills"></div></div>
+  <div class="sep"></div>
+  <div class="cell"><div class="k">SCORE</div><div class="v num" data-bind="score"></div></div>
+</div>
+
+<div class="strip-m glass">
+  <div class="sm-l1">
+    <span class="sm-k">SECTOR</span><span class="sm-name" data-bind="battlefield"></span><span class="sm-idx num"><span data-bind="battlefield_number"></span>/<span data-bind="battlefield_count"></span></span>
+    <span class="sm-bar">&#9474;</span>
+    <span class="sm-k">WAVE</span><span class="sm-v num"><span data-bind="wave"></span><span class="dim">/<span data-bind="wave_count"></span></span></span>
+    <span class="sm-bar">&#9474;</span>
+    <span class="sm-k">SCORE</span><span class="sm-v num" data-bind="score"></span>
+  </div>
+  <div class="sm-l2">
+    <span>KILLS <span class="num" data-bind="kills"></span></span>
+    <span data-class-off="no_hostiles">HOSTILES: <span class="num red" data-bind="enemies_left"></span></span>
+  </div>
+</div>
+
+<div class="mid">
+  <div class="hostiles" data-class-off="no_hostiles"><i></i><span>HOSTILES: <b class="num" data-bind="enemies_left"></b></span></div>
+  <div class="zone" data-class-off="off_point">
+    <svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="none" stroke="#f59e0b" stroke-width="2"></circle><circle cx="9" cy="9" r="2.5" fill="#f59e0b"></circle></svg>
+    <span>FIRE CONTROL ZONE &middot; +35% DAMAGE</span>
+  </div>
+</div>
+
+<div class="loadout" data-class-off="no_loadout"><div class="lo-h">LOADOUT</div><div style="display:contents" data-each="loadout"><template><div class="chip glass"><img data-attr-src="icon" alt="" style="width:calc(14 * var(--u));height:calc(14 * var(--u))"><span data-bind="name"></span></div></template></div></div>
+
+<div class="hull glass" data-class-low="critical">
+  <div class="hull-top">
+    <div class="hull-l">
+      <svg viewBox="0 0 16 18"><polygon points="8,0 16,3 16,9 8,18 0,9 0,3" fill="none" stroke="#e8e8e8" stroke-width="2"></polygon></svg>
+      <span class="hull-k">HULL</span>
+      <span class="crit" data-class-off="not_critical">CRITICAL</span>
+    </div>
+    <div class="hull-v num"><span data-bind="hull"></span><span class="dim"> / <span data-bind="hull_max"></span></span></div>
+  </div>
+  <div class="hull-track"><div class="hull-fill" data-style-width="hull_width"></div><div class="hull-seg"></div></div>
+</div>
+
+<div class="reload" data-class-off="not_reloading">
+  <div class="rl-top"><span>RELOADING</span><span class="num" data-bind="reload_text"></span></div>
+  <div class="rl-track"><div class="rl-fill" data-style-width="reload_width"></div></div>
+</div>
+
+<button class="pause m-only" data-action="pause" aria-label="Pause"><i></i><i></i><i></i></button>
+
+<div class="br">
+  <div class="rep glass" data-class-ready="repair_ready" data-class-cool="repair_cooling">
+    <div class="rep-row"><span class="cap">R</span><span class="rep-t" data-bind="repair_text"></span><span class="rep-cd num" data-bind="repair_cd"></span></div>
+    <div class="rep-bar"><div data-style-width="repair_width"></div></div>
+  </div>
+  <div class="gun glass">
+    <div class="gun-a">
+      <div class="gk">CANNON</div>
+      <div class="ammo-row">
+        <div class="ammo-n num" data-class-empty="empty"><span class="cur" data-bind="ammo"></span><span class="dim"> / <span data-bind="capacity"></span></span></div>
+        <div class="pips" data-each="rounds"><template><div class="pip" data-class-out="spent"></div></template></div>
+      </div>
+    </div>
+    <div class="gun-sep"></div>
+    <div class="gun-s">
+      <div class="gk">SPEED</div>
+      <div><div class="spd num" style="display:inline-block" data-bind="speed"></div><div class="spd-u" style="display:inline-block">KM/H</div></div>
+    </div>
+  </div>
+</div>

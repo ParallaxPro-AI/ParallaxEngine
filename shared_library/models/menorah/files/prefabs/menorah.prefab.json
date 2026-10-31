@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/menorah"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.408, 0.424, 0.1694],
+      "offset": [0, 0.212, 0]
+    }
+  }
+}

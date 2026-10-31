@@ -1,0 +1,10 @@
+{
+  "id": "organ_pipe",
+  "summary": "A pipe-organ facade section, 2.5 m wide and 3.7 m tall: an oak wind-chest cabinet with raised panels and a hi… joints access_door; options pipe_metal, case.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.organ_pipe or place \"prefab\": \"organ_pipe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:organ_pipe"]
+}

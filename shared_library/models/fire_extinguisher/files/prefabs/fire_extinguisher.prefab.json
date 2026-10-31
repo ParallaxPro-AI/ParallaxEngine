@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fire_extinguisher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.202, 0.604, 0.2347],
+      "offset": [0, 0.302, -0.0025]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "hang_glider",
+  "summary": "A flex-wing hang glider: a 10 m swept delta sail as a thin double-surface aerofoil with battens, an aluminium… joints control_frame; options sail, harness; sockets seat_driver, socket_hang, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hang_glider or place \"prefab\": \"hang_glider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hang_glider"]
+}

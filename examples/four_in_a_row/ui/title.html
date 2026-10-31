@@ -1,0 +1,96 @@
+<!-- Title: the template's glass card with the nine-slot well strip, Amber vs Teal and the best-streak chip,
+     the saved record, the rules note and Start Run. -->
+<link rel="stylesheet" href="dropline.css">
+<style>
+  .tt { position: fixed; inset: 0; pointer-events: auto; }
+  .tt-card { width: min(calc(640 * var(--dl-u)), calc(100cqw - 24px)); padding: calc(40 * var(--dl-u)) calc(48 * var(--dl-u)) calc(44 * var(--dl-u)); display: flex; flex-direction: column; }
+  .tt-left, .tt-right { display: contents; }
+  .tt-strip { gap: calc(12 * var(--dl-u)); padding: calc(12 * var(--dl-u)) calc(16 * var(--dl-u)); border-radius: calc(16 * var(--dl-u)); margin-bottom: calc(32 * var(--dl-u)); order: 0; }
+  .tt-strip .dl-slot { width: calc(46 * var(--dl-u)); height: calc(46 * var(--dl-u)); }
+  .tt-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: calc(26 * var(--dl-u)); order: 1; }
+  .tt-vs { display: flex; align-items: center; gap: calc(10 * var(--dl-u)); font-size: calc(14 * var(--dl-u)); color: var(--dl-ink-2); }
+  .tt-vs .dl-disc { width: calc(14 * var(--dl-u)); height: calc(14 * var(--dl-u)); }
+  .tt-vs .am { color: var(--dl-amber); }
+  .tt-vs .te { color: var(--dl-teal); }
+  .tt-best { color: var(--dl-gold); border-color: rgba(255,215,122,.5); }
+  .tt-best b { color: var(--dl-gold); }
+  .tt-title { font-size: calc(132 * var(--dl-u)); line-height: .9; font-weight: 700; letter-spacing: var(--dl-track-title); margin-bottom: calc(12 * var(--dl-u)); order: 2; }
+  .tt-sub { font-size: calc(18 * var(--dl-u)); letter-spacing: .32em; color: var(--dl-peri); margin-bottom: calc(32 * var(--dl-u)); order: 3; }
+  .tt-chips { display: flex; flex-wrap: wrap; gap: calc(10 * var(--dl-u)); margin-bottom: calc(28 * var(--dl-u)); order: 4; }
+  .tt-note { font-size: calc(18 * var(--dl-u)); line-height: 1.6; color: var(--dl-ink-2); text-wrap: pretty; margin-bottom: calc(34 * var(--dl-u)); order: 5; }
+  .tt-cta { display: flex; flex-direction: column; gap: calc(14 * var(--dl-u)); order: 6; }
+  .tt-status { display: flex; align-items: center; gap: calc(10 * var(--dl-u)); font-size: calc(14 * var(--dl-u)); color: var(--dl-gold); }
+  .tt-status.is-fresh { color: var(--dl-peri); }
+  .tt-sdots { display: inline-flex; gap: calc(4 * var(--dl-u)); }
+  .tt-sdots .dl-disc { width: calc(14 * var(--dl-u)); height: calc(14 * var(--dl-u)); }
+  .tt-slotico { width: calc(14 * var(--dl-u)); height: calc(14 * var(--dl-u)); border-radius: 50%; border: 2px solid currentColor; flex: none; }
+  .tt-status:not(.is-fresh) .tt-slotico, .tt-status.is-fresh .tt-sdots { display: none; }
+  .tt-play { height: calc(76 * var(--dl-u)); font-size: calc(26 * var(--dl-u)); }
+  .tt-play svg { width: calc(24 * var(--dl-u)); height: calc(24 * var(--dl-u)); }
+
+  @container (max-height: 500px) and (orientation: landscape) {
+    .tt-card { width: min(calc(792 * var(--dl-u)), calc(100cqw - 2 * var(--dl-edge-l))); padding: calc(24 * var(--dl-u)) calc(28 * var(--dl-u)); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: calc(32 * var(--dl-u)); align-items: center; }
+    .tt-left { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+    .tt-right { display: flex; flex-direction: column; min-width: 0; }
+    .tt-strip { align-self: flex-start; gap: calc(6 * var(--dl-u)); padding: calc(8 * var(--dl-u)) calc(10 * var(--dl-u)); border-radius: calc(10 * var(--dl-u)); margin-bottom: calc(22 * var(--dl-u)); }
+    .tt-strip .dl-slot { width: calc(26 * var(--dl-u)); height: calc(26 * var(--dl-u)); }
+    .tt-title { font-size: calc(76 * var(--dl-u)); margin-bottom: calc(10 * var(--dl-u)); }
+    .tt-sub { font-size: calc(13 * var(--dl-u)); letter-spacing: .3em; margin-bottom: 0; }
+    .tt-top { margin-bottom: calc(12 * var(--dl-u)); }
+    .tt-vs { gap: calc(7 * var(--dl-u)); font-size: calc(11 * var(--dl-u)); }
+    .tt-vs .dl-disc { width: calc(11 * var(--dl-u)); height: calc(11 * var(--dl-u)); }
+    .tt .dl-chip { height: calc(28 * var(--dl-u)); padding: 0 calc(10 * var(--dl-u)); font-size: calc(11 * var(--dl-u)); gap: calc(6 * var(--dl-u)); }
+    .tt-chips { gap: calc(8 * var(--dl-u)); margin-bottom: calc(14 * var(--dl-u)); }
+    .tt-note { font-size: calc(13 * var(--dl-u)); line-height: 1.5; margin-bottom: calc(14 * var(--dl-u)); }
+    .tt-cta { gap: calc(9 * var(--dl-u)); }
+    .tt-status { gap: calc(8 * var(--dl-u)); font-size: calc(11 * var(--dl-u)); }
+    .tt-sdots { gap: calc(3 * var(--dl-u)); }
+    .tt-sdots .dl-disc, .tt-slotico { width: calc(11 * var(--dl-u)); height: calc(11 * var(--dl-u)); }
+    .tt-play { height: max(44px, calc(52 * var(--dl-u))); font-size: calc(20 * var(--dl-u)); }
+  }
+
+  @container (orientation: portrait) and (max-width: 600px) {
+    .tt-card { width: calc(100cqw - 2 * var(--dl-edge-l)); padding: calc(24 * var(--dl-u)) calc(22 * var(--dl-u)) calc(26 * var(--dl-u)); }
+    .tt-strip { gap: calc(6 * var(--dl-u)); padding: calc(8 * var(--dl-u)) calc(10 * var(--dl-u)); border-radius: calc(10 * var(--dl-u)); margin-bottom: calc(20 * var(--dl-u)); }
+    .tt-strip .dl-slot { width: calc(26 * var(--dl-u)); height: calc(26 * var(--dl-u)); }
+    .tt-top { margin-bottom: calc(16 * var(--dl-u)); }
+    .tt-vs { gap: calc(7 * var(--dl-u)); font-size: calc(11 * var(--dl-u)); }
+    .tt-vs .dl-disc { width: calc(11 * var(--dl-u)); height: calc(11 * var(--dl-u)); }
+    .tt-title { font-size: calc(76 * var(--dl-u)); margin-bottom: calc(10 * var(--dl-u)); }
+    .tt-sub { font-size: calc(13 * var(--dl-u)); letter-spacing: .3em; margin-bottom: calc(20 * var(--dl-u)); }
+    .tt .dl-chip { height: calc(28 * var(--dl-u)); padding: 0 calc(10 * var(--dl-u)); font-size: calc(11 * var(--dl-u)); gap: calc(6 * var(--dl-u)); }
+    .tt-chips { gap: calc(8 * var(--dl-u)); margin-bottom: calc(16 * var(--dl-u)); }
+    .tt-note { font-size: calc(14 * var(--dl-u)); line-height: 1.5; margin-bottom: calc(18 * var(--dl-u)); }
+    .tt-status { font-size: calc(11 * var(--dl-u)); }
+    .tt-sdots .dl-disc, .tt-slotico { width: calc(11 * var(--dl-u)); height: calc(11 * var(--dl-u)); }
+    .tt-play { height: max(44px, calc(52 * var(--dl-u))); font-size: calc(20 * var(--dl-u)); }
+  }
+</style>
+<div class="dl-root tt">
+  <div class="dl-scrim"></div>
+  <div class="dl-layer">
+    <main class="dl-card dl-modal dl-enter tt-card" role="dialog">
+      <div class="tt-left">
+        <div class="dl-strip tt-strip" aria-hidden="true"><span class="dl-slot"><i class="dl-disc a"></i></span><span class="dl-slot"></span><span class="dl-slot"><i class="dl-disc t"></i></span><span class="dl-slot"><i class="dl-disc a"></i></span><span class="dl-slot"><i class="dl-disc t"></i></span><span class="dl-slot"></span><span class="dl-slot"><i class="dl-disc a"></i></span><span class="dl-slot"><i class="dl-disc t"></i></span><span class="dl-slot"><i class="dl-disc a"></i></span></div>
+        <h1 class="tt-title" data-text="game_title"></h1>
+        <p class="tt-sub dl-mono" data-text="subtitle"></p>
+      </div>
+      <div class="tt-right">
+        <div class="tt-top">
+          <span class="tt-vs dl-mono"><i class="dl-disc a"></i><span class="am" data-text="amber"></span> <span data-text="versus"></span> <span class="te" data-text="teal"></span><i class="dl-disc t"></i></span>
+          <span class="dl-chip dl-mono tt-best"><span class="dl-mini4" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span><span data-text="best_label"></span> <b data-bind="best_streak"></b></span></span>
+        </div>
+        <div class="tt-chips">
+          <span class="dl-chip dl-mono"><span><span data-text="streak_label"></span> <b data-bind="streak"></b></span></span>
+          <span class="dl-chip dl-mono"><span><b data-bind="wins"></b>W / <b data-bind="losses"></b>L / <b data-bind="draws"></b>D</span></span>
+          <span class="dl-chip dl-mono"><span><b data-bind="games"></b> <span data-text="games_label"></span></span></span>
+        </div>
+        <p class="tt-note" data-text="pitch"></p>
+        <div class="tt-cta">
+          <p class="tt-status dl-mono" data-class-is-fresh="fresh"><span class="tt-sdots" data-each="streak_dots"><template><i class="dl-disc a"></i></template></span><span class="tt-slotico"></span><span data-bind="status"></span></p>
+          <button class="dl-btn dl-btn-primary tt-play" data-action="start"><span data-text="start"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v15M5 12l7 7 7-7"/></svg></button>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

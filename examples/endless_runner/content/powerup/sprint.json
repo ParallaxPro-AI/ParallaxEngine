@@ -1,0 +1,1 @@
+{ "name": "SPRINT BOARD", "prefab": "powerup_sprint", "effect": "sprint", "seconds": 5, "power": 1.3, "weight": 2, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/44/23/4423d459fc15fdd8593a4584d71e272ec2e5f8bdc11b759db623fc613ffd957c.ogg", "volume": 0.5 }

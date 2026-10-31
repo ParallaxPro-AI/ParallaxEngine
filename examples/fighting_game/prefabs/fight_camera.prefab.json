@@ -1,0 +1,17 @@
+{
+  "components": {
+    "camera": {
+      "rig": "fixed",
+      "mode": "perspective",
+      "fov": 40,
+      "min_visible": [
+        11,
+        0
+      ],
+      "focus_distance": 10
+    }
+  },
+  "behaviors": {
+    "versus_camera": {}
+  }
+}

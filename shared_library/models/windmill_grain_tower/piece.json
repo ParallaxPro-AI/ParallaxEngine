@@ -1,0 +1,10 @@
+{
+  "id": "windmill_grain_tower",
+  "summary": "A stone tower windmill for grinding grain (the medieval/early-modern tower-mill type): a limewashed rubble to… joints shutter_0, shutter_1, shutter_2, shutter_3, shutter_4, shutter_5, …; sockets socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.windmill_grain_tower or place \"prefab\": \"windmill_grain_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:windmill_grain_tower"]
+}

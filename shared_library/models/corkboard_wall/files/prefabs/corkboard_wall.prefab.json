@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/corkboard_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 0.915, 0.0393],
+      "offset": [0, 0.4575, 0.0029]
+    }
+  }
+}

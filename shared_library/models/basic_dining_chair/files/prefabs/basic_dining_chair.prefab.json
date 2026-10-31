@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basic_dining_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.44, 0.8431, 0.4768],
+      "offset": [0, 0.4216, 0.0016]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cannon_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 3.157, 2.4],
+      "offset": [0, 1.5785, 0]
+    }
+  }
+}

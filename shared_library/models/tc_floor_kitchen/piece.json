@@ -1,0 +1,10 @@
+{
+  "id": "tc_floor_kitchen",
+  "summary": "A 5.8 x 8.4 m interior surface slab, fitting.vinyl.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tc_floor_kitchen or place \"prefab\": \"tc_floor_kitchen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tc_floor_kitchen"]
+}

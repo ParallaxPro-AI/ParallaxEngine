@@ -1,0 +1,10 @@
+{
+  "id": "fp_arms",
+  "summary": "First-person arms to restyle: the engine's procedural arms (sleeves, bare forearms, hands curled for a grip) as a model document and an arms prefab for Viewmodel.arms; the hands reach any item's grip_r / grip_l by IK.",
+  "version": "2026.10.25",
+  "plugins": ["viewmodel"],
+  "setup": [
+    "A Viewmodel without `arms` already draws these arms; copy this piece only to change them: set \"arms\": \"fp_arms\" on the Viewmodel (under the first-person camera) and Game(plugins=[...]) needs viewmodel().",
+    "Restyle in assets/models/fp_arms.model.json: the \"skin\" and \"sleeve\" materials (or Model.colors on the prefab), the meshes, or the skeleton (keep the bone names LeftArm / LeftForeArm / LeftHand and RightArm / RightForeArm / RightHand: the Animator's left_hand / right_hand limbs bend them)."
+  ]
+}

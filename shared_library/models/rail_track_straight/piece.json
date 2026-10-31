@@ -1,0 +1,10 @@
+{
+  "id": "rail_track_straight",
+  "summary": "A 12 m straight section of standard-gauge (1.435 m) railway track: two flat-bottom steel rails with polished… options sleepers; sockets joint_a, joint_b, train_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rail_track_straight or place \"prefab\": \"rail_track_straight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rail_track_straight"]
+}

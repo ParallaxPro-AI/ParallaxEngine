@@ -1,0 +1,10 @@
+{
+  "id": "dagger",
+  "summary": "A 0.33 m double-edged dagger: a 200 mm diamond-section blade with a raised central ridge and bright ground ed… options blade, hilt, sheath; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.dagger or place \"prefab\": \"dagger\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:dagger"]
+}

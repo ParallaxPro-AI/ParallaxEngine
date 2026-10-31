@@ -1,0 +1,10 @@
+{
+  "id": "towel_rail",
+  "summary": "A wall-mounted heated ladder towel rail: two chrome uprights joined by twelve cross bars in three groups of f… joints valve; options finish, towel, towel_colour; sockets socket_towel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.towel_rail or place \"prefab\": \"towel_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:towel_rail"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/k9_kennel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9, 2.1005, 2.7],
+      "offset": [0, 1.0502, 0]
+    }
+  }
+}

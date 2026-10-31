@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/neon_sign",
+      "cast_shadows": true
+    }
+  },
+  "pool": 4
+}

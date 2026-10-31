@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/raccoon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.273, 0.405, 0.9721],
+      "offset": [0, 0.2025, -0.0597]
+    }
+  }
+}

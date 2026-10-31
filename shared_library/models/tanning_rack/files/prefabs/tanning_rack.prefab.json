@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tanning_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8257, 1.9222, 1.5274],
+      "offset": [0.0135, 0.9561, -0.1197]
+    }
+  }
+}

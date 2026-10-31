@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gondola_bay"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.05, 1.86, 0.5553],
+      "offset": [0, 0.93, -0.0024]
+    }
+  }
+}

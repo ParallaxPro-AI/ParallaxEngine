@@ -1,0 +1,1 @@
+{ "components": {"shape": {"kind": "cylinder", "size": [9, 0.6, 9], "color": "#e7daa0"}, "grounded": {"lift": 0.3}}, "tags": ["fire_control_zone"]}

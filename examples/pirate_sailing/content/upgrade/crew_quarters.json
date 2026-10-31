@@ -1,0 +1,5 @@
+{
+  "name": "Crew Quarters",
+  "blurb": "+1 spare crew — one more sinking the fleet can survive.",
+  "stat": "crew", "amount": 1, "max_level": 2
+}

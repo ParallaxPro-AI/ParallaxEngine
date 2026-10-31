@@ -1,0 +1,10 @@
+{
+  "id": "bathroom_mirror",
+  "summary": "A wall-hung illuminated bathroom mirror: a 600 x 800 mm frameless mirror plate with radiused corners, an etch… options shape, led; sockets socket_wall.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bathroom_mirror or place \"prefab\": \"bathroom_mirror\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bathroom_mirror"]
+}

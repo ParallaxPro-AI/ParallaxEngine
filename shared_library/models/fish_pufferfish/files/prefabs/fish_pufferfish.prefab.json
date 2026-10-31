@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_pufferfish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2352, 0.199, 0.3249],
+      "offset": [0, 0.0995, 0.0044]
+    }
+  }
+}

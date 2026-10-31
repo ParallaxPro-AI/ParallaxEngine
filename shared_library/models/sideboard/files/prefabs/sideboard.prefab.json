@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sideboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.63, 0.748, 0.498],
+      "offset": [0, 0.374, 0.024]
+    }
+  }
+}

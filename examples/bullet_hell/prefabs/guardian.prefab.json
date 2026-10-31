@@ -1,0 +1,28 @@
+{
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/94/81/948156417476f68956ff3a5633c1481ffffc84831eb5495b31e4ec8be21b39af.png",
+      "size": [1, 1],
+      "animations": {
+        "bloomling": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/94/81/948156417476f68956ff3a5633c1481ffffc84831eb5495b31e4ec8be21b39af.png", "https://r2.parallaxpro.ai/assets/image_sprite/94/81/948156417476f68956ff3a5633c1481ffffc84831eb5495b31e4ec8be21b39af.png"], "fps": 8, "loop": true },
+        "thornkite": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/27/cd/27cd2405a54774a84a40a4c810e004c6db97d674ceabf82312011b81a466eb2d.png", "https://r2.parallaxpro.ai/assets/image_sprite/47/86/478697ffdb6a943013c4648accbc241b217bcdea64765e3c4cae86c8490c4d44.png"], "fps": 8, "loop": true },
+        "sporelet": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/76/38/7638fb729219329aa4086fa669318bcbd02043d4460ffc87065f5954b5f11906.png", "https://r2.parallaxpro.ai/assets/image_sprite/6e/ec/6eeceab591f2655532f294c960621d72e7d18859cb07323e57c02c6d98cd9bc6.png"], "fps": 8, "loop": true },
+        "pollencap": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/bf/ca/bfcab9f78b628df994f9612eaf4290b1b9eab6fa19a8b1a5aac75beced777d21.png", "https://r2.parallaxpro.ai/assets/image_sprite/18/86/1886e6880772387b295bc7c78f4bc14c0cdd7da243428873256bb2a50107f634.png"], "fps": 8, "loop": true },
+        "petalwarden": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/63/af/63afbc1c4c51ffc915254975f8ce7258792172ac826d8e1a27d20ab00e9f40a1.png", "https://r2.parallaxpro.ai/assets/image_sprite/b4/f9/b4f99b086f3de245fee5c426e3e5997df4b238e49c4cae48e105661ee454e24f.png"], "fps": 8, "loop": true },
+        "briarhive": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/01/4f/014f72fc434008e899c8a443acb6dd6e2dcf9768e762174e42e888249538e44b.png", "https://r2.parallaxpro.ai/assets/image_sprite/a6/69/a669cc4aa51cf8a8044ba6b0cb7cf49fbeb40a9746be3b48c8d77565b0e8c926.png"], "fps": 8, "loop": true },
+        "bramblewell": { "frames": ["https://r2.parallaxpro.ai/assets/image_sprite/4e/f8/4ef8e65714de7eb9a30130dec09ce500830986f92c54a72f765cd0b1fa8b7af6.png", "https://r2.parallaxpro.ai/assets/image_sprite/77/e6/77e692ebb2c45cefdbbd5ad7712be2e5d929d80ea666ceee7cc63ae234336385.png"], "fps": 8, "loop": true }
+      }
+    },
+    "health": { "current": 1, "max": 1, "destroy_on_death": false }
+  },
+  "behaviors": {
+    "guardian": {
+      "first_volley": [0.7, 2.0], "volley_jitter": [0.6, 1.4], "muzzle_drop": 0.3,
+      "hover_top": 4.6, "hover_step": 0.95, "boss_hover": 5.0,
+      "dive_line": 4.0, "dive_boost": 2.6, "dive_steer": 0.9, "vee_sway": 0.4,
+      "bob": 0.18, "bob_rate": 1.6, "boss_bob": 0.4, "boss_bob_rate": 0.8,
+      "banish_seconds": 0.3, "telegraph_color": "#ff80b3", "telegraph_seconds": 0.15
+    }
+  },
+  "pool": 16
+}

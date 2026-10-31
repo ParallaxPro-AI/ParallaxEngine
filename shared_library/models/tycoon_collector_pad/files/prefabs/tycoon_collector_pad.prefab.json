@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tycoon_collector_pad"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.44, 1.3802, 1.44],
+      "offset": [0, 0.6901, 0]
+    }
+  }
+}

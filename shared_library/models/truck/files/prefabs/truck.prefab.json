@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/truck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.81, 3.225, 7.885],
+      "offset": [0, 1.6125, 0.1375]
+    }
+  }
+}

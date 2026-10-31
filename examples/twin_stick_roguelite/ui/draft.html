@@ -1,0 +1,58 @@
+<!-- Ported from the template: Cellar Purge Descent Boon - the between-floors relic draft: three rarity-tinted relic cards (common umber, rare azure, fabled gold) dealt left to right, select one and confirm with Take {relic} -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--cp-font-ui); color: var(--cp-ink); pointer-events: none; overflow: hidden; -webkit-font-smoothing: antialiased; }
+  .cpd { position: fixed; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center; gap: calc(56 * var(--u)); background: radial-gradient(ellipse at 50% 50%, rgba(11,9,8,.7), rgba(5,4,3,.94)); pointer-events: auto; }
+  .cpd.on { display: flex; animation: cp-fade 250ms ease both; }
+  .cpd-head { display: flex; flex-direction: column; align-items: center; gap: calc(14 * var(--u)); }
+  .cpd-title { font: 900 calc(72 * var(--u))/1 var(--cp-font-display); letter-spacing: .08em; color: var(--cp-gold); text-shadow: 0 0 calc(40 * var(--u)) rgba(245,197,24,.25), 0 calc(4 * var(--u)) 0 #000; }
+  .cpd-sub { font-size: calc(30 * var(--u)); line-height: 1.2; color: var(--cp-umber); }
+  .cpd-row { display: flex; gap: calc(40 * var(--u)); }
+  .card { --rc: #948272; --rt: #2a2018; --rg: rgba(211,57,70,.2); --rb: rgba(148,130,114,.35); position: relative; width: calc(400 * var(--u)); height: calc(520 * var(--u)); display: flex; flex-direction: column; align-items: center; margin: 0; padding: 0; background: linear-gradient(180deg, var(--rt), #14110e 45%); border: 1px solid color-mix(in srgb, var(--rc) 55%, transparent); box-shadow: 0 calc(30 * var(--u)) calc(60 * var(--u)) rgba(0,0,0,.6); color: var(--cp-ink); font: inherit; text-align: center; cursor: pointer; pointer-events: auto; transition: transform 150ms ease; animation: cpd-deal 320ms var(--cp-ease-out) both; }
+  .card:nth-child(2) { animation-delay: 80ms; }
+  .card:nth-child(3) { animation-delay: 160ms; }
+  @keyframes cpd-deal { from { opacity: 0; transform: translateY(calc(40 * var(--u))); } to { opacity: 1; transform: none; } }
+  .card:hover, .card:focus-visible { transform: translateY(calc(-10 * var(--u))); outline: none; }
+  .card.rare { --rc: #4cc9f0; --rt: #1a2a30; --rg: rgba(76,201,240,.22); --rb: rgba(76,201,240,.35); }
+  .card.fabled { --rc: #f5c518; --rt: #2e2610; --rg: rgba(245,197,24,.25); --rb: rgba(245,197,24,.35); }
+  .card-band { align-self: stretch; height: calc(6 * var(--u)); background: var(--rc); }
+  .card-rar { margin-top: calc(22 * var(--u)); font-size: calc(17 * var(--u)); font-weight: 700; letter-spacing: .3em; color: var(--rc); text-transform: uppercase; }
+  .card-icon { margin-top: calc(34 * var(--u)); width: calc(150 * var(--u)); height: calc(150 * var(--u)); border-radius: 50%; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle, var(--rg), transparent 70%); border: 1px solid var(--rb); }
+  .card-icon svg { width: calc(84 * var(--u)); height: calc(84 * var(--u)); display: block; }
+  .card-name { margin-top: calc(38 * var(--u)); font: 700 calc(34 * var(--u))/1.1 var(--cp-font-display); }
+  .card-desc { margin-top: calc(14 * var(--u)); padding: 0 calc(36 * var(--u)); font-size: calc(26 * var(--u)); line-height: 1.3; color: var(--cp-umber); }
+  .card-key { margin-top: auto; margin-bottom: calc(26 * var(--u)); font-size: calc(18 * var(--u)); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--cp-umber); }
+  .card.sel::after { content: ''; position: absolute; inset: calc(-8 * var(--u)); border: 2px solid var(--cp-gold); box-shadow: 0 0 calc(40 * var(--u)) rgba(245,197,24,.35), inset 0 0 calc(30 * var(--u)) rgba(245,197,24,.12); pointer-events: none; }
+  .cpd-take > span { height: calc(68 * var(--u)); font-size: calc(24 * var(--u)); }
+
+  @media (pointer: coarse) {
+    .cpd { justify-content: flex-start; gap: calc(24 * var(--u)); padding: calc(28 * var(--u)) calc(88 * var(--u)); background: radial-gradient(ellipse at 50% 50%, rgba(29,24,19,.9), rgba(5,4,3,.97)); }
+    .cpd-head { flex-direction: row; align-items: baseline; gap: calc(28 * var(--u)); }
+    .cpd-title { font-size: calc(60 * var(--u)); letter-spacing: .06em; text-shadow: 0 calc(6 * var(--u)) 0 #000; }
+    .cpd-sub { font-size: calc(32 * var(--u)); }
+    .cpd-row { flex: 1; align-self: stretch; display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(28 * var(--u)); padding: calc(12 * var(--u)) 0; }
+    .card { width: auto; height: auto; box-shadow: none; }
+    .card:hover { transform: none; }
+    .card-band { height: calc(8 * var(--u)); }
+    .card-rar { margin-top: calc(16 * var(--u)); font-size: calc(24 * var(--u)); letter-spacing: .26em; }
+    .card-icon { margin-top: calc(16 * var(--u)); width: calc(144 * var(--u)); height: calc(144 * var(--u)); }
+    .card-icon svg { width: calc(80 * var(--u)); height: calc(80 * var(--u)); }
+    .card-name { margin-top: calc(20 * var(--u)); font-size: calc(36 * var(--u)); }
+    .card-desc { margin-top: calc(12 * var(--u)); padding: 0 calc(24 * var(--u)) calc(16 * var(--u)); font-size: calc(30 * var(--u)); line-height: 1.25; }
+    .card-key { display: none; }
+    .card.sel::after { inset: calc(-10 * var(--u)); border-width: calc(4 * var(--u)); box-shadow: 0 0 calc(44 * var(--u)) rgba(245,197,24,.35); }
+    .cpd-take > span { height: calc(92 * var(--u)); font-size: calc(32 * var(--u)); padding: 0 calc(72 * var(--u)); }
+  }
+</style>
+<div class="cpd on">
+  <div class="cpd-head">
+    <div class="cpd-title">Descent Boon</div>
+    <div class="cpd-sub cp-flavor">Take one relic for the floors below</div>
+  </div>
+  <div class="cpd-row" data-each="cards">
+    <template>
+      <button class="card common" data-action="pick" data-key="Digit{index1}"><div class="card-band"></div><div class="card-rar">Relic</div><div class="card-icon" data-bind="number"></div><div class="card-name" data-bind="name"></div><div class="card-desc cp-flavor" data-bind="blurb"></div><div class="card-key">Press <span data-bind="number"></span></div></button>
+    </template>
+  </div>
+</div>

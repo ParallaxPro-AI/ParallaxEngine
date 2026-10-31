@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chest_legendary"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.966, 0.8057, 0.6368],
+      "offset": [0, 0.4038, 0.0001]
+    }
+  }
+}

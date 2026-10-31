@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/container_spreader"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.724, 2.308, 6.376],
+      "offset": [0, 0.58, 0]
+    }
+  }
+}

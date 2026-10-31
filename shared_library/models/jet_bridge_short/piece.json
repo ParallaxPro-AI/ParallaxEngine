@@ -1,0 +1,10 @@
+{
+  "id": "jet_bridge_short",
+  "summary": "A short apron-drive passenger boarding bridge: a column-mounted rotunda at the terminal end (+Z), a 9 m glaze… joints cab, door_l, door_r, canopy; options cladding; sockets socket_aircraft_door, socket_operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jet_bridge_short or place \"prefab\": \"jet_bridge_short\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jet_bridge_short"]
+}

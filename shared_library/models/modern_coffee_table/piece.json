@@ -1,0 +1,10 @@
+{
+  "id": "modern_coffee_table",
+  "summary": "A modern coffee table from the modern apartment set: a walnut top and lower walnut shelf in a slim black stee… options wood, dressing; sockets top, shelf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_coffee_table or place \"prefab\": \"modern_coffee_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_coffee_table"]
+}

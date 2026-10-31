@@ -1,0 +1,10 @@
+{
+  "id": "sashimi_slice",
+  "summary": "A single thick slice of salmon sashimi lying on its side on a serrated green shiso leaf: a deep-orange lobe c…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sashimi_slice or place \"prefab\": \"sashimi_slice\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sashimi_slice"]
+}

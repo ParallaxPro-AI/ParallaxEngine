@@ -1,0 +1,10 @@
+{
+  "id": "minigun",
+  "summary": "A hand-held six-barrel rotary minigun: a clamped cluster of six barrels that spins about the bore, a drum hou… joints barrels, trigger; sockets socket_muzzle, socket_optic, socket_ammo, grip_r, grip_l, sight, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.minigun or place \"prefab\": \"minigun\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:minigun"]
+}

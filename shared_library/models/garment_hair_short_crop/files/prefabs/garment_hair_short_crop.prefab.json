@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_short_crop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1857, 0.222, 0.2286],
+      "offset": [0, 1.777, -0.0068]
+    }
+  }
+}

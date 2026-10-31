@@ -1,0 +1,22 @@
+{
+  "label": "AMMO",
+  "respawn": 14,
+  "ammo": [
+    {
+      "weapon": "carbine",
+      "rounds": 45
+    },
+    {
+      "weapon": "sniper",
+      "rounds": 6
+    },
+    {
+      "weapon": "smoke",
+      "rounds": 1
+    }
+  ],
+  "cue": {
+    "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg",
+    "volume": 0.55
+  }
+}

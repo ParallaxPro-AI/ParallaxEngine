@@ -1,0 +1,1 @@
+{"components": {"model": {"model": "models/wellspring_blue"}, "fountain": {"radius": 8, "health_per_second": 0.15, "mana_per_second": 0.2}, "sight": {"radius": 14}}, "behaviors": {"fountain_pool": {}}}

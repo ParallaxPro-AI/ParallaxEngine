@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/neon_building_0",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

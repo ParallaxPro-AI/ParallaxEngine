@@ -1,0 +1,10 @@
+{
+  "id": "street_sweeper",
+  "summary": "A truck-mounted street sweeper on the cab-over truck chassis: a water tank and a taller crowned debris hopper… joints cab_tilt, door_l, door_r, broom_l, broom_r, hopper_door, …; options body, paint; sockets socket_driver, socket_tow, socket_broom_l, socket_broom_r, socket_pickup, socket_dump.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.street_sweeper or place \"prefab\": \"street_sweeper\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:street_sweeper"]
+}

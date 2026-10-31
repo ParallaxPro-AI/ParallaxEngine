@@ -1,0 +1,10 @@
+{
+  "id": "chicken_coop",
+  "summary": "A raised timber chicken coop: a red-painted house on four legs with a gable shingle roof, a hinged pop door o… joints door, nesting_hatch, ramp; sockets socket_perch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chicken_coop or place \"prefab\": \"chicken_coop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chicken_coop"]
+}

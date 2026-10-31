@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/beehive"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4515, 0.565, 0.6353],
+      "offset": [0.0008, 0.2825, 0.0377]
+    }
+  }
+}

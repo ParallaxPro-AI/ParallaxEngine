@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ship_wheel_helm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.73, 2.045, 1.102],
+      "offset": [0, 1.0225, 0.041]
+    }
+  }
+}

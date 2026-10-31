@@ -1,0 +1,10 @@
+{
+  "id": "ice_skates",
+  "summary": "A pair of figure skates standing side by side: lofted leather boots with an open ankle, a stacked heel and le… options boots, laces, guard_colour, guards.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_skates or place \"prefab\": \"ice_skates\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_skates"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bathtub",
+  "summary": "A single-ended bathtub: a white enamel vessel with a deep bathing well, an end-mounted chrome mixer with a li… joints tap, diverter; options style; sockets socket_well.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bathtub or place \"prefab\": \"bathtub\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bathtub"]
+}

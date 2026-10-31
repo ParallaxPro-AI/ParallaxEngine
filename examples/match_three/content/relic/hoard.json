@@ -1,0 +1,7 @@
+{
+  "name": "Miser's Hoard",
+  "description": "Leftover moves are worth triple when a stage is cleared.",
+  "short": "Leftover moves pay triple.",
+  "highlight": "triple",
+  "leftover_bonus": 2.0
+}

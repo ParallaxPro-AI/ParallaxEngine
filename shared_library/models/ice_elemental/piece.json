@@ -1,0 +1,10 @@
+{
+  "id": "ice_elemental",
+  "summary": "An ICE ELEMENTAL, about 2.5 m tall to its icicle crown (a hulking 2.3 m body, a third again a man's height, t… options core; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_elemental or place \"prefab\": \"ice_elemental\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_elemental"]
+}

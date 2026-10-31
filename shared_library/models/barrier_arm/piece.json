@@ -1,0 +1,10 @@
+{
+  "id": "barrier_arm",
+  "summary": "A road/parking boom barrier: a steel cabinet housing on a base plate, a red-and-white striped boom arm mounte… joints arm; sockets socket_boom_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.barrier_arm or place \"prefab\": \"barrier_arm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:barrier_arm"]
+}

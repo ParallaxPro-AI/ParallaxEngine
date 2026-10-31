@@ -1,0 +1,10 @@
+{
+  "id": "cave_tunnel_bend",
+  "summary": "A 4 x 4 m natural cave passage tile from the UNDERGROUND kit that turns 90 degrees: a mass of faceted limesto…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cave_tunnel_bend or place \"prefab\": \"cave_tunnel_bend\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cave_tunnel_bend"]
+}

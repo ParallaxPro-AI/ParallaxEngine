@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/parachute_canopy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.942, 11.03, 7.942],
+      "offset": [0, 5.51, 0]
+    }
+  }
+}

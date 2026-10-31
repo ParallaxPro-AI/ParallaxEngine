@@ -1,0 +1,14 @@
+{
+  "number": 4,
+  "name": "Triple Row",
+  "hint": "Three crates, three pads. Work the left aisle.",
+  "rows": [
+    "#########",
+    "#       #",
+    "#@ $ .  #",
+    "#  $ .  #",
+    "#  $ .  #",
+    "#       #",
+    "#########"
+  ]
+}

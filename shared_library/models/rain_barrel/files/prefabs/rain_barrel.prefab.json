@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rain_barrel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6761, 1.2305, 0.9833],
+      "offset": [0.027, 0.6152, 0.0664]
+    }
+  }
+}

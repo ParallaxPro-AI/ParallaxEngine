@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alarm_clock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.142, 0.1705, 0.066],
+      "offset": [0, 0.0853, -0.0015]
+    }
+  }
+}

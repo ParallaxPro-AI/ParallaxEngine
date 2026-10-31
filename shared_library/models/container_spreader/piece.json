@@ -1,0 +1,10 @@
+{
+  "id": "container_spreader",
+  "summary": "A 20-foot container spreader: a welded lifting frame on a four-sheave headblock, with four twistlocks on the… joints twist_fl, twist_fr, twist_rl, twist_rr, flip_fl, flip_fr, …; options locks, paint; sockets socket_reeve, socket_load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.container_spreader or place \"prefab\": \"container_spreader\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:container_spreader"]
+}

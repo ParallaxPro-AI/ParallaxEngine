@@ -1,0 +1,10 @@
+{
+  "id": "tennis_court_net_post",
+  "summary": "A regulation tennis net with its posts: two 89 mm round steel posts 12.8 m apart (0.914 m outside a doubles c… joints winder_crank; options post; sockets socket_net_centre, socket_post_l, socket_post_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tennis_court_net_post or place \"prefab\": \"tennis_court_net_post\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tennis_court_net_post"]
+}

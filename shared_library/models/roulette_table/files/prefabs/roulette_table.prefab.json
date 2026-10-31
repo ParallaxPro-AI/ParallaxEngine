@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roulette_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.65, 1.05, 1.87],
+      "offset": [0.005, 0.525, 0]
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "components": {
+    "model": {
+      "model": "models/soldier",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "rigidbody": {
+      "kind": "kinematic"
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.45,
+      "height": 1.8,
+      "offset": [
+        0,
+        0.9,
+        0
+      ],
+      "layer": "body"
+    },
+    "nav_agent": {
+      "speed": 5,
+      "radius": 0.5,
+      "stopping_distance": 0.6
+    },
+    "health": {
+      "current": 100,
+      "max": 100
+    },
+    "side": {
+      "side": "bots"
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        2.2,
+        0
+      ],
+      "hide_when_full": true
+    },
+    "map_icon": {
+      "icon": "dot",
+      "color": "#ff4040"
+    }
+  },
+  "behaviors": {
+    "bot_brain": {}
+  },
+  "pool": 12
+}

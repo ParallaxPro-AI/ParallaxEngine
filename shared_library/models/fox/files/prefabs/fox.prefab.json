@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fox",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.222,
+        0.6041,
+        1.1146
+      ],
+      "offset": [
+        0.001,
+        0.3025,
+        -0.0987
+      ]
+    }
+  }
+}

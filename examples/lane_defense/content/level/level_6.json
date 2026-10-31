@@ -1,0 +1,25 @@
+{
+  "number": 6,
+  "title": "The garden stands",
+  "subtitle": "The ten-wave siege",
+  "hint": "Build income early. Save a Blast Gourd for the big mossback rush.",
+  "reward": "Master gardener • replay for three stars",
+  "lanes": [0, 1, 2, 3, 4],
+  "cards": ["pollenbloom", "thornspitter", "barkshell", "twinthorn", "rimecap", "blastgourd"],
+  "start_pollen": 600,
+  "buildup": 20,
+  "interval": 25,
+  "irrigation": true,
+  "waves": [
+    { "lanes": "random", "banner": "Something is shambling in", "husks": ["shambler", "shambler"] },
+    { "lanes": "random", "banner": "Wave 2", "husks": ["shambler", "shambler", "shambler"] },
+    { "lanes": "random", "banner": "Armor on the lawn", "husks": ["shambler", "scrapmask", "scrapmask"] },
+    { "lanes": "random", "banner": "They're running", "husks": ["sprinter", "sprinter", "shambler", "scrapmask"] },
+    { "lanes": "random", "banner": "Iron on the line", "husks": ["scrapmask", "ironhelm", "shambler", "sprinter"] },
+    { "lanes": "random", "banner": "Wave 6 — they're picking up", "husks": ["sprinter", "sprinter", "sprinter", "scrapmask", "scrapmask"] },
+    { "lanes": "random", "banner": "Heavy line", "husks": ["ironhelm", "ironhelm", "scrapmask", "shambler", "sprinter"] },
+    { "lanes": "random", "banner": "Something big is walking", "spawn_gap": 1.2, "husks": ["brute", "scrapmask", "scrapmask", "sprinter", "sprinter"] },
+    { "lanes": "random", "banner": "Two brutes. Wall your lanes.", "spawn_gap": 1.2, "husks": ["brute", "brute", "ironhelm", "sprinter", "sprinter", "scrapmask"] },
+    { "lanes": "all", "banner": "FINAL WAVE — EVERY LANE", "spawn_gap": 2.4, "husks": ["shambler", "scrapmask", "ironhelm"] }
+  ]
+}

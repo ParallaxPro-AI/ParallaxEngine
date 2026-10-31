@@ -1,0 +1,10 @@
+{
+  "id": "coral_branch",
+  "summary": "A branching staghorn-type reef coral colony: six trunks rise close together from an encrusted rock and fork a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coral_branch or place \"prefab\": \"coral_branch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coral_branch"]
+}

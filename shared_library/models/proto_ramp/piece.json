@@ -1,0 +1,10 @@
+{
+  "id": "proto_ramp",
+  "summary": "A greybox prototype ramp: a solid wedge rising 1 m over a 2 m run (26.6 degrees), 1 m wide, with a 0.25 m gri… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_ramp or place \"prefab\": \"proto_ramp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_ramp"]
+}

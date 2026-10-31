@@ -1,0 +1,60 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_hull",
+      "scale": 0.7,
+      "cast_shadows": true,
+      "offset": [0, -0.55, 0],
+      "colors": {
+        "camo_hull": "#5c664d"
+      }
+    },
+    "rigidbody": {
+      "kind": "kinematic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 1.1, 4.4],
+      "layer": "hull"
+    },
+    "nav_agent": {
+      "radius": 1.6,
+      "drives_body": false
+    },
+    "health": {
+      "current": 100,
+      "max": 100
+    },
+    "health_bar": {
+      "offset": [0, 3.0, 0],
+      "color": "#ef4444",
+      "hide_when_full": false
+    },
+    "side": {
+      "side": "axis"
+    },
+    "marker": {
+      "icon": "ring",
+      "shown": false,
+      "color": "#f59e0b"
+    }
+  },
+  "children": [
+    {
+      "name": "turret",
+      "prefab": "tank_turret",
+      "at": [0, 0.332, 0.175],
+      "components": {
+        "model": {
+          "colors": {
+            "camo_hull": "#5c664d"
+          }
+        }
+      }
+    }
+  ],
+  "behaviors": {
+    "tank_ai": {}
+  },
+  "pool": 24
+}

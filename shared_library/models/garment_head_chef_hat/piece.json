@@ -1,0 +1,10 @@
+{
+  "id": "garment_head_chef_hat",
+  "summary": "A classic chef's toque (toque blanche): a tall white cotton hat about 25 cm high, a pleated stiff headband an… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_head_chef_hat or place \"prefab\": \"garment_head_chef_hat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_head_chef_hat"]
+}

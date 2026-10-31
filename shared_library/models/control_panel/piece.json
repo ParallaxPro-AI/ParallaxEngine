@@ -1,0 +1,10 @@
+{
+  "id": "control_panel",
+  "summary": "A floor-standing industrial control console: a steel cabinet whose front face carries two needle gauges, thre… joints gauge_needle_0, gauge_needle_1, dial_0, dial_1, dial_2, switch_0, …; options style.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.control_panel or place \"prefab\": \"control_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:control_panel"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "modern_sofa",
+  "summary": "A modern three-seat sofa from the modern apartment set: stone-grey woven upholstery with rounded padded arms… options fabric, accent, wood, dressing; sockets seat_l, seat_c, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_sofa or place \"prefab\": \"modern_sofa\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_sofa"]
+}

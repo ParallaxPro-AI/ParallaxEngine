@@ -1,0 +1,3 @@
+{ "name": "Oak Door", "order": 9, "category": "build", "station": "workbench",
+  "inputs": [{ "item": "planks", "count": 6 }],
+  "output": { "item": "door", "count": 1 } }

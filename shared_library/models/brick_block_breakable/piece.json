@@ -1,0 +1,10 @@
+{
+  "id": "brick_block_breakable",
+  "summary": "A generic breakable brick block for platformers: a 1 m cube (one 1 m grid cell) built of individual chamfered… joints block.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.brick_block_breakable or place \"prefab\": \"brick_block_breakable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:brick_block_breakable"]
+}

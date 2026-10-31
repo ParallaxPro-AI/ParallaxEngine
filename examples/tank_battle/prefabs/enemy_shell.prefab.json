@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.45, 0.45, 0.45], "color": "#ffb847", "emissive": "#ff8c26" },
+    "rigidbody": { "kind": "kinematic", "continuous": true },
+    "collider": { "shape": "sphere", "radius": 1.3, "trigger": true, "layer": "shell", "collides_with": ["hull", "prop"] }
+  },
+  "behaviors": { "enemy_shell": { "lifetime": 6 } },
+  "pool": 48
+}

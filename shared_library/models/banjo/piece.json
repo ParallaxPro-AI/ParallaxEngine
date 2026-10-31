@@ -1,0 +1,10 @@
+{
+  "id": "banjo",
+  "summary": "A five-string resonator banjo stood upright on its pot: a maple rim with a chrome tone ring, a frosted drum h… joints peg_0, peg_1, peg_2, peg_3, fifth_peg.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.banjo or place \"prefab\": \"banjo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:banjo"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "fern_clump",
+  "summary": "A clump of woodland fern (shuttlecock / lady-fern type): ten long pinnate fronds with 11-14 pairs of rounded…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fern_clump or place \"prefab\": \"fern_clump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fern_clump"]
+}

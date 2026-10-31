@@ -1,0 +1,10 @@
+{
+  "id": "rock_boulder_large",
+  "summary": "A large weathered granite field boulder (a glacial erratic), about 2.9 m long, 1.8 m tall and 2.3 m deep, rou…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rock_boulder_large or place \"prefab\": \"rock_boulder_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rock_boulder_large"]
+}

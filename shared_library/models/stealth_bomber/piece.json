@@ -1,0 +1,10 @@
+{
+  "id": "stealth_bomber",
+  "summary": "A generic stealth flying-wing bomber with a 50 m span: one blended wing lofted spanwise with a straight 33 de… joints bay_door_l, bay_door_r, nose_gear, maingear_l, maingear_r; sockets eye_point, bay_drop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stealth_bomber or place \"prefab\": \"stealth_bomber\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stealth_bomber"]
+}

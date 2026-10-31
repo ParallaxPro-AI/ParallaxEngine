@@ -1,0 +1,10 @@
+{
+  "id": "parcel_locker",
+  "summary": "A self-service parcel pickup locker bank: painted steel compartment doors in four columns of mixed sizes (3 l… joints c0_door_0, c0_door_1, c0_door_2, c1_door_0, c1_door_1, c1_door_2, …; options colour; sockets socket_screen.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parcel_locker or place \"prefab\": \"parcel_locker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parcel_locker"]
+}

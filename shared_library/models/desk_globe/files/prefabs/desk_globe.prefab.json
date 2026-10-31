@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/desk_globe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4031, 0.4875, 0.3106],
+      "offset": [0, 0.2438, -0.0027]
+    }
+  }
+}

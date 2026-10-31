@@ -1,0 +1,82 @@
+{
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    0.46,
+    0.32,
+    0.46
+   ],
+   "offset": [
+    0,
+    0.16,
+    0
+   ],
+   "color": "#959699",
+   "metallic": 0.35,
+   "roughness": 0.82
+  },
+  "sight": {
+   "radius": 18
+  },
+  "true_sight": {},
+  "health": {
+   "max": 6
+  },
+  "map_icon": {
+   "icon": "triangle",
+   "color": "#ff9a3c",
+   "size": 1.0
+  },
+  "ward": {}
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    0.46,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "cylinder",
+     "size": [
+      0.62,
+      0.22,
+      0.62
+     ],
+     "color": "#a19584",
+     "metallic": 0.45,
+     "roughness": 0.72
+    }
+   }
+  },
+  {
+   "at": [
+    0,
+    0.78,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "sphere",
+     "size": [
+      0.44,
+      0.62,
+      0.44
+     ],
+     "color": "#ffcb87",
+     "emissive": "#ff9a3c",
+     "emissive_strength": 1.5,
+     "roughness": 0.4
+    },
+    "light": {
+     "kind": "point",
+     "color": "#ffb060",
+     "intensity": 1.5,
+     "range": 6
+    }
+   }
+  }
+ ]
+}

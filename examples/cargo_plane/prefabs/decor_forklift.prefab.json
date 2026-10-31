@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/forklift",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    1.31,
+    2.235,
+    3.73
+   ],
+   "offset": [
+    0,
+    1.118,
+    -0.155
+   ]
+  }
+ }
+}

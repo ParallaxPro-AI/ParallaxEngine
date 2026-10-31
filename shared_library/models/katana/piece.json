@@ -1,0 +1,10 @@
+{
+  "id": "katana",
+  "summary": "A katana laid along its own axis: a 0.77 m curved single-edged blade with a shinogi ridge, a bo-hi fuller cut… options saya, fittings; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.katana or place \"prefab\": \"katana\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:katana"]
+}

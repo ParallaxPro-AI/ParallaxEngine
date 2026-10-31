@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/airlock_door_round"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.84, 2.8, 1.626],
+      "offset": [0.02, 1.4, -0.068]
+    }
+  }
+}

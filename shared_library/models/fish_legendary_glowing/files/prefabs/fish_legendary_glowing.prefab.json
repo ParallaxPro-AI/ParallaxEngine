@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_legendary_glowing"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5397, 0.5873, 1.2008],
+      "offset": [0, 0.2936, -0.0304]
+    }
+  }
+}

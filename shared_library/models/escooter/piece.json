@@ -1,0 +1,10 @@
+{
+  "id": "escooter",
+  "summary": "A dockless share e-scooter: a standing deck, a tall stem with a folding clamp and a bar-mounted display, swep… joints steer, spin_front, spin_rear; options type, paint; sockets seat_stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.escooter or place \"prefab\": \"escooter\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:escooter"]
+}

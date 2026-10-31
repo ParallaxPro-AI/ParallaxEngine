@@ -1,0 +1,10 @@
+{
+  "id": "snowmobile",
+  "summary": "A two-up trail snowmobile: a swept fibreglass hood with twin headlamps and a raked tinted windscreen over a g… joints ski_steer_l, ski_steer_r, steering, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, …; options paint; sockets seat_driver, seat_pax_1, eye_point, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.snowmobile or place \"prefab\": \"snowmobile\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:snowmobile"]
+}

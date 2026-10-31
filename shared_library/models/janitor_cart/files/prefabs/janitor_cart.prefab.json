@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/janitor_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2725, 1.4214, 0.572],
+      "offset": [0.0263, 0.7107, 0]
+    }
+  }
+}

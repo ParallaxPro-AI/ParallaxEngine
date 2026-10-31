@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lemonade_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.32, 2.0443, 0.6626],
+      "offset": [0, 1.0221, 0.025]
+    }
+  }
+}

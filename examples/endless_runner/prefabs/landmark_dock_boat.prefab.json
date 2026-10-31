@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dock_boat",
+      "cast_shadows": true
+    }
+  },
+  "pool": 4
+}

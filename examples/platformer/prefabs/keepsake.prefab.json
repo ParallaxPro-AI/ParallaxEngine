@@ -1,0 +1,8 @@
+{
+  "components": {
+    "model": { "model": "models/keepsake" },
+    "collider": { "shape": "sphere", "radius": 0.6, "trigger": true },
+    "collectible": { "kind": "keepsake" }
+  },
+  "behaviors": { "spin": { "speed": 120, "bob": 0.15, "bob_rate": 2.5 } }
+}

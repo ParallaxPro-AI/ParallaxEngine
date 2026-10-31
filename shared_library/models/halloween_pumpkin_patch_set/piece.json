@@ -1,0 +1,10 @@
+{
+  "id": "halloween_pumpkin_patch_set",
+  "summary": "A Halloween / harvest display about 1.6 m across: a hay bale (the shared `hay_bale`) on an irregular pad of l… options lantern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.halloween_pumpkin_patch_set or place \"prefab\": \"halloween_pumpkin_patch_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:halloween_pumpkin_patch_set"]
+}

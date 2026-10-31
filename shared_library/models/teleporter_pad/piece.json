@@ -1,0 +1,10 @@
+{
+  "id": "teleporter_pad",
+  "summary": "A sci-fi teleporter / transporter pad: a low tiered metal platform with a glowing energy deck, four upright e… joints ring_spin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.teleporter_pad or place \"prefab\": \"teleporter_pad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:teleporter_pad"]
+}

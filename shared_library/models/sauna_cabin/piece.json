@@ -1,0 +1,10 @@
+{
+  "id": "sauna_cabin",
+  "summary": "A two-to-three person indoor sauna cabin (1.6 x 2.05 x 1.3 m): red-cedar vertical tongue-and-groove walls wit… joints door; options cladding; sockets seat_upper_l, seat_upper_r, seat_lower, socket_stones.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sauna_cabin or place \"prefab\": \"sauna_cabin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sauna_cabin"]
+}

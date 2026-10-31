@@ -1,0 +1,10 @@
+{
+  "id": "rock_small_set",
+  "summary": "A set of five small loose field stones laid out in a loose row: an angular granite chunk (~0.42 m), a dark wa…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rock_small_set or place \"prefab\": \"rock_small_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rock_small_set"]
+}

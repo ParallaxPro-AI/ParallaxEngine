@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hall_bin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.872, 1.02, 0.872],
+      "offset": [0, 0.51, 0]
+    }
+  }
+}

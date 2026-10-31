@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/raptor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3346, 0.9995, 2.058],
+      "offset": [0, 0.4983, -0.071]
+    }
+  }
+}

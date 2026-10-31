@@ -1,0 +1,10 @@
+{
+  "id": "science_lab_bench",
+  "summary": "A double-sided school science-lab island: a black epoxy worktop on two back-to-back runs of laminate base cab… joints door_f0, door_f1, door_f2, door_f3, door_b0, door_b1, …; options doors, seating; sockets seat_0, seat_1, seat_2, seat_3, work_f, work_b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.science_lab_bench or place \"prefab\": \"science_lab_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:science_lab_bench"]
+}

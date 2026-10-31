@@ -1,0 +1,10 @@
+{
+  "id": "camp_titan",
+  "summary": "The great jungle titan: a 2.6 m rigged brute on the engine's canonical 17-bone humanoid rig, built from hide… sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camp_titan or place \"prefab\": \"camp_titan\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camp_titan"]
+}

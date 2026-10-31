@@ -1,0 +1,10 @@
+{
+  "rig": "humanoid", "duration": 5, "loop": true,
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[5,0,0],"Spine2":[3,0,0],"Neck":[-2,0,0],"Head":[-1,14,0],"RightArm":[-9.61,-2.78,-73.77],"RightForeArm":[0,-22,0],"LeftArm":[-9.61,2.78,73.77],"LeftForeArm":[0,22,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":1.6,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[2.4,0,0],"Spine2":[0.6,0,0],"Neck":[0.4,0,0],"Head":[-0.4,2,0],"RightArm":[-9.7,-2.44,-75.79],"RightForeArm":[0,-21,0],"LeftArm":[-9.7,2.44,75.79],"LeftForeArm":[0,21,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":2.6,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[4.2,0,0],"Spine2":[2.4,0,0],"Neck":[-1.4,0,0],"Head":[-2.2,-12,0],"RightArm":[-9.66,-2.61,-74.78],"RightForeArm":[0,-22,0],"LeftArm":[-9.66,2.61,74.78],"LeftForeArm":[0,22,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":3.9,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[5.4,0,0],"Spine2":[3.4,0,0],"Neck":[-2.2,0,0],"Head":[-1.4,4,0],"RightArm":[-9.61,-2.78,-73.77],"RightForeArm":[0,-23,0],"LeftArm":[-9.61,2.78,73.77],"LeftForeArm":[0,23,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":5,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[5,0,0],"Spine2":[3,0,0],"Neck":[-2,0,0],"Head":[-1,14,0],"RightArm":[-9.61,-2.78,-73.77],"RightForeArm":[0,-22,0],"LeftArm":[-9.61,2.78,73.77],"LeftForeArm":[0,22,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}}
+  ]
+}

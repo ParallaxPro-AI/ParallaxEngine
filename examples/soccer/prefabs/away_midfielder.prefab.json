@@ -1,0 +1,17 @@
+{
+  "extends": "away_player",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/e9/3e/e93e873bf8ac7981b7b5568eb71ddc4bdd19c7c1441f35be01b45df9a5ff359c.glb",
+      "colors": {
+        "Skin": "#ffffff",
+        "Main": "#ffffff",
+        "Black": "#ffffff",
+        "DarkGreen": "#ffffff",
+        "Grey": null,
+        "Face": "#ffffff",
+        "Helmet": "#ffffff"
+      }
+    }
+  }
+}

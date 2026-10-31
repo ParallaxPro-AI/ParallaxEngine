@@ -1,0 +1,11 @@
+{
+  "extends": "iron_valley",
+  "exclude": ["player", "camera", "fire_point", "ammo_crate", "fuel_barrel", "ammo_crate_2", "fuel_barrel_2", "ammo_crate_3", "fuel_barrel_3", "ammo_crate_4", "fuel_barrel_4", "fuel_barrel_5", "fuel_barrel_6", "fuel_barrel_7", "ammo_crate_5", "ammo_crate_6", "ammo_crate_7", "ambience"],
+  "ui": ["title_screen"],
+  "terrain": {"size": [220, 220], "resolution": 220, "noise": [{"kind": "fbm", "amplitude": 2.4, "wavelength": 62.5, "octaves": 3, "seed": 11}], "hills": [{"center": [-72, 0], "size": [30, 190], "height": 9, "feather": 28}, {"center": [72, 0], "size": [30, 190], "height": 9, "feather": 28}, {"center": [-26, -28], "radius": 20, "height": 3.5, "feather": 28}], "flats": [{"center": [0, 0], "radius": 28, "height": 0, "feather": 20}, {"center": [0, -76], "radius": 15, "height": 0, "feather": 11}], "layers": [{"name": "grass", "color": [0.33, 0.42, 0.22], "roughness": 0.92}, {"name": "rock", "color": [0.45, 0.43, 0.4], "roughness": 0.95}, {"name": "road", "color": [0.5, 0.5, 0.48], "roughness": 0.85}], "default_layer": "grass", "paint": [{"center": [-72, 0], "radius": 152, "layer": "rock", "feather": 16, "noise": 0.5}, {"center": [72, 0], "radius": 152, "layer": "rock", "feather": 16, "noise": 0.5}], "paths": [{"paint": "road", "points": [[0, 90], [0, -90]], "width": 11, "feather": 3}, {"paint": "road", "points": [[-50, -38], [50, -38]], "width": 7, "feather": 2.5}, {"paint": "road", "points": [[-50, 38], [50, 38]], "width": 7, "feather": 2.5}]},
+  "tags": [],
+  "entities": [
+    {"prefab": "player_tank_display", "at": [3, 1.2, -70], "rotation": [0, -25, 0], "components": {"grounded": {"lift": 1.2}}},
+    {"id": "camera", "prefab": "title_camera", "at": [-6, 6, -84], "rotation": [12, 25, 0]}
+  ]
+}

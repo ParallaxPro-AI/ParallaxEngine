@@ -1,0 +1,10 @@
+{
+  "id": "road_roller",
+  "summary": "A tandem vibratory road roller: two smooth steel drums (each split into halves) in heavy yokes with scrapers… joints front_frame, steering; options paint; sockets seat_driver, eye_point, exhaust_0, engine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.road_roller or place \"prefab\": \"road_roller\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:road_roller"]
+}

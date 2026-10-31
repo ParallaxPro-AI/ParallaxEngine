@@ -1,0 +1,10 @@
+{
+  "id": "cafe",
+  "summary": "A small corner cafe, 9 x 8.5 m: a cream-rendered single storey on a granite plinth with a full-width glazed s… joints pastry_case_glass_left, pastry_case_glass_right, pastry_case_shelf_adjust, pastry_case_light_hood; options facade_colour, awning_colour; sockets socket_entrance, socket_barista, socket_queue, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cafe or place \"prefab\": \"cafe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cafe"]
+}

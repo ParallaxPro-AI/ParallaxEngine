@@ -1,0 +1,10 @@
+{
+  "id": "festoon_light_string",
+  "summary": "Bistro / festoon lights: a sagging black cable between two freestanding poles with pendant sockets every ~0.6… options mounts, bulb, tone; sockets socket_end_l, socket_end_r, socket_mid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.festoon_light_string or place \"prefab\": \"festoon_light_string\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:festoon_light_string"]
+}

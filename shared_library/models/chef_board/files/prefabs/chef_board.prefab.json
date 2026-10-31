@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chef_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.44, 0.0322, 0.3],
+      "offset": [0, 0.0161, 0]
+    }
+  }
+}

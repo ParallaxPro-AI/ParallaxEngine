@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paper_glider"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4441, 0.0769, 0.3],
+      "offset": [0, 0.0384, 0]
+    }
+  }
+}

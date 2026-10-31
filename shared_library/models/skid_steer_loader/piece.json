@@ -1,0 +1,10 @@
+{
+  "id": "skid_steer_loader",
+  "summary": "A compact wheeled skid-steer loader: a low body on four lugged tyres under continuous fenders, a ROPS cab wit… joints tailgate, cab_door, lift_l, bucket, lift_r; options paint; sockets seat_driver, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.skid_steer_loader or place \"prefab\": \"skid_steer_loader\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:skid_steer_loader"]
+}

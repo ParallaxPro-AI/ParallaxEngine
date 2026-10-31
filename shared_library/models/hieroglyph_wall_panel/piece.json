@@ -1,0 +1,10 @@
+{
+  "id": "hieroglyph_wall_panel",
+  "summary": "A 2.5 m Egyptian temple wall panel in sandstone: a dressed slab on a stepped base under a torus roll and pain… options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hieroglyph_wall_panel or place \"prefab\": \"hieroglyph_wall_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hieroglyph_wall_panel"]
+}

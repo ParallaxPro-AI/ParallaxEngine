@@ -1,0 +1,1 @@
+{ "components": {}, "behaviors": { "door": { "swaps_to": "door_open" } } }

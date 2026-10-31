@@ -1,0 +1,10 @@
+{
+  "id": "grindstone",
+  "summary": "A treadle-driven sharpening grindstone: a 0.64 m sandstone wheel on an iron axle in a splayed timber trestle… joints wheel, treadle, conrod; sockets sparks.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grindstone or place \"prefab\": \"grindstone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grindstone"]
+}

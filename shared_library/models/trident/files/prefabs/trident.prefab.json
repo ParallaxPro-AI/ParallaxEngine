@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trident"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.4, 0.4],
+      "hip_turn": [-10.31324, -22.918312, -31.512679],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.238, 0.043, 2.02],
+      "offset": [0, 0, 1.01]
+    }
+  }
+}

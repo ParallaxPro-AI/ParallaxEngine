@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chapel_village"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.8961, 12.1634, 14.15],
+      "offset": [-0.3981, 6.0769, 0.275]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "xray_machine",
+  "summary": "A floor-mounted radiography room: a patient table with a floating tabletop and a pull-out detector (bucky) tr… joints stand_travel, arm_height, tube_angle, bucky_tray, tabletop; options accent; sockets socket_patient, socket_radiographer, socket_beam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.xray_machine or place \"prefab\": \"xray_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:xray_machine"]
+}

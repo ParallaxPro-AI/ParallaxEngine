@@ -1,0 +1,10 @@
+{
+  "id": "imp",
+  "summary": "An IMP - a small mischievous horned devil-creature, about 0.9 m tall, on the canonical 17-bone humanoid rig s… options skin; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.imp or place \"prefab\": \"imp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:imp"]
+}

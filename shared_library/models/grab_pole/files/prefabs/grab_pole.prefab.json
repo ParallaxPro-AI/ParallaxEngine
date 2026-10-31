@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grab_pole"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.11, 2.145, 1.112],
+      "offset": [0, 1.0725, 0]
+    }
+  }
+}

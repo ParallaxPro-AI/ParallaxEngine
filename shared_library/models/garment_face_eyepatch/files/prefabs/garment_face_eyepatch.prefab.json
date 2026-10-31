@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_face_eyepatch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2034, 0.0778, 0.2271],
+      "offset": [-0.0029, 1.759, -0.0155]
+    }
+  }
+}

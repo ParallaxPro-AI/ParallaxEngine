@@ -1,0 +1,12 @@
+{
+  "name": "Warden Zex",
+  "role": "THE CIRCUIT CHAMPION",
+  "taunt": "Watch the SPIRIT gauge. Bait the super and punish.",
+  "style": "boss",
+  "walk_speed": 3.5,
+  "spacing": 1.4,
+  "block_chance": 0.6,
+  "reaction": 0.16,
+  "cadence": 0.85,
+  "kit": "crimson"
+}

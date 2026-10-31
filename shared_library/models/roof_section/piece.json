@@ -1,0 +1,10 @@
+{
+  "id": "roof_section",
+  "summary": "A modular roof section that caps a wall module. options roof_type.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roof_section or place \"prefab\": \"roof_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roof_section"]
+}

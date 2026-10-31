@@ -1,0 +1,10 @@
+{
+  "id": "launch_rocket",
+  "summary": "A 48 m two-stage orbital launch vehicle standing on four swept base fins: a lathed first stage with a flared… joints engine_centre, fairing_front, fairing_back; options livery; sockets socket_payload, socket_capsule_top, socket_umbilical, exhaust_c, exhaust_0, exhaust_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.launch_rocket or place \"prefab\": \"launch_rocket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:launch_rocket"]
+}

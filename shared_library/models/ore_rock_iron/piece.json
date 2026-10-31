@@ -1,0 +1,10 @@
+{
+  "id": "ore_rock_iron",
+  "summary": "A harvestable iron-ore node: a ~1.2 m grey boulder fused from three fractured chunks, with five clusters of d…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ore_rock_iron or place \"prefab\": \"ore_rock_iron\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ore_rock_iron"]
+}

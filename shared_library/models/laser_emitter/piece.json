@@ -1,0 +1,10 @@
+{
+  "id": "laser_emitter",
+  "summary": "A pedestal-mounted laser-trap emitter: a fixed floor base and column, a head that PANS about vertical to swee… joints pan, beam; sockets socket_muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laser_emitter or place \"prefab\": \"laser_emitter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laser_emitter"]
+}

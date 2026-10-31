@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="racer.css">
+<div class="modal">
+  <div class="stack">
+    <h2 class="value" data-bind="title"></h2>
+    <span class="label" data-bind="place"></span>
+    <table class="plate">
+      <tbody data-each="rows">
+        <template>
+          <tr data-class-player="is_player">
+            <td data-bind="place"></td><td data-bind="name"></td><td data-bind="time"></td><td>+<span data-bind="points"></span></td>
+          </tr>
+        </template>
+      </tbody>
+    </table>
+    <div class="row plate">
+      <span><span class="label" data-text="race_time"></span> <span class="value" data-bind="race_time"></span></span>
+      <span><span class="label" data-text="best_lap"></span> <span class="value" data-bind="best_lap"></span></span>
+    </div>
+    <div class="row plate">
+      <span class="label" data-show="ghost_beaten" data-text="ghost_new_best"></span>
+      <span data-show="had_ghost"><span class="label" data-text="ghost"></span> <span data-bind="ghost_time"></span></span>
+    </div>
+    <span class="label" data-show="championship" data-text="standings"></span>
+    <table class="plate" data-show="championship">
+      <tbody data-each="standings">
+        <template><tr data-class-player="is_player"><td data-bind="name"></td><td data-bind="points"></td></tr></template>
+      </tbody>
+    </table>
+    <div class="row plate">
+      <span><span class="label" data-text="purse"></span> +<span class="value" data-bind="credits"></span></span>
+      <span class="label" data-show="lap_record" data-text="lap_record"></span>
+      <span><span class="label" data-text="credits"></span> <span data-bind="wallet"></span></span>
+    </div>
+    <span class="label" data-show="season_over" data-text="season_reset"></span>
+    <div class="row">
+      <button class="btn" data-hide="championship" data-action="retry" data-text="retry"></button>
+      <button class="btn" data-action="garage" data-text="to_garage"></button>
+      <button class="btn primary" data-show="has_next_round" data-action="next_round" data-key="Enter" data-text="next_round"></button>
+    </div>
+  </div>
+</div>

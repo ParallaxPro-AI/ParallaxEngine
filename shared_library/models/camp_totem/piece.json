@@ -1,0 +1,10 @@
+{
+  "id": "camp_totem",
+  "summary": "A jungle buff shrine: a stepped stone plinth, a carved standing stone and a slowly turning crystal floating a… options buff, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camp_totem or place \"prefab\": \"camp_totem\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camp_totem"]
+}

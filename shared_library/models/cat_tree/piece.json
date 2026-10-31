@@ -1,0 +1,10 @@
+{
+  "id": "cat_tree",
+  "summary": "A 1.2 m carpeted cat tree: a wide base board, a cube condo with a round front doorway and a side porthole, fo… joints toy; options carpet; sockets socket_condo, socket_lookout, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cat_tree or place \"prefab\": \"cat_tree\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cat_tree"]
+}

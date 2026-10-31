@@ -1,0 +1,10 @@
+{
+  "id": "cannon",
+  "summary": "A black-powder field cannon: a cast-iron muzzle-loading barrel with reinforce rings, a muzzle swell and a cas… joints spin_l, spin_r, barrel; options barrel_metal, carriage; sockets socket_muzzle, socket_tow, socket_gunner, muzzle_flash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cannon or place \"prefab\": \"cannon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cannon"]
+}

@@ -1,0 +1,37 @@
+{
+ "duration": 1.1,
+ "seed": 780,
+ "gain": 0.9,
+ "layers": [
+  {
+   "wave": "saw",
+   "freq": 160,
+   "freq_end": 90,
+   "attack": 0.01,
+   "decay": 0.9,
+   "sustain": 0,
+   "gain": 0.65,
+   "drive": 1.8
+  },
+  {
+   "wave": "noise",
+   "attack": 0.05,
+   "decay": 0.85,
+   "sustain": 0.2,
+   "gain": 0.4,
+   "filter": {
+    "type": "lowpass",
+    "freq": 2200,
+    "freq_end": 900
+   }
+  },
+  {
+   "wave": "sine",
+   "freq": 80,
+   "attack": 0.02,
+   "decay": 0.9,
+   "sustain": 0,
+   "gain": 0.35
+  }
+ ]
+}

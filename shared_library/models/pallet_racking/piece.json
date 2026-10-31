@@ -1,0 +1,10 @@
+{
+  "id": "pallet_racking",
+  "summary": "One bay of selective pallet racking, a MODULAR run piece: a 4.9 m blue upright frame (two slotted columns, ho… options ends, loads, frame, beams; sockets end_neg, end_pos, slot_0_0, slot_0_1, slot_1_0, slot_1_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pallet_racking or place \"prefab\": \"pallet_racking\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pallet_racking"]
+}

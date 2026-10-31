@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/saxophone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.174, 0.664, 0.39],
+      "offset": [0, 0.332, 0.002]
+    }
+  }
+}

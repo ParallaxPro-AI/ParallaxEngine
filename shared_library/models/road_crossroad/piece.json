@@ -1,0 +1,10 @@
+{
+  "id": "road_crossroad",
+  "summary": "A 12 m four-way crossroad tile from the ROAD_KIT: two 7 m carriageways crossing at the tile centre, four quar…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_crossroad or place \"prefab\": \"road_crossroad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_crossroad"]
+}

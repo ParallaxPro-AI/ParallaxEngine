@@ -1,0 +1,85 @@
+{
+ "tags": [
+  "plane"
+ ],
+ "components": {
+  "rigidbody": {
+   "kind": "dynamic",
+   "mass": 1200,
+   "linear_damping": 0,
+   "angular_damping": 0
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    10.649,
+    5.244,
+    11.385
+   ],
+   "offset": [
+    0,
+    2.622,
+    0.0
+   ],
+   "friction": 0.06
+  },
+  "vehicle": {
+   "kind": "plane",
+   "max_speed": 85,
+   "acceleration": 8,
+   "braking": 6,
+   "steering": 30
+  },
+  "cockpit": {},
+  "audio_source": {
+   "sound": "https://r2.parallaxpro.ai/assets/audio_ambient/b6/45/b645d9b1923dee6c7aaf94ef68c07c08a9eb23f830ab8e5dd958035c4daa5b40.mp3",
+   "loop": true,
+   "playing": false,
+   "spatial": true,
+   "volume": 0.45
+  }
+ },
+ "behaviors": {
+  "flight_control": {
+   "throttle_rate": 0.8,
+   "reverse_floor": -0.5,
+   "trim_gain": 0.15,
+   "trim_limit": 0.5,
+   "flat_turn_rate": 28,
+   "flap_notch": 0.5
+  }
+ },
+ "children": [
+  {
+   "name": "pilot_seat",
+   "at": [
+    0,
+    2.622,
+    0
+   ],
+   "components": {
+    "seat": {
+     "enter_time": 0
+    }
+   }
+  },
+  {
+   "at": [
+    0,
+    2.714,
+    0
+   ],
+   "scale": [
+    11.5,
+    11.5,
+    11.5
+   ],
+   "components": {
+    "model": {
+     "model": "https://r2.parallaxpro.ai/assets/model_static/bd/bd/bdbd459d5a75496404a1a5eab79f11ffebb2bfefaad8cbe797ddc400a319a19a.glb",
+     "cast_shadows": true
+    }
+   }
+  }
+ ]
+}

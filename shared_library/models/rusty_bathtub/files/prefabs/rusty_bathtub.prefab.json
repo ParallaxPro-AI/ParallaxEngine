@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rusty_bathtub"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6044, 0.8594, 0.7916],
+      "offset": [-0.0114, 0.4297, 0]
+    }
+  }
+}

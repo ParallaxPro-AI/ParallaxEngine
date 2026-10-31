@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/siege_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.94, 12.075, 4.795],
+      "offset": [0, 6.0375, -0.0525]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dune_buggy",
+  "summary": "An open two-seat sand buggy: a full tube roll cage of individual members (main hoop with diagonal, front hoop… joints steering, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, wheel_r_l_roll, …; options paint; sockets seat_driver, seat_pax_1, eye_point, socket_roof, socket_tow, exhaust_0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.dune_buggy or place \"prefab\": \"dune_buggy\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:dune_buggy"]
+}

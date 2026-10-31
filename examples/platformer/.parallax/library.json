@@ -1,0 +1,24 @@
+{
+  "pieces": {
+    "forge": {
+      "from": "shared_library/models/forge",
+      "version": "2026.10.23",
+      "sha": "75327a667dec11b2fd4ba46f96e0263b52248a62c4ad68c5d2e9eeba2d165a61",
+      "files": {
+        "assets/models/forge.model.json": "88d6c45fde58c3b30d66b59817c5a66b01db992e8a7b38e005d99fb0461ac9b5",
+        "prefabs/forge.prefab.json": "aef84ee924a498542ee088dc6a13a826e552c247b537bca0241b3fcb5f5dd69f"
+      },
+      "text": {}
+    },
+    "spell_altar": {
+      "from": "shared_library/models/spell_altar",
+      "version": "2026.10.23",
+      "sha": "95f8ac7cafcac0e8e78b142c9717b9344d63c6af8526ea3157218e5899d87e8e",
+      "files": {
+        "assets/models/spell_altar.model.json": "9026438531a06bcc15cfe956a238622cbb35b039a9b3c0c6918407c8934ad88b",
+        "prefabs/spell_altar.prefab.json": "50c0d97e12648c442cc3633609603c4d5bf96c959b1ae2516f5db088e0c9c331"
+      },
+      "text": {}
+    }
+  }
+}

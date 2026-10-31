@@ -1,0 +1,1 @@
+{ "name": "Still Heart", "description": "+0.6s of invulnerability after a hit.", "stat": "invulnerability", "add": 0.6, "max_stacks": 2 }

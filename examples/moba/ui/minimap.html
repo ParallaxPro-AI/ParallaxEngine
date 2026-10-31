@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's hud/moba_minimap bezel: a cut-corner slate case with a recessed square
+     face, north pip and a team footer, in the bottom-right corner under the control chips
+     (where the template's moba layout puts it), over the HUD kit's derived map. */
+  .lsm { position: fixed; right: calc(16 * var(--u)); bottom: calc(16 * var(--u)); width: calc(272 * var(--u)); padding: calc(7 * var(--u)) calc(7 * var(--u)) 0; background: linear-gradient(180deg, rgba(30,38,52,.96), rgba(12,17,26,.97)); border: 1px solid rgba(160,180,205,.22); border-radius: calc(4 * var(--u)); box-shadow: 0 calc(18 * var(--u)) calc(44 * var(--u)) rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.1); clip-path: polygon(calc(11 * var(--u)) 0, 100% 0, 100% calc(100% - calc(11 * var(--u))), calc(100% - calc(11 * var(--u))) 100%, 0 100%, 0 calc(11 * var(--u))); }
+  .lsm-face { position: relative; width: calc(258 * var(--u)); height: calc(258 * var(--u)); overflow: hidden; border-radius: calc(2 * var(--u)); background: #0b1119; box-shadow: inset 0 0 0 1px rgba(0,0,0,.9), inset 0 0 0 2px rgba(190,208,228,.16); }
+  .lsm-face .turn { position: absolute; inset: 0; }
+  .lsm-face .base { position: absolute; max-width: none; opacity: .95; }
+  .lsm-face .icon { position: absolute; transform: translate(-50%, -50%); text-shadow: 0 0 2px #000; white-space: nowrap; }
+  .lsm-face .icon i { display: inline-block; font-style: normal; }
+  .lsm-face .me { position: absolute; left: 50%; top: 50%; }
+  .lsm-face .me b { position: absolute; left: -.5em; top: -.62em; width: 1em; text-align: center; color: #eef3fa; font-size: calc(14 * var(--u)); }
+  .lsm-n { position: absolute; top: calc(4 * var(--u)); right: calc(5 * var(--u)); font: 900 calc(8 * var(--u))/1 var(--ls-ui); letter-spacing: .12em; color: rgba(214,226,240,.62); text-shadow: 0 1px 3px #000; }
+  .lsm-foot { height: calc(22 * var(--u)); display: flex; align-items: center; justify-content: space-between; padding: 0 calc(3 * var(--u)); font: 800 calc(10 * var(--u))/1 var(--ls-ui); letter-spacing: .06em; color: rgba(200,214,232,.75); }
+  .lsm-foot .blue { color: #6cc4ff; } .lsm-foot .red { color: #ff7d86; }
+</style>
+<div class="ls-root" data-show="shown">
+  <div class="lsm">
+    <div class="lsm-face">
+      <div class="turn" data-style-transform="turn">
+        <img class="base" alt="" data-show="base" data-attr-src="base" data-style-left="base_left" data-style-top="base_top" data-style-width="base_width" data-style-height="base_height">
+      </div>
+      <div data-each="icons"><template>
+        <span class="icon" data-style-left="x" data-style-top="y" data-style-color="color" data-style-font-size="size"><i data-style-transform="turn" data-bind="glyph"></i></span>
+      </template></div>
+      <span class="me"><b data-style-transform="player_turn">▲</b></span>
+      <span class="lsm-n">N</span>
+    </div>
+    <div class="lsm-foot"><span class="blue" data-text="map_blue"></span><span class="red" data-text="map_red"></span></div>
+  </div>
+</div>

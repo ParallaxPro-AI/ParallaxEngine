@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coin",
+      "cast_shadows": true
+    }
+  },
+  "behaviors": {
+    "spin": {
+      "speed": 180
+    }
+  },
+  "tags": [
+    "coin"
+  ],
+  "pool": 96
+}

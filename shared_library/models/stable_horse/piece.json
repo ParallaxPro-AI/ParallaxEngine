@@ -1,0 +1,10 @@
+{
+  "id": "stable_horse",
+  "summary": "A fantasy-medieval village horse stable, exterior with dim loose boxes behind the doors. joints stall1_lower, stall1_upper, stall2_lower, stall2_upper, stall3_lower, stall3_upper, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stable_horse or place \"prefab\": \"stable_horse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stable_horse"]
+}

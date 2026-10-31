@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pizza_box_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3953, 0.1329, 0.3925],
+      "offset": [-0.0025, 0.0664, 0.0031]
+    }
+  }
+}

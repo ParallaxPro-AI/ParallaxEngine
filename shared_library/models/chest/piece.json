@@ -1,0 +1,10 @@
+{
+  "id": "chest",
+  "summary": "A banded wooden storage chest with a flat lift lid, a swinging iron hasp, corner/edge straps and an optional… joints lid, hasp; options style, locked, finish; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chest or place \"prefab\": \"chest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chest"]
+}

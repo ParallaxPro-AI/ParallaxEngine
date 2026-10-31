@@ -1,0 +1,220 @@
+<!-- Ported from the template: Cellar Purge gameplay HUD - explored-room minimap of the floor plan (lib:procgen/room_graph roomMap: room kinds, doors, locked gates, cleared rooms), pixel half-heart row with hurt glow, run-stats block with relic pills, room-tinted objective banner, coins/bombs/keys strip, gold toast feed, the floor boss bar with its enrage state, the desktop keycap legend, the touch pause plate and the FELLED / PURGED phase overlays -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--cp-font-ui); color: var(--cp-ink); background: transparent; pointer-events: none; overflow: hidden; -webkit-font-smoothing: antialiased; }
+
+  .vignette { position: fixed; inset: 0; pointer-events: none; background: radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,.7) 100%); }
+
+  .tl { position: fixed; left: calc(40 * var(--u)); top: calc(36 * var(--u)); width: calc(320 * var(--u)); display: flex; flex-direction: column; gap: calc(16 * var(--u)); }
+  .hp { position: relative; display: flex; gap: calc(8 * var(--u)); filter: drop-shadow(0 calc(3 * var(--u)) 0 #000); }
+  .hp::before { content: ''; position: absolute; inset: calc(-14 * var(--u)) calc(-18 * var(--u)); background: radial-gradient(ellipse, rgba(211,57,70,.55), transparent 70%); opacity: 0; transition: opacity 300ms ease-out; }
+  .hp.hurt::before { opacity: 1; transition: none; }
+  .heart { position: relative; width: calc(44 * var(--u)); height: calc(38 * var(--u)); flex: none; }
+  .heart svg { position: absolute; left: 0; top: 0; width: calc(44 * var(--u)); height: calc(38 * var(--u)); display: block; }
+  .heart .half { position: absolute; left: 0; top: 0; width: 50%; height: 100%; overflow: hidden; }
+  .heart.lost { animation: cp-shake 300ms linear; }
+  @keyframes cp-shake { 0%, 100% { transform: none; } 20% { transform: translateX(calc(-4 * var(--u))); } 40% { transform: translateX(calc(4 * var(--u))); } 60% { transform: translateX(calc(-3 * var(--u))); } 80% { transform: translateX(2px); } }
+
+  .stats { display: flex; flex-direction: column; gap: calc(10 * var(--u)); padding: calc(16 * var(--u)) calc(18 * var(--u)); background: var(--cp-hud-plate); border: 1px solid rgba(245,197,24,.22); }
+  .row { display: flex; justify-content: space-between; align-items: baseline; }
+  .row .cp-label { font-size: calc(16 * var(--u)); letter-spacing: .2em; }
+  .row b { font-size: calc(26 * var(--u)); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .row b.is-foes { color: var(--cp-blood); }
+  .rule { height: 1px; background: rgba(148,130,114,.2); }
+  .relic-block { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+  .relic-block.empty { display: none; }
+  .relic-title { font-size: calc(16 * var(--u)); letter-spacing: .2em; }
+  .relics { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); }
+  .relic { display: flex; align-items: center; gap: calc(6 * var(--u)); padding: calc(4 * var(--u)) calc(10 * var(--u)); border: 1px solid rgba(76,201,240,.5); background: rgba(76,201,240,.08); font-size: calc(17 * var(--u)); font-weight: 600; }
+  .relic.gold { border-color: rgba(245,197,24,.5); background: rgba(245,197,24,.08); }
+  .relic.blood { border-color: rgba(211,57,70,.5); background: rgba(211,57,70,.08); }
+  .relic svg { width: calc(12 * var(--u)); height: calc(14 * var(--u)); display: block; flex: none; }
+  .chip { display: none; }
+
+  .topc { position: fixed; left: 0; right: 0; top: calc(36 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(12 * var(--u)); }
+  .obj { display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--u)); padding: calc(14 * var(--u)) calc(40 * var(--u)) calc(16 * var(--u)); min-width: calc(560 * var(--u)); max-width: calc(1040 * var(--u)); background: linear-gradient(180deg, rgba(17,14,11,.85), rgba(17,14,11,.55)); border-top: 1px solid rgba(148,130,114,.3); border-bottom: 1px solid rgba(148,130,114,.3); opacity: 0; transition: opacity 250ms ease; }
+  .obj.on { opacity: 1; }
+  .obj-label { font: 700 calc(16 * var(--u))/1 var(--cp-font-display); letter-spacing: .3em; color: var(--cp-umber); text-transform: uppercase; }
+  .obj-line { display: flex; align-items: center; gap: calc(14 * var(--u)); font-size: calc(30 * var(--u)); line-height: 1.2; color: var(--rk, #f5c518); white-space: nowrap; }
+  .obj-line .cp-diamond { width: calc(8 * var(--u)); height: calc(8 * var(--u)); background: var(--rk, #f5c518); }
+
+  .tr { position: fixed; right: calc(40 * var(--u)); top: calc(36 * var(--u)); display: flex; flex-direction: column; align-items: flex-end; gap: calc(14 * var(--u)); }
+  .tr-row { display: flex; align-items: flex-start; gap: calc(16 * var(--u)); }
+  .res { display: flex; gap: calc(4 * var(--u)); padding: calc(6 * var(--u)); background: var(--cp-hud-plate); border: 1px solid rgba(245,197,24,.22); }
+  .res-item { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(6 * var(--u)) calc(16 * var(--u)); transition: opacity 200ms; }
+  .res-item.zero { opacity: .45; }
+  .res-item svg { width: calc(28 * var(--u)); height: calc(28 * var(--u)); display: block; flex: none; }
+  .res-item b { font-size: calc(32 * var(--u)); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .res-item.coins b { color: var(--cp-gold); }
+  .res-item b.bump { animation: cp-bump 220ms ease-out; }
+  @keyframes cp-bump { 0% { transform: scale(1.25); } 100% { transform: none; } }
+  .res-sep { width: 1px; background: rgba(148,130,114,.25); }
+  .pause { display: none; }
+
+  .toasts { display: flex; flex-direction: column; align-items: flex-end; gap: calc(8 * var(--u)); }
+  .toast { padding: calc(8 * var(--u)) calc(16 * var(--u)); background: rgba(17,14,11,.8); border: 1px solid rgba(245,197,24,.35); font-size: calc(20 * var(--u)); font-weight: 600; color: var(--cp-gold); white-space: nowrap; animation: cp-toast-in 240ms var(--cp-ease-out) both; transition: opacity 400ms ease; }
+  .toast.n0 { padding: calc(10 * var(--u)) calc(18 * var(--u)); background: rgba(17,14,11,.88); border-color: rgba(245,197,24,.6); box-shadow: 0 0 calc(24 * var(--u)) rgba(245,197,24,.15); font-size: calc(22 * var(--u)); }
+  .toast.n1 { opacity: .75; }
+  .toast.n2 { opacity: .45; }
+  .toast.out { opacity: 0; }
+  .toast i { font-style: normal; font-weight: 500; color: var(--cp-ink); }
+  @keyframes cp-toast-in { from { opacity: 0; transform: translateY(calc(-12 * var(--u))); } to { transform: none; } }
+  .toast-line { display: none; }
+
+  .boss { position: fixed; left: 50%; bottom: calc(108 * var(--u)); transform: translateX(-50%); width: calc(960 * var(--u)); display: flex; flex-direction: column; gap: calc(10 * var(--u)); opacity: 0; transition: opacity 350ms ease; }
+  .boss.on { opacity: 1; }
+  .boss-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .boss-name { font: 900 calc(34 * var(--u))/1 var(--cp-font-display); letter-spacing: .14em; color: var(--cp-ink); text-shadow: 0 calc(3 * var(--u)) 0 #000; text-transform: uppercase; }
+  .boss-rage { font-size: calc(20 * var(--u)); font-weight: 700; letter-spacing: .3em; color: var(--cp-blood); text-shadow: 0 0 calc(12 * var(--u)) rgba(211,57,70,.7); text-transform: uppercase; visibility: hidden; }
+  .boss.enraged .boss-rage { visibility: visible; }
+  .boss-track { position: relative; height: calc(22 * var(--u)); padding: calc(3 * var(--u)); background: rgba(0,0,0,.75); border: 1px solid rgba(211,57,70,.6); box-shadow: 0 0 0 1px #000; }
+  .boss-fill { height: 100%; width: 100%; background: linear-gradient(180deg, #e04654, #8a1a26); box-shadow: 0 0 calc(16 * var(--u)) rgba(211,57,70,.3); transition: width 200ms linear; }
+  .boss.enraged .boss-fill { animation: cp-rage 1.2s ease-in-out infinite; }
+  @keyframes cp-rage { 0%, 100% { box-shadow: 0 0 calc(16 * var(--u)) rgba(211,57,70,.45); } 50% { box-shadow: 0 0 calc(28 * var(--u)) rgba(211,57,70,.95); } }
+  .boss-tick { position: absolute; left: 40%; top: calc(-4 * var(--u)); bottom: calc(-4 * var(--u)); width: 2px; background: var(--cp-ink); opacity: .5; }
+
+  .legend { position: fixed; left: 50%; bottom: calc(36 * var(--u)); transform: translateX(-50%); display: flex; gap: calc(32 * var(--u)); align-items: center; font-size: calc(18 * var(--u)); font-weight: 600; letter-spacing: .14em; color: var(--cp-umber); text-transform: uppercase; white-space: nowrap; }
+  .legend > div { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .legend .keys { display: flex; gap: calc(4 * var(--u)); }
+  .legend .cp-key { font-size: calc(18 * var(--u)); letter-spacing: 0; }
+  .legend .cp-key.wide { padding: 0 calc(16 * var(--u)); }
+
+  .map { position: fixed; right: calc(40 * var(--u)); bottom: calc(36 * var(--u)); padding: calc(12 * var(--u)) calc(14 * var(--u)); background: var(--cp-hud-plate); border: 1px solid rgba(245,197,24,.22); opacity: 0; transition: opacity 250ms ease; }
+  .map.on { opacity: 1; }
+  .map-title { font: 700 calc(14 * var(--u))/1 var(--cp-font-display); letter-spacing: .3em; color: var(--cp-umber); text-transform: uppercase; margin-bottom: calc(8 * var(--u)); }
+  .map svg { display: block; }
+
+  .phase { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(28 * var(--u)); opacity: 0; transition: opacity 500ms ease; z-index: 50; }
+  .phase.show { opacity: 1; }
+  .phase.felled { background: radial-gradient(ellipse at center, rgba(60,8,14,.55) 0%, rgba(5,2,2,.95) 75%); }
+  .phase.purged { background: radial-gradient(ellipse at center, rgba(90,70,10,.4) 0%, rgba(5,4,3,.92) 72%); }
+  .phase-word { font: 900 calc(260 * var(--u))/.9 var(--cp-font-display); letter-spacing: .1em; padding-left: .1em; transform: scale(1.08); transition: transform 500ms var(--cp-ease-out); }
+  .phase.show .phase-word { transform: none; }
+  .felled .phase-word { color: var(--cp-blood); text-shadow: 0 0 calc(80 * var(--u)) rgba(211,57,70,.45), 0 calc(8 * var(--u)) 0 #000; }
+  .purged .phase-word { color: var(--cp-gold); text-shadow: 0 0 calc(90 * var(--u)) rgba(245,197,24,.4), 0 calc(8 * var(--u)) 0 #000; }
+  .phase-rule { display: flex; align-items: center; gap: calc(24 * var(--u)); }
+  .phase-rule::before, .phase-rule::after { content: ''; width: calc(180 * var(--u)); height: 1px; background: var(--pr); }
+  .phase-rule i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); transform: rotate(45deg); background: var(--pd); }
+  .felled .phase-rule { --pr: rgba(211,57,70,.5); --pd: #8a1a26; }
+  .purged .phase-rule { --pr: rgba(245,197,24,.5); --pd: #4ade80; }
+  .phase-sub { font-size: calc(48 * var(--u)); line-height: 1.2; color: var(--cp-ink); }
+
+  @media (pointer: coarse) {
+    .tl { left: calc(88 * var(--u)); top: calc(20 * var(--u)); width: auto; gap: calc(12 * var(--u)); }
+    .hp { gap: calc(8 * var(--u)); filter: drop-shadow(0 calc(4 * var(--u)) 0 #000); }
+    .hp::before { inset: calc(-16 * var(--u)) calc(-20 * var(--u)); }
+    .heart, .heart svg { width: calc(46 * var(--u)); height: calc(40 * var(--u)); }
+    .stats { display: none; }
+    .chip { display: flex; align-self: flex-start; align-items: center; gap: calc(16 * var(--u)); padding: calc(6 * var(--u)) calc(18 * var(--u)); background: rgba(17,14,11,.8); border: 1px solid rgba(245,197,24,.22); font-size: calc(28 * var(--u)); font-weight: 600; letter-spacing: .06em; white-space: nowrap; }
+    .chip .sep { width: 2px; height: calc(24 * var(--u)); background: rgba(148,130,114,.4); }
+    .chip .foes { color: var(--cp-blood); }
+    .chip .icons { display: flex; align-items: center; gap: calc(8 * var(--u)); }
+    .chip .icons:empty { display: none; }
+    .chip .icons::before { content: ''; width: 2px; height: calc(24 * var(--u)); margin-right: calc(8 * var(--u)); background: rgba(148,130,114,.4); }
+    .chip .icons svg { width: calc(18 * var(--u)); height: calc(22 * var(--u)); display: block; }
+
+    .topc { top: calc(20 * var(--u)); gap: calc(12 * var(--u)); }
+    .obj { width: calc(760 * var(--u)); min-width: 0; max-width: none; padding: 0; background: none; border: 0; }
+    .obj-label { display: none; }
+    .obj-line { justify-content: center; max-width: 100%; padding: calc(10 * var(--u)) calc(28 * var(--u)); gap: 0; font-size: calc(32 * var(--u)); background: rgba(17,14,11,.75); border-top: 1px solid rgba(148,130,114,.3); border-bottom: 1px solid rgba(148,130,114,.3); overflow: hidden; text-overflow: ellipsis; }
+    .obj-line .cp-diamond { display: none; }
+    .obj-line span { overflow: hidden; text-overflow: ellipsis; }
+
+    .map { right: auto; bottom: auto; left: calc(88 * var(--u)); top: calc(118 * var(--u)); padding: calc(8 * var(--u)) calc(10 * var(--u)); background: rgba(17,14,11,.7); }
+    .map-title { display: none; }
+
+    .tr { right: calc(88 * var(--u)); top: calc(20 * var(--u)); }
+    .res { gap: calc(20 * var(--u)); height: calc(60 * var(--u)); align-items: center; padding: 0 calc(20 * var(--u)); background: rgba(17,14,11,.8); }
+    .res-item { gap: calc(8 * var(--u)); padding: 0; }
+    .res-item svg { width: calc(30 * var(--u)); height: calc(30 * var(--u)); }
+    .res-item b { font-size: calc(36 * var(--u)); }
+    .res-sep { display: none; }
+    .pause { display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); width: calc(88 * var(--u)); height: calc(88 * var(--u)); padding: 0; margin: 0; background: linear-gradient(180deg, #2a231d, #17130f); border: 2px solid rgba(245,197,24,.5); border-radius: calc(12 * var(--u)); pointer-events: auto; cursor: pointer; touch-action: manipulation; }
+    .pause i { width: calc(10 * var(--u)); height: calc(32 * var(--u)); background: var(--cp-ink); }
+    .pause:active { background: #3a2f26; border-color: var(--cp-gold); transform: scale(.94); }
+    .toasts { display: none; }
+
+    .boss { position: static; transform: none; width: calc(760 * var(--u)); gap: calc(6 * var(--u)); }
+    .boss-name { font-size: calc(26 * var(--u)); text-shadow: 0 calc(4 * var(--u)) 0 #000; }
+    .boss-rage { font-size: calc(22 * var(--u)); letter-spacing: .24em; }
+    .boss-track { height: calc(20 * var(--u)); padding: calc(4 * var(--u)); }
+    .boss-tick { top: calc(-4 * var(--u)); bottom: calc(-4 * var(--u)); width: calc(3 * var(--u)); }
+    .toast-line { display: block; max-width: calc(760 * var(--u)); padding: calc(8 * var(--u)) calc(24 * var(--u)); background: rgba(17,14,11,.88); border: 2px solid rgba(245,197,24,.6); font-size: calc(28 * var(--u)); font-weight: 600; color: var(--cp-gold); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; opacity: 0; transition: opacity 400ms ease; }
+    .toast-line.on { opacity: 1; animation: cp-toast-in 240ms var(--cp-ease-out) both; }
+    .toast-line i { font-style: normal; font-weight: 500; color: var(--cp-ink); }
+
+    .phase { gap: calc(28 * var(--u)); }
+    .phase.felled { background: radial-gradient(ellipse at center, rgba(60,8,14,.6) 0%, rgba(5,2,2,.97) 75%); }
+    .phase.purged { background: radial-gradient(ellipse at center, rgba(90,70,10,.45) 0%, rgba(5,4,3,.95) 72%); }
+    .phase-word { font-size: calc(224 * var(--u)); letter-spacing: .08em; padding-left: .08em; }
+    .felled .phase-word { text-shadow: 0 0 calc(80 * var(--u)) rgba(211,57,70,.45), 0 calc(8 * var(--u)) 0 #000; }
+    .phase-rule { gap: calc(28 * var(--u)); }
+    .phase-rule::before, .phase-rule::after { width: calc(180 * var(--u)); height: 2px; }
+    .phase-rule i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    .phase-sub { font-size: calc(48 * var(--u)); }
+  }
+#map-svg { position: relative; width: calc(96 * var(--u)); height: calc(96 * var(--u)); overflow: hidden; }
+#map-svg i { position: absolute; left: calc(50% + var(--x) * calc(22 * var(--u))); top: calc(50% - var(--y) * calc(22 * var(--u))); width: calc(18 * var(--u)); height: calc(18 * var(--u)); margin: calc(-9 * var(--u)); border: 1px solid #948272; opacity: 0.35; }
+#map-svg i.visited { opacity: 1; background: color-mix(in srgb, var(--kc) 45%, transparent); }
+#map-svg i.here { background: var(--kc); border-color: #f4ecd9; }
+#map-svg i.boss { border-color: #d33946; }
+#map-svg i.shop { border-color: #f5c518; }
+.heart { position: relative; display: inline-block; }
+.heart .half { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+</style>
+<div class="vignette"></div>
+<div class="tl">
+  <div class="hp" data-each="hearts"><template><div class="heart"><svg viewBox="0 0 7 6" shape-rendering="crispEdges"><path d="M1 0h2v1h1V0h2v1h1v2h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1H0V1h1z" fill="#3a1418"/></svg><span style="display:contents" data-show="full"><svg viewBox="0 0 7 6" shape-rendering="crispEdges"><path d="M1 0h2v1h1V0h2v1h1v2h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1H0V1h1z" fill="#d33946"/><rect x="1" y="1" width="1" height="1" fill="#f4a3ab"/></svg></span><span class="half" data-show="half"><svg viewBox="0 0 7 6" shape-rendering="crispEdges"><path d="M1 0h2v1h1V0h2v1h1v2h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1H0V1h1z" fill="#d33946"/><rect x="1" y="1" width="1" height="1" fill="#f4a3ab"/></svg></span></div></template></div>
+  <div class="stats">
+    <div class="row"><span class="cp-label">Floor</span><b data-bind="floor"></b></div>
+    <div class="row"><span class="cp-label">Fire Rate</span><b data-bind="fire_rate"></b></div>
+    <div class="row"><span class="cp-label">Shard Dmg</span><b data-bind="shard_damage"></b></div>
+    <div class="row"><span class="cp-label">Foes Left</span><b class="is-foes" data-bind="foes"></b></div>
+    <div class="relic-block" data-class-empty="no_relics">
+      <div class="rule"></div>
+      <span class="cp-label relic-title">Relics</span>
+      <div class="relics" data-each="relics"><template><div class="relic" data-bind="name"></div></template></div>
+    </div>
+  </div>
+  <div class="chip"><span data-bind="floor_chip"></span><span class="sep"></span><span class="foes"><span data-bind="foes"></span> foes</span></div>
+</div>
+<div class="topc">
+  <div class="obj" data-class-on="has_objective" data-style---rk="objective_color">
+    <div class="obj-label" data-bind="objective_label"></div>
+    <div class="obj-line cp-flavor"><span class="cp-diamond"></span><span data-bind="objective"></span><span class="cp-diamond"></span></div>
+  </div>
+  <div class="boss" data-class-on="boss" data-class-enraged="enraged">
+    <div class="boss-head"><span class="boss-name" data-bind="boss_name"></span><span class="boss-rage">Enraged</span></div>
+    <div class="boss-track"><div class="boss-fill" data-style-width="boss_width"></div><div class="boss-tick"></div></div>
+  </div>
+</div>
+<div class="tr">
+  <div class="tr-row">
+    <div class="res">
+      <div class="res-item coins" data-class-zero="no_coins"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f5c518"/><circle cx="12" cy="12" r="6" fill="none" stroke="#9a7406" stroke-width="2"/></svg><b data-bind="coins"></b></div>
+      <div class="res-sep"></div>
+      <div class="res-item" data-class-zero="no_bombs"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="14" r="8" fill="#2a231d" stroke="#f4ecd9" stroke-width="1.5"/><rect x="14" y="3" width="3" height="6" fill="#948272" transform="rotate(35 15.5 6)"/><circle cx="19" cy="3.5" r="2.2" fill="#f5c518"/></svg><b data-bind="bombs"></b></div>
+      <div class="res-sep"></div>
+      <div class="res-item" data-class-zero="no_keys"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="12" r="4.5" fill="none" stroke="#f5c518" stroke-width="2.4"/><rect x="11" y="10.8" width="11" height="2.4" fill="#f5c518"/><rect x="16.5" y="13" width="2.2" height="4" fill="#f5c518"/></svg><b data-bind="keys"></b></div>
+    </div>
+    <button class="pause" data-action="pause" aria-label="Pause"><i></i><i></i></button>
+  </div>
+</div>
+<div class="map" data-class-on="map_on"><div class="map-title">Floor plan</div><div id="map-svg" data-each="rooms"><template><i data-attr-style="at" data-class-boss="boss" data-class-shop="shop" data-class-visited="visited" data-class-here="here"></i></template></div></div>
+<div class="legend d-only">
+  <div><div class="keys"><span class="cp-key">W</span><span class="cp-key">A</span><span class="cp-key">S</span><span class="cp-key">D</span></div>Move</div>
+  <div><div class="keys"><span class="cp-key">↑</span><span class="cp-key">↓</span><span class="cp-key">←</span><span class="cp-key">→</span></div>Fire</div>
+  <div><span class="cp-key wide">Space</span>Bomb</div>
+  <div><span class="cp-key">P</span>Pause</div>
+</div>
+<div class="phase felled" data-class-show="felled">
+  <div class="phase-word">FELLED</div>
+  <div class="phase-rule"><i></i></div>
+  <div class="phase-sub cp-flavor">The cellar keeps you</div>
+</div>
+<div class="phase purged" data-class-show="purged">
+  <div class="phase-word">PURGED</div>
+  <div class="phase-rule"><i></i></div>
+  <div class="phase-sub cp-flavor">You escaped the dark</div>
+</div>

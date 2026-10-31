@@ -1,0 +1,181 @@
+<link rel="stylesheet" href="garden.css">
+<style>
+  .psh { position: fixed; inset: 0; pointer-events: none; --L: calc(50cqw - var(--ps-half)); --R: calc(50cqw + var(--ps-half)); --gut: calc(50cqw - var(--ps-half) - 104 * var(--ps-u) - 16px); --banner: 2s; }
+  .psh-panel { position: absolute; }
+  .psh-health { right: calc(var(--R) + 104 * var(--ps-u)); top: calc(48 * var(--ps-u)); width: min(calc(320 * var(--ps-u)), var(--gut)); padding: calc(22 * var(--ps-u)) calc(26 * var(--ps-u)) calc(26 * var(--ps-u)); display: flex; flex-direction: column; gap: calc(18 * var(--ps-u)); }
+  .psh-row { display: flex; flex-direction: column; align-items: flex-start; gap: calc(18 * var(--ps-u)); }
+  .psh-hearts { display: flex; gap: calc(10 * var(--ps-u)); color: var(--ps-petal); }
+  .psh-heart { display: block; width: calc(42 * var(--ps-u)); height: calc(42 * var(--ps-u)); }
+  .psh-heart .i { width: 100%; height: 100%; }
+  .psh-heart:not(.on) { color: var(--ps-sage); opacity: .7; }
+  .psh.lastlife .psh-heart.on { color: var(--ps-loss); animation: ps-pulse 1s ease-in-out infinite; }
+  .psh.lastlife .psh-health { border-color: rgba(255,107,158,.75); animation: ps-pulse-border 1s ease-in-out infinite; }
+  .psh-stats { display: flex; align-items: center; gap: calc(30 * var(--ps-u)); }
+  .psh-stat { display: flex; align-items: center; gap: .3em; font: 700 var(--ps-fs-hud)/1 var(--ps-font-ui); font-variant-numeric: tabular-nums; }
+  .psh-stat .i { width: 1.05em; height: 1.05em; }
+  .psh-stat b { color: var(--ps-ink); }
+  .psh-bloom { color: var(--ps-petal-2); }
+  .psh-shield { color: var(--ps-moon); }
+  .psh-of { color: var(--ps-ink-faint); font-size: .7em; }
+  .psh:not(.shield) .psh-shield { display: none; }
+  .psh.nobombs .psh-bloom { filter: grayscale(1); opacity: .4; }
+  .psh-gun { position: relative; align-self: flex-start; display: flex; align-items: center; gap: .55em; overflow: hidden; padding: calc(9 * var(--ps-u)) calc(16 * var(--ps-u)); border: 1px solid rgba(255,227,158,.55); background: rgba(255,227,158,.08); border-radius: 999px; color: var(--ps-gold); font: 700 var(--ps-fs-label)/1 var(--ps-font-ui); letter-spacing: .14em; }
+  .psh-gun b { color: var(--ps-ink); }
+  .psh-gun .i { width: 1.2em; height: 1.2em; }
+  .psh-gun::after { content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: var(--gun, 0%); background: var(--ps-gold); }
+  .psh:not(.gun) .psh-gun { display: none; }
+  .psh-track { position: relative; overflow: hidden; background: rgba(177,159,255,.12); border: 1px solid rgba(177,159,255,.45); border-radius: 999px; }
+  .psh-fill { position: absolute; border-radius: inherit; transition: height .26s var(--ps-ease), width .26s var(--ps-ease); }
+  .psh-spico { color: var(--ps-spirit); }
+  .psh-spico .i { width: 100%; height: 100%; }
+  .psh-pct { color: var(--ps-spirit); }
+  .psh.spiritfull .psh-fill { box-shadow: var(--ps-glow-spirit); animation: ps-shimmer .9s ease-in-out infinite; }
+  .psh.spiritfull .psh-track { border-color: var(--ps-spirit); box-shadow: var(--ps-glow-spirit); }
+  .psh-graze b { color: var(--ps-ink); }
+  .psh-spv { position: absolute; left: calc(var(--L) - 84 * var(--ps-u)); top: calc(236 * var(--ps-u)); width: calc(72 * var(--ps-u)); display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--ps-u)); }
+  .psh-spv .psh-spico { width: calc(30 * var(--ps-u)); height: calc(30 * var(--ps-u)); }
+  .psh-spv .psh-pct { font-size: calc(18 * var(--ps-u)); }
+  .psh-spv .psh-track { width: calc(16 * var(--ps-u)); height: calc(540 * var(--ps-u)); margin-top: calc(4 * var(--ps-u)); }
+  .psh-spv .psh-fill { left: 0; right: 0; bottom: 0; height: var(--spirit, 0%); background: linear-gradient(0deg, var(--ps-spirit-deep), var(--ps-spirit) 70%, #ddd4ff); }
+  .psh-spv .psh-graze { display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--ps-u)); margin-top: calc(10 * var(--ps-u)); }
+  .psh-spv .psh-graze b { font-size: calc(28 * var(--ps-u)); }
+  .psh-sph, .psh-health .psh-graze { display: none; }
+  .psh-score { left: calc(var(--R) + 104 * var(--ps-u)); top: calc(48 * var(--ps-u)); width: min(calc(320 * var(--ps-u)), var(--gut)); padding: calc(22 * var(--ps-u)) calc(26 * var(--ps-u)) calc(24 * var(--ps-u)); }
+  .psh-scorev { margin: calc(12 * var(--ps-u)) 0 calc(14 * var(--ps-u)); color: var(--ps-gold); font-size: var(--ps-fs-score); line-height: 1; text-shadow: 0 0 calc(18 * var(--ps-u)) rgba(255,227,158,.25); }
+  .psh-chain { font: 700 var(--ps-fs-label)/1 var(--ps-font-ui); letter-spacing: .16em; color: var(--ps-ink-dim); white-space: nowrap; }
+  .psh-chain b { color: var(--ps-ink); }
+  .psh-mult { color: var(--ps-pink); }
+  .psh:not(.chain) .psh-chain { opacity: .4; }
+  .psh-wavemini { display: none; }
+  .psh-wave { left: calc(var(--R) + 104 * var(--ps-u)); top: calc(256 * var(--ps-u)); width: min(calc(320 * var(--ps-u)), var(--gut)); padding: calc(22 * var(--ps-u)) calc(26 * var(--ps-u)) calc(26 * var(--ps-u)); }
+  .psh-wtop { display: flex; justify-content: space-between; align-items: flex-start; }
+  .psh-waven { font-size: calc(52 * var(--ps-u)); line-height: 1; margin-top: calc(10 * var(--ps-u)); }
+  .psh-waven .psh-of { font-size: calc(28 * var(--ps-u)); }
+  .psh-wname { font-family: var(--ps-font-display); font-style: italic; font-weight: 600; color: var(--ps-leaf); }
+  .psh.boss .psh-wname { color: var(--ps-pink); }
+  .psh-wave .psh-wname { font-size: calc(36 * var(--ps-u)); line-height: 1.1; margin: calc(8 * var(--ps-u)) 0 calc(18 * var(--ps-u)); }
+  .ps-root .psh-pause { width: calc(60 * var(--ps-u)); height: calc(60 * var(--ps-u)); font-size: calc(24 * var(--ps-u)); }
+  .psh-acts { display: flex; gap: calc(14 * var(--ps-u)); }
+  .psh-act { display: flex; gap: calc(6 * var(--ps-u)); }
+  .psh-pip { width: calc(10 * var(--ps-u)); height: calc(10 * var(--ps-u)); border-radius: 50%; background: rgba(145,182,159,.3); }
+  .psh-pip.done { background: var(--ps-leaf); }
+  .psh-pip.now { background: var(--ps-gold); box-shadow: var(--ps-glow-gold); }
+  .psh-pip.boss { border-radius: 2px; transform: rotate(45deg) scale(.9); background: rgba(255,143,196,.35); }
+  .psh-pip.boss.now { background: var(--ps-pink); box-shadow: var(--ps-glow-pink); }
+  .psh-tpause { display: none; }
+  .psh-boss { position: absolute; display: none; left: calc(var(--L) + 24 * var(--ps-u)); width: calc(2 * var(--ps-half) - 48 * var(--ps-u)); top: calc(22 * var(--ps-u)); }
+  .psh.boss .psh-boss { display: block; animation: ps-rise .52s var(--ps-ease); }
+  .psh-bhead { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .psh-bname { font-family: var(--ps-font-display); font-style: italic; font-weight: 700; font-size: calc(30 * var(--ps-u)); color: var(--ps-pink); text-shadow: 0 1px 8px rgba(2,10,12,.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .psh-bhp { font-size: calc(18 * var(--ps-u)); color: var(--ps-ink-dim); text-shadow: 0 1px 6px rgba(2,10,12,.9); }
+  .psh-bhp b { color: var(--ps-ink); }
+  .psh-boss .psh-btrack { position: relative; overflow: hidden; height: calc(14 * var(--ps-u)); margin-top: calc(8 * var(--ps-u)); background: rgba(18,56,46,.7); border: 1px solid rgba(255,143,196,.55); border-radius: 999px; }
+  .psh-bfill { position: absolute; left: 0; top: 0; bottom: 0; width: var(--boss, 0%); background: linear-gradient(90deg, #ff6fae, var(--ps-pink) 60%, var(--ps-petal-2)); box-shadow: var(--ps-glow-pink); transition: width .26s var(--ps-ease); }
+  .psh-focus { position: absolute; left: calc(var(--R) + 104 * var(--ps-u)); top: calc(100cqh - 90 * var(--ps-u)); display: flex; align-items: center; gap: .5em; color: var(--ps-leaf); font: 700 var(--ps-fs-label)/1 var(--ps-font-ui); letter-spacing: .24em; text-transform: uppercase; opacity: 0; transition: opacity .14s var(--ps-ease); }
+  .psh-focus .i { width: 1.5em; height: 1.5em; }
+  .psh.focus .psh-focus { opacity: .9; }
+  .psh-banner { position: absolute; left: var(--L); width: calc(2 * var(--ps-half)); top: calc(390 * var(--ps-u)); padding: calc(26 * var(--ps-u)) 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(10 * var(--ps-u)); text-align: center; opacity: 0; --bc: var(--ps-leaf); --ba: .72; background: linear-gradient(90deg, transparent, rgba(18,56,46,var(--ba)) 18%, rgba(18,56,46,var(--ba)) 82%, transparent); }
+  .psh-banner::before, .psh-banner::after { content: ""; position: absolute; left: 12%; right: 12%; height: 1px; background: linear-gradient(90deg, transparent, var(--bc), transparent); }
+  .psh-banner::before { top: 0; }
+  .psh-banner::after { bottom: 0; }
+  .psh-banner { animation: psh-banner var(--banner) var(--ps-ease) forwards; }
+  @keyframes psh-banner { 0% { opacity: 0; transform: translateY(10px) scaleX(.94); } 12% { opacity: 1; transform: none; } 78% { opacity: 1; transform: none; } 100% { opacity: 0; transform: translateY(-8px); } }
+  .psh-bkick { font: 700 calc(18 * var(--ps-u))/1 var(--ps-font-ui); letter-spacing: .32em; color: var(--bc); }
+  .psh-bkick:empty { display: none; }
+  .psh-btitle { font: italic 600 calc(58 * var(--ps-u))/1.05 var(--ps-font-display); color: var(--ps-ink); text-shadow: 0 0 20px rgba(2,10,12,.8); padding: 0 8px; }
+  .psh-banner.caps .psh-btitle { font: 700 calc(30 * var(--ps-u))/1.3 var(--ps-font-ui); letter-spacing: .24em; text-transform: uppercase; color: var(--bc); max-width: 90%; }
+  .psh-banner.k-warn { --bc: var(--ps-warn); }
+  .psh-banner.k-warn .psh-btitle { color: var(--ps-warn); }
+  .psh-banner.k-spirit { --bc: var(--ps-spirit); }
+  .psh-banner.k-bloom { --bc: var(--ps-pink); }
+  .psh-banner.k-pickup { --bc: var(--ps-gold); }
+  .psh-banner.k-empty { --bc: var(--ps-ink-dim); }
+  .psh-banner.caps.k-empty .psh-btitle { font-size: calc(20 * var(--ps-u)); }
+  @container (max-height: 500px) or (max-aspect-ratio: 1/1) {
+    .psh { --banner: 1.5s; }
+    .psh-health { left: max(16px, calc(var(--ps-sa-l) + 8px), calc(var(--L) - 272 * var(--ps-u))); right: calc(var(--R) + 10 * var(--ps-u)); width: auto; top: calc(12 * var(--ps-u)); padding: calc(11 * var(--ps-u)) calc(14 * var(--ps-u)) calc(12 * var(--ps-u)); gap: calc(9 * var(--ps-u)); }
+    .psh-health > .ps-lbl { display: none; }
+    .psh-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 8px; }
+    .psh-hearts { gap: calc(5 * var(--ps-u)); }
+    .psh-heart { width: calc(22 * var(--ps-u)); height: calc(22 * var(--ps-u)); }
+    .psh-stats { gap: calc(12 * var(--ps-u)); }
+    .psh-stat { font-size: calc(17 * var(--ps-u)); }
+    .psh-gun { padding: calc(5 * var(--ps-u)) calc(10 * var(--ps-u)); }
+    .psh-spv { display: none; }
+    .psh-sph { display: flex; align-items: center; gap: calc(8 * var(--ps-u)); }
+    .psh-sph .psh-spico { width: calc(16 * var(--ps-u)); height: calc(16 * var(--ps-u)); }
+    .psh-sph .psh-pct { font-size: calc(12 * var(--ps-u)); min-width: calc(34 * var(--ps-u)); text-align: right; }
+    .psh-sph .psh-track { flex: 1; height: calc(8 * var(--ps-u)); }
+    .psh-sph .psh-fill { left: 0; top: 0; bottom: 0; width: var(--spirit, 0%); background: linear-gradient(90deg, var(--ps-spirit-deep), var(--ps-spirit) 70%, #ddd4ff); }
+    .psh-health .psh-graze { display: flex; align-items: baseline; gap: calc(8 * var(--ps-u)); margin-top: -2px; }
+    .psh-health .psh-graze b { font-size: calc(13 * var(--ps-u)); }
+    .psh-score { left: calc(var(--R) + 10 * var(--ps-u)); right: max(64px, calc(var(--ps-sa-r) + 60px)); width: auto; max-width: calc(240 * var(--ps-u)); top: calc(12 * var(--ps-u)); padding: calc(10 * var(--ps-u)) calc(14 * var(--ps-u)) calc(11 * var(--ps-u)); display: flex; flex-direction: column; gap: calc(6 * var(--ps-u)); }
+    .psh-score > .ps-lbl { display: none; }
+    .psh-scorev { margin: 0; }
+    .psh-wavemini { display: flex; align-items: baseline; gap: calc(7 * var(--ps-u)); padding-top: calc(6 * var(--ps-u)); border-top: 1px solid rgba(145,182,159,.25); min-width: 0; }
+    .psh-wavemini b { font-size: calc(15 * var(--ps-u)); white-space: nowrap; }
+    .psh-wavemini .psh-wname { font-size: calc(15 * var(--ps-u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .psh-wave { display: none; }
+    .ps-root .psh-tpause { display: grid; place-items: center; position: absolute; right: max(12px, calc(var(--ps-sa-r) + 8px)); top: max(12px, calc(var(--ps-sa-t) + 8px)); width: 44px; height: 44px; padding: 0; border-radius: 50%; background: rgba(18,56,46,.55); border: 1.5px solid rgba(145,182,159,.65); color: var(--ps-ink); transition: transform .14s var(--ps-ease), background .14s; }
+    .ps-root .psh-tpause .i { width: 16px; height: 16px; }
+    .ps-root .psh-tpause:active { background: var(--ps-leaf); color: var(--ps-panel); transform: scale(.94); }
+    .psh-focus { left: calc(var(--R) + 14 * var(--ps-u)); top: calc(128 * var(--ps-u)); }
+    .psh-boss { left: calc(var(--L) + 8 * var(--ps-u)); width: calc(2 * var(--ps-half) - 16 * var(--ps-u)); top: calc(7 * var(--ps-u)); }
+    .psh-bname { font-size: calc(13 * var(--ps-u)); }
+    .psh-bhp { font-size: calc(10 * var(--ps-u)); }
+    .psh-boss .psh-btrack { height: calc(5 * var(--ps-u)); margin-top: calc(3 * var(--ps-u)); }
+    .psh-banner { top: calc(156 * var(--ps-u)); padding: calc(10 * var(--ps-u)) 0; gap: calc(4 * var(--ps-u)); --ba: .5; }
+    .psh-bkick { font-size: calc(10 * var(--ps-u)); }
+    .psh-btitle { font-size: calc(22 * var(--ps-u)); }
+    .psh-banner.caps .psh-btitle { font-size: calc(13 * var(--ps-u)); line-height: 1.35; }
+    .psh-banner.caps.k-empty .psh-btitle { font-size: calc(10 * var(--ps-u)); }
+  }
+  /* Portrait: the camera's minWidth fits the lane to the screen WIDTH, so there
+     are no side gutters. Keep the compact phone HUD above but re-anchor its
+     panels into the band above the lane, at landscape-phone sizes. */
+  @container (max-aspect-ratio: 1/1) {
+    .psh {
+      --ps-u: calc(100cqw / 520); --ps-half: 50cqw;
+      --ps-fs-label: calc(10 * var(--ps-u)); --ps-fs-body: calc(13 * var(--ps-u)); --ps-fs-hud: calc(18 * var(--ps-u));
+      --ps-fs-btn: calc(14 * var(--ps-u)); --ps-fs-score: calc(28 * var(--ps-u));
+    }
+    .psh-health { left: max(16px, calc(var(--ps-sa-l) + 8px)); right: auto; width: calc(50cqw - 28px); top: max(16px, calc(var(--ps-sa-t) + 8px)); }
+    .psh-score { left: auto; right: max(120px, calc(var(--ps-sa-r) + 112px)); width: calc(50cqw - 140px); max-width: none; top: max(16px, calc(var(--ps-sa-t) + 8px)); }
+    .ps-root .psh-tpause { width: 88px; height: 88px; right: max(16px, calc(var(--ps-sa-r) + 8px)); top: max(16px, calc(var(--ps-sa-t) + 8px)); }
+    .ps-root .psh-tpause .i { width: 32px; height: 32px; }
+    .psh-focus { left: max(16px, calc(var(--ps-sa-l) + 8px)); top: calc(150 * var(--ps-u)); }
+    .psh-boss { left: 16px; width: calc(100cqw - 32px); top: calc(150 * var(--ps-u)); }
+  }
+  .mask { display: block; background: currentColor; -webkit-mask: var(--m) center / contain no-repeat; mask: var(--m) center / contain no-repeat; }
+</style>
+<div class="ps-root psh" data-class-lastlife="last_petal" data-class-nobombs="no_bombs" data-class-shield="shields" data-class-gun="has_gun" data-class-spiritfull="spirit_full" data-class-chain="chain" data-class-boss="has_boss" data-class-focus="focusing" data-style---spirit="spirit_css" data-style---gun="gun_css" data-style---boss="boss_css">
+  <div class="psh-boss" role="status"><div class="psh-bhead"><span class="psh-bname" data-bind="boss_name"></span><span class="psh-bhp ps-num"><b data-bind="boss_hp"></b>/<span data-bind="boss_max"></span></span></div><div class="psh-btrack"><div class="psh-bfill"></div></div></div>
+  <div class="ps-panel psh-panel psh-health">
+    <div class="ps-lbl" data-text="lives"></div>
+    <div class="psh-row">
+      <div class="psh-hearts" data-each="hearts"><template><span class="psh-heart" data-class-on="on"><span class="i mask" data-show="on" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 20.6s-7.6-4.6-9.6-9.3C1 7.8 3.3 4.4 6.8 4.4c2.2 0 3.8 1.2 5.2 3 1.4-1.8 3-3 5.2-3 3.5 0 5.8 3.4 4.4 6.9-2 4.7-9.6 9.3-9.6 9.3z%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span><span class="i mask" data-hide="on" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 20.6s-7.6-4.6-9.6-9.3C1 7.8 3.3 4.4 6.8 4.4c2.2 0 3.8 1.2 5.2 3 1.4-1.8 3-3 5.2-3 3.5 0 5.8 3.4 4.4 6.9-2 4.7-9.6 9.3-9.6 9.3z%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E&quot;)"></span></span></template></div>
+      <div class="psh-stats">
+        <div class="psh-stat psh-bloom"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%2872 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28144 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28216 12 12%29%22/%3E%3Cellipse cx=%2212%22 cy=%226.8%22 rx=%223.3%22 ry=%224.6%22 fill=%22%23000%22 transform=%22rotate%28288 12 12%29%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%222.4%22 fill=%22%23ffe39e%22/%3E%3C/svg%3E&quot;)"></span><b data-bind="bombs"></b><span class="psh-of">/<span data-bind="max_bombs"></span></span></div>
+        <div class="psh-stat psh-shield"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2.5 20.5 12 12 21.5 3.5 12Z%22 fill=%22%23000%22 fill-opacity=%22.18%22 stroke=%22%23000%22 stroke-width=%221.8%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M12 7.5 16 12 12 16.5 8 12Z%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span><b data-bind="shields"></b></div>
+      </div>
+    </div>
+    <div class="psh-gun"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2c.9 5.6 4.4 9.1 10 10-5.6.9-9.1 4.4-10 10-.9-5.6-4.4-9.1-10-10 5.6-.9 9.1-4.4 10-10z%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span><span data-bind="gun"></span><b class="ps-num" data-bind="gun_seconds"></b></div>
+    <div class="psh-sph"><span class="psh-spico"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2c.9 5.6 4.4 9.1 10 10-5.6.9-9.1 4.4-10 10-.9-5.6-4.4-9.1-10-10 5.6-.9 9.1-4.4 10-10z%22 fill=%22%23000%22 fill-opacity=%22.3%22 stroke=%22%23000%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E&quot;)"></span></span><div class="psh-track"><div class="psh-fill"></div></div><span class="psh-pct ps-num" data-bind="spirit_pct"></span></div>
+    <div class="psh-graze"><span class="ps-lbl" data-text="graze"></span><b class="ps-num" data-bind="graze"></b></div>
+  </div>
+  <div class="psh-spv" aria-label="Spirit"><span class="ps-lbl" data-text="spirit"></span><span class="psh-spico"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Cpath d=%22M12 2c.9 5.6 4.4 9.1 10 10-5.6.9-9.1 4.4-10 10-.9-5.6-4.4-9.1-10-10 5.6-.9 9.1-4.4 10-10z%22 fill=%22%23000%22 fill-opacity=%22.3%22 stroke=%22%23000%22 stroke-width=%221.5%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E&quot;)"></span></span><span class="psh-pct ps-num" data-bind="spirit_pct"></span><div class="psh-track"><div class="psh-fill"></div></div><div class="psh-graze"><span class="ps-lbl" data-text="graze"></span><b class="ps-num" data-bind="graze"></b></div></div>
+  <div class="ps-panel psh-panel psh-score">
+    <div class="ps-lbl" data-text="score"></div>
+    <div class="psh-scorev ps-num" data-bind="score_text"></div>
+    <div class="psh-chain"><span data-text="chain_caps"></span> <b class="ps-num" data-bind="chain"></b> · <span class="psh-mult">×<span data-bind="multiplier"></span></span></div>
+    <div class="psh-wavemini"><span class="ps-lbl" data-text="wave"></span><b class="ps-num"><span data-bind="wave"></span><span class="psh-of">/<span data-bind="waves"></span></span></b><span class="psh-wname" data-bind="wave_name"></span></div>
+  </div>
+  <div class="ps-panel psh-panel psh-wave">
+    <div class="psh-wtop"><div><div class="ps-lbl" data-text="wave"></div><div class="psh-waven ps-num"><span data-bind="wave"></span><span class="psh-of">/<span data-bind="waves"></span></span></div></div><button class="ps-btn ps-btn-round psh-pause" data-action="pause" aria-label="Pause"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect x=%226%22 y=%225%22 width=%224%22 height=%2214%22 rx=%221.5%22 fill=%22%23000%22/%3E%3Crect x=%2214%22 y=%225%22 width=%224%22 height=%2214%22 rx=%221.5%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span></button></div>
+    <div class="psh-wname" data-bind="wave_name"></div>
+    <div class="psh-acts" data-each="acts"><template><span class="psh-act" data-each="pips"><template><span class="psh-pip" data-class-done="done" data-class-now="now" data-class-boss="boss"></span></template></span></template></div>
+  </div>
+  <button class="psh-tpause" data-action="pause" aria-label="Pause"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22%3E%3Crect x=%226%22 y=%225%22 width=%224%22 height=%2214%22 rx=%221.5%22 fill=%22%23000%22/%3E%3Crect x=%2214%22 y=%225%22 width=%224%22 height=%2214%22 rx=%221.5%22 fill=%22%23000%22/%3E%3C/svg%3E&quot;)"></span></button>
+  <div class="psh-focus"><span class="i mask" style="--m: url(&quot;data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23000%22 stroke-width=%221.8%22%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%228%22/%3E%3Ccircle cx=%2212%22 cy=%2212%22 r=%223.2%22/%3E%3Cpath d=%22M12 1.5v4M12 18.5v4M1.5 12h4M18.5 12h4%22 stroke-linecap=%22round%22/%3E%3C/svg%3E&quot;)"></span><span data-text="focus"></span></div>
+  <div class="psh-banner" data-show="banner_on" data-class-caps="banner.caps" data-class-k-wave="banner.wave" data-class-k-warn="banner.warn" data-class-k-spirit="banner.spirit" data-class-k-bloom="banner.bloom" data-class-k-pickup="banner.pickup" data-class-k-empty="banner.empty" role="status"><span class="psh-bkick" data-bind="banner.kick"></span><span class="psh-btitle" data-bind="banner.title"></span></div>
+</div>

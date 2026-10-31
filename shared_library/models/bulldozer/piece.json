@@ -1,0 +1,10 @@
+{
+  "id": "bulldozer",
+  "summary": "A crawler bulldozer: two large tracks with drive sprockets that roll, a wide angled dozer blade on push-arms… joints track_l, track_r, blade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bulldozer or place \"prefab\": \"bulldozer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bulldozer"]
+}

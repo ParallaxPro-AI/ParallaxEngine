@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/blacksmith_shop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [11.1463, 8.181, 7.4952],
+      "offset": [-0.0001, 4.0895, -0.1551]
+    }
+  }
+}

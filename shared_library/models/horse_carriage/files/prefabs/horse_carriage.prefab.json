@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/horse_carriage"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 800,
+      "linear_damping": 0.08,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.11,
+        2.635,
+        5.87
+      ],
+      "offset": [
+        0,
+        1.3175,
+        0.015
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 7,
+      "steering": 35,
+      "grip": 6,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.3175,
+        0.015
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/accordion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3815, 0.4715, 0.238],
+      "offset": [0.0008, 0.2308, 0.019]
+    }
+  }
+}

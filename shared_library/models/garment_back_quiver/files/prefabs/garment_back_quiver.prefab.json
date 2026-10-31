@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_quiver"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4316, 0.7855, 0.3957],
+      "offset": [0.0126, 1.351, -0.0525]
+    }
+  }
+}

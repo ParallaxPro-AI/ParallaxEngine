@@ -1,0 +1,10 @@
+{
+  "id": "house_stairs_straight",
+  "summary": "A straight domestic staircase for the HOUSE modular kit that climbs one 3.0 m storey in 17 risers (176.5 mm r… joints cupboard_door; options wood, wall_rail.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_stairs_straight or place \"prefab\": \"house_stairs_straight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_stairs_straight"]
+}

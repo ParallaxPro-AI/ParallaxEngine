@@ -1,0 +1,10 @@
+{
+  "throw": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/9e/9c9e6a7583b0d5a3792a2b48fd10ca1d225c1e73ca22d5f96bb63af786d29873.mp3", "volume": 0.4 },
+  "stick": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d0/bf/d0bf60905b59ff630ffe01eb0edeeacd2504eaa8fb6523aeef7d2458b78264d3.ogg", "volume": 0.32 },
+  "checkout": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.6 },
+  "skill": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/44/23/4423d459fc15fdd8593a4584d71e272ec2e5f8bdc11b759db623fc613ffd957c.ogg", "volume": 0.34 },
+  "penalty": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg", "volume": 0.4 },
+  "ready": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg", "volume": 0.32 },
+  "won": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3", "volume": 0.5 },
+  "missed": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/9c/3a/9c3a1c73cadf0de5d5a578b31a264f20b1ac7cb6ec9bbd34a203f58402ea5390.ogg", "volume": 0.45 }
+}

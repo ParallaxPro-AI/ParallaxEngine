@@ -1,0 +1,10 @@
+{
+  "id": "ferris_wheel",
+  "summary": "A carnival Ferris wheel: a pair of A-frame towers straddling a fixed axle, a spoked wheel that spins about th… joints wheel, gondola_0, gondola_1, gondola_2, gondola_3, gondola_4, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ferris_wheel or place \"prefab\": \"ferris_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ferris_wheel"]
+}

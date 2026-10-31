@@ -1,0 +1,10 @@
+{
+  "id": "starfield",
+  "summary": "A sphere of 420 emissive point-lights at a 1 km radius — a night sky you can stand inside, for a scene with n…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.starfield or place \"prefab\": \"starfield\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:starfield"]
+}

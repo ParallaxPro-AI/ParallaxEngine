@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/junk_ship"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 60000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.6658, 17.1275, 19.9651],
+      "offset": [0, 8.5638, -0.7675]
+    }
+  }
+}

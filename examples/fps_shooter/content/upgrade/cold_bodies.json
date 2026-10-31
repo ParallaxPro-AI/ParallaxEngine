@@ -1,0 +1,1 @@
+{ "name": "Cold Bodies", "description": "Fragged bots take 1.5s longer to come back. Breathing room.", "icon": "❄", "bot_respawn_add": 1.5 }

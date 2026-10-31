@@ -1,0 +1,7 @@
+{
+  "name": "Thaw",
+  "description": "Clearing a gem next to crust chips that crust too. Corners stop being a death sentence.",
+  "short": "Clearing beside crust chips that crust too.",
+  "highlight": "chips that crust too",
+  "thaw": true
+}

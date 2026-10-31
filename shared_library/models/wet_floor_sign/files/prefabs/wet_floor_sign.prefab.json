@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wet_floor_sign"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3, 0.6215, 0.3334],
+      "offset": [0, 0.3108, -0.0061]
+    }
+  }
+}

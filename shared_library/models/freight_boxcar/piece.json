@@ -1,0 +1,10 @@
+{
+  "id": "freight_boxcar",
+  "summary": "A 50 ft-class steel freight boxcar at standard gauge: a flat-sided body with exterior posts and a gently crow… joints hand_brake, truck_f_axle_0, truck_f_axle_1, truck_r_axle_0, truck_r_axle_1, door_l, …; options paint; sockets socket_coupler_front, socket_coupler_rear, socket_cargo, socket_roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.freight_boxcar or place \"prefab\": \"freight_boxcar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:freight_boxcar"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sandbag_bunker",
+  "summary": "A roofed sandbag bunker (3.6 x 3.2 m): walls of filled hessian bags in running bond, two bags thick at the fr… sockets firing_left, firing_right, inside, entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sandbag_bunker or place \"prefab\": \"sandbag_bunker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sandbag_bunker"]
+}

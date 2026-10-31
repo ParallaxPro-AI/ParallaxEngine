@@ -1,0 +1,10 @@
+{
+  "id": "office_phone_booth",
+  "summary": "A single-person acoustic phone booth for an open-plan office, 1.0 x 1.0 m and 2.25 m tall: a painted shell on… joints door; options shell, felt, status; sockets seat_0, socket_desk.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.office_phone_booth or place \"prefab\": \"office_phone_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:office_phone_booth"]
+}

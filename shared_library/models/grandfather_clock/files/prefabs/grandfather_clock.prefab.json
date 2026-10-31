@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grandfather_clock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5, 2.145, 0.31],
+      "offset": [0, 1.0725, 0.005]
+    }
+  }
+}

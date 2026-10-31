@@ -1,0 +1,4 @@
+{
+  "name": "Bolt", "blurb": "Balanced all-rounder",
+  "prefab": "car_bolt", "showroom": "showroom_bolt", "top_speed": 32, "acceleration": 40, "handling": 125
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coffee_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.22, 1.699, 0.622],
+      "offset": [0, 0.8495, 0.021]
+    }
+  }
+}

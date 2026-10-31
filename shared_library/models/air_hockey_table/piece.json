@@ -1,0 +1,10 @@
+{
+  "id": "air_hockey_table",
+  "summary": "An arcade air-hockey table: a 2.0 x 1.0 m perforated white playfield 0.80 m high with centre line, centre cir… joints mallet_a_x, mallet_a_z, mallet_b_x, mallet_b_z, puck_x, puck_z; options cabinet, mallet_a, mallet_b; sockets player_a, player_b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.air_hockey_table or place \"prefab\": \"air_hockey_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:air_hockey_table"]
+}

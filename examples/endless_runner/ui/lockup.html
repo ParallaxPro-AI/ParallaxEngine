@@ -1,0 +1,138 @@
+<link rel="stylesheet" href="street.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .cg-root { pointer-events: none; overflow: hidden; }
+  .cgl { position: fixed; inset: 0; pointer-events: none; }
+  .cgl-dim { position: absolute; inset: 0; background: var(--cg-scrim); animation: cg-fade .25s ease both; }
+  .cgl-p { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(var(--cg-u) * 1360); height: calc(var(--cg-u) * 968); max-height: calc(100% - calc(var(--cg-u) * 24)); padding: calc(var(--cg-u) * 40) calc(var(--cg-u) * 48); display: flex; flex-direction: column; gap: calc(var(--cg-u) * 22); pointer-events: auto; animation: cg-in .25s ease-out both; }
+  .cgl-h { flex: none; display: flex; justify-content: space-between; align-items: flex-start; gap: calc(var(--cg-u) * 24); }
+  .cgl-kick { display: inline-block; padding: calc(var(--cg-u) * 4) calc(var(--cg-u) * 14); border-radius: calc(var(--cg-u) * 6); background: var(--cg-yellow); color: var(--cg-ink-on-mint); font: 800 calc(var(--cg-u) * 22)/1.2 var(--cg-font-num); letter-spacing: .24em; white-space: nowrap; }
+  .cgl-title { font-size: calc(var(--cg-u) * 96); margin-top: calc(var(--cg-u) * 10); color: var(--cg-ink); text-shadow: calc(var(--cg-u) * 5) calc(var(--cg-u) * 5) 0 var(--cg-teal-600); letter-spacing: .01em; }
+  .cgl-sub { font-size: calc(var(--cg-u) * 24); font-weight: 600; margin-top: calc(var(--cg-u) * 8); color: var(--cg-ink-2); }
+  .cgl-hr { display: flex; flex-direction: column; align-items: flex-end; gap: calc(var(--cg-u) * 14); }
+  .cgl-wal { display: flex; align-items: center; gap: calc(var(--cg-u) * 14); padding: calc(var(--cg-u) * 10) calc(var(--cg-u) * 26) calc(var(--cg-u) * 10) calc(var(--cg-u) * 14); border-radius: 999px; background: var(--cg-teal-900); border: calc(var(--cg-u) * 3) solid var(--cg-yellow-hi); box-shadow: 0 calc(var(--cg-u) * 5) 0 var(--cg-hard); }
+  .cgl-wal svg { width: calc(var(--cg-u) * 52); height: calc(var(--cg-u) * 52); }
+  .cgl-wal span { font-size: calc(var(--cg-u) * 60); color: var(--cg-gold-hi); }
+  .cgl-chips { display: flex; gap: calc(var(--cg-u) * 10); }
+  .cgl-chips .mob { display: none; }
+  .cgl-.cg-root { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; pointer-events: auto; -webkit-overflow-scrolling: touch; }
+  .cgl-grid { min-height: 100%; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: minmax(min-content, 1fr); gap: calc(var(--cg-u) * 18); }
+  .cgl-empty { display: none; font-size: calc(var(--cg-u) * 24); color: var(--cg-ink-muted); }
+  .cgl-empty.on { display: block; }
+  .card { display: grid; grid-template-columns: calc(var(--cg-u) * 100) minmax(0, 1fr) calc(var(--cg-u) * 180); align-items: center; align-content: center; column-gap: calc(var(--cg-u) * 22); padding: calc(var(--cg-u) * 18) calc(var(--cg-u) * 22); border-radius: calc(var(--cg-u) * 20); background: rgba(16,46,59,.85); border: calc(var(--cg-u) * 2) solid rgba(255,246,222,.18); }
+  .card.ok { border-color: rgba(250,204,21,.55); }
+  .card.max { background: rgba(187,247,208,.08); border-color: rgba(187,247,208,.5); }
+  .card .row, .info { display: contents; }
+  .tile { grid-column: 1; grid-row: 1 / span 3; width: calc(var(--cg-u) * 100); height: calc(var(--cg-u) * 100); border-radius: calc(var(--cg-u) * 18); background: #8a9a9a; display: grid; place-items: center; box-shadow: 0 calc(var(--cg-u) * 5) 0 var(--cg-hard); color: var(--cg-teal-900); }
+  .card.ok .tile { background: var(--cg-yellow); }
+  .card.max .tile { background: var(--cg-mint); }
+  .tile svg { width: calc(var(--cg-u) * 56); height: calc(var(--cg-u) * 56); }
+  .name { grid-column: 2; grid-row: 1; font-size: calc(var(--cg-u) * 36); letter-spacing: .02em; }
+  .blurb { grid-column: 2; grid-row: 2; font-size: calc(var(--cg-u) * 19); font-weight: 500; margin-top: calc(var(--cg-u) * 6); line-height: 1.3; color: var(--cg-ink-2); }
+  .pips { grid-column: 2; grid-row: 3; display: flex; gap: calc(var(--cg-u) * 8); align-items: center; margin-top: calc(var(--cg-u) * 12); }
+  .pips i { width: calc(var(--cg-u) * 34); height: calc(var(--cg-u) * 12); border-radius: calc(var(--cg-u) * 6); border: calc(var(--cg-u) * 2) solid var(--cg-yellow); }
+  .pips i.on { background: var(--cg-yellow); }
+  .tier { margin-left: calc(var(--cg-u) * 6); font: 700 calc(var(--cg-u) * 18)/1 var(--cg-font-num); letter-spacing: .12em; color: var(--cg-ink-muted); white-space: nowrap; }
+  .buy { grid-column: 3; grid-row: 1 / span 3; display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--cg-u) * 10); }
+  .price { display: flex; align-items: center; justify-content: center; gap: calc(var(--cg-u) * 8); font: 800 calc(var(--cg-u) * 40)/1 var(--cg-font-num); color: var(--cg-danger-soft); }
+  .card.ok .price { color: var(--cg-gold-hi); }
+  .price svg { width: calc(var(--cg-u) * 28); height: calc(var(--cg-u) * 28); }
+  .price .c2 { display: none; }
+  .cg-root .bb { height: calc(var(--cg-u) * 58); border-radius: calc(var(--cg-u) * 14); background: rgba(4,18,24,.7); border: calc(var(--cg-u) * 3) solid rgba(255,246,222,.25); color: rgba(255,246,222,.78); font-family: var(--cg-font-display); font-size: calc(var(--cg-u) * 28); letter-spacing: .06em; cursor: not-allowed; display: flex; align-items: center; justify-content: center; gap: calc(var(--cg-u) * 6); }
+  .cg-root .card.ok .bb { background: var(--cg-yellow); border-color: var(--cg-teal-900); box-shadow: 0 calc(var(--cg-u) * 5) 0 var(--cg-btn-shadow); color: var(--cg-teal-900); cursor: pointer; }
+  .cg-root .card.ok .bb:hover { filter: brightness(1.08); }
+  .cg-root .card.ok .bb:active { transform: translateY(calc(var(--cg-u) * 3)); box-shadow: 0 calc(var(--cg-u) * 2) 0 var(--cg-btn-shadow); }
+  .bb .p { display: none; }
+  .maxed { height: calc(var(--cg-u) * 100); border-radius: calc(var(--cg-u) * 14); background: var(--cg-mint); color: var(--cg-ink-on-mint); display: grid; place-items: center; font-size: calc(var(--cg-u) * 34); letter-spacing: .06em; }
+  .cgl-f { flex: none; display: flex; justify-content: space-between; align-items: center; gap: calc(var(--cg-u) * 16); }
+  .cg-root .cgl-f .cg-btn.gold { height: calc(var(--cg-u) * 88); font-size: calc(var(--cg-u) * 42); padding: 0 calc(var(--cg-u) * 40); }
+
+  @media (pointer: coarse) {
+    .cgl-p { left: var(--cg-sl); right: var(--cg-sr); top: calc(var(--cg-st)); bottom: var(--cg-sb); width: auto; height: auto; max-height: none; transform: none; padding: 0; gap: 0; overflow: hidden; animation: cg-fade .2s ease both; }
+    .cgl-h { padding: calc(var(--cg-u) * 10) calc(var(--cg-u) * 14) calc(var(--cg-u) * 8); align-items: center; gap: calc(var(--cg-u) * 12); border-bottom: 1px solid rgba(250,204,21,.25); }
+    .cgl-hl { display: flex; align-items: center; gap: calc(var(--cg-u) * 10); min-width: 0; }
+    .cgl-hl > div { display: grid; grid-template-columns: auto auto; column-gap: calc(var(--cg-u) * 10); align-items: center; }
+    .cgl-kick { grid-column: 2; grid-row: 1; justify-self: start; }
+    .cgl-sub { grid-column: 2; grid-row: 2; }
+    .cgl-title { grid-column: 1; grid-row: 1 / span 2; font-size: calc(var(--cg-u) * 32); margin: 0; text-shadow: calc(var(--cg-u) * 3) calc(var(--cg-u) * 3) 0 var(--cg-teal-600); white-space: nowrap; }
+    .cgl-kick { padding: calc(var(--cg-u) * 1) calc(var(--cg-u) * 6); border-radius: calc(var(--cg-u) * 4); font-size: calc(var(--cg-u) * 11); letter-spacing: .2em; }
+    .cgl-sub { font-size: calc(var(--cg-u) * 12); margin-top: calc(var(--cg-u) * 3); white-space: nowrap; }
+    .cgl-hr { flex-direction: row-reverse; align-items: center; gap: calc(var(--cg-u) * 10); }
+    .cgl-wal { gap: calc(var(--cg-u) * 6); padding: calc(var(--cg-u) * 4) calc(var(--cg-u) * 12) calc(var(--cg-u) * 4) calc(var(--cg-u) * 6); border-width: calc(var(--cg-u) * 2); box-shadow: none; }
+    .cgl-wal svg { width: calc(var(--cg-u) * 24); height: calc(var(--cg-u) * 24); }
+    .cgl-wal span { font-size: calc(var(--cg-u) * 24); }
+    .cgl-chips { gap: calc(var(--cg-u) * 5); }
+    .cgl-chips .cg-chip { padding: calc(var(--cg-u) * 4) calc(var(--cg-u) * 7); border-radius: calc(var(--cg-u) * 6); font-size: calc(var(--cg-u) * 11); letter-spacing: .06em; }
+    .cgl-chips .cg-chip b { font-size: calc(var(--cg-u) * 13); }
+    .cgl-chips .desk { display: none; }
+    .cgl-chips .mob { display: inline; }
+    .cgl-.cg-root { padding: calc(var(--cg-u) * 10) calc(var(--cg-u) * 14); }
+    .cgl-grid { min-height: 0; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: auto; gap: calc(var(--cg-u) * 10); }
+    .card { display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--cg-u) * 6); padding: calc(var(--cg-u) * 10); border-radius: calc(var(--cg-u) * 14); border-width: 1.5px; }
+    .card .row { display: flex; align-items: center; gap: calc(var(--cg-u) * 8); }
+    .info { display: block; min-width: 0; }
+    .tile { width: calc(var(--cg-u) * 38); height: calc(var(--cg-u) * 38); border-radius: calc(var(--cg-u) * 10); box-shadow: none; }
+    .tile svg { width: calc(var(--cg-u) * 22); height: calc(var(--cg-u) * 22); }
+    .name { font-size: calc(var(--cg-u) * 17); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pips { gap: calc(var(--cg-u) * 4); margin-top: calc(var(--cg-u) * 5); }
+    .pips i { width: calc(var(--cg-u) * 16); height: calc(var(--cg-u) * 6); border-radius: calc(var(--cg-u) * 3); border-width: 1.5px; }
+    .tier { display: none; }
+    .blurb { font-size: calc(var(--cg-u) * 11.5); margin: 0; min-height: calc(var(--cg-u) * 30); }
+    .buy { width: auto; }
+    .price { display: none; }
+    .cg-root .bb { height: max(44px, calc(var(--cg-u) * 44)); border-radius: calc(var(--cg-u) * 10); border-width: calc(var(--cg-u) * 2); box-shadow: none; justify-content: space-between; padding: 0 calc(var(--cg-u) * 10); font-size: calc(var(--cg-u) * 16); }
+    .cg-root .card.ok .bb { box-shadow: none; }
+    .bb .p { display: flex; align-items: center; gap: calc(var(--cg-u) * 4); font: 800 calc(var(--cg-u) * 19)/1 var(--cg-font-num); letter-spacing: 0; color: var(--cg-danger-soft); }
+    .card.ok .bb .p { color: var(--cg-teal-900); }
+    .bb .p svg { width: calc(var(--cg-u) * 15); height: calc(var(--cg-u) * 15); }
+    .maxed { height: max(44px, calc(var(--cg-u) * 44)); border-radius: calc(var(--cg-u) * 10); font-size: calc(var(--cg-u) * 18); }
+    .cgl-f { padding: calc(var(--cg-u) * 8) calc(var(--cg-u) * 14) calc(var(--cg-u) * 10); border-top: 1px solid rgba(250,204,21,.25); background: rgba(8,51,68,.98); }
+    .cg-root .cgl-f .cg-btn, .cg-root .cgl-f .cg-btn.gold { height: max(44px, calc(var(--cg-u) * 44)); font-size: calc(var(--cg-u) * 19); padding: 0 calc(var(--cg-u) * 22); border-radius: calc(var(--cg-u) * 12); }
+    .cg-root .cgl-f .cg-btn.gold { font-size: calc(var(--cg-u) * 21); padding: 0 calc(var(--cg-u) * 26); box-shadow: 0 calc(var(--cg-u) * 4) 0 var(--cg-btn-shadow); }
+  }
+</style>
+<div class="cgl cg-root">
+  <div class="cgl-dim"></div>
+  <main class="cgl-p cg-panel cg-dots">
+    <header class="cgl-h">
+      <div class="cgl-hl">
+        <div>
+          <span class="cgl-kick" data-text="lockup_kick"></span>
+          <h1 class="cgl-title cg-display" data-text="lockup_title"></h1>
+          <p class="cgl-sub" data-text="lockup_sub"></p>
+        </div>
+      </div>
+      <div class="cgl-hr">
+        <div class="cgl-wal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span class="cg-num" data-bind="wallet"></span></div>
+        <div class="cgl-chips">
+          <span class="cg-chip"><span class="desk">BEST</span><span class="mob">BEST</span> <b data-bind="best_distance"></b>&nbsp;/ <span data-bind="goal"></span></span>
+          <span class="cg-chip" data-class-gold="has_escapes"><span class="desk">ESCAPES</span><span class="mob">ESC</span> <b data-bind="escapes"></b></span>
+          <span class="cg-chip"><span class="desk">BEST COMBO</span><span class="mob">COMBO</span> <b><span data-bind="best_combo"></span>x</b></span>
+        </div>
+      </div>
+    </header>
+    <section class="cgl-body">
+      <div class="cgl-grid" data-each="upgrades">
+        <template>
+          <div class="card" data-class-max="maxed" data-class-ok="affordable">
+            <div class="row"><span class="tile"><svg viewBox="0 0 24 24" aria-hidden="true"><path data-attr-d="icon_path" fill="currentColor" fill-rule="evenodd"/></svg></span>
+              <div class="info"><div class="name cg-display" data-bind="name"></div>
+              <div class="pips"><span data-each="pips"><template><i data-class-on="on"></i></template></span><span class="tier" data-bind="tier"></span></div></div></div>
+            <div class="blurb" data-bind="blurb"></div>
+            <div class="buy">
+              <div class="maxed cg-display" data-show="maxed" data-text="lockup_maxed"></div>
+              <div class="price" data-hide="maxed"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span data-bind="cost"></span></div>
+              <button class="bb" data-hide="maxed" data-action="buy" data-attr-disabled="unaffordable"><span class="p"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span data-bind="cost"></span></span><span data-bind="buy_label"></span></button>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+    <footer class="cgl-f">
+      <button class="cg-btn" data-action="close" data-key="KeyP" data-text="lockup_close"></button>
+      <button class="cg-btn gold" data-action="play" data-endless="false" data-text="title_escape"></button>
+    </footer>
+  </main>
+</div>

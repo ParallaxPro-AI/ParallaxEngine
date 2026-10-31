@@ -1,0 +1,1 @@
+{ "name": "Stone Pickaxe", "icon": "pickaxe", "color": "#8a8f94", "stack_max": 1, "tool": "pickaxe", "view": "pickaxe_view", "tier": 1, "mine_speed": 2.2, "damage": 10, "reach": 5 }

@@ -1,0 +1,10 @@
+{
+  "id": "apple",
+  "summary": "An eating apple, 80 mm across: a lathed body with a sunken stem well on top and a dimpled calyx underneath, a… options variety.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.apple or place \"prefab\": \"apple\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:apple"]
+}

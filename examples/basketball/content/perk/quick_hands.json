@@ -1,0 +1,2 @@
+{ "name": "Quick Hands", "description": "+18% steal success, and Steal comes off cooldown sooner.",
+  "category": "defense", "max_stacks": 2, "steal_chance": 0.18, "steal_cooldown": -0.25 }

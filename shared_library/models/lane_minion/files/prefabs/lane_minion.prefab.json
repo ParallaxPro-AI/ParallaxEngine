@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lane_minion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.31, 1.895, 0.7297],
+      "offset": [0, 0.9475, -0.1177]
+    }
+  }
+}

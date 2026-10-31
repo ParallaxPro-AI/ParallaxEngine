@@ -1,0 +1,10 @@
+{
+  "id": "chinese_lion_statue",
+  "summary": "A Chinese guardian lion (shishi / foo dog) statue, 1.5 m tall: a seated carved lion with heavy haunches, a br… options gender, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chinese_lion_statue or place \"prefab\": \"chinese_lion_statue\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chinese_lion_statue"]
+}

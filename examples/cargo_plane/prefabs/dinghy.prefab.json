@@ -1,0 +1,25 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dinghy",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.6556,
+        1.03,
+        4.448
+      ],
+      "offset": [
+        0.0,
+        0.515,
+        -0.196
+      ]
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 220
+    }
+  }
+}

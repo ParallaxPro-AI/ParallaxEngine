@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hydro_dam_gate"
+    }
+  }
+}

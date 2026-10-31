@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skeleton_warrior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 1.79, 0.3023],
+      "offset": [0, 0.895, 0.0039]
+    }
+  }
+}

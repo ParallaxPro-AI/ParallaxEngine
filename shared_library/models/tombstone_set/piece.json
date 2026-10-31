@@ -1,0 +1,10 @@
+{
+  "id": "tombstone_set",
+  "summary": "A weathered graveyard marker in five shapes picked by the `shape` partset: a Celtic ring cross on a stepped b… options shape, stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tombstone_set or place \"prefab\": \"tombstone_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tombstone_set"]
+}

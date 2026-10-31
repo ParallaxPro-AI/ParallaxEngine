@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flower_patch_mixed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6593, 0.5004, 0.5884],
+      "offset": [-0.0042, 0.2454, 0.0107]
+    }
+  }
+}

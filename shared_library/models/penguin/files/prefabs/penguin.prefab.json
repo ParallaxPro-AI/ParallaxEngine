@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/penguin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.75, 0.8012, 0.3958],
+      "offset": [0, 0.3994, 0.0073]
+    }
+  }
+}

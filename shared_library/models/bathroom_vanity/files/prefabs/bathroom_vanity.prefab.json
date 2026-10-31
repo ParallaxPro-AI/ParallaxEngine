@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bathroom_vanity"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.012, 1.0279, 0.5639],
+      "offset": [0, 0.5139, 0.014]
+    }
+  }
+}

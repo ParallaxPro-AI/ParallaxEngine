@@ -1,0 +1,10 @@
+{
+  "id": "pet_food_bowl_set",
+  "summary": "A pet feeding station on the kitchen floor: a rounded silicone feeding mat (460 x 270 mm) with a raised spill…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pet_food_bowl_set or place \"prefab\": \"pet_food_bowl_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pet_food_bowl_set"]
+}

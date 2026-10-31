@@ -1,0 +1,10 @@
+{
+  "id": "road_block_sandbags_cars",
+  "summary": "A post-apocalyptic roadblock about 9.9 m across: two stripped saloon-car hulks (4.3 x 1.75 m each, glass gone…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_block_sandbags_cars or place \"prefab\": \"road_block_sandbags_cars\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_block_sandbags_cars"]
+}

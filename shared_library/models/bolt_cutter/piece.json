@@ -1,0 +1,10 @@
+{
+  "id": "bolt_cutter",
+  "summary": "A 24 inch (0.61 m) compound-lever bolt cutter lying flat: two long painted steel tube handles with flared rub… joints handle_r, handle_l, jaw_r, jaw_l; options paint; sockets socket_grip, socket_jaw, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.bolt_cutter or place \"prefab\": \"bolt_cutter\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:bolt_cutter"]
+}

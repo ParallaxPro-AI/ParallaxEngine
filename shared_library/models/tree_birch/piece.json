@@ -1,0 +1,10 @@
+{
+  "id": "tree_birch",
+  "summary": "A silver birch: a slender white-barked trunk banded with black lenticel marks, light ascending limbs whose tw… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_birch or place \"prefab\": \"tree_birch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_birch"]
+}

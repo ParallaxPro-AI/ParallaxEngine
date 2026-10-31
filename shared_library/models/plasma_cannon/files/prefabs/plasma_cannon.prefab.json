@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plasma_cannon"
+    },
+    "viewmodel_item": {
+      "hip": [0.095, -0.325, 0.31],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.12
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.239, 0.34, 1.035],
+      "offset": [-0.0315, 0.17, 0.1475]
+    }
+  }
+}

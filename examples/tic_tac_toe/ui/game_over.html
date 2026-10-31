@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="game_over.css">
+<div class="lib">
+<div class="go-overlay visible">
+  <div class="ambient-glow" data-class-victory="won" data-class-defeat="lost"></div>
+  <div class="go-title" data-class-victory="won" data-class-defeat="lost" data-bind="title"></div>
+  <div class="go-line" data-class-victory="won" data-class-defeat="lost"></div>
+  <div class="go-score-area">
+    <div class="go-score-label" data-text="final_score"></div>
+    <div class="go-score-value" data-bind="score" data-format="int"></div>
+  </div>
+  <div class="go-stats">
+    <div class="go-stat"><div class="go-stat-val" data-bind="wins"></div><div class="go-stat-label" data-text="stat_wins"></div></div>
+    <div class="go-stat"><div class="go-stat-val" data-bind="losses"></div><div class="go-stat-label" data-text="stat_losses"></div></div>
+    <div class="go-stat"><div class="go-stat-val" data-bind="draws"></div><div class="go-stat-label" data-text="stat_draws"></div></div>
+    <div class="go-stat"><div class="go-stat-val" data-bind="streak"></div><div class="go-stat-label" data-text="streak_label"></div></div>
+  </div>
+  <div class="go-buttons">
+    <button class="go-btn primary" data-action="play_again" data-text="play_again"></button>
+    <button class="go-btn" data-action="quit" data-text="main_menu"></button>
+  </div>
+</div>
+</div>

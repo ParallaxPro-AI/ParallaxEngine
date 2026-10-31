@@ -1,0 +1,10 @@
+{
+  "id": "baby",
+  "summary": "A baby, about ten months old and 0.74 m standing, on the humanoid_17 rig. options skin, onesie, hair; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baby or place \"prefab\": \"baby\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baby"]
+}

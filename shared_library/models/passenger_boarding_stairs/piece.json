@@ -1,0 +1,10 @@
+{
+  "id": "passenger_boarding_stairs",
+  "summary": "A towed passenger boarding stair for airliners: eighteen open diamond-plate treads with yellow nosings betwee… joints steer, drawbar; options body_colour; sockets tow_hitch, socket_platform, aircraft_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.passenger_boarding_stairs or place \"prefab\": \"passenger_boarding_stairs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:passenger_boarding_stairs"]
+}

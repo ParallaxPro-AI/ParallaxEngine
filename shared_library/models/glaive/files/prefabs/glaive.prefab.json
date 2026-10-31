@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/glaive"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.4, 0.4],
+      "hip_turn": [-10.31324, -22.918312, -31.512679],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.153, 0.0464, 2.239],
+      "offset": [0.0025, 0.0232, 1.1195]
+    }
+  }
+}

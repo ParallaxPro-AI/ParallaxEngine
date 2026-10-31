@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/car_wreck_burnt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.1594, 1.4287, 4.7217],
+      "offset": [-0.0539, 0.7144, -0.0094]
+    }
+  }
+}

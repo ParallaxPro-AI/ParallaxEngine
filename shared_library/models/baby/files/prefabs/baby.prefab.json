@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baby"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.504, 0.754, 0.1919],
+      "offset": [0, 0.381, 0.0004]
+    }
+  }
+}

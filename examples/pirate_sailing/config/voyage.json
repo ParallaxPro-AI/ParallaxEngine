@@ -1,0 +1,14 @@
+{
+  "legs": ["bay", "storm_reef", "skull_cove"],
+  "crew": 3,
+  "refit_offers": 3,
+  "treasure_radius": 700,
+  "harbour_radius": 22,
+  "pickup_radius": 4,
+  "respawn_delay": 5,
+  "storm_duration": 35,
+  "storm_sail_scale": 0.7,
+  "storm_range_scale": 0.78,
+  "water_level": -1.05,
+  "max_armor": 0.7
+}

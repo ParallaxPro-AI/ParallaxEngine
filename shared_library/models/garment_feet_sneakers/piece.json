@@ -1,0 +1,10 @@
+{
+  "id": "garment_feet_sneakers",
+  "summary": "A pair of athletic sneakers: a woven textile upper with a padded heel collar and pull tab, a thick white foam… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_feet_sneakers or place \"prefab\": \"garment_feet_sneakers\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_feet_sneakers"]
+}

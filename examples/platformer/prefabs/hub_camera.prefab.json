@@ -1,0 +1,8 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 50
+    }
+  }
+}

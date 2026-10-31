@@ -1,0 +1,10 @@
+{
+  "id": "ziggurat",
+  "summary": "A stepped Mesopotamian ziggurat after the Ziggurat of Ur, about 30 m square in plan and 17.25 m tall: three b…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ziggurat or place \"prefab\": \"ziggurat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ziggurat"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "lemonade_stand",
+  "summary": "A wooden lemonade stand: a painted yellow counter on a timber frame with a lemon emblem and ICE COLD / 50¢ A… joints cash_lid; options panel, awning.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lemonade_stand or place \"prefab\": \"lemonade_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lemonade_stand"]
+}

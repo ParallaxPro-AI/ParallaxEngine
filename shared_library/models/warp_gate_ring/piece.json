@@ -1,0 +1,10 @@
+{
+  "id": "warp_gate_ring",
+  "summary": "A 6.8 m upright warp-gate ring: a chamfered white composite ring with dark radial ribs and nine amber chevron… joints glyph_ring; options horizon, hull, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.warp_gate_ring or place \"prefab\": \"warp_gate_ring\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:warp_gate_ring"]
+}

@@ -1,0 +1,70 @@
+<!-- The template's run summary for both endings: VICTORY — THE CIRCLE HOLDS in warm gold or THE
+     EMBER GOES OUT in ash and blood, the final score, the Survived / Level / Kills / Ember dust /
+     Seed / Record strip, and Play Again / Main Menu. -->
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ember.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .ecg { font-family: var(--ec-font-ui); color: var(--ec-ink); -webkit-font-smoothing: antialiased; }
+  .mood { position: fixed; inset: 0; pointer-events: none; background: rgba(6,3,3,.62); animation: ec-fade 400ms ease both; }
+  .win .mood { background: radial-gradient(ellipse at 50% 40%, rgba(251,191,36,.18), transparent 60%), rgba(6,3,3,.6); }
+  .loss .mood { background: radial-gradient(ellipse at 50% 40%, rgba(127,29,29,.22), transparent 60%), radial-gradient(ellipse at center, rgba(6,3,3,.55) 40%, rgba(0,0,0,.85)); }
+  .end { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; pointer-events: auto; animation: ec-rise 420ms var(--ec-ease-out) both; }
+  .e-k { margin-bottom: calc(18 * var(--ec-u)); }
+  .win .e-k { color: var(--ec-gold); }
+  .loss .e-k { color: var(--ec-ash); }
+  .e-h { font: 900 calc(52 * var(--ec-u))/1.1 var(--ec-font-display); letter-spacing: .06em; -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; background-image: var(--ec-grad-loss); filter: drop-shadow(0 0 calc(20 * var(--ec-u)) rgba(127,29,29,.5)); }
+  .win .e-h { background-image: var(--ec-grad-win); filter: drop-shadow(0 0 calc(28 * var(--ec-u)) rgba(251,191,36,.5)); }
+  .fs-l { margin-top: calc(36 * var(--ec-u)); }
+  .fs { font-size: calc(112 * var(--ec-u)); line-height: 1; margin-top: calc(10 * var(--ec-u)); color: #d6d3d1; }
+  .win .fs { color: var(--ec-ink); text-shadow: 0 0 calc(40 * var(--ec-u)) rgba(251,191,36,.35); }
+  .stats { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); margin-top: calc(40 * var(--ec-u)); width: calc(1080 * var(--ec-u)); max-width: calc(100cqw - calc(32 * var(--ec-u))); padding: 0; }
+  .st { display: flex; flex-direction: column; gap: calc(10 * var(--ec-u)); padding: calc(18 * var(--ec-u)) calc(16 * var(--ec-u)); border-left: calc(1 * var(--ec-u)) solid var(--ec-line); }
+  .st:first-child { border-left: 0; }
+  .st .ec-mono { font-size: calc(22 * var(--ec-u)); color: var(--ec-ink); white-space: nowrap; }
+  .st .ec-mono small { font-size: calc(14 * var(--ec-u)); color: var(--ec-ink-mute); }
+  .st .dust-v { color: var(--ec-ember-hi); }
+  .vgt { color: var(--ec-violet-hi); font-size: calc(14 * var(--ec-u)); }
+  .nb { display: inline-block; padding: calc(5 * var(--ec-u)) calc(9 * var(--ec-u)); border-radius: calc(2 * var(--ec-u)); background: rgba(251,191,36,.18); border: calc(1 * var(--ec-u)) solid var(--ec-gold); color: var(--ec-gold-hi) !important; font-size: calc(15 * var(--ec-u)) !important; box-shadow: var(--ec-glow-gold); align-self: center; letter-spacing: .14em; }
+  .e-btns { display: flex; gap: calc(14 * var(--ec-u)); margin-top: calc(40 * var(--ec-u)); }
+  .e-btns .ec-btn { height: calc(56 * var(--ec-u)); padding: 0 calc(32 * var(--ec-u)); }
+  .e-btns .ec-btn-primary { width: calc(260 * var(--ec-u)); font-size: calc(16 * var(--ec-u)); }
+  .loss .e-btns .ec-btn-primary { background: linear-gradient(180deg, #d6d3d1, #a8a29e); border-color: #e7e5e4; box-shadow: 0 0 calc(20 * var(--ec-u)) rgba(168,162,158,.3); color: #1c1917; }
+
+  @media (pointer: coarse) {
+    .e-k { margin-bottom: calc(16 * var(--ec-u)); font-size: calc(18 * var(--ec-u)); }
+    .fs-l { margin-top: calc(24 * var(--ec-u)); font-size: calc(18 * var(--ec-u)); }
+    .fs { font-size: calc(104 * var(--ec-u)); margin-top: calc(8 * var(--ec-u)); }
+    .stats { width: calc(100cqw - calc(208 * var(--ec-u))); margin-top: calc(32 * var(--ec-u)); border-radius: calc(16 * var(--ec-u)); }
+    .st { padding: calc(18 * var(--ec-u)) calc(16 * var(--ec-u)); gap: calc(12 * var(--ec-u)); }
+    .st .ec-lbl { font-size: calc(16 * var(--ec-u)); }
+    .st .ec-mono { font-size: calc(26 * var(--ec-u)); }
+    .st .ec-mono small { font-size: calc(20 * var(--ec-u)); }
+    .vgt { font-size: calc(20 * var(--ec-u)); }
+    .nb { font-size: calc(20 * var(--ec-u)) !important; padding: calc(6 * var(--ec-u)) calc(12 * var(--ec-u)); }
+    .e-btns { margin-top: calc(32 * var(--ec-u)); gap: calc(20 * var(--ec-u)); }
+    .e-btns .ec-btn, .e-btns .ec-btn-primary { height: calc(88 * var(--ec-u)); font-size: calc(24 * var(--ec-u)); width: auto; padding: 0 calc(48 * var(--ec-u)); }
+    .e-btns .ec-btn-primary { min-width: calc(360 * var(--ec-u)); }
+  }
+</style>
+<div class="ecg" data-class-win="survived" data-class-loss="fell">
+  <div class="mood"></div>
+  <div class="end">
+    <span class="ec-lbl e-k"><span data-show="survived" data-text="kicker_win"></span><span data-hide="survived" data-text="kicker_loss"></span></span>
+    <h1 class="e-h"><span data-show="survived" data-text="run_survived"></span><span data-hide="survived" data-text="run_fell"></span></h1>
+    <span class="ec-lbl fs-l" data-text="final_score"></span>
+    <div class="fs ec-mono" data-bind="score"></div>
+    <div class="stats ec-panel">
+      <div class="st"><span class="ec-lbl" data-text="stat_survived"></span><span class="ec-mono"><span data-bind="seconds"></span> <small>/ <span data-bind="run_seconds"></span></small></span></div>
+      <div class="st"><span class="ec-lbl" data-text="stat_level"></span><span class="ec-mono" data-bind="level"></span></div>
+      <div class="st"><span class="ec-lbl" data-text="stat_kills"></span><span class="ec-mono" data-bind="kills"></span></div>
+      <div class="st"><span class="ec-lbl" data-text="stat_dust"></span><span class="ec-mono"><span class="dust-v" data-bind="dust"></span></span></div>
+      <div class="st"><span class="ec-lbl" data-text="stat_seed"></span><span class="ec-mono"><span data-bind="seed"></span> <span class="vgt" data-show="vigil" data-text="vigil_tag"></span></span></div>
+      <div class="st"><span class="ec-lbl" data-text="stat_record"></span><span class="ec-mono"><span class="nb" data-show="new_best" data-text="new_best"></span><span data-hide="new_best"><span data-text="best_word"></span> <small data-bind="best"></small></span></span></div>
+    </div>
+    <div class="e-btns">
+      <button class="ec-btn ec-btn-primary" data-action="again" data-text="play_again"></button>
+      <button class="ec-btn ec-btn-ghost" data-action="title" data-text="main_menu"></button>
+    </div>
+  </div>
+</div>

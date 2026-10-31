@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/doctor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7223, 1.7409, 0.3048],
+      "offset": [0, 0.8704, 0.0024]
+    }
+  }
+}

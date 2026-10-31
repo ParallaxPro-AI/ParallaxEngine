@@ -1,0 +1,10 @@
+{
+  "id": "bb_barrel_decor",
+  "summary": "Bulged twelve-sided wooden cask with iron hoops, adapted from the shared barrel profile.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_barrel_decor or place \"prefab\": \"bb_barrel_decor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_barrel_decor"]
+}

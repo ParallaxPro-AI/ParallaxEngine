@@ -1,0 +1,10 @@
+{
+  "id": "robot_dog",
+  "summary": "A 0.8 m four-legged inspection robot: a chamfered chassis with a dark top deck, payload rail and spinning lid… joints lidar, head, hip_fl, knee_fl, hip_fr, knee_fr, …; options shell; sockets socket_payload, eye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.robot_dog or place \"prefab\": \"robot_dog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:robot_dog"]
+}

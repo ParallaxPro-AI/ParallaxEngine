@@ -1,0 +1,5 @@
+{
+  "number": 4, "name": "Volley Warden", "tagline": "It predicts the bounce. Only a smash gets past it.",
+  "color": "#edb3ff",
+  "speed": 11.2, "aim_error": 0.5, "reaction_time": 0.18, "predict": 0.8, "ball_speed_scale": 1.15
+}

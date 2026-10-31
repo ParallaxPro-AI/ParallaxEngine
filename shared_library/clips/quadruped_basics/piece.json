@@ -1,0 +1,8 @@
+{
+  "id": "quadruped_basics",
+  "summary": "Quadruped (four legs and a tail) idle, walk, trot, sit, loaf, pounce, paw, eat and meow clips, with launch/contact markers.",
+  "version": "2026.10.23",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.quadruped_idle) or \"clip\": \"clips/quadruped_idle\" in an animation graph. They retarget onto any quadruped skeleton by bone name."
+  ]
+}

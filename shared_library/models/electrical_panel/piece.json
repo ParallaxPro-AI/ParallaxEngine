@@ -1,0 +1,10 @@
+{
+  "id": "electrical_panel",
+  "summary": "A floor-standing two-door electrical switchboard cabinet on a black plinth: louvred steel doors with swing ha… joints door_l, door_r, isolator_handle; options finish; sockets socket_cable_entry, socket_operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.electrical_panel or place \"prefab\": \"electrical_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:electrical_panel"]
+}

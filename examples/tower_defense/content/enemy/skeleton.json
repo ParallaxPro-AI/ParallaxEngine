@@ -1,0 +1,1 @@
+{ "name": "Skeleton", "prefab": "enemy_skeleton", "health": 120, "speed": 2.7, "armor": 1, "reward": 30, "lives_cost": 3 }

@@ -1,0 +1,10 @@
+{
+  "id": "gravity_lift",
+  "summary": "A 2.6 m sci-fi gravity lift: a round lathed floor pad with a raised rim, hazard dashes and six emitter housin… joints motes, lift_ring_0, lift_ring_1, lift_ring_2; options field_colour, glow, floor; sockets launch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gravity_lift or place \"prefab\": \"gravity_lift\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gravity_lift"]
+}

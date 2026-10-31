@@ -1,0 +1,179 @@
+{
+  "children": [
+    {
+      "name": "body",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            1.8,
+            0.16,
+            1.8
+          ],
+          "color": "#4b4b55",
+          "roughness": 0.9
+        }
+      }
+    },
+    {
+      "name": "double",
+      "at": [
+        0,
+        0,
+        0.085
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            1.8,
+            0.01,
+            1.8
+          ],
+          "color": "#dd6561",
+          "roughness": 0.8
+        }
+      }
+    },
+    {
+      "name": "face",
+      "at": [
+        0,
+        0,
+        0.09
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            1.638,
+            0.01,
+            1.638
+          ],
+          "color": "#595961",
+          "roughness": 0.85
+        }
+      }
+    },
+    {
+      "name": "treble",
+      "at": [
+        0,
+        0,
+        0.095
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            1.134,
+            0.01,
+            1.134
+          ],
+          "color": "#dd6561",
+          "roughness": 0.8
+        }
+      }
+    },
+    {
+      "name": "inner",
+      "at": [
+        0,
+        0,
+        0.1
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            0.972,
+            0.01,
+            0.972
+          ],
+          "color": "#595961",
+          "roughness": 0.85
+        }
+      }
+    },
+    {
+      "name": "outer_bull",
+      "at": [
+        0,
+        0,
+        0.105
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            0.216,
+            0.01,
+            0.216
+          ],
+          "color": "#5dbc81",
+          "roughness": 0.7
+        }
+      }
+    },
+    {
+      "name": "bull",
+      "at": [
+        0,
+        0,
+        0.112
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            0.099,
+            0.008,
+            0.099
+          ],
+          "color": "#ef6f69",
+          "roughness": 0.6
+        }
+      }
+    }
+  ]
+}

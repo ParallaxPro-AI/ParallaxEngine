@@ -1,0 +1,8 @@
+{
+  "rig": "humanoid", "duration": 2, "loop": true,
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":-0.07,"yaw":12},"pose":{"Spine":[4,6,0],"Spine2":[4,8,0],"Neck":[-4,-8,0],"RightArm":[-21.31,-15.26,-53.11],"RightForeArm":[0,-56,0],"LeftArm":[-23.95,21.88,45.3],"LeftForeArm":[0,64,0]}},
+    {"time":1,"root":{"y":-0.11,"yaw":16},"pose":{"Spine":[7,9,0],"Spine2":[6,11,0],"Neck":[-6,-11,0],"RightArm":[-16.68,-14.56,-47.85],"RightForeArm":[0,-62,0],"LeftArm":[-22.91,16.56,52.62],"LeftForeArm":[0,58,0]}},
+    {"time":2,"root":{"y":-0.07,"yaw":12},"pose":{"Spine":[4,6,0],"Spine2":[4,8,0],"Neck":[-4,-8,0],"RightArm":[-21.31,-15.26,-53.11],"RightForeArm":[0,-56,0],"LeftArm":[-23.95,21.88,45.3],"LeftForeArm":[0,64,0]}}
+  ]
+}

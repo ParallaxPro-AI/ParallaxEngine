@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tandoor_oven"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.962, 1.559, 0.902],
+      "offset": [0, 0.7795, 0.021]
+    }
+  }
+}

@@ -1,0 +1,2 @@
+{ "name": "ASHFALL", "at_second": 120, "interval": 1.5, "hp_scale": 1.85, "speed_scale": 1.13,
+  "groups": { "swarmling": 14, "spitter": 3, "brute": 3, "brood": 2 } }

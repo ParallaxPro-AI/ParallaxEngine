@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.78, 7.566, 15.76],
+      "offset": [0, 3.7815, 3.37]
+    }
+  }
+}

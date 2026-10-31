@@ -1,0 +1,10 @@
+{
+  "id": "patient_bedside_cabinet",
+  "summary": "A hospital patient bedside cabinet (bedside locker): a moulded white carcass on four castors (front pair brak… joints castor_0_roll, castor_1_roll, castor_2_roll, castor_3_roll, drawer, door; options fronts, dressing; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.patient_bedside_cabinet or place \"prefab\": \"patient_bedside_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:patient_bedside_cabinet"]
+}

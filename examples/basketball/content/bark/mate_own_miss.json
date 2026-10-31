@@ -1,0 +1,10 @@
+{
+  "voice": "mate",
+  "trigger": "own_miss",
+  "lines": [
+    "Next one!",
+    "Shake it off!",
+    "Go get it!",
+    "Still got it!"
+  ]
+}

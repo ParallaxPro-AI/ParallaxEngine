@@ -1,0 +1,13 @@
+{
+  "maze": "warren",
+  "lives": 3,
+  "pip_score": 10,
+  "flare_score": 50,
+  "stalker_score": 200,
+  "max_chain": 4,
+  "level_bonus": 500,
+  "ready_seconds": 1.5,
+  "scatter_seconds": 7.0,
+  "chase_seconds": 20.0,
+  "touch_distance": 0.6
+}

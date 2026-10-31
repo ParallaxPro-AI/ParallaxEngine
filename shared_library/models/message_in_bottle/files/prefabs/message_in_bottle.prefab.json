@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/message_in_bottle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.08, 0.0853, 0.3055],
+      "offset": [0, 0.0426, -0.0003]
+    }
+  }
+}

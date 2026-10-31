@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/escape_room_safe_combo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.46, 0.56, 0.494],
+      "offset": [0, 0.28, 0.017]
+    }
+  }
+}

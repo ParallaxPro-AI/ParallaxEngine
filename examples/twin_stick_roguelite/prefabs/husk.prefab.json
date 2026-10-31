@@ -1,0 +1,14 @@
+{
+  "extends": "foe",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/aa/ee/aaee9f242a24eede2714eba4e083bba5d4ac0eeaa22d6fc7eb4668708432925c.glb",
+      "tint": "#8cd98c",
+      "rotation_offset": [
+        0,
+        90,
+        0
+      ]
+    }
+  }
+}

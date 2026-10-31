@@ -1,0 +1,10 @@
+{
+  "id": "tavern_sign",
+  "summary": "A projecting tavern sign: a wrought-iron wall bracket with a brace, scroll rings and a finial, and a painted… joints swing; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tavern_sign or place \"prefab\": \"tavern_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tavern_sign"]
+}

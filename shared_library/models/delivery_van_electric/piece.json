@@ -1,0 +1,10 @@
+{
+  "id": "delivery_van_electric",
+  "summary": "A long-wheelbase, high-roof electric delivery van: the panel van's lofted shell stretched to 5.5 m with a 2.6… joints side_door, barn_door_l, barn_door_r, charge_port_lid, wheel_f_l_roll, wheel_f_l_steer, …; options config, paint; sockets seat_driver, seat_pax_1, socket_driver, socket_cargo, socket_roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.delivery_van_electric or place \"prefab\": \"delivery_van_electric\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:delivery_van_electric"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "paladin",
+  "summary": "A rigged paladin - a holy warrior in polished plate - on the canonical 17-bone humanoid rig (forked from `cow… options skin, hair, cape, trim; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paladin or place \"prefab\": \"paladin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paladin"]
+}

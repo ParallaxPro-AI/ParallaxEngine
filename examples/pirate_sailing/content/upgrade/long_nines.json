@@ -1,0 +1,5 @@
+{
+  "name": "Long Nines",
+  "blurb": "+16 cannon range — hit them before they close.",
+  "stat": "cannon_range", "amount": 16, "max_level": 2
+}

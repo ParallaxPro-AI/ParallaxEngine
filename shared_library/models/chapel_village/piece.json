@@ -1,0 +1,10 @@
+{
+  "id": "chapel_village",
+  "summary": "A fantasy-medieval village chapel in the Early English Gothic manner, exterior only. joints west_door_l, west_door_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chapel_village or place \"prefab\": \"chapel_village\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chapel_village"]
+}

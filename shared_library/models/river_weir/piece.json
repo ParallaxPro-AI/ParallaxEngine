@@ -1,0 +1,10 @@
+{
+  "id": "river_weir",
+  "summary": "A low poured-concrete weir spanning a river: a stepped downstream apron descending from a rounded, worn crest… sockets socket_crest.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.river_weir or place \"prefab\": \"river_weir\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:river_weir"]
+}

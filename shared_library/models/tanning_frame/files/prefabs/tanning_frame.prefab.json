@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tanning_frame"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9913, 1.7963, 1.294],
+      "offset": [0.0485, 0.8982, 0.0747]
+    }
+  }
+}

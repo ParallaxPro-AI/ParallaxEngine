@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/minigun"
+    },
+    "viewmodel_item": {
+      "hip": [0.16, -0.36, 0.34],
+      "hip_turn": [3.437747, -1.718873, -2.291831],
+      "eye_relief": 0.16
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2548, 0.3779, 0.9971],
+      "offset": [0.0104, 0.179, 0.1215]
+    }
+  }
+}

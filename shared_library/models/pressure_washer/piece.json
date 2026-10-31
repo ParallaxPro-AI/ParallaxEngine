@@ -1,0 +1,10 @@
+{
+  "id": "pressure_washer",
+  "summary": "A petrol pressure washer on a wheeled tubular frame: a horizontal-shaft engine with a finned cylinder tilted… joints wheels, gun_trigger, choke, starter_grip; options accent; sockets socket_handle, socket_gun.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pressure_washer or place \"prefab\": \"pressure_washer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pressure_washer"]
+}

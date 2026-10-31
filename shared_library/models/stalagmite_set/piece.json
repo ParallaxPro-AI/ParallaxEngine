@@ -1,0 +1,10 @@
+{
+  "id": "stalagmite_set",
+  "summary": "A cave cluster of five stalagmites rising from a wet flowstone mound, the tallest 1.5 m (cave stalagmites run…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stalagmite_set or place \"prefab\": \"stalagmite_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stalagmite_set"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pig"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6054, 0.81, 1.4836],
+      "offset": [-0.0014, 0.405, 0.1222]
+    }
+  }
+}

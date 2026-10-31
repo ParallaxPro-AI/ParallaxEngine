@@ -1,0 +1,11 @@
+{
+  "z": 1,
+  "components": {
+    "grid": { "cols": 8, "rows": 8, "cell_size": [1.05, 1.05] },
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/c8/e9/c8e9ec2a5c62acce58030a1039461ad6c06ebe005ea2adef32b6da7b89d9fcea.png",
+      "size": [9, 9],
+      "color": "#3d5780"
+    }
+  }
+}

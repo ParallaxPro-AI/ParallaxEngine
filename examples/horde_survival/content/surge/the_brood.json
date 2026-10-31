@@ -1,0 +1,2 @@
+{ "name": "THE BROOD", "at_second": 95, "interval": 1.65, "hp_scale": 1.6, "speed_scale": 1.1,
+  "groups": { "swarmling": 12, "spitter": 2, "brute": 2, "brood": 2 } }

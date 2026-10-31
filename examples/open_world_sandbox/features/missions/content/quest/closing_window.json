@@ -1,0 +1,31 @@
+{
+  "title": "Closing Window",
+  "summary": "Pick up my runner at the canal, then shake an armed response. You have 150 seconds from pickup to get them home. Plan your escape before you start.",
+  "contact": "mara",
+  "kind": "getaway",
+  "brief_node": "closing_window_brief",
+  "paid_node": "closing_window_paid",
+  "pickup_crime": "getaway_heat",
+  "requires": "first_run",
+  "reward": 950,
+  "seconds": 150,
+  "start": "car",
+  "steps": {
+    "car": {
+      "text": "Get a car. Mara's is outside the safehouse.",
+      "verb": "in_car", "next": ["pickup"]
+    },
+    "pickup": {
+      "text": "Drive to {place} ({distance} m), stop in the bay and press K to collect the runner.",
+      "verb": "pick_up", "target": "canal_bay", "marker": "canal_bay", "next": ["escape"]
+    },
+    "escape": {
+      "text": "Lose the police. Break line of sight and stay hidden.",
+      "verb": "lose_heat", "next": ["deliver"]
+    },
+    "deliver": {
+      "text": "Get the runner to {place} ({distance} m). Stop in the bay and press K.",
+      "verb": "deliver", "target": "safehouse", "marker": "safehouse_bay"
+    }
+  }
+}

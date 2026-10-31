@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toolchest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.754, 0.98, 0.512],
+      "offset": [0.022, 0.49, 0.011]
+    }
+  }
+}

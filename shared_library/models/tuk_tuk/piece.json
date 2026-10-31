@@ -1,0 +1,10 @@
+{
+  "id": "tuk_tuk",
+  "summary": "A three-wheeled auto-rickshaw taxi: a lofted steel body with a tapered nose carrying a single round headlamp… joints steer_front, handlebar, wheel_r_l_roll, wheel_r_r_roll; options paint, canopy; sockets seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, eye_point, socket_roof, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.tuk_tuk or place \"prefab\": \"tuk_tuk\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:tuk_tuk"]
+}

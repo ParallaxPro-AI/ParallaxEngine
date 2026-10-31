@@ -1,0 +1,10 @@
+{
+  "id": "crab",
+  "summary": "A shore crab 0.30 m across its legs, standing on eight jointed walking legs with the origin at the bottom-cen… joints pinch_l, pinch_r; options shell, claws.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crab or place \"prefab\": \"crab\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crab"]
+}

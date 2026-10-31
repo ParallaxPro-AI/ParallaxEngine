@@ -1,0 +1,58 @@
+{
+ "components": {
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    6,
+    34,
+    6
+   ],
+   "offset": [
+    0,
+    17,
+    0
+   ],
+   "color": "#ebebf0"
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    6,
+    34,
+    6
+   ],
+   "offset": [
+    0,
+    17,
+    0
+   ]
+  }
+ },
+ "children": [
+  {
+   "at": [
+    0,
+    34,
+    0
+   ],
+   "components": {
+    "shape": {
+     "kind": "box",
+     "size": [
+      11,
+      5,
+      11
+     ],
+     "color": "#4d8cbfd9",
+     "offset": [
+      0,
+      2.5,
+      0
+     ],
+     "metallic": 0,
+     "roughness": 0.5
+    }
+   }
+  }
+ ]
+}

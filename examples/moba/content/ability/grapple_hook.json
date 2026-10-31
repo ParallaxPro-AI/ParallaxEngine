@@ -1,0 +1,13 @@
+{
+  "name": "Grapple Hook",
+  "blurb": "Haul yourself forward and hit what you land on.",
+  "kind": "dash",
+  "cooldown": { "base": 16, "per_rank": -1.5 },
+  "mana": { "base": 55, "per_rank": 4 },
+  "dash": { "base": 11, "per_rank": 1.2 },
+  "dash_seconds": 0.26,
+  "damage": { "base": 45, "per_rank": 22 },
+  "damage_kind": "physical",
+  "radius": { "base": 3.5 },
+  "vfx": "vfx/blink"
+}

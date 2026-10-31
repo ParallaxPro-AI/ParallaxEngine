@@ -1,0 +1,10 @@
+{
+  "id": "battle_axe",
+  "summary": "A two-handed bearded war axe: a 1.05 m oval ash haft with a swelled butt and a leather-corded lower grip, a f… options head_finish, haft_wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.battle_axe or place \"prefab\": \"battle_axe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:battle_axe"]
+}

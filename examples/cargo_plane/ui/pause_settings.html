@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="sky_freight.css">
+<link rel="stylesheet" href="pause.css">
+<style>
+  /* Opened over the pause sheet: its scrim is already down, and this card covers that one. */
+  .sfp-scrim { display: none; }
+  .sfp-card { background: rgba(2,6,23,.96); animation: none; }
+</style>
+<div class="sfp sf-root">
+  <div class="sfp-scrim"></div>
+  <div class="sf-sheet sfp-card">
+    <div class="sfp-view sfp-set">
+      <div class="sf-sheet-head sfp-head"><span data-text="pause_settings_head"></span><span>P</span></div>
+      <div class="sfp-title"><span class="sf-lbl sfp-kick" data-text="paused"></span><h2 data-text="settings"></h2></div>
+      <div class="sfp-stack">
+        <span class="sf-lbl sfp-lbl" data-text="graphics"></span>
+        <div class="sfp-seg" data-each="qualities">
+          <template><button class="sfp-opt" data-action="quality" data-attr-aria-pressed="pressed" data-bind="label"></button></template>
+        </div>
+        <p class="sfp-note" data-bind="note"></p>
+        <button class="sf-btn" data-action="back" data-text="back"></button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "id": "fire_hydrant",
+  "summary": "A cast-iron fire hydrant: bolted foot flange, a barrel, a domed bonnet with a spinning operating nut, a… joints caps, valve; options pillar.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fire_hydrant or place \"prefab\": \"fire_hydrant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fire_hydrant"
+  ]
+}

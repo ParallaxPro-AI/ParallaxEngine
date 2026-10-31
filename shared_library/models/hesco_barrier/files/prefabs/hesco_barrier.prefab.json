@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hesco_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.198, 1.37, 1.0762],
+      "offset": [0, 0.685, 0]
+    }
+  }
+}

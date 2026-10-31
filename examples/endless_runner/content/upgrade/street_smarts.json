@@ -1,0 +1,5 @@
+{
+  "name": "Street Smarts",
+  "blurb": "Start with 3 m more lead per tier.",
+  "icon": "M6 2h7v9l6.5 2.6c1.6.6 2.5 1.8 2.5 3.4V19H3V2z M3 20.5h19V22H3z", "effect": "guard_headroom", "per_level": 3, "costs": [180, 450, 1000]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "market_stall",
+  "summary": "A timber market stall, 3.0 x 2.1 m: four posts on weighted feet carry a gabled striped canvas roof with a sca… joints awning, cash_lid; options stripes, goods; sockets socket_vendor, socket_counter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_stall or place \"prefab\": \"market_stall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_stall"]
+}

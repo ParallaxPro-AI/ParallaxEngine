@@ -1,0 +1,10 @@
+{
+  "id": "loading_dock_leveler",
+  "summary": "A hydraulic pit dock leveler set into a 3.0 m wide, 1.22 m high concrete dock edge: a 2.03 x 2.44 m diamond-p… joints deck, lip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.loading_dock_leveler or place \"prefab\": \"loading_dock_leveler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:loading_dock_leveler"]
+}

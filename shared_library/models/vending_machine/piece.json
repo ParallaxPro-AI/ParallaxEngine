@@ -1,0 +1,10 @@
+{
+  "id": "vending_machine",
+  "summary": "A front-glass vending machine: a big hinged glass display door over a stocked bay of spiral dispensing coils… joints glass_door, flap, coil_0, coil_1, coil_2; options product.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vending_machine or place \"prefab\": \"vending_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vending_machine"]
+}

@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "rect", "size": [1, 1], "color": "#4d8cff" }
+  },
+  "behaviors": {
+    "player": { "speed": 6, "reach": 4.5 }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "fortune_booth",
+  "summary": "A coin-op fortune-teller booth: a dark-wood cabinet on a moulded plinth with gold beading, a star boss, a coi… joints service_door, head_turn; options velvet; sockets socket_player, socket_card.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fortune_booth or place \"prefab\": \"fortune_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fortune_booth"]
+}

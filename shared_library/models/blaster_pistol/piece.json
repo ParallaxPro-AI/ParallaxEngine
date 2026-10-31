@@ -1,0 +1,10 @@
+{
+  "id": "blaster_pistol",
+  "summary": "A sci-fi energy blaster pistol: a sculpted lofted receiver with a contrasting side panel and a glowing side s… joints trigger, power_cell; options finish, energy; sockets socket_muzzle, socket_grip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.blaster_pistol or place \"prefab\": \"blaster_pistol\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:blaster_pistol"]
+}

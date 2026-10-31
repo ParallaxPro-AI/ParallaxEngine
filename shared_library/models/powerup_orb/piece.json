@@ -1,0 +1,10 @@
+{
+  "id": "powerup_orb",
+  "summary": "A floating powerup: a glowing opaque energy sphere carried on a slim conduit above a turned pedestal, girdled… joints cage; options power; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.powerup_orb or place \"prefab\": \"powerup_orb\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:powerup_orb"]
+}

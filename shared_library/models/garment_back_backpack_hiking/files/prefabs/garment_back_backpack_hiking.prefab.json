@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_back_backpack_hiking"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4513, 0.8415, 0.62],
+      "offset": [0, 1.2643, -0.151]
+    }
+  }
+}

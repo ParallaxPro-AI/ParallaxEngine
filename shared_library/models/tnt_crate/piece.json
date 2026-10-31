@@ -1,0 +1,10 @@
+{
+  "id": "tnt_crate",
+  "summary": "A wooden crate of dynamite: pale pine boards with end cleats on skids, rope grab handles at the ends, black a… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tnt_crate or place \"prefab\": \"tnt_crate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tnt_crate"]
+}

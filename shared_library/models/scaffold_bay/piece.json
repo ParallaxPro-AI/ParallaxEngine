@@ -1,0 +1,10 @@
+{
+  "id": "scaffold_bay",
+  "summary": "A single bay of tube-and-fitting access scaffolding: four galvanised standards on baseplates, ledgers and tra…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scaffold_bay or place \"prefab\": \"scaffold_bay\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scaffold_bay"]
+}

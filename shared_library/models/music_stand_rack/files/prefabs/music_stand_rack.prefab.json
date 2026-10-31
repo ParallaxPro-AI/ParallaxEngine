@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/music_stand_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8185, 1.22, 0.563],
+      "offset": [0.0377, 0.61, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/foregrip"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0439, 0.1315, 0.047],
+      "offset": [-0.0036, -0.0548, -0.0035]
+    }
+  }
+}

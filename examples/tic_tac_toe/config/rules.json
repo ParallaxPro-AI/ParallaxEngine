@@ -1,0 +1,7 @@
+{
+  "mistake_chance": 0.0,
+  "win_points": 100,
+  "draw_points": 30,
+  "think_seconds": 0.4,
+  "banner_seconds": 2.0
+}

@@ -1,0 +1,19 @@
+{
+  "extends": "home_player",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/f4/34/f4346e0db35b922152808164b22beacd5eb75775b970145b6d6a0fee1b10b781.glb"
+    },
+    "footballer": {
+      "ai_speed": 5,
+      "kick_power": 18
+    },
+    "goalkeeper": {
+      "reach": 6,
+      "box_depth": 16,
+      "line_offset": 2,
+      "save_speed": 9,
+      "clear_spread": 0.4
+    }
+  }
+}

@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="garden.css">
+<div id="garden-result" class="ld-root go" data-class-loss="lost" data-class-ld-reduced="reduced_motion">
+  <div class="ld-paper card">
+    <span class="ld-eyebrow" data-bind="eyebrow"></span>
+    <div class="stars" data-show="won" data-each="stars">
+      <template><span data-class-lit="lit">★</span></template>
+    </div>
+    <div class="bloom" data-show="lost">✿</div>
+    <h1 data-bind="headline"></h1>
+    <p class="score" data-bind="score_line"></p>
+    <p class="advice" data-show="lost" data-text="advice"></p>
+    <div class="unlock" data-show="unlock">
+      <div class="packet" data-style---tint="unlock_tint">
+        <b></b>
+        <i data-show="unlock_art" data-attr-class="unlock_art"></i>
+        <em data-hide="unlock_art">✿</em>
+      </div>
+      <div class="utext">
+        <span class="ld-eyebrow gold" data-text="new_seed"></span>
+        <span class="uname" data-bind="unlock_name"></span>
+        <span class="ublurb" data-show="unlock_blurb" data-bind="unlock_blurb"></span>
+      </div>
+    </div>
+    <div class="actions">
+      <button class="ld-primary" data-show="has_next" data-action="next"><span data-text="next_level"></span> <span>→</span></button>
+      <button data-class-ld-primary="no_next" data-class-ld-outline="has_next" data-action="retry" data-text="try_again"></button>
+      <button class="ld-outline" data-action="quit" data-text="garden_map"></button>
+    </div>
+  </div>
+</div>

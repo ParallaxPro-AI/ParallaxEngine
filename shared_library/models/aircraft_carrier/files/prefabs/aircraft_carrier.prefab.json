@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/aircraft_carrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [82, 68.8, 330],
+      "offset": [-2, 34.4, 3]
+    }
+  }
+}

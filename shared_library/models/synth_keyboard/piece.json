@@ -1,0 +1,10 @@
+{
+  "id": "synth_keyboard",
+  "summary": "A 37-key analogue-style synthesizer with walnut end cheeks: a front keybed of white and black keys that tip w… joints keys, pitch_wheel, mod_wheel, knob_volume, knob_cutoff, knob_resonance; options cheeks.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.synth_keyboard or place \"prefab\": \"synth_keyboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:synth_keyboard"]
+}

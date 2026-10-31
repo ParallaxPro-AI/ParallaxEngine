@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/balcony"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.6, 1.6615, 1.4],
+      "offset": [0, 0.8307, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skyscraper_glass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [33.2, 126.52, 33.2],
+      "offset": [0, 63.26, 0]
+    }
+  }
+}

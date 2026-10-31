@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pickaxe"
+    },
+    "viewmodel_item": {
+      "hip": [0.23, -0.44, 0.5],
+      "hip_turn": [-59.348929, -58.832232, -144.946373],
+      "eye_relief": 0.35,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4626, 0.0723, 0.626],
+      "offset": [0.0297, -0.0051, 0.313]
+    }
+  }
+}

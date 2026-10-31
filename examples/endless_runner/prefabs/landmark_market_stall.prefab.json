@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/market_stall",
+      "cast_shadows": true
+    }
+  },
+  "pool": 4
+}

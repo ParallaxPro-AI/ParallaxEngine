@@ -1,0 +1,10 @@
+{
+  "id": "photo_booth",
+  "summary": "A coin-op photo booth: a red booth with white stripes, a lit PHOTOS header, a closed machine housing on the l… joints curtain; options body, curtain; sockets seat_sitter, print_out, entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.photo_booth or place \"prefab\": \"photo_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:photo_booth"]
+}

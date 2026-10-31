@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_fighter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.9074, 3.7052, 13.65],
+      "offset": [0, 1.8526, -0.225]
+    }
+  }
+}

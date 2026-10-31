@@ -1,0 +1,10 @@
+{
+  "id": "modern_bookshelf",
+  "summary": "A modern open bookshelf from the modern apartment set: six walnut shelves on a slim black steel frame with re… options wood, dressing; sockets shelf_0, shelf_1, shelf_2, shelf_3, shelf_4, top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_bookshelf or place \"prefab\": \"modern_bookshelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_bookshelf"]
+}

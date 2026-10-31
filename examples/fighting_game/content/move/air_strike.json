@@ -1,0 +1,8 @@
+{
+  "label": "AIR STRIKE",
+  "clip": "clips/air", "swing_sound": "sfx/swing_light", "hit_sound": "sfx/hit_light",
+  "startup": 6, "active": 4, "recovery": 15,
+  "damage": 8, "reach": 1.15, "box_height": 1.1,
+  "hitstun": 24, "blockstun": 12, "hitstop": 0.05, "knockback": 2.0, "shake": 0.085, "rumble": 0.025,
+  "beats_low_guard": true
+}

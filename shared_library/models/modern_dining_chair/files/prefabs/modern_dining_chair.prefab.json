@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_dining_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4791, 0.8501, 0.4785],
+      "offset": [0, 0.425, -0.0137]
+    }
+  }
+}

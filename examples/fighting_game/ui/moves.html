@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="card.css">
+<style>
+.set-head .close{height:calc(46 * var(--u));display:inline-flex;align-items:center;gap:calc(10 * var(--u));padding:0 calc(14 * var(--u));font:600 calc(18 * var(--u)) var(--fc-font-ui);color:var(--fc-gold);box-shadow:inset 0 0 0 1px rgba(239,193,125,.4)}
+.set-head .close:hover{background:rgba(239,193,125,.1)}
+.set-head .close svg{width:calc(20 * var(--u));height:calc(20 * var(--u))}
+.set-head .side{display:flex;flex-direction:column;align-items:flex-end;gap:calc(10 * var(--u))}
+@media (pointer:coarse){.settings{left:0}.set-head .close{height:calc(36 * var(--u));font-size:calc(13 * var(--u))}}
+</style>
+<div class="fct">
+  <section class="settings">
+    <div class="set-head">
+      <h2 data-text="moves_title"></h2>
+      <div class="side">
+        <button class="close" data-action="close"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg><span data-text="close_settings"></span></button>
+        <span data-text="moves_saved"></span>
+      </div>
+    </div>
+    <div class="set-body">
+      <div class="col">
+        <div class="sec"><span class="sec-h" data-text="sec_options"></span>
+          <div class="chips">
+            <button class="chip on" data-action="difficulty"><span data-text="chip_difficulty"></span><em data-bind="difficulty"></em>
+              <span class="dots" data-each="difficulty_dots"><template><i data-class-on="on"></i></template></span></button>
+            <button class="chip" data-class-on="shake_on" data-action="shake"><span data-text="chip_shake"></span><em data-show="shake_on" data-text="on"></em><em data-hide="shake_on" data-text="off"></em></button>
+            <button class="chip" data-class-on="sound_on" data-action="sound"><span data-text="chip_sound"></span><em data-show="sound_on" data-text="on"></em><em data-hide="sound_on" data-text="off"></em></button>
+            <button class="chip" data-class-on="haptics_on" data-action="haptics"><span data-text="chip_haptics"></span><em data-show="haptics_on" data-text="on"></em><em data-hide="haptics_on" data-text="off"></em></button>
+          </div>
+        </div>
+        <div class="sec keys"><span class="sec-h" data-text="sec_keys"></span>
+          <div data-each="keys">
+            <template>
+              <button class="krow" data-action="rebind"><span class="act"><span data-bind="label"></span><small data-show="note" data-bind="note"></small></span><span class="kc" data-bind="cap"></span></button>
+            </template>
+          </div>
+          <p class="knote" data-text="keys_note"></p>
+        </div>
+        <div class="sec"><span class="sec-h" data-text="sec_controller"></span>
+          <div class="pad">
+            <div><span class="gl">X</span><span data-text="pad_light"></span></div><div><span class="gl">Y</span><span data-text="pad_heavy"></span></div>
+            <div><span class="gl">B</span><span data-text="pad_bolt"></span></div><div><span class="gl sq">RB</span><span data-text="pad_super"></span></div>
+            <div><span class="gl sq">LT</span><span data-text="pad_block"></span></div><div><span class="gl">A</span><span data-text="pad_jump"></span></div>
+            <div><span class="gl">LS</span><span data-text="pad_move"></span></div><div><span class="gl">&#9776;</span><span data-text="pad_pause"></span></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="sec"><span class="sec-h" data-text="sec_five"></span>
+          <div data-each="five">
+            <template>
+              <div class="fv"><span class="n" data-bind="n"></span><div><b data-bind="name"></b><span class="role" data-bind="role"></span><p data-bind="taunt"></p></div></div>
+            </template>
+          </div>
+        </div>
+        <button class="kit" data-show="champion" data-action="kit"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="9" width="20" height="6" rx="1"/><rect x="8.5" y="6.5" width="7" height="11" rx="1.5"/></svg><span data-hide="kit_on" data-text="wear_kit"></span><span data-show="kit_on" data-text="wear_bone"></span></button>
+      </div>
+    </div>
+  </section>
+</div>

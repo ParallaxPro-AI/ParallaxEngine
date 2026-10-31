@@ -1,0 +1,2 @@
+{ "name": "Hollow Vessel", "blurb": "One more heart, filled.",
+  "relic": true, "effect": "max_health", "amount": 2, "mesh": "sphere", "color": "#ff738c" }

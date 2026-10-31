@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/truck",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    2.81,
+    3.225,
+    7.885
+   ],
+   "offset": [
+    0,
+    1.613,
+    0.138
+   ]
+  }
+ }
+}

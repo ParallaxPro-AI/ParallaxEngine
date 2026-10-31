@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/forge",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.135,
+        2.55,
+        1.14
+      ],
+      "offset": [
+        0.0125,
+        1.275,
+        -0.01
+      ]
+    }
+  }
+}

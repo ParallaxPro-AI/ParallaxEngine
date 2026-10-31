@@ -1,0 +1,10 @@
+{
+  "id": "blanket_folded",
+  "summary": "A wool throw blanket (about 1.3 x 1.7 m flat) folded into a neat stack of six layers, 420 x 340 mm and 130 mm…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blanket_folded or place \"prefab\": \"blanket_folded\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blanket_folded"]
+}

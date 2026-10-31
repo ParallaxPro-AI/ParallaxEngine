@@ -1,0 +1,10 @@
+{
+  "id": "street_corn_cart",
+  "summary": "A street-corn (elote) vendor cart: a stainless cabinet with green painted panels lettered ELOTES / GRILLED CO… joints wheel_l, wheel_r, lid; options panel, canopy, umbrella.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_corn_cart or place \"prefab\": \"street_corn_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_corn_cart"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pallet_jack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.54, 1.28, 1.53],
+      "offset": [0, 0.64, 0.09]
+    }
+  }
+}

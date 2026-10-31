@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/carbine"
+    },
+    "viewmodel_item": {
+      "hip": [0.14, -0.287, 0.37],
+      "hip_turn": [4.010705, -2.005352, -2.57831],
+      "eye_relief": 0.14
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.074, 0.2898, 0.803],
+      "offset": [0.002, 0.1256, 0.0335]
+    }
+  }
+}

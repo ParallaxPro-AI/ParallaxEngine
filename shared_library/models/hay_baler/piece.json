@@ -1,0 +1,10 @@
+{
+  "id": "hay_baler",
+  "summary": "A trailed hay baler: a big bale-chamber housing on two large flotation wheels, a spinning tine PICKUP reel sl… joints pickup, bale_chamber; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hay_baler or place \"prefab\": \"hay_baler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hay_baler"]
+}

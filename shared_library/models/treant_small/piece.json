@@ -1,0 +1,10 @@
+{
+  "id": "treant_small",
+  "summary": "A SMALL TREANT, a young walking tree about 1.75 m to the top of its leaf crown (a sapling-sized forest guardi… options leaves; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.treant_small or place \"prefab\": \"treant_small\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:treant_small"]
+}

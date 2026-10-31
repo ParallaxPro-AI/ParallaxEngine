@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flame_jet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.715, 1.52, 0.7],
+      "offset": [0.0075, 0.76, 0]
+    }
+  }
+}

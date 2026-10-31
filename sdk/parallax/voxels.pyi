@@ -1,0 +1,132 @@
+"""Voxels plugin: block worlds.
+
+Block types are entries of the built-in `block` content kind (content/block/*.json).
+A block entry with a "prefab" gets an entity spawned for every placed block of that
+type (chests, furnaces, crops, doors), carrying `VoxelBlock(cell=...)` — that entity
+holds the block's per-cell state as ordinary components, and is saved like any other
+entity. Edits are saved as a diff against the generated world (`voxels(save_edits=True)`).
+
+Smooth worlds (`"voxels": {"mode": "smooth", ...}`) are dig-anywhere terrain: a density
+lattice meshed into smooth, watertight surfaces. `dig` and `fill` shape them with sphere
+brushes (and return how much of each block changed, in m³ — the loot); `get`/`set` read and
+write single lattice points; `raycast` hits the smooth surface. The same generator makes
+them (plus `"caves"`), without trees, ruins or water; blocks with a prefab don't exist there.
+
+The scene block (keys: mode, y_range, render_distance, generator; any other is an error).
+Block names are `block` content ids; generated blocks may not have a prefab (PP3627: a
+block entity exists only for a block placed with `ctx.voxels.set`):
+
+    "voxels": {
+      "mode": "blocks",                 or "smooth" (default "blocks")
+      "y_range": [-32, 64],             whole numbers: blocks exist for min <= y < max (required)
+      "render_distance": 4,             chunks drawn and collided around each streaming source, 1-32
+      "generator": {                    optional; absent: the world starts as air
+        "type": "landscape",            the one generator (required)
+        "seed": 0, "base_height": 0,    surface y = floor(base_height + amplitude * fbm(x*frequency, z*frequency))
+        "amplitude": 0, "frequency": 0.05, "octaves": 1,      octaves 1-8
+        "noise": "value",               or "lattice" (another seeded value noise: different hills per seed)
+        "strata": [{"block": "grass", "depth": 1}, {"block": "dirt", "depth": 3}, {"block": "stone"}],
+                                        top down (required); every layer but the last has a depth
+        "bottom": "bedrock",            the block at y = min (default none)
+        "sea_level": 0, "water": "water",   air at or below sea_level is water (no "water": none)
+        "shore": "sand", "shore_height": 1, columns at most sea_level + shore_height get it in their depth layers
+        "ores": [{"block": "iron_ore", "chance": 0, "min_depth": 0}],   in the last stratum
+        "trees": {"trunk": "log", "leaves": "leaves", "on": "grass", "spacing": 11, "density": 1,
+                  "min_height": 4, "max_height": min_height, "radius": 2},  one per spacing square at most
+        "ruins": {"block": "relic", "walls": "bricks", "spacing": 48, "chance": 0.3,
+                  "size": 5, "height": 2},        size odd, >= 3; on dry land, before trees
+        "caves": {"frequency": 0.06, "threshold": 0.65, "min_depth": 3},     3D noise air pockets
+        "slopes": [{"direction": 0, "start": 0, "width": 32, "rise": 0, "variation": 0,
+                    "variation_frequency": 0.008, "surface": "stone", "surface_above": 0.5,
+                    "spires": {"block": "stone", "spacing": 20, "size": 2, "height": 3}}],
+                                        raise (rise > 0) or sink the surface toward a compass
+                                        direction (0: +z, 90: +x), ramping in from `start` m over `width`
+        "tunnels": {"y": 0, "spacing": 64, "width": 3.9, "height": 3.2, "min_depth": 5,
+                    "cross_y": null, "cross_radius": 3.5},   along x every spacing in z; cross_y adds ones along z
+        "galleries": [{"from": [x, z], "to": [x, z], "width": 2, "height": 4, "slope": 0.5,
+                       "lowest": y}]    a passage dug down from the surface at `from` toward `to`
+      }
+    }
+
+Smooth mode uses the same generator without trees, ruins, water, shore, slope surfaces /
+spires, tunnels or galleries (slopes still shape it), and at most 255 block types.
+"""
+
+from typing import Literal
+from parallax import (
+    ContentRef, EngineComponent, Entity, Localized, PrefabRef, Vec3, component, content,
+    event, field, record,
+)
+
+from parallax.values import Cell3 as Cell3
+
+@record
+class BlockTextures:
+    """A block's textures per face (`BlockDef.texture`), each a project image's handle (or a
+    hosted URL):
+
+        "texture": {"side": "images/grass_side", "top": "images/grass_top",
+                    "bottom": "images/dirt"}
+
+    `top` (+y faces) and `bottom` (-y faces) default to `side`, which every other face
+    shows. In smooth worlds a face is a top (or bottom) when it faces within 60° of straight
+    up (or down)."""
+    side: str
+    top: str | None = None
+    bottom: str | None = None
+
+@content("block")
+class BlockDef:
+    """Built-in kind; extend by subclassing with the same kind id (e.g. to type `drops`)."""
+    name: Localized
+    texture: str | BlockTextures = field("", doc="One image path for every face, or per-face textures (top, side, bottom); \"\" is untextured.")
+    hardness: float = field(1, doc="Relative toughness; break time = hardness / tool power.")
+    solid: bool = field(True)
+    transparent: bool = field(False)
+    light: float = field(0)
+    prefab: PrefabRef | None = field(None)
+    prefab_renders: bool = field(False, doc="The prefab draws the block (no voxel face).")
+
+class BlockHit:
+    cell: Cell3
+    face: Cell3
+    """Unit normal of the face hit."""
+    block: ContentRef[BlockDef]
+    @property
+    def place_cell(self) -> Cell3:
+        """`cell + face` — where a placed block goes."""
+
+@component("voxel_block")
+class VoxelBlock(EngineComponent):
+    """On entities spawned for blocks with a prefab."""
+    cell: Cell3 = field()
+
+@event("block_changed")
+class BlockChanged:
+    cell: Cell3
+    old: ContentRef[BlockDef] | None
+    new: ContentRef[BlockDef] | None
+    source: Entity | None
+    """Who changed it (`set(..., by=)`); None from code."""
+
+class VoxelsApi:
+    def get(self, cell: Cell3) -> ContentRef[BlockDef] | None: ...
+    def set(self, cell: Cell3, block: ContentRef[BlockDef] | None, *, by: Entity | None = None) -> None:
+        """None = air. Emits BlockChanged; spawns/destroys the block entity if any."""
+    def block_entity(self, cell: Cell3) -> Entity | None: ...
+    def cell_at(self, point: Vec3) -> Cell3: ...
+    def raycast(self, origin: Vec3, direction: Vec3, max_distance: float = 8) -> BlockHit | None: ...
+    def surface_height(self, point: Vec3) -> int:
+        """One above the highest solid block of the column holding the point (its y is ignored):
+        where something standing there has its feet."""
+    @property
+    def mode(self) -> Literal["blocks", "smooth"]: ...
+    def dig(self, center: Vec3, radius: float, *, strength: float = 1) -> dict[str, float]:
+        """Smooth worlds: carve a sphere of air (strength 0..1 of the way there). Returns
+        {block id: m³ removed}."""
+    def fill(self, center: Vec3, radius: float, block: ContentRef[BlockDef], *, strength: float = 1) -> dict[str, float]:
+        """Smooth worlds: add a sphere of `block`. Returns {block id: m³ added}."""
+    def density_at(self, point: Vec3) -> float:
+        """0..1 (smooth: interpolated; blocks: 1 inside a solid block)."""
+    def height_at(self, point: Vec3) -> float:
+        """The ground's height under the point (its y is ignored): continuous in smooth worlds."""

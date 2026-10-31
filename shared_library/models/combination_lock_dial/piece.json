@@ -1,0 +1,10 @@
+{
+  "id": "combination_lock_dial",
+  "summary": "A dial combination padlock: a squared, green-enamelled steel case with rolled edges, a hardened steel U-shack… joints dial, shackle, shackle_swing; options finish; sockets socket_hasp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.combination_lock_dial or place \"prefab\": \"combination_lock_dial\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:combination_lock_dial"]
+}

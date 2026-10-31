@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/satellite_dish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1, 1.5581, 1.4501],
+      "offset": [0, 0.7791, 0.025]
+    }
+  }
+}

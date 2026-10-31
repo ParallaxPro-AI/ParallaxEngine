@@ -1,0 +1,242 @@
+<link rel="stylesheet" href="lane_siege.css">
+<style>
+  /* The template's in-match HUD panels, one file here: hud/match_status (the score strip),
+     hud/kill_feed, hud/announcer (the banner), hud/ability_bar (the dock), hud/ward_kit
+     (the dock's right bay), hud/controls (the chips and the ? legend) and the shop chip
+     of hud/item_shop. Desktop layouts; see PARITY.md for the touch ones. */
+  .lsh { position: fixed; inset: 0; pointer-events: none; white-space: nowrap; }
+
+  /* ── match status ── */
+  .lsm { position: fixed; left: 50%; top: calc(12 * var(--u)); transform: translateX(-50%); width: max-content; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); }
+  .lsm-plate { display: flex; flex-direction: column; align-items: center; padding: 0 calc(28 * var(--u)); background: var(--ls-panel); box-shadow: var(--ls-elev); clip-path: polygon(0 0, 100% 0, calc(100% - calc(14 * var(--u))) 100%, calc(14 * var(--u)) 100%); }
+  .lsm-top { display: flex; align-items: center; gap: calc(18 * var(--u)); height: calc(46 * var(--u)); }
+  .lsm-nm { font: 700 calc(15 * var(--u))/1 var(--ls-ui); letter-spacing: .16em; text-transform: uppercase; }
+  .lsm-k { font: 700 calc(28 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; }
+  .lsh .b { color: var(--ls-blue-hi); }
+  .lsh .r { color: var(--ls-red-hi); }
+  .lsm-clock { padding: calc(5 * var(--u)) calc(12 * var(--u)); border-radius: calc(3 * var(--u)); background: rgba(0,0,0,.35); font: 600 calc(20 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink); }
+  .lsm-sub { display: flex; align-items: center; gap: calc(22 * var(--u)); height: calc(28 * var(--u)); padding: 0 calc(8 * var(--u)); border-top: calc(1 * var(--u)) solid var(--ls-line); font: 600 calc(14 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink2); }
+  .lsm-sub > span { display: flex; align-items: center; gap: calc(6 * var(--u)); }
+  .lsm-sub img { width: calc(12 * var(--u)); height: calc(14 * var(--u)); }
+  .lsm-gold { color: var(--ls-gold); }
+  .lsm-gold img { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
+  .lsm-sub em { font-style: normal; color: var(--ls-ink); }
+  .lsm-pills { display: flex; gap: calc(8 * var(--u)); }
+  .lsm-pill { height: calc(28 * var(--u)); padding: 0 calc(12 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); border-radius: calc(999 * var(--u)); background: rgba(12,20,35,.8); font: 600 calc(14 * var(--u))/1 var(--ls-ui); animation: ls-fade 220ms var(--ls-ease) both; }
+  .lsm-obj { box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(242,193,78,.5); color: var(--ls-gold); }
+  .lsm-obj.warn { box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(242,77,77,.55); color: var(--ls-red-hi); }
+
+  /* ── kill feed ── */
+  .lsk { position: fixed; right: calc(16 * var(--u)); top: calc(14 * var(--u)); width: clamp(calc(260 * var(--u)), 17cqw, calc(320 * var(--u))); display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+  .lsk-r { height: calc(34 * var(--u)); display: flex; align-items: center; gap: calc(8 * var(--u)); padding: 0 calc(10 * var(--u)); border-radius: calc(3 * var(--u)); background: rgba(12,20,35,.78); box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--ls-line); font: 700 calc(15 * var(--u))/1 var(--ls-ui); animation: lsk-in 220ms var(--ls-ease) both; }
+  @keyframes lsk-in { from { opacity: 0; transform: translateX(calc(14 * var(--u))); } to { opacity: 1; transform: none; } }
+  .lsk-r.mine { background: rgba(27,48,86,.92); box-shadow: inset calc(3 * var(--u)) 0 0 var(--ls-gold), inset 0 0 0 calc(1 * var(--u)) rgba(242,193,78,.35); }
+  .lsk-r i { width: calc(9 * var(--u)); height: calc(9 * var(--u)); flex: none; border-radius: calc(2 * var(--u)); background: var(--ka); }
+  .lsk-r .a { color: var(--kai); }
+  .lsk-r .v { color: var(--kvi); overflow: hidden; text-overflow: ellipsis; }
+  .lsk-r img { width: calc(16 * var(--u)); height: calc(16 * var(--u)); flex: none; }
+  .lsk-r .t { margin-left: auto; font: 500 calc(12 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink3); }
+
+  /* ── announcer ── */
+  .lsa { position: fixed; left: 50%; top: clamp(calc(130 * var(--u)), 16cqh, calc(180 * var(--u))); transform: translateX(-50%); width: max-content; max-width: 90cqw; display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); text-align: center; animation: lsa-in 220ms var(--ls-ease) both; }
+  @keyframes lsa-in { from { opacity: 0; transform: translate(-50%, calc(-6 * var(--u))); } to { opacity: 1; transform: translate(-50%, 0); } }
+  .lsa-rule { width: calc(520 * var(--u)); height: calc(2 * var(--u)); background: linear-gradient(90deg, transparent, var(--lsa-c, #fff), transparent); }
+  .lsa-t { font: 800 calc(68 * var(--u))/1 var(--ls-display); letter-spacing: .08em; color: #fff; text-shadow: 0 0 calc(24 * var(--u)) var(--lsa-c, #fff), 0 calc(3 * var(--u)) 0 rgba(0,0,0,.6); white-space: nowrap; text-transform: uppercase; }
+  .lsa.sm .lsa-t { font-size: calc(40 * var(--u)); letter-spacing: .05em; text-transform: none; }
+
+  /* ── ability dock ── */
+  .lsd { position: fixed; left: 50%; bottom: calc(14 * var(--u)); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--u)); }
+  .lsd-recall { width: calc(300 * var(--u)); display: flex; flex-direction: column; gap: calc(5 * var(--u)); align-items: center; }
+  .lsd-recall b { font: 700 calc(14 * var(--u))/1 var(--ls-ui); letter-spacing: .16em; text-transform: uppercase; color: var(--ls-blue-hi); }
+  .lsd-recall b span { font-family: var(--ls-num); font-variant-numeric: tabular-nums; }
+  .lsd-recall i { display: block; width: 100%; height: calc(6 * var(--u)); background: rgba(0,0,0,.5); box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--ls-line2); }
+  .lsd-recall i em { display: block; height: 100%; width: 0; background: var(--ls-blue); }
+  .lsd-dock { position: relative; display: flex; align-items: flex-end; gap: calc(14 * var(--u)); padding: calc(12 * var(--u)) calc(14 * var(--u)) calc(10 * var(--u)); margin-top: calc(8 * var(--u)); background: var(--ls-panel); box-shadow: var(--ls-elev); border-radius: var(--ls-r2); transition: filter 220ms var(--ls-ease); }
+  .lsd.dead .lsd-dock { filter: grayscale(1) brightness(.75); }
+  .lsd-port { position: relative; width: calc(72 * var(--u)); height: calc(72 * var(--u)); flex: none; align-self: flex-start; display: grid; place-items: center; border-radius: calc(4 * var(--u)); background: radial-gradient(circle, var(--lsd-cc-a, rgba(230,82,77,.45)), var(--ls-panel-solid)); box-shadow: inset 0 0 0 calc(2 * var(--u)) var(--ls-blue); }
+  .lsd-port img { width: calc(44 * var(--u)); height: calc(50 * var(--u)); }
+  .lsd-lvl { position: absolute; right: calc(-6 * var(--u)); bottom: calc(-6 * var(--u)); width: calc(24 * var(--u)); height: calc(24 * var(--u)); display: grid; place-items: center; border-radius: 50%; background: var(--ls-panel-solid); box-shadow: 0 0 0 calc(2 * var(--u)) var(--ls-xp); font: 700 calc(12 * var(--u))/1 var(--ls-num); }
+  .lsd-main { display: flex; flex-direction: column; gap: calc(8 * var(--u)); width: calc(334 * var(--u)); }
+  .lsd-vit { display: flex; flex-direction: column; gap: calc(3 * var(--u)); }
+  .lsd-bar { position: relative; background: #0a1a12; box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(0,0,0,.6); overflow: hidden; }
+  .lsd-bar.hp { height: calc(20 * var(--u)); }
+  .lsd-bar.mp { height: calc(14 * var(--u)); background: #06131d; }
+  .lsd-bar .f { height: 100%; width: 0; transition: width 120ms linear; }
+  .lsd-bar.hp .f { background-image: repeating-linear-gradient(90deg, transparent 0 calc(22 * var(--u)), rgba(0,0,0,.25) calc(22 * var(--u)) calc(23 * var(--u))), linear-gradient(180deg, #4fd28c, var(--ls-hp)); }
+  .lsd.low .lsd-bar.hp .f { background-image: repeating-linear-gradient(90deg, transparent 0 calc(22 * var(--u)), rgba(0,0,0,.25) calc(22 * var(--u)) calc(23 * var(--u))), linear-gradient(180deg, #f2bb5e, var(--ls-hp-low)); }
+  .lsd-bar.hp .sh { position: absolute; top: 0; bottom: 0; width: 0; background: var(--ls-shield); }
+  .lsd-bar.mp .f { background: linear-gradient(180deg, #58b8e6, #2a86b8); }
+  .lsd-bar span { position: absolute; inset: 0; display: grid; place-items: center; font: 700 calc(13 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; text-shadow: 0 calc(1 * var(--u)) calc(2 * var(--u)) rgba(0,0,0,.8); }
+  .lsd-bar.mp span { font-size: calc(11 * var(--u)); font-weight: 600; }
+  .lsd-xp { height: calc(4 * var(--u)); background: rgba(0,0,0,.5); }
+  .lsd-xp em { display: block; height: 100%; width: 0; background: var(--ls-xp); transition: width 220ms var(--ls-ease); }
+  .lsd-abs { display: flex; gap: calc(10 * var(--u)); }
+  .lsd-ab { position: relative; width: calc(76 * var(--u)); display: flex; flex-direction: column; gap: calc(5 * var(--u)); }
+  .lsd-tile { position: relative; width: calc(76 * var(--u)); height: calc(76 * var(--u)); border-radius: calc(4 * var(--u)); overflow: hidden; background: linear-gradient(160deg, #25395e, #141f36); box-shadow: var(--ls-bevel), inset 0 0 0 calc(2 * var(--u)) rgba(51,140,242,.75); display: grid; place-items: center; }
+  .lsd-tile img { width: calc(38 * var(--u)); height: calc(38 * var(--u)); transition: opacity 120ms; }
+  .lsd-tile .sw { position: absolute; inset: 0; }
+  .lsd-tile .cd { position: absolute; inset: 0; display: grid; place-items: center; font: 700 calc(26 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; text-shadow: 0 calc(2 * var(--u)) calc(4 * var(--u)) rgba(0,0,0,.8); }
+  .lsd-tile .k { position: absolute; left: calc(4 * var(--u)); top: calc(4 * var(--u)); min-width: calc(18 * var(--u)); height: calc(18 * var(--u)); padding: 0 calc(4 * var(--u)); display: grid; place-items: center; border-radius: calc(3 * var(--u)); background: rgba(0,0,0,.6); font: 700 calc(12 * var(--u))/1 var(--ls-num); }
+  .lsd-tile .c { position: absolute; right: calc(4 * var(--u)); bottom: calc(3 * var(--u)); font: 700 calc(12 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-mana); text-shadow: 0 calc(1 * var(--u)) calc(2 * var(--u)) #000; }
+  .lsd-tile .ul { position: absolute; inset: 0; display: none; place-items: center; font: 700 calc(12 * var(--u))/1 var(--ls-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ls-ink3); }
+  .lsd-ab.cool .lsd-tile { box-shadow: var(--ls-bevel); }
+  .lsd-ab.nomana .lsd-tile { box-shadow: inset 0 0 0 calc(1 * var(--u)) rgba(51,157,210,.6); }
+  .lsd-ab.nomana .lsd-tile img { opacity: .4; }
+  .lsd-ab.nomana .lsd-tile .sw { background: rgba(10,30,60,.55); }
+  .lsd-ab.nomana .lsd-tile .c { color: var(--ls-red-hi); }
+  .lsd-ab.unl .lsd-tile { background: rgba(255,255,255,.03); box-shadow: inset 0 0 0 calc(1 * var(--u)) var(--ls-line), inset 0 0 0 calc(2 * var(--u)) rgba(0,0,0,.3); }
+  .lsd-ab.unl .lsd-tile img { opacity: .18; }
+  .lsd-ab.unl .lsd-tile .c { display: none; }
+  .lsd-ab.unl.locked .lsd-tile .ul { display: grid; }
+  .lsd-nm { font: 700 calc(13 * var(--u))/1 var(--ls-ui); overflow: hidden; text-overflow: ellipsis; color: var(--ls-ink); }
+  .lsd-mt { font: 500 calc(11 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink3); }
+  .ls-root .lsd-learn { position: absolute; left: calc(56 * var(--u)); top: calc(-12 * var(--u)); height: calc(26 * var(--u)); min-width: calc(26 * var(--u)); padding: 0 calc(6 * var(--u)); display: grid; place-items: center; border-radius: calc(13 * var(--u)); background: var(--ls-gold); color: #241803; font: 800 calc(14 * var(--u))/1 var(--ls-num); box-shadow: 0 0 0 calc(2 * var(--u)) var(--ls-panel-solid), 0 0 calc(12 * var(--u)) rgba(242,193,78,.6); z-index: 2; animation: lsd-pop 220ms var(--ls-ease) both; }
+  @keyframes lsd-pop { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .lsd-div { width: calc(1 * var(--u)); align-self: stretch; background: var(--ls-line); }
+  .lsd-deadmsg { position: absolute; inset: 0; display: none; place-items: center; background: rgba(5,8,14,.55); border-radius: var(--ls-r2); font: 700 calc(20 * var(--u))/1 var(--ls-ui); letter-spacing: .2em; text-transform: uppercase; }
+  .lsd-deadmsg span { font-family: var(--ls-num); color: var(--ls-gold); }
+  .lsd.dead .lsd-deadmsg { display: flex; align-items: center; justify-content: center; gap: .4em; }
+
+  /* ── ward bay ── */
+  .lsw { width: calc(184 * var(--u)); display: flex; flex-direction: column; gap: calc(8 * var(--u)); align-self: center; }
+  .lsd.dead .lsw { filter: grayscale(1) brightness(.75); }
+  .lsw-h { font: 700 calc(11 * var(--u))/1 var(--ls-ui); letter-spacing: .2em; text-transform: uppercase; color: var(--ls-ink3); }
+  .lsw-row { display: flex; gap: calc(8 * var(--u)); }
+  .lsw-it { width: calc(56 * var(--u)); display: flex; flex-direction: column; gap: calc(5 * var(--u)); align-items: center; --lsw-c: #f2c14e; --lsw-cb: var(--ls-gold); }
+  .lsw-slot { position: relative; width: calc(56 * var(--u)); height: calc(56 * var(--u)); border-radius: calc(4 * var(--u)); overflow: hidden; background: var(--ls-panel3); box-shadow: var(--ls-bevel); display: grid; place-items: center; }
+  .lsw-slot img { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+  .lsw-cur { position: absolute; left: 0; right: 0; top: 0; height: 0; background: rgba(4,7,14,.72); border-bottom: calc(2 * var(--u)) solid var(--lsw-c); }
+  .lsw-cd { position: absolute; inset: 0; display: grid; place-items: center; font: 700 calc(18 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; text-shadow: 0 calc(1 * var(--u)) calc(3 * var(--u)) #000; }
+  .lsw-k { position: absolute; left: calc(3 * var(--u)); top: calc(3 * var(--u)); width: calc(16 * var(--u)); height: calc(16 * var(--u)); display: grid; place-items: center; border-radius: calc(3 * var(--u)); background: rgba(0,0,0,.6); font: 700 calc(11 * var(--u))/1 var(--ls-num); }
+  .lsw-ch { position: absolute; right: calc(3 * var(--u)); bottom: calc(3 * var(--u)); min-width: calc(16 * var(--u)); height: calc(16 * var(--u)); padding: 0 calc(3 * var(--u)); display: grid; place-items: center; border-radius: calc(8 * var(--u)); background: var(--lsw-cb); font: 700 calc(11 * var(--u))/1 var(--ls-num); color: #0c1423; }
+  .lsw-nm { font: 700 calc(12 * var(--u))/1 var(--ls-ui); color: var(--ls-ink2); }
+  .lsw-mt { font: 500 calc(11 * var(--u))/1 var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-ink3); }
+  .lsw-it.empty .lsw-slot img { opacity: .45; }
+
+  /* ── controls + shop chips, the ? legend ── */
+  .lsc-row { position: fixed; right: calc(16 * var(--u)); bottom: calc(302 * var(--u)); display: flex; gap: calc(6 * var(--u)); }
+  .lsc-row .ls-chip { font-variant-numeric: tabular-nums; pointer-events: auto; cursor: pointer; }
+  .lsc-row .ls-chip.on { background: rgba(51,140,242,.35); }
+  .lsc-recall { width: calc(132 * var(--u)); justify-content: center; }
+  .lsc-shop { box-shadow: var(--ls-bevel), inset 0 0 0 calc(1 * var(--u)) rgba(242,193,78,.4); }
+  .lsc-shop .g { font-family: var(--ls-num); font-variant-numeric: tabular-nums; color: var(--ls-gold); }
+  .lsc-sum { list-style: none; pointer-events: auto; cursor: pointer; }
+  .lsc-sum::-webkit-details-marker { display: none; }
+  .lsc-sum::marker { content: ""; }
+  details:not([open]) .lsc-leg { display: none; }
+  .ls-root .lsc-help { width: calc(36 * var(--u)); padding: 0; justify-content: center; font: 700 calc(16 * var(--u))/1 var(--ls-num); }
+  .lsc-leg { position: fixed; inset: 0; z-index: 2; display: grid; place-items: center; background: var(--ls-scrim); animation: ls-fade 220ms var(--ls-ease) both; white-space: normal; }
+  .lsc-card { width: calc(640 * var(--u)); padding: calc(28 * var(--u)) calc(32 * var(--u)); background: var(--ls-panel-solid); box-shadow: var(--ls-elev); border-radius: var(--ls-r2); display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
+  .lsc-hd { display: flex; justify-content: space-between; align-items: center; }
+  .lsc-hd b { font: 700 calc(26 * var(--u))/1 var(--ls-display); }
+  .lsc-hd span { font: 600 calc(14 * var(--u))/1 var(--ls-ui); color: var(--ls-ink3); }
+  .lsc-grid { display: grid; grid-template-columns: auto 1fr; gap: calc(10 * var(--u)) calc(24 * var(--u)); font: 600 calc(16 * var(--u))/1.2 var(--ls-ui); }
+  .lsc-grid kbd { justify-self: end; padding: calc(4 * var(--u)) calc(8 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--ls-panel3); box-shadow: var(--ls-bevel); font: 700 calc(13 * var(--u))/1.2 var(--ls-num); white-space: nowrap; color: var(--ls-ink); }
+  .lsc-grid span { color: var(--ls-ink2); }
+</style>
+<div class="ls-root lsh">
+  <div class="lsm">
+    <div class="lsm-plate">
+      <div class="lsm-top">
+        <span class="lsm-nm b" data-bind="blue_name"></span>
+        <span class="lsm-k b" data-bind="blue_kills"></span>
+        <span class="lsm-clock" data-bind="clock"></span>
+        <span class="lsm-k r" data-bind="red_kills"></span>
+        <span class="lsm-nm r" data-bind="red_name"></span>
+      </div>
+      <div class="lsm-sub">
+        <span><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2012%2014'%3E%3Cpath%20d='M2%2014%20V5%20L1%203%20V0%20H4%20V2%20H5%20V0%20H7%20V2%20H8%20V0%20H11%20V3%20L10%205%20V14%20Z'%20fill='%23aebbd0'/%3E%3C/svg%3E"><span class="b" data-bind="blue_towers"></span>/<span class="r" data-bind="red_towers"></span></span>
+        <span class="lsm-gold"><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2014%2014'%3E%3Ccircle%20cx='7'%20cy='7'%20r='6'%20fill='%23f2c14e'/%3E%3Ccircle%20cx='7'%20cy='7'%20r='3.4'%20fill='none'%20stroke='%23b8862a'%20stroke-width='1.5'/%3E%3C/svg%3E"><span data-bind="gold_text"></span></span>
+        <span><span data-text="hud_lv"></span> <em data-bind="level"></em></span>
+      </div>
+    </div>
+    <div class="lsm-pills">
+      <span class="lsm-pill lsm-obj" data-show="objective" data-class-warn="objective_warn" data-bind="objective"></span>
+    </div>
+  </div>
+
+  <div class="lsk" data-each="feed">
+    <template>
+      <div class="lsk-r" data-class-mine="mine" data-style---ka="swatch" data-style---kai="killer_ink" data-style---kvi="victim_ink">
+        <i></i><span class="a" data-bind="killer"></span>
+        <img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2016%2016'%3E%3Cpath%20d='M2%202%20L9%209%20M14%202%20L7%209%20M4%2012%20L6%2014%20M12%2012%20L10%2014'%20stroke='%23aebbd0'%20stroke-width='1.6'%20fill='none'/%3E%3C/svg%3E">
+        <span class="v" data-bind="victim"></span><span class="t" data-bind="time"></span>
+      </div>
+    </template>
+  </div>
+
+  <div class="lsa" data-show="banner_on" data-class-sm="banner_small" data-style---lsa-c="banner_color">
+    <div class="lsa-rule"></div><div class="lsa-t" data-bind="banner_text"></div><div class="lsa-rule"></div>
+  </div>
+
+  <div class="lsc-row">
+    <button class="ls-chip lsc-shop" data-action="shop"><span data-text="hud_shop"></span> · <span class="g" data-bind="gold_text"></span> · P</button>
+    <button class="ls-chip lsc-recall" data-action="recall" data-class-on="recalling"><span data-hide="recalling" data-text="hud_recall_key"></span><span data-show="recalling"><span data-text="hud_recall"></span> <span data-bind="recall_left"></span>s</span></button>
+    <details>
+      <summary class="lsc-sum"><span class="ls-chip lsc-help" aria-label="Controls">?</span>
+      <div class="lsc-leg">
+        <div class="lsc-card">
+          <div class="lsc-hd"><b data-text="legend_title"></b><span data-text="legend_close"></span></div>
+          <div class="lsc-grid">
+            <kbd data-text="key_right_click"></kbd><span data-text="legend_order"></span>
+            <kbd>S</kbd><span data-text="legend_stop"></span>
+            <kbd>Q W E R</kbd><span data-text="legend_cast"></span>
+            <kbd data-text="key_rank_up"></kbd><span data-text="legend_rank_up"></span>
+            <kbd>T · 5 · 6</kbd><span data-text="legend_ward"></span>
+            <kbd>B</kbd><span data-text="legend_recall"></span>
+            <kbd>P</kbd><span data-text="legend_shop"></span>
+            <kbd data-text="key_chat"></kbd><span data-text="legend_chat"></span>
+            <kbd>P</kbd><span data-text="legend_menu"></span>
+          </div>
+        </div>
+      </div>
+      </summary>
+    </details>
+  </div>
+
+  <div class="lsd" data-class-dead="dead" data-class-low="low" data-style---lsd-cc-a="crest_glow">
+    <div class="lsd-recall" data-show="recalling"><b><span data-text="hud_recalling"></span> · <span data-bind="recall_left"></span>s</b><i><em data-style-width="recall_pct"></em></i></div>
+    <div class="lsd-dock">
+      <div class="lsd-port"><img alt="" data-attr-src="crest_img"><span class="lsd-lvl" data-bind="level"></span></div>
+      <div class="lsd-main">
+        <div class="lsd-vit">
+          <div class="lsd-bar hp"><div class="f" data-style-width="hp_pct"></div><div class="sh" data-style-left="hp_pct" data-style-width="shield_pct"></div><span data-bind="hp_text"></span></div>
+          <div class="lsd-bar mp"><div class="f" data-style-width="mp_pct"></div><span data-bind="mp_text"></span></div>
+          <div class="lsd-xp"><em data-style-width="xp_pct"></em></div>
+        </div>
+        <div class="lsd-abs" data-each="abilities">
+          <template>
+            <div class="lsd-ab" data-class-unl="unlearned" data-class-locked="locked" data-class-cool="cooling" data-class-nomana="no_mana">
+              <div class="lsd-tile" data-attr-title="title">
+                <img alt="" data-attr-src="icon_img">
+                <span class="sw" data-style-background="sweep"></span><span class="cd" data-bind="cd"></span>
+                <span class="k" data-bind="key"></span><span class="c" data-bind="cost"></span><span class="ul" data-text="hud_unlearned"></span>
+              </div>
+              <span class="lsd-nm" data-bind="name"></span><span class="lsd-mt" data-bind="meta"></span>
+              <button class="lsd-learn" data-show="can_rank_up" data-action="rank_up" data-bind="learn"></button>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="lsd-div"></div>
+      <div class="lsw">
+        <span class="lsw-h" data-text="hud_wards"></span>
+        <div class="lsw-row">
+          <div class="lsw-it" data-class-empty="wards_empty">
+            <div class="lsw-slot"><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2026%2026'%3E%3Cpath%20d='M13%202%20L22%2013%20L13%2024%20L4%2013%20Z'%20fill='%23f2c14e'/%3E%3C/svg%3E"><span class="lsw-cur" data-style-height="ward_curtain"></span><span class="lsw-cd" data-bind="ward_cd"></span><span class="lsw-k">T</span><span class="lsw-ch" data-bind="wards"></span></div>
+            <span class="lsw-nm" data-text="ward_picket"></span><span class="lsw-mt" data-bind="ward_meta"></span>
+          </div>
+          <div class="lsw-it" style="--lsw-c: #f2884e; --lsw-cb: #f2a76e" data-class-empty="watchfire_empty">
+            <div class="lsw-slot"><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2026%2026'%3E%3Cpath%20d='M13%202%20C18%208%2021%2012%2021%2016%20C21%2021%2017%2024%2013%2024%20C9%2024%205%2021%205%2016%20C5%2012%208%208%2013%202%20Z'%20fill='%23f2884e'/%3E%3C/svg%3E"><span class="lsw-k">5</span><span class="lsw-ch" data-bind="watchfires"></span></div>
+            <span class="lsw-nm" data-text="ward_watchfire"></span><span class="lsw-mt" data-bind="watchfire_meta"></span>
+          </div>
+          <div class="lsw-it" style="--lsw-c: #9fb6e8; --lsw-cb: rgba(255,255,255,.25)" data-class-empty="hush_cooling">
+            <div class="lsw-slot"><img alt="" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2026%2026'%3E%3Cpath%20d='M13%203%20C18%203%2020%207%2020%2012%20V18%20L23%2021%20H3%20L6%2018%20V12%20C6%207%208%203%2013%203%20Z'%20fill='%239fb6e8'/%3E%3C/svg%3E"><span class="lsw-cur" data-style-height="hush_curtain"></span><span class="lsw-cd" data-bind="hush_cd"></span><span class="lsw-k">6</span></div>
+            <span class="lsw-nm" data-text="ward_hushbell"></span><span class="lsw-mt" data-bind="hush_meta"></span>
+          </div>
+        </div>
+      </div>
+      <div class="lsd-deadmsg"><span data-text="hud_respawn_in"></span> <span data-bind="respawn_in"></span></div>
+    </div>
+  </div>
+</div>

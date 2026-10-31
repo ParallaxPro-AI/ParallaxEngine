@@ -1,0 +1,9 @@
+{
+  "extends": "arena",
+  "exclude": ["player", "camera", "cover_spot", "cover_spot_2", "cover_spot_3", "cover_spot_4", "cover_spot_5", "cover_spot_6", "cover_spot_7", "cover_spot_8", "cover_spot_9", "cover_spot_10", "spawn_point", "spawn_point_2", "spawn_point_3", "spawn_point_4", "spawn_point_5", "spawn_point_6", "spawn_point_7", "spawn_point_8", "ammo_crate", "ammo_crate_2", "ammo_crate_3", "ammo_crate_4", "armor_plate", "armor_plate_2", "armor_plate_3"],
+  "ui": ["title_screen"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "entities": [
+    {"id": "camera", "prefab": "title_camera", "at": [0, 1.6, -39.0], "rotation": [0, 0, 0]}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "door",
+  "summary": "A four-panel interior door in its frame, with lever handles that turn. joints door, handle_front, handle_back; options finish; sockets socket_latch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.door or place \"prefab\": \"door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:door"]
+}

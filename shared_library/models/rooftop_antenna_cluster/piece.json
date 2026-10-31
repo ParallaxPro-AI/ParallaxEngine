@@ -1,0 +1,10 @@
+{
+  "id": "rooftop_antenna_cluster",
+  "summary": "A rooftop telecom antenna cluster on a rusting steel skid with rubber pads: a 4 m three-leg galvanised lattic… joints dish, cabinet_door; sockets socket_technician.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rooftop_antenna_cluster or place \"prefab\": \"rooftop_antenna_cluster\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rooftop_antenna_cluster"]
+}

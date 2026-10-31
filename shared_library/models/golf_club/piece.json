@@ -1,0 +1,10 @@
+{
+  "id": "golf_club",
+  "summary": "A golf club in three switchable types (`club` partset): a 7-iron (37 in, 62.5 deg lie, chrome stepped steel s… options club, grip; sockets socket_lower_hand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.golf_club or place \"prefab\": \"golf_club\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:golf_club"]
+}

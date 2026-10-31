@@ -1,0 +1,10 @@
+{
+  "id": "llama",
+  "summary": "A llama on the engine's quadruped_20 rig, sized from a real adult: ~1.1 m at the withers, ~1.8 m to the top o… options fleece, face; sockets back, head_top, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.llama or place \"prefab\": \"llama\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:llama"]
+}

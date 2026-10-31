@@ -1,0 +1,10 @@
+{
+  "id": "open_notebook",
+  "summary": "An A5 school exercise book lying open on a desk: a dark board cover showing as a border, two ruled cream leav… options written.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.open_notebook or place \"prefab\": \"open_notebook\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:open_notebook"]
+}

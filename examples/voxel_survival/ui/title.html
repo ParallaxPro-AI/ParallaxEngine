@@ -1,0 +1,91 @@
+<link rel="stylesheet" href="greenwood.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+#gw-title{position:fixed;inset:0;pointer-events:auto;overflow:hidden}
+#gw-title .veil{position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,16,13,.9) 0%,rgba(11,16,13,.62) 42%,rgba(11,16,13,0) 72%);animation:gw-fade .36s ease-out both}
+#gw-title .col{position:absolute;left:calc(15.4 * var(--gw-r));top:50%;transform:translateY(-50%);width:calc(66 * var(--gw-r));display:flex;flex-direction:column;align-items:flex-start;gap:calc(2.4 * var(--gw-r))}
+#gw-title .brand>*,#gw-title .actions>*{animation:gw-rise .36s var(--gw-ease) both}
+#gw-title .brand>:nth-child(2){animation-delay:.04s}
+#gw-title .brand>:nth-child(3){animation-delay:.08s}
+#gw-title .brand>:nth-child(4){animation-delay:.12s}
+#gw-title .actions>*{animation-delay:.16s}
+#gw-title .eyebrow{font:800 calc(1.6 * var(--gw-r))/1 var(--gw-font-ui);letter-spacing:.2em;text-transform:uppercase;color:var(--gw-gold)}
+#gw-title h1{font:900 calc(16.1 * var(--gw-r))/.86 var(--gw-font-display);letter-spacing:-.01em;margin-left:calc(-.6 * var(--gw-r));color:var(--gw-ink);text-shadow:0 calc(.5 * var(--gw-r)) 0 #3b2f22,0 calc(1.6 * var(--gw-r)) calc(4 * var(--gw-r)) rgba(0,0,0,.55)}
+#gw-title .lead{font:600 calc(2.3 * var(--gw-r))/1.5 var(--gw-font-ui);color:var(--gw-ink-3);max-width:32ch}
+#gw-title .chips{display:flex;flex-wrap:wrap;gap:calc(1 * var(--gw-r))}
+#gw-title .chip{display:flex;align-items:center;gap:calc(1 * var(--gw-r));padding:calc(.8 * var(--gw-r)) calc(1.6 * var(--gw-r)) calc(.8 * var(--gw-r)) calc(1 * var(--gw-r));border-radius:calc(999 * var(--u));background:rgba(23,34,29,.85);border:calc(1.5 * var(--u)) solid rgba(244,223,170,.24);font:800 calc(1.6 * var(--gw-r))/1 var(--gw-font-ui)}
+#gw-title .chip .gw-ic{width:calc(2.2 * var(--gw-r));height:calc(2.2 * var(--gw-r))}
+#gw-title .go{display:flex;align-items:center;gap:calc(1.8 * var(--gw-r));margin-top:calc(.8 * var(--gw-r))}
+#gw-title #btn-play{height:calc(6.8 * var(--gw-r));padding:0 calc(4 * var(--gw-r));border-radius:calc(1.6 * var(--gw-r));font-size:calc(2.3 * var(--gw-r));box-shadow:0 calc(.5 * var(--gw-r)) 0 var(--gw-gold-press),0 calc(1.4 * var(--gw-r)) calc(3 * var(--gw-r)) rgba(0,0,0,.4)}
+#gw-title #btn-play:hover{transform:translateY(calc(-.2 * var(--gw-r)))}
+#gw-title #btn-play:active{transform:translateY(calc(.3 * var(--gw-r)));box-shadow:0 calc(.2 * var(--gw-r)) 0 var(--gw-gold-press)}
+#gw-title .hint{display:flex;align-items:center;gap:calc(.8 * var(--gw-r));font:700 calc(1.4 * var(--gw-r))/1 var(--gw-font-ui);color:var(--gw-ink-faint)}
+#gw-title .hint .gw-kbd{height:calc(2.6 * var(--gw-r));padding:0 calc(.9 * var(--gw-r))}
+#gw-title .saved{display:flex;align-items:center;gap:calc(1 * var(--gw-r));font:700 calc(1.5 * var(--gw-r))/1.3 var(--gw-font-ui);color:var(--gw-ink-muted)}
+#gw-title .saved i{flex:none;width:calc(.8 * var(--gw-r));height:calc(.8 * var(--gw-r));border-radius:50%;background:var(--gw-good)}
+#gw-title .reset{width:100%;max-width:calc(56 * var(--gw-r));margin-top:calc(.6 * var(--gw-r));border-top:calc(1 * var(--u)) solid var(--gw-line);padding-top:calc(1.4 * var(--gw-r))}
+#gw-title .toggle{display:flex;align-items:center;gap:calc(1 * var(--gw-r));padding:calc(.8 * var(--gw-r)) 0;font:800 calc(1.6 * var(--gw-r))/1 var(--gw-font-ui);color:var(--gw-ink-4);pointer-events:auto}
+#gw-title .toggle:hover{color:var(--gw-ink)}
+#gw-title .toggle svg{width:calc(1.2 * var(--gw-r));height:calc(1.2 * var(--gw-r));transition:transform .18s var(--gw-ease)}
+#gw-title .reset.open .toggle svg{transform:rotate(90deg)}
+#gw-title .fold{display:grid;grid-template-rows:0fr;transition:grid-template-rows .2s var(--gw-ease)}
+#gw-title .reset.open .fold{grid-template-rows:1fr}
+#gw-title .fold>div{overflow:hidden;min-height:0}
+#gw-title .warn{margin-top:calc(1 * var(--gw-r));padding:calc(1.8 * var(--gw-r)) calc(2 * var(--gw-r));display:grid;gap:calc(1.4 * var(--gw-r));background:rgba(40,14,14,.72);border:calc(2 * var(--u)) solid #6b2b26;border-radius:calc(1.6 * var(--gw-r))}
+#gw-title .warn p{font:700 calc(1.5 * var(--gw-r))/1.5 var(--gw-font-ui);color:var(--gw-bad)}
+#gw-title .warn .row{display:flex;flex-wrap:wrap;gap:calc(1 * var(--gw-r))}
+#gw-title .warn .gw-btn{height:calc(5 * var(--gw-r));padding:0 calc(2 * var(--gw-r));border-radius:calc(1.2 * var(--gw-r));font-size:calc(1.6 * var(--gw-r))}
+#gw-title .short{display:none}
+@media (pointer:coarse){
+#gw-title .veil{background:linear-gradient(90deg,rgba(11,16,13,.9) 0%,rgba(11,16,13,.7) 55%,rgba(11,16,13,.45) 100%)}
+#gw-title .col{left:calc(5.6 * var(--gw-r));right:calc(5.6 * var(--gw-r));top:calc(1.6 * var(--gw-r));bottom:calc(2.9 * var(--gw-r));transform:none;width:auto;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:calc(2.8 * var(--gw-r));align-items:center}
+#gw-title .brand>*,#gw-title .actions>*{animation:none}
+#gw-title .brand,#gw-title .actions{display:flex;flex-direction:column;gap:calc(1 * var(--gw-r));animation:gw-rise .36s var(--gw-ease) both}
+#gw-title .brand{align-items:flex-start}
+#gw-title .eyebrow{font-size:calc(1.1 * var(--gw-r));letter-spacing:.18em}
+#gw-title h1{font-size:calc(6.4 * var(--gw-r));margin-left:calc(-.3 * var(--gw-r));text-shadow:0 calc(.3 * var(--gw-r)) 0 #3b2f22,0 calc(1 * var(--gw-r)) calc(2.4 * var(--gw-r)) rgba(0,0,0,.5)}
+#gw-title .lead{font-size:calc(1.4 * var(--gw-r));line-height:1.45;max-width:36ch}
+#gw-title .chips{gap:calc(.6 * var(--gw-r))}
+#gw-title .chip{gap:calc(.6 * var(--gw-r));padding:calc(.5 * var(--gw-r)) calc(1 * var(--gw-r)) calc(.5 * var(--gw-r)) calc(.6 * var(--gw-r));font-size:calc(1.2 * var(--gw-r))}
+#gw-title .chip .gw-ic{width:calc(1.6 * var(--gw-r));height:calc(1.6 * var(--gw-r))}
+#gw-title .go{margin:0;display:block}
+#gw-title #btn-play{width:100%;height:calc(5.8 * var(--gw-r));padding:0;border-radius:calc(1.4 * var(--gw-r));font-size:calc(1.9 * var(--gw-r));box-shadow:0 calc(.4 * var(--gw-r)) 0 var(--gw-gold-press),0 calc(1 * var(--gw-r)) calc(2.2 * var(--gw-r)) rgba(0,0,0,.4)}
+#gw-title #btn-play:hover{transform:none}
+#gw-title .saved{justify-content:center;gap:calc(.8 * var(--gw-r));font-size:calc(1.2 * var(--gw-r))}
+#gw-title .saved i{width:calc(.6 * var(--gw-r));height:calc(.6 * var(--gw-r))}
+#gw-title .reset{max-width:none;margin:0;border:0;padding:0}
+#gw-title .toggle{width:100%;height:calc(4.4 * var(--gw-r));justify-content:center;gap:calc(.8 * var(--gw-r));padding:0;border:calc(1.5 * var(--u)) solid rgba(244,223,170,.2);border-radius:calc(1.2 * var(--gw-r));background:rgba(23,34,29,.7);font-size:calc(1.3 * var(--gw-r))}
+#gw-title .toggle svg{width:calc(1 * var(--gw-r));height:calc(1 * var(--gw-r))}
+#gw-title .warn{margin-top:calc(1 * var(--gw-r));padding:calc(1 * var(--gw-r)) calc(1.2 * var(--gw-r));gap:calc(.8 * var(--gw-r));background:rgba(40,14,14,.8);border-radius:calc(1.2 * var(--gw-r))}
+#gw-title .warn p{font-size:calc(1.2 * var(--gw-r));line-height:1.4}
+#gw-title .warn .row{display:grid;grid-template-columns:1fr 1fr;gap:calc(.6 * var(--gw-r))}
+#gw-title .warn .gw-btn{height:calc(4.4 * var(--gw-r));padding:0 calc(.6 * var(--gw-r));border-radius:calc(1 * var(--gw-r));font-size:calc(1.2 * var(--gw-r));line-height:1.15;white-space:normal}
+#gw-title .long{display:none}
+#gw-title .short{display:inline}
+}
+@media not all and (pointer:coarse){#gw-title .brand,#gw-title .actions{display:contents}}
+</style>
+<div class="gw" id="gw-title">
+<div class="veil"></div>
+<main class="col">
+<div class="brand">
+<div class="eyebrow" data-text="title_eyebrow"></div>
+<h1 data-text="game_title"></h1>
+<p class="lead" data-text="game_tagline"></p>
+<div class="chips"><span class="chip"><img class="gw-ic" src="../assets/images/icons/iron_pickaxe.svg" alt=""><span data-text="chip_build"></span></span><span class="chip"><img class="gw-ic" src="../assets/images/icons/wheat.svg" alt=""><span data-text="chip_craft"></span></span><span class="chip"><img class="gw-ic" src="../assets/images/icons/torch.svg" alt=""><span data-text="chip_survive"></span></span></div>
+</div>
+<div class="actions">
+<div class="go"><button class="gw-btn primary" data-show="has_save" data-action="continue" data-key="Enter" data-text="title_continue"></button><button class="gw-btn primary" data-hide="has_save" data-action="new_world" data-text="title_enter"></button><span class="hint" data-gw-desk><span class="gw-kbd">Enter</span><span data-text="to_play"></span></span></div>
+<div class="saved"><i></i><span data-text="title_saves"></span></div>
+<div class="reset open" data-show="has_save">
+<div class="fold"><div><div class="warn">
+<p><span class="long" data-text="reset_warning"></span><span class="short" data-text="reset_warning_short"></span></p>
+<div class="row"><button class="gw-btn danger" data-action="new_world" data-text="title_new_world"></button><button class="gw-btn danger" data-action="challenge" data-text="title_challenge"></button></div>
+</div></div></div>
+</div>
+<div class="row" data-hide="has_save"><button class="gw-btn secondary" data-action="challenge" data-text="title_challenge_fresh"></button></div>
+</div>
+</main>
+</div>

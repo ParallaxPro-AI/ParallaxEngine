@@ -1,0 +1,10 @@
+{
+  "id": "message_in_bottle",
+  "summary": "A corked message in a bottle lying on its side: a pale sea-green glass bottle (punted base, rounded shoulder… options weathering, glass_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.message_in_bottle or place \"prefab\": \"message_in_bottle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:message_in_bottle"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cipher_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.15, 0.0139, 0.15],
+      "offset": [0, 0.007, 0]
+    }
+  }
+}

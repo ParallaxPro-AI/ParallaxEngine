@@ -1,0 +1,10 @@
+{
+  "id": "ramadan_lantern",
+  "summary": "A Ramadan fanous lantern: an octagonal brass lantern on a stepped foot and flared bowl, its eight sides glaze…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ramadan_lantern or place \"prefab\": \"ramadan_lantern\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ramadan_lantern"]
+}

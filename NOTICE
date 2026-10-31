@@ -1,0 +1,8 @@
+ParallaxEngine
+Copyright 2026 ParallaxPro AI, Inc.
+
+This product includes software developed as part of ParallaxPro (https://parallaxpro.ai).
+
+Third-party dependencies are installed by pnpm and keep their own licenses; notably
+Rapier (@dimforge/rapier2d-compat, @dimforge/rapier3d-compat), Apache-2.0, and
+esbuild, MIT.

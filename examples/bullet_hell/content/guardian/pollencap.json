@@ -1,0 +1,4 @@
+{
+  "name": "Pollen Cap", "animation": "pollencap", "hp": 2, "scale": 0.98, "score": 175,
+  "fire": "fan", "arms": 5, "spread": 51.6, "spin_step": 0, "petal_speed": 6.0
+}

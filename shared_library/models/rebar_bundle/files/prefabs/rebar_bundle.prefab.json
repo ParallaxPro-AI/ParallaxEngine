@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rebar_bundle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.2706, 0.3494, 0.6643],
+      "offset": [-0.0331, 0.1717, 0]
+    }
+  }
+}

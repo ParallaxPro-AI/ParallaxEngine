@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/soda_fountain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.626, 0.747, 0.7219],
+      "offset": [0, 0.3735, 0.0479]
+    }
+  }
+}

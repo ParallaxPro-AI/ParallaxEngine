@@ -1,0 +1,16 @@
+{
+  "z": 9,
+  "components": {
+    "shape": {
+      "kind": "rect",
+      "size": [
+        40,
+        26
+      ],
+      "color": "#9e572e"
+    }
+  },
+  "tags": [
+    "ground_tint"
+  ]
+}

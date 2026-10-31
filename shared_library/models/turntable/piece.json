@@ -1,0 +1,10 @@
+{
+  "id": "turntable",
+  "summary": "A hi-fi record turntable: a walnut plinth with a brushed-aluminium deck, a die-cast platter with strobe dots… joints platter, tonearm, arm_lift, dust_cover.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.turntable or place \"prefab\": \"turntable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:turntable"]
+}

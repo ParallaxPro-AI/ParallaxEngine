@@ -1,0 +1,42 @@
+"""Panels on in-world screens (plugins.screens()): monitors, terminals, arcade cabinets,
+shop boards. A `Screen` shows one `@ui` panel — markup, `state()`, actions, exactly as on
+the HUD — on a `size` rectangle in its entity's local x/y plane facing +z; put it on a
+monitor model's face. Each screen has its own panel instance whose `subject` is the
+screen's entity, so ten terminals show ten states:
+
+    @ui("terminal", html="ui/terminal.html")
+    class Terminal(Panel):
+        actions = {"unlock": unlock_door}
+        def state(self, ctx):
+            return {"door_open": self.subject.get(Door).is_open}
+
+    {"screen": {"panel": "terminal", "size": [0.6, 0.4], "resolution": [480, 320]}}
+
+Clicking the screen with the pointer presses whatever button is under it (the click is
+consumed). A function action with a `screen` parameter is given the screen that was
+pressed — declare it with a default so HUD clicks needn't send it:
+
+    def unlock(ctx, screen: Entity | None = None): screen.get(Door).unlock()
+
+Panels on screens can't run scripts, and are drawn with flat styling (backgrounds,
+borders, rounded corners, images, text; no shadows or transforms). They redraw when their
+state changes, at most `fps` times a second.
+"""
+
+from parallax import EngineComponent, Vec2, component, field
+
+@component("screen")
+class Screen(EngineComponent):
+    panel: str = field(doc="The @ui panel's id.")
+    size: Vec2 = field(Vec2(1.6, 0.9), unit="m")
+    resolution: Vec2 = field(Vec2(512, 288), doc="Texels across and down (16 to 2048).")
+    fps: float = field(10, min=0.1, max=60, doc="Most redraws per second.")
+    on: bool = field(True)
+    interactive: bool = field(True, doc="Pointer presses reach the panel.")
+    brightness: float = field(1, min=0)
+    double_sided: bool = field(False)
+
+    def click(self, action: str, **data: object) -> None:
+        """Run one of the panel's actions as if its button were pressed (gamepad menus, tests)."""
+    def press(self, uv: Vec2) -> bool:
+        """Press the screen at uv (0..1 across, 0..1 down). Whether it hit an action."""

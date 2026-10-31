@@ -1,0 +1,10 @@
+{
+  "id": "food_cart_tricycle",
+  "summary": "A street-food vending tricycle: a painted cabinet with a steel counter, a glazed display case of buns, a grid… joints box_steer, serving_hatch, pedals, wheel_r_roll; options cart_colour, canopy_colour; sockets seat_driver, socket_counter, socket_customer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.food_cart_tricycle or place \"prefab\": \"food_cart_tricycle\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:food_cart_tricycle"]
+}

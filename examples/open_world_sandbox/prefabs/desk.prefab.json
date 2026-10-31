@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/desk", "cast_shadows": true }
+  }
+}

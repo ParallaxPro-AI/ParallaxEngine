@@ -1,0 +1,10 @@
+{
+  "id": "mine_entrance_timber",
+  "summary": "A frontier gold-mine adit: a craggy rock outcrop of faceted blocks, strata ledges and scree bored by a 2.1 m… joints door_l, door_r; options doors; sockets mouth, track_end.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mine_entrance_timber or place \"prefab\": \"mine_entrance_timber\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mine_entrance_timber"]
+}

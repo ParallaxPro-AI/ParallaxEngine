@@ -1,0 +1,10 @@
+{
+  "id": "dinosaur_skeleton",
+  "summary": "A museum-mounted Tyrannosaurus rex skeleton in a striding pose, about 10.5 m nose to tail: a skull with see-t… options bone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dinosaur_skeleton or place \"prefab\": \"dinosaur_skeleton\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dinosaur_skeleton"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "info_totem",
+  "summary": "A freestanding touchscreen wayfinding totem: a tapered, round-edged 1.95 m pillar on a steel plinth, with a r… joints service_door; options colour, accent; sockets socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.info_totem or place \"prefab\": \"info_totem\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:info_totem"]
+}

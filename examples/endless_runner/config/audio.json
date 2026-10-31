@@ -1,0 +1,16 @@
+{
+  "whoosh": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/4a/c4/4ac4d1cef7e936965cbf795852ca2020300b9e2ba7daa59f2bf4f1f7bf416218.ogg", "volume": 0.25 },
+  "jump": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/c6/00/c60069ed7108678dd6a1306404d168a93cc2575cda37b06add9dd6c4d46352a3.ogg", "volume": 0.4 },
+  "slide": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/43/d0/43d086d50f90493a98cd2e09aa6dbf150d164f1578e1ec768d21cb185571ad87.ogg", "volume": 0.3 },
+  "count_beep": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/f2/f4/f2f44effce087e47683f0fea05a71002bd8dca78fb10bf93d9f0b38d49f9590e.ogg", "volume": 0.5 },
+  "go": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/35/c7/35c7b85d74935a2718e067ba26cdddbb114ccea23fa7253ad2586a9065f1bec1.ogg", "volume": 0.55 },
+  "coin": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35 },
+  "combo_up": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/52/5b/525be859c53b1f9f8ae9dbb7566ca942cb65feb8202d2372aec645fe3636e880.mp3", "volume": 0.35 },
+  "near_miss": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/52/5b/525be859c53b1f9f8ae9dbb7566ca942cb65feb8202d2372aec645fe3636e880.mp3", "volume": 0.18 },
+  "shield_break": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/0e/aa/0eaadbbc5c259cc89a1dfbb0c99b61ca07e08710d035cc9bfc805b68cb0bdc9e.ogg", "volume": 0.65 },
+  "smash": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg", "volume": 0.3 },
+  "hit": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg", "volume": 0.55 },
+  "district": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/33/b1/33b17a9a9a2397c62b285c52c33a907fdffb476909c99e42dde603f6a7a8b12c.ogg", "volume": 0.5 },
+  "busted": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/cf/a5/cfa5557052e6ee604fe53925ef79edc2901f7c8288f51a7429b1cabab4da311d.ogg", "volume": 0.6 },
+  "escaped": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3", "volume": 0.6 }
+}

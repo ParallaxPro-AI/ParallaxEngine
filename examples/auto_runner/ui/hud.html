@@ -1,0 +1,152 @@
+<!-- Ported from the template: Canyon Dash run HUD - hearts and speed top-left, distance with the rim track and the cue pill top-centre, coins, multiplier, streak pips and the touch-visible pause plate top-right, plus the stage banner on every stage entry -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cdh { position: absolute; inset: 0; pointer-events: none; user-select: none; -webkit-user-select: none; font-family: var(--cd-font); color: var(--cd-cream); }
+  .cdh-plate { background: var(--cd-plate); border: calc(3 * var(--u)) solid var(--cd-rust-dark); border-radius: calc(14 * var(--u)); }
+  .cdh-soft { background: rgba(51,37,24,.72); border-radius: calc(10 * var(--u)); }
+
+  .cdh-left { position: absolute; left: calc(56 * var(--u)); top: calc(48 * var(--u)); display: flex; flex-direction: column; align-items: flex-start; gap: calc(14 * var(--u)); }
+  .cdh-hearts { display: flex; gap: calc(10 * var(--u)); padding: calc(12 * var(--u)) calc(18 * var(--u)); }
+  .cdh-heart { width: calc(56 * var(--u)); height: calc(51 * var(--u)); display: block; }
+  .cdh-heart path { fill: var(--cd-heart); stroke: var(--cd-rust-dark); stroke-width: 2.5; stroke-linejoin: round; transition: fill 160ms; }
+  .cdh-heart.is-empty path { fill: rgba(29,20,12,.5); stroke: rgba(255,244,202,.55); stroke-width: 2; }
+  .cdh-heart.is-flash path { fill: var(--cd-heart); stroke: var(--cd-rust-dark); stroke-width: 2.5; }
+  .cdh-heart.is-flash { animation: cdh-flash .28s step-end infinite; }
+  @keyframes cdh-flash { 0% { opacity: 1; } 50% { opacity: .12; } 100% { opacity: 1; } }
+  .cdh-speed { display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)); }
+  .cdh-speed b { font: 400 calc(28 * var(--u))/1.2 var(--cd-font-display); }
+  .cdh-speed span { font-size: calc(16 * var(--u)); font-weight: 900; letter-spacing: 1px; color: var(--cd-sand); }
+  .cdh-speed i { display: block; width: calc(110 * var(--u)); height: calc(6 * var(--u)); border-radius: calc(3 * var(--u)); background: rgba(255,244,202,.18); overflow: hidden; }
+  .cdh-speed i em { display: block; height: 100%; width: 0; border-radius: calc(3 * var(--u)); background: var(--cd-sand); transition: width 200ms linear; }
+
+  .cdh-mid { position: absolute; left: calc(560 * var(--u)); right: calc(560 * var(--u)); top: calc(34 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(14 * var(--u)); }
+  .cdh-dist { font: 400 calc(104 * var(--u))/1 var(--cd-font-display); color: var(--cd-cream); text-shadow: calc(6 * var(--u)) calc(6 * var(--u)) 0 var(--cd-brown); white-space: nowrap; }
+  .cdh-trackrow { display: flex; align-items: center; gap: calc(14 * var(--u)); }
+  .cdh-track { position: relative; width: calc(600 * var(--u)); height: calc(12 * var(--u)); box-sizing: border-box; background: rgba(51,37,24,.85); border: 2px solid var(--cd-rust-dark); border-radius: calc(8 * var(--u)); }
+  .cdh-fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0; border-radius: calc(8 * var(--u)); background: linear-gradient(90deg, var(--cd-sand), var(--cd-orange)); }
+  .cdh-tick { position: absolute; top: calc(-4 * var(--u)); width: 2px; height: calc(20 * var(--u)); background: rgba(255,244,202,.45); }
+  .cdh-knob { position: absolute; left: 0; top: 50%; width: calc(24 * var(--u)); height: calc(24 * var(--u)); margin: calc(-12 * var(--u)) 0 0 calc(-12 * var(--u)); box-sizing: border-box; border-radius: 50%; background: var(--cd-cream); border: calc(4 * var(--u)) solid var(--cd-rust-dark); }
+  .cdh-rim { display: flex; align-items: center; gap: calc(6 * var(--u)); font-size: calc(16 * var(--u)); font-weight: 900; letter-spacing: 2px; }
+  .cdh-rim svg { width: calc(22 * var(--u)); height: calc(28 * var(--u)); display: block; }
+  .cdh-best { display: none; align-items: baseline; gap: calc(12 * var(--u)); padding: calc(4 * var(--u)) calc(18 * var(--u)); background: var(--cd-plate); border-radius: calc(10 * var(--u)); }
+  .cdh-best span { font-size: calc(18 * var(--u)); font-weight: 900; letter-spacing: calc(3 * var(--u)); color: var(--cd-sand); }
+  .cdh-best b { font: 400 calc(34 * var(--u))/1.2 var(--cd-font-display); }
+  .cdh.is-endless .cdh-trackrow { display: none; }
+  .cdh.is-endless .cdh-best { display: flex; }
+  .cdh-cue { display: flex; align-items: baseline; gap: calc(12 * var(--u)); padding: calc(8 * var(--u)) calc(26 * var(--u)); background: rgba(51,37,24,.82); border-radius: calc(999 * var(--u)); animation: cd-fade 150ms ease both; }
+  .cdh-cue b { font: 400 calc(30 * var(--u))/1.15 var(--cd-font-display); letter-spacing: 2px; color: var(--cd-sand); }
+  .cdh-cue b:empty { display: none; }
+  .cdh-cue span { font-size: calc(26 * var(--u)); font-weight: 800; }
+
+  .cdh-right { position: absolute; right: calc(56 * var(--u)); top: calc(48 * var(--u)); display: flex; gap: calc(20 * var(--u)); align-items: flex-start; }
+  .cdh-purse { display: flex; flex-direction: column; align-items: flex-end; gap: calc(10 * var(--u)); }
+  .cdh-coins { display: flex; align-items: center; gap: calc(14 * var(--u)); padding: calc(6 * var(--u)) calc(14 * var(--u)) calc(6 * var(--u)) calc(12 * var(--u)); }
+  .cdh-coins svg { width: calc(52 * var(--u)); height: calc(52 * var(--u)); }
+  .cdh-count { font: 400 calc(62 * var(--u))/1.1 var(--cd-font-display); color: var(--cd-gold); transform-origin: right center; }
+  .cdh-count.is-tick { animation: cdh-tick 160ms ease-out; }
+  @keyframes cdh-tick { 0% { transform: scale(1); } 40% { transform: scale(1.12); } 100% { transform: scale(1); } }
+  .cdh-mult { transform: skewX(-12deg); background: var(--cd-orange); border: calc(3 * var(--u)) solid var(--cd-rust-dark); padding: 0 calc(12 * var(--u)); }
+  .cdh-mult b { display: block; transform: skewX(12deg); font: 400 calc(40 * var(--u))/1.2 var(--cd-font-display); color: var(--cd-cream); }
+  .cdh-mult.is-punch { animation: cdh-punch 260ms cubic-bezier(.3,1.6,.5,1); }
+  .cdh-mult.is-shake { animation: cdh-shake 320ms linear; }
+  @keyframes cdh-punch { 0% { transform: skewX(-12deg) scale(1); } 45% { transform: skewX(-12deg) scale(1.25); } 100% { transform: skewX(-12deg) scale(1); } }
+  @keyframes cdh-shake { 0%, 100% { transform: skewX(-12deg) translateX(0); } 20% { transform: skewX(-12deg) translateX(calc(-6 * var(--u))); } 40% { transform: skewX(-12deg) translateX(calc(6 * var(--u))); } 60% { transform: skewX(-12deg) translateX(calc(-4 * var(--u))); } 80% { transform: skewX(-12deg) translateX(calc(3 * var(--u))); } }
+  .cdh-streak { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(6 * var(--u)) calc(12 * var(--u)); }
+  .cdh-pips { display: flex; gap: calc(3 * var(--u)); }
+  .cdh-pips i { display: block; width: calc(9 * var(--u)); height: calc(14 * var(--u)); border-radius: 2px; background: rgba(255,244,202,.2); transition: background 120ms; }
+  .cdh-pips i.on { background: var(--cd-gold); }
+  .cdh-streak span { font-size: calc(18 * var(--u)); font-weight: 900; white-space: nowrap; }
+  .cdh-pause { position: relative; width: calc(88 * var(--u)); height: calc(88 * var(--u)); flex: none; margin: 0; padding: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; gap: calc(12 * var(--u)); border-radius: calc(18 * var(--u)); background: var(--cd-sandstone); border: calc(4 * var(--u)) solid var(--cd-rust-dark); box-shadow: 0 calc(7 * var(--u)) 0 var(--cd-sandstone-shadow); cursor: pointer; pointer-events: auto; touch-action: manipulation; -webkit-tap-highlight-color: transparent; transition: transform 60ms linear, box-shadow 60ms linear; }
+  .cdh-pause i { display: block; width: calc(12 * var(--u)); height: calc(36 * var(--u)); border-radius: calc(3 * var(--u)); background: var(--cd-cream); }
+  .cdh-pause:hover { filter: brightness(1.06); }
+  .cdh-pause:active { transform: translateY(calc(7 * var(--u))); box-shadow: 0 0 0 var(--cd-sandstone-shadow); }
+  .cdh-pause:focus-visible { outline: calc(4 * var(--u)) solid var(--cd-cream); outline-offset: calc(4 * var(--u)); }
+
+  .cdh-next { display: none; font-size: calc(22 * var(--u)); font-weight: 900; color: var(--cd-cream); white-space: nowrap; }
+  .cdh-banner { position: absolute; left: 0; right: 0; top: calc(256 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--u)); padding: calc(12 * var(--u)) 0 calc(16 * var(--u)); background: linear-gradient(90deg, rgba(51,37,24,0) 15%, rgba(51,37,24,.72) 35%, rgba(51,37,24,.72) 65%, rgba(51,37,24,0) 85%); opacity: 0; visibility: hidden; }
+  .cdh-banner.is-on { visibility: visible; animation: cdh-banner 2500ms ease both; }
+  @keyframes cdh-banner { 0% { opacity: 0; transform: translateY(calc(-24 * var(--u))); } 8% { opacity: 1; transform: none; } 88% { opacity: 1; transform: none; } 100% { opacity: 0; transform: none; } }
+  .cdh-stage { font-size: calc(20 * var(--u)); font-weight: 900; letter-spacing: calc(4 * var(--u)); color: var(--cd-brown); background: var(--cd-sand); border-radius: calc(999 * var(--u)); padding: calc(4 * var(--u)) calc(16 * var(--u)); }
+  .cdh-name { font: 400 calc(120 * var(--u))/1.05 var(--cd-font-display); letter-spacing: calc(3 * var(--u)); text-transform: uppercase; color: var(--cd-cream); transform: skewX(-8deg); text-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-shadow-ink); white-space: nowrap; }
+  .cdh-sub { font-size: calc(38 * var(--u)); font-weight: 700; font-style: italic; color: var(--cd-sand); }
+
+  @media (pointer: coarse) {
+    .cdh-plate { border-width: calc(4 * var(--u)); border-radius: calc(20 * var(--u)); }
+    .cdh-left { left: max(calc(88 * var(--u)), calc(env(safe-area-inset-left, 0px) * 2)); top: calc(16 * var(--u)); height: calc(96 * var(--u)); justify-content: center; }
+    .cdh-hearts { gap: calc(10 * var(--u)); padding: calc(12 * var(--u)) calc(18 * var(--u)); }
+    .cdh-speed, .cdh-streak { display: none; }
+    .cdh-mid { left: 0; right: 0; top: calc(16 * var(--u)); height: calc(96 * var(--u)); justify-content: center; gap: calc(6 * var(--u)); }
+    .cdh-dist { font-size: calc(68 * var(--u)); text-shadow: calc(6 * var(--u)) calc(6 * var(--u)) 0 var(--cd-brown); }
+    .cdh-track { width: calc(440 * var(--u)); height: calc(12 * var(--u)); border-width: 2px; }
+    .cdh-tick { display: none; }
+    .cdh-knob { width: calc(24 * var(--u)); height: calc(24 * var(--u)); border-width: calc(4 * var(--u)); }
+    .cdh-rim { display: none; }
+    .cdh-track::after { content: ''; position: absolute; right: calc(-4 * var(--u)); top: calc(-10 * var(--u)); width: calc(6 * var(--u)); height: calc(32 * var(--u)); background: var(--cd-orange); }
+    .cdh-best { padding: 2px calc(14 * var(--u)); border-radius: calc(999 * var(--u)); background: rgba(51,37,24,.72); }
+    .cdh-best span { font-size: calc(22 * var(--u)); letter-spacing: calc(4 * var(--u)); }
+    .cdh-best b { font: 900 calc(22 * var(--u)) var(--cd-font); color: var(--cd-sand); }
+    .cdh-cue { position: absolute; left: 50%; top: calc(132 * var(--u)); transform: translateX(-50%); gap: calc(12 * var(--u)); padding: calc(6 * var(--u)) calc(24 * var(--u)); white-space: nowrap; }
+    .cdh-cue b { font-size: calc(30 * var(--u)); }
+    .cdh-cue span { font-size: calc(26 * var(--u)); }
+    .cdh-right { right: max(calc(88 * var(--u)), calc(env(safe-area-inset-right, 0px) * 2)); top: calc(16 * var(--u)); height: calc(96 * var(--u)); align-items: center; gap: calc(16 * var(--u)); }
+    .cdh-purse { gap: calc(4 * var(--u)); }
+    .cdh-coins { gap: calc(12 * var(--u)); padding: calc(4 * var(--u)) calc(16 * var(--u)) calc(4 * var(--u)) calc(10 * var(--u)); }
+    .cdh-coins svg { width: calc(48 * var(--u)); height: calc(48 * var(--u)); }
+    .cdh-count { font-size: calc(52 * var(--u)); line-height: 1.15; }
+    .cdh-mult { border-width: calc(4 * var(--u)); padding: 0 calc(12 * var(--u)); }
+    .cdh-mult b { font-size: calc(36 * var(--u)); line-height: 1.25; }
+    .cdh-next { display: block; padding: 2px calc(12 * var(--u)); border-radius: calc(999 * var(--u)); background: rgba(51,37,24,.72); }
+    .cdh-pause { width: calc(92 * var(--u)); height: calc(92 * var(--u)); gap: calc(12 * var(--u)); border-width: calc(6 * var(--u)); border-radius: calc(24 * var(--u)); box-shadow: 0 calc(8 * var(--u)) 0 var(--cd-sandstone-shadow); }
+    .cdh-pause i { width: calc(12 * var(--u)); height: calc(36 * var(--u)); border-radius: calc(4 * var(--u)); }
+    .cdh-pause:active { transform: translateY(calc(8 * var(--u))); }
+    .cdh-banner { top: calc(192 * var(--u)); gap: calc(4 * var(--u)); padding: calc(12 * var(--u)) 0 calc(16 * var(--u)); }
+    .cdh-stage { font-size: calc(20 * var(--u)); letter-spacing: calc(6 * var(--u)); padding: calc(4 * var(--u)) calc(18 * var(--u)); }
+    .cdh-name { font-size: calc(92 * var(--u)); letter-spacing: 2px; text-shadow: calc(8 * var(--u)) calc(8 * var(--u)) 0 var(--cd-shadow-ink); }
+    .cdh-sub { font-size: calc(32 * var(--u)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cdh *, .cdh-banner.is-on { animation-duration: 1ms !important; }
+    .cdh-banner.is-on { animation: none !important; opacity: 1; }
+  }
+</style>
+<div class="cdh" data-class-is-endless="endless">
+  <div class="cdh-left">
+    <div class="cdh-plate cdh-hearts" aria-label="Hearts" data-each="hearts">
+      <template><svg class="cdh-heart" data-class-is-empty="empty" viewBox="0 0 32 29" aria-hidden="true"><path d="M16 27.5 L3.6 15.4 C-0.6 11.3 1.2 3 8 2.1 C11.6 1.6 14.2 3.6 16 6.2 C17.8 3.6 20.4 1.6 24 2.1 C30.8 3 32.6 11.3 28.4 15.4 Z"/></svg></template>
+    </div>
+    <div class="cdh-soft cdh-speed"><b data-bind="kmh"></b><span>KM/H</span><i><em data-style-width="speed_bar"></em></i></div>
+  </div>
+
+  <div class="cdh-mid">
+    <div class="cdh-dist" data-bind="distance"></div>
+    <div class="cdh-trackrow">
+      <div class="cdh-track">
+        <div style="display:contents" data-each="stage_marks"><template><div class="cdh-tick" data-style-left="at"></div></template></div>
+        <div class="cdh-fill" data-style-width="progress"></div>
+        <div class="cdh-knob" data-style-left="progress"></div>
+      </div>
+      <div class="cdh-rim"><svg viewBox="0 0 22 28" aria-hidden="true"><rect x="1" y="0" width="4" height="28" fill="#fff4ca"/><polygon points="5,1 21,6 5,12" fill="#dc7337"/></svg><span>RIM</span></div>
+    </div>
+    <div class="cdh-best"><span>BEST</span><b data-bind="best"></b></div>
+    <div class="cdh-cue"><b data-bind="cue_lead"></b><span data-bind="cue_rest"></span></div>
+  </div>
+
+  <div class="cdh-right">
+    <div class="cdh-purse">
+      <div class="cdh-plate cdh-coins">
+        <svg class="cd-coin" viewBox="0 0 52 52" aria-hidden="true"><circle cx="26" cy="26" r="23" fill="#ffcf49" stroke="#713829" stroke-width="4"/><circle cx="26" cy="26" r="13" fill="none" stroke="#d99a1e" stroke-width="3"/></svg>
+        <b class="cdh-count" data-bind="coins"></b>
+        <div class="cdh-mult"><b data-bind="multiplier"></b></div>
+      </div>
+      <div class="cdh-soft cdh-streak"><div class="cdh-pips" data-each="pips"><template><i data-class-on="on"></i></template></div><span data-bind="to_next"></span></div>
+      <div class="cdh-next" data-bind="to_next"></div>
+    </div>
+    <button class="cdh-pause" data-action="pause" aria-label="Pause"><i></i><i></i></button>
+  </div>
+
+  <div class="cdh-banner" data-class-is-on="banner_on">
+    <div class="cdh-stage" data-bind="stage_number"></div>
+    <div class="cdh-name" data-bind="stage"></div>
+    <div class="cdh-sub" data-bind="stage_sub"></div>
+  </div>
+</div>

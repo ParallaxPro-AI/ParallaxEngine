@@ -1,0 +1,1 @@
+{ "name": "Stone Axe", "icon": "axe", "color": "#969c9e", "stack_max": 1, "tool": "axe", "view": "axe_view", "tier": 1, "mine_speed": 3.5, "damage": 13, "reach": 5 }

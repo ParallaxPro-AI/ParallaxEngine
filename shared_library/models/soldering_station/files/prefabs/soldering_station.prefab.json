@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/soldering_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.23, 0.2063, 0.2334],
+      "offset": [0.002, 0.1031, 0]
+    }
+  }
+}

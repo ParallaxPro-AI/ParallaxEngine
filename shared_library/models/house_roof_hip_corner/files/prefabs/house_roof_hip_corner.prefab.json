@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_roof_hip_corner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.01, 2.0179, 4.09],
+      "offset": [0.04, 1.009, 0]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/nail_gun"
+    },
+    "viewmodel_item": {
+      "hip": [0.11, -0.33, 0.55],
+      "hip_turn": [0.859437, -1.432394, -1.432394],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.118, 0.2773, 0.3319],
+      "offset": [0, 0.1387, 0.042]
+    }
+  }
+}

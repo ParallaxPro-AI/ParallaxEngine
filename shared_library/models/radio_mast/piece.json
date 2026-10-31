@@ -1,0 +1,10 @@
+{
+  "id": "radio_mast",
+  "summary": "A 60 m guyed lattice radio mast: a triangular galvanised lattice (three legs, girts and zigzag diagonals) pai… options bands.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.radio_mast or place \"prefab\": \"radio_mast\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:radio_mast"]
+}

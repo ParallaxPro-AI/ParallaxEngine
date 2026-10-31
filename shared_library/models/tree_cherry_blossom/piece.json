@@ -1,0 +1,10 @@
+{
+  "id": "tree_cherry_blossom",
+  "summary": "A flowering cherry tree in full spring blossom: a short, dark, lenticel-banded trunk splitting low into wide… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_cherry_blossom or place \"prefab\": \"tree_cherry_blossom\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_cherry_blossom"]
+}

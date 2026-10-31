@@ -1,0 +1,10 @@
+{
+  "id": "campfire",
+  "summary": "A camp fire: a ring of ten field stones round a scraped ash pit, a log-cabin stack of five split logs, a glow… joints damp; sockets socket_fire, socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.campfire or place \"prefab\": \"campfire\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:campfire"]
+}

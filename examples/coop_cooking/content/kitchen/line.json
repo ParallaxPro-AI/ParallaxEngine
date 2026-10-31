@@ -1,0 +1,3 @@
+{ "name": "The Line", "brief": "One long line, no wall between you. Share the rail, use the pass, run the express lane.",
+  "scene": "line", "seconds": 90, "target": 175, "order_interval": 4.5,
+  "menu": ["tomato_plate", "lettuce_bowl", "garden_salad", "tomato_soup", "onion_soup", "chefs_deluxe"] }

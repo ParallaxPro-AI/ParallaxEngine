@@ -1,0 +1,10 @@
+{
+  "id": "dice_set_d6",
+  "summary": "A set of six six-sided dice as they landed after a throw, one resting on top of another.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dice_set_d6 or place \"prefab\": \"dice_set_d6\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dice_set_d6"]
+}

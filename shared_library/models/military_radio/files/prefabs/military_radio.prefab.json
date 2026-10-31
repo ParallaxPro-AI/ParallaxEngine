@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/military_radio"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4084, 1.267, 0.2287],
+      "offset": [0.0002, 0.6335, 0.0003]
+    }
+  }
+}

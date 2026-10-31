@@ -1,0 +1,10 @@
+{
+  "id": "station_wagon",
+  "summary": "A five-door estate car (station wagon), about 4.85 m: a saloon's nose and doors with the roof carried flat al… joints body_shell_boot, door_fl, door_fr, door_rl, door_rr, tailgate_glass, …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.station_wagon or place \"prefab\": \"station_wagon\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:station_wagon"]
+}

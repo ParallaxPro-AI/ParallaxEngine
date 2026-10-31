@@ -1,0 +1,13 @@
+{
+  "name": "Venom Edge",
+  "blurb": "A poisoned slash at close range.",
+  "kind": "melee",
+  "cooldown": { "base": 9, "per_rank": -0.8 },
+  "mana": { "base": 45, "per_rank": 4 },
+  "damage": { "base": 78, "per_rank": 36 },
+  "damage_kind": "magic",
+  "range": { "base": 4.5 },
+  "animation": "attack",
+  "cast_vfx": "vfx/slash_cast",
+  "vfx": "vfx/slash"
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fire_elemental"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.192, 2.686, 0.8081],
+      "offset": [0, 1.343, -0.1011]
+    }
+  }
+}

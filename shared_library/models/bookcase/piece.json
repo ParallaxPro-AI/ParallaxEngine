@@ -1,0 +1,14 @@
+{
+  "id": "bookcase",
+  "summary": "An open bookcase with a walnut plinth and oak carcass. options height, shelf_count, finish; sockets socket_shelf_low, socket_top.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bookcase or place \"prefab\": \"bookcase\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bookcase"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bar_counter",
+  "summary": "A pub/restaurant bar counter MODULE (default 2.4 m, `len` param): a raised-panel wood die on a recessed toe p… options ends, wood, bartop, rail; sockets tap_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bar_counter or place \"prefab\": \"bar_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bar_counter"]
+}

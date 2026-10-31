@@ -1,0 +1,92 @@
+{
+  "pieces": {
+    "barks": {
+      "from": "shared_library/world/barks",
+      "version": "2026.10.23",
+      "sha": "2713c36d989963553532f0ee1307b0fd81b68bc915c498226f2626fc45bdc778",
+      "files": {
+        "config/barks.json": "11df427111622ce5d5d68c16dee9fff4fe48847bbc992d18b9b3d2503e776705",
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/barks.py": "960b8925482b792a6c9b62951ab57dffaac31df68bde438ed526b562e861cb1e",
+        "game/lib/hurt_barks.py": "c5e9d46ad11d73e4d697aeec62b44c6fa670c0b585b2d72835b900fe8b682ccc"
+      },
+      "text": {}
+    },
+    "civilian": {
+      "from": "shared_library/models/civilian",
+      "version": "2026.10.23",
+      "sha": "f881b8458a8805435e397b3e2fe0a5c474b8d19bc08d3917fefa701befde77db",
+      "files": {
+        "assets/models/civilian.model.json": "f7c9ca99e2908accf02655c7a81b48a048ccb43a7ee25f38d31e8dff6027fe69",
+        "prefabs/civilian.prefab.json": "ea4ad117f99b2f992adbe41adba33406b980868b7184113d39eb7b5aa166444e"
+      },
+      "text": {}
+    },
+    "humanoid_leisure": {
+      "from": "shared_library/clips/humanoid_leisure",
+      "version": "2026.10.23",
+      "sha": "9435f38c2b8f86c147be7a8a457fc48b606057cee53d6ef9bab5fd5d951da53b",
+      "files": {
+        "assets/clips/lean_idle.clip.json": "e8fe51540edae3c4ebe7ed18fff7389e696f41ee1876b62f4459545f6e321c9e",
+        "assets/clips/playground_hang_left.clip.json": "73de69baac7f22cfdcbf432186ae2bef04bc7ac8953661fbdbb00016a554db59",
+        "assets/clips/playground_hang_right.clip.json": "7fb13237b19663ed6f75568a326b6a9e5f04fb7715b4c0f63a47662325b223ed",
+        "assets/clips/playground_swing_seat.clip.json": "24879055ca7990fa6ef4b58cebce7305ce85e7081485d2f84511b24f4ac2eea9",
+        "assets/clips/reading.clip.json": "9425de7a4c6a05d5717cd540399da0279b0c72eae7ee72bf4579016b3b75401d",
+        "assets/clips/rise_from_seat.clip.json": "53b68610d112f8f178e2dfd31690c3bc7adee14e867f18086232a38e2d235a01",
+        "assets/clips/seated_applause.clip.json": "9913c836b9db403107aa78e32cbd24976d6c37e965627d3365ab03a28eeb2576",
+        "assets/clips/seated_idle.clip.json": "1a729415be76b07392d419ddbdc440076d0c7cee5ba86bf2697a9ae426c4c1e7",
+        "assets/clips/seated_laughter.clip.json": "e4ac3b33beea371c438ccb766aff14d9ad9f5d372628df0ae36d07d93126e8bb",
+        "assets/clips/seated_rapt.clip.json": "81b0249bb2005d53aafa20cb5a57ae92046d1fe6549075a42db15eff869ccf80",
+        "assets/clips/seated_recoil.clip.json": "8c3a6cbb9844b6858b74eee83eed3948eac8469b24ed445cdbcc30d40247b9c4",
+        "assets/clips/seated_restless.clip.json": "ce72249b174695d292db1ea1392f457a50ff1a4cd4f95903a1941a821de214b6",
+        "assets/clips/sit_back.clip.json": "f203867186315dd038c0be6e285d1a6bc4612f181e7e901e590df2ff09853727",
+        "assets/clips/sit_down.clip.json": "a2994e5519271ad513f1bf55b8beafaee1ed16d195b80cb628a4ad78b243fc7f",
+        "assets/clips/sit_forward.clip.json": "90310dfb6b6f640f25c5317643d575e1c66e3de81cb5cc1a002c1a5310692b0a",
+        "assets/clips/sketching.clip.json": "22333935252bf18f788e71796b56fe9a163900f86f51863dd88d0056d8961aed",
+        "assets/clips/standing_applause.clip.json": "0273fd0b06f66586057862c49613590134a52a7c3a825d468b38e422f06eb776",
+        "assets/clips/stretch.clip.json": "310aeb69605af8f5dd09fd6e93016311f23840bda51499146431b55b94f80ce5",
+        "assets/clips/talking.clip.json": "5e6a913ece289494355f4b8a822732b824923eb8b3adcab1a6cc214098105bf1"
+      },
+      "text": {}
+    },
+    "humanoid_locomotion": {
+      "from": "shared_library/clips/humanoid_locomotion",
+      "version": "2026.10.23",
+      "sha": "e864b1171ebc5699b1bd8738f413c1eb07cf8af32f15fb3a62a6445bfbef8a52",
+      "files": {
+        "assets/clips/carry_walk.clip.json": "7d1a5446fb966111beab14751a73c20f00faa250651b8a7cc4085c23facf0399",
+        "assets/clips/human_fall.clip.json": "ab65de5627533fa7a9d85fd1a6e961e34c42d6d38308160b6663e93a36035883",
+        "assets/clips/run_cycle.clip.json": "68582aebb7c08dfc44b633fb166a7d89960e5591adfb2a232de26784c4bad243",
+        "assets/clips/stand_idle.clip.json": "04b3895e48aa5bde478abe1426844ceb8e3ebbf3f752adfa56c41a52be76bbfd",
+        "assets/clips/stand_idle_left.clip.json": "9423c2ffa815baf84c8088458ca64ab221fd7c7eaaa801a367930a4abed69029",
+        "assets/clips/walk_cycle.clip.json": "5f21442def2327494bb733ba1f045ca18d4179625586aff64aef49ee4482c817"
+      },
+      "text": {}
+    },
+    "humanoid_sports": {
+      "from": "shared_library/clips/humanoid_sports",
+      "version": "2026.10.23",
+      "sha": "f617f8e3a9d43e00fbcf12408ac6c6f004cdc024347847cc50840b5550d40aab",
+      "files": {
+        "assets/clips/ball_handle.clip.json": "ea0740404be5fd42489aef8d666a194adec40403a12d7e779861a8b76c3d5f9a",
+        "assets/clips/defend_stance.clip.json": "4babd850700e8009b33f158ba6ef56b46c4e89fe2c2450679e4bd8899382d3ec",
+        "assets/clips/dribble.clip.json": "6398fd4afc039159d9633371c25ec3724c2f86f9d1eac16e57652b0f9fd35857",
+        "assets/clips/jump_shot.clip.json": "dbe3a6a4ca668192b4f10094d5ab5709d895ce23c5d360a9eb5e4a24141f6e87",
+        "assets/clips/layup.clip.json": "b6b555ef220976006908658562139b76911b7d561083f371f52a509d9b079082",
+        "assets/clips/rebound_reach.clip.json": "b601eadb9dc5594396d37106942f1bea150589a57b1c215f1b667c1dc2f81231",
+        "assets/clips/set_shot.clip.json": "5e59332bdcf7069e4048b967937628d665d51b255406ee5ca89dc2de5f76e041"
+      },
+      "text": {}
+    },
+    "model_variety": {
+      "from": "shared_library/props/model_variety",
+      "version": "2026.10.23",
+      "sha": "254aba295004a96ba04a3b8a4ad6775767ca95c5ae7ecaaf2f80de57d06c5131",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/model_variety.py": "4016688f1d90c79d034d72ee88cc18bf86e0d5f6806c9c310bace8e07ee99f4d"
+      },
+      "text": {}
+    }
+  }
+}

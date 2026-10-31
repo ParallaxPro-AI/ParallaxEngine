@@ -1,0 +1,110 @@
+{
+  "components": {
+    "rigidbody": {
+      "kind": "kinematic",
+      "mass": 0.022,
+      "linear_damping": 0,
+      "lock_rotation": true,
+      "continuous": true
+    },
+    "throw": {}
+  },
+  "children": [
+    {
+      "name": "barrel",
+      "at": [
+        0,
+        0,
+        0
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cylinder",
+          "size": [
+            0.05,
+            0.3,
+            0.05
+          ],
+          "color": "#eff0f3",
+          "metallic": 0.7,
+          "roughness": 0.35
+        }
+      }
+    },
+    {
+      "name": "tip",
+      "at": [
+        0,
+        0,
+        0.195
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cone",
+          "size": [
+            0.05,
+            0.09,
+            0.05
+          ],
+          "color": "#dfe2e7",
+          "metallic": 0.8,
+          "roughness": 0.3
+        }
+      }
+    },
+    {
+      "name": "flight",
+      "at": [
+        0,
+        0,
+        -0.185
+      ],
+      "rotation": [
+        90,
+        0,
+        0
+      ],
+      "components": {
+        "shape": {
+          "kind": "cone",
+          "size": [
+            0.085,
+            0.09,
+            0.085
+          ],
+          "color": "#f8ce86",
+          "roughness": 0.6
+        }
+      }
+    }
+  ],
+  "behaviors": {
+    "dart_throw": {
+      "aim_speed_x": 0.715,
+      "aim_speed_y": 0.609,
+      "aim_limit": 1.112,
+      "charge_seconds": 1.05,
+      "base_speed": 16.49,
+      "speed_range": 10.99,
+      "scatter_max": 0.148,
+      "draught_accel": 3.4,
+      "plane_gap": 0.12,
+      "floor_y": 0.12,
+      "max_flight_seconds": 4.0,
+      "stick_seconds": 0.9,
+      "preview_power": 0.62,
+      "preview_points": 16,
+      "preview_step": 0.02
+    }
+  }
+}

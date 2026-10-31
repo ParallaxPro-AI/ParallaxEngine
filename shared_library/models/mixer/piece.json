@@ -1,0 +1,10 @@
+{
+  "id": "mixer",
+  "summary": "A tilt-head stand mixer: a painted enamel base with a cantilevered motor head that hinges up to lift the flat… joints head_tilt, bowl; sockets socket_bowl.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mixer or place \"prefab\": \"mixer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mixer"]
+}

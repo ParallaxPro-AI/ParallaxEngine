@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paddling_pool"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.516, 0.454, 1.516],
+      "offset": [0, 0.227, 0]
+    }
+  }
+}

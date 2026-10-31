@@ -1,0 +1,10 @@
+{
+  "id": "cargo_plane",
+  "summary": "A four-engine high-wing military-style tactical transport: a lofted fuselage with a blunt radome nose, raked… joints crew_door, para_door_l, para_door_r, cargo_ramp, upper_cargo_door, wing_aileron_l, …; options camo; sockets seat_driver, seat_pax_1, eye_point, instrument_anchor, socket_cargo, socket_ramp, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cargo_plane or place \"prefab\": \"cargo_plane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cargo_plane"]
+}

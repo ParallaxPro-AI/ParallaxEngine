@@ -1,0 +1,10 @@
+{
+  "components": { "model": { "model": "models/gadget" } },
+  "behaviors": {
+    "model_variety": {
+      "choices": { "paint": ["blue", "green"] },
+      "colors": { "body": ["#555555", "#9a8f7a", "#cfcfcf"] },
+      "height": 0.1
+    }
+  }
+}

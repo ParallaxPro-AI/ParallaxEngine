@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dj_booth_club"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.26, 1.406, 0.92],
+      "offset": [0, 0.703, 0]
+    }
+  }
+}

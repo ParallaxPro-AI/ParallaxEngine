@@ -1,0 +1,10 @@
+{
+  "id": "persian_rug_rolled",
+  "summary": "A hand-knotted Persian rug, 1.5 m wide, rolled and tied with two jute cords, its last 0.6 m lying unrolled on… options field.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.persian_rug_rolled or place \"prefab\": \"persian_rug_rolled\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:persian_rug_rolled"]
+}

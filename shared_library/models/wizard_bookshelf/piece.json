@@ -1,0 +1,10 @@
+{
+  "id": "wizard_bookshelf",
+  "summary": "A wizard's tall bookcase in dark walnut: four shelves crammed with leather tomes (gilt-banded spines, leaning… joints door_l, door_r; options wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wizard_bookshelf or place \"prefab\": \"wizard_bookshelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wizard_bookshelf"]
+}

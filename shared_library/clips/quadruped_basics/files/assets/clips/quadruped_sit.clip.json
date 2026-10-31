@@ -1,0 +1,7 @@
+{
+  "rig": "quadruped", "duration": 0.5, "loop": false,
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":0},"pose":{"BL_UpperLeg":[0,0,0],"BL_LowerLeg":[0,0,0],"BR_UpperLeg":[0,0,0],"BR_LowerLeg":[0,0,0],"FL_UpperLeg":[0,0,0],"FL_LowerLeg":[0,0,0],"FR_UpperLeg":[0,0,0],"FR_LowerLeg":[0,0,0],"Spine":[0,0,0],"Spine2":[0,0,0],"Neck":[0,0,0],"Head":[0,0,0],"Tail1":[0,0,0],"Tail2":[0,0,0],"Tail3":[0,0,0]}},
+    {"time":0.5,"ease":"out_cubic","root":{"y":-0.05},"pose":{"BL_UpperLeg":[-60,0,0],"BL_LowerLeg":[88,0,0],"BR_UpperLeg":[-60,0,0],"BR_LowerLeg":[88,0,0],"FL_UpperLeg":[-6,0,0],"FL_LowerLeg":[10,0,0],"FR_UpperLeg":[-6,0,0],"FR_LowerLeg":[10,0,0],"Spine":[-4,0,0],"Spine2":[3,0,0],"Neck":[-3,0,0],"Head":[4,0,0],"Tail1":[-30,0,0],"Tail2":[-43.76,-11.75,16.73],"Tail3":[-28.39,-10.12,20.57]}}
+  ]
+}

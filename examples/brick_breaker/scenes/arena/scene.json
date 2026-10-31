@@ -1,0 +1,16 @@
+{
+  "ui": ["hud"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/aa/38/aa382c853274b28019e614c20d9b0ad2273875c9eaefa6ccfe80462a0fb5b239.mp3",
+  "environment": { "ambient": "#bcbcc4", "sun": { "intensity": 0 }, "post": { "saturation": 0.8, "temperature": 0.1 } },
+  "entities": [
+    { "prefab": "camera", "at": [0, 19.988, -0.698], "rotation": [88, 0, 0] },
+    { "prefab": "sun", "rotation": [90, 0, 0] },
+    { "prefab": "field", "at": [0, 0, 0] },
+    { "prefab": "rail", "at": [-9.4, 0.3, 0.2] },
+    { "prefab": "rail", "at": [9.4, 0.3, 0.2] },
+    { "prefab": "rail_top", "at": [0, 0.3, 7.0] },
+    { "prefab": "wall", "id": "wall", "at": [0, 0.5, 4.28] },
+    { "prefab": "paddle", "id": "paddle", "at": [0, 0.5, -6.6] },
+    { "prefab": "ball", "id": "ball", "at": [0, 0.6, -5.94] }
+  ]
+}

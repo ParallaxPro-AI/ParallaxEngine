@@ -1,0 +1,10 @@
+{
+  "id": "fishing_bobber_tackle_box",
+  "summary": "A three-section cantilever tackle box, shipped OPEN: a moulded forest-green body (~15 x 8 x 5 in, 0.38 x 0.20… joints arm_front_0, tray_front_0, arm_front_1, tray_front_1, arm_back_0, tray_back_0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fishing_bobber_tackle_box or place \"prefab\": \"fishing_bobber_tackle_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fishing_bobber_tackle_box"]
+}

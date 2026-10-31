@@ -1,0 +1,10 @@
+{
+  "id": "stage_curtain",
+  "summary": "A theatre stage's grand drape: two deep-pleated crimson velvet traveller panels with gold hem bands hanging f… joints panel_l, panel_r; options frame, drape.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stage_curtain or place \"prefab\": \"stage_curtain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stage_curtain"]
+}

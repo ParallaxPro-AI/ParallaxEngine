@@ -1,0 +1,10 @@
+{
+  "id": "basic_dining_chair",
+  "summary": "A budget dining chair from the 'basic' apartment set: a light-pine frame with tapered front legs, raked back… options pad; sockets seat_center.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_dining_chair or place \"prefab\": \"basic_dining_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_dining_chair"]
+}

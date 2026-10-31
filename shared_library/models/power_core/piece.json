@@ -1,0 +1,10 @@
+{
+  "id": "power_core",
+  "summary": "A sci-fi energy core: a pedestal-mounted glowing plasma core suspended inside three tilted gyroscopic rings t… joints core, ring_inner, ring_mid, ring_outer; options charge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.power_core or place \"prefab\": \"power_core\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:power_core"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "pickup",
+  "summary": "A full-size pickup truck: separate front clip, cab and open cargo bed with a drop-down tailgate, front and… joints door_front_l, door_front_r, door_rear_l, door_rear_r, tailgate; options cab; sockets seat_driver, seat_crew_1, seat_pax_1, seat_pax_2 ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.pickup or place \"prefab\": \"pickup\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:pickup"
+  ]
+}

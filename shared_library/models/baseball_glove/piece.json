@@ -1,0 +1,10 @@
+{
+  "id": "baseball_glove",
+  "summary": "A 12-inch leather fielder's glove standing open on its heel: a lofted pocket body cupped on the palm side, fo… sockets socket_pocket, socket_wrist.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baseball_glove or place \"prefab\": \"baseball_glove\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baseball_glove"]
+}

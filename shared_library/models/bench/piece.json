@@ -1,0 +1,14 @@
+{
+  "id": "bench",
+  "summary": "A public/street bench in three interchangeable styles: a slatted wooden PARK bench on cast-iron arm ends,… options style; sockets socket_seat.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bench or place \"prefab\": \"bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bench"
+  ]
+}

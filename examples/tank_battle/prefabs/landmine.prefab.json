@@ -1,0 +1,25 @@
+{
+  "components": {
+    "model": {
+      "model": "models/landmine",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.337,
+        0.1615,
+        0.332
+      ],
+      "offset": [
+        0.0025,
+        0.0793,
+        0.0
+      ],
+      "layer": "prop"
+    },
+    "grounded": {
+      "lift": 0
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pharmacy_shelf",
+  "summary": "A stocked pharmacy wall bay: white melamine carcass with a mint back panel and a kick plate, five shelves wit… options accent, contents; sockets socket_shelf_0, socket_shelf_1, socket_shelf_2, socket_shelf_3, socket_shelf_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pharmacy_shelf or place \"prefab\": \"pharmacy_shelf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pharmacy_shelf"]
+}

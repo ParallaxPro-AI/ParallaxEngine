@@ -1,0 +1,14 @@
+{
+  "id": "utility_pole",
+  "summary": "A 9.6 m creosoted timber distribution pole: tapered shaft, two braced crossarms carrying ceramic… options fitment; sockets line_top, line_hi_l, line_hi_r, line_lo_l ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.utility_pole or place \"prefab\": \"utility_pole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:utility_pole"
+  ]
+}

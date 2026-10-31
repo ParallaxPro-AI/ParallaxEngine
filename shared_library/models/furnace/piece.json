@@ -1,0 +1,10 @@
+{
+  "id": "furnace",
+  "summary": "A heavy cast-iron solid-fuel industrial furnace: a boxy body on a plinth, a large hinged firebox door with a… joints door, damper; sockets socket_firebox.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.furnace or place \"prefab\": \"furnace\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:furnace"]
+}

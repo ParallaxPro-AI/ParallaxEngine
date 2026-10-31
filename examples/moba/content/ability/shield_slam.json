@@ -1,0 +1,15 @@
+{
+  "name": "Shield Slam",
+  "blurb": "Bash what's in front of you and slow it down.",
+  "kind": "melee",
+  "cooldown": { "base": 8, "per_rank": -0.7 },
+  "mana": { "base": 40, "per_rank": 4 },
+  "damage": { "base": 66, "per_rank": 26 },
+  "damage_kind": "physical",
+  "range": { "base": 5.5, "per_rank": 0.35 },
+  "effect": "dazed",
+  "effect_seconds": 1.5,
+  "animation": "attack",
+  "cast_vfx": "vfx/slash_cast",
+  "vfx": "vfx/slash"
+}

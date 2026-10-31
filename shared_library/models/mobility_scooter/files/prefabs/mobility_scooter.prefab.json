@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mobility_scooter"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 110,
+      "linear_damping": 0.1,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6395,
+        1.3109,
+        1.475
+      ],
+      "offset": [
+        -0.0203,
+        0.6555,
+        -0.0575
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 3.5,
+      "steering": 36,
+      "grip": 7,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.0203,
+        0.6555,
+        -0.0575
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

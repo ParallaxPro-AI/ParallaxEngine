@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/samurai_armor_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7359, 1.7043, 0.4848],
+      "offset": [0, 0.8522, 0.0014]
+    }
+  }
+}

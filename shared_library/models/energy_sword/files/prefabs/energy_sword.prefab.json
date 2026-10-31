@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/energy_sword"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.045, 0.941, 0.047],
+      "offset": [0, 0.4705, 0.001]
+    }
+  }
+}

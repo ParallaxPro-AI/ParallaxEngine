@@ -1,0 +1,24 @@
+{
+  "z": 18,
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/ab/22/ab226c1f138b34475dbfe6c24875a8b08a60bceaa8628684902074e04293085b.png",
+      "size": [
+        0.65,
+        0.65
+      ]
+    },
+    "collider": {
+      "shape": "circle",
+      "radius": 0.52,
+      "trigger": true
+    },
+    "scrolls": {
+      "factor": 1
+    }
+  },
+  "tags": [
+    "coin"
+  ],
+  "pool": 32
+}

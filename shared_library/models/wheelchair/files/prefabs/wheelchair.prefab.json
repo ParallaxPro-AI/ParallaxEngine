@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wheelchair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.755, 0.9683, 0.88],
+      "offset": [0, 0.4842, 0.03]
+    }
+  }
+}

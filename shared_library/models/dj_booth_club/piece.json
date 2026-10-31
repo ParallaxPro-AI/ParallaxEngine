@@ -1,0 +1,10 @@
+{
+  "id": "dj_booth_club",
+  "summary": "A nightclub DJ booth: a gloss-black faceted carcass (flat centre front, raked wings) with back-lit violet acr… joints cabinet_door, player_l_jog, player_r_jog, ch_fader_0, ch_fader_1, ch_fader_2, …; options glow; sockets dj, drink.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dj_booth_club or place \"prefab\": \"dj_booth_club\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dj_booth_club"]
+}

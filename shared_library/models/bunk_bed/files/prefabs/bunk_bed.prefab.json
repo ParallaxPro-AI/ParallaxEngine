@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bunk_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1762, 1.723, 2.092],
+      "offset": [0.0521, 0.8615, 0]
+    }
+  }
+}

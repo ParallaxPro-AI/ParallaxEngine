@@ -1,0 +1,10 @@
+{
+  "id": "turbine_intake",
+  "summary": "A hydro-turbine headrace intake set into a concrete headwall: a raked steel trash rack across the ~4 m mouth… joints runner; sockets socket_flow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.turbine_intake or place \"prefab\": \"turbine_intake\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:turbine_intake"]
+}

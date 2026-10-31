@@ -1,0 +1,14 @@
+{
+  "id": "fox",
+  "summary": "A red fox on the engine's quadruped_20 rig, so the built-in quadruped clips (Idle, Walk, Trot, Sit, Loaf,… options coat; sockets head_top, back, collar, mouth; humanoid skeleton.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fox or place \"prefab\": \"fox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fox"
+  ]
+}

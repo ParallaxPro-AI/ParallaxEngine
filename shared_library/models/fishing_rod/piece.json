@@ -1,0 +1,10 @@
+{
+  "id": "fishing_rod",
+  "summary": "A 2.13 m (7 ft) two-piece spinning rod: rubber butt cap, cork rear and fore grips either side of a graphite r… joints crank, bail; options reel, blank_colour, wrap_colour; sockets line_tip, line_spool, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.fishing_rod or place \"prefab\": \"fishing_rod\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:fishing_rod"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chain_link_fence",
+  "summary": "One 2.5 m bay of galvanised chain-link fencing: a line post with a loop cap at the -X end, a top rail through… options top, end_post, coating; sockets next_module.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chain_link_fence or place \"prefab\": \"chain_link_fence\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chain_link_fence"]
+}

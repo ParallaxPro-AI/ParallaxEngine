@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/classroom_desk_pair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2101, 0.8025, 0.8328],
+      "offset": [0, 0.3997, 0.0004]
+    }
+  }
+}

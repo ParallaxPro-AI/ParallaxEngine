@@ -1,0 +1,10 @@
+{
+  "id": "trebuchet",
+  "summary": "A 4.8 m tall counterweight trebuchet on a 6.2 m timber base: two A-frame towers on long sills carry an iron a… joints windlass, arm, counterweight, sling; options timber, loaded.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trebuchet or place \"prefab\": \"trebuchet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trebuchet"]
+}

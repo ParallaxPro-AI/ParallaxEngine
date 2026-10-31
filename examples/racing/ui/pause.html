@@ -1,0 +1,53 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .srp { position: fixed; inset: 0; pointer-events: auto; }
+  .srp-dim { position: absolute; inset: 0; background: rgba(8,6,8,0.62); animation: sr-fade 160ms ease both; }
+  .srp-center { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: calc(40 * var(--u)); }
+  .srp-card { --c: calc(24 * var(--u)); --tw: calc(140 * var(--u)); width: min(calc(640 * var(--u)), 100%); padding: calc(36 * var(--u)) calc(40 * var(--u)); display: flex; flex-direction: column; gap: calc(28 * var(--u)); animation: sr-rise 220ms var(--sr-ease) both; }
+  .srp-head { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .srp-title { font-size: calc(128 * var(--u)); }
+  .srp-actions { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .sr .srp-actions .sr-btn { width: 100%; --h: calc(64 * var(--u)); --s: calc(16 * var(--u)); font-size: calc(26 * var(--u)); }
+  .sr .srp-actions .sr-btn.is-pri { --h: calc(72 * var(--u)); --s: calc(18 * var(--u)); font-size: calc(32 * var(--u)); }
+  .srp-gfx { display: flex; flex-direction: column; gap: calc(12 * var(--u)); border-top: calc(1 * var(--u)) solid var(--sr-line); padding-top: calc(22 * var(--u)); }
+  .srp-gfx .sr-lbl { font-size: calc(14 * var(--u)); }
+  .sr .srp-gfx .sr-opt { --s: calc(11 * var(--u)); min-width: calc(150 * var(--u)); height: calc(56 * var(--u)); font-size: calc(24 * var(--u)); }
+  .srp-hint { display: flex; align-items: center; justify-content: center; gap: calc(10 * var(--u)); }
+  @media (pointer: coarse) {
+    .srp-dim { background: rgba(8,6,8,0.66); }
+    .srp-center { padding: var(--sr-safe-t) var(--sr-safe-r) var(--sr-safe-b) var(--sr-safe-l); }
+    .srp-card { --c: calc(28 * var(--u)); --tw: calc(120 * var(--u)); width: min(calc(1200 * var(--u)), 100%); padding: calc(36 * var(--u)) calc(44 * var(--u)); display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.1fr); gap: calc(44 * var(--u)); align-items: center; }
+    .srp-head { gap: calc(16 * var(--u)); }
+    .srp-title { font-size: calc(128 * var(--u)); }
+    .srp-actions { gap: calc(16 * var(--u)); }
+    .sr .srp-actions .sr-btn { --h: calc(88 * var(--u)); --s: calc(22 * var(--u)); font-size: calc(36 * var(--u)); padding: 0 calc(36 * var(--u)); }
+    .sr .srp-actions .sr-btn.is-pri { --h: calc(104 * var(--u)); --s: calc(26 * var(--u)); font-size: calc(44 * var(--u)); }
+    .srp-gfx { gap: calc(10 * var(--u)); padding-top: calc(16 * var(--u)); margin-top: calc(4 * var(--u)); }
+    .srp-gfx .sr-lbl { font-size: calc(22 * var(--u)); }
+    .sr .srp-gfx .sr-opt { --s: calc(18 * var(--u)); flex: 1; min-width: calc(140 * var(--u)); height: calc(88 * var(--u)); font-size: calc(34 * var(--u)); }
+    .srp-hint { display: none; }
+  }
+</style>
+<div class="sr srp">
+  <div class="srp-dim"></div>
+  <div class="srp-center">
+    <section class="sr-plate is-tick srp-card" role="dialog">
+      <div class="srp-head">
+        <div class="sr-kicker"><span data-bind="round"></span> · <span data-bind="place"></span></div>
+        <h1 class="sr-h1 srp-title" data-text="paused"></h1>
+      </div>
+      <div class="srp-actions">
+        <button class="sr-btn is-pri" data-action="resume"><span data-text="resume"></span><span class="sr-kbd is-dark">P</span></button>
+        <button class="sr-btn" data-action="main_menu"><span data-text="main_menu"></span></button>
+        <div class="srp-gfx">
+          <div class="sr-lbl" data-text="graphics"></div>
+          <div class="sr-seg" role="group" data-each="qualities"><template><button class="sr-opt" data-action="quality" data-class-is-on="on" data-attr-aria-pressed="pressed" data-bind="label"></button></template></div>
+        </div>
+      </div>
+      <div class="srp-hint"><span class="sr-lbl" data-text="pause_press"></span><span class="sr-kbd">P</span><span class="sr-lbl" data-text="pause_to_resume"></span></div>
+    </section>
+  </div>
+</div>

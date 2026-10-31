@@ -1,0 +1,14 @@
+{
+  "id": "bow",
+  "summary": "A hand-held archery bow stood upright: a central riser with a leather grip, an upper and a lower limb that… joints limb_upper, limb_lower, bowstring; options type; sockets socket_arrow.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bow or place \"prefab\": \"bow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bow"
+  ]
+}

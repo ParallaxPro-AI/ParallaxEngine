@@ -1,0 +1,10 @@
+{
+  "id": "paper_shredder",
+  "summary": "An office paper shredder: a dark plastic cabinet on four small casters, a pull-out waste bin with a smoked wi… joints bin; options body, paper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_shredder or place \"prefab\": \"paper_shredder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_shredder"]
+}

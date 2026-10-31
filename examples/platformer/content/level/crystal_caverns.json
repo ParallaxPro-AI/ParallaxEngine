@@ -1,0 +1,11 @@
+{
+  "name": "Lantern Hollows",
+  "world": "Crystal caverns",
+  "theme": "crystal",
+  "subtitle": "Ride the lantern ferries through the old ruins.",
+  "scene": "level_crystal_caverns",
+  "order": 2,
+  "length": 135,
+  "par_time": 75,
+  "sections": ["The glowing trail", "Ferry crossing", "Broken causeway", "The lantern vault"]
+}

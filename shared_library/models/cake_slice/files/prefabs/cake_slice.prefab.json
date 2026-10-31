@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cake_slice"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.035, 0.09, 0.0538],
+      "offset": [0, 0.045, 0]
+    }
+  }
+}

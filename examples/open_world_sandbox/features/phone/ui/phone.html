@@ -1,0 +1,63 @@
+<!-- Sam's phone, dressed like the template kit's device rules (code/ui/hud/sb_kit.html over lib:device): the
+     sunset-gradient home screen, teal-accent app tiles, rounded rows. A list item's "contact" / "place"
+     fills the same-named parameter of call() / route(). -->
+<link rel="stylesheet" href="../../../ui/sunset_bay.css">
+<style>
+  .ph-scrim { position: fixed; inset: 0; background: linear-gradient(90deg, rgba(4,10,14,0) 40%, rgba(4,10,14,.6)); }
+  .ph { position: fixed; right: calc(140 * var(--sb-u)); bottom: calc(56 * var(--sb-u)); width: calc(380 * var(--sb-u)); height: calc(780 * var(--sb-u)); padding: calc(10 * var(--sb-u)); border-radius: calc(52 * var(--sb-u)); background: #05060a; box-shadow: 0 calc(30 * var(--sb-u)) calc(80 * var(--sb-u)) rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.06); font-family: var(--sb-font); color: #eef0f5; }
+  .ph-screen { height: 100%; border-radius: calc(42 * var(--sb-u)); overflow: hidden auto; scrollbar-width: none; display: flex; flex-direction: column; background: linear-gradient(180deg, #1b1640 0%, #4a2350 30%, #b2475a 52%, #f2734a 62%, #0f3a44 62.4%, #0c0d15 100%); }
+  .ph-clock { margin: calc(56 * var(--sb-u)) 0 calc(8 * var(--sb-u)); text-align: center; font-weight: 300; font-size: calc(76 * var(--sb-u)); letter-spacing: -.04em; }
+  .ph-sub { text-align: center; color: rgba(238,240,245,.8); font-weight: 600; font-size: calc(15 * var(--sb-u)); }
+  .ph-apps { display: grid; grid-template-columns: repeat(4, 1fr); gap: calc(22 * var(--sb-u)) calc(10 * var(--sb-u)); margin: auto calc(10 * var(--sb-u)) calc(10 * var(--sb-u)); padding: calc(18 * var(--sb-u)) calc(8 * var(--sb-u)); border-radius: calc(28 * var(--sb-u)); background: rgba(12,13,21,.55); }
+  .ph-tile { display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--sb-u)); text-decoration: none; color: inherit; font: 500 calc(12 * var(--sb-u))/1 var(--sb-font); background: none; border: 0; cursor: pointer; padding: 0; }
+  .ph-tile i { width: calc(62 * var(--sb-u)); height: calc(62 * var(--sb-u)); border-radius: calc(17 * var(--sb-u)); background: #161a2b; border: 1px solid rgba(57,224,194,.18); display: grid; place-items: center; color: var(--sb-phone-accent); font-style: normal; font-size: calc(28 * var(--sb-u)); }
+  .ph-tile:hover i, .ph-tile[data-parallax-hover] i { border-color: var(--sb-phone-accent); }
+  .ph-app { background: var(--sb-phone-bg); padding: calc(18 * var(--sb-u)) 0 calc(12 * var(--sb-u)); }
+  .ph-head { color: var(--sb-phone-accent); font: 700 calc(18 * var(--sb-u))/1 var(--sb-font); text-align: center; margin: calc(4 * var(--sb-u)) 0 calc(14 * var(--sb-u)); }
+  .ph-rows { list-style: none; margin: 0; padding: 0; }
+  .ph-row { display: flex; align-items: center; gap: calc(12 * var(--sb-u)); width: calc(100% - calc(24 * var(--sb-u))); margin: 0 calc(12 * var(--sb-u)) calc(4 * var(--sb-u)); padding: calc(14 * var(--sb-u)) calc(16 * var(--sb-u)); border: 0; border-radius: calc(16 * var(--sb-u)); background: rgba(255,255,255,.035); color: #eef0f5; font: 500 calc(16 * var(--sb-u))/1.2 var(--sb-font); text-align: left; cursor: pointer; }
+  .ph-row:hover, .ph-row[data-parallax-hover] { background: rgba(57,224,194,.1); }
+  .ph-row small { margin-left: auto; color: rgba(238,240,245,.45); font-size: calc(13 * var(--sb-u)); }
+  .ph-row.routed { box-shadow: inset 0 0 0 1px var(--sb-phone-accent); }
+  .ph-row.routed small::after { content: 'Route'; color: var(--sb-phone-accent); font-weight: 700; }
+  .ph-badge { width: calc(36 * var(--sb-u)); height: calc(36 * var(--sb-u)); flex: none; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(160deg, #39e0c2, #0f3a44); color: #0c0d15; font-weight: 800; }
+  .ph-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(4 * var(--sb-u)); margin: 0 calc(12 * var(--sb-u)); border-radius: calc(14 * var(--sb-u)); overflow: hidden; }
+  .ph-grid img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+  .ph-close { display: block; margin: calc(16 * var(--sb-u)) auto calc(18 * var(--sb-u)); width: 40%; height: calc(40 * var(--sb-u)); border: 0; border-radius: calc(20 * var(--sb-u)); color: var(--sb-phone-accent); background: rgba(57,224,194,.1); font: 600 calc(14 * var(--sb-u))/1 var(--sb-font); cursor: pointer; }
+  @media (pointer: coarse) {
+    .ph-scrim { background: rgba(4,10,14,.6); }
+    .ph { right: 50%; bottom: 50%; width: calc(400 * var(--sb-u)); height: calc(740 * var(--sb-u)); margin: 0 calc(-200 * var(--sb-u)) calc(-370 * var(--sb-u)) 0; padding: calc(12 * var(--sb-u)); border-radius: calc(60 * var(--sb-u)); }
+    .ph-screen { border-radius: calc(50 * var(--sb-u)); }
+    .ph-clock { margin: calc(30 * var(--sb-u)) 0 calc(8 * var(--sb-u)); font-size: calc(56 * var(--sb-u)); }
+    .ph-tile i { width: calc(68 * var(--sb-u)); height: calc(68 * var(--sb-u)); border-radius: calc(20 * var(--sb-u)); font-size: calc(30 * var(--sb-u)); }
+    .ph-tile { font-size: calc(17 * var(--sb-u)); }
+  }
+</style>
+<div class="ph-scrim"></div>
+<section class="ph"><div class="ph-screen">
+  <div class="ph-clock">17:30</div>
+  <div class="ph-sub" data-text="game_title"></div>
+  <nav class="ph-apps">
+    <a class="ph-tile" href="#contacts"><i>☎</i><span data-text="app_contacts"></span></a>
+    <a class="ph-tile" href="#maps"><i>⌖</i><span data-text="app_maps"></span></a>
+    <a class="ph-tile" href="#photos"><i>▣</i><span data-text="app_photos"></span></a>
+    <button class="ph-tile" data-action="camera"><i>◉</i><span data-text="app_camera"></span></button>
+  </nav>
+  <div class="ph-app" id="contacts">
+    <div class="ph-head" data-text="app_contacts"></div>
+    <ul class="ph-rows" data-each="contacts">
+      <template><li><button class="ph-row" data-action="call"><span class="ph-badge">☎</span><span data-bind="name"></span><small data-bind="number"></small></button></li></template>
+    </ul>
+  </div>
+  <div class="ph-app" id="maps">
+    <div class="ph-head" data-text="app_maps"></div>
+    <ul class="ph-rows" data-each="places">
+      <template><li><button class="ph-row" data-action="route" data-class-routed="routed"><span class="ph-badge" data-bind="glyph"></span><span data-bind="label"></span><small></small></button></li></template>
+    </ul>
+  </div>
+  <div class="ph-app" id="photos">
+    <div class="ph-head" data-text="app_photos"></div>
+    <div class="ph-grid" data-each="photos"><template><img data-attr-src="src" alt=""></template></div>
+    <button class="ph-close" data-action="close" data-text="close"></button>
+  </div>
+</div></section>

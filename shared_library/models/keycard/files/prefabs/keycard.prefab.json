@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/keycard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.098, 0.0609, 0.052],
+      "offset": [0, 0.0304, 0]
+    }
+  }
+}

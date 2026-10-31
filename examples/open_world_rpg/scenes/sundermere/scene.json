@@ -1,0 +1,286 @@
+{
+  "entities": [{"prefab": "sun_fill", "rotation": [0, -140, 0]}],
+  "ui": [
+    "hud"
+  ],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/22/43/2243ce599da7f8fca6e57f22acde8249b9258b5b1341e5957482ef79a90ddd14.mp3",
+  "environment": {
+    "sky": "atmosphere",
+    "time_of_day": 14.5,
+    "sun": {
+      "direction": [
+        0.4,
+        -0.8,
+        0.3
+      ],
+      "color": "#fff9ed",
+      "intensity": 2.3
+    },
+    "ambient": "#adbac8",
+    "clouds": {
+      "density": 0.35
+    },
+    "weather": {
+      "preset": "clear",
+      "clouds": 0.22
+    },
+    "post": {
+      "saturation": 1.12,
+      "contrast": 1.08,
+      "bloom": 0.02,
+      "vignette": 0.16
+    },
+    "atmosphere": {
+      "haze": 1.1
+    }
+  },
+  "terrain": {
+    "size": [
+      480,
+      480
+    ],
+    "resolution": 128,
+    "base_height": 8,
+    "noise": [
+      {
+        "kind": "fbm",
+        "amplitude": 1.2,
+        "wavelength": 50,
+        "octaves": 3,
+        "seed": 7
+      }
+    ],
+    "hills": [
+      {
+        "center": [
+          -125,
+          70
+        ],
+        "radius": 91,
+        "height": 28,
+        "feather": 55
+      },
+      {
+        "center": [
+          125,
+          120
+        ],
+        "radius": 91,
+        "height": 35,
+        "feather": 55
+      },
+      {
+        "center": [
+          0,
+          210
+        ],
+        "radius": 75,
+        "height": 45,
+        "feather": 45
+      }
+    ],
+    "flats": [
+      {
+        "center": [
+          0,
+          -12
+        ],
+        "size": [
+          135,
+          165
+        ],
+        "height": 8,
+        "feather": 12
+      },
+      {
+        "center": [
+          0,
+          115
+        ],
+        "size": [
+          90,
+          135
+        ],
+        "height": 8,
+        "feather": 15
+      }
+    ],
+    "water_level": 0,
+    "layers": [
+      {
+        "name": "grass",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/cf/a4/cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a.jpg",
+        "tile": 6,
+        "roughness": 0.95,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/03/dc/03dc0449bb5dcac7819b62ca7a272f6160118c13537a1b31b01fedf3e4ee597b.jpg"
+      },
+      {
+        "name": "dirt",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/58/af/58af2e40100f7f405703a86d593af64379f822c4786850def23ecfc921450d54.jpg",
+        "tile": 5,
+        "roughness": 0.9,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/19/ca/19ca020fbffa44cb041d5f2e9cfeec25ab9d18a3a381c9f8d509339fb406bde9.jpg"
+      },
+      {
+        "name": "stone",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/42/93/429315865fd89c150272592f6d93def174c6f69804a565ff08e53627a885579b.jpg",
+        "tile": 5,
+        "roughness": 0.9,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/84/df/84df2a6c3329566302d248509694bfec3f3ea1000b27ff11b173408c0fdf867d.jpg"
+      },
+      {
+        "name": "cobble",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/42/93/429315865fd89c150272592f6d93def174c6f69804a565ff08e53627a885579b.jpg",
+        "tile": 2.5,
+        "roughness": 0.8,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/84/df/84df2a6c3329566302d248509694bfec3f3ea1000b27ff11b173408c0fdf867d.jpg"
+      }
+    ],
+    "default_layer": "grass",
+    "paint": [
+      {
+        "layer": "cobble",
+        "center": [
+          0,
+          -45
+        ],
+        "radius": 18,
+        "feather": 3
+      },
+      {
+        "layer": "dirt",
+        "center": [
+          0,
+          15
+        ],
+        "size": [
+          35,
+          28
+        ],
+        "feather": 4
+      },
+      {
+        "layer": "dirt",
+        "center": [
+          -12,
+          65
+        ],
+        "radius": 15,
+        "feather": 3
+      },
+      {
+        "layer": "stone",
+        "center": [
+          0,
+          125
+        ],
+        "size": [
+          46,
+          82
+        ],
+        "feather": 3
+      }
+    ],
+    "paths": [
+      {
+        "paint": "dirt",
+        "points": [
+          [
+            0,
+            -78
+          ],
+          [
+            0,
+            -45
+          ],
+          [
+            0,
+            -15
+          ],
+          [
+            -6,
+            15
+          ],
+          [
+            -12,
+            40
+          ],
+          [
+            -12,
+            65
+          ],
+          [
+            0,
+            85
+          ],
+          [
+            0,
+            160
+          ]
+        ],
+        "width": 7,
+        "feather": 2
+      },
+      {
+        "paint": "cobble",
+        "points": [
+          [
+            -32,
+            -43
+          ],
+          [
+            0,
+            -43
+          ],
+          [
+            30,
+            -43
+          ]
+        ],
+        "width": 5,
+        "feather": 1
+      }
+    ]
+  },
+  "foliage": {
+    "layers": [
+      {
+        "id": "meadow_grass",
+        "kind": "grass",
+        "on": "grass",
+        "density": 12,
+        "blade_height": [
+          0.18,
+          0.26
+        ],
+        "seed": 71
+      },
+      {
+        "id": "woodland",
+        "kind": "tree",
+        "species": "broadleaf",
+        "on": "grass",
+        "density": 0.002,
+        "max": 160,
+        "scale": [
+          0.85,
+          1.15
+        ],
+        "seed": 72,
+        "collide": true
+      },
+      {
+        "id": "undergrowth",
+        "kind": "bush",
+        "on": "grass",
+        "density": 0.001,
+        "max": 65,
+        "scale": [
+          0.5,
+          0.8
+        ],
+        "seed": 73
+      }
+    ]
+  }
+}

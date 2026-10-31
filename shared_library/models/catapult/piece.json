@@ -1,0 +1,10 @@
+{
+  "id": "catapult",
+  "summary": "A wheeled wooden siege engine. joints spin_front, spin_rear, winch, arm; options type.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.catapult or place \"prefab\": \"catapult\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:catapult"]
+}

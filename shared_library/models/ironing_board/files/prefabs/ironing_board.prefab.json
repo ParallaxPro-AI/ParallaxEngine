@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ironing_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4023, 1.144, 0.43],
+      "offset": [-0.0838, 0.572, 0]
+    }
+  }
+}

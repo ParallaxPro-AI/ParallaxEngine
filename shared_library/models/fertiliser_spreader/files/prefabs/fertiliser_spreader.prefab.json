@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fertiliser_spreader"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 1.981, 1.59],
+      "offset": [0, 0.9905, 0.055]
+    }
+  }
+}

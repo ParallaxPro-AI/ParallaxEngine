@@ -1,0 +1,10 @@
+{
+  "id": "bowling_lane_section",
+  "summary": "A 7 m modular section of a ten-pin bowling lane, the approach end: a raised maple lane bed with its 39 board… options wood, capping; sockets bowler, continue, foul_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bowling_lane_section or place \"prefab\": \"bowling_lane_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bowling_lane_section"]
+}

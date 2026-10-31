@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cattle_skull"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0136, 0.3899, 0.562],
+      "offset": [0, 0.195, -0.011]
+    }
+  }
+}

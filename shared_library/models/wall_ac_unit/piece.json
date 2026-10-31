@@ -1,0 +1,10 @@
+{
+  "id": "wall_ac_unit",
+  "summary": "A wall-mounted split-system air-conditioner indoor unit: a rounded white casing with a top intake grille, a f… joints front_panel, flap; options finish, mode.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wall_ac_unit or place \"prefab\": \"wall_ac_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wall_ac_unit"]
+}

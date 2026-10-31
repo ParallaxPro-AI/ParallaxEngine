@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bathtub"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7, 0.7845, 0.78],
+      "offset": [0, 0.3922, 0]
+    }
+  }
+}

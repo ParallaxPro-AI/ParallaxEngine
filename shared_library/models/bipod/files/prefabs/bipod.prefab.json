@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bipod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1476, 0.1875, 0.038],
+      "offset": [0, -0.0807, 0.003]
+    }
+  }
+}

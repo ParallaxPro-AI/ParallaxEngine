@@ -1,0 +1,10 @@
+{
+  "id": "bat",
+  "summary": "A generic bat in flight, 0.57 m wingspan and 0.21 m nose to tail-web (large microbat / small fruit bat; scale… joints head, jaw, wing_flap_l, wing_sweep_l, wing_hand_l, wing_flap_r, …; options fur, membrane, eyes; sockets feet, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bat or place \"prefab\": \"bat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bat"]
+}

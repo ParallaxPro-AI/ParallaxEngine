@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/building_blocks"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5585, 0.2, 0.4072],
+      "offset": [-0.0002, 0.1, 0.002]
+    }
+  }
+}

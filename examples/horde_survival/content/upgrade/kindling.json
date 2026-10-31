@@ -1,0 +1,2 @@
+{ "name": "Kindling", "desc": "+4 bolt damage.",
+  "icon": "flame", "weight": 10, "max_stacks": 6, "effect": { "damage_add": 4 } }

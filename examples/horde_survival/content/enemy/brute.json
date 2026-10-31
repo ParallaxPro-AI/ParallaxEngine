@@ -1,0 +1,1 @@
+{ "name": "Ash Brute", "prefab": "brute", "hp": 55, "damage": 14, "move_speed": 2.9, "xp": 4, "score": 35, "heart_chance": 0.05 }

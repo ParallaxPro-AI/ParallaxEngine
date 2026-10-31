@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_face_gas_mask"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2124, 0.268, 0.3196],
+      "offset": [0, 1.7215, 0.0206]
+    }
+  }
+}

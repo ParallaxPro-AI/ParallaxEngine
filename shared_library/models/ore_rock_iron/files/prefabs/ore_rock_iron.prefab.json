@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ore_rock_iron"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2858, 0.8045, 1.0073],
+      "offset": [0.0588, 0.4022, -0.0008]
+    }
+  }
+}

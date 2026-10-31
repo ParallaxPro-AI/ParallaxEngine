@@ -1,0 +1,10 @@
+{
+  "id": "crafting_bench",
+  "summary": "A survival crafting bench built from the woods: a top of four rough-sawn planks nailed to log bearers on four… options wood; sockets socket_work, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crafting_bench or place \"prefab\": \"crafting_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crafting_bench"]
+}

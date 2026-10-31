@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/archive_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.323, 0.2455, 0.399],
+      "offset": [0, 0.1227, 0]
+    }
+  }
+}

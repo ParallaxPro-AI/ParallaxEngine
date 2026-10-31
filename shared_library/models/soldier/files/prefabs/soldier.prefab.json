@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/soldier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.88, 0.323],
+      "offset": [0, 0.94, 0.0235]
+    }
+  }
+}

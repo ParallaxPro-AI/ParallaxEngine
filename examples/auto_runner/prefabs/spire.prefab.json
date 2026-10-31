@@ -1,0 +1,24 @@
+{
+  "z": 16,
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/ad/80/ad80c21388700eadd10c172ac0d7ee8d1f6f452290a1d9ee8799f9fc034649b9.png",
+      "size": [
+        0.5862,
+        1
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.5,
+        0.84
+      ],
+      "trigger": true
+    },
+    "scrolls": {
+      "factor": 1
+    }
+  },
+  "pool": 8
+}

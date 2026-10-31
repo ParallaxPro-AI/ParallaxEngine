@@ -1,0 +1,10 @@
+{
+  "id": "market_stall_tech",
+  "summary": "A street-market electronics and phone-repair stall: a gunmetal post frame under a blue rain tarp with a front… joints case_rear_door; options neon_a, neon_b, tarp_colour; sockets seat_keeper, socket_customer.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_stall_tech or place \"prefab\": \"market_stall_tech\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_stall_tech"]
+}

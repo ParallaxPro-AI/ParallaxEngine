@@ -1,0 +1,14 @@
+{
+  "id": "shield",
+  "summary": "A medieval arm shield: a heraldic field with a raised cross charge on the front and a pair of leather arm… joints arm_straps; options shape, heraldry; sockets socket_boss.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.shield or place \"prefab\": \"shield\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:shield"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "firewood_rack",
+  "summary": "A covered timber log store: four posts on a raised slatted floor, slatted sides and back, and a felted plank… options wood; sockets socket_take.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.firewood_rack or place \"prefab\": \"firewood_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:firewood_rack"]
+}

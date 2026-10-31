@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/laid_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5572, 1.0275, 0.901],
+      "offset": [0, 0.5138, 0.0005]
+    }
+  }
+}

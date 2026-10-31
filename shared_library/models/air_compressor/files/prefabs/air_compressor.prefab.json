@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/air_compressor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.446, 0.4255, 0.446],
+      "offset": [0, 0.2127, 0]
+    }
+  }
+}

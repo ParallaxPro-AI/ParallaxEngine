@@ -1,0 +1,8 @@
+{ "rolls": 2, "drops": [
+  { "item": "coin", "weight": 35, "count": [3, 8] },
+  { "item": "fire_rate_shard", "weight": 20 },
+  { "item": "heart", "weight": 15 },
+  { "item": "bomb", "weight": 12 },
+  { "item": "swift_shard", "weight": 10 },
+  { "item": "soul_ember", "weight": 8 }
+] }

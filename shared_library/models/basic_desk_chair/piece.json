@@ -1,0 +1,10 @@
+{
+  "id": "basic_desk_chair",
+  "summary": "A budget armless swivel task chair from the 'basic' apartment set: warm-grey woven seat and back pads on a bl… joints lift, swivel; options fabric; sockets seat_center.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_desk_chair or place \"prefab\": \"basic_desk_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_desk_chair"]
+}

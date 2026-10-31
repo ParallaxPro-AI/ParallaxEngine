@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/turbine_intake"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.4, 5.2, 1.444],
+      "offset": [0, 2.6, 0.022]
+    }
+  }
+}

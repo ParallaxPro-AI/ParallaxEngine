@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/food_cart_tricycle"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 140,
+      "linear_damping": 0.1,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.22,
+        1.995,
+        2.452
+      ],
+      "offset": [
+        0,
+        0.9975,
+        0.066
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 5,
+      "steering": 30,
+      "grip": 5,
+      "turn_rate": 1.4
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.9975,
+        0.066
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

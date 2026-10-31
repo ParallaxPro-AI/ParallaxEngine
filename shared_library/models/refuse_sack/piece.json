@@ -1,0 +1,10 @@
+{
+  "id": "refuse_sack",
+  "summary": "A tied refuse sack: a slumped bag of rubbish with the lumps of its contents showing through the skin, a gathe… options stream, state; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.refuse_sack or place \"prefab\": \"refuse_sack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:refuse_sack"]
+}

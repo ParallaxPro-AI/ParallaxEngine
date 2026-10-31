@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fishing_bobber_tackle_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4448, 0.2066, 0.4868],
+      "offset": [0.0189, 0.1033, 0]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/94/52/9452f63960334f9e5aaad9c6b7dbb2c6a29bf4709e239dd424c52b6e4c608d93.glb",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "Walk"
+    },
+    "health": {
+      "current": 30,
+      "max": 30
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        2.6,
+        0
+      ],
+      "color": "#ef4444",
+      "hide_when_full": false
+    },
+    "status_effects": {},
+    "side": {
+      "side": "horde"
+    }
+  },
+  "behaviors": {
+    "path_walker": {
+      "arrive_radius": 1.0
+    }
+  },
+  "pool": 64
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ouija_board",
+  "summary": "An old talking board: a walnut-framed panel with a yellowed, stained face printed with the alphabet in two ar… joints planchette_x, planchette_z, planchette_turn; sockets planchette_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ouija_board or place \"prefab\": \"ouija_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ouija_board"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bb_treasure_chest_gold",
+  "summary": "Iron-bound wooden treasure chest with an arched open lid and visible gold.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_treasure_chest_gold or place \"prefab\": \"bb_treasure_chest_gold\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_treasure_chest_gold"]
+}

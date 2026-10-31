@@ -1,0 +1,10 @@
+{
+  "id": "starfighter_player_b",
+  "summary": "An original three-hull heavy player starfighter, about 12 m long and 10.6 m across (sized like a real twin-en… joints canopy, wing_aileron_l, wing_aileron_r, thrust, nose_gear, maingear_l, …; options hull, accent; sockets eye_point, socket_seat, engine_l, engine_r, muzzle_l_a, muzzle_l_b, ….",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.starfighter_player_b or place \"prefab\": \"starfighter_player_b\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:starfighter_player_b"]
+}

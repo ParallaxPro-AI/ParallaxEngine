@@ -1,0 +1,10 @@
+{
+  "id": "map_parchment_spread",
+  "summary": "A hand-inked fantasy treasure map lying open on a surface: a 37 x 29 cm parchment sheet (about A3) with a rag…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.map_parchment_spread or place \"prefab\": \"map_parchment_spread\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:map_parchment_spread"]
+}

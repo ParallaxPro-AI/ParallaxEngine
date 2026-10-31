@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gym_bleachers"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.622, 2.074, 2.448],
+      "offset": [0, 1.034, -0.022]
+    }
+  }
+}

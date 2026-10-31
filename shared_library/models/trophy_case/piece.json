@@ -1,0 +1,10 @@
+{
+  "id": "trophy_case",
+  "summary": "A school-hallway trophy cabinet: an oak-veneer base cupboard with two panelled doors under a glazed display s… joints slide_l, slide_r, door_l, door_r; options backing, finish, contents; sockets shelf_low, shelf_mid, shelf_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trophy_case or place \"prefab\": \"trophy_case\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trophy_case"]
+}

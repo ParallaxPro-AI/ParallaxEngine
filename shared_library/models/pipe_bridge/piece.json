@@ -1,0 +1,10 @@
+{
+  "id": "pipe_bridge",
+  "summary": "One 6.0 m MODULE of a two-tier plant pipe rack (pipe bridge): a steel portal bent of two H-columns on concret… options ends, finish; sockets end_neg, end_pos.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pipe_bridge or place \"prefab\": \"pipe_bridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pipe_bridge"]
+}

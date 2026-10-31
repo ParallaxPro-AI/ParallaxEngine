@@ -1,0 +1,16 @@
+{
+  "id": "kei_van",
+  "summary": "A cab-over microvan: 3.4 m long, 1.5 m wide, wheels at the extreme corners and the driver sitting over the… joints side_door, barn_door_l, barn_door_r, wheel_f_l_roll, wheel_f_l_steer …; options config, paint; sockets seat_driver, seat_pax_1, socket_driver, socket_cargo …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.kei_van or place \"prefab\": \"kei_van\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:kei_van"
+  ]
+}

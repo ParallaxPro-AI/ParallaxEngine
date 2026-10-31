@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drum_kit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.995, 1.1275, 0.9164],
+      "offset": [0.0025, 0.5623, 0.0032]
+    }
+  }
+}

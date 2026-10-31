@@ -1,0 +1,10 @@
+{
+  "id": "car_jack_trolley",
+  "summary": "A hydraulic trolley (floor) jack: pressed red side plates with a raked nose, inward-folded flanges, a carry h… joints lift_arm, saddle, handle; options paint; sockets socket_saddle, socket_operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_jack_trolley or place \"prefab\": \"car_jack_trolley\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_jack_trolley"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "spotlight",
+  "summary": "A stage/studio spotlight fixture: a round fresnel-style body held in a U-yoke that PANS about the vertical ax… joints pan, tilt, barn_top, barn_bottom, barn_left, barn_right; options variant; sockets socket_gel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spotlight or place \"prefab\": \"spotlight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spotlight"]
+}

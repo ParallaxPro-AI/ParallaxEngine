@@ -1,0 +1,10 @@
+{
+  "id": "laptop",
+  "summary": "A 14-inch clamshell laptop: aluminium chassis, a recessed keyboard well with a full key grid and a trackpad… joints screen_hinge; options screen_state; sockets socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laptop or place \"prefab\": \"laptop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laptop"]
+}

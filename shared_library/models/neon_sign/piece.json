@@ -1,0 +1,10 @@
+{
+  "id": "neon_sign",
+  "summary": "A wall/hanging neon sign: a dark backing board with glowing tube lettering on two rows (OPEN / EAT) and a lit… options glyph_set, colour, flicker.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.neon_sign or place \"prefab\": \"neon_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:neon_sign"]
+}

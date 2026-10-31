@@ -1,0 +1,10 @@
+{
+  "id": "life_buoy",
+  "summary": "A 0.76 m foam ring buoy (life ring): a 0.16 m-thick torus in alternating red and white quarter bands, four we… options colour; sockets socket_hang.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.life_buoy or place \"prefab\": \"life_buoy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:life_buoy"]
+}

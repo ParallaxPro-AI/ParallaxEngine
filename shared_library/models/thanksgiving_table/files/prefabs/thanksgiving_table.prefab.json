@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/thanksgiving_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0536, 1.247, 0.99],
+      "offset": [-0.011, 0.6235, 0]
+    }
+  }
+}

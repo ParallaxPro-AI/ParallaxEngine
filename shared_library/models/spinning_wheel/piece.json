@@ -1,0 +1,10 @@
+{
+  "id": "spinning_wheel",
+  "summary": "A treadle spinning wheel: a turned-leg bench carrying a 0.6 m spoked drive wheel between two uprights, a moth… joints wheel, flyer, treadle, footman; options yarn, wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spinning_wheel or place \"prefab\": \"spinning_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spinning_wheel"]
+}

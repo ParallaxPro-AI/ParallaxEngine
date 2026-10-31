@@ -1,0 +1,19 @@
+{
+  "components": {
+    "camera": {
+      "mode": "orthographic",
+      "size": 6,
+      "fit": [
+        [
+          -7.5,
+          -6
+        ],
+        [
+          7.5,
+          6
+        ]
+      ],
+      "background": "#fcd99e"
+    }
+  }
+}

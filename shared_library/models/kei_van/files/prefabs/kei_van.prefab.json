@@ -1,0 +1,60 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kei_van",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.845,
+        2.43,
+        3.489
+      ],
+      "offset": [
+        0.0,
+        1.215,
+        -0.0015
+      ],
+      "bounce": 0.1
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 900,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "vehicle": {
+      "kind": "car",
+      "max_speed": 28,
+      "steering": 38,
+      "acceleration": 13.3,
+      "braking": 17.8
+    },
+    "vehicle_rig": {
+      "wheels": [
+        "wheel_f_l_roll",
+        "wheel_f_r_roll",
+        "wheel_r_l_roll",
+        "wheel_r_r_roll"
+      ],
+      "steer": [
+        "wheel_f_l_steer",
+        "wheel_f_r_steer"
+      ]
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.0,
+        1.215,
+        -0.0015
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ghoul",
+  "summary": "A rigged ghoul - an emaciated, corpse-eating undead - on the canonical 17-bone humanoid rig (forked from `cow… options skin; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ghoul or place \"prefab\": \"ghoul\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ghoul"]
+}

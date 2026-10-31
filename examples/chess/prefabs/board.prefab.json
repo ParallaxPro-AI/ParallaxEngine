@@ -1,0 +1,5 @@
+{
+  "components": {
+    "grid": {"cols": 8, "rows": 8, "cell_size": [1, 1], "plane": "xy", "origin": "center", "row_order": "up"}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ice_block_slippery",
+  "summary": "A slippery ice block for platformer levels: a 1 m cube (one 1 m grid cell) of glossy pale-blue crackled ice w…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_block_slippery or place \"prefab\": \"ice_block_slippery\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_block_slippery"]
+}

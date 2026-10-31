@@ -1,0 +1,10 @@
+{
+  "id": "street_hoop",
+  "summary": "A fixed playground basketball hoop at regulation height: square steel pole, gooseneck overhang, a 1.829 x 1.0… sockets socket_rim_center, socket_board_center.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.street_hoop or place \"prefab\": \"street_hoop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:street_hoop"]
+}

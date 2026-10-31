@@ -1,0 +1,10 @@
+{
+  "id": "foil_wad",
+  "summary": "A loose ball of crumpled cellophane: eighteen faceted sheets folded into each other, with three torn corners… sockets crush_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.foil_wad or place \"prefab\": \"foil_wad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:foil_wad"]
+}

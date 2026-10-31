@@ -1,0 +1,10 @@
+{
+  "id": "cat",
+  "summary": "A small housecat on the engine's FIRST quadruped rig (`quadruped_20` — see `geom/rig.ts`). options coat; sockets head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cat or place \"prefab\": \"cat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cat"]
+}

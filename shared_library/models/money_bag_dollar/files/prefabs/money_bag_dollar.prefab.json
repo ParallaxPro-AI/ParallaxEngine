@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/money_bag_dollar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4267, 0.456, 0.3995],
+      "offset": [0, 0.232, -0.0027]
+    }
+  }
+}

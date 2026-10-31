@@ -1,0 +1,10 @@
+{
+  "id": "teacher_lectern",
+  "summary": "A floor-standing timber lectern for a classroom or school hall: a plinth base, flared side panels, a fielded… joints door; options finish, accessories; sockets socket_reading_top, stand_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.teacher_lectern or place \"prefab\": \"teacher_lectern\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:teacher_lectern"]
+}

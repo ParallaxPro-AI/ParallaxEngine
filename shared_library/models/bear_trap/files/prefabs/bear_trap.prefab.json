@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bear_trap"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.76, 0.0405, 0.4425],
+      "offset": [0, 0.0203, -0.0003]
+    }
+  }
+}

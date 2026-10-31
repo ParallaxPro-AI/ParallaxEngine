@@ -1,0 +1,8 @@
+{
+  "name": "Storm Petrels",
+  "stage": "Semi-Final",
+  "scout_report": "A counter-attacking side. Lose the ball high and you will be punished.",
+  "shirt": "#89b3ed", "kit": "blue", "half_seconds": 90, "accuracy": 0.75,
+  "speed_mul": 1.14, "kick_mul": 1.12, "keeper_speed_mul": 1.12,
+  "press_radius": 32, "shot_range_bonus": 8
+}

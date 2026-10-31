@@ -1,0 +1,10 @@
+{
+  "id": "cannon_launcher",
+  "summary": "A player-launch barrel cannon: a 3.35 m red lathe-turned barrel with brass reinforce bands, a flared muzzle a… joints turntable, elevate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cannon_launcher or place \"prefab\": \"cannon_launcher\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cannon_launcher"]
+}

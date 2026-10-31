@@ -1,0 +1,10 @@
+{
+  "id": "school",
+  "summary": "A two-storey 24 x 14 m brick school under a flat parapet roof: a glazed central entrance bay with working dou… joints lobby_clock_hour_hand, lobby_clock_minute_hand, lobby_clock_second_hand, facade_clock_hour_hand, facade_clock_minute_hand, facade_clock_second_hand; options brick_colour; sockets socket_entrance, socket_lobby, socket_corridor, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.school or place \"prefab\": \"school\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:school"]
+}

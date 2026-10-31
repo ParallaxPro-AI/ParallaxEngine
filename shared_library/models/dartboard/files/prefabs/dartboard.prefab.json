@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dartboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6045, 0.6445, 0.159],
+      "offset": [0.0008, 0.3207, 0.0095]
+    }
+  }
+}

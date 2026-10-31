@@ -1,0 +1,10 @@
+{
+  "id": "hockey_goal",
+  "summary": "A regulation ice-hockey goal: 72 x 48 in (1.83 x 1.22 m) opening framed by 2 3/8 in red posts and crossbar, a… options frame; sockets socket_goal_centre, socket_goal_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hockey_goal or place \"prefab\": \"hockey_goal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hockey_goal"]
+}

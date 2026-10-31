@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fence_post_rail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.2699, 1.2237, 0.2402],
+      "offset": [-0.0034, 0.6085, -0.01]
+    }
+  }
+}

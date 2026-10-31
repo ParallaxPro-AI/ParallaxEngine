@@ -1,0 +1,12 @@
+{
+  "number": 13,
+  "name": "The Switchback",
+  "hint": "2 crates · 2 pads.",
+  "rows": [
+    "#######",
+    "#     #",
+    "# $ * #",
+    "#  . @#",
+    "#######"
+  ]
+}

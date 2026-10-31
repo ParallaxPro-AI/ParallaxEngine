@@ -1,0 +1,10 @@
+{
+  "id": "barn_door",
+  "summary": "A sliding barn door: a planked wood leaf that hangs from two rollers on an overhead steel track and slides si… joints door_slide; options plank_pattern; sockets socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.barn_door or place \"prefab\": \"barn_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:barn_door"]
+}

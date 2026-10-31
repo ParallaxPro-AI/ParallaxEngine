@@ -1,0 +1,10 @@
+{
+  "id": "civilian_woman",
+  "summary": "An everyday adult woman in casual modern clothes — a dusty-rose blouse tucked into dark denim trousers over a… options skin, hair, outfit_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.civilian_woman or place \"prefab\": \"civilian_woman\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:civilian_woman"]
+}

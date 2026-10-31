@@ -1,0 +1,10 @@
+{
+  "id": "seagull",
+  "summary": "A herring-type seagull standing, life size: 0.58 m beak to wing tips (real 0.55-0.66 m), 0.31 m tall. joints head_turn, beak_open; sockets beak.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.seagull or place \"prefab\": \"seagull\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:seagull"]
+}

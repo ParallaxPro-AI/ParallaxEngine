@@ -1,0 +1,10 @@
+{
+  "id": "shower_tub_combo",
+  "summary": "An alcove shower-bath: a 1.52 m enamelled steel tub with a front apron, a moulded basin that slopes up into a… joints curtain, diverter, valve, head; options curtain_colour, tile, walls; sockets seat_bath, socket_stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shower_tub_combo or place \"prefab\": \"shower_tub_combo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shower_tub_combo"]
+}

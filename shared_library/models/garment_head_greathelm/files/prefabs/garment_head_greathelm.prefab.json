@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_greathelm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.271, 0.417, 0.2815],
+      "offset": [0, 1.7535, -0.0008]
+    }
+  }
+}

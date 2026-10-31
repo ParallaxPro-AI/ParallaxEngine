@@ -1,0 +1,10 @@
+{
+  "id": "venetian_gondola",
+  "summary": "An ~11 m Venetian-style gondola: a long, black, asymmetric hull (port side fuller) whose bow and higher stern… joints oar; sockets waterline, seat_passenger_1, seat_passenger_2, gondolier_stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.venetian_gondola or place \"prefab\": \"venetian_gondola\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:venetian_gondola"]
+}

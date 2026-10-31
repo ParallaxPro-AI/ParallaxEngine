@@ -1,0 +1,10 @@
+{
+  "id": "colosseum_section",
+  "summary": "A tileable section of a Roman amphitheatre facade in travertine, three bays (about 15 m) of a curved wall 24…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.colosseum_section or place \"prefab\": \"colosseum_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:colosseum_section"]
+}

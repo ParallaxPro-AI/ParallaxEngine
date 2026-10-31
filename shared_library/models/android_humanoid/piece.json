@@ -1,0 +1,10 @@
+{
+  "id": "android_humanoid",
+  "summary": "A sleek near-future android on the canonical 17-bone humanoid rig (every shared clip retargets onto it): clea… options chassis, optic; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.android_humanoid or place \"prefab\": \"android_humanoid\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:android_humanoid"]
+}

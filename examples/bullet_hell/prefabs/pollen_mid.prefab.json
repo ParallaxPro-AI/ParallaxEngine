@@ -1,0 +1,5 @@
+{
+  "components": {
+    "particles": { "effect": "vfx/pollen_mid", "emitting": true }
+  }
+}

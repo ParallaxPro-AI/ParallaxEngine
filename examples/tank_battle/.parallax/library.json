@@ -1,0 +1,54 @@
+{
+  "pieces": {
+    "barricade": {
+      "from": "shared_library/models/barricade",
+      "version": "2026.10.23",
+      "sha": "ed44da1658695b8851cca19ab3f3f567ebb17b0f753935dc793ab7d1c7d5a083",
+      "files": {
+        "assets/models/barricade.model.json": "8acf9df259ed564250bd8410867d74e3e9563dca7a629282720d143bec3da8db",
+        "prefabs/barricade.prefab.json": "07da1b8a2885257b4cfc3deb95c494bfe61bd43bf44408307beebe86727633fb"
+      },
+      "text": {}
+    },
+    "cargo_container": {
+      "from": "shared_library/models/cargo_container",
+      "version": "2026.10.23",
+      "sha": "196b7f33ac1fea0920ab4f04346c79409dfaf6bf53c7dc6d971c8174b6829386",
+      "files": {
+        "assets/models/cargo_container.model.json": "d2a71c6d5a075223e40619b993eb205678250c064aa4022c73481ef0ac4cabb7",
+        "prefabs/cargo_container.prefab.json": "fac984fc40950b315ec0aa99c73b27e7108a0c93079a732a49a3f7ff76e8bdee"
+      },
+      "text": {}
+    },
+    "crate": {
+      "from": "shared_library/models/crate",
+      "version": "2026.10.23",
+      "sha": "089ebfabfadfa3101b7fb7ec68fe4595b39a48719adad02dc1953e5a0bb66ebc",
+      "files": {
+        "assets/models/crate.model.json": "56571f94c9ed745a328657835246b7f9f3e2fa9e5a82fffdeb9e17540e76488a",
+        "prefabs/crate.prefab.json": "563a830dec77df5b3f3a0dd4c6a3da256b6b6a6ee380e089505dc7d468bbdfec"
+      },
+      "text": {}
+    },
+    "generator": {
+      "from": "shared_library/models/generator",
+      "version": "2026.10.23",
+      "sha": "6c1a2313f3e1fa2ea354d6a763ff7e0ec15b2941bc5468e2c8a0d2977c1dc369",
+      "files": {
+        "assets/models/generator.model.json": "1fbed78cf51dd44a3787821de762522238469ee0aa5d159434d8276aee16de43",
+        "prefabs/generator.prefab.json": "1cb1aea4990ab34893a4fb9dcf39ba7a5d728616d5e03744da7bc256286f4055"
+      },
+      "text": {}
+    },
+    "landmine": {
+      "from": "shared_library/models/landmine",
+      "version": "2026.10.23",
+      "sha": "11972eac7b37b790137a1a4f0928cd66ffccdc59e0312563f8acd3e712181787",
+      "files": {
+        "assets/models/landmine.model.json": "db7cdbcba0107c6cc5bb7ba2b41e9634408db3858f6f49f90cf4417cefef5ca9",
+        "prefabs/landmine.prefab.json": "5e2aed9310f9067b083f8194af16fbfa27c2613cb5cab4ba2d06014b6314b806"
+      },
+      "text": {}
+    }
+  }
+}

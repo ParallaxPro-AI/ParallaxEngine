@@ -1,0 +1,10 @@
+{
+  "id": "golf_cart",
+  "summary": "A two-seat electric golf cart: a moulded fibreglass front cowl with round headlamps and fender wells, an open… joints windscreen_fold, steering, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, …; options paint, seat_trim, roof_colour; sockets seat_driver, seat_pax_1, eye_point, socket_cargo, socket_roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.golf_cart or place \"prefab\": \"golf_cart\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:golf_cart"]
+}

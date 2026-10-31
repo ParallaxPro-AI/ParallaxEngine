@@ -1,0 +1,78 @@
+/* toast.ts: the stacked notices (success / info / warning / error). */
+
+.pp-toast-stack {
+  position: fixed;
+  z-index: var(--z-toast, 1000);
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  pointer-events: none;
+}
+
+.pp-toast-stack:empty { display: none; }
+
+.pp-toast {
+  pointer-events: auto;
+  cursor: pointer;
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 7px 14px 7px 12px;
+  border-radius: var(--radius-md, 6px);
+  border: 1px solid var(--border-light, #3a3a55);
+  border-left-width: 3px;
+  background: rgba(20, 20, 36, 0.95);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  color: var(--text-primary, #e0e0e0);
+  font-family: var(--font-family, sans-serif);
+  font-size: var(--font-size-md, 12px);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+  animation: pp-toast-in 160ms ease-out;
+}
+
+.pp-toast.info { border-left-color: var(--accent, #8648e6); }
+.pp-toast.success { border-left-color: var(--success, #4caf50); }
+.pp-toast.warning { border-left-color: var(--warning, #ff9800); }
+.pp-toast.error { border-left-color: var(--danger, #e05252); }
+
+.pp-toast.leaving {
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 160ms ease-in, transform 160ms ease-in;
+}
+
+@keyframes pp-toast-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pp-toast { animation: none; }
+  .pp-toast.leaving { transition: none; }
+}
+
+/* unsupported_browser.ts: the viewport's notice when neither WebGPU nor WebGL2 can draw. */
+
+.pp-unsupported-browser {
+  position: absolute;
+  inset: 0;
+  z-index: 1001; /* over the runtime's error overlay (1000), which says the same in diagnostic form */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--bg-dark, #1a1a2e);
+  color: var(--text-primary, #e0e0e0);
+  font-family: var(--font-family, sans-serif);
+  text-align: center;
+}
+
+.pp-unsupported-browser .box { max-width: 440px; }
+.pp-unsupported-browser h2 { margin: 0 0 8px; font-size: var(--font-size-xl, 16px); }
+.pp-unsupported-browser p { margin: 0 0 6px; font-size: var(--font-size-md, 12px); color: var(--text-secondary, #9a9ab0); line-height: 1.5; }
+.pp-unsupported-browser code { font-family: var(--font-mono, monospace); font-size: var(--font-size-sm, 11px); }

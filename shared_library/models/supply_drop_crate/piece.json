@@ -1,0 +1,10 @@
+{
+  "id": "supply_drop_crate",
+  "summary": "An airdropped supply crate: a 1.0 x 0.8 m olive drab crate on a three-skid pallet with steel corner angles, b… joints lid; options parachute, canopy; sockets socket_loot, socket_beacon.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.supply_drop_crate or place \"prefab\": \"supply_drop_crate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:supply_drop_crate"]
+}

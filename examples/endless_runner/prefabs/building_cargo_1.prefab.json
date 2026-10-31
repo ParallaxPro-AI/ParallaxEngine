@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cargo_building_1",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

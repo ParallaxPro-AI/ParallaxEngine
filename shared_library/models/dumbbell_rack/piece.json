@@ -1,0 +1,10 @@
+{
+  "id": "dumbbell_rack",
+  "summary": "A two-tier dumbbell rack (1.92 m long) holding ten pairs of black rubber hex dumbbells from 2.5 to 25 kg, gra… options load, head, frame, accent.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dumbbell_rack or place \"prefab\": \"dumbbell_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dumbbell_rack"]
+}

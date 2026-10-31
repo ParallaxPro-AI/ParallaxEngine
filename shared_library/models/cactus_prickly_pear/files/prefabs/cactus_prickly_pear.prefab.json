@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cactus_prickly_pear"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8714, 0.7316, 0.7818],
+      "offset": [-0.004, 0.3658, 0.0442]
+    }
+  }
+}

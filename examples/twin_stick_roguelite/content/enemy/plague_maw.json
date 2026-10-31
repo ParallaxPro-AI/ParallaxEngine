@@ -1,0 +1,12 @@
+{
+  "name": "The Plague Maw", "prefab": "plague_maw", "boss": true,
+  "hp": 150, "contact_damage": 2, "move_speed": 1.2, "standoff": 4.0, "enrage_below": 0.6,
+  "shot": "boss_bolt", "shot_cooldown": 2.0, "burst_count": 4, "burst_spread": 34,
+  "summon": "lurker", "summon_count": 2, "summon_cooldown": 9,
+  "tactics": [
+    { "wounded": true, "move": "hold", "attack": "summon" },
+    { "wounded": true, "move": "hold", "attack": "burst" },
+    { "within": 15, "move": "standoff", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

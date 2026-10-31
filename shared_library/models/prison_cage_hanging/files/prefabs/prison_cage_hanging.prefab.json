@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/prison_cage_hanging"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.046, 3.05, 1.2],
+      "offset": [0, 1.525, 0]
+    }
+  }
+}

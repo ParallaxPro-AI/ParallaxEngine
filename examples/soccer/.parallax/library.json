@@ -1,0 +1,34 @@
+{
+  "pieces": {
+    "bench": {
+      "from": "shared_library/models/bench",
+      "version": "2026.10.23",
+      "sha": "d8ac1959455a4851a46d3989220b644e9688c9bb2cae83a5b2e465f50883f6e1",
+      "files": {
+        "assets/models/bench.model.json": "aac33acbfa69fb2fdcc5e89522a7b590a52e646fc96a89162c1ce7b08c969e94",
+        "prefabs/bench.prefab.json": "2551cecfde78ce0101f4293bd4de44bc33c62765afb7d7fa4193d38c1961829e"
+      },
+      "text": {}
+    },
+    "model_ambient": {
+      "from": "shared_library/props/model_ambient",
+      "version": "2026.10.23",
+      "sha": "a418e8b0f169752af3b9067babaf2da4a788c67cc0466c40dd9f31af97f5540a",
+      "files": {
+        "game/lib/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "game/lib/model_ambient.py": "dde4a86a3aba3bbbb2894042d425db7347dd65202d817c796d762680e753f4c4"
+      },
+      "text": {}
+    },
+    "streetlight": {
+      "from": "shared_library/models/streetlight",
+      "version": "2026.10.23",
+      "sha": "2ecd299d47eee77cd4c145d4582c9425eea6d09b3321d6d62f4801b534f12e22",
+      "files": {
+        "assets/models/streetlight.model.json": "1078f3d1bfc443d313be1e1a9104d29871422893a0c78fa3d981d7c7ce8ca9c0",
+        "prefabs/streetlight.prefab.json": "b0a2e48f045571f5da03b2e797e7a181f6f27a27f726ad6e9a98a1f27c45793b"
+      },
+      "text": {}
+    }
+  }
+}

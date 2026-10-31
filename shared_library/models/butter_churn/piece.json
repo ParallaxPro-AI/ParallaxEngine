@@ -1,0 +1,10 @@
+{
+  "id": "butter_churn",
+  "summary": "A wooden dash churn: a tapered stave barrel with three iron hoops and two side lugs, a lid with a splash cup… joints dasher; options wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.butter_churn or place \"prefab\": \"butter_churn\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:butter_churn"]
+}

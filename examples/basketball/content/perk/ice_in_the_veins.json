@@ -1,0 +1,2 @@
+{ "name": "Ice In The Veins", "description": "+15% on every shot in the last 25 seconds of a period.",
+  "category": "shooting", "max_stacks": 2, "clutch_bonus": 0.15 }

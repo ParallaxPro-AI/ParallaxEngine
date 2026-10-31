@@ -1,0 +1,10 @@
+{
+  "id": "castle_keep",
+  "summary": "A square medieval castle keep (donjon), 16 m on plan, walls 18 m to the wall walk: a battered rubble talus wi… joints door_l, door_r; options banner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.castle_keep or place \"prefab\": \"castle_keep\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:castle_keep"]
+}

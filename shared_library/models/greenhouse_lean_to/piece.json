@@ -1,0 +1,10 @@
+{
+  "id": "greenhouse_lean_to",
+  "summary": "A compact lean-to greenhouse (2.4 x 1.5 m) built against a wall: a brick dwarf wall with tile coping, a powde… joints vent, door; options frame_finish; sockets socket_door_outside, socket_bench, socket_bench_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.greenhouse_lean_to or place \"prefab\": \"greenhouse_lean_to\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:greenhouse_lean_to"]
+}

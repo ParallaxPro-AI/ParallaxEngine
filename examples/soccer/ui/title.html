@@ -1,0 +1,70 @@
+<link rel="stylesheet" href="kit.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .ti { position: fixed; inset: 0; pointer-events: auto; }
+  .ti-vig { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(1,10,4,.92) 0%, rgba(1,10,4,.6) 42%, rgba(1,10,4,0) 72%); }
+  .ti-main { position: absolute; left: calc(var(--safe-l) + calc(var(--rem)*8)); top: 50%; transform: translateY(-44%); display: flex; flex-direction: column; align-items: flex-start; gap: calc(var(--rem)*1.5); max-width: calc(var(--rem)*56); }
+  .ti-strip { display: flex; height: calc(var(--rem)*2.25); --sl: calc(var(--rem)*.625); font: 700 calc(var(--rem)*1.0625)/1 var(--font-display); letter-spacing: .2em; text-transform: uppercase; }
+  .ti-strip > * { clip-path: polygon(var(--sl) 0, 100% 0, calc(100% - var(--sl)) 100%, 0 100%); display: flex; align-items: center; gap: calc(var(--rem)*.5); padding-inline: calc(var(--sl) + calc(var(--rem)*.75)); }
+  .ti-strip > * + * { margin-left: calc(var(--sl) * -1 + 3px); }
+  .ti-strip .a { background: var(--c-ink); color: var(--c-pitch); }
+  .ti-strip .b { background: var(--c-pitch-700); color: var(--c-mint-200); }
+  .ti-strip svg { width: calc(var(--rem)*1.25); height: calc(var(--rem)*1.25); }
+  .ti-h { font: italic 800 calc(var(--rem)*13.5)/.8 var(--font-display); letter-spacing: -.005em; text-transform: uppercase; margin: calc(var(--rem)*.75) 0 0 calc(var(--rem)*-.5); white-space: nowrap; animation: sc-bIn .6s .1s var(--ease-out) both; }
+  .ti-sub { font: 600 calc(var(--rem)*2.25)/1 var(--font-display); letter-spacing: .34em; text-transform: uppercase; color: var(--c-mint-200); }
+  .ti-form { list-style: none; display: flex; gap: calc(var(--rem)*.5); margin-top: calc(var(--rem)*.75); }
+  .ti-form li { display: flex; align-items: center; gap: calc(var(--rem)*.625); height: calc(var(--rem)*2.75); padding: 0 calc(var(--rem)*1.125) 0 calc(var(--rem)*.375); background: rgba(3,23,11,.72); border: 1px solid var(--c-line); border-radius: 999px; font: 700 calc(var(--rem)*1.125)/1 var(--font-display); letter-spacing: .12em; }
+  .ti-form li span { display: grid; place-items: center; width: calc(var(--rem)*2); height: calc(var(--rem)*2); border-radius: 50%; background: var(--c-home); font-size: calc(var(--rem)*1); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+  .ti-form li.gk span { background: var(--c-gold); color: var(--c-gold-ink); }
+  .ti-note { font-size: calc(var(--rem)*1.25); line-height: 1.5; color: var(--c-ink-2); max-width: calc(var(--rem)*31); }
+  .ti-cta { display: flex; align-items: center; gap: calc(var(--rem)*2.25); margin-top: calc(var(--rem)*1); }
+  .ti-cups { display: flex; align-items: center; gap: calc(var(--rem)*.625); font: 600 calc(var(--rem)*1.125)/1 var(--font-display); letter-spacing: .16em; text-transform: uppercase; color: var(--c-mint-200); }
+  .ti-cups[hidden] { display: none; }
+  .ti-cups b { color: var(--c-gold); font-size: calc(var(--rem)*1.625); font-weight: 800; }
+  .ti-cups svg { width: calc(var(--rem)*1.625); height: calc(var(--rem)*1.625); color: var(--c-gold); }
+  .ti-cups.m { display: none; }
+  @media (pointer: coarse) {
+    .ti-vig { background: linear-gradient(90deg, rgba(1,10,4,.9) 0%, rgba(1,10,4,.55) 55%, rgba(1,10,4,.1) 85%); }
+    .ti-main { left: calc(var(--safe-l) + 14px); top: calc(var(--safe-t) + 50px); transform: none; gap: 9px; max-width: 560px; }
+    .ti-strip { height: 22px; font-size: 12px; --sl: 6px; letter-spacing: .18em; }
+    .ti-strip > * { padding-inline: calc(var(--sl) + 8px); gap: 6px; }
+    .ti-strip svg { width: 14px; height: 14px; }
+    .ti-h { font-size: 80px; margin: 2px 0 0 -3px; }
+    .ti-sub { font-size: 16px; letter-spacing: .3em; }
+    .ti-form { margin-top: 2px; gap: 6px; }
+    .ti-form li { height: 30px; padding: 0 10px 0 3px; font-size: 13px; gap: 6px; }
+    .ti-form li span { width: 24px; height: 24px; font-size: 12px; }
+    .ti-note { font-size: 13px; line-height: 1.4; max-width: 330px; }
+    .ti-cta { margin-top: 4px; }
+    .ti-cta .sc-hint, .ti-cta .ti-cups { display: none; }
+    .ti-cups.m { display: flex; position: absolute; top: calc(var(--safe-t) + 10px); right: calc(var(--safe-r) + 8px); font-size: 12px; gap: 6px; }
+    .ti-cups.m[hidden] { display: none; }
+    .ti-cups.m b { font-size: 17px; }
+    .ti-cups.m svg { width: 18px; height: 18px; }
+  }
+</style>
+<div class="sc-root ti">
+  <div class="ti-vig"></div>
+  <div class="sc-bug sc-bug--faux" aria-hidden="true"><div class="sc-bug__row">
+    <div class="sc-bug__name sc-bug__name--home" data-text="home"></div><div class="sc-bug__score sc-bug__score--home">0</div>
+    <div class="sc-bug__clock"><span class="sc-bug__time">00:00</span></div>
+    <div class="sc-bug__score sc-bug__score--away">0</div><div class="sc-bug__name sc-bug__name--away" data-text="away"></div>
+  </div></div>
+  <span class="ti-cups m" data-show="cups_won"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7 3h10v5a5 5 0 0 1-10 0z" fill="currentColor" fill-opacity=".25"/><path d="M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/><path d="M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10"/><path d="M12 13v4"/><path d="M8 21h8l-1-4H9z"/></svg><span data-text="cups_won"></span> <b class="ti-cupn" data-bind="cups_won"></b></span>
+  <section class="ti-main">
+    <div class="ti-strip"><span class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8.2l3.6 2.6-1.4 4.2H9.8l-1.4-4.2z" fill="currentColor" stroke="none"/></svg><span data-text="pitch_board"></span></span><span class="b" data-text="match_day"></span></div>
+    <h1 class="ti-h" data-text="kick_off"></h1>
+    <p class="ti-sub" data-text="five_a_side"></p>
+    <ol class="ti-form">
+      <li class="gk"><span>1</span>GK</li><li><span>3</span>LB</li><li><span>8</span>CM</li><li><span>7</span>RW</li><li><span>9</span>ST</li>
+    </ol>
+    <p class="ti-note" data-text="title_note"></p>
+    <div class="ti-cta">
+      <button class="sc-btn sc-btn--primary sc-btn--xl" data-action="kick_off" data-key="Enter"><span data-text="kick_off"></span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg></button>
+      <span class="sc-hint"><kbd class="sc-kbd">Enter</kbd> <span data-text="to_start"></span></span>
+      <span class="ti-cups" data-show="cups_won"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M7 3h10v5a5 5 0 0 1-10 0z" fill="currentColor" fill-opacity=".25"/><path d="M7 5H4v1.5A3.5 3.5 0 0 0 7.5 10"/><path d="M17 5h3v1.5A3.5 3.5 0 0 1 16.5 10"/><path d="M12 13v4"/><path d="M8 21h8l-1-4H9z"/></svg><span data-text="cups_won"></span> <b class="ti-cupn" data-bind="cups_won"></b></span>
+    </div>
+  </section>
+</div>

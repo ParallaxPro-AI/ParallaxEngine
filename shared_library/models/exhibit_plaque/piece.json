@@ -1,0 +1,10 @@
+{
+  "id": "exhibit_plaque",
+  "summary": "A floor-standing museum label stand: a weighted steel foot plate, a slim square post and an angled aluminium… options label.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.exhibit_plaque or place \"prefab\": \"exhibit_plaque\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:exhibit_plaque"]
+}

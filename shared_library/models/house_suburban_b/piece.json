@@ -1,0 +1,10 @@
+{
+  "id": "house_suburban_b",
+  "summary": "A single-storey suburban ranch house with an attached carport: raised concrete slab, a buff brick front eleva… joints door; options siding_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_suburban_b or place \"prefab\": \"house_suburban_b\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_suburban_b"]
+}

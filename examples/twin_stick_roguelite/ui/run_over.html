@@ -1,0 +1,68 @@
+<!-- Ported from the template: Cellar Purge run summary - FELLED or PURGED card with where the run ended, the coins banked to the Vault counting up, floor / coins / relics / hearts stats and Play Again / Main Menu buttons -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .cpg { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; background: rgba(5,4,3,.82); font-family: var(--cp-font-ui); color: var(--cp-ink); pointer-events: auto; animation: cp-fade 400ms ease both; }
+  .cpg-card { width: calc(960 * var(--u)); text-align: center; padding: calc(60 * var(--u)) calc(72 * var(--u)) calc(56 * var(--u)); background: var(--cp-panel-solid); box-shadow: 0 calc(40 * var(--u)) calc(100 * var(--u)) rgba(0,0,0,.8), inset 0 0 0 calc(7 * var(--u)) rgba(11,9,8,.7), inset 0 0 0 calc(8 * var(--u)) rgba(148,130,114,.2); animation: cp-rise 400ms var(--cp-ease-out) both; }
+  .cpg-left, .cpg-right { display: contents; }
+  .cpg-title { font: 900 calc(104 * var(--u))/1 var(--cp-font-display); letter-spacing: .1em; padding-left: .1em; color: var(--cp-blood); text-shadow: 0 0 calc(50 * var(--u)) rgba(211,57,70,.35), 0 calc(5 * var(--u)) 0 #000; }
+  .cpg.win .cpg-title { color: var(--cp-gold); text-shadow: 0 0 calc(50 * var(--u)) rgba(245,197,24,.35), 0 calc(5 * var(--u)) 0 #000; }
+  .cpg-where { margin-top: calc(14 * var(--u)); font-size: calc(28 * var(--u)); line-height: 1.2; color: var(--cp-umber); }
+  .cpg-where:empty { display: none; }
+  .cpg-bank { margin-top: calc(44 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: calc(6 * var(--u)); }
+  .cpg-bank-label { font-size: calc(18 * var(--u)); letter-spacing: .3em; }
+  .cpg-bank-row { display: flex; align-items: center; gap: calc(18 * var(--u)); }
+  .cpg-bank-row svg { width: calc(56 * var(--u)); height: calc(56 * var(--u)); display: block; }
+  .cpg-score { font: 700 calc(128 * var(--u))/1 var(--cp-font-ui); color: var(--cp-gold); font-variant-numeric: tabular-nums; text-shadow: 0 0 calc(40 * var(--u)) rgba(245,197,24,.3); }
+  .cpg-stats { margin-top: calc(40 * var(--u)); display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--cp-rule); border-bottom: 1px solid var(--cp-rule); padding: calc(24 * var(--u)) 0; }
+  .cpg-stat { display: flex; flex-direction: column; gap: calc(8 * var(--u)); }
+  .cpg-stat + .cpg-stat { border-left: 1px solid rgba(148,130,114,.2); }
+  .cpg-stat span { font-size: calc(17 * var(--u)); }
+  .cpg-stat b { font: 700 calc(42 * var(--u))/1 var(--cp-font-display); }
+  .cpg-stat b.gold { color: var(--cp-gold); }
+  .cpg-actions { display: flex; justify-content: center; gap: calc(20 * var(--u)); margin-top: calc(44 * var(--u)); }
+
+  @media (pointer: coarse) {
+    .cpg { background: rgba(5,4,3,.9); padding: calc(20 * var(--u)) calc(88 * var(--u)); align-items: stretch; justify-content: stretch; }
+    .cpg-card { width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: calc(48 * var(--u)); align-items: center; padding: calc(36 * var(--u)) calc(56 * var(--u)); box-shadow: inset 0 0 0 calc(8 * var(--u)) rgba(11,9,8,.7), inset 0 0 0 calc(10 * var(--u)) rgba(148,130,114,.2); }
+    .cpg-left, .cpg-right { display: flex; flex-direction: column; }
+    .cpg-left { align-items: center; gap: calc(16 * var(--u)); }
+    .cpg-right { gap: calc(28 * var(--u)); }
+    .cpg-title { font-size: calc(112 * var(--u)); letter-spacing: .08em; padding-left: .08em; text-shadow: 0 calc(6 * var(--u)) 0 #000; }
+    .cpg.win .cpg-title { text-shadow: 0 calc(6 * var(--u)) 0 #000; }
+    .cpg-where { margin-top: 0; font-size: calc(32 * var(--u)); }
+    .cpg-bank { margin-top: calc(12 * var(--u)); gap: calc(4 * var(--u)); }
+    .cpg-bank-label { font-size: calc(26 * var(--u)); letter-spacing: .26em; }
+    .cpg-bank-row { gap: calc(20 * var(--u)); }
+    .cpg-bank-row svg { width: calc(68 * var(--u)); height: calc(68 * var(--u)); }
+    .cpg-score { font-size: calc(144 * var(--u)); text-shadow: none; }
+    .cpg-stats { margin: 0; grid-template-columns: 1fr 1fr; padding: 0; border: 1px solid var(--cp-rule); text-align: left; }
+    .cpg-stat { gap: calc(8 * var(--u)); padding: calc(20 * var(--u)) calc(28 * var(--u)); }
+    .cpg-stat + .cpg-stat { border-left: 0; }
+    .cpg-stat:nth-child(odd) { border-right: 1px solid var(--cp-rule); }
+    .cpg-stat:nth-child(-n+2) { border-bottom: 1px solid var(--cp-rule); }
+    .cpg-stat span { font-size: calc(24 * var(--u)); letter-spacing: .2em; }
+    .cpg-stat b { font-size: calc(52 * var(--u)); }
+    .cpg-actions { display: grid; grid-template-columns: 1fr 1fr; gap: calc(20 * var(--u)); margin: 0; }
+    .cpg-actions .cp-btn { width: 100%; }
+    .cpg-actions .cp-btn > span, .cpg-actions .cp-btn.is-primary > span { height: calc(100 * var(--u)); padding: 0 calc(12 * var(--u)); }
+  }
+</style>
+<div class="cpg" data-class-won="won">
+  <div class="cp-panel cpg-card">
+    <div class="cpg-left">
+      <div class="cpg-title" data-bind="title"></div>
+      <div class="cpg-where cp-flavor" data-bind="where"></div>
+      <div class="cpg-bank">
+        <span class="cp-label cpg-bank-label">Banked to the Vault</span>
+        <div class="cpg-bank-row"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="#f5c518"/><circle cx="12" cy="12" r="6" fill="none" stroke="#9a7406" stroke-width="2"/></svg><span class="cpg-score" data-bind="coins_banked"></span></div>
+      </div>
+    </div>
+    <div class="cpg-right">
+      <div class="cpg-stats" data-each="stats"><template><div class="cpg-stat"><span class="cp-label" data-bind="label"></span><b data-bind="value"></b></div></template></div>
+      <div class="cpg-actions">
+        <button class="cp-btn is-primary" data-action="again" data-key="Enter"><span>Play Again</span></button>
+        <button class="cp-btn" data-action="title"><span>Main Menu</span></button>
+      </div>
+    </div>
+  </div>
+</div>

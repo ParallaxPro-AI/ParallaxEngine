@@ -1,0 +1,10 @@
+{
+  "id": "luxury_bed_bench",
+  "summary": "Luxury end-of-bed bench: a channel-tufted caramel velvet seat of seven plump channels on a slim polished-bras… options fabric, metal; sockets seat_1, seat_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_bed_bench or place \"prefab\": \"luxury_bed_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_bed_bench"]
+}

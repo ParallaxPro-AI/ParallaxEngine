@@ -1,0 +1,10 @@
+{
+  "id": "crafting_table_primitive",
+  "summary": "A primitive survival crafting bench: a single slab split off a 0.9 m log (1.25 m long, 0.57 m across, 0.1 m t… sockets socket_work, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crafting_table_primitive or place \"prefab\": \"crafting_table_primitive\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crafting_table_primitive"]
+}

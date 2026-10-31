@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/harpoon_gun"
+    },
+    "viewmodel_item": {
+      "hip": [0.0938, -0.3017, 0.3546],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.16
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.064, 0.159, 0.909],
+      "offset": [0, 0.0795, 0.2995]
+    }
+  }
+}

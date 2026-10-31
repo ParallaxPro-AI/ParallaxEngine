@@ -1,0 +1,6 @@
+{
+  "name": "Cargo Hold Fitout",
+  "blurb": "Nets, rollers and a real loadmaster. The good contracts start calling you.",
+  "effect": "+12% pay",
+  "stat": "pay", "per_tier": 0.12, "costs": [1800, 3400]
+}

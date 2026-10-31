@@ -1,0 +1,10 @@
+{
+  "id": "hook_block",
+  "summary": "A 5-tonne crane bottom block: two steel cheek plates over a grooved rope sheave, a thrust-bearing swivel, a f…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hook_block or place \"prefab\": \"hook_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hook_block"]
+}

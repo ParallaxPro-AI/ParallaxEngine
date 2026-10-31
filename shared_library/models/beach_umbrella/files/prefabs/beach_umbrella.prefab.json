@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/beach_umbrella"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0353, 2.45, 2.0353],
+      "offset": [0, 1.225, 0]
+    }
+  }
+}

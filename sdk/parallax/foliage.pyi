@@ -1,0 +1,60 @@
+"""Foliage plugin: scattered trees, bushes, plants, rocks and models, and grass, declared on
+the scene (`"foliage": {"layers": [...]}` in scene.json). Needs the terrain plugin for
+`on`/`avoid` filters; without a terrain an entry needs an `area` and sits on y = 0.
+
+    "foliage": {"layers": [
+      {"id": "pines", "kind": "tree", "species": "pine", "density": 0.02, "max": 4000,
+       "on": "grass", "min_weight": 0.5, "avoid": ["road"], "avoid_weight": 0.2,
+       "area": {"center": [0, 0], "size": [400, 300]}, "exclude": [{"center": [10, 0], "radius": 30}],
+       "spacing": 4, "scale": [0.8, 1.3], "slope": 30, "height": [0, 80], "seed": 3,
+       "color": [0.2, 0.35, 0.18], "sway": 0.5, "collide": true, "collider": [0.25, 9]},
+      {"id": "meadow", "kind": "grass", "density": 40, "on": "grass", "avoid": "road",
+       "blade_height": [0.3, 0.6], "draw_radius": 50, "color": [0.33, 0.52, 0.2]}
+    ]}
+
+`area` and each `exclude` are footprints, the same schema as the terrain's (world [x, z]):
+{"center", "radius"} (a circle), {"center", "size": [w, d], "rotation"} (a rectangle; `size`
+is its full width and depth) or {"points": [[x, z], ...]} (a polygon).
+
+Kinds and species: tree (broadleaf, pine, birch, willow, acacia, palm, dead), bush (round,
+sprawl), plant (fern, reed), rock (boulder, slab), model (`"model": "models/x"`),
+grass. `density` is instances per m² (grass: blades per m²); `max` caps the candidates,
+which the filters below then thin (so the same data grows what it did in the platform
+engine). Without a `species`, a layer grows one species picked by its `seed` and position.
+`on` lists the terrain layers it grows on: the strongest of their weights must reach
+`min_weight` (0.5); `avoid` layers stop it past `avoid_weight` (0.35). The scatter is
+deterministic: the same scene gives the same instances everywhere.
+Instances never sit in terrain holes, under water, on avoided layers or inside `exclude`
+footprints.
+
+Built-in trees and bushes are grown procedurally from their species (branching limbs, leaf
+sprays, bark), rocks are fractured, partly buried stone with moss on top and a skewed spread
+of sizes (their colliders scale with them), each in several seeded variants; `color` tints
+the leaves (rocks: the stone). `collider` [radius, height] sets the collision cylinder and scales
+the drawn look to that height. Near instances are full meshes that sway with `ctx.wind`, then a
+lighter mesh, then lit impostors far away (model layers use their model's impostor), each
+cross-faded. Grass grows in tufts of curved blades in a window around the camera (thinning
+and fading at its edge; blades 0.35-0.85 m unless `blade_height` says, dark at the root and
+yellow-green at the tip); at a layer boundary (a road, an avoided layer, an `exclude`) it
+thins out over a ragged band with a few stragglers instead of stopping on a line. Blades
+and leaves sway per vertex in rolling gusts. Draw distances shrink when frames run long.
+"""
+
+from parallax import Vec3
+
+class FoliageInstance:
+    """One scattered instance (a tree, a rock)."""
+    id: str
+    """The foliage entry's `id` ("pines")."""
+    index: int
+    position: Vec3
+    scale: float
+
+class FoliageApi:
+    def near(self, point: Vec3, radius: float, *, id: str | None = None) -> list[FoliageInstance]:
+        """Standing instances within `radius` (meters, on the ground plane), nearest first;
+        `id` narrows to one foliage entry."""
+    def remove(self, instance: FoliageInstance) -> None:
+        """Fell or pick an instance; saved with the game."""
+    def count(self, id: str) -> int:
+        """Standing instances of a foliage entry."""

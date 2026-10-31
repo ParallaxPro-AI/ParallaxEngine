@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/finish",
+      "cast_shadows": true
+    }
+  },
+  "pool": 1
+}

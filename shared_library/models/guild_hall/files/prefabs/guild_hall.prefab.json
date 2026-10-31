@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/guild_hall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [17.446, 27.0109, 12.7844],
+      "offset": [0, 13.5024, 0.5378]
+    }
+  }
+}

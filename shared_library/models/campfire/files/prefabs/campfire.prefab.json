@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/campfire"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3923, 0.7692, 1.2923],
+      "offset": [-0.0093, 0.3844, 0.011]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "words": [
+    "access", "block", "boot", "bootstrap", "branch", "breach", "buffer", "burst",
+    "byte", "cache", "capture", "cascade", "channel", "checksum", "cipher", "cluster",
+    "code", "collapse", "compile", "console", "corrupt", "crash", "cursor", "daemon",
+    "data", "decrypt", "delegate", "detonate", "device", "elevate", "encrypt", "endpoint",
+    "exploit", "field", "firewall", "flow", "flush", "fragment", "frame", "gateway",
+    "handle", "hijack", "index", "inject", "instance", "kernel", "link", "logic",
+    "manifest", "matrix", "memory", "monitor", "network", "node", "output", "override",
+    "packet", "parse", "payload", "port", "process", "protocol", "purge", "quarantine",
+    "query", "recovery", "region", "registry", "resolve", "restore", "route", "runtime",
+    "sandbox", "segment", "sequence", "session", "shard", "shatter", "shell", "shutdown",
+    "signal", "socket", "spike", "stack", "strike", "sync", "table", "terminal",
+    "thread", "token", "trigger", "vector"
+  ]
+}

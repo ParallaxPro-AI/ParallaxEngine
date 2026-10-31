@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/groom_dog"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3808, 0.644, 0.972],
+      "offset": [0, 0.322, 0.054]
+    }
+  }
+}

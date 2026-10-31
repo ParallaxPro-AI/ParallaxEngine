@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/surgical_lamp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.254, 1.261, 0.668],
+      "offset": [0.03, 0.6305, 0]
+    }
+  }
+}

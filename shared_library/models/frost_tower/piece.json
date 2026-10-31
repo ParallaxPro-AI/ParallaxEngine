@@ -1,0 +1,10 @@
+{
+  "id": "frost_tower",
+  "summary": "A tower-defense frost (slowing) tower on the set's common 2.4 m stone footing: a tapering hexagonal blue-grey… joints turret_yaw, barrel_pitch; options tier; sockets socket_muzzle, socket_top, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.frost_tower or place \"prefab\": \"frost_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:frost_tower"]
+}

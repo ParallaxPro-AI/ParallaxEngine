@@ -1,0 +1,10 @@
+{
+  "id": "cloud_platform",
+  "summary": "A fluffy cloud platform for platformer sky levels: a 3.2 m wide, 1.6 m deep cluster of overlapping soft white…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cloud_platform or place \"prefab\": \"cloud_platform\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cloud_platform"]
+}

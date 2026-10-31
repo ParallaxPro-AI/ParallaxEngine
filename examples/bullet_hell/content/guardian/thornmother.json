@@ -1,0 +1,4 @@
+{
+  "name": "The Thornmother", "animation": "pollencap", "hp": 110, "scale": 2.6, "score": 6000,
+  "fire": "storm", "arms": 16, "spread": 0, "spin_step": 22.9, "petal_speed": 5.0, "boss": true
+}

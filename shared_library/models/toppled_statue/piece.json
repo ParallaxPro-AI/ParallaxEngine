@@ -1,0 +1,10 @@
+{
+  "id": "toppled_statue",
+  "summary": "A fallen colossus: a crowned, bearded king in robe and cloak, holding a sword on his chest, lies face-up wher…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toppled_statue or place \"prefab\": \"toppled_statue\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toppled_statue"]
+}

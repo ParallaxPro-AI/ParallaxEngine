@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mana_potion"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0764, 0.172, 0.0764],
+      "offset": [0, 0.086, 0]
+    }
+  }
+}

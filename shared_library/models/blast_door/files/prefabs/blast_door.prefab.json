@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/blast_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5, 2.7, 0.525],
+      "offset": [0, 1.35, 0.0375]
+    }
+  }
+}

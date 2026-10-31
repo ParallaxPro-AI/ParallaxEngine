@@ -1,0 +1,10 @@
+{
+  "id": "bee",
+  "summary": "A honey bee worker scaled up ~7.5x into a game prop 0.10 m from head to stinger, 0.125 m with antennae (a rea… joints wing_l, wing_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bee or place \"prefab\": \"bee\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bee"]
+}

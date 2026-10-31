@@ -1,0 +1,10 @@
+{
+  "id": "birthday_cake",
+  "summary": "A round iced birthday cake, 22 cm across, on a white plate: smooth frosting with a rounded shoulder, piped cr… options candles, frosting.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.birthday_cake or place \"prefab\": \"birthday_cake\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:birthday_cake"]
+}

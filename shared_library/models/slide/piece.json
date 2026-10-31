@@ -1,0 +1,10 @@
+{
+  "id": "slide",
+  "summary": "A playground slide: a back climbing ladder up to a small platform, then a sloped chute with raised side rails… options height.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.slide or place \"prefab\": \"slide\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:slide"]
+}

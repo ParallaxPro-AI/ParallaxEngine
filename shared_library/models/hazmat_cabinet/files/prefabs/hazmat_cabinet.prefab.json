@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hazmat_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.18, 1.65, 0.5275],
+      "offset": [0, 0.825, 0.0338]
+    }
+  }
+}

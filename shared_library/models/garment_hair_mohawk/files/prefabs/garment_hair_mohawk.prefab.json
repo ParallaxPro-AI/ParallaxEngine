@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_mohawk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1719, 0.3208, 0.3212],
+      "offset": [0, 1.8253, -0.0504]
+    }
+  }
+}

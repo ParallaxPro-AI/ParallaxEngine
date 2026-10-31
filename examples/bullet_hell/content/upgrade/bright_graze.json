@@ -1,0 +1,1 @@
+{ "name": "Bright Graze", "description": "Grazing banks Spirit 45% faster.", "stat": "graze_gain", "add": 0.45, "max_stacks": 2 }

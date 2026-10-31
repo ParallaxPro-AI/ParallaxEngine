@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magazine_pistol"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.026, 0.1045, 0.0349],
+      "offset": [0, 0.0522, 0.0021]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "ladder_rope",
+  "summary": "A hanging rope ladder: two three-strand hemp ropes, laid right-hand, carrying nine turned hardwood rungs at 3… sockets socket_hang.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ladder_rope or place \"prefab\": \"ladder_rope\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ladder_rope"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cheese_wheel",
+  "summary": "A 34 cm wax-coated wheel of hard cheese with a 45-degree wedge cut out of its front: rounded bulging sides, a… joints wedge; options rind, paste.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cheese_wheel or place \"prefab\": \"cheese_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cheese_wheel"]
+}

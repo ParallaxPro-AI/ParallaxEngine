@@ -1,0 +1,10 @@
+{
+  "id": "horse_stable",
+  "summary": "A timber loose-box stable for one horse: shiplap walls on a concrete base with an apron, a slate-pitched roof… joints door_bottom, door_top; options walls, door, roof; sockets socket_horse, socket_tie.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.horse_stable or place \"prefab\": \"horse_stable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:horse_stable"]
+}

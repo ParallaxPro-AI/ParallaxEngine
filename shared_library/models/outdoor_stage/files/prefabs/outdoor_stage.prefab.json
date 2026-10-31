@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/outdoor_stage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.14, 4.94, 5.8703],
+      "offset": [0, 2.47, 0.0009]
+    }
+  }
+}

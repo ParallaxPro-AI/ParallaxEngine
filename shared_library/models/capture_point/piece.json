@@ -1,0 +1,10 @@
+{
+  "id": "capture_point",
+  "summary": "A capture-point objective: a 3.6 m round paved zone ringed by a raised concrete curb with an emissive team st… joints flag_raise; options team, glow; sockets socket_zone, socket_flag_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.capture_point or place \"prefab\": \"capture_point\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:capture_point"]
+}

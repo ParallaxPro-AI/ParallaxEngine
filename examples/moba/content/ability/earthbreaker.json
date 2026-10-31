@@ -1,0 +1,17 @@
+{
+  "name": "Earthbreaker",
+  "blurb": "ULTIMATE. Split the ground under a fight and slow everyone in it.",
+  "kind": "ground",
+  "ultimate": true,
+  "max_rank": 3,
+  "cooldown": { "base": 44, "per_rank": -6 },
+  "mana": { "base": 100, "per_rank": 12 },
+  "damage": { "base": 190, "per_rank": 95 },
+  "damage_kind": "physical",
+  "range": { "base": 9 },
+  "radius": { "base": 7.5, "per_rank": 0.8 },
+  "effect": "staggered",
+  "effect_seconds": 2.5,
+  "cast_vfx": "vfx/slash_cast",
+  "vfx": "vfx/slash"
+}

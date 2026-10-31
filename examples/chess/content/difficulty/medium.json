@@ -1,0 +1,9 @@
+{
+  "order": 2,
+  "name": "Medium",
+  "blurb": "A steady club-level opponent. Punishes loose pieces but still makes the occasional slip.",
+  "depth": 2,
+  "positional": 0.85,
+  "blunder": 0.12,
+  "aggression": 0.3
+}

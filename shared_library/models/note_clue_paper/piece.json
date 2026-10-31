@@ -1,0 +1,10 @@
+{
+  "id": "note_clue_paper",
+  "summary": "A clue note: an A5 sheet (148 x 210 mm) that was folded in thirds and opened again, so the two outer panels s… joints fold_far, fold_near.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.note_clue_paper or place \"prefab\": \"note_clue_paper\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:note_clue_paper"]
+}

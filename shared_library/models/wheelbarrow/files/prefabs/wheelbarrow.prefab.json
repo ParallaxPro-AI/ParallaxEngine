@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wheelbarrow"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 0.7, 1.5634],
+      "offset": [0, 0.35, -0.0117]
+    }
+  }
+}

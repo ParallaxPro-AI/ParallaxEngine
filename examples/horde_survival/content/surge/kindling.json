@@ -1,0 +1,2 @@
+{ "name": "KINDLING", "at_second": 25, "interval": 2.1, "hp_scale": 1.15, "speed_scale": 1.03,
+  "groups": { "swarmling": 9 } }

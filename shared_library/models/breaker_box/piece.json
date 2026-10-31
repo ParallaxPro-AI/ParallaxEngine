@@ -1,0 +1,10 @@
+{
+  "id": "breaker_box",
+  "summary": "A residential load-centre breaker box on a plywood backer board: a surface-mounted steel can with EMT conduit… joints main_toggle, door; options mount, finish; sockets socket_operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.breaker_box or place \"prefab\": \"breaker_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:breaker_box"]
+}

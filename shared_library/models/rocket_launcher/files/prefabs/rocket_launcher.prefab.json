@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rocket_launcher"
+    },
+    "viewmodel_item": {
+      "hip": [0.095, -0.315, 0.31],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.12
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.156, 0.3229, 1.17],
+      "offset": [0, 0.1576, 0.055]
+    }
+  }
+}

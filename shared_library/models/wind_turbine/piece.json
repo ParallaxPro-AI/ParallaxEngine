@@ -1,0 +1,10 @@
+{
+  "id": "wind_turbine",
+  "summary": "A utility-scale three-blade wind turbine: a 90 m tapered steel tube tower with flanged splices on a concrete… joints yaw, rotor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wind_turbine or place \"prefab\": \"wind_turbine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wind_turbine"]
+}

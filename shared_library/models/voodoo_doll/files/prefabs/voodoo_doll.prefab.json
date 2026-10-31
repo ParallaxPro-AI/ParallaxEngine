@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/voodoo_doll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1841, 0.2502, 0.1089],
+      "offset": [0, 0.1239, 0.0016]
+    }
+  }
+}

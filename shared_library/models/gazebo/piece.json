@@ -1,0 +1,10 @@
+{
+  "id": "gazebo",
+  "summary": "An octagonal Victorian garden gazebo, 4.2 m across: a brick plinth carrying a plank deck, two steps up to an… options paint_colour; sockets socket_center, socket_entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gazebo or place \"prefab\": \"gazebo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gazebo"]
+}

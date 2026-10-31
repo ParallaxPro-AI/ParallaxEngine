@@ -1,0 +1,10 @@
+{
+  "id": "fireboat",
+  "summary": "A ~20 m harbour fireboat: a red displacement hull with a black boot-top and a heavy black rubbing strake, a s… joints monitor_bow, monitor_tower, monitor_ph_port, monitor_ph_stbd, monitor_aft; sockets waterline, helm, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fireboat or place \"prefab\": \"fireboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fireboat"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roman_column_doric"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.92, 4.2, 0.92],
+      "offset": [0, 2.1, 0]
+    }
+  }
+}

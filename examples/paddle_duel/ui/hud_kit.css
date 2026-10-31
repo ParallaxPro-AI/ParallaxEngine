@@ -1,0 +1,20 @@
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1) x uiScale 2; --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: calc(2 * min(100cqw / 1920, 100cqh / 1080, 1px)); }
+/* The old engine's HUD kit slots and tokens (data-slot anchors, --pp-* colours), which the template's HUD panels sit in. */
+:root{--pp-edge:calc(16 * var(--u));--pp-gap:calc(10 * var(--u));--pp-ink:#eef2f8;--pp-muted:#9aa6bd;--pp-good:#4ade80;--pp-font:'Inter','Segoe UI',system-ui,-apple-system,sans-serif;font-family:var(--pp-font);color:var(--pp-ink);}
+@media (pointer:coarse){:root{--pp-edge:max(calc(14 * var(--u)),env(safe-area-inset-top));}}
+[data-slot][data-pp-no-cap]{max-width:none;}
+[data-slot]{position:fixed;display:flex;flex-direction:column;gap:var(--pp-gap);pointer-events:none;max-width:min(46cqw,calc(560 * var(--u)));}
+[data-slot^="bottom"]{bottom:max(var(--pp-edge),env(safe-area-inset-bottom));}
+[data-slot^="top"]{top:var(--pp-edge);}
+[data-slot="bottom-left"]{bottom:calc(var(--pp-edge) + var(--pp-joystick-h,0px));}
+[data-slot="bottom-right"]{bottom:calc(var(--pp-edge) + var(--pp-rail-h,0px));}
+[data-slot="center-left"]{top:50%;transform:translateY(-50%);align-items:flex-start;}
+[data-slot="center-right"]{top:50%;right:var(--pp-edge);transform:translateY(-50%);align-items:flex-end;}
+[data-slot="center"]{top:50%;left:50%;transform:translate(-50%,-50%);align-items:center;}
+[data-slot="modal"]>*{max-height:100%;overflow:auto;}
+[data-slot="top-center"],[data-slot="bottom-center"]{left:50%;transform:translateX(-50%);align-items:center;}
+[data-slot$="left"]{left:var(--pp-edge);align-items:flex-start;}
+[data-slot$="right"]{right:var(--pp-edge);align-items:flex-end;}
+.pp-bar-fill{height:100%;background:linear-gradient(90deg,var(--pp-good),#22c55e);border-radius:calc(99 * var(--u));transition:width .15s;}
+.pp-bar{height:calc(10 * var(--u));border-radius:calc(99 * var(--u));background:rgba(255,255,255,0.12);overflow:hidden;width:calc(160 * var(--u));}

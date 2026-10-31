@@ -1,0 +1,19 @@
+{
+  "z": 2,
+  "components": {
+    "sprite": {
+      "image": "images/dot",
+      "size": [0.58, 0.58],
+      "color": "#ffe633",
+      "animations": {
+        "idle": { "frames": ["images/dot"], "fps": 1, "loop": true },
+        "chomp": { "frames": ["images/dot", "images/gobbler_half", "images/gobbler_open", "images/gobbler_half"], "fps": 14.3, "loop": true }
+      }
+    },
+    "grid_mover": { "speed": 5.2, "blocked": ["wall"] }
+  },
+  "tags": ["gobbler"],
+  "behaviors": {
+    "gobbler": {}
+  }
+}

@@ -1,0 +1,1 @@
+{ "extends": "foe", "pool": 8, "scale": [1.1548, 1.1548, 1.1548], "components": { "model": { "model": "models/ash_titan", "cast_shadows": true }, "animator": { "default_clip": "clips/walk_cycle" }, "health_bar": { "offset": [0, 3.6, 0], "hide_when_full": false } }, "tags": ["horde", "elite"] }

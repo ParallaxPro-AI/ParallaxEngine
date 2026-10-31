@@ -1,0 +1,10 @@
+{
+  "id": "seed_drill",
+  "summary": "A tractor-mounted 3 m mechanical seed drill in blue: a category-2 three-point headstock, a tapered seed hoppe… joints lid; options paint; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.seed_drill or place \"prefab\": \"seed_drill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:seed_drill"]
+}

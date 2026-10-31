@@ -1,0 +1,10 @@
+{
+  "id": "sheep",
+  "summary": "A domestic sheep (0.78 m at the back with fleece, ~1.25 m nose to tail) on the engine's quadruped_20 rig, so… options wool, face, fleece; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sheep or place \"prefab\": \"sheep\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sheep"]
+}

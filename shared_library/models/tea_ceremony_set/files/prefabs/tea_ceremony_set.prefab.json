@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tea_ceremony_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.56, 0.1833, 0.36],
+      "offset": [0, 0.0916, 0]
+    }
+  }
+}

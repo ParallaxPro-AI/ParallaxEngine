@@ -1,0 +1,10 @@
+{
+  "id": "crocodile",
+  "summary": "A Nile crocodile (3.7 m snout to tail tip, 0.42 m tall) on the engine's quadruped_20 rig in the high-walk, so… options hide, scutes; sockets mouth, back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crocodile or place \"prefab\": \"crocodile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crocodile"]
+}

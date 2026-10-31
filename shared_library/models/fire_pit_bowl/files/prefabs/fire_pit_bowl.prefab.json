@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fire_pit_bowl"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9745, 0.9169, 0.956],
+      "offset": [0.0008, 0.4585, 0]
+    }
+  }
+}

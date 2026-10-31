@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ball_pit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.256, 0.36, 1.236],
+      "offset": [0.068, 0.18, 0.058]
+    }
+  }
+}

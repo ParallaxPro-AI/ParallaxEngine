@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bunting_line"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.4, 3.392, 0.4],
+      "offset": [0, 1.696, 0]
+    }
+  }
+}

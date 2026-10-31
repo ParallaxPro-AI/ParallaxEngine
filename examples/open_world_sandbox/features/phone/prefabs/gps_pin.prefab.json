@@ -1,0 +1,6 @@
+{
+  "components": {
+    "marker": { "icon": "waypoint", "shown": false }
+  },
+  "tags": ["gps_pin"]
+}

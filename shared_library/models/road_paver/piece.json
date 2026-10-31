@@ -1,0 +1,10 @@
+{
+  "id": "road_paver",
+  "summary": "A wheeled asphalt paver: a front hopper with folding wings (`hopper_l` / `hopper_r`), push rollers and slat c… joints hopper_l, hopper_r, steering, screed, screed_ext_l, screed_ext_r; options paint; sockets seat_driver, seat_pax_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.road_paver or place \"prefab\": \"road_paver\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:road_paver"]
+}

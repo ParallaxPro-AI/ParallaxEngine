@@ -1,0 +1,14 @@
+{
+  "id": "forge",
+  "summary": "A medieval blacksmith's forge: a stacked-stone masonry hearth with a fire pit of glowing coals and licking… joints bellows, flames; sockets socket_fire.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.forge or place \"prefab\": \"forge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:forge"
+  ]
+}

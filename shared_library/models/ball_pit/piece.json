@@ -1,0 +1,10 @@
+{
+  "id": "ball_pit",
+  "summary": "A round soft-play ball pit: a padded foam wall in eight alternating coloured vinyl segments with a rounded to… options pad_a, pad_b, spilled; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ball_pit or place \"prefab\": \"ball_pit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ball_pit"]
+}

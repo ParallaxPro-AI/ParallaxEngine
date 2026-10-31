@@ -1,0 +1,10 @@
+{
+  "id": "werewolf",
+  "summary": "A WEREWOLF - the wolf-man of folklore, about 2.2 m to the ear tips, on the canonical 17-bone humanoid rig so… options fur; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.werewolf or place \"prefab\": \"werewolf\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:werewolf"]
+}

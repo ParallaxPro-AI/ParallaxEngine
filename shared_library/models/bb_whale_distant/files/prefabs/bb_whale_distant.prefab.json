@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_whale_distant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.9, 3, 9],
+      "offset": [0, 1.5, 0]
+    }
+  }
+}

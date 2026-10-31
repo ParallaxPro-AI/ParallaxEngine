@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/windmill",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "cylinder",
+      "radius": 2.2,
+      "height": 14,
+      "offset": [
+        0,
+        7,
+        0
+      ]
+    }
+  },
+  "behaviors": {
+    "windmill": {}
+  }
+}

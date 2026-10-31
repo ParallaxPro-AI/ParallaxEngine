@@ -1,0 +1,14 @@
+{
+  "id": "worktop_run",
+  "summary": "A run of kitchen base cabinets under a continuous worktop, with a rear upstand and recessed toe kick. options length, surface, finish; sockets socket_worktop.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.worktop_run or place \"prefab\": \"worktop_run\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:worktop_run"
+  ]
+}

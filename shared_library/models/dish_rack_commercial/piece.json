@@ -1,0 +1,10 @@
+{
+  "id": "dish_rack_commercial",
+  "summary": "A freestanding commercial dish drying rack: four square stainless uprights on bullet feet, a rimmed drip tray… options load; sockets shelf_plates, shelf_cups, shelf_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dish_rack_commercial or place \"prefab\": \"dish_rack_commercial\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dish_rack_commercial"]
+}

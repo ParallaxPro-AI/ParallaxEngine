@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gill_net"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.052, 2.5, 0.052],
+      "offset": [0, 1.25, 0]
+    }
+  }
+}

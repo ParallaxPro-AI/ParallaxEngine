@@ -1,0 +1,10 @@
+{
+  "id": "neon_kanji_free_sign_vertical",
+  "summary": "A tall vertical neon shop sign for a cyberpunk street: a black steel cabinet 0.62 m wide and 2.4 m tall (the… options glyph_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.neon_kanji_free_sign_vertical or place \"prefab\": \"neon_kanji_free_sign_vertical\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:neon_kanji_free_sign_vertical"]
+}

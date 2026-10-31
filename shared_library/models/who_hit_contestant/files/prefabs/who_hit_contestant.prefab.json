@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/who_hit_contestant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.9, 0.4019],
+      "offset": [0, 0.95, -0.0161]
+    }
+  }
+}

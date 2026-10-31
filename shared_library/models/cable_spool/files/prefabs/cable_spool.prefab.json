@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cable_spool"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.724, 1, 1.0432],
+      "offset": [0, 0.5, 0.0216]
+    }
+  }
+}

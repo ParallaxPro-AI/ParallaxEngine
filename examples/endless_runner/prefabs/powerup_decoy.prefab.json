@@ -1,0 +1,14 @@
+{
+  "components": {
+    "model": {
+      "model": "models/powerup_decoy",
+      "cast_shadows": true
+    }
+  },
+  "behaviors": {
+    "spin": {
+      "speed": 180
+    }
+  },
+  "pool": 4
+}

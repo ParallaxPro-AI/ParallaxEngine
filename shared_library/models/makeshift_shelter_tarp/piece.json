@@ -1,0 +1,10 @@
+{
+  "id": "makeshift_shelter_tarp",
+  "summary": "A survivor's makeshift tarp shelter: a 3.2 m blue polyethylene tarp thrown over a ridge pole lashed to two cr…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.makeshift_shelter_tarp or place \"prefab\": \"makeshift_shelter_tarp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:makeshift_shelter_tarp"]
+}

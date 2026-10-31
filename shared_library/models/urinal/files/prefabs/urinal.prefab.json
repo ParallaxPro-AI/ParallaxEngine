@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/urinal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 0.795, 0.36],
+      "offset": [0, 0.3975, 0]
+    }
+  }
+}

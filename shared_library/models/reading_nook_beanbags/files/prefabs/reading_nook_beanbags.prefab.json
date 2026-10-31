@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/reading_nook_beanbags"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0157, 0.5975, 2],
+      "offset": [-0.0078, 0.2988, 0]
+    }
+  }
+}

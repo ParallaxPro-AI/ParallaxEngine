@@ -1,0 +1,31 @@
+{
+  "components": {
+    "structure": {
+      "plan": "buildings/shadow_dungeon.plan",
+      "materials": {
+        "wall": {
+          "color": "#798684",
+          "roughness": 1
+        },
+        "slab": {
+          "color": "#a6adaa",
+          "roughness": 0.95
+        },
+        "stair": {
+          "color": "#a6adaa",
+          "roughness": 0.95
+        },
+        "flagstone": {
+          "color": "#a6adac",
+          "roughness": 0.95
+        }
+      },
+      "cell": 2,
+      "slab": 0.2,
+      "door_height": 3.6,
+      "roof": {
+        "kind": "none"
+      }
+    }
+  }
+}

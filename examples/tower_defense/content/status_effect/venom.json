@@ -1,0 +1,1 @@
+{ "name": "Poisoned", "damage_per_second": 1, "damage_kind": "poison", "tick": 0.5, "stacking": "strongest", "tint": "#73f26b" }

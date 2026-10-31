@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/submarine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.85, 7.95, 20.15],
+      "offset": [0, 3.975, 0.125]
+    }
+  }
+}

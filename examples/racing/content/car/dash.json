@@ -1,0 +1,4 @@
+{
+  "name": "Dash", "blurb": "Smooth and steady",
+  "prefab": "car_dash", "showroom": "showroom_dash", "top_speed": 30, "acceleration": 38, "handling": 130
+}

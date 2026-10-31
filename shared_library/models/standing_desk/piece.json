@@ -1,0 +1,10 @@
+{
+  "id": "standing_desk",
+  "summary": "An electric sit-stand office desk: a 1.4 x 0.7 m top with radiused corners and eased edges on a powder-coated… joints height; options top, frame; sockets socket_top, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.standing_desk or place \"prefab\": \"standing_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:standing_desk"]
+}

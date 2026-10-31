@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/microscope"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.16, 0.3417, 0.19],
+      "offset": [0, 0.1708, 0]
+    }
+  }
+}

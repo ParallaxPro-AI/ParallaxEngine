@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/werewolf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3282, 2.0609, 1.2936],
+      "offset": [0, 1.0266, -0.0336]
+    }
+  }
+}

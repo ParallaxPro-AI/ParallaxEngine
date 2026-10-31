@@ -1,0 +1,176 @@
+{
+  "ui": [
+    "hud",
+    "aim_line"
+  ],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "environment": {
+    "ambient": "#3a3d4d",
+    "fog": {
+      "near": 14,
+      "far": 60,
+      "color": "#141217"
+    },
+    "sun": {
+      "intensity": 0
+    },
+    "post": {
+      "exposure": 1.05,
+      "contrast": 1.08,
+      "saturation": 1.08,
+      "vignette": 0.38,
+      "bloom": 0.13,
+      "temperature": 0.08
+    }
+  },
+  "entities": [
+    {
+      "prefab": "camera",
+      "id": "camera",
+      "at": [
+        0,
+        1.72,
+        1.1
+      ]
+    },
+    {
+      "id": "dart",
+      "prefab": "dart",
+      "at": [
+        0,
+        1.62,
+        0.3
+      ]
+    },
+    {
+      "prefab": "oche_marker",
+      "at": [
+        -0.35,
+        0.03,
+        0.35
+      ]
+    },
+    {
+      "prefab": "oche_marker",
+      "at": [
+        0.35,
+        0.03,
+        0.35
+      ]
+    },
+    {
+      "prefab": "hall_wall",
+      "at": [
+        0,
+        3,
+        -5.05
+      ]
+    },
+    {
+      "id": "board",
+      "prefab": "board",
+      "at": [
+        0,
+        1.78,
+        -4.5
+      ]
+    },
+    {
+      "prefab": "spotlight_post",
+      "at": [
+        -1.8,
+        0,
+        -4.4
+      ]
+    },
+    {
+      "prefab": "spotlight_post",
+      "at": [
+        1.8,
+        0,
+        -4.4
+      ]
+    },
+    {
+      "prefab": "jukebox",
+      "at": [
+        3.7,
+        0,
+        -1.4
+      ],
+      "rotation": [
+        0,
+        -75,
+        0
+      ]
+    },
+    {
+      "prefab": "arcade_cabinet",
+      "at": [
+        3.7,
+        0,
+        0.3
+      ],
+      "rotation": [
+        0,
+        -80,
+        0
+      ]
+    },
+    {
+      "prefab": "industrial_fan",
+      "at": [
+        4.1,
+        0,
+        -3.3
+      ],
+      "rotation": [
+        0,
+        -55,
+        0
+      ]
+    },
+    {
+      "prefab": "vending_machine",
+      "at": [
+        -3.8,
+        0,
+        -0.2
+      ],
+      "rotation": [
+        0,
+        80,
+        0
+      ]
+    },
+    {
+      "prefab": "bar_stool",
+      "at": [
+        -2.9,
+        0,
+        0.9
+      ],
+      "rotation": [
+        0,
+        30,
+        0
+      ]
+    }
+  ],
+  "terrain": {
+    "size": [
+      60,
+      60
+    ],
+    "resolution": 64,
+    "layers": [
+      {
+        "name": "hall_floor",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/40/54/4054ed6eb65cd063356ffb4a88706b7d7b78c5435051c48bf0ee64290f04bc8c.jpg",
+        "tile": 2.5,
+        "roughness": 0.88
+      }
+    ],
+    "default_layer": "hall_floor"
+  }
+}

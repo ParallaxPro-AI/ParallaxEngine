@@ -1,0 +1,10 @@
+{
+  "id": "mining_ship_asteroid",
+  "summary": "An original asteroid-mining spaceship, about 32 m long and 14 m wide (a working utility spacecraft the size o… joints drill_arm, drill, claw_l, claw_r, thrust; options hull; sockets socket_pilot, engine_l, engine_r, drill_tip.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mining_ship_asteroid or place \"prefab\": \"mining_ship_asteroid\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mining_ship_asteroid"]
+}

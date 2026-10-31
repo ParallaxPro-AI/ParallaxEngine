@@ -1,0 +1,10 @@
+{
+  "id": "jousting_lance",
+  "summary": "A 3.5 m medieval tournament lance: a painted wooden shaft that swells behind the hand and again in front of i… options stripe, pattern; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.jousting_lance or place \"prefab\": \"jousting_lance\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:jousting_lance"]
+}

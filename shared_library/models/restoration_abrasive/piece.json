@@ -1,0 +1,10 @@
+{
+  "id": "restoration_abrasive",
+  "summary": "A 0.10 m cork sanding block with a dark grit face and a worn corner — the tool that takes rust off steel fast…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_abrasive or place \"prefab\": \"restoration_abrasive\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_abrasive"]
+}

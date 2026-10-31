@@ -1,0 +1,10 @@
+{
+  "id": "deep_fryer",
+  "summary": "A countertop electric deep fryer: a stainless housing with an open oil well, a hot-oil surface, a wire frying… joints lid, basket; sockets socket_basket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.deep_fryer or place \"prefab\": \"deep_fryer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:deep_fryer"]
+}

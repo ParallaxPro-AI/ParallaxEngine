@@ -1,0 +1,30 @@
+{
+  "components": {
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.6,
+      "trigger": true
+    },
+    "collectible": {
+      "kind": "heart"
+    }
+  },
+  "behaviors": {
+    "spin": {
+      "speed": 120,
+      "bob": 0.15,
+      "bob_rate": 2.5
+    }
+  },
+  "children": [
+    {
+      "name": "art",
+      "components": {
+        "model": {
+          "model": "https://r2.parallaxpro.ai/assets/model_static/dc/de/dcdede113650bf4e682ddb18196454dc01e27909ea29b53aaeb3d874fcac3eab.glb",
+          "cast_shadows": true
+        }
+      }
+    }
+  ]
+}

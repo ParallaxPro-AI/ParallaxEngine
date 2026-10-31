@@ -1,0 +1,10 @@
+{
+  "id": "koi_bridge_arched",
+  "summary": "A Japanese arched drum bridge (taikobashi) for a koi pond or garden stream, 5.8 m long and 1.2 m wide: thirty… options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.koi_bridge_arched or place \"prefab\": \"koi_bridge_arched\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:koi_bridge_arched"]
+}

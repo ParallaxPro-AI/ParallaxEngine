@@ -1,0 +1,10 @@
+{
+  "id": "sandbox_kids",
+  "summary": "A 1.5 m square timber children's sandbox: two courses of boards on inside corner posts, sit-on cap rails fron… joints lid_l, lid_r; options finish, toys; sockets seat_front, seat_back, socket_sand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sandbox_kids or place \"prefab\": \"sandbox_kids\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sandbox_kids"]
+}

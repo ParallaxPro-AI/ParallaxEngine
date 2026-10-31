@@ -1,0 +1,10 @@
+{
+  "id": "old_man_cane",
+  "summary": "An elderly man with a walking cane: oatmeal knit cardigan with ribbed bands, wooden buttons and patch pockets… options skin, hair, headwear, cane, cardigan_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.old_man_cane or place \"prefab\": \"old_man_cane\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:old_man_cane"]
+}

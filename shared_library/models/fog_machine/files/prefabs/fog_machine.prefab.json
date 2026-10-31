@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fog_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.298, 0.3225, 0.6453],
+      "offset": [0, 0.1612, -0.0192]
+    }
+  }
+}

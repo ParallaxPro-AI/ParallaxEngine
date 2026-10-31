@@ -1,0 +1,10 @@
+{
+  "id": "solar_panel_rooftop",
+  "summary": "A residential rooftop solar kit: eight framed 1.03 x 1.72 m photovoltaic modules (two portrait rows of four)… options mount, cells, frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.solar_panel_rooftop or place \"prefab\": \"solar_panel_rooftop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:solar_panel_rooftop"]
+}

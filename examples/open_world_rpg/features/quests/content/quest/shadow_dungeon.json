@@ -1,0 +1,21 @@
+{
+  "number": 6,
+  "title": "Before the light goes out",
+  "summary": "Malakar's ritual will swallow Sundermere when the rift's clock runs out.",
+  "opens_rift": true,
+  "reward_xp": 500,
+  "reward_gold": 200,
+  "start": "slay",
+  "steps": {
+    "slay": {
+      "text": "Defeat Malakar in the ritual chamber before the rift consumes Sundermere.",
+      "verb": "defeat",
+      "target": "dungeon_lord",
+      "marker": "beacon_ritual",
+      "sets": [
+        "shadow_dungeon_done"
+      ]
+    }
+  },
+  "checkpoint": "ruin_gate_shrine"
+}

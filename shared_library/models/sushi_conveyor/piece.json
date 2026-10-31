@@ -1,0 +1,10 @@
+{
+  "id": "sushi_conveyor",
+  "summary": "A kaiten (conveyor-belt) sushi counter: a racetrack stainless belt housing with a dark crescent-link chain, g… options body_finish; sockets stool_f1, stool_f2, stool_f3, stool_f4, stool_b1, stool_b2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sushi_conveyor or place \"prefab\": \"sushi_conveyor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sushi_conveyor"]
+}

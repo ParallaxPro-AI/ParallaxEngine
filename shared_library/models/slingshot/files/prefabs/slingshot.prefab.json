@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/slingshot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0976, 0.202, 0.1001],
+      "offset": [0, 0.101, -0.0347]
+    }
+  }
+}

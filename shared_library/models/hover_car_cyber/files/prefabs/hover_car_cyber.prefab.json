@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hover_car_cyber"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.06, 1.4, 4.6],
+      "offset": [0, 0.7, 0.02]
+    }
+  }
+}

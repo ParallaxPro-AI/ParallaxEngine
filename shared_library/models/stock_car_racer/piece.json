@@ -1,0 +1,10 @@
+{
+  "id": "stock_car_racer",
+  "summary": "An oval-track stock car: a two-door saloon silhouette lowered and widened on slick tyres and black steel whee… joints door_fl, door_fr, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.stock_car_racer or place \"prefab\": \"stock_car_racer\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:stock_car_racer"]
+}

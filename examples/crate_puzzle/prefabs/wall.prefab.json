@@ -1,0 +1,8 @@
+{
+  "z": 2,
+  "components": {
+    "shape": { "kind": "rect", "size": [1, 1], "color": "#575e73" }
+  },
+  "tags": ["wall"],
+  "pool": 90
+}

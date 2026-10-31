@@ -1,0 +1,9 @@
+{
+  "id": "humanoid_boardsports",
+  "summary": "Humanoid board-sport clips for snowboards, skateboards, surfboards and wakeboards: a sideways riding stance, toe-side and heel-side carves, an in-air tuck and a grab, with grab/release markers.",
+  "version": "2026.10.30",
+  "setup": [
+    "Stand the rider on the board as a child entity, turned 90 degrees so it faces the board's toe edge (rotation [0, 90, 0] on a board whose nose is +z), feet on the bindings; the stance leads with the rider's left foot.",
+    "Play from an Animator: animator.play(Assets.clips.board_ride) while riding, board_carve_toe / board_carve_heel while turning, board_air in the air and animator.play_once(Assets.clips.board_grab) for a grab. They retarget onto any humanoid skeleton by bone name."
+  ]
+}

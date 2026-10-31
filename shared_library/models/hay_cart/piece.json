@@ -1,0 +1,10 @@
+{
+  "id": "hay_cart",
+  "summary": "A two-wheeled wooden farm cart heaped with hay: a plank bed with slatted ladder sides on an axletree, two iro… joints tailgate, wheel_l, wheel_r; options load, wood.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hay_cart or place \"prefab\": \"hay_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hay_cart"]
+}

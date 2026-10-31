@@ -1,0 +1,1 @@
+{ "name": "Zephyr Step", "description": "+1.6 drift speed.", "stat": "move_speed", "add": 1.6, "max_stacks": 3 }

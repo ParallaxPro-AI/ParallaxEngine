@@ -1,0 +1,10 @@
+{
+  "id": "spaghetti_plate",
+  "summary": "A plate of spaghetti and meatballs on a 27 cm glazed china plate with a green rim band: a twirled nest of ind… sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spaghetti_plate or place \"prefab\": \"spaghetti_plate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spaghetti_plate"]
+}

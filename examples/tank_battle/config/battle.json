@@ -1,0 +1,15 @@
+{
+  "countdown": 3,
+  "wave_clear_pause": 3,
+  "spawn_ring": 70,
+  "map_half": 90,
+  "flawless_bonus": 250,
+  "upgrade_offers": 3,
+  "upgrade_auto_pick": 30,
+  "fire_point_radius": 11,
+  "fire_point_damage_mul": 1.35,
+  "drum_trigger_radius": 4.5,
+  "supply_radius": 7,
+  "lock_assist": 1.9,
+  "toast_seconds": 2.2
+}

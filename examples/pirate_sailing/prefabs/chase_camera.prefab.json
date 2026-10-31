@@ -1,0 +1,17 @@
+{
+  "components": {
+    "camera": {
+      "rig": "follow",
+      "mode": "perspective",
+      "fov": 68,
+      "follow": "local_player",
+      "offset": [
+        0,
+        9,
+        -18
+      ],
+      "smoothing": 0.2,
+      "pitch": -17.6
+    }
+  }
+}

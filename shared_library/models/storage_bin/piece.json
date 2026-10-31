@@ -1,0 +1,14 @@
+{
+  "id": "storage_bin",
+  "summary": "A plastic storage tote with a snap-on / clip-on lid, a reinforced top rim and two front/back latch clips. joints lid; options size; sockets socket_contents.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.storage_bin or place \"prefab\": \"storage_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:storage_bin"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "The Ember Wall",
+  "subtitle": "run for the rim",
+  "from_distance": 790,
+  "speed_cap": 20.0,
+  "speed_ramp": 0.62,
+  "gap_scale": 1.0,
+  "air_chance": 0.3,
+  "coin_chance": 0.7,
+  "sky": [0.82, 0.42, 0.33],
+  "ground": [0.48, 0.244, 0.144],
+  "weights": {"rock": 4, "cactus": 4, "boulder": 5, "spire": 6, "bramble": 3, "bird": 4, "swooper": 5}
+}

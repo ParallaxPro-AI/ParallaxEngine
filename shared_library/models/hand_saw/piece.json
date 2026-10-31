@@ -1,0 +1,10 @@
+{
+  "id": "hand_saw",
+  "summary": "A 20 inch panel hand saw lying flat on its left face: a tapered, polished steel blade with a full row of set… options handle_finish; sockets socket_grip, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.hand_saw or place \"prefab\": \"hand_saw\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:hand_saw"]
+}

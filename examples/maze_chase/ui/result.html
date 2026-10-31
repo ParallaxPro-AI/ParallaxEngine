@@ -1,0 +1,43 @@
+<!-- Run result: gold WARREN CLEARED or coral CAUGHT with the level line, the score in arcade
+     numerals, BEST with the pulsing NEW BEST badge, and New Run / Menu. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ggr { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .ggr-card { width: calc(720 * var(--gg-u)); }
+  .ggr-h1 { font-size: var(--gg-fs-h1); text-transform: uppercase; }
+  .ggr-card.loss .ggr-h1 { font-size: calc(64 * var(--gg-u)); }
+  .ggr-subt { font: 400 calc(22 * var(--gg-u))/1.4 var(--gg-font-body); color: var(--gg-ink-2); margin-top: calc(-8 * var(--gg-u)); }
+  .ggr-sblock { display: flex; flex-direction: column; align-items: center; gap: calc(22 * var(--gg-u)); align-self: stretch; padding: calc(8 * var(--gg-u)) 0; }
+  .ggr-big { font-size: var(--gg-fs-result); }
+  .ggr-bestrow { display: flex; align-items: center; gap: calc(16 * var(--gg-u)); font: 500 calc(20 * var(--gg-u))/1 var(--gg-font-mono); letter-spacing: .08em; color: var(--gg-ink-2); text-transform: uppercase; }
+  .ggr-bestrow b { color: var(--gg-ink); font-weight: 700; }
+  .ggr-nb { font-family: var(--gg-font-arcade); font-size: calc(12 * var(--gg-u)); letter-spacing: .06em; text-transform: uppercase; color: var(--gg-gold-ink); background: var(--gg-gold); padding: calc(8 * var(--gg-u)) calc(10 * var(--gg-u)); border-radius: calc(6 * var(--gg-u)); box-shadow: var(--gg-glow-gold); animation: ggr-pulse 1.6s ease-in-out infinite; }
+  @keyframes ggr-pulse { 50% { box-shadow: 0 0 calc(28 * var(--gg-u)) rgba(255,210,74,.8); transform: scale(1.06); } }
+  /* Win: gold title and score. Loss: coral title, ink score, coral primary button. */
+  .ggr-card.loss .ggr-h1 { color: var(--gg-coral); text-shadow: var(--gg-ts-coral); }
+  .ggr-card.loss .ggr-big { color: var(--gg-ink); text-shadow: var(--gg-ts-ink); }
+  @container (max-height: 500px) {
+    .ggr-card { width: min(calc(560 * var(--gg-u)), calc(100cqw - 24px)); }
+    .ggr-card.loss .ggr-h1 { font-size: calc(28 * var(--gg-u)); }
+    .ggr-subt { font-size: calc(13 * var(--gg-u)); margin-top: calc(-2 * var(--gg-u)); }
+    .ggr-sblock { gap: calc(10 * var(--gg-u)); padding: calc(4 * var(--gg-u)) 0; }
+    .ggr-bestrow { font-size: calc(11 * var(--gg-u)); gap: calc(10 * var(--gg-u)); }
+    .ggr-nb { font-size: calc(7 * var(--gg-u)); padding: calc(5 * var(--gg-u)) calc(6 * var(--gg-u)); border-radius: calc(4 * var(--gg-u)); }
+  }
+</style>
+<div class="gg-root ggr">
+  <div class="gg-veil"></div>
+  <main class="gg-card ggr-card" data-class-win="won" data-class-loss="lost" role="dialog" aria-modal="true">
+    <h1 class="ggr-h1 gg-arc gg-t-gold" data-bind="title"></h1>
+    <p class="ggr-subt" data-bind="subtitle"></p>
+    <div class="ggr-sblock">
+      <div class="gg-lbl c" data-text="score"></div>
+      <div class="ggr-big gg-arc gg-t-gold" data-bind="score"></div>
+      <div class="ggr-bestrow"><span data-text="best"></span><b data-bind="best"></b><span class="ggr-nb" data-show="new_best" data-text="new_best"></span></div>
+    </div>
+    <div class="gg-btns">
+      <button class="gg-btn pri" data-action="retry" data-text="new_run"></button>
+      <button class="gg-btn ghost" data-action="quit" data-text="menu"></button>
+    </div>
+  </main>
+</div>

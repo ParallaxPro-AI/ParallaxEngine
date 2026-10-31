@@ -1,0 +1,10 @@
+{
+  "id": "windmill",
+  "summary": "A farm windmill: a tapered white tower with a dark cap, a rotor that spins on a horizontal shaft and a tail v… joints rotor, tail; options rotor_kit; sockets socket_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.windmill or place \"prefab\": \"windmill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:windmill"]
+}

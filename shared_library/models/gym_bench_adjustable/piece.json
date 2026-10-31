@@ -1,0 +1,10 @@
+{
+  "id": "gym_bench_adjustable",
+  "summary": "A flat/incline/decline (FID) adjustable utility bench, 1.4 m long: a long back pad and a short tilting seat p… joints seat, backrest; options leg_hold, frame, pad; sockets seat_user, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gym_bench_adjustable or place \"prefab\": \"gym_bench_adjustable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gym_bench_adjustable"]
+}

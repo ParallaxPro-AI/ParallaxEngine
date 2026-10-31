@@ -1,0 +1,10 @@
+{
+  "id": "music_stand_rack",
+  "summary": "A band-room storage cart loaded with six solid-desk orchestral music stands: a steel tube cart with side rail… options stand_colour, load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.music_stand_rack or place \"prefab\": \"music_stand_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:music_stand_rack"]
+}

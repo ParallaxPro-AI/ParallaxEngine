@@ -1,0 +1,10 @@
+{
+  "id": "monkey",
+  "summary": "A monkey standing 0.72 m tall on the engine's canonical humanoid_17 rig, so the whole shared humanoid clip li… options fur, face; sockets head_top, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.monkey or place \"prefab\": \"monkey\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:monkey"]
+}

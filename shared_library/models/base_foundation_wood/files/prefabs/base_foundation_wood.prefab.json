@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/base_foundation_wood"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9951, 1.009, 2.985],
+      "offset": [-0.0005, 0.5045, 0.0015]
+    }
+  }
+}

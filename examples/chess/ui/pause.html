@@ -1,0 +1,52 @@
+<!-- Ported from the template: Chess pause menu - Paused card with Resume, Main Menu and a Settings view holding the Low / Medium / High graphics selector -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .pz { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .pz-card { width: var(--cx-pause-w); }
+  .pz-view { display: none; }
+  .pz-card[data-view="main"] .pz-main, .pz-card[data-view="settings"] .pz-settings { display: block; }
+  .pz-stack { display: flex; flex-direction: column; gap: var(--cx-s-3); margin-top: var(--cx-s-6); }
+  .pz-field { margin-top: var(--cx-s-6); text-align: left; }
+  .pz-seg { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--cx-line-2); margin-top: var(--cx-s-3); }
+  .pz-seg button { height: var(--cx-btn-h); background: transparent; border: 0; cursor: pointer; pointer-events: auto; font: 500 var(--cx-fs-label)/1 var(--cx-f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--cx-ink-2); transition: background var(--cx-t-fast), color var(--cx-t-fast); }
+  .pz-seg button + button { border-left: 1px solid var(--cx-line-2); }
+  .pz-seg button:hover { background: var(--cx-bg-2); color: var(--cx-ink); }
+  .pz-seg button[aria-checked="true"] { background: var(--cx-accent-soft); color: var(--cx-accent); box-shadow: inset 0 -2px 0 var(--cx-accent); }
+  .pz-seg button:focus-visible { outline: 2px solid var(--cx-accent); outline-offset: -2px; }
+  .pz-hint { justify-content: center; margin-top: var(--cx-s-5); }
+  @media (pointer: coarse) { .pz-hint { display: none; } }
+</style>
+<div class="cx-root pz">
+  <div class="cx-scrim"></div>
+  <div class="cx-modal pz-card" id="pz-card" data-view="main" role="dialog" aria-modal="true">
+    <div class="pz-view pz-main">
+      <h2 class="cx-h2" data-text="paused"></h2>
+      <div class="pz-stack">
+        <button class="cx-btn cx-primary" data-action="resume" data-text="resume"></button>
+        <button class="cx-btn" data-action="quit" data-text="main_menu"></button>
+        <button class="cx-btn" id="pz-settings-open" data-text="settings"></button>
+      </div>
+      <div class="cx-keyhint pz-hint"><span class="cx-kbd">P</span><span data-text="resume"></span></div>
+    </div>
+    <div class="pz-view pz-settings">
+      <h2 class="cx-h2" data-text="settings"></h2>
+      <div class="pz-field">
+        <div class="cx-label">Graphics</div>
+        <div class="pz-seg" role="radiogroup" aria-label="Graphics quality">
+          <button role="radio" data-action="quality" data-quality="low" data-attr-aria-checked="quality_low">Low</button>
+          <button role="radio" data-action="quality" data-quality="medium" data-attr-aria-checked="quality_medium">Medium</button>
+          <button role="radio" data-action="quality" data-quality="high" data-attr-aria-checked="quality_high">High</button>
+        </div>
+      </div>
+      <div class="pz-stack"><button class="cx-btn" id="pz-back">Back</button></div>
+    </div>
+  </div>
+</div>
+<script>
+  // Presentation only: the card flips between its main and graphics views.
+  (function () {
+    var card = document.getElementById('pz-card');
+    document.getElementById('pz-settings-open').addEventListener('click', function () { card.setAttribute('data-view', 'settings'); });
+    document.getElementById('pz-back').addEventListener('click', function () { card.setAttribute('data-view', 'main'); });
+  })();
+</script>

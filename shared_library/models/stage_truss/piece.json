@@ -1,0 +1,10 @@
+{
+  "id": "stage_truss",
+  "summary": "A goalpost stage lighting rig: two 3 m aluminium box-truss towers (290 mm square, four tube chords with zigza… joints tilt_0, tilt_1, tilt_2, tilt_3; options gel, beams; sockets socket_span_mid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stage_truss or place \"prefab\": \"stage_truss\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stage_truss"]
+}

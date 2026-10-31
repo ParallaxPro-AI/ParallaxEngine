@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lunar_rover"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 210,
+      "linear_damping": 0.05,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.14,
+        2.1732,
+        3.1918
+      ],
+      "offset": [
+        0,
+        1.0899,
+        0
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 5,
+      "steering": 30,
+      "grip": 3.5,
+      "turn_rate": 1.2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.0899,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

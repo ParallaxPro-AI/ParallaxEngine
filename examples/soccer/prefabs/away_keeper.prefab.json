@@ -1,0 +1,28 @@
+{
+  "extends": "away_player",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/37/61/3761e3711c6259536ba16a92a19435626774feab95de4518d98f78368667496b.glb",
+      "colors": {
+        "Skin": "#ffffff",
+        "Main": "#ffffff",
+        "Black": "#ffffff",
+        "Grey": "#ffffff",
+        "Face": "#ffffff",
+        "Hair": "#ffffff",
+        "Helmet": null
+      }
+    },
+    "footballer": {
+      "ai_speed": 5,
+      "kick_power": 18
+    },
+    "goalkeeper": {
+      "reach": 6,
+      "box_depth": 16,
+      "line_offset": 2,
+      "save_speed": 9,
+      "clear_spread": 0.4
+    }
+  }
+}

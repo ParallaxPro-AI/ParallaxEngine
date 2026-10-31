@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sake_barrel_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.62, 1.585, 0.56],
+      "offset": [0, 0.7925, 0]
+    }
+  }
+}

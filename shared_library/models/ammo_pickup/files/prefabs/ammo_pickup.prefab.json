@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ammo_pickup"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.32, 0.2566, 0.1575],
+      "offset": [0, 0.1283, 0.0008]
+    }
+  }
+}

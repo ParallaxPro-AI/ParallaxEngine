@@ -1,0 +1,7 @@
+{
+  "name": "Wide Detonator",
+  "description": "Bomb gems blast a 5x5 crater instead of 3x3.",
+  "short": "Bombs blast 5x5 instead of 3x3.",
+  "highlight": "5x5",
+  "bomb_radius_bonus": 1
+}

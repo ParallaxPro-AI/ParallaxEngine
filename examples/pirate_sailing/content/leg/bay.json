@@ -1,0 +1,7 @@
+{
+  "name": "Buccaneer Bay",
+  "brief": "Sheltered water and fat merchant wrecks. Fill the hold and sink a haunted hull to prove the crew.",
+  "bounty_label": "Sink a ghost ship",
+  "scene": "bay", "duration": 260, "gold_quota": 300, "treasure_count": 20, "treasure_value": 25,
+  "bounty_tag": "ghost", "bounty_count": 1, "storm_chance": 0.05, "enemy_damage_scale": 1.0
+}

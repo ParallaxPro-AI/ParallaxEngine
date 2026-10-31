@@ -1,0 +1,10 @@
+{
+  "id": "standing_mirror",
+  "summary": "A full-length cheval floor mirror: a moulded wooden frame with a gilt inner bead around the glass, swung betw… joints mirror; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.standing_mirror or place \"prefab\": \"standing_mirror\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:standing_mirror"]
+}

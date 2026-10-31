@@ -1,0 +1,10 @@
+{
+  "id": "house_chimney",
+  "summary": "A brick chimney stack for the HOUSE modular kit roofs: a 0.9 x 0.6 m two-flue stack (a common domestic size)… options mount, pots, brick.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_chimney or place \"prefab\": \"house_chimney\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_chimney"]
+}

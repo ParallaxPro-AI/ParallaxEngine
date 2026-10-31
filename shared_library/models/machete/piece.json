@@ -1,0 +1,10 @@
+{
+  "id": "machete",
+  "summary": "A Latin-pattern field machete, 0.61 m overall (real 18-inch machetes run 0.58-0.62 m): a 0.47 m black-coated… options handle; sockets edge, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.machete or place \"prefab\": \"machete\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:machete"]
+}

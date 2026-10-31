@@ -1,0 +1,1 @@
+{ "extends": "effect/smoke", "rate": 0, "burst": 60, "max": 90 }

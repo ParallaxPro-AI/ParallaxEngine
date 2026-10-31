@@ -1,0 +1,1 @@
+{"extends": "tower", "components": {"side": {"side": "red"}, "model": {"model": "models/tower_red"}, "map_icon": {"icon": "square", "color": "#ff6a5a", "size": 1.4}}}

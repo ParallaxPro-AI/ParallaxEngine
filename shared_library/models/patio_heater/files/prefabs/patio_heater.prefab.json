@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/patio_heater"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.852, 2.305, 0.852],
+      "offset": [0, 1.1525, 0]
+    }
+  }
+}

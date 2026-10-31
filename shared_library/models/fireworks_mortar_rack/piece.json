@@ -1,0 +1,10 @@
+{
+  "id": "fireworks_mortar_rack",
+  "summary": "A ten-shot fireworks mortar rack: two 2x4 runners, a plywood floor and side panels, and two drilled plywood p… options load, tubes; sockets launch_0, launch_1, launch_2, launch_3, launch_4, launch_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fireworks_mortar_rack or place \"prefab\": \"fireworks_mortar_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fireworks_mortar_rack"]
+}

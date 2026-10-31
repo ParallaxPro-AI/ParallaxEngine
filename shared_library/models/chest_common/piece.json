@@ -1,0 +1,10 @@
+{
+  "id": "chest_common",
+  "summary": "A common-rarity RPG loot chest: a humble pine-plank travel chest, about 0.78 m wide, 0.48 m deep and 0.55 m t… joints lid, hasp; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chest_common or place \"prefab\": \"chest_common\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chest_common"]
+}

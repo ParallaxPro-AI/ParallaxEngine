@@ -1,0 +1,10 @@
+{
+  "id": "alchemy_cauldron_large",
+  "summary": "A large alchemist's cauldron set into a furnace: a big-bellied black cast-iron pot with a rolled lip, copper… joints fire_door, stir; options brew, pot; sockets ladle, steam, fire.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alchemy_cauldron_large or place \"prefab\": \"alchemy_cauldron_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alchemy_cauldron_large"]
+}

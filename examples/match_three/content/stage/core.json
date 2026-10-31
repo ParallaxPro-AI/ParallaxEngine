@@ -1,0 +1,15 @@
+{
+  "depth": 6, "name": "The Core", "hint": "The last shelf. Bring a bomb.",
+  "target": 4200, "moves": 26, "gem_kinds": 6,
+  "crust": [
+    "...##...",
+    ".#....#.",
+    "........",
+    "...#....",
+    "....#...",
+    "........",
+    ".#....#.",
+    "...##..."
+  ],
+  "crust_layers": 2
+}

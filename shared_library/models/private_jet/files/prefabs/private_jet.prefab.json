@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/private_jet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [16.4733, 5.62, 20.349],
+      "offset": [0, 2.81, -0.1745]
+    }
+  }
+}

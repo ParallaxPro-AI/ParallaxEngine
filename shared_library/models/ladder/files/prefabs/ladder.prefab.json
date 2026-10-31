@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ladder"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.48, 2.23, 0.8139],
+      "offset": [0, 1.115, -0.0019]
+    }
+  }
+}

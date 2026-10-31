@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jewelry_display_counter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.51, 0.982, 0.629],
+      "offset": [0, 0.491, -0.0095]
+    }
+  }
+}

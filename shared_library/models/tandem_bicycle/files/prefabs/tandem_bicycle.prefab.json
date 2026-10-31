@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tandem_bicycle"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 28
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.62,
+        1.1012,
+        2.48
+      ],
+      "offset": [
+        0,
+        0.546,
+        -0.015
+      ]
+    },
+    "vehicle": {
+      "max_speed": 10,
+      "steering": 30
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.546,
+        -0.015
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

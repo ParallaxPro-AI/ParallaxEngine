@@ -1,0 +1,10 @@
+{
+  "id": "stair_climber",
+  "summary": "A revolving-staircase stair climber (stepmill), 0.86 x 2.05 x 1.9 m: a moving flight of 200 mm steps with rub… joints steps; options shroud, accent; sockets stand_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stair_climber or place \"prefab\": \"stair_climber\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stair_climber"]
+}

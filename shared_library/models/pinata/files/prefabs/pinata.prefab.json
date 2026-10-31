@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pinata"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.866, 1.2838, 0.7214],
+      "offset": [-0.0017, 0.6419, 0]
+    }
+  }
+}

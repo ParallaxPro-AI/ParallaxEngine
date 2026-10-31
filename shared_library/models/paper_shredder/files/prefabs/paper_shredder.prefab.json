@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paper_shredder"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.37, 0.8395, 0.357],
+      "offset": [0, 0.4198, -0.0215]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "window_bird",
+  "summary": "A small songbird that perches on the outside windowsill and flits off — static (non-skeletal) mesh, moved by…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.window_bird or place \"prefab\": \"window_bird\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:window_bird"]
+}

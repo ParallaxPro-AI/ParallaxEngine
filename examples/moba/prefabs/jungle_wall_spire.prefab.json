@@ -1,0 +1,1 @@
+{"components": {"model": {"model": "models/jungle_wall_spire", "cast_shadows": true}, "collider": {"shape": "box", "size": [6, 6.6, 4.163989], "offset": [0, 3.3, -0.049122], "layer": "terrain"}}}

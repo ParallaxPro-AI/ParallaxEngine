@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_overlay_bandage_arm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.108, 0.0885, 0.0951],
+      "offset": [0.622, 1.448, 0.0034]
+    }
+  }
+}

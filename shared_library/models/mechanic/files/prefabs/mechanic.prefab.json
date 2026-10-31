@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mechanic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7223, 1.791, 0.3319],
+      "offset": [0, 0.8955, 0.0138]
+    }
+  }
+}

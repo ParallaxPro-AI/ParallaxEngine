@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vampire"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.88, 0.4764],
+      "offset": [0, 0.94, -0.086]
+    }
+  }
+}

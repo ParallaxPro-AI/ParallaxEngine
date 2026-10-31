@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_floor_kitchen"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.8, 0.02, 8.4],
+      "offset": [0, 0.01, 0]
+    }
+  }
+}

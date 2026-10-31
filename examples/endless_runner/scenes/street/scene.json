@@ -1,0 +1,10 @@
+{
+  "ui": ["hud"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/c7/e1/c7e19c9d3b6828b31c9309bbe2c7e97938209c1ddebd52aa175a01d3481d6ae5.mp3",
+  "environment": {"ambient": "#aab6c0", "time_of_day": 13.5, "sun": {"direction": [0.375, -0.906, 0.196], "color": "#fff6e2", "intensity": 2.1, "shadow_distance": 150}, "fog": {"color": "#bcc4d3", "near": 55, "far": 125}, "post": {"exposure": 1.12, "contrast": 1.04, "saturation": 0.896, "temperature": 0.1, "bloom": 0.13, "vignette": 0.1}},
+  "entities": [
+    { "id": "runner", "prefab": "runner", "at": [0, 0, 0] },
+    { "id": "guard", "prefab": "guard", "at": [0, 0, -9] },
+    { "prefab": "camera", "at": [0, 6, -8], "components": { "camera": { "rig": "follow", "follow": "runner", "pitch": -24.4 } } }
+  ]
+}

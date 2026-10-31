@@ -1,0 +1,10 @@
+{
+  "id": "ice_chunk",
+  "summary": "A broken chunk of glacier ice about 1.8 m long, 1.0 m tall and 1.4 m deep (calved blocks on a glacier forelan…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ice_chunk or place \"prefab\": \"ice_chunk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ice_chunk"]
+}

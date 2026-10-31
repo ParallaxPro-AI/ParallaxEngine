@@ -1,0 +1,10 @@
+{
+  "id": "basic_nightstand",
+  "summary": "A budget flat-pack bedside table from the 'basic' apartment set: a white-laminate carcass with a pine top on… joints drawer; options dressing; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_nightstand or place \"prefab\": \"basic_nightstand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_nightstand"]
+}

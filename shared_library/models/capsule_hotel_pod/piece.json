@@ -1,0 +1,10 @@
+{
+  "id": "capsule_hotel_pod",
+  "summary": "A two-high capsule-hotel stack: two moulded fibreglass pods (rooms 017 and 018) on a gunmetal plinth, each wi… joints pod0_hatch, pod1_hatch; options glow, shell_colour, bedding; sockets socket_sleep_lower, socket_sleep_upper, socket_ladder.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.capsule_hotel_pod or place \"prefab\": \"capsule_hotel_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:capsule_hotel_pod"]
+}

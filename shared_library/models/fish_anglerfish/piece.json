@@ -1,0 +1,10 @@
+{
+  "id": "fish_anglerfish",
+  "summary": "A deep-sea anglerfish, the rare night or deep-water catch: 0.45 m long (big females of the real species run 0… joints jaw, lure, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip, lure_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_anglerfish or place \"prefab\": \"fish_anglerfish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_anglerfish"]
+}

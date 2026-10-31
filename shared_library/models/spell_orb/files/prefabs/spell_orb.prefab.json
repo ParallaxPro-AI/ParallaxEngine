@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spell_orb"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1479, 0.1202, 0.164],
+      "offset": [0, 0.0601, 0]
+    }
+  }
+}

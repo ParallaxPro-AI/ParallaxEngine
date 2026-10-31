@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lathe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.28, 0.445],
+      "offset": [0, 0.64, 0.0125]
+    }
+  }
+}

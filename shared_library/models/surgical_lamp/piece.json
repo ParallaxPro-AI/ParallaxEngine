@@ -1,0 +1,10 @@
+{
+  "id": "surgical_lamp",
+  "summary": "A ceiling-mounted twin-head LED surgical light: a ceiling canopy and drop tube carrying two stacked hubs, eac… joints sat_arm_yaw, sat_head_yaw, sat_head_tilt, main_arm_yaw, main_head_yaw, main_head_tilt; options power; sockets socket_ceiling.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.surgical_lamp or place \"prefab\": \"surgical_lamp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:surgical_lamp"]
+}

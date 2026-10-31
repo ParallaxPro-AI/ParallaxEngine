@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gantry_hoist"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8, 4.2, 1.58],
+      "offset": [0, 2.1, 0]
+    }
+  }
+}

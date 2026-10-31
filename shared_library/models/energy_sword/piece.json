@@ -1,0 +1,10 @@
+{
+  "id": "energy_sword",
+  "summary": "A sci-fi energy sword stood point-up: a machined metal hilt with a flared pommel, a ridged rubber grip, an ac… joints blade; options blade_color, hilt; sockets socket_grip, socket_emitter, socket_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.energy_sword or place \"prefab\": \"energy_sword\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:energy_sword"]
+}

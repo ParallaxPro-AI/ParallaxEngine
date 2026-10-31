@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crow"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1423, 0.2767, 0.4354],
+      "offset": [0, 0.1387, -0.0097]
+    }
+  }
+}

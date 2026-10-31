@@ -1,0 +1,10 @@
+{
+  "id": "watermelon",
+  "summary": "A whole watermelon, 36 cm long, lying on its side: a lathed oval body in pale green with eight dark stripes r… options form.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watermelon or place \"prefab\": \"watermelon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watermelon"]
+}

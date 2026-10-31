@@ -1,0 +1,10 @@
+{
+  "id": "saw_blade_rail",
+  "summary": "A floor-mounted spinning saw-blade trap: a 3 m steel track housing with a narrow slot down its spine, hazard-… joints carriage, blade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saw_blade_rail or place \"prefab\": \"saw_blade_rail\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saw_blade_rail"]
+}

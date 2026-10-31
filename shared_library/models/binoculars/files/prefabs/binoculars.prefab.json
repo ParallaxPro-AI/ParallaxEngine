@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/binoculars"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1828, 0.0649, 0.153],
+      "offset": [0, 0.0331, -0.0005]
+    }
+  }
+}

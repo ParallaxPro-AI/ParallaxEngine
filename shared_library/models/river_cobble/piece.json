@@ -1,0 +1,10 @@
+{
+  "id": "river_cobble",
+  "summary": "A river cobble, ~0.67 m across — the size range below the gameplay boulders. options wear; sockets socket_lee.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.river_cobble or place \"prefab\": \"river_cobble\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:river_cobble"]
+}

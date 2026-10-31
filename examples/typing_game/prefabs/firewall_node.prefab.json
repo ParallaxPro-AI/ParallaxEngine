@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [1.9, 0.2, 1.1], "color": "#6f8b95" },
+    "light": { "kind": "point", "color": "#aaf3e7", "intensity": 3.5, "range": 10 }
+  },
+  "behaviors": {
+    "firewall_node": { "idle_color": "#6f8b95", "clear_color": "#95ffc4", "breach_color": "#ff9599", "decay": 6.0, "reach": 1.4 }
+  }
+}

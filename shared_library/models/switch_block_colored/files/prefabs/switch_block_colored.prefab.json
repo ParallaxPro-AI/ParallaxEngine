@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/switch_block_colored"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.014, 1.13, 1.014],
+      "offset": [0, 0.565, 0]
+    }
+  }
+}

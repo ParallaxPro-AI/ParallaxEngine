@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/street_planter",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.964,
+        0.995,
+        0.964
+      ],
+      "offset": [
+        0.0,
+        0.4975,
+        0.0
+      ]
+    }
+  }
+}

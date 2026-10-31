@@ -1,0 +1,2 @@
+{ "name": "Honed Edge", "blurb": "Sharpened until the whetstone complained.",
+  "icon": "blade", "category": "attack", "tier": 1, "cost": 450, "stats": { "damage": 14 }, "builds_from": ["copper_band"] }

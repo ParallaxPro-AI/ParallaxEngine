@@ -1,0 +1,10 @@
+{
+  "music/mus_menu": { "volume": 0.5 },
+  "music/mus_bed": { "volume": 0.55 },
+  "music/mus_pulse": { "volume": 1 },
+  "music/mus_drive": { "volume": 1 },
+  "music/mus_swell": { "volume": 1 },
+  "sfx/amb_lane": { "volume": 0.5 },
+  "sfx/minion_hit_a": { "limit": 6 },
+  "sfx/minion_hit_b": { "limit": 6 }
+}

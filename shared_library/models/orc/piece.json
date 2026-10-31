@@ -1,0 +1,10 @@
+{
+  "id": "orc",
+  "summary": "A rigged fantasy orc brute on the canonical 17-bone humanoid rig (~2 m): green hide, a heavy hunched trapeziu… options skin, gear, hair, hairstyle, armour; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.orc or place \"prefab\": \"orc\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:orc"]
+}

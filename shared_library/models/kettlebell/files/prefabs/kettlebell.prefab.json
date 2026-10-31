@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kettlebell"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.21, 0.2974, 0.213],
+      "offset": [0, 0.1482, 0.0015]
+    }
+  }
+}

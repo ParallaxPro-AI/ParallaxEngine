@@ -1,0 +1,4 @@
+{
+  "scale": [1.75, 1.75, 1.75],
+  "components": {"model": {"model": "https://r2.parallaxpro.ai/assets/model_static/36/52/3652f54699b426db9627fdc1e69cc6a564f7c4c230e0367b9c2e7cbff9deb154.glb", "cast_shadows": true}, "collider": {"shape": "box", "size": [0.4, 1.5, 0.4], "offset": [0, 0.75, 0]}}
+}

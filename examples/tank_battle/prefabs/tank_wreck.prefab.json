@@ -1,0 +1,30 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_hull",
+      "scale": 0.7,
+      "cast_shadows": true,
+      "offset": [0, -0.9, 0],
+      "colors": {
+        "camo_hull": "#2b2622"
+      },
+      "tint": "#6e6660"
+    },
+    "grounded": {
+      "lift": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4, 1.8, 5],
+      "layer": "prop"
+    }
+  },
+  "children": [
+    {
+      "name": "turret",
+      "prefab": "tank_turret_wreck",
+      "at": [0, -0.018, 0.175],
+      "rotation": [0, 28, 0]
+    }
+  ]
+}

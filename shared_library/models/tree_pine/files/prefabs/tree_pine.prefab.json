@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_pine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.3689, 10.9999, 7.0799],
+      "offset": [0.0419, 5.5, 0.2119]
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bike_share_dock"
+    }
+  }
+}

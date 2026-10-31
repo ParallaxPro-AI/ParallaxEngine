@@ -1,0 +1,60 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_car",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.15,
+        1.633,
+        5.105
+      ],
+      "offset": [
+        0.0,
+        0.8165,
+        0.0775
+      ],
+      "bounce": 0.1
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1400,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "vehicle": {
+      "kind": "car",
+      "max_speed": 36,
+      "steering": 40,
+      "acceleration": 20.0,
+      "braking": 20.9
+    },
+    "vehicle_rig": {
+      "wheels": [
+        "wheel_f_l_roll",
+        "wheel_f_r_roll",
+        "wheel_r_l_roll",
+        "wheel_r_r_roll"
+      ],
+      "steer": [
+        "wheel_f_l_steer",
+        "wheel_f_r_steer"
+      ]
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.0,
+        0.8165,
+        0.0775
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

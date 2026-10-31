@@ -1,0 +1,10 @@
+{
+  "id": "ingot_stack_iron",
+  "summary": "A stack of twelve cast iron ingots laid crosswise in four courses on two timber skids, the top bar dropped on…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ingot_stack_iron or place \"prefab\": \"ingot_stack_iron\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ingot_stack_iron"]
+}

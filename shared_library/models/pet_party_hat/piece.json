@@ -1,0 +1,10 @@
+{
+  "id": "pet_party_hat",
+  "summary": "A 9 cm striped card party hat with a pom on top and a chin elastic — sized for an ANIMAL head, not a human on…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pet_party_hat or place \"prefab\": \"pet_party_hat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pet_party_hat"]
+}

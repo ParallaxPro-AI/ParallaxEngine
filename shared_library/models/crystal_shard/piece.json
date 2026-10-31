@@ -1,0 +1,10 @@
+{
+  "id": "crystal_shard",
+  "summary": "Three emissive crystal shards growing out of a faceted rock chip: one 372 mm spire and two shorter ones leani… options colour; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crystal_shard or place \"prefab\": \"crystal_shard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crystal_shard"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/moving_boxes_taped"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9679, 0.7147, 0.4735],
+      "offset": [0.0017, 0.3574, -0.0169]
+    }
+  }
+}

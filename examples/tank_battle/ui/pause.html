@@ -1,0 +1,81 @@
+<!-- Ported from the template: Armor Assault pause menu — PAUSED hangar panel with Resume / Exit to Menu / Settings (Graphics Low / Medium / High). Same params as lib:pause_menu: pauseTitle, pauseSubtitle, pauseHint, pauseButtons, pause_menuVisible. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif); color: #e8e8e8; pointer-events: none; overflow: hidden; -webkit-font-smoothing: antialiased; }
+  .hidden { display: none !important; }
+  .pm-overlay { position: fixed; inset: 0; display: flex; align-items: center; justify-content: safe center; flex-direction: column; overflow-y: auto; padding: calc(24 * var(--u)); z-index: 250; background: rgba(3,6,4,.62); opacity: 0; transition: opacity .25s ease; }
+  .pm-overlay.visible { opacity: 1; }
+  .pm-card { position: relative; flex-shrink: 0; width: calc(560 * var(--u)); max-width: 100%; background: rgba(5,10,8,.72); border: 1px solid rgba(255,255,255,.14); transform: translateY(calc(14 * var(--u))); opacity: 0; }
+  .pm-overlay.visible .pm-card { animation: pmIn .35s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes pmIn { to { opacity: 1; transform: translateY(0); } }
+  .corner { position: absolute; width: calc(22 * var(--u)); height: calc(22 * var(--u)); border: 0 solid #f59e0b; }
+  .corner.tl { left: -1px; top: -1px; border-left-width: 2px; border-top-width: 2px; }
+  .corner.br { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }
+  .pm-bar { display: flex; align-items: center; gap: calc(14 * var(--u)); height: calc(52 * var(--u)); padding: 0 calc(28 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.12); background: repeating-linear-gradient(-45deg, rgba(77,124,15,.18) 0 calc(10 * var(--u)), rgba(77,124,15,.06) calc(10 * var(--u)) calc(20 * var(--u))); font-weight: 700; font-size: calc(18 * var(--u)); letter-spacing: .28em; }
+  .pm-bar i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); background: #f59e0b; box-shadow: 0 0 calc(10 * var(--u)) #f59e0b; }
+  .pm-body { padding: calc(36 * var(--u)) calc(48 * var(--u)) calc(40 * var(--u)); display: flex; flex-direction: column; align-items: stretch; }
+  .pm-title { font-family: var(--aa-font-display, 'Anton', Impact, sans-serif); font-size: calc(104 * var(--u)); line-height: .95; letter-spacing: .02em; text-transform: uppercase; text-align: center; }
+  .pm-subtitle { margin-top: calc(8 * var(--u)); text-align: center; font-weight: 600; font-size: calc(20 * var(--u)); letter-spacing: .2em; text-transform: uppercase; color: #22d3ee; }
+  .pm-buttons { display: flex; flex-direction: column; gap: calc(12 * var(--u)); margin-top: calc(30 * var(--u)); }
+  .pm-btn { position: relative; display: flex; align-items: center; justify-content: center; gap: calc(12 * var(--u)); width: 100%; height: calc(60 * var(--u)); padding: 0 calc(24 * var(--u)); border: 1px solid rgba(232,232,232,.4); background: transparent; color: #e8e8e8; font-family: inherit; font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .18em; text-transform: uppercase; cursor: pointer; pointer-events: auto; transition: background .15s ease, border-color .15s ease, transform .06s ease; }
+  .pm-btn:hover, .pm-btn:focus-visible { border-color: #e8e8e8; background: rgba(255,255,255,.06); outline: none; }
+  .pm-btn:active { transform: scale(.98); }
+  .pm-btn.primary { height: calc(64 * var(--u)); border: 0; background: #22c55e; color: #06140a; font-weight: 700; font-size: calc(24 * var(--u)); letter-spacing: .2em; clip-path: polygon(calc(14 * var(--u)) 0,100% 0,100% calc(100% - calc(14 * var(--u))),calc(100% - calc(14 * var(--u))) 100%,0 100%,0 calc(14 * var(--u))); }
+  .pm-btn.primary:hover, .pm-btn.primary:focus-visible { background: #4ade80; }
+  .pm-btn.primary:active { background: #16a34a; }
+  .pm-btn.danger { color: #ef4444; border-color: rgba(239,68,68,.5); }
+  .pm-settings-title { font-weight: 700; font-size: calc(16 * var(--u)); letter-spacing: .28em; color: #888; text-align: left; }
+  .pm-q-row { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid rgba(255,255,255,.14); }
+  .pm-q-row .pm-btn { border: 0; border-right: 1px solid rgba(255,255,255,.14); height: calc(56 * var(--u)); }
+  .pm-q-row .pm-btn:last-child { border-right: 0; }
+  .pm-quality[aria-pressed="true"] { background: rgba(245,158,11,.16); color: #f59e0b; box-shadow: inset 0 calc(-3 * var(--u)) 0 #f59e0b; }
+  .pm-hint { margin-top: calc(24 * var(--u)); text-align: center; font-weight: 600; font-size: calc(16 * var(--u)); letter-spacing: .22em; text-transform: uppercase; color: #888; }
+  .pm-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: calc(24 * var(--u)); height: calc(24 * var(--u)); margin: 0 calc(4 * var(--u)); padding: 0 calc(5 * var(--u)); border: 1px solid rgba(255,255,255,.28); border-bottom-width: 2px; font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 700; font-size: calc(12 * var(--u)); color: #e8e8e8; letter-spacing: 0; vertical-align: middle; }
+  @media (pointer: coarse) {
+    .pm-card { width: calc(760 * var(--u)); }
+    .pm-bar { height: calc(64 * var(--u)); font-size: calc(24 * var(--u)); }
+    .pm-body { padding: calc(24 * var(--u)) calc(48 * var(--u)) calc(28 * var(--u)); }
+    .pm-title { font-size: calc(112 * var(--u)); }
+    .pm-subtitle { font-size: calc(24 * var(--u)); }
+    .pm-buttons { gap: calc(14 * var(--u)); margin-top: calc(20 * var(--u)); }
+    .pm-btn { height: calc(88 * var(--u)); font-size: calc(30 * var(--u)); }
+    .pm-btn.primary { height: calc(92 * var(--u)); font-size: calc(32 * var(--u)); }
+    .pm-q-row .pm-btn { height: calc(88 * var(--u)); }
+    .pm-settings-title { font-size: calc(22 * var(--u)); }
+    .pm-hint { margin-top: calc(18 * var(--u)); font-size: calc(22 * var(--u)); }
+  }
+</style>
+<div class="pm-overlay visible">
+  <div class="pm-card">
+    <div class="corner tl"></div><div class="corner br"></div>
+    <div class="pm-bar"><i></i>TANK HANGAR <span style="color:#888">/</span> HOLDING</div>
+    <div class="pm-body">
+      <div class="pm-title">PAUSED</div>
+      <div class="pm-buttons" id="pm-buttons">
+        <button class="pm-btn primary" data-action="resume">Resume</button>
+        <button class="pm-btn" data-action="quit">Main Menu</button>
+        <button class="pm-btn" id="pm-settings-open">Settings</button>
+      </div>
+      <div class="pm-buttons hidden" id="pm-settings">
+        <div class="pm-settings-title">GRAPHICS</div>
+        <div class="pm-q-row">
+          <button class="pm-btn pm-quality" data-action="quality" data-quality="low" data-attr-aria-pressed="quality_low">Low</button>
+          <button class="pm-btn pm-quality" data-action="quality" data-quality="medium" data-attr-aria-pressed="quality_medium">Medium</button>
+          <button class="pm-btn pm-quality" data-action="quality" data-quality="high" data-attr-aria-pressed="quality_high">High</button>
+        </div>
+        <button class="pm-btn" id="pm-settings-back">Back</button>
+      </div>
+      <div class="pm-hint" id="pm-hint"><span class="d-only">Press <span class="pm-kbd">P</span> to resume</span><span class="m-only">Tap Resume to get back in</span></div>
+    </div>
+  </div>
+</div>
+<script>
+  // Presentation only: the card flips to its graphics view and back.
+  (function () {
+    var buttons = document.getElementById('pm-buttons'), settings = document.getElementById('pm-settings'), hint = document.getElementById('pm-hint');
+    function show(on) { buttons.classList.toggle('hidden', on); settings.classList.toggle('hidden', !on); hint.classList.toggle('hidden', on); }
+    document.getElementById('pm-settings-open').addEventListener('click', function () { show(true); });
+    document.getElementById('pm-settings-back').addEventListener('click', function () { show(false); });
+  })();
+</script>

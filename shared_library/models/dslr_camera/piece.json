@@ -1,0 +1,10 @@
+{
+  "id": "dslr_camera",
+  "summary": "A generic digital SLR camera with a zoom lens (original design, no branding): a chamfered body with a leather… joints flash, shutter, screen, zoom; options colour, screen_state; sockets socket_lens, socket_strap, flash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dslr_camera or place \"prefab\": \"dslr_camera\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dslr_camera"]
+}

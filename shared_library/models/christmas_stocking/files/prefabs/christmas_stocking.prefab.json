@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/christmas_stocking"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3093, 0.6093, 0.1045],
+      "offset": [-0.0003, 0.3013, 0.0004]
+    }
+  }
+}

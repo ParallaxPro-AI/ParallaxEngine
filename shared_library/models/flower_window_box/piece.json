@@ -1,0 +1,10 @@
+{
+  "id": "flower_window_box",
+  "summary": "A cottage window box: a painted tongue-and-groove timber planter (36 x 8 x 8 in, about 0.92 x 0.23 x 0.21 m)…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flower_window_box or place \"prefab\": \"flower_window_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flower_window_box"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "sniper_rifle",
+  "summary": "A bolt-action sniper rifle: fluted barrel with a muzzle brake, a boxy receiver with a running bolt handle, a… joints magazine, bolt, bipod, scope; sockets socket_muzzle, socket_grip, socket_optic, grip_r, grip_l, sight, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.sniper_rifle or place \"prefab\": \"sniper_rifle\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:sniper_rifle"]
+}

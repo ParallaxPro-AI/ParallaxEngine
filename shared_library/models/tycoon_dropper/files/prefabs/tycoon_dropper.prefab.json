@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tycoon_dropper"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.04, 2.355, 1.066],
+      "offset": [0, 1.1775, 0.013]
+    }
+  }
+}

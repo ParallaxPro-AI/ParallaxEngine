@@ -1,0 +1,10 @@
+{
+  "id": "tank_farm_tank",
+  "summary": "A horizontal pressurised bullet tank of an LPG / chemical tank farm, 2.6 m in diameter and 10.3 m long: a lat… joints manway; options paint, product.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tank_farm_tank or place \"prefab\": \"tank_farm_tank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tank_farm_tank"]
+}

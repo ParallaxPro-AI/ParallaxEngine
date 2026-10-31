@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/swan_paddle_boat"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 140,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8951, 2.22, 3.5107],
+      "offset": [0, 1.11, -0.0646]
+    }
+  }
+}

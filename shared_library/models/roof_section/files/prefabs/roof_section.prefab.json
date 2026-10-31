@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roof_section"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.7, 1.1243, 2.703],
+      "offset": [0, 0.5621, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "clothes_dryer",
+  "summary": "A front-loading tumble dryer sized to stand beside or stack on the library `washer` (0.6 x 0.85 x 0.6 m): a l… joints drum, door, tank, dial; options finish; sockets socket_drum, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.clothes_dryer or place \"prefab\": \"clothes_dryer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:clothes_dryer"]
+}

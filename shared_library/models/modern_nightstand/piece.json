@@ -1,0 +1,10 @@
+{
+  "id": "modern_nightstand",
+  "summary": "A modern two-drawer nightstand from the modern apartment set: a walnut carcass with overlay drawer fronts and… joints drawer_0, drawer_1; options wood, dressing; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_nightstand or place \"prefab\": \"modern_nightstand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_nightstand"]
+}

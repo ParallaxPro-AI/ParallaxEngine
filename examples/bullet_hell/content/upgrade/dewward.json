@@ -1,0 +1,1 @@
+{ "name": "Dewward", "description": "Start every wave with a dewshield.", "stat": "wave_shields", "add": 1, "max_stacks": 2, "grant_shields": 1 }

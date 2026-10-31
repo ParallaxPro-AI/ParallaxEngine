@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/food_mixer_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 1.1115, 0.485],
+      "offset": [0, 0.5557, -0.0125]
+    }
+  }
+}

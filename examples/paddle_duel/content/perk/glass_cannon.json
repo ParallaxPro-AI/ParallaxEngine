@@ -1,0 +1,1 @@
+{ "name": "Glass Cannon", "description": "Your returns leave 25% faster, but your paddle is 15% shorter.", "return_speed": 1.25, "paddle_length": 0.85 }

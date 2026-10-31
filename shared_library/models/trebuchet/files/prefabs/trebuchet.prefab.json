@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trebuchet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.26, 4.7707, 6.2],
+      "offset": [0, 2.3854, 0]
+    }
+  }
+}

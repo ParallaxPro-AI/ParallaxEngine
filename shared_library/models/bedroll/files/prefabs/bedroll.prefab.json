@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bedroll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0963, 0.193, 2.1],
+      "offset": [0.0604, 0.097, 0]
+    }
+  }
+}

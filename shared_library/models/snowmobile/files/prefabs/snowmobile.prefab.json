@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/snowmobile"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 260,
+      "linear_damping": 0.08,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.2,
+        1.1227,
+        3.0187
+      ],
+      "offset": [
+        0,
+        0.5614,
+        0.0243
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 28,
+      "grip": 5,
+      "turn_rate": 1.6
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.5614,
+        0.0243
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

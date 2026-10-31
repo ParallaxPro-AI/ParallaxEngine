@@ -1,0 +1,10 @@
+{
+  "id": "igloo",
+  "summary": "A walk-in snow-block igloo: a 3.9 m hemispherical dome laid in spiralling courses of cut snow blocks, a vault… options snow; sockets socket_entrance, socket_interior, socket_bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.igloo or place \"prefab\": \"igloo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:igloo"]
+}

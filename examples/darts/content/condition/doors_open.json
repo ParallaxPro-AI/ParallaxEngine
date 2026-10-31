@@ -1,0 +1,6 @@
+{
+  "name": "Doors open",
+  "weight": 2,
+  "speed_min": 2.0,
+  "speed_max": 3.2
+}

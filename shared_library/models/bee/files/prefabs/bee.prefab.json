@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bee"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0661, 0.0529, 0.1319],
+      "offset": [0, 0.0266, -0.008]
+    }
+  }
+}

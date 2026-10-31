@@ -1,0 +1,10 @@
+{
+  "id": "broken_mirror",
+  "summary": "A shattered antique wall mirror (66 x 96 cm, a common hall-mirror size): a dark stained moulded wooden frame…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.broken_mirror or place \"prefab\": \"broken_mirror\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:broken_mirror"]
+}

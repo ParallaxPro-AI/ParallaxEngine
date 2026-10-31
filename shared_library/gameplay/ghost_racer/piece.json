@@ -1,0 +1,11 @@
+{
+  "id": "ghost_racer",
+  "summary": "Race your best run: the player's path is sampled on game time while a time trial runs, the fastest run per trial (and per TrialRun.variant, e.g. a lap count) is kept on the device, and a ghost placed in the scene replays it on the next attempt.",
+  "version": "2026.10.23",
+  "requires": ["time_trial"],
+  "setup": [
+    "List GhostKeeper in Game(systems=[...]) (from game.lib.ghost_racer import GhostKeeper).",
+    "Add { \"use\": \"ghost_recorder\" } to the player prefab, and place a ghost (any look, with { \"use\": \"ghost_playback\" }, no collider) in each timed scene."
+  ],
+  "replaces": ["lib:gameplay/ghost_replay"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bread_roll"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.061, 0.048, 0.084],
+      "offset": [0, 0.024, 0]
+    }
+  }
+}

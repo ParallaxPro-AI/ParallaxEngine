@@ -1,0 +1,10 @@
+{
+  "order": 4,
+  "name": "Nitro",
+  "blurb": "A bigger tank and a faster fill, so the boost you earn by drifting lasts longer.",
+  "tiers": [
+    { "name": "None", "blurb": "A single squirt." },
+    { "name": "Bottle", "blurb": "+35% tank, +20% fill rate.", "price": 1000, "nitro_capacity": 1.35, "nitro_gain": 1.2 },
+    { "name": "Twin", "blurb": "+80% tank, +50% fill rate.", "price": 2400, "nitro_capacity": 1.8, "nitro_gain": 1.5 }
+  ]
+}

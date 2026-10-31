@@ -1,0 +1,62 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/1d/8d/1d8dfc8aea187208faa2549f7174f051f07f9025b54d2905251b8e6a5c28fd71.glb",
+      "cast_shadows": true
+    },
+    "animator": {
+      "params": {
+        "speed": 0
+      },
+      "layers": [
+        {
+          "name": "base",
+          "states": {
+            "move": {
+              "blend": {
+                "param": "speed",
+                "clips": [
+                  {
+                    "at": 0,
+                    "clip": "Idle"
+                  },
+                  {
+                    "at": 2,
+                    "clip": "Walk"
+                  },
+                  {
+                    "at": 9,
+                    "clip": "Run"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "character": {
+      "walk_speed": 8,
+      "run_speed": 12,
+      "radius": 0.35,
+      "height": 1.8
+    },
+    "footballer": {
+      "ai_speed": 6,
+      "kick_power": 22,
+      "pass_power": 15,
+      "pass_range": 26
+    },
+    "stamina": {
+      "current": 100,
+      "max": 100,
+      "drain": 22,
+      "regen": 10,
+      "rest_regen": 22,
+      "floor": 8
+    }
+  },
+  "behaviors": {
+    "player_animation": {}
+  }
+}

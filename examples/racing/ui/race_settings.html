@@ -1,0 +1,77 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .stx { position: fixed; inset: 0; pointer-events: none; }
+  .stx-wrap { position: absolute; inset: var(--sr-edge-y) var(--sr-edge); display: flex; flex-direction: column; gap: clamp(calc(18 * var(--u)),3cqh,calc(32 * var(--u))); }
+  .stx-head { display: flex; justify-content: space-between; align-items: flex-end; gap: calc(24 * var(--u)); flex-wrap: wrap; animation: sr-fade 300ms ease both; }
+  .stx-title { display: flex; flex-direction: column; gap: calc(10 * var(--u)); min-width: 0; }
+  .stx-lock { --s: calc(10 * var(--u)); display: flex; align-items: center; gap: calc(12 * var(--u)); padding: calc(12 * var(--u)) calc(18 * var(--u)); background: rgba(249,115,22,0.12); clip-path: polygon(var(--s) 0,100% 0,calc(100% - var(--s)) 100%,0 100%); color: var(--sr-orange-hi); max-width: calc(760 * var(--u)); }
+  .stx-lock svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+  .stx-lock .sr-lbl { letter-spacing: .08em; color: var(--sr-cream-2); }
+  .stx-lock-m { display: none; }
+  .stx-panel { --c: calc(20 * var(--u)); --tw: calc(120 * var(--u)); width: 100%; max-width: calc(1320 * var(--u)); padding: calc(8 * var(--u)) calc(32 * var(--u)) calc(12 * var(--u)); display: flex; flex-direction: column; pointer-events: auto; animation: sr-rise 360ms var(--sr-ease) both; }
+  .stx-row { display: grid; grid-template-columns: minmax(calc(200 * var(--u)),calc(300 * var(--u))) minmax(0,1fr); gap: calc(28 * var(--u)); align-items: center; padding: clamp(calc(10 * var(--u)),1.6cqh,calc(16 * var(--u))) 0; border-top: calc(1 * var(--u)) solid var(--sr-line); }
+  .stx-row:first-child { border-top: 0; }
+  .stx-name { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+  .stx-name b { font: italic 800 calc(30 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .stx-name .sr-lbl { font-size: calc(12 * var(--u)); letter-spacing: .1em; }
+  .stx-name .sr-lbl.is-set { color: var(--sr-orange-hi); }
+  .stx-flex { flex: 1; }
+  .stx-foot { display: flex; align-items: center; gap: calc(14 * var(--u)); max-width: calc(1320 * var(--u)); pointer-events: auto; }
+  .sr .stx-foot .sr-btn.is-pri { --h: calc(68 * var(--u)); --s: calc(17 * var(--u)); padding: 0 calc(44 * var(--u)); font-size: calc(30 * var(--u)); }
+  .stx-foot .sr-btn.is-pri svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+  @media (pointer: coarse) {
+    .stx-wrap { inset: var(--sr-safe-t) var(--sr-safe-r) var(--sr-safe-b) var(--sr-safe-l); gap: calc(16 * var(--u)); }
+    .stx-head { align-items: flex-start; flex-wrap: nowrap; }
+    .stx-title { gap: calc(6 * var(--u)); }
+    .stx-title .sr-kicker { display: none; }
+    .stx-title .sr-h1 { font-size: calc(60 * var(--u)); }
+    .stx-title .sr-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .stx-lock { display: none; }
+    .stx-wrap > .stx-flex { display: none; }
+    .stx-lock-m { display: inline-flex; background: rgba(249,115,22,0.16); color: var(--sr-cream-2); }
+    .stx-panel { --c: 0px; flex: 1; min-height: 0; max-width: none; padding: 0; background: none; clip-path: none; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); grid-auto-flow: column; grid-template-rows: repeat(3, auto); gap: calc(20 * var(--u)) calc(36 * var(--u)); align-content: center; }
+    .stx-panel.is-tick::before { display: none; }
+    .stx-row { display: flex; flex-direction: column; align-items: stretch; gap: calc(10 * var(--u)); padding: 0; border-top: 0; }
+    .stx-name { flex-direction: row; align-items: baseline; gap: calc(16 * var(--u)); }
+    .stx-name b { font: 700 calc(24 * var(--u))/1.1 var(--sr-f-ui); font-style: normal; letter-spacing: .18em; }
+    .stx-name .sr-lbl { font-size: calc(20 * var(--u)); letter-spacing: .08em; }
+    .stx-name .sr-lbl.is-note { display: none; }
+    .stx-foot { gap: calc(16 * var(--u)); }
+    .sr .stx-foot .sr-btn.is-pri { --h: calc(88 * var(--u)); --s: calc(22 * var(--u)); padding: 0 calc(52 * var(--u)); font-size: calc(36 * var(--u)); }
+    .stx-foot .sr-btn.is-pri svg { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+  }
+  [data-off] {}
+  .is-hidden { display: none !important; }
+</style>
+<div class="sr stx">
+  <div class="sr-vignette"></div>
+  <div class="sr-scene-dim"></div>
+  <div class="stx-wrap">
+    <div class="stx-head">
+      <div class="stx-title">
+        <div class="sr-kicker" data-text="brand"></div>
+        <h1 class="sr-h1" data-text="race_settings"></h1>
+        <p class="sr-sub" data-bind="sub"></p>
+      </div>
+      <div class="stx-lock" data-class-is-hidden="no_season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><div class="sr-lbl" data-bind="lock_note"></div></div>
+      <span class="sr-badge stx-lock-m" data-class-is-hidden="no_season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-bind="lock_note_short"></span></span>
+    </div>
+    <div class="sr-plate is-tick stx-panel" data-each="rows"><template>
+      <div class="stx-row">
+        <div class="stx-name"><b data-bind="label"></b><div class="sr-lbl" data-class-is-set="locked" data-class-is-note="unlocked" data-bind="note"></div></div>
+        <div class="sr-seg" data-each="options"><template>
+          <button class="sr-opt" data-class-is-on="on" data-class-is-lock="locked" data-action="set_option"><span data-class-is-hidden="no_padlock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span data-bind="label"></span></button>
+        </template></div>
+      </div>
+    </template></div>
+    <div class="stx-flex"></div>
+    <div class="stx-foot">
+      <button class="sr-btn" data-action="back" data-key="KeyP"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><span data-text="back"></span></button>
+      <div class="stx-flex"></div>
+      <button class="sr-btn is-pri" data-action="start" data-key="Enter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg><span data-text="start_race"></span></button>
+    </div>
+  </div>
+</div>

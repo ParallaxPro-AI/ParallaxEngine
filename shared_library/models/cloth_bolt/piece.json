@@ -1,0 +1,10 @@
+{
+  "id": "cloth_bolt",
+  "summary": "A bolt of hand-woven indigo wool cloth for a crafting or trading game: 0.62 m of cloth width (homespun looms… options dye.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cloth_bolt or place \"prefab\": \"cloth_bolt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cloth_bolt"]
+}

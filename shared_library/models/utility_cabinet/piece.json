@@ -1,0 +1,10 @@
+{
+  "id": "utility_cabinet",
+  "summary": "A 1.4 m footway distribution cabinet: concrete plinth, louvred steel body, a weathered cap and two doors that… joints door_l, door_r; options livery; sockets socket_notice.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.utility_cabinet or place \"prefab\": \"utility_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:utility_cabinet"]
+}

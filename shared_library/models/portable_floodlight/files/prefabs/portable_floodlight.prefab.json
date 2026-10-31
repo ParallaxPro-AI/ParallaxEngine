@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portable_floodlight"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.44, 8.6022, 3.075],
+      "offset": [0, 4.2991, 0.1375]
+    }
+  }
+}

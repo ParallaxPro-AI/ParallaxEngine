@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_swordfish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5106, 0.9926, 2.6412],
+      "offset": [0, 0.4951, -0.0207]
+    }
+  }
+}

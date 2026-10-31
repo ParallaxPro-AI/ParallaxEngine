@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kettle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.21, 0.2475, 0.329],
+      "offset": [0, 0.1222, 0.0005]
+    }
+  }
+}

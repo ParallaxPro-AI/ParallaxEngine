@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/riot_shield"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5726, 0.932, 0.098],
+      "offset": [0, 0.466, 0]
+    }
+  }
+}

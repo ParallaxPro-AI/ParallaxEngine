@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/reeds_cattail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8527, 1.8295, 1.1624],
+      "offset": [-0.0067, 0.9102, -0.0532]
+    }
+  }
+}

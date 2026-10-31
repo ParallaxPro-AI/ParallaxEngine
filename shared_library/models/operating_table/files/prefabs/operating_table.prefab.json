@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/operating_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.91, 0.818, 2.098],
+      "offset": [0, 0.409, -0.001]
+    }
+  }
+}

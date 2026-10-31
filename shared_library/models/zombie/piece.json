@@ -1,0 +1,10 @@
+{
+  "id": "zombie",
+  "summary": "A SHAMBLING ZOMBIE - the generic undead enemy, the one there are twenty of. options decay, garb, hair; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.zombie or place \"prefab\": \"zombie\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:zombie"]
+}

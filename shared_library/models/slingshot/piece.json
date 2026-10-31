@@ -1,0 +1,10 @@
+{
+  "id": "slingshot",
+  "summary": "A hand-held Y-fork slingshot stood upright: a tapered wooden handle with a cord-wrapped grip and a rounded bu… joints bands, pouch; options bands, wood, ammo; sockets socket_grip, socket_ammo, socket_muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.slingshot or place \"prefab\": \"slingshot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:slingshot"]
+}

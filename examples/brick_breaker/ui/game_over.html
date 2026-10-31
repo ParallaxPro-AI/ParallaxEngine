@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="prism.css">
+<style>
+  .psg-scrim { background: rgba(0,0,0,.7); }
+  .psg { width: calc(var(--u) * 900); max-width: calc(100cqw - 32px); padding: calc(var(--u) * 52) calc(var(--u) * 64) calc(var(--u) * 56); display: flex; flex-direction: column; align-items: center; text-align: center; gap: calc(var(--u) * 26); animation: ps-pop var(--ps-dur-slow) var(--ps-ease) both; pointer-events: auto; }
+  .psg-title { font-size: calc(var(--u) * 76); font-weight: 800; letter-spacing: var(--ps-track-title); line-height: 1; }
+  .psg-stage { color: var(--psg-c, var(--ps-stage-4)); text-shadow: 0 0 18px color-mix(in oklab, var(--psg-c, var(--ps-stage-4)) 50%, transparent); }
+  .psg-win { font-size: calc(var(--u) * 68); white-space: nowrap; background: var(--ps-prism); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 0 14px rgba(124,200,255,.35)); }
+  .psg[data-state="defeat"] .psg-win, .psg[data-state="victory"] .psg-lose { display: none; }
+  .psg .ps-segs { width: calc(var(--u) * 420); }
+  .psg-final { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 8); }
+  .psg-final .ps-num { line-height: 1; }
+  .psg-score { font-size: calc(var(--u) * 150); }
+  .psg-best { display: flex; align-items: center; gap: calc(var(--u) * 12); font-size: var(--fs-md); }
+  .psg-new { display: none; font-size: var(--fs-2xs); font-weight: 800; letter-spacing: .2em; padding: calc(var(--u) * 5) calc(var(--u) * 10); background: var(--ps-accent); color: #000; box-shadow: var(--ps-accent-glow); }
+  .psg-new.is-on { display: inline-block; }
+  .psg-stats { display: grid; grid-template-columns: repeat(3, 1fr); width: 100%; border: 1px solid var(--ps-line-2); }
+  .psg-stat { display: flex; flex-direction: column; align-items: center; padding: calc(var(--u) * 20) calc(var(--u) * 12); gap: calc(var(--u) * 8); }
+  .psg-stat + .psg-stat { border-left: 1px solid var(--ps-line-2); }
+  .psg-stat .ps-num { font-size: calc(var(--u) * 42); }
+  .psg-actions { display: grid; grid-template-columns: 1fr 1fr; width: 100%; gap: calc(var(--u) * 16); }
+
+  @media (pointer: coarse) {
+    .psg { width: calc(var(--u) * 560); max-width: calc(100cqw - 24px); max-height: calc(100cqh - 16px); overflow-y: auto; padding: calc(var(--u) * 18) calc(var(--u) * 26) calc(var(--u) * 20); gap: calc(var(--u) * 10); }
+    .psg-title { font-size: calc(var(--u) * 28); }
+    .psg .ps-segs { width: calc(var(--u) * 220); }
+    .psg .ps-seg { height: calc(var(--u) * 3); }
+    .psg-final { gap: calc(var(--u) * 2); }
+    .psg-score { font-size: calc(var(--u) * 54); }
+    .psg-best { gap: calc(var(--u) * 8); font-size: var(--fs-xs); }
+    .psg-new { padding: calc(var(--u) * 2) calc(var(--u) * 6); }
+    .psg-stat { padding: calc(var(--u) * 7) calc(var(--u) * 6); gap: calc(var(--u) * 2); }
+    .psg-stat .ps-num { font-size: calc(var(--u) * 18); }
+    .psg-actions { gap: calc(var(--u) * 10); }
+  }
+</style>
+<div class="ps-root">
+  <div class="ps-scrim psg-scrim"></div>
+  <div class="ps-center">
+    <section class="ps-panel psg" role="dialog" data-attr-data-state="outcome" data-style---psg-c="stage_color">
+      <span class="ps-label" data-hide="won" data-text="run_over"></span>
+      <span class="ps-label" data-show="won" data-text="run_complete"></span>
+      <h1 class="psg-title psg-lose"><span data-text="lost_on"></span> <span class="psg-stage" data-bind="stage_name"></span></h1>
+      <h1 class="psg-title psg-win" data-text="gauntlet_cleared"></h1>
+      <div class="ps-segs" aria-hidden="true" data-each="segments">
+      <template><i class="ps-seg" data-class-done="done" data-class-now="now" data-class-lost="lost" data-style---c="color"></i></template>
+    </div>
+      <div class="psg-final">
+        <span class="ps-label" data-text="final_score"></span>
+        <span class="ps-num psg-score" data-bind="score" data-format="int"></span>
+        <div class="psg-best"><span class="ps-label" data-text="best"></span><span class="ps-num ps-dim" data-bind="best" data-format="int"></span><span class="psg-new" data-class-is-on="new_best" data-text="new_best"></span></div>
+      </div>
+      <div class="psg-stats">
+        <div class="psg-stat"><span class="ps-num" data-bind="stages_cleared"></span><span class="ps-label" data-text="stages_cleared"></span></div>
+        <div class="psg-stat"><span class="ps-num" data-bind="upgrades"></span><span class="ps-label" data-text="upgrades"></span></div>
+        <div class="psg-stat"><span class="ps-num" data-bind="orbs_left"></span><span class="ps-label" data-text="orbs_left"></span></div>
+      </div>
+      <div class="psg-actions">
+        <button class="ps-btn ps-btn--primary" data-action="retry" data-text="play_again"></button>
+        <button class="ps-btn" data-action="quit" data-text="main_menu"></button>
+      </div>
+    </section>
+  </div>
+</div>

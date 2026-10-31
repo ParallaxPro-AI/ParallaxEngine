@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/sunset_supply" },
+    "collider": { "shape": "mesh" }
+  }
+}

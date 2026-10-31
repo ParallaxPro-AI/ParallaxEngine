@@ -1,0 +1,10 @@
+{
+  "id": "grenade_launcher",
+  "summary": "A six-shot revolving 40 mm grenade launcher in the MGL idiom: a fat spring-wound cylinder with six open chamb… joints cylinder_swing, cylinder, trigger, stock; sockets socket_muzzle, socket_optic, socket_foregrip, socket_rail_l, socket_rail_r, grip_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.grenade_launcher or place \"prefab\": \"grenade_launcher\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:grenade_launcher"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bollard_planter",
+  "summary": "A square precast-concrete security planter, 0.9 m on a side, that doubles as a vehicle-stopping bollard: a he… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bollard_planter or place \"prefab\": \"bollard_planter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bollard_planter"]
+}

@@ -1,0 +1,59 @@
+{
+  "duration": 3.0,
+  "skippable": true,
+  "scenes": [
+    "canyon_carver"
+  ],
+  "tracks": [
+    {
+      "type": "camera",
+      "keys": [
+        {
+          "t": 0,
+          "cut": true,
+          "position": [
+            486,
+            92.36,
+            108
+          ],
+          "look_at": [
+            471,
+            70.4,
+            85
+          ],
+          "fov": 50
+        },
+        {
+          "t": 1.5,
+          "position": [
+            469,
+            85.88,
+            60
+          ],
+          "look_at": [
+            471,
+            68.66,
+            93
+          ],
+          "fov": 52,
+          "ease": "in_out_quad"
+        },
+        {
+          "t": 3.0,
+          "position": [
+            468,
+            75.61,
+            71
+          ],
+          "look_at": [
+            473,
+            64.58,
+            111
+          ],
+          "fov": 52,
+          "ease": "in_out_cubic"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "longsword",
+  "summary": "A 1.1 m medieval hand-and-a-half longsword: an 0.8 m double-edged blade of flattened-hexagon section with a f… options hilt; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.longsword or place \"prefab\": \"longsword\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:longsword"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_mine_floating"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0875, 1.38, 1.0875],
+      "offset": [0, 0.69, 0]
+    }
+  }
+}

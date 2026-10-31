@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jacuzzi_tub"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.83, 0.717, 0.93],
+      "offset": [0, 0.3585, 0.005]
+    }
+  }
+}

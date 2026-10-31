@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rocking_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6259, 1.1121, 0.8827],
+      "offset": [0, 0.5566, -0.0197]
+    }
+  }
+}

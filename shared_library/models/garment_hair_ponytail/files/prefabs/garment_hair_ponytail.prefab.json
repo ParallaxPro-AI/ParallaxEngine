@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hair_ponytail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1798, 0.4407, 0.3163],
+      "offset": [-0.0003, 1.6685, -0.0766]
+    }
+  }
+}

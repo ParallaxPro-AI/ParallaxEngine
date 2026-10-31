@@ -1,0 +1,10 @@
+{
+  "id": "motorboat",
+  "summary": "A small open runabout: a lofted hard-chine planing hull with a cut-in cockpit, a fold-down windshield, a helm… joints windshield, outboard_tilt, outboard_steer; sockets eye_point, waterline, socket_helm, socket_bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.motorboat or place \"prefab\": \"motorboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:motorboat"]
+}

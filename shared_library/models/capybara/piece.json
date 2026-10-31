@@ -1,0 +1,10 @@
+{
+  "id": "capybara",
+  "summary": "A capybara on the engine's quadruped_20 rig, sized from a real adult: ~0.6 m at the rump, ~1.2 m nose to rump. options coat; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.capybara or place \"prefab\": \"capybara\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:capybara"]
+}

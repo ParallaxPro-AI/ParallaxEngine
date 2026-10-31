@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rowboat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.4823, 0.767, 3.28],
+      "offset": [0, 0.3835, 0.14]
+    }
+  }
+}

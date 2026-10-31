@@ -1,0 +1,10 @@
+{
+  "id": "hanging_chains",
+  "summary": "Four forged iron chains of different lengths hanging from J-hooks screwed under a rough hewn ceiling log: two…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hanging_chains or place \"prefab\": \"hanging_chains\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hanging_chains"]
+}

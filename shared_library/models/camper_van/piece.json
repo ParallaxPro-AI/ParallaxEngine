@@ -1,0 +1,10 @@
+{
+  "id": "camper_van",
+  "summary": "A retro two-tone camper van: a rounded lower body and cream upper body meeting at a chrome belt strip, a spli… joints door_fl, door_fr, door_slide, tailgate, pop_top, steering, …; options paint, upper; sockets seat_driver, eye_point, seat_pax_1, seat_pax_2, seat_pax_3, socket_bed_roof, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.camper_van or place \"prefab\": \"camper_van\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:camper_van"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/android_charging_dock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 2.32, 1.0481],
+      "offset": [0, 1.16, 0.0141]
+    }
+  }
+}

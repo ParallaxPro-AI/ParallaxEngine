@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boxing_gloves"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.396, 0.1347, 0.3179],
+      "offset": [0, 0.0652, 0.0015]
+    }
+  }
+}

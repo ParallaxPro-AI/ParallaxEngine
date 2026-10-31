@@ -1,0 +1,6 @@
+{
+  "number": 1, "name": "Emerald Meadow", "tagline": "Woodland approach", "land": "#385b40", "scene": "meadow",
+  "start_gold": 500, "start_lives": 20,
+  "hp_mul": 1.0, "speed_mul": 1.0, "armor_add": 0, "bounty_mul": 1.0,
+  "waves": ["wave_01", "wave_02", "wave_03", "wave_04", "wave_05", "wave_06", "wave_07", "wave_08", "wave_09", "wave_10"]
+}

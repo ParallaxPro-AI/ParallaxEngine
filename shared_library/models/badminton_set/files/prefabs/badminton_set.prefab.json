@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/badminton_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5457, 0.089, 0.8131],
+      "offset": [0.0082, 0.0435, 0.0272]
+    }
+  }
+}

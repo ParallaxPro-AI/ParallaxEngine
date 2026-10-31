@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/throne",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.02,
+        2.21,
+        0.92
+      ],
+      "offset": [
+        0.0,
+        1.105,
+        0.0
+      ]
+    }
+  }
+}

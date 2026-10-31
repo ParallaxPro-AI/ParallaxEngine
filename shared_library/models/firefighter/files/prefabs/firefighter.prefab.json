@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/firefighter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.69, 1.986, 0.5706],
+      "offset": [0, 0.992, -0.0927]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/room_divider"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.803, 1.703, 0.04],
+      "offset": [0, 0.85, 0]
+    }
+  }
+}

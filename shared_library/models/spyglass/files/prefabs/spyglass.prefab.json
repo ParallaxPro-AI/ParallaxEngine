@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spyglass"
+    },
+    "viewmodel_item": {
+      "hip": [0.13, -0.24, 0.42],
+      "hip_turn": [1.145916, -1.718873, 0.0],
+      "eye_relief": 0.03,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.055, 0.055, 0.4445],
+      "offset": [0, 0.0275, 0.0067]
+    }
+  }
+}

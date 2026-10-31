@@ -1,0 +1,21 @@
+{
+  "ui": [],
+  "environment": {"ambient": "#959595", "sky": "clear_day", "time_of_day": 17.5, "sun": {"color": [1, 0.9, 0.78]}, "clouds": {"coverage": 0.5, "density": 0.85}},
+  "terrain": {"size": [320, 320], "resolution": 160, "layers": [{"name": "grass", "texture": "https://r2.parallaxpro.ai/assets/image_texture/cf/a4/cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a.jpg", "tile": 7, "roughness": 0.95}, {"name": "rock", "texture": "https://r2.parallaxpro.ai/assets/image_texture/42/93/429315865fd89c150272592f6d93def174c6f69804a565ff08e53627a885579b.jpg", "tile": 12, "roughness": 0.9}], "default_layer": "grass", "hills": [{"center": [120, 110], "radius": 64, "height": 30, "feather": 36}, {"center": [-130, 90], "radius": 58, "height": 24, "feather": 34}], "paint": [{"layer": "rock", "center": [0, -12], "size": [80, 40], "feather": 8, "noise": 0.1}]},
+  "foliage": {"layers": [{"id": "menu_grass", "kind": "grass", "density": 42, "on": "grass", "seed": 91}, {"id": "menu_trees", "kind": "tree", "density": 0.016, "max": 675, "on": "grass", "scale": [0.85, 1.35], "seed": 92}, {"id": "menu_bushes", "kind": "bush", "density": 0.012, "max": 675, "on": "grass", "scale": [0.8, 1.2], "seed": 93}]},
+  "entities": [
+    {"prefab": "sun_fill", "rotation": [0, 180, 0]},
+    {"prefab": "sun", "rotation": [20, -140, 0]},
+    {"prefab": "showroom_camera", "at": [0, 7, -36], "rotation": [9, 0, 0]},
+    {"prefab": "showroom_bolt", "at": [-15, 1.5, -12], "rotation": [0, 180, 0]},
+    {"prefab": "showroom_surge", "at": [-5, 1.5, -12], "rotation": [0, 180, 0]},
+    {"prefab": "showroom_dash", "at": [5, 1.5, -12], "rotation": [0, 180, 0]},
+    {"prefab": "showroom_pixel", "at": [15, 1.5, -12], "rotation": [0, 180, 0]},
+    {"prefab": "track_tree", "at": [-30, 0, 6]},
+    {"prefab": "track_tree", "at": [30, 0, 10]},
+    {"prefab": "track_rock", "at": [-22, 0, -2]},
+    {"prefab": "track_rock", "at": [24, 0, -4]},
+    {"prefab": "cone", "at": [-15, 0, -18]},
+    {"prefab": "cone", "at": [15, 0, -18]}
+  ]
+}

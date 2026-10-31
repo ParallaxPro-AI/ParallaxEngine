@@ -1,0 +1,10 @@
+{
+  "id": "trident",
+  "summary": "A 2.02 m trident: an ash shaft with a bronze butt spike, bronze bands and a leather grip wrap, a moulded sock… options head_finish, shaft_wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.trident or place \"prefab\": \"trident\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:trident"]
+}

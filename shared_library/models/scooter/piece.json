@@ -1,0 +1,10 @@
+{
+  "id": "scooter",
+  "summary": "A two-wheeled scooter that steers and rolls. joints steer, spin_front, spin_rear; options type, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scooter or place \"prefab\": \"scooter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scooter"]
+}

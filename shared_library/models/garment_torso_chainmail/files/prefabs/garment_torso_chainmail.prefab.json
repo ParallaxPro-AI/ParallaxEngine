@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_chainmail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.856, 0.928, 0.4714],
+      "offset": [0, 1.148, 0.0005]
+    }
+  }
+}

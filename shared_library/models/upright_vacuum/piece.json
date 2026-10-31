@@ -1,0 +1,10 @@
+{
+  "id": "upright_vacuum",
+  "summary": "A bagless upright vacuum cleaner, 1.1 m tall: a wide floor head with a rubber bumper, LED strip, an exposed b… joints brushroll, recline, bin; options accent, bin; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.upright_vacuum or place \"prefab\": \"upright_vacuum\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:upright_vacuum"]
+}

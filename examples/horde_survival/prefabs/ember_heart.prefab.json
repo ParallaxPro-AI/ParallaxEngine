@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.62, 0.62, 0.62], "color": "#ffa099", "emissive": "#ffa099" },
+    "collider": { "shape": "sphere", "radius": 0.9, "trigger": true, "layer": "pickup", "collides_with": ["survivor"] }
+  },
+  "behaviors": { "ember_heart": { "lifetime": 16 } },
+  "pool": 24
+}

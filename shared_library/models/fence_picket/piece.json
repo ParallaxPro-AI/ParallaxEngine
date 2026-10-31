@@ -1,0 +1,10 @@
+{
+  "id": "fence_picket",
+  "summary": "One 2.0 m bay of a classic white-painted timber picket fence: fifteen 70 mm gothic-pointed pickets with 57 mm… options end_post.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fence_picket or place \"prefab\": \"fence_picket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fence_picket"]
+}

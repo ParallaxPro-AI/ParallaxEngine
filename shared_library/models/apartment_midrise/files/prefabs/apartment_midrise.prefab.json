@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/apartment_midrise"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [22.48, 23.84, 17.69],
+      "offset": [0, 11.92, 0.605]
+    }
+  }
+}

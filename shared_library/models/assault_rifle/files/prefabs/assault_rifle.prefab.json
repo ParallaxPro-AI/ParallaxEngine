@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/assault_rifle"
+    },
+    "viewmodel_item": {
+      "hip": [0.14, -0.292, 0.37],
+      "hip_turn": [4.010705, -2.005352, -2.57831],
+      "eye_relief": 0.14
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.061, 0.2454, 0.907],
+      "offset": [0.0095, 0.1203, 0.0165]
+    }
+  }
+}

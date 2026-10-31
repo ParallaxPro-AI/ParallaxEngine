@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/medal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.15, 0.311, 0.026],
+      "offset": [0, 0.1555, 0]
+    }
+  }
+}

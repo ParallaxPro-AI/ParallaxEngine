@@ -1,0 +1,10 @@
+{
+  "id": "bb_gold_bag",
+  "summary": "Bulging canvas coin purse gathered at its tied neck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_gold_bag or place \"prefab\": \"bb_gold_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_gold_bag"]
+}

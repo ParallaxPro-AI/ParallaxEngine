@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chicken_drumstick"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0598, 0.0692, 0.1403],
+      "offset": [0.0019, 0.0366, -0.0134]
+    }
+  }
+}

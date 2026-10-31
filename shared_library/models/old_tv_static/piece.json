@@ -1,0 +1,10 @@
+{
+  "id": "old_tv_static",
+  "summary": "A 1960s tabletop television, generic design, in a walnut cabinet on four splayed tapered legs (a 19-inch set… joints channel, volume, ear_l, ear_r; options screen.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.old_tv_static or place \"prefab\": \"old_tv_static\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:old_tv_static"]
+}

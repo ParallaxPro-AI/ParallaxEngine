@@ -1,0 +1,2 @@
+{ "name": "Iron Vessel", "blurb": "Start each run with an extra heart.",
+  "effect": "max_health", "amount": 2, "costs": [35, 80, 150] }

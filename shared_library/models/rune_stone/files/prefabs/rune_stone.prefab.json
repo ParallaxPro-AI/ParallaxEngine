@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rune_stone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4332, 2.202, 1.4179],
+      "offset": [0, 1.099, -0.02]
+    }
+  }
+}

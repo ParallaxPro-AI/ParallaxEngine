@@ -1,0 +1,5 @@
+{
+  "name": "Pressing Game",
+  "description": "+1.2 speed for your AI teammates - they hunt the ball.",
+  "max_stacks": 3, "mate_speed": 1.2
+}

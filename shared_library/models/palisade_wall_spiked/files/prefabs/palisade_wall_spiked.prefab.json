@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/palisade_wall_spiked"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.0081, 3.7663, 2.5086],
+      "offset": [0.0084, 1.8832, -0.0704]
+    }
+  }
+}

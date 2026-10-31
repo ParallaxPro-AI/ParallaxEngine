@@ -1,0 +1,10 @@
+{
+  "id": "blacksmith_shop",
+  "summary": "A fantasy-medieval village smithy, exterior with a visible working forge. joints side_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blacksmith_shop or place \"prefab\": \"blacksmith_shop\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blacksmith_shop"]
+}

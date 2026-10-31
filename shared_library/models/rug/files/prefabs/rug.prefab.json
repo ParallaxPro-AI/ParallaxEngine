@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rug",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.3,
+        0.0246,
+        1.7464
+      ],
+      "offset": [
+        0.0,
+        0.0123,
+        -0.0002
+      ]
+    }
+  }
+}

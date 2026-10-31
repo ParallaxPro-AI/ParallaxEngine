@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/book_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2484, 0.1965, 0.2974],
+      "offset": [-0.0053, 0.0968, -0.0008]
+    }
+  }
+}

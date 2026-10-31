@@ -1,0 +1,10 @@
+{
+  "id": "lifeboat",
+  "summary": "A 7.3 m totally enclosed davit-launched lifeboat: a lofted white GRP hull with a keel skeg, rubbing band and… joints side_hatch_l, side_hatch_r, top_hatch, propeller, rudder; options canopy; sockets seat_driver, eye_point, waterline, socket_hook_fwd, socket_hook_aft, socket_board_l, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lifeboat or place \"prefab\": \"lifeboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lifeboat"]
+}

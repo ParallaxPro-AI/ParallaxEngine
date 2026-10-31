@@ -1,0 +1,21 @@
+{
+  "kitchens": [
+    "diner",
+    "galley",
+    "line"
+  ],
+  "burnt": "burnt_food",
+  "chef_models": [
+    "https://r2.parallaxpro.ai/assets/model_character/cc/0e/cc0ef7ccbdd098b3c31e1d149efaf2d41ac543323754e8446c910be340d67611.glb",
+    "https://r2.parallaxpro.ai/assets/model_character/6d/db/6ddb9d649c0c917cc1c57a02ca3aced99ceffd3099f04951cda11a41b3e5911a.glb"
+  ],
+  "max_orders": 5,
+  "order_lifetime": 22,
+  "streak_bonus": 2,
+  "streak_cap": 6,
+  "speed_bonus": 8,
+  "wrong_dish_penalty": 5,
+  "burn_penalty": 3,
+  "clock_warning": 25,
+  "guide_range": 40
+}

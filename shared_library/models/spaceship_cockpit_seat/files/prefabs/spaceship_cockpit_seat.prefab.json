@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spaceship_cockpit_seat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.81, 1.6419, 1.0457],
+      "offset": [0, 0.8209, -0.0829]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/giraffe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8393, 4.68, 3.0753],
+      "offset": [-0.005, 2.34, 0.4577]
+    }
+  }
+}

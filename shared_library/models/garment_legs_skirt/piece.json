@@ -1,0 +1,10 @@
+{
+  "id": "garment_legs_skirt",
+  "summary": "An A-line knife-pleated skirt, waist to just above the knee: twenty-two pressed pleats, a 5 cm waistband, a s… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_legs_skirt or place \"prefab\": \"garment_legs_skirt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_legs_skirt"]
+}

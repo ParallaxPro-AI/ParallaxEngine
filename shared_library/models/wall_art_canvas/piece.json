@@ -1,0 +1,10 @@
+{
+  "id": "wall_art_canvas",
+  "summary": "A framed art print from the 'basic' apartment set: a 0.60 x 0.60 m deep box frame with a white mat around a c… options frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wall_art_canvas or place \"prefab\": \"wall_art_canvas\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wall_art_canvas"]
+}

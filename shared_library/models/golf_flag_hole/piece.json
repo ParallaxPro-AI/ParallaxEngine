@@ -1,0 +1,10 @@
+{
+  "id": "golf_flag_hole",
+  "summary": "A golf hole on a putting-green patch: a regulation 108 mm (4.25 in) cup, 4 in deep with a white plastic liner… joints flagstick, flag; options flag, stick; sockets socket_cup, socket_cup_bottom, socket_flag_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.golf_flag_hole or place \"prefab\": \"golf_flag_hole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:golf_flag_hole"]
+}

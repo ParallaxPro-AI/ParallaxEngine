@@ -1,0 +1,10 @@
+{
+  "id": "courier_parcel",
+  "summary": "A hand-sized taped cardboard delivery parcel with shipping label and geometric barcode.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.courier_parcel or place \"prefab\": \"courier_parcel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:courier_parcel"]
+}

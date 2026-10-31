@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/golf_club"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1351, 1.211, 0.1296],
+      "offset": [0.0446, 0.6055, -0.0524]
+    }
+  }
+}

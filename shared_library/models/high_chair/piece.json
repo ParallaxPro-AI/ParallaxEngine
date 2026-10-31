@@ -1,0 +1,10 @@
+{
+  "id": "high_chair",
+  "summary": "A wooden baby high chair: four splayed legs with stretchers and a footrest, a padded seat with a crotch post… joints tray; options finish, padding; sockets socket_seat, socket_tray.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.high_chair or place \"prefab\": \"high_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:high_chair"]
+}

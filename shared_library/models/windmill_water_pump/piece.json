@@ -1,0 +1,10 @@
+{
+  "id": "windmill_water_pump",
+  "summary": "An American ranch windpump: an 8 m four-legged galvanised steel lattice tower with girts and X-braced panels… joints pump_rod, head, wheel; options vane_colour; sockets socket_spout, socket_tank, socket_platform.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.windmill_water_pump or place \"prefab\": \"windmill_water_pump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:windmill_water_pump"]
+}

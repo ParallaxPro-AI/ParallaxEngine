@@ -1,0 +1,10 @@
+{
+  "id": "cultivator",
+  "summary": "A tractor-mounted 3 m spring-tine cultivator in yellow: a category-2 three-point headstock with linch-pinned… options paint; sockets socket_hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cultivator or place \"prefab\": \"cultivator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cultivator"]
+}

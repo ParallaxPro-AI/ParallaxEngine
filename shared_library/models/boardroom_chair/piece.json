@@ -1,0 +1,10 @@
+{
+  "id": "boardroom_chair",
+  "summary": "A high-back leather boardroom chair: channel-quilted leather rolls (five across the seat, six up the back) st… joints lift, swivel, recline; options leather, frame; sockets seat_0.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boardroom_chair or place \"prefab\": \"boardroom_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boardroom_chair"]
+}

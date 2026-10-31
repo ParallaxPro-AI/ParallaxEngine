@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/open_wheel_racer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 800,
+      "linear_damping": 0.02,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.98,
+        1.015,
+        5.69
+      ],
+      "offset": [
+        0,
+        0.5075,
+        0.035
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 75,
+      "steering": 24,
+      "grip": 11,
+      "turn_rate": 2.4
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.5075,
+        0.035
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

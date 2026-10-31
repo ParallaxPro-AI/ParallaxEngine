@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scoreboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.44, 2.59, 0.72],
+      "offset": [0, 1.295, 0]
+    }
+  }
+}

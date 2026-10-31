@@ -1,0 +1,10 @@
+{
+  "id": "excavator",
+  "summary": "A crawler excavator: two rubber crawler tracks with spinning drive sprockets, a house (cab + engine deck + co… joints track_l, track_r, slew, boom, dipper, bucket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.excavator or place \"prefab\": \"excavator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:excavator"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chef_hand",
+  "summary": "A stylised cook's hand and white jacket cuff for a top-down kitchen camera — rounded palm, four splayed capsu…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chef_hand or place \"prefab\": \"chef_hand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chef_hand"]
+}

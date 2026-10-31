@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mech_suit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.74, 6.3483, 3.195],
+      "offset": [0, 3.1741, 0.0275]
+    }
+  }
+}

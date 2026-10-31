@@ -1,0 +1,10 @@
+{
+  "id": "hotel_room_bed_king",
+  "summary": "A made-up hotel king bed: a tall mahogany headboard of three upholstered panels framed in brass beads under a… options wood, metal, headboard, runner, turndown; sockets sleep_l, sleep_r, seat_edge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hotel_room_bed_king or place \"prefab\": \"hotel_room_bed_king\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hotel_room_bed_king"]
+}

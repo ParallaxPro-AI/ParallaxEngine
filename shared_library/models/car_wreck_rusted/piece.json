@@ -1,0 +1,10 @@
+{
+  "id": "car_wreck_rusted",
+  "summary": "An abandoned, rusted-out 1970s two-door coupe wreck: sun-faded teal paint blistered with rust, bonnet and boo… joints door_fl, door_fr.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_wreck_rusted or place \"prefab\": \"car_wreck_rusted\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_wreck_rusted"]
+}

@@ -1,0 +1,81 @@
+<!-- Ported from the template: Armor Assault Field Workshop — pick 1 of 3 field upgrades between battlefields. Push emit_ui("hud_update", { choice: { title, sub, cards:[{ id, title, desc, icon }] }, choiceTimer, choiceTimerMax }); clicking a card emits ui_event:hud/choice:pick { id }. Set choice to null to close. A ring counts down to the auto-pick. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { pointer-events: none; overflow: hidden; font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif); color: #e8e8e8; }
+  #pp-choice { position: fixed; inset: 0; display: none; align-items: center; justify-content: safe center; flex-direction: column; padding: calc(32 * var(--u)); overflow-y: auto; overscroll-behavior: contain; background: rgba(3,6,4,.62); pointer-events: auto; }
+  #pp-choice.on { display: flex; animation: aaFade .3s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes aaFade { from { opacity: 0; } to { opacity: 1; } }
+  .shell { position: relative; width: calc(1320 * var(--u)); max-width: 100%; flex-shrink: 0; background: rgba(5,10,8,.62); border: 1px solid rgba(255,255,255,.14); }
+  .corner { position: absolute; width: calc(22 * var(--u)); height: calc(22 * var(--u)); border: 0 solid #f59e0b; }
+  .corner.tl { left: -1px; top: -1px; border-left-width: 2px; border-top-width: 2px; }
+  .corner.tr { right: -1px; top: -1px; border-right-width: 2px; border-top-width: 2px; }
+  .corner.bl { left: -1px; bottom: -1px; border-left-width: 2px; border-bottom-width: 2px; }
+  .corner.br { right: -1px; bottom: -1px; border-right-width: 2px; border-bottom-width: 2px; }
+  .bar { display: flex; align-items: center; justify-content: space-between; height: calc(60 * var(--u)); padding: 0 calc(32 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.12); background: repeating-linear-gradient(-45deg, rgba(77,124,15,.18) 0 calc(10 * var(--u)), rgba(77,124,15,.06) calc(10 * var(--u)) calc(20 * var(--u))); }
+  .bar-l { display: flex; align-items: center; gap: calc(14 * var(--u)); font-weight: 700; font-size: calc(20 * var(--u)); letter-spacing: .28em; }
+  .bar-l i { width: calc(10 * var(--u)); height: calc(10 * var(--u)); background: #4d7c0f; outline: 1px solid rgba(255,255,255,.3); }
+  .timer { display: flex; align-items: center; gap: calc(12 * var(--u)); font-weight: 700; font-size: calc(16 * var(--u)); letter-spacing: .22em; color: #888; }
+  .timer svg { width: calc(40 * var(--u)); height: calc(40 * var(--u)); transform: rotate(-90deg); }
+  .timer .tn { font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 700; font-size: calc(18 * var(--u)); letter-spacing: 0; color: #e8e8e8; font-variant-numeric: tabular-nums; min-width: calc(32 * var(--u)); text-align: right; }
+  .body { padding: calc(40 * var(--u)) calc(56 * var(--u)) calc(48 * var(--u)); }
+  .choice-title { font-family: var(--aa-font-display, 'Anton', Impact, sans-serif); font-size: calc(84 * var(--u)); line-height: 1; text-transform: uppercase; letter-spacing: .01em; }
+  .choice-sub { margin-top: calc(12 * var(--u)); font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .16em; text-transform: uppercase; color: #22d3ee; }
+  .choice-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(20 * var(--u)); margin-top: calc(36 * var(--u)); }
+  .choice-card { pointer-events: auto; cursor: pointer; position: relative; min-height: calc(300 * var(--u)); padding: calc(26 * var(--u)) calc(26 * var(--u)) calc(22 * var(--u)); text-align: left; display: flex; flex-direction: column; align-items: flex-start; color: #e8e8e8; font-family: inherit; background: rgba(5,10,8,.7); border: 1px solid rgba(255,255,255,.14); border-top: 2px solid #22d3ee; transition: transform .14s ease, background .14s ease, border-color .14s ease; }
+  .choice-card:hover, .choice-card:focus-visible { transform: translateY(calc(-4 * var(--u))); background: rgba(20,30,22,.82); border-color: rgba(34,197,94,.7); border-top-color: #22c55e; outline: none; }
+  .choice-card:active { transform: scale(.98); }
+  .choice-ico { width: calc(64 * var(--u)); height: calc(64 * var(--u)); display: grid; place-items: center; border: 1px solid rgba(34,211,238,.45); background: rgba(34,211,238,.08); }
+  .choice-ico svg, .choice-ico img { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+  .choice-name { margin-top: calc(20 * var(--u)); font-weight: 700; font-size: calc(32 * var(--u)); letter-spacing: .08em; text-transform: uppercase; }
+  .choice-desc { margin-top: calc(10 * var(--u)); font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 500; font-size: calc(19 * var(--u)); line-height: 1.5; color: #c9cbc9; }
+  .choice-take { margin-top: auto; padding-top: calc(22 * var(--u)); display: flex; align-items: center; gap: calc(10 * var(--u)); font-weight: 700; font-size: calc(18 * var(--u)); letter-spacing: .26em; color: #22c55e; }
+  .choice-take svg { width: calc(12 * var(--u)); height: calc(12 * var(--u)); }
+  @media (pointer: coarse) {
+    #pp-choice { padding: calc(24 * var(--u)) calc(32 * var(--u)); }
+    .shell { width: 100%; }
+    .corner { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+    .bar { height: calc(64 * var(--u)); padding: 0 calc(28 * var(--u)); }
+    .bar-l { font-size: calc(24 * var(--u)); gap: calc(14 * var(--u)); }
+    .bar-l i { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+    .timer { font-size: calc(22 * var(--u)); }
+    .timer svg { width: calc(48 * var(--u)); height: calc(48 * var(--u)); }
+    .timer .tn { font-size: calc(26 * var(--u)); }
+    .body { padding: calc(20 * var(--u)) calc(32 * var(--u)) calc(28 * var(--u)); }
+    .choice-title { font-size: calc(72 * var(--u)); }
+    .choice-sub { margin-top: calc(8 * var(--u)); font-size: calc(24 * var(--u)); letter-spacing: .12em; }
+    .choice-row { gap: calc(20 * var(--u)); margin-top: calc(20 * var(--u)); }
+    .choice-card { min-height: 0; padding: calc(20 * var(--u)) calc(22 * var(--u)); }
+    .choice-ico { width: calc(64 * var(--u)); height: calc(64 * var(--u)); }
+    .choice-name { margin-top: calc(12 * var(--u)); font-size: calc(32 * var(--u)); }
+    .choice-desc { margin-top: calc(6 * var(--u)); font-size: calc(24 * var(--u)); line-height: 1.4; }
+    .choice-take { padding-top: calc(14 * var(--u)); font-size: calc(24 * var(--u)); }
+  }
+</style>
+<div id="pp-choice" class="on">
+  <div class="shell">
+    <div class="corner tl"></div><div class="corner tr"></div><div class="corner bl"></div><div class="corner br"></div>
+    <div class="bar">
+      <div class="bar-l"><i></i>FIELD WORKSHOP <span style="color:#888">/</span> PICK ONE</div>
+      <div class="timer">
+        <span>AUTO-PICK</span>
+        <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="4"></circle><circle cx="20" cy="20" r="16" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="100.5" data-attr-stroke-dashoffset="timer_offset"></circle></svg>
+        <span class="tn" data-bind="seconds_left"></span>
+      </div>
+    </div>
+    <div class="body">
+      <div class="choice-title">Field Workshop</div>
+      <div class="choice-sub" data-show="build" data-bind="build"></div>
+      <div class="choice-row" data-each="cards">
+        <template>
+          <button class="choice-card" data-action="pick" data-key="Digit{index1}">
+            <div class="choice-ico"><img data-attr-src="icon" alt=""></div>
+            <div class="choice-name" data-bind="name"></div>
+            <div class="choice-desc" data-bind="description"></div>
+            <div class="choice-take"><svg viewBox="0 0 20 20"><polygon points="3,2 18,10 3,18" fill="#22c55e"></polygon></svg>TAKE IT</div>
+          </button>
+        </template>
+      </div>
+    </div>
+  </div>
+</div>

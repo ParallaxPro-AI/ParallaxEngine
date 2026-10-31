@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/high_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.575, 0.9926, 0.7575],
+      "offset": [0, 0.4963, 0.0512]
+    }
+  }
+}

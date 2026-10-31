@@ -1,0 +1,10 @@
+{
+  "id": "space_corridor_straight",
+  "summary": "A straight 4 m sci-fi corridor tile: an octagonal pressure tube with a flat deck, 45-degree chamfered walls a… sockets socket_end_front, socket_end_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_corridor_straight or place \"prefab\": \"space_corridor_straight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_corridor_straight"]
+}

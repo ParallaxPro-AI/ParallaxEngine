@@ -1,0 +1,10 @@
+{
+  "id": "coffee_cup_takeaway",
+  "summary": "A 12 oz takeaway paper cup: a tapered paper cup with a rolled rim, a corrugated card sleeve round its middle… joints lid; options cup, lid_colour, drink, sleeve; sockets socket_grip, socket_spout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffee_cup_takeaway or place \"prefab\": \"coffee_cup_takeaway\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffee_cup_takeaway"]
+}

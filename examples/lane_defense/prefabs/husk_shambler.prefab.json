@@ -1,0 +1,1 @@
+{ "extends": "husk", "components": { "model": { "model": "models/husk_shambler" } } }

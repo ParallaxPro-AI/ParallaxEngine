@@ -1,0 +1,10 @@
+{
+  "id": "food_truck",
+  "summary": "A step-van food truck, 6.4 m long: a tall boxy body with rounded corners, a raked windscreen over a short bon… joints steering, hatch, serve_window, shelf, rear_door, wheel_f_l_roll, …; options paint; sockets seat_driver, seat_crew_1, eye_point, socket_hatch, socket_vendor, socket_queue, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.food_truck or place \"prefab\": \"food_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:food_truck"]
+}

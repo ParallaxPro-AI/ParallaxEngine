@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_wall_corner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2665, 2.85, 0.266],
+      "offset": [0.0163, 1.425, -0.016]
+    }
+  }
+}

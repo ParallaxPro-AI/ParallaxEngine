@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tyre_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.26, 1.5891, 0.647],
+      "offset": [0, 0.7945, 0.0015]
+    }
+  }
+}

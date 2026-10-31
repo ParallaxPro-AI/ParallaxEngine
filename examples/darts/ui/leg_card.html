@@ -1,0 +1,90 @@
+<!-- Ported from the template: Tungsten Alley between-legs scorecard — the verdict on the leg you just checked out and its points, the full nine-row card with the legs still to come, the next leg's preview and the walk to it (two panes; the table scrolls on a phone) -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, p { margin: 0; }
+  .wrap { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
+  .card { width: calc(1360 * var(--u)); display: grid; grid-template-columns: calc(480 * var(--u)) minmax(0,1fr); border-radius: calc(18 * var(--u)); box-shadow: var(--ta-shadow-sheet); pointer-events: auto; overflow: hidden; animation: ta-sheet 240ms var(--ta-ease-out) both; }
+  .left { display: flex; flex-direction: column; gap: calc(36 * var(--u)); padding: calc(56 * var(--u)); border-right: 1px solid var(--ta-hairline); }
+  .result { display: flex; flex-direction: column; gap: calc(16 * var(--u)); }
+  .result .ta-lbl { font-size: calc(14 * var(--u)); letter-spacing: .24em; }
+  .verdict { font: 600 calc(88 * var(--u))/.95 var(--ta-font-condensed); letter-spacing: .02em; color: var(--ta-ink); text-transform: uppercase; animation: ta-slam 220ms var(--ta-ease-out) both; }
+  .verdict.hot { color: var(--ta-gold); }
+  .pts { font: 700 calc(44 * var(--u))/1 var(--ta-font-display); color: var(--ta-gold); }
+  .next { display: flex; flex-direction: column; gap: calc(12 * var(--u)); padding: calc(24 * var(--u)); border-radius: calc(12 * var(--u)); background: rgba(240,190,110,.06); border: 1px solid var(--ta-hairline); }
+  .next .ta-lbl { color: var(--ta-amber); }
+  .n-line { font: 600 calc(22 * var(--u))/1.3 var(--ta-font-body); color: var(--ta-ink); }
+  .n-blurb { font: 400 calc(17 * var(--u))/1.5 var(--ta-font-body); color: rgba(241,233,221,.76); }
+  .go { width: 100%; }
+
+  .right { padding: calc(48 * var(--u)) calc(52 * var(--u)); display: flex; flex-direction: column; gap: calc(18 * var(--u)); min-height: 0; }
+  .tbl { display: flex; flex-direction: column; }
+  .tr { display: grid; grid-template-columns: calc(60 * var(--u)) minmax(0,1fr) calc(100 * var(--u)) calc(80 * var(--u)) calc(90 * var(--u)) calc(170 * var(--u)); align-items: center; height: calc(46 * var(--u)); padding: 0 calc(14 * var(--u));
+        border-bottom: 1px solid rgba(230,190,130,.1); font: 500 calc(18 * var(--u))/1 var(--ta-font-body); color: var(--ta-ink); background: var(--ta-row-bg, transparent); }
+  .tr > span:nth-child(n+3) { text-align: right; }
+  .tr .n { color: rgba(241,233,221,.6); }
+  .tr .nm { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tr .res { font: 600 calc(15 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .12em; text-transform: uppercase; }
+  .tr.hot { --ta-row-bg: var(--ta-hot-row); }
+  .tr.hot .res { color: var(--ta-gold); }
+  .tr.todo { color: rgba(241,233,221,.55); }
+  .tr.todo .res { color: rgba(241,233,221,.4); }
+  .tr.fresh { animation: ta-flash 900ms ease-out 240ms both; }
+  .tr.head { height: auto; padding: 0 calc(14 * var(--u)) calc(12 * var(--u)); border-bottom: 1px solid rgba(230,190,130,.3); font: 500 calc(12 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .2em; text-transform: uppercase; color: var(--ta-ink-muted); }
+  .tr.foot { height: calc(56 * var(--u)); border-bottom: 0; border-top: 1px solid rgba(230,190,130,.3); font-weight: 700; font-size: calc(19 * var(--u)); }
+  .tr.foot .ta-lbl { color: rgba(241,233,221,.7); }
+  .tr.foot .tp { color: var(--ta-gold); }
+
+  @media (pointer: coarse) {
+    .wrap { display: block; }
+    .card { position: fixed; inset: calc(calc(28 * var(--u)) + env(safe-area-inset-top, 0px)) calc(28 * var(--u)) calc(28 * var(--u)); width: auto; grid-template-columns: calc(580 * var(--u)) minmax(0,1fr); border-radius: calc(28 * var(--u)); }
+    .left { justify-content: space-between; gap: calc(24 * var(--u)); padding: calc(40 * var(--u)) calc(44 * var(--u)); }
+    .result { gap: calc(16 * var(--u)); }
+    .result .ta-lbl { font-size: calc(20 * var(--u)); letter-spacing: .2em; }
+    .verdict { font-size: calc(84 * var(--u)); letter-spacing: 0; }
+    .pts { font-size: calc(48 * var(--u)); }
+    .next { gap: calc(12 * var(--u)); padding: calc(24 * var(--u)); border-radius: calc(20 * var(--u)); }
+    .next .ta-lbl { font-size: calc(19 * var(--u)); letter-spacing: .2em; }
+    .n-line { font-size: calc(27 * var(--u)); }
+    .n-blurb { font-size: calc(23 * var(--u)); line-height: 1.45; }
+    .go { height: calc(96 * var(--u)); flex: none; font-size: calc(30 * var(--u)); }
+    .right { padding: 0 calc(32 * var(--u)); overflow-y: auto; pointer-events: auto; gap: 0; }
+    .right > .ta-lbl { display: none; }
+    .tr { grid-template-columns: calc(52 * var(--u)) minmax(0,1fr) calc(88 * var(--u)) calc(68 * var(--u)) calc(84 * var(--u)) calc(184 * var(--u)); height: calc(68 * var(--u)); padding: 0 calc(16 * var(--u)); font-size: calc(25 * var(--u)); }
+    .tr .res { font-size: calc(22 * var(--u)); letter-spacing: .08em; }
+    .tr.head { position: sticky; top: 0; z-index: 1; padding: calc(32 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u)); background: #140f0b; font-size: calc(19 * var(--u)); letter-spacing: .16em; }
+    .tr.foot { height: calc(80 * var(--u)); font-size: calc(26 * var(--u)); }
+  }
+</style>
+<div class="ta-root">
+  <div class="ta-scrim"></div>
+  <div class="wrap">
+    <main class="card ta-card">
+      <div class="left">
+        <div class="result">
+          <div class="ta-lbl" data-bind="heading"></div>
+          <div class="verdict" data-class-hot="hot" data-bind="grade"></div>
+          <div class="pts" data-bind="points"></div>
+        </div>
+        <div class="next" data-show="has_next">
+          <div class="ta-lbl" data-text="next_label"></div>
+          <div class="n-line" data-bind="next"></div>
+          <div class="n-blurb" data-bind="next_blurb"></div>
+        </div>
+        <button class="ta-btn go" data-action="next"><span data-text="to_next_leg"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+      <div class="right">
+        <div class="ta-lbl"><span data-text="scorecard"></span> · <span data-bind="tier"></span></div>
+        <div class="tbl">
+          <div class="tr head"><span data-text="col_leg"></span><span></span><span data-text="col_start"></span><span data-text="col_par"></span><span data-text="col_darts"></span><span data-text="col_result"></span></div>
+          <div data-each="rows">
+            <template>
+              <div class="tr" data-class-hot="hot" data-class-todo="todo" data-class-fresh="fresh"><span class="n" data-bind="number"></span><span class="nm" data-bind="name"></span><span data-bind="start"></span><span data-bind="par"></span><span data-bind="darts"></span><span class="res" data-bind="result"></span></div>
+            </template>
+          </div>
+          <div class="tr foot"><span></span><span class="ta-lbl" data-text="total_row"></span><span></span><span data-bind="total_par"></span><span data-bind="total_darts"></span><span class="tp" data-bind="total_to_par"></span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

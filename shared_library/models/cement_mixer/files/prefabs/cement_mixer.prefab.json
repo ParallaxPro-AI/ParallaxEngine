@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cement_mixer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8735, 1.2778, 1.015],
+      "offset": [0.0382, 0.6389, -0.0125]
+    }
+  }
+}

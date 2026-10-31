@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_sectional"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4, 0.7838, 2],
+      "offset": [0, 0.3919, 0]
+    }
+  }
+}

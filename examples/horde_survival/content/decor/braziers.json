@@ -1,0 +1,1 @@
+{"prefab": "ember_brazier", "count": 27, "min_spacing": 12, "radius": 50, "clear_radius": 12, "threshold": 0.42, "frequency": 0.014, "octaves": 2, "scale_variance": 0.2, "gain": 1, "ridged": true}

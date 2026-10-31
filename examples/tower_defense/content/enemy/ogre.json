@@ -1,0 +1,1 @@
+{ "name": "Ogre", "prefab": "enemy_ogre", "health": 320, "speed": 1.6, "armor": 8, "reward": 60, "lives_cost": 4, "resists": { "chill": 0.25 } }

@@ -1,0 +1,10 @@
+{
+  "id": "blender",
+  "summary": "A countertop blender: a motor base with a rotating speed dial on the front (-Z), and a clear pitcher jug that… joints jug, dial; sockets socket_jug.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blender or place \"prefab\": \"blender\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blender"]
+}

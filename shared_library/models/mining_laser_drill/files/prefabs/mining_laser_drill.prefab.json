@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mining_laser_drill"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 2.3346, 4.8852],
+      "offset": [0, 1.1673, 0.0026]
+    }
+  }
+}

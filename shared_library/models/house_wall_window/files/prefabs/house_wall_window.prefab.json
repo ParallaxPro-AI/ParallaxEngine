@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_wall_window"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.0012, 2.85, 0.3318],
+      "offset": [-0.0006, 1.425, -0.0009]
+    }
+  }
+}

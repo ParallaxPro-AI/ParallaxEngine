@@ -1,0 +1,11 @@
+{
+  "name": "Blink Dash",
+  "blurb": "A short, fast reposition toward the cursor.",
+  "kind": "dash",
+  "max_rank": 3,
+  "cooldown": { "base": 6, "per_rank": -1 },
+  "mana": { "base": 30, "per_rank": 4 },
+  "dash": { "base": 6, "per_rank": 1.6 },
+  "trail": "#60a5fa",
+  "vfx": "vfx/blink"
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lobby_fountain_indoor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.54, 2.045, 2.54],
+      "offset": [0, 1.0225, 0]
+    }
+  }
+}

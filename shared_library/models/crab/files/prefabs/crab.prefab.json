@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crab"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3183, 0.083, 0.2342],
+      "offset": [0, 0.042, 0.0275]
+    }
+  }
+}

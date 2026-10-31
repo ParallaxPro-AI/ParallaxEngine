@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/incense_burner_temple"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.12, 1.1901, 1.12],
+      "offset": [0, 0.595, 0]
+    }
+  }
+}

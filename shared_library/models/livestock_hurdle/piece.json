@@ -1,0 +1,10 @@
+{
+  "id": "livestock_hurdle",
+  "summary": "A free-standing galvanised livestock hurdle: one bent tube forming both end uprights and the top rail, six gr… options finish; sockets link_r, link_l.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.livestock_hurdle or place \"prefab\": \"livestock_hurdle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:livestock_hurdle"]
+}

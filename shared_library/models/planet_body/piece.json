@@ -1,0 +1,10 @@
+{
+  "id": "planet_body",
+  "summary": "A 1.8 km banded gas-giant limb for a space backdrop: a smooth 88-segment lathed sphere with four latitude ban…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.planet_body or place \"prefab\": \"planet_body\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:planet_body"]
+}

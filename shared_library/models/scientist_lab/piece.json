@@ -1,0 +1,10 @@
+{
+  "id": "scientist_lab",
+  "summary": "A laboratory scientist: knee-length white lab coat (notch lapels, two buttons, breast pocket with a pen, clip… options skin, hair, top_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scientist_lab or place \"prefab\": \"scientist_lab\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scientist_lab"]
+}

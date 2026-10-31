@@ -1,0 +1,12 @@
+{
+  "entities": [
+    {"prefab": "eye", "at": [0, 5, -10]},
+    {"id": "track", "prefab": "empty", "components": {
+      "spline": {"points": [[40, 0, 0], [0, 0, 40], [-40, 0, 0], [0, 0, -40]], "closed": true, "auto_bank": 5},
+      "sweep": {"parts": [{"profile": "road", "width": 10}, {"profile": "kerb", "offset": [5.5, 0], "mirror": true, "stripe": 2, "colors": ["#e0453f", "#f2ece0"]}]}}},
+    {"id": "house", "prefab": "empty", "at": [0, 0, 80], "components": {"structure": {
+      "floors": [{"plan": ["#######", "#aa#bb#", "#aa+bb#", "#aa#bb#", "###=###"]}],
+      "legend": {"a": {"name": "hall"}, "b": {"name": "den"}}, "roof": {"kind": "hip"}, "kit": "cellar"}}},
+    {"id": "crypt", "prefab": "empty", "at": [0, 0, -300], "components": {"dungeon": {"seed": 3, "rooms": 9, "locks": 1, "key_prefab": "key", "gate_prefab": "gate", "kit": "cellar"}}}
+  ]
+}

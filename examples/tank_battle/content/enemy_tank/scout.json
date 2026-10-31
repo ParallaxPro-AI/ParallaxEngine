@@ -1,0 +1,1 @@
+{ "name": "Scout", "prefab": "enemy_tank_scout", "role": "flanker", "health": 60, "armor": 0, "speed": 11, "damage": 10, "range": 28, "fire_interval": 1.6, "detect": 40, "ride": 0.58, "standoff": 0.4, "shell_speed": 50, "spread": 4.01, "score": 60 }

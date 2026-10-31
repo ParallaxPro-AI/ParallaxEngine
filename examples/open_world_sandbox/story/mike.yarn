@@ -1,0 +1,19 @@
+title: call
+---
+<<if $contracts_completed == 0>>
+Mike: Do a run for Mara first. Then we'll talk.
+<<else>>
+Mike: Garage is open. Repairs, permits, and work if you want it.
+<<endif>>
+===
+
+title: wrong_plates_brief
+---
+Mike: There's a taxi at the canal bay wearing the wrong plates. Bring me that exact car.
+Mike: Confirm the pickup, shake the police, park it in my bay. A replacement won't pay.
+===
+
+title: wrong_plates_paid
+---
+Mike: That's the one. Pleasure doing business.
+===

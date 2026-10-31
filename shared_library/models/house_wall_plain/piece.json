@@ -1,0 +1,10 @@
+{
+  "id": "house_wall_plain",
+  "summary": "A modular timber-frame house wall from the HOUSE kit, 3.0 m long, 2.85 m tall (one 3.0 m storey above a 0.15… options exterior, interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_wall_plain or place \"prefab\": \"house_wall_plain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_wall_plain"]
+}

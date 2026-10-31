@@ -1,0 +1,10 @@
+{
+  "id": "storage_tank",
+  "summary": "A vertical welded-steel above-ground storage tank of a fuel terminal or refinery tank farm, 10 m across and 8… joints manway, gauge_hatch; options paint; sockets vent.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.storage_tank or place \"prefab\": \"storage_tank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:storage_tank"]
+}

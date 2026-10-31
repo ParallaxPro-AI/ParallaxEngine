@@ -1,0 +1,10 @@
+{
+  "id": "gift_box",
+  "summary": "A wrapped present: a hollow paper-wrapped box crossed by satin ribbon bands, with a separate overhanging lid… joints lid; options wrap, ribbon, contents; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gift_box or place \"prefab\": \"gift_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gift_box"]
+}

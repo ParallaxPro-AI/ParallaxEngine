@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sports_car"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1200,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.17,
+        1.3337,
+        4.4249
+      ],
+      "offset": [
+        0,
+        0.6668,
+        -0.0125
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 36,
+      "steering": 40,
+      "grip": 9,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.6668,
+        -0.0125
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

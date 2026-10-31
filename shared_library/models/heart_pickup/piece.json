@@ -1,0 +1,10 @@
+{
+  "id": "heart_pickup",
+  "summary": "A stylised health heart: an 18-point heart outline lofted through seven stations into a pillowed volume with… joints spinner; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.heart_pickup or place \"prefab\": \"heart_pickup\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:heart_pickup"]
+}

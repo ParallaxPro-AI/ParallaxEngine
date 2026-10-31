@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pharmacy_counter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.06, 1.657, 0.744],
+      "offset": [0, 0.8285, 0.008]
+    }
+  }
+}

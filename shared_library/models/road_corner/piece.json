@@ -1,0 +1,10 @@
+{
+  "id": "road_corner",
+  "summary": "A 12 m 90-degree road corner tile from the ROAD_KIT: the road enters at the front edge (z = -6) and leaves at… options markings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_corner or place \"prefab\": \"road_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_corner"]
+}

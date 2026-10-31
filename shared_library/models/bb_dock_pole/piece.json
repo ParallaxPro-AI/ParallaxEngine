@@ -1,0 +1,10 @@
+{
+  "id": "bb_dock_pole",
+  "summary": "Weathered eight-sided dock piling with end cap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_dock_pole or place \"prefab\": \"bb_dock_pole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_dock_pole"]
+}

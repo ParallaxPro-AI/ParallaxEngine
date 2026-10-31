@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fallen_log_mossy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.0078, 0.5463, 0.6809],
+      "offset": [0.0779, 0.2709, -0.0222]
+    }
+  }
+}

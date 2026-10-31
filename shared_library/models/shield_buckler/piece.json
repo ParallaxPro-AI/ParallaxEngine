@@ -1,0 +1,10 @@
+{
+  "id": "shield_buckler",
+  "summary": "A steel buckler (14th-16th c. options finish; sockets socket_grip, socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_buckler or place \"prefab\": \"shield_buckler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_buckler"]
+}

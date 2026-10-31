@@ -1,0 +1,65 @@
+{
+  "lives": 8,
+  "respawn_delay": 2.5,
+  "bot_respawn_delay": 3.0,
+  "armor_max": 120,
+  "armor_absorb": 0.45,
+  "regen_delay": 3.5,
+  "regen_rate": 28,
+  "streak_step": 0.1,
+  "streak_max": 2.5,
+  "streak_tiers": [
+    {
+      "at": 2,
+      "shout": "TWO DOWN"
+    },
+    {
+      "at": 3,
+      "shout": "THREE DOWN"
+    },
+    {
+      "at": 5,
+      "shout": "ON A TEAR"
+    },
+    {
+      "at": 8,
+      "shout": "NO QUARTER"
+    },
+    {
+      "at": 12,
+      "shout": "APEX PREDATOR"
+    }
+  ],
+  "upgrade_draw": 3,
+  "bot_names": [
+    "Vega",
+    "Rook",
+    "Nyx",
+    "Cinder",
+    "Echo",
+    "Hex",
+    "Talon",
+    "Wraith",
+    "Onyx",
+    "Kite"
+  ],
+  "sectors": [
+    {
+      "name": "SOUTH APPROACH",
+      "below_z": -14
+    },
+    {
+      "name": "CENTRAL MARKET",
+      "below_z": 8
+    },
+    {
+      "name": "SPICE ROW",
+      "below_z": 26
+    },
+    {
+      "name": "NORTH CHECKPOINT"
+    }
+  ],
+  "feed_seconds": 2.6,
+  "banner_seconds": 3
+}

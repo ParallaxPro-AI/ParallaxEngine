@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magazine_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.98, 1.7751, 0.5836],
+      "offset": [0, 0.8876, -0.0182]
+    }
+  }
+}

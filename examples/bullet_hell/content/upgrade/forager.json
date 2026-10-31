@@ -1,0 +1,1 @@
+{ "name": "Forager", "description": "+18% chance a wreck drops a bloom.", "stat": "drop_bonus", "add": 0.18, "max_stacks": 3 }

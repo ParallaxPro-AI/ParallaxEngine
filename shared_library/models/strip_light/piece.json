@@ -1,0 +1,14 @@
+{
+  "id": "strip_light",
+  "summary": "A surface-mount linear LED strip light / batten fixture: a slim anodised channel with a glowing frosted… options length, colour.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.strip_light or place \"prefab\": \"strip_light\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:strip_light"
+  ]
+}

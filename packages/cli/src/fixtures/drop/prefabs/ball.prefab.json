@@ -1,0 +1,4 @@
+{
+  "components": { "rigidbody": {}, "collider": { "shape": "circle", "radius": 0.5 } },
+  "behaviors": { "counter": {} }
+}

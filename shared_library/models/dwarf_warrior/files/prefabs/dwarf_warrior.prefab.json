@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dwarf_warrior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5135, 1.4369, 0.5724],
+      "offset": [0, 0.717, 0.021]
+    }
+  }
+}

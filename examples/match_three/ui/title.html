@@ -1,0 +1,104 @@
+<!-- Title, ported from the template's title_screens/gem_cascade: the faceted octagon crest over
+     a chamfered double-line card (beside the wordmark on touch), the GEM / CASCADE wordmark, the
+     best run and furthest stage line (once there is one), the stepped jewel Play button and a
+     round ? that opens the How to play card. The dealt board shows through behind it. -->
+<link rel="stylesheet" href="gem_kit.css">
+<style>
+  .gct { --crest: clamp(140px, 19cqh, 210px); --fs-gem: clamp(24px, 3.4cqh, 38px); --fs-cas: clamp(66px, 10cqh, 112px); --tw: 760px; --tg: clamp(14px, 2.2cqh, 24px); --rb: clamp(64px, 7.5cqh, 80px);
+    position: fixed; inset: 0; display: grid; place-items: center; padding: 16px calc(var(--gc-sa-r) + 16px) calc(var(--gc-sa-b) + 12px) calc(var(--gc-sa-l) + 16px); background: radial-gradient(ellipse 70% 80% at 50% 48%, rgba(16,13,44,.25), rgba(6,4,20,.7)); pointer-events: auto; }
+  .gct-wrap { display: grid; justify-items: center; width: min(100%, var(--tw)); animation: gc-rise .6s var(--gc-ease-out) both; }
+  .gct-crest { width: var(--crest); height: var(--crest); filter: drop-shadow(0 0 30px rgba(137,220,217,.4)) drop-shadow(0 14px 24px rgba(0,0,0,.55)); position: relative; z-index: 2; margin-bottom: calc(var(--crest) * -.44); }
+  .gct-crest.in { display: none; }
+  .gct-card { width: 100%; --c: 34px; }
+  .gct-card > .gc-body { display: grid; justify-items: center; gap: var(--tg); text-align: center; padding: calc(var(--crest) * .5 + 16px) 56px clamp(32px, 5cqh, 52px); }
+  .gct-right { display: contents; }
+  .gct-wm { display: grid; justify-items: center; line-height: .92; margin: 0; font-weight: 400; }
+  .gct-wm .gem { font: 600 var(--fs-gem)/1 var(--gc-font-display); letter-spacing: 1em; padding-left: 1em; color: var(--gc-cyan-bright); text-shadow: 0 0 18px rgba(131,231,239,.45); }
+  .gct-wm .cas { font: 800 var(--fs-cas)/1.02 var(--gc-font-display); letter-spacing: .05em; padding-left: .05em; background: linear-gradient(180deg, #fff 0 38%, #f2d6f6 38% 58%, #d090ff 58% 80%, #a576ee 80%); -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(0 4px 18px rgba(208,144,255,.4)); }
+  .gct-card .gc-rule { max-width: 420px; }
+  .gct-meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px; align-items: center; font-size: 12px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--gc-ink-3); }
+  .gct-meta b { color: var(--gc-gold-soft); }
+  .gct-meta i { width: 5px; height: 5px; background: var(--gc-ink-3); transform: rotate(45deg); }
+  .gct-actions { display: flex; gap: 16px; align-items: center; }
+  .gc-root .gct-play { --bh: var(--rb); --bfs: clamp(22px, 2.6cqh, 28px); --c: 16px; min-width: 320px; letter-spacing: .34em; padding-left: calc(32px + .34em); }
+  .gc-root .gct-round { flex: none; width: var(--rb); height: var(--rb); border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 50% 30%, #3c3074, #1a1440 70%); box-shadow: 0 0 0 1.5px var(--gc-orchid-soft), inset 0 0 0 5px #1d1647, inset 0 0 0 6px rgba(232,181,234,.45); font: 700 calc(var(--rb) * .42)/1 var(--gc-font-display); color: var(--gc-gold); transition: transform .12s, box-shadow .12s; }
+  .gct-round:active { transform: scale(.94); }
+  .gc-root .gct-round:focus-visible { outline: none; box-shadow: 0 0 0 2.5px var(--gc-cyan-bright), inset 0 0 0 5px #1d1647, inset 0 0 0 6px rgba(131,231,239,.6); }
+  @media (hover: hover) { .gc-root .gct-round:hover { box-shadow: 0 0 0 1.5px var(--gc-orchid-soft), inset 0 0 0 5px #1d1647, inset 0 0 0 6px rgba(232,181,234,.7), var(--gc-glow-orchid); transform: translateY(-2px); } }
+
+  .gct-modal { position: fixed; inset: 0; z-index: 5; display: grid; place-items: center; padding: 16px calc(var(--gc-sa-r) + 16px) calc(var(--gc-sa-b) + 12px) calc(var(--gc-sa-l) + 16px); pointer-events: auto; }
+  .gct-modal[hidden] { display: none; }
+  .gct-modal .gc-dim { position: absolute; }
+  .gct-help { position: relative; z-index: 1; width: min(100%, var(--hw, 680px)); max-height: calc(100cqh - 28px); --c: 26px; animation: gc-rise .3s var(--gc-ease-out) both; }
+  .gct-help > .gc-body { padding: var(--hp, 44px 52px); display: grid; gap: var(--hg, 24px); overflow-y: auto; max-height: calc(100cqh - 38px); }
+  .gct-help h2 { font: 700 var(--fs-h, 40px)/1 var(--gc-font-display); letter-spacing: .12em; text-transform: uppercase; text-align: center; }
+  .gct-rules { display: grid; grid-template-columns: var(--rcols, 1fr); gap: var(--hg, 20px); }
+  .gct-ri { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 18px; align-items: center; }
+  .gct-ico { display: flex; gap: 6px; }
+  .gct-tile { --c: 10px; --k: var(--c); width: var(--tile, 64px); height: var(--tile, 64px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: linear-gradient(160deg, rgba(232,181,234,.7), rgba(137,220,217,.6)); padding: 1px; display: grid; }
+  .gct-tile > div { --k: calc(var(--c) - .42px); clip-path: polygon(var(--k) 0, calc(100% - var(--k)) 0, 100% var(--k), 100% calc(100% - var(--k)), calc(100% - var(--k)) 100%, var(--k) 100%, 0 calc(100% - var(--k)), 0 var(--k)); background: #1b1543; display: grid; place-items: center; color: var(--tc, var(--gc-cyan-bright)); }
+  .gct-tile svg { width: 62%; height: 62%; }
+  .gct-ri p { font-size: var(--fs-r, 19px); line-height: 1.45; color: var(--gc-ink-2); text-wrap: pretty; }
+  .gct-ri p b { color: var(--gc-ink); }
+  .gc-root .gct-got { justify-self: center; min-width: 240px; }
+  .gct-tap { display: none; }
+
+  @media (pointer: coarse) {
+    .gct { --crest: 128px; --fs-gem: 18px; --fs-cas: 50px; --tw: 640px; --tg: 12px; --rb: 52px; }
+    .gct-crest.out { display: none; }
+    .gct-crest.in { display: block; margin: 0; }
+    .gct-card { --c: 22px; }
+    .gct-card > .gc-body { grid-template-columns: auto minmax(0, 1fr); align-items: center; justify-items: start; text-align: left; padding: 22px 30px; column-gap: 26px; }
+    .gct-right { display: grid; gap: 12px; justify-items: start; }
+    .gct-card .gc-rule { display: none; }
+    .gct-wm { justify-items: start; }
+    .gct-wm .gem { padding-left: 0; letter-spacing: .9em; }
+    .gct-wm .cas { padding-left: 0; }
+    .gct-meta { justify-content: flex-start; font-size: 10.5px; letter-spacing: .16em; }
+    .gc-root .gct-play { min-width: 0; flex: 1; --bfs: 19px; --c: 12px; }
+    .gct-actions { width: 100%; }
+    .gct-help { --hw: 660px; --hp: 20px 26px; --hg: 14px; --fs-h: 24px; --rcols: 1fr 1fr; --tile: 44px; --fs-r: 13px; --c: 18px; }
+    .gct-ri { grid-template-columns: 1fr; gap: 10px; align-content: start; }
+    .gc-root .gct-got { --bh: 48px; --bfs: 16px; min-width: 200px; }
+    .gct-click { display: none; }
+    .gct-tap { display: inline; }
+  }
+</style>
+<div class="gc-root gct">
+  <div class="gct-wrap">
+    <svg class="gct-crest out" viewBox="-4 -4 128 128" aria-hidden="true" focusable="false"><defs><linearGradient id="gct-cr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d9d4ff"/><stop offset="1" stop-color="#a6eaff"/></linearGradient></defs><g stroke="rgba(255,255,255,.55)" stroke-width=".8" stroke-linejoin="round"><polygon points="79.9,12.0 108.0,40.1 69.2,37.8" fill="#3f9fb0"/><polygon points="108.0,40.1 82.2,50.8 69.2,37.8" fill="#d090ff"/><polygon points="108.0,40.1 108.0,79.9 82.2,50.8" fill="#5f6cd0"/><polygon points="108.0,79.9 82.2,69.2 82.2,50.8" fill="#e8b5ea"/><polygon points="108.0,79.9 79.9,108.0 82.2,69.2" fill="#8a52cf"/><polygon points="79.9,108.0 69.2,82.2 82.2,69.2" fill="#89dcd9"/><polygon points="79.9,108.0 40.1,108.0 69.2,82.2" fill="#b77ec7"/><polygon points="40.1,108.0 50.8,82.2 69.2,82.2" fill="#8a97f0"/><polygon points="40.1,108.0 12.0,79.9 50.8,82.2" fill="#4aa7a8"/><polygon points="12.0,79.9 37.8,69.2 50.8,82.2" fill="#b98cf0"/><polygon points="12.0,79.9 12.0,40.1 37.8,69.2" fill="#4a55b8"/><polygon points="12.0,40.1 37.8,50.8 37.8,69.2" fill="#6fcbd8"/><polygon points="12.0,40.1 40.1,12.0 37.8,50.8" fill="#7a54c4"/><polygon points="40.1,12.0 50.8,37.8 37.8,50.8" fill="#83e7ef"/><polygon points="40.1,12.0 79.9,12.0 50.8,37.8" fill="#3f8fa6"/><polygon points="79.9,12.0 69.2,37.8 50.8,37.8" fill="#a9b6ff"/><polygon points="69.2,37.8 82.2,50.8 82.2,69.2 69.2,82.2 50.8,82.2 37.8,69.2 37.8,50.8 50.8,37.8" fill="url(#gct-cr)"/></g><polygon points="79.9,12.0 108.0,40.1 108.0,79.9 79.9,108.0 40.1,108.0 12.0,79.9 12.0,40.1 40.1,12.0" fill="none" stroke="#ffdc9f" stroke-width="1.4"/><path d="M16 9 Q16 18 25 18 Q16 18 16 27 Q16 18 7 18 Q16 18 16 9Z" fill="#ffd683"/><path d="M104 18 Q104 24 110 24 Q104 24 104 30 Q104 24 98 24 Q104 24 104 18Z" fill="#ffd683"/><path d="M98 90 Q98 100 108 100 Q98 100 98 110 Q98 100 88 100 Q98 100 98 90Z" fill="#ffd683"/><path d="M22 92 Q22 96 26 96 Q22 96 22 100 Q22 96 18 96 Q22 96 22 92Z" fill="#ffd683"/></svg>
+    <main class="gc-facet gct-card gc-shadow"><div class="gc-body">
+      <svg class="gct-crest in" viewBox="-4 -4 128 128" aria-hidden="true" focusable="false"><defs><linearGradient id="gct-cr2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset=".55" stop-color="#d9d4ff"/><stop offset="1" stop-color="#a6eaff"/></linearGradient></defs><g stroke="rgba(255,255,255,.55)" stroke-width=".8" stroke-linejoin="round"><polygon points="79.9,12.0 108.0,40.1 69.2,37.8" fill="#3f9fb0"/><polygon points="108.0,40.1 82.2,50.8 69.2,37.8" fill="#d090ff"/><polygon points="108.0,40.1 108.0,79.9 82.2,50.8" fill="#5f6cd0"/><polygon points="108.0,79.9 82.2,69.2 82.2,50.8" fill="#e8b5ea"/><polygon points="108.0,79.9 79.9,108.0 82.2,69.2" fill="#8a52cf"/><polygon points="79.9,108.0 69.2,82.2 82.2,69.2" fill="#89dcd9"/><polygon points="79.9,108.0 40.1,108.0 69.2,82.2" fill="#b77ec7"/><polygon points="40.1,108.0 50.8,82.2 69.2,82.2" fill="#8a97f0"/><polygon points="40.1,108.0 12.0,79.9 50.8,82.2" fill="#4aa7a8"/><polygon points="12.0,79.9 37.8,69.2 50.8,82.2" fill="#b98cf0"/><polygon points="12.0,79.9 12.0,40.1 37.8,69.2" fill="#4a55b8"/><polygon points="12.0,40.1 37.8,50.8 37.8,69.2" fill="#6fcbd8"/><polygon points="12.0,40.1 40.1,12.0 37.8,50.8" fill="#7a54c4"/><polygon points="40.1,12.0 50.8,37.8 37.8,50.8" fill="#83e7ef"/><polygon points="40.1,12.0 79.9,12.0 50.8,37.8" fill="#3f8fa6"/><polygon points="79.9,12.0 69.2,37.8 50.8,37.8" fill="#a9b6ff"/><polygon points="69.2,37.8 82.2,50.8 82.2,69.2 69.2,82.2 50.8,82.2 37.8,69.2 37.8,50.8 50.8,37.8" fill="url(#gct-cr2)"/></g><polygon points="79.9,12.0 108.0,40.1 108.0,79.9 79.9,108.0 40.1,108.0 12.0,79.9 12.0,40.1 40.1,12.0" fill="none" stroke="#ffdc9f" stroke-width="1.4"/><path d="M16 9 Q16 18 25 18 Q16 18 16 27 Q16 18 7 18 Q16 18 16 9Z" fill="#ffd683"/><path d="M104 18 Q104 24 110 24 Q104 24 104 30 Q104 24 98 24 Q104 24 104 18Z" fill="#ffd683"/><path d="M98 90 Q98 100 108 100 Q98 100 98 110 Q98 100 88 100 Q98 100 98 90Z" fill="#ffd683"/><path d="M22 92 Q22 96 26 96 Q22 96 22 100 Q22 96 18 96 Q22 96 22 92Z" fill="#ffd683"/></svg>
+      <div class="gct-right">
+        <h1 class="gct-wm"><span class="gem" data-text="wordmark_gem"></span><span class="cas" data-text="wordmark_cascade"></span></h1>
+        <div class="gc-rule"><i></i></div>
+        <div class="gct-meta" data-show="has_record"><span><span data-text="best_run"></span> <b data-bind="best_run"></b></span><i data-show="has_stage"></i><span data-show="has_stage"><span data-text="furthest_stage"></span> <b data-bind="best_stage"></b> / <span data-bind="stages"></span></span></div>
+        <div class="gct-actions">
+          <button class="gc-btn gc-btn-primary gct-play" data-action="play"><span data-text="play"></span></button>
+          <button class="gct-round" id="gct-help-open">?</button>
+        </div>
+      </div>
+    </div></main>
+  </div>
+</div>
+<div class="gc-root gct-modal" id="gct-help" hidden role="dialog" aria-modal="true" aria-labelledby="gct-help-t">
+  <div class="gc-dim"></div>
+  <div class="gc-facet gct-help gc-shadow"><div class="gc-body">
+    <h2 id="gct-help-t" data-text="how_to_play"></h2>
+    <div class="gc-rule"><i></i></div>
+    <div class="gct-rules">
+      <div class="gct-ri"><div class="gct-ico"><div class="gct-tile"><div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M5 28 L13 20 L21 28 L13 36Z"/><path d="M27 28 L35 20 L43 28 L35 36Z"/><path d="M13 13 Q24 5 35 13"/><path d="M31 9 L35 13 L30 15"/></svg></div></div></div><p><span class="gct-click" data-text="howto_click"></span><span class="gct-tap" data-text="howto_tap"></span> <span data-text="howto_swap"></span> <b data-text="howto_match"></b> <span data-text="howto_goal"></span></p></div>
+      <div class="gct-ri"><div class="gct-ico"><div class="gct-tile" style="--tc:var(--gc-orchid)"><div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><path d="M24 13 L34 24 L24 35 L14 24Z"/><path d="M3 24 H11 M37 24 H45 M24 3 V9 M24 39 V45"/></svg></div></div><div class="gct-tile" style="--tc:var(--gc-gold)"><div><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true"><rect x="9" y="9" width="30" height="30" stroke-dasharray="5 3"/><path d="M24 15 L33 24 L24 33 L15 24Z" fill="currentColor" fill-opacity=".35"/><path d="M24 15 L33 24 L24 33 L15 24Z"/></svg></div></div></div><p><b data-text="howto_four"></b> <span data-text="howto_line"></span> <b data-text="howto_five"></b> <span data-text="howto_bomb"></span></p></div>
+    </div>
+    <button class="gc-btn gc-btn-primary gct-got" id="gct-help-close"><span data-text="got_it"></span></button>
+  </div></div>
+</div>
+<script>
+  // The ? card opens and closes in the panel, as in the template (P closes it too).
+  (function () {
+    var help = document.getElementById('gct-help');
+    document.getElementById('gct-help-open').addEventListener('click', function () { help.hidden = false; });
+    document.getElementById('gct-help-close').addEventListener('click', function () { help.hidden = true; });
+    document.addEventListener('keydown', function (e) { if (e.code === 'KeyP' && !help.hidden) help.hidden = true; });
+  })();
+</script>

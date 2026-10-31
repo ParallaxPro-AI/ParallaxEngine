@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chandelier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.624, 0.8225, 0.5524],
+      "offset": [0, 0.4088, 0]
+    }
+  }
+}

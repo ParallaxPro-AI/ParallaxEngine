@@ -1,0 +1,10 @@
+{
+  "id": "satellite",
+  "summary": "A communications satellite: an MLI-blanketed bus with a flared launch-adapter skirt and radiator panels, two… joints wing_r, wing_l, dish_pan; sockets socket_dish_focus.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.satellite or place \"prefab\": \"satellite\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:satellite"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_face_hockey_style_mask"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2205, 0.2973, 0.2373],
+      "offset": [0, 1.7569, 0.006]
+    }
+  }
+}

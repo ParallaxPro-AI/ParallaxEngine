@@ -1,0 +1,10 @@
+{
+  "id": "xylophone",
+  "summary": "A three-octave concert xylophone on a wheeled stand: 22 natural rosewood bars in front and 15 accidental bars… joints caster_0, caster_1, caster_2, caster_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.xylophone or place \"prefab\": \"xylophone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:xylophone"]
+}

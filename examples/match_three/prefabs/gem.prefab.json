@@ -1,0 +1,12 @@
+{
+  "z": 3,
+  "components": {
+    "sprite": { "size": [0.88, 0.88] }
+  },
+  "behaviors": { "gem_look": {} },
+  "children": [
+    { "name": "line_badge", "prefab": "line_badge", "at": [0, 0, 2] },
+    { "name": "bomb_badge", "prefab": "bomb_badge", "at": [0, 0, 2] }
+  ],
+  "pool": 96
+}

@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="street.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .cg-root { pointer-events: none; overflow: hidden; }
+  .cgp { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .cgp-dim { position: absolute; inset: 0; background: rgba(3,14,19,.7); animation: cg-fade .2s ease both; }
+  .cgp-card { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: calc(var(--cg-u) * 720); padding: calc(var(--cg-u) * 48) calc(var(--cg-u) * 56); display: flex; flex-direction: column; gap: calc(var(--cg-u) * 22); animation: cg-in .22s ease-out both; }
+  .cgp-head { text-align: center; }
+  .cgp-h { font-size: calc(var(--cg-u) * 130); color: var(--cg-ink); text-shadow: calc(var(--cg-u) * 6) calc(var(--cg-u) * 6) 0 var(--cg-teal-600); letter-spacing: .02em; }
+  .cgp-meta { margin-top: calc(var(--cg-u) * 12); font: 700 calc(var(--cg-u) * 26)/1.3 var(--cg-font-num); letter-spacing: .12em; color: var(--cg-ink-2); }
+  .cgp-meta br { display: none; }
+  .cgp-btns { display: flex; flex-direction: column; gap: calc(var(--cg-u) * 22); }
+  .cg-root .cgp-btns .cg-btn.gold { justify-content: space-between; padding: 0 calc(var(--cg-u) * 28) 0 calc(var(--cg-u) * 36); font-size: calc(var(--cg-u) * 46); }
+  .cgp-gfx { margin-top: calc(var(--cg-u) * 8); }
+  .cgp-lbl { font: 800 calc(var(--cg-u) * 22)/1 var(--cg-font-num); letter-spacing: .2em; color: var(--cg-mint); margin-bottom: calc(var(--cg-u) * 10); }
+  .cgp-seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: calc(var(--cg-u) * 8); padding: calc(var(--cg-u) * 6); border-radius: calc(var(--cg-u) * 16); background: rgba(3,16,21,.7); }
+  .cg-root .cgp-opt { height: calc(var(--cg-u) * 64); border-radius: calc(var(--cg-u) * 12); font-family: var(--cg-font-display); font-size: calc(var(--cg-u) * 28); letter-spacing: .06em; text-transform: uppercase; color: var(--cg-ink); transition: background .15s, color .15s; }
+  .cg-root .cgp-opt[aria-pressed="true"] { background: var(--cg-yellow); color: var(--cg-teal-900); }
+  .cgp-note { margin-top: calc(var(--cg-u) * 10); min-height: 1.3em; font-size: calc(var(--cg-u) * 18); color: var(--cg-ink-muted); }
+  @media (pointer: coarse) {
+    .cgp-card { top: calc(var(--cg-st) + calc(var(--cg-u) * 6)); bottom: calc(var(--cg-sb) + calc(var(--cg-u) * 5)); transform: translateX(-50%); width: calc(var(--cg-u) * 640); padding: calc(var(--cg-u) * 18) calc(var(--cg-u) * 24); display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--cg-u) * 14) calc(var(--cg-u) * 20); align-content: center; overflow-y: auto; animation: cg-fade .2s ease both; }
+    .cgp-head { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; gap: calc(var(--cg-u) * 12); text-align: left; }
+    .cgp-h { font-size: calc(var(--cg-u) * 64); text-shadow: calc(var(--cg-u) * 4) calc(var(--cg-u) * 4) 0 var(--cg-teal-600); }
+    .cgp-meta { margin: 0; font-size: calc(var(--cg-u) * 15); letter-spacing: .1em; text-align: right; }
+    .cgp-meta br { display: inline; }
+    .cgp-meta .sep { display: none; }
+    .cgp-btns { gap: calc(var(--cg-u) * 10); }
+    .cg-root .cgp-btns .cg-btn.gold { justify-content: center; font-size: calc(var(--cg-u) * 28); padding: 0 calc(var(--cg-u) * 14); }
+    .cg-root .cgp-btns .cg-btn { font-size: calc(var(--cg-u) * 22); }
+    .cgp-gfx { margin: 0; }
+    .cgp-lbl { font-size: calc(var(--cg-u) * 13); margin-bottom: calc(var(--cg-u) * 6); }
+    .cgp-seg { gap: calc(var(--cg-u) * 4); padding: calc(var(--cg-u) * 4); border-radius: calc(var(--cg-u) * 12); }
+    .cg-root .cgp-opt { height: max(44px, calc(var(--cg-u) * 48)); border-radius: calc(var(--cg-u) * 9); font-size: calc(var(--cg-u) * 17); letter-spacing: .05em; }
+    .cgp-note { margin-top: calc(var(--cg-u) * 8); font-size: calc(var(--cg-u) * 12); line-height: 1.35; }
+  }
+</style>
+<div class="cgp cg-root">
+  <div class="cgp-dim"></div>
+  <div class="cgp-card cg-panel cg-dots">
+    <div class="cgp-head">
+      <h2 class="cgp-h cg-display" data-text="pause_title"></h2>
+      <div class="cgp-meta" data-bind="meta"></div>
+    </div>
+    <div class="cgp-btns">
+      <button class="cg-btn gold" data-action="resume"><span data-text="pause_resume"></span><span class="cg-kbd dark">P</span></button>
+      <button class="cg-btn" data-action="quit" data-text="pause_quit"></button>
+    </div>
+    <div class="cgp-gfx">
+      <div class="cgp-lbl" data-text="graphics"></div>
+      <div class="cgp-seg" role="group" data-each="qualities"><template><button class="cgp-opt" data-action="quality" data-attr-aria-pressed="pressed" data-bind="label"></button></template></div>
+      <div class="cgp-note" data-text="graphics_note"></div>
+    </div>
+  </div>
+</div>

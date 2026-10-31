@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/muscle_car"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1550,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.07,
+        1.3315,
+        4.9214
+      ],
+      "offset": [
+        0,
+        0.6657,
+        0
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 44,
+      "steering": 34,
+      "grip": 7.5,
+      "turn_rate": 1.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.6657,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

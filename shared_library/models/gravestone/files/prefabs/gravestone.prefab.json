@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gravestone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.98, 1.2405, 0.66],
+      "offset": [0, 0.6203, 0]
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "id": "generator",
+  "summary": "An open-frame portable/industrial power generator: a painted engine shroud in a tubular roll cage, a fuel… joints control_panel, fan, exhaust; options config; sockets socket_outlet, socket_top.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.generator or place \"prefab\": \"generator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:generator"
+  ]
+}

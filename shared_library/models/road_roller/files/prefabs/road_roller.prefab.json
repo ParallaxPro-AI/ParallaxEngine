@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/road_roller"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9500,
+      "linear_damping": 0.2,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.96,
+        3.235,
+        4.45
+      ],
+      "offset": [
+        0,
+        1.6175,
+        -0.115
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 4.5,
+      "steering": 32,
+      "grip": 9,
+      "turn_rate": 0.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.6175,
+        -0.115
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

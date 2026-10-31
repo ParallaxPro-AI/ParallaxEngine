@@ -1,0 +1,10 @@
+{
+  "id": "taco",
+  "summary": "A hard-shell taco standing on its fold: a golden corn tortilla folded into a U whose free edge arcs over the… options shell, filling; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.taco or place \"prefab\": \"taco\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:taco"]
+}

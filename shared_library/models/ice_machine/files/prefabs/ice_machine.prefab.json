@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.834, 1.524, 0.773],
+      "offset": [0.035, 0.762, 0.0245]
+    }
+  }
+}

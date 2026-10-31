@@ -1,0 +1,8 @@
+{
+  "z": 20,
+  "components": {"sprite": {"image": "https://r2.parallaxpro.ai/assets/image_sprite/4a/23/4a232a147694875d9d953704c02f5dbd72f9bd8aae39ac06384205082b4d46e5.png", "size": [0.8, 1.1], "animations": {"run": {"frames": ["https://r2.parallaxpro.ai/assets/image_sprite/b3/d9/b3d96564303852d5b4ead9e074e4467a18ba4f8fd95e9c59d0007a1d0083093f.png", "https://r2.parallaxpro.ai/assets/image_sprite/ac/5d/ac5dc6070a335df1b27838e8b7cb87af6f2ad2b67fbc8655f79cabca750a5e4b.png"], "fps": 12, "loop": true}, "hop": {"frames": ["https://r2.parallaxpro.ai/assets/image_sprite/80/ff/80ff73cb4b2146cd9aeacaa7b7406c2de85eb3252e75b9422443540e35554b59.png"], "fps": 12, "loop": true}, "duck": {"frames": ["https://r2.parallaxpro.ai/assets/image_sprite/c5/80/c580a786eda15ab9ec5a2ef6e3e54e7a45e0320834f99ecd87458f87c8d208a4.png"], "fps": 12, "loop": true}, "hurt": {"frames": ["https://r2.parallaxpro.ai/assets/image_sprite/6f/fe/6ffecf7908652ab1234a1c553e8686c43aa77d86758b0cffbe09368ce590a871.png"], "fps": 12, "loop": true}, "idle": {"frames": ["https://r2.parallaxpro.ai/assets/image_sprite/4a/23/4a232a147694875d9d953704c02f5dbd72f9bd8aae39ac06384205082b4d46e5.png"], "fps": 12, "loop": true}}}, "collider": {"shape": "box", "size": [0.76, 0.92]}, "rigidbody": {"kind": "kinematic"}, "health": {"current": 3, "max": 3, "invulnerable_after_hit": 1.35, "destroy_on_death": false}, "hopper": {"gravity": 62, "hop_speed": 18, "max_fall": 42, "fast_fall_scale": 2.6, "jump_buffer": 0.12, "height": 1.1, "duck_height": 0.62, "hitbox_scale": 0.84}},
+  "tags": ["runner"],
+  "behaviors": {
+    "runner_motion": {"hurt_pose_seconds": 0.35, "blink_rate": 12}
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "yard",
+  "exclude": ["yard"],
+  "ui": ["title_screen"],
+  "music": null
+}

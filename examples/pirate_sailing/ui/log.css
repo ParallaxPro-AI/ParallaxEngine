@@ -1,0 +1,23 @@
+:root {
+  --tar: rgba(24, 16, 10, 0.82);
+  --brass: #c9a24a;
+  --parchment: #efe2c2;
+  --ink: #2a1d12;
+  --sea: #1f8a8a;
+  --blood: #a3261b;
+  font-family: "IM Fell English", Georgia, serif;
+  color: var(--parchment);
+}
+.plate { background: var(--tar); border: 1px solid var(--brass); border-radius: 6px; padding: 10px 14px; }
+.card { background: var(--parchment); color: var(--ink); border-radius: 4px; padding: 12px; }
+.title { font-family: "Pirata One", serif; font-size: 32px; color: var(--brass); }
+.label { font-family: "IM Fell English SC", serif; font-size: 13px; letter-spacing: 0.08em; opacity: 0.8; }
+.btn { background: var(--sea); color: var(--parchment); border: 1px solid var(--brass); border-radius: 4px; padding: 9px 16px; font: inherit; }
+.btn.wood { background: #5a3a22; }
+.modal { position: fixed; inset: 0; display: grid; place-items: center; background: rgba(8, 6, 4, 0.6); }
+.stack { display: flex; flex-direction: column; gap: 10px; }
+.row { display: flex; gap: 10px; align-items: center; justify-content: space-between; }
+.bar { height: 6px; background: rgba(239, 226, 194, 0.2); --fill: var(--brass); }
+.pip { display: inline-block; width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--brass); }
+.pip.loaded { background: var(--brass); }
+tr.me { color: var(--brass); }

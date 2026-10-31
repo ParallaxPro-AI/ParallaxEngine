@@ -1,0 +1,10 @@
+{
+  "id": "police_call_box",
+  "summary": "A British police public call box: a walk-in timber-look booth in police blue on a two-step concrete plinth, f… joints phone_hatch, door; options paint, lamp; sockets socket_phone, socket_inside, socket_lamp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.police_call_box or place \"prefab\": \"police_call_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:police_call_box"]
+}

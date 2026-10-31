@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/powder_pouch"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.62,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0827, 0.1302, 0.0838],
+      "offset": [0, 0.0651, -0.0006]
+    }
+  }
+}

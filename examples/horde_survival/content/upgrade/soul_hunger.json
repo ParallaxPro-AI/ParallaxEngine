@@ -1,0 +1,2 @@
+{ "name": "Soul Hunger", "desc": "Soul motes are worth 30% more.",
+  "icon": "soul", "weight": 5, "max_stacks": 4, "effect": { "xp_mul": 1.3 } }

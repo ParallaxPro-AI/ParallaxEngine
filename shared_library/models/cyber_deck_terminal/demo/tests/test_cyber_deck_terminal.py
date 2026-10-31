@@ -1,0 +1,18 @@
+from parallax import Model, vec3
+from parallax.test import playtest
+from project import Prefabs, Scenes
+
+
+@playtest("cyber_deck_terminal: the prefab spawns and its model's controls work")
+async def test_cyber_deck_terminal(game):
+    await game.start(scene=Scenes.yard)
+    thing = game.ctx.world.spawn(Prefabs.cyber_deck_terminal, at=vec3(0, 0.0, 0))
+    await game.advance(frames=1)
+    model = thing.get(Model)
+    model.pose("antenna", 42.5)
+    assert abs(model.joint("antenna") - 42.5) < 1e-3
+    model.set_option("glow", "magenta")
+    assert model.option("glow") == "magenta"
+    assert model.socket_position("socket_user").distance_to(thing.transform.position) < 50.0
+    await game.advance(seconds=1)
+    assert thing.transform.position.is_close(vec3(0, 0, 0))

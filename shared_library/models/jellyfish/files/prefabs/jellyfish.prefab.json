@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jellyfish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5096, 0.9798, 0.5334],
+      "offset": [0, 0.4941, 0]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sai_pair"
+    },
+    "viewmodel_item": {
+      "hip": [0.13, -0.3, 0.24],
+      "hip_turn": [-12.605071, -17.188734, -31.512679],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2253, 0.0316, 0.52],
+      "offset": [-0.0575, 0, 0.26]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/motor_yacht"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 24000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.4998, 8.2, 19.25],
+      "offset": [0, 4.1, -0.625]
+    }
+  }
+}

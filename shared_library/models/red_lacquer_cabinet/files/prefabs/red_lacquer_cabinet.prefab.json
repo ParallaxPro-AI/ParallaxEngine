@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/red_lacquer_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.052, 1.758, 0.542],
+      "offset": [0, 0.879, 0]
+    }
+  }
+}

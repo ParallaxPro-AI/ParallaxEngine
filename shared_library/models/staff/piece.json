@@ -1,0 +1,14 @@
+{
+  "id": "staff",
+  "summary": "A caster's staff stood upright: a tapered dark-wood shaft with a metal ferrule at the foot and a bound… options focus, furniture; sockets socket_head.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.staff or place \"prefab\": \"staff\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:staff"
+  ]
+}

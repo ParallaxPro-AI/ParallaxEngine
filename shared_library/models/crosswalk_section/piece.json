@@ -1,0 +1,10 @@
+{
+  "id": "crosswalk_section",
+  "summary": "A 12 m straight road tile from the ROAD_KIT carrying a zebra crossing: seven white stripes across the carriag… options markings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crosswalk_section or place \"prefab\": \"crosswalk_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crosswalk_section"]
+}

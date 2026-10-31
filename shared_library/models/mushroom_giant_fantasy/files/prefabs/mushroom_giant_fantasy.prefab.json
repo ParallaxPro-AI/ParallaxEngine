@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mushroom_giant_fantasy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.6545, 3.6955, 3.6205],
+      "offset": [0.1731, 1.8473, 0.0905]
+    }
+  }
+}

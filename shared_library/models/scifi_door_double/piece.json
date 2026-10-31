@@ -1,0 +1,10 @@
+{
+  "id": "scifi_door_double",
+  "summary": "A sci-fi bulkhead with a pair of bi-parting sliding doors, the door piece of the space-corridor kit: an octag… joints leaf_l, leaf_r; options light_colour; sockets socket_threshold, socket_corridor_front, socket_corridor_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_door_double or place \"prefab\": \"scifi_door_double\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_door_double"]
+}

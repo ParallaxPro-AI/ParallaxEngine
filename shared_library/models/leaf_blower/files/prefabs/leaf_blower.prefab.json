@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/leaf_blower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.278, 0.4637, 0.9518],
+      "offset": [0.017, 0.2319, 0.0009]
+    }
+  }
+}

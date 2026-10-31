@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_kraken_tentacle"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.38, 5.8, 0.71],
+      "offset": [0, 2.9, 0]
+    }
+  }
+}

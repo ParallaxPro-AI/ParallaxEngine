@@ -1,0 +1,10 @@
+{
+  "id": "suppressor",
+  "summary": "A rifle sound suppressor: a fluted titanium tube with a knurled quick-detach mounting collar at the rear and… sockets socket_mount, socket_muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.suppressor or place \"prefab\": \"suppressor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:suppressor"]
+}

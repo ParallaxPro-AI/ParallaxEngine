@@ -1,0 +1,1 @@
+{"format":"parallax.model","version":1,"source":"parallax migrate: tc_wall_short.prefab.json (CodeModel 'tc_wall_short')","materials":{"slab":{"color":[0.854306,0.835078,0.797738],"metallic":0.0,"roughness":0.88}},"meshes":{},"parts":[{"name":"slab","position":[0.0,1.2,0.0],"shape":"box","size":[0.1,2.4,8.6],"material":"slab"}]}

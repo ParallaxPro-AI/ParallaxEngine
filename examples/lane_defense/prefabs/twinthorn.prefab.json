@@ -1,0 +1,7 @@
+{
+  "extends": "plant",
+  "components": {
+    "model": { "model": "models/twinthorn" }
+  },
+  "behaviors": { "lane_shooter": { "damage": 22, "range": 14, "fire_interval": 1.5, "volley": 2, "volley_gap": 0.16 } }
+}

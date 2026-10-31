@@ -1,0 +1,10 @@
+{
+  "id": "forklift_charging_station",
+  "summary": "A warehouse forklift battery-charging bay, 1.5 m wide and 2.4 m tall: two anchored steel posts carrying a gal… joints cab_door; options status; sockets park.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.forklift_charging_station or place \"prefab\": \"forklift_charging_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:forklift_charging_station"]
+}

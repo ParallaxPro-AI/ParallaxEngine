@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="card.css">
+<div class="fct">
+  <div class="dim"></div>
+  <section class="card">
+    <div class="card-main">
+      <span class="badge" data-show="badge"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="9" width="20" height="6" rx="1"/><rect x="8.5" y="6.5" width="7" height="11" rx="1.5"/></svg><span data-text="champion_badge"></span></span>
+      <h1 class="title"><span data-bind="title"></span><span class="g" data-bind="title_gold"></span></h1>
+      <p class="tag" data-show="desc" data-bind="desc"></p>
+      <p class="tip" data-show="lost"><b data-text="tip_label"></b><span data-bind="tip"></span></p>
+      <div class="results">
+        <div><span data-bind="count_label"></span><b><span data-bind="count"></span><small> / <span data-bind="count_of"></span></small></b></div>
+        <div><span data-text="res_hits"></span><b data-bind="hits"></b></div>
+        <div><span data-text="res_blocks"></span><b data-bind="blocks"></b></div>
+        <div><span data-text="res_punishes"></span><b data-bind="punishes"></b></div>
+        <div class="best"><span data-text="res_best_combo"></span><b data-bind="best_combo"></b></div>
+      </div>
+    </div>
+    <nav class="menu">
+      <button class="btn primary has-meta" data-show="training" data-action="start" data-mode="circuit"><span data-text="fight"></span><span class="meta" data-bind="fight_meta"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="btn primary" data-hide="training" data-class-has-meta="retry_meta" data-action="retry"><span data-text="fight_again"></span><span class="meta" data-show="retry_meta" data-bind="retry_meta"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="btn" data-action="main_menu"><span data-text="main_menu"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </nav>
+    <footer class="career">
+      <span><b data-bind="career_wins"></b> <span data-text="career_wins"></span></span>
+      <span><b data-bind="belts"></b> <span data-bind="belts_label"></span></span>
+      <span><span data-text="best_rival"></span> <b data-bind="best_rival"></b></span>
+    </footer>
+  </section>
+  <aside class="ladder">
+    <div class="ld-h"><h3 data-bind="ladder_title"></h3><span data-bind="ladder_sub"></span></div>
+    <div data-each="rungs">
+      <template>
+        <div class="rung" data-class-done="done" data-class-next="next" data-class-belt="belt" data-class-lost="lost">
+          <span class="n" data-bind="n"></span>
+          <div class="who"><b data-bind="name"></b><span data-bind="role"></span></div>
+          <span class="st" data-bind="status"></span>
+        </div>
+      </template>
+    </div>
+  </aside>
+</div>

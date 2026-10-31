@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_anglerfish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2161, 0.2648, 0.5221],
+      "offset": [0, 0.1324, 0.024]
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<!-- Ported from the template: Court Clash pause - a blurred asphalt scrim over the frozen court (the scoreboard stays up), a chamfered PAUSED card with the game and venue, Resume (P), Leave match with the note that leaving ends the run, and a Low / Medium / High graphics switch -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ccz-scrim { position: fixed; inset: 0; background: var(--cc-scrim); pointer-events: auto; animation: cc-fade var(--cc-dur-med) ease-out both; }
+  .ccz-center { position: fixed; inset: 0; display: grid; place-items: center; }
+  .ccz { width: calc(var(--u) * 560); padding: calc(var(--u) * 44) calc(var(--u) * 48); display: flex; flex-direction: column; gap: calc(var(--u) * 14); background: var(--cc-plate); clip-path: var(--cc-cut-lg); box-shadow: inset 0 0 0 1px var(--cc-line-soft); pointer-events: auto; animation: cc-rise var(--cc-dur-med) var(--cc-ease-out) both; }
+  .ccz h1 { font-size: calc(var(--u) * 128); margin: calc(var(--u) * 6) 0 calc(var(--u) * 18); }
+  .cc-root .ccz .cc-btn { width: 100%; height: calc(var(--u) * 72); font-size: calc(var(--u) * 34); }
+  .ccz-note { font-size: max(11px, calc(var(--u) * 14)); color: var(--cc-chalk-mute); text-align: center; margin-top: calc(var(--u) * 4); }
+  .ccz-set { display: flex; justify-content: space-between; align-items: center; gap: calc(var(--u) * 16); margin-top: calc(var(--u) * 10); padding-top: calc(var(--u) * 18); border-top: 1px solid var(--cc-line-faint); }
+  .ccz-seg { display: flex; gap: calc(var(--u) * 4); }
+  .cc-root .ccz-opt { min-height: 36px; height: calc(var(--u) * 40); min-width: calc(var(--u) * 92); padding: 0 calc(var(--u) * 12); display: grid; place-items: center; font: 600 max(10px, calc(var(--u) * 13))/1 var(--cc-font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--cc-chalk-dim); box-shadow: inset 0 0 0 1.5px var(--cc-line-soft); clip-path: var(--cc-cut-xs); }
+  .cc-root .ccz-opt:hover { color: var(--cc-chalk); }
+  .cc-root .ccz-opt[aria-pressed="true"] { background: var(--cc-chalk); color: var(--cc-asphalt-800); box-shadow: none; }
+  @media (pointer: coarse) {
+    .ccz { width: calc(var(--u) * 400); max-height: calc(100cqh - 16px); overflow-y: auto; padding: calc(var(--u) * 22) calc(var(--u) * 28); gap: calc(var(--u) * 10); }
+    .ccz h1 { font-size: calc(var(--u) * 64); margin: calc(var(--u) * 4) 0 calc(var(--u) * 8); }
+    .cc-root .ccz .cc-btn { height: calc(var(--u) * 52); font-size: calc(var(--u) * 26); }
+    .ccz-note { font-size: 12px; }
+    .ccz .cc-eyebrow { font-size: 10px; }
+    .ccz-set { margin-top: calc(var(--u) * 2); padding-top: calc(var(--u) * 10); }
+    .cc-root .ccz-opt { min-width: calc(var(--u) * 64); height: 36px; font-size: 10px; }
+  }
+</style>
+<div class="cc-root">
+  <div class="ccz-scrim"></div>
+  <div class="ccz-center">
+    <section class="ccz" role="dialog" aria-label="Paused">
+      <span class="cc-eyebrow" data-bind="where"></span>
+      <h1 class="cc-display">Paused</h1>
+      <button class="cc-btn cc-btn-primary" data-action="resume"><span data-text="resume"></span> <span class="cc-kbd d-only">P</span></button>
+      <button class="cc-btn cc-btn-ghost" data-action="leave">Leave match</button>
+      <p class="ccz-note">Leaving ends the run.</p>
+      <div class="ccz-set">
+        <span class="cc-eyebrow">Graphics</span>
+        <div class="ccz-seg" role="group" aria-label="Graphics quality">
+          <button class="ccz-opt" data-action="quality" data-quality="low" data-attr-aria-pressed="quality_low">Low</button><button class="ccz-opt" data-action="quality" data-quality="medium" data-attr-aria-pressed="quality_medium">Medium</button><button class="ccz-opt" data-action="quality" data-quality="high" data-attr-aria-pressed="quality_high">High</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

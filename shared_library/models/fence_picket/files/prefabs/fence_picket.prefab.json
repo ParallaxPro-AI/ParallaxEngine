@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fence_picket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.118, 1.153, 0.118],
+      "offset": [0, 0.5765, 0]
+    }
+  }
+}

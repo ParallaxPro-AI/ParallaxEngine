@@ -1,0 +1,10 @@
+{
+  "id": "scrap_metal_wall",
+  "summary": "A 3 m bay of post-apocalyptic scrap-metal wall, 2.4 m to the post tops and 2.6 m with the wire: three rough t…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scrap_metal_wall or place \"prefab\": \"scrap_metal_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scrap_metal_wall"]
+}

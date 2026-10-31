@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/general_store_counter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.66, 1.518, 0.76],
+      "offset": [0, 0.759, 0.02]
+    }
+  }
+}

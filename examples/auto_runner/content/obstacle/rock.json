@@ -1,0 +1,1 @@
+{ "name": "Rock", "counter": "HOP · clear the rock", "prefab": "rock", "lane": "ground", "height_min": 0.9, "height_max": 1.15 }

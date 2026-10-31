@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/server_rack",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6,
+        1.92,
+        1.07
+      ],
+      "offset": [
+        0.0,
+        0.96,
+        0.035
+      ]
+    }
+  }
+}

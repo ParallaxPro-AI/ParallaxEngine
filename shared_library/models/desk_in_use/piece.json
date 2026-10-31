@@ -1,0 +1,10 @@
+{
+  "id": "desk_in_use",
+  "summary": "Everything a worked-at desk carries, as one placeable set: a monitor that is ON with a second screen turned i…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.desk_in_use or place \"prefab\": \"desk_in_use\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:desk_in_use"]
+}

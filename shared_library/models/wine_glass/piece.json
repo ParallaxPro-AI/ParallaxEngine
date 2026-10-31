@@ -1,0 +1,10 @@
+{
+  "id": "wine_glass",
+  "summary": "A stemmed red-wine glass: a lathed thin-walled bowl with a visible rim, a slender stem and a flared foot, fil…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wine_glass or place \"prefab\": \"wine_glass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wine_glass"]
+}

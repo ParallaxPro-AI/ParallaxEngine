@@ -1,0 +1,10 @@
+{
+  "id": "modern_dresser",
+  "summary": "A modern six-drawer dresser from the modern apartment set: a 1.2 m walnut carcass with two columns of three o… joints drawer_00, drawer_01, drawer_02, drawer_10, drawer_11, drawer_12; options wood, dressing; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.modern_dresser or place \"prefab\": \"modern_dresser\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:modern_dresser"]
+}

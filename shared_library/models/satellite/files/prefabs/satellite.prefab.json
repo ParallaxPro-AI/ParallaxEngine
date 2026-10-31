@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/satellite"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.22, 3.465, 1.83],
+      "offset": [0, 1.7325, 0.015]
+    }
+  }
+}

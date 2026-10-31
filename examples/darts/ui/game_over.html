@@ -1,0 +1,74 @@
+<!-- Ported from the template: Tungsten Alley match-over card - ALLEY CHAMPION, the tier you unlocked or MISSED THE CUT, the match score counting up, the card's stats and Play Again / Main Menu -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, p { margin: 0; }
+  .ta-scrim { background: rgba(8,6,4,.8); }
+  .stage { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(40 * var(--u)); text-align: center; animation: ta-rise 600ms var(--ta-ease-out) both; }
+  .head { display: flex; flex-direction: column; align-items: center; gap: calc(18 * var(--u)); }
+  .kick { font: 500 calc(16 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .32em; text-transform: uppercase; color: var(--ta-amber); }
+  .title { font: 600 calc(112 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .04em; text-transform: uppercase; color: var(--ta-ink); }
+  .title.win { color: var(--ta-gold); }
+  .sub { font: 500 calc(20 * var(--u))/1.4 var(--ta-font-body); color: var(--ta-ink-soft); }
+  .score-box { display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--u)); }
+  .score { font: 700 calc(150 * var(--u))/1 var(--ta-font-display); color: var(--ta-gold); }
+  .stats { display: flex; opacity: 0; transition: opacity 400ms ease; }
+  .stats.on { opacity: 1; }
+  .stat { display: flex; flex-direction: column; gap: calc(10 * var(--u)); padding: calc(22 * var(--u)) calc(34 * var(--u)); border-left: 1px solid var(--ta-hairline); }
+  .stat:first-child { border-left: 0; }
+  .stat .ta-lbl { font-size: calc(12 * var(--u)); }
+  .stat b { font: 600 calc(30 * var(--u))/1 var(--ta-font-body); color: var(--ta-ink); white-space: nowrap; }
+  .stat.blank { display: none; }
+  .actions { display: flex; gap: calc(20 * var(--u)); }
+  .actions .ta-btn { padding: 0 calc(48 * var(--u)); }
+  .actions .ghost { padding: 0 calc(44 * var(--u)); }
+  .lead { display: contents; }
+  .head { order: 1; } .score-box { order: 2; } .stats { order: 3; } .actions { order: 4; }
+  @media (pointer: coarse) {
+    .stage { display: grid; grid-template-columns: minmax(0,1fr) calc(660 * var(--u)); gap: calc(56 * var(--u)); align-items: center; padding: calc(52 * var(--u)) calc(64 * var(--u)); text-align: left; }
+    .lead { display: flex; flex-direction: column; gap: calc(28 * var(--u)); }
+    .head { align-items: flex-start; gap: calc(28 * var(--u)); }
+    .kick { font-size: calc(20 * var(--u)); letter-spacing: .28em; }
+    .title { font-size: calc(80 * var(--u)); letter-spacing: .03em; }
+    .sub { font-size: calc(25 * var(--u)); }
+    .score-box { flex-direction: row; align-items: baseline; gap: calc(24 * var(--u)); }
+    .score-box .ta-lbl { order: 2; }
+    .score { font-size: calc(128 * var(--u)); }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 2px; background: var(--ta-hairline); border: 2px solid var(--ta-hairline); border-radius: calc(24 * var(--u)); overflow: hidden; box-shadow: none; }
+    .stat { flex-direction: row; justify-content: space-between; align-items: baseline; gap: calc(12 * var(--u)); padding: calc(26 * var(--u)) calc(28 * var(--u)); border-left: 0; background: #140f0b; }
+    .stat .ta-lbl { font-size: calc(19 * var(--u)); }
+    .stat b { font-size: calc(30 * var(--u)); }
+    .stat.blank { display: block; }
+    .actions { gap: calc(20 * var(--u)); }
+    .actions .ta-btn { height: calc(100 * var(--u)); padding: 0 calc(52 * var(--u)); font-size: calc(30 * var(--u)); }
+    .actions .ghost { padding: 0 calc(44 * var(--u)); }
+  }
+</style>
+<div class="ta-root">
+<div class="ta-scrim"></div>
+<div class="stage">
+  <div class="lead">
+    <div class="head">
+      <div class="kick"><span data-bind="tier"></span> · Nine Legs</div>
+      <div class="title" data-class-win="won" data-bind="title"></div>
+      <div class="sub" data-bind="subtitle"></div>
+    </div>
+    <div class="score-box">
+      <div class="ta-lbl" data-text="match_score_label"></div>
+      <div class="score" data-bind="score"></div>
+    </div>
+    <div class="actions">
+      <button class="ta-btn" data-action="play_again" data-text="play_again"></button>
+      <button class="ta-btn ghost" data-action="quit" data-text="main_menu"></button>
+    </div>
+  </div>
+  <div class="stats ta-card on">
+    <div class="stat"><div class="ta-lbl" data-text="stat_darts"></div><b data-bind="darts"></b></div>
+    <div class="stat"><div class="ta-lbl" data-text="stat_to_par"></div><b data-bind="to_par"></b></div>
+    <div class="stat"><div class="ta-lbl" data-text="stat_legs"></div><b data-bind="legs"></b></div>
+    <div class="stat"><div class="ta-lbl" data-text="stat_busts"></div><b data-bind="busts"></b></div>
+    <div class="stat"><div class="ta-lbl" data-text="stat_maximums"></div><b data-bind="maximums"></b></div>
+    <div class="stat"><div class="ta-lbl" data-text="stat_bullseyes"></div><b data-bind="bullseyes"></b></div>
+  </div>
+</div>
+</div>

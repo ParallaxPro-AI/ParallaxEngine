@@ -1,0 +1,8 @@
+{ "label": "Plating", "color": "#8fd3ff",
+  "steps": [
+  {"prompt": "Add Tomato", "takes": "chopped_tomato", "to_plate": true, "feedback": "Tomato on the plate", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35}},
+  {"prompt": "Add Lettuce", "takes": "chopped_lettuce", "to_plate": true, "feedback": "Lettuce on the plate", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35}},
+  {"prompt": "Add Onion", "takes": "chopped_onion", "to_plate": true, "feedback": "Onion on the plate", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35}},
+  {"prompt": "Take the Deluxe!", "requires_plate": ["chopped_tomato", "chopped_lettuce", "chopped_onion"], "gives": "deluxe_salad", "feedback": "Plated a Chef's Deluxe!", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35}},
+  {"prompt": "Take Salad", "requires_plate": ["chopped_tomato", "chopped_lettuce"], "gives": "salad", "feedback": "Plated a salad!", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.35}}
+] }

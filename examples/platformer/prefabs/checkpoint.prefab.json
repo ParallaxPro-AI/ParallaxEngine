@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": { "model": "models/checkpoint" },
+    "collider": { "shape": "box", "size": [2, 3, 2], "trigger": true }
+  },
+  "tags": ["checkpoint"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stone_lantern_japanese"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.152, 2.19, 1.0337],
+      "offset": [0, 1.095, 0]
+    }
+  }
+}

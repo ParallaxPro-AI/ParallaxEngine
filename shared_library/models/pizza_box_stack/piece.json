@@ -1,0 +1,10 @@
+{
+  "id": "pizza_box_stack",
+  "summary": "A stack of three square corrugated cardboard pizza boxes (14 in / 360 mm square, 42 mm deep each, the common… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pizza_box_stack or place \"prefab\": \"pizza_box_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pizza_box_stack"]
+}

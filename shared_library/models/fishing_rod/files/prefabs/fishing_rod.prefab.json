@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fishing_rod"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.38, 0.32],
+      "hip_turn": [25.783101, -14.323945, -17.188734],
+      "eye_relief": 0.35
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0837, 0.142, 2.129],
+      "offset": [-0.0132, -0.0558, 1.0645]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/watering_can"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1.6,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.206, 0.3408, 0.6083],
+      "offset": [0, 0.1704, 0]
+    }
+  }
+}

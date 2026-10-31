@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_wall",
+  "summary": "A straight stone wall section from the DUNGEON_KIT: coursed, chamfered ashlar blocks standing proud of a dark… options fixture, stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_wall or place \"prefab\": \"dungeon_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_wall"]
+}

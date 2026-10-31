@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chainsaw"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.256, 0.3209, 0.8452],
+      "offset": [-0.0065, 0.1605, 0.0136]
+    }
+  }
+}

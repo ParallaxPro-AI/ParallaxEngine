@@ -1,0 +1,14 @@
+{
+  "id": "wall_clock",
+  "summary": "A 0.40 m round wall clock: a deep dark bezel over a near-white dial with twelve markers and 12/3/6/9… joints hour_hand, minute_hand, second_hand; options face, trim.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.wall_clock or place \"prefab\": \"wall_clock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:wall_clock"
+  ]
+}

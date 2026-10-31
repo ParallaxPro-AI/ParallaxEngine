@@ -1,0 +1,10 @@
+{
+  "id": "catwalk",
+  "summary": "A 3.0 m modular industrial catwalk segment: two steel C-channel stringers, angle bearers, three open-grid ste… options rails, finish, deck; sockets end_neg, end_pos, support_neg, support_pos.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.catwalk or place \"prefab\": \"catwalk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:catwalk"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "parking_garage",
+  "summary": "A walk-in open-deck multi-storey car park: 34x30 m, five suspended precast decks plus the roof deck on a 6x5… options upstand_colour; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parking_garage or place \"prefab\": \"parking_garage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parking_garage"]
+}

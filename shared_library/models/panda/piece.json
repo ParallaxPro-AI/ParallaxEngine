@@ -1,0 +1,10 @@
+{
+  "id": "panda",
+  "summary": "An adult giant panda (0.85 m at the shoulder, 1.6 m long) on the engine's quadruped_20 rig, so the built-in q… options coat, fur; sockets head_top, back, mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.panda or place \"prefab\": \"panda\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:panda"]
+}

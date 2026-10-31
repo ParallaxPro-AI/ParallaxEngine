@@ -1,0 +1,10 @@
+{
+  "id": "tyre_rack",
+  "summary": "A two-tier steel tyre storage rack: welded ladder end frames with square uprights, cross braces, a diagonal a… options load, frame; sockets socket_slot_hi_4.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tyre_rack or place \"prefab\": \"tyre_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tyre_rack"]
+}

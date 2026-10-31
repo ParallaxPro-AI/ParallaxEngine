@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/footlocker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9, 0.3615, 0.472],
+      "offset": [0, 0.1792, 0.004]
+    }
+  }
+}

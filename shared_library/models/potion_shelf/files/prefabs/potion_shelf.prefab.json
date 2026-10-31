@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/potion_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.08, 1.77, 0.36],
+      "offset": [0, 0.885, 0.01]
+    }
+  }
+}

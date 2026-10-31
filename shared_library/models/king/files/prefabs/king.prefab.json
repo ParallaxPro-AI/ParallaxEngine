@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/king"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 2.001, 0.7099],
+      "offset": [0, 1.0005, -0.069]
+    }
+  }
+}

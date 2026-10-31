@@ -1,0 +1,10 @@
+{
+  "id": "water_tower",
+  "summary": "A small-town elevated steel water tower, ~24 m tall: four battered tubular legs on concrete footings with hor… joints roof_hatch; options paint, lettering; sockets socket_beacon, socket_tank_face, catwalk_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_tower or place \"prefab\": \"water_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_tower"]
+}

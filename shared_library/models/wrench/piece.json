@@ -1,0 +1,10 @@
+{
+  "id": "wrench",
+  "summary": "A 220 mm combination wrench (spanner) lying flat: an open-ended jaw angled 15 degrees at one end, a 12-point… options finish; sockets socket_grip, socket_jaw, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.wrench or place \"prefab\": \"wrench\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:wrench"]
+}

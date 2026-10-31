@@ -1,0 +1,41 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jukebox",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.8515,
+        1.5,
+        0.6375
+      ],
+      "offset": [
+        -0.00075,
+        0.75,
+        0.00725
+      ]
+    }
+  },
+  "behaviors": {
+    "model_ambient": {
+      "motions": [
+        {
+          "joint": "record_arm",
+          "mode": "oscillate",
+          "period": 5,
+          "low": 4.2,
+          "high": 37.8
+        },
+        {
+          "joint": "selector",
+          "mode": "oscillate",
+          "period": 9,
+          "low": 0,
+          "high": 0.48
+        }
+      ]
+    }
+  }
+}

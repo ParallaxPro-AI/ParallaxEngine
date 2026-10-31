@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/high_speed_train"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 60000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4253, 5.8, 26.165],
+      "offset": [0, 2.9, 0.0275]
+    }
+  }
+}

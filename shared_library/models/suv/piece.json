@@ -1,0 +1,14 @@
+{
+  "id": "suv",
+  "summary": "A full-size boxy SUV: a single body LOFTED ALONG ITS LENGTH (sill tuck, belt, greenhouse tumblehome and… joints door_f_l, door_f_r, door_r_l, door_r_r, tailgate; options kit.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.suv or place \"prefab\": \"suv\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:suv"
+  ]
+}

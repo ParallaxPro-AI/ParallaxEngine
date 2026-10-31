@@ -1,0 +1,6 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [2, 3.2, 2], "offset": [0, 1.6, 0], "color": "#5c4d45" },
+    "collider": { "shape": "box", "size": [2, 3.2, 2], "offset": [0, 1.6, 0], "layer": "wall" }
+  }
+}

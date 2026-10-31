@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baseball_bat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0671, 0.8401, 0.0671],
+      "offset": [0, 0.42, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tortilla"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.29, 0.0119, 0.29],
+      "offset": [0, 0.006, 0]
+    }
+  }
+}

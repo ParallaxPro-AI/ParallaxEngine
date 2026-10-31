@@ -1,0 +1,1 @@
+{"name": "Grunt", "scale": 1.0, "health": 100, "damage": 9, "fire_interval": 1.1, "accuracy": 0.42, "reaction": 0.45, "sight_range": 36, "shoot_range": 34, "move_speed": 5.0, "stop_range": 6, "patrol_radius": 16, "score": 100, "tracer": "#ffd94d", "look": {"headgear": "helmet", "gear": "full", "jacket": "olive", "trousers": "olive"}, "jacket_tint": "#4c573b"}

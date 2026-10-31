@@ -1,0 +1,10 @@
+{
+  "id": "revenant",
+  "summary": "A REVENANT — a person the house kept. options skin, coat, hair, headwear; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.revenant or place \"prefab\": \"revenant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:revenant"]
+}

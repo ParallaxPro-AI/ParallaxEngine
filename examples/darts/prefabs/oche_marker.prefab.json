@@ -1,0 +1,15 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [
+        0.5,
+        0.04,
+        0.08
+      ],
+      "color": "#e5ce7c",
+      "metallic": 0.8,
+      "roughness": 0.3
+    }
+  }
+}

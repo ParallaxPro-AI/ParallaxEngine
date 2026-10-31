@@ -1,0 +1,10 @@
+{
+  "id": "keyboard_mouse_set",
+  "summary": "A generic desktop computer keyboard and mouse on a desk (no brand or legends): a full-size wedge keyboard (ma… options keycap_colour, pad_colour; sockets socket_mouse, socket_keys.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.keyboard_mouse_set or place \"prefab\": \"keyboard_mouse_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:keyboard_mouse_set"]
+}

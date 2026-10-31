@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tableware_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4282, 0.0695, 0.2695],
+      "offset": [-0.0019, 0.0348, 0]
+    }
+  }
+}

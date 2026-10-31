@@ -1,0 +1,10 @@
+{
+  "id": "rooftop_water_tank",
+  "summary": "A city-rooftop water tank on a steel stand: a slightly tapered wooden stave tub ringed by rusted steel hoops… joints hatch; options staves.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rooftop_water_tank or place \"prefab\": \"rooftop_water_tank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rooftop_water_tank"]
+}

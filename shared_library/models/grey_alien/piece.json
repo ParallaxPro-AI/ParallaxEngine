@@ -1,0 +1,10 @@
+{
+  "id": "grey_alien",
+  "summary": "A GREY ALIEN - the classic slender extraterrestrial, about 1.4 m tall. options skin, eyes; sockets eye_point, grip_r, grip_l, holster_r, sling_back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grey_alien or place \"prefab\": \"grey_alien\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grey_alien"]
+}

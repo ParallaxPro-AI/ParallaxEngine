@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cubicle_desk_l_shaped"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6125, 1.19, 1.5875],
+      "offset": [-0.0047, 0.595, -0.0047]
+    }
+  }
+}

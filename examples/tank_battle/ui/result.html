@@ -1,0 +1,74 @@
+<!-- Ported from the template: Armor Assault end screen — DESTROYED or VICTORY! with a final-score count-up, a campaign stat table and Play Again / Main Menu. Reads hud_update._gameOver { title, score, stats, win } like lib:game_over. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: var(--aa-font-label, 'Barlow Condensed', 'Arial Narrow', sans-serif); color: #e8e8e8; pointer-events: none; overflow: hidden; -webkit-font-smoothing: antialiased; }
+  .hidden { display: none !important; }
+  .go-overlay { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: safe center; overflow-y: auto; padding: calc(24 * var(--u)); z-index: 200; background: rgba(3,6,4,0); transition: background .8s ease; --gc: #ef4444; --gbg: rgba(30,4,4,.82); }
+  .go-overlay.visible { background: rgba(3,6,4,.66); }
+  .go-overlay.victory { --gc: #22c55e; --gbg: rgba(5,10,8,.82); }
+  .go-band { position: relative; flex-shrink: 0; width: 100%; padding: calc(26 * var(--u)) 0 calc(22 * var(--u)); display: flex; flex-direction: column; align-items: center; background: linear-gradient(90deg, transparent, var(--gbg) 22%, var(--gbg) 78%, transparent); opacity: 0; transform: scaleY(.6); }
+  .go-overlay.visible .go-band { animation: goBand .35s cubic-bezier(.2,.7,.2,1) forwards; }
+  @keyframes goBand { to { opacity: 1; transform: scaleY(1); } }
+  .go-rule { position: absolute; left: 15%; right: 15%; height: calc(3 * var(--u)); background: var(--gc); }
+  .go-overlay.defeat .go-rule { background: repeating-linear-gradient(-45deg, #ef4444 0 calc(12 * var(--u)), #1a0505 calc(12 * var(--u)) calc(24 * var(--u))); }
+  .go-rule.t { top: 0; } .go-rule.b { bottom: 0; }
+  .go-kick { font-weight: 700; font-size: calc(22 * var(--u)); letter-spacing: .5em; color: var(--gc); }
+  .go-title { font-family: var(--aa-font-display, 'Anton', Impact, sans-serif); font-size: calc(160 * var(--u)); line-height: 1.02; letter-spacing: .04em; text-transform: uppercase; color: var(--gc); }
+  .go-panel { flex-shrink: 0; margin-top: calc(28 * var(--u)); width: calc(820 * var(--u)); max-width: 100%; background: rgba(5,10,8,.62); border: 1px solid rgba(255,255,255,.14); opacity: 0; transform: translateY(calc(12 * var(--u))); }
+  .go-overlay.visible .go-panel { animation: goUp .5s ease .35s forwards; }
+  @keyframes goUp { to { opacity: 1; transform: translateY(0); } }
+  .go-score-area { display: flex; align-items: baseline; justify-content: space-between; padding: calc(20 * var(--u)) calc(28 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.12); }
+  .go-score-label { font-weight: 600; font-size: calc(16 * var(--u)); letter-spacing: .28em; color: #888; text-transform: uppercase; }
+  .go-score-value { font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 800; font-size: calc(60 * var(--u)); line-height: 1; font-variant-numeric: tabular-nums; }
+  .go-stats { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: row dense; }
+  .go-stat { display: flex; align-items: baseline; justify-content: space-between; gap: calc(16 * var(--u)); padding: calc(14 * var(--u)) calc(28 * var(--u)); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .go-stat:nth-child(odd) { border-right: 1px solid rgba(255,255,255,.08); }
+  .go-stat.wide { grid-column: 1 / -1; border-right: 0; }
+  .go-stat-label { font-weight: 600; font-size: calc(15 * var(--u)); letter-spacing: .22em; color: #888; text-transform: uppercase; white-space: nowrap; }
+  .go-stat-val { font-family: var(--aa-font-num, 'Inter', sans-serif); font-weight: 700; font-size: calc(22 * var(--u)); text-align: right; font-variant-numeric: tabular-nums; }
+  .go-stat.best .go-stat-val { color: #f59e0b; }
+  .go-buttons { display: flex; gap: calc(16 * var(--u)); margin-top: calc(24 * var(--u)); flex-shrink: 0; opacity: 0; }
+  .go-overlay.visible .go-buttons { animation: goUp .5s ease .6s forwards; }
+  .go-btn { display: flex; align-items: center; justify-content: center; gap: calc(12 * var(--u)); height: calc(64 * var(--u)); padding: 0 calc(36 * var(--u)); border: 1px solid rgba(232,232,232,.4); background: transparent; color: #e8e8e8; font-family: inherit; font-weight: 600; font-size: calc(22 * var(--u)); letter-spacing: .18em; text-transform: uppercase; cursor: pointer; pointer-events: auto; transition: background .15s ease, border-color .15s ease, transform .06s ease; }
+  .go-btn:hover, .go-btn:focus-visible { border-color: #e8e8e8; background: rgba(255,255,255,.06); outline: none; }
+  .go-btn:active { transform: scale(.98); }
+  .go-btn.primary { height: calc(68 * var(--u)); border: 0; padding: 0 calc(40 * var(--u)); background: #22c55e; color: #06140a; font-weight: 700; font-size: calc(26 * var(--u)); letter-spacing: .2em; clip-path: polygon(calc(14 * var(--u)) 0,100% 0,100% calc(100% - calc(14 * var(--u))),calc(100% - calc(14 * var(--u))) 100%,0 100%,0 calc(14 * var(--u))); }
+  .go-btn.primary:hover, .go-btn.primary:focus-visible { background: #4ade80; }
+  .go-btn.primary:active { background: #16a34a; }
+  @media (pointer: coarse) {
+    .go-overlay { padding: calc(16 * var(--u)) calc(32 * var(--u)); }
+    .go-band { padding: calc(14 * var(--u)) 0 calc(10 * var(--u)); }
+    .go-rule { left: 12%; right: 12%; height: calc(6 * var(--u)); }
+    .go-kick { font-size: calc(22 * var(--u)); letter-spacing: .44em; }
+    .go-title { font-size: calc(120 * var(--u)); }
+    .go-panel { margin-top: calc(14 * var(--u)); width: calc(1200 * var(--u)); }
+    .go-score-area { padding: calc(12 * var(--u)) calc(28 * var(--u)); }
+    .go-score-label { font-size: calc(22 * var(--u)); }
+    .go-score-value { font-size: calc(56 * var(--u)); }
+    .go-stat { padding: calc(8 * var(--u)) calc(28 * var(--u)); }
+    .go-stat-label { font-size: calc(22 * var(--u)); letter-spacing: .18em; }
+    .go-stat-val { font-size: calc(26 * var(--u)); }
+    .go-buttons { margin-top: calc(14 * var(--u)); gap: calc(20 * var(--u)); }
+    .go-btn { height: calc(88 * var(--u)); padding: 0 calc(44 * var(--u)); font-size: calc(30 * var(--u)); }
+    .go-btn.primary { height: calc(92 * var(--u)); font-size: calc(32 * var(--u)); }
+  }
+</style>
+<div class="go-overlay visible" data-class-victory="won" data-class-defeat="lost">
+  <div class="go-band">
+    <div class="go-rule t"></div><div class="go-rule b"></div>
+    <div class="go-kick" data-bind="kicker"></div>
+    <div class="go-title" data-bind="headline"></div>
+  </div>
+  <div class="go-panel">
+    <div class="go-score-area">
+      <div class="go-score-label">Final Score</div>
+      <div class="go-score-value" data-bind="score"></div>
+    </div>
+    <div class="go-stats" data-each="stats"><template><div class="go-stat"><div class="go-stat-label" data-bind="label"></div><div class="go-stat-val" data-bind="value"></div></div></template></div>
+  </div>
+  <div class="go-buttons">
+    <button class="go-btn primary" data-action="retry" style="pointer-events:auto"><svg width="18" height="18" viewBox="0 0 20 20"><polygon points="3,2 18,10 3,18" fill="#06140a"></polygon></svg>Play Again</button>
+    <button class="go-btn" data-action="quit" style="pointer-events:auto">Main Menu</button>
+  </div>
+</div>

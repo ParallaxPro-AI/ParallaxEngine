@@ -1,0 +1,10 @@
+{
+  "id": "switch_block_colored",
+  "summary": "A coloured platformer switch block: a 1 m dark gunmetal cube (one 1 m grid cell) with a glowing coloured powe… joints button; options color.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.switch_block_colored or place \"prefab\": \"switch_block_colored\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:switch_block_colored"]
+}

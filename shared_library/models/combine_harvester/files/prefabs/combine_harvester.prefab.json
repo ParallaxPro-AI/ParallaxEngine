@@ -1,0 +1,43 @@
+{
+  "components": {
+    "model": {
+      "model": "models/combine_harvester"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9000
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        5.18,
+        4.6315,
+        9.2054
+      ],
+      "offset": [
+        0,
+        2.3143,
+        0.4927
+      ]
+    },
+    "vehicle": {
+      "max_speed": 7,
+      "steering": 30,
+      "grip": 6,
+      "turn_rate": 1.1
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        2.3143,
+        0.4927
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "parrot",
+  "summary": "A scarlet macaw (0.33 m tall, 0.62 m beak to tail tip) standing on zygodactyl feet. joints wing_l, wing_r, head_turn, head_tilt, beak; options plumage, accent, flight; sockets perch, beak.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.parrot or place \"prefab\": \"parrot\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:parrot"]
+}

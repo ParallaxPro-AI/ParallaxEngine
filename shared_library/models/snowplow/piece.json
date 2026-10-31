@@ -1,0 +1,10 @@
+{
+  "id": "snowplow",
+  "summary": "A municipal winter plow truck: the library's cab-over truck carrying a V-bottom salt/grit hopper with a ribbe… joints cab_tilt, door_l, door_r, spinner, plow_lift, plow_angle, …; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, eye_point, socket_load, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.snowplow or place \"prefab\": \"snowplow\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:snowplow"]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "street_planter",
+  "summary": "A 1 m cast street planter: tapered tub, a proud rim, recessed soil and a clipped shrub. options planting.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.street_planter or place \"prefab\": \"street_planter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:street_planter"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "id": "radial_menu",
+  "summary": "Hold-to-open radial wheel (weapons, emotes, orders): options are content, the right stick or arrow keys pick a sector, letting go (or clicking a slot) emits RadialPicked.",
+  "version": "2026.10.23",
+  "requires": ["ui_theme", "scene_tags"],
+  "setup": [
+    "List RadialSelection in Game(systems=[...]) (from game.lib.radial_menu import RadialSelection).",
+    "Add content/radial_option/*.json entries (label, icon, group, order); set the wheel's group in config/radial_menu.json; handle RadialPicked."
+  ],
+  "replaces": ["lib:ui/weapon_wheel", "lib:hud/radial", "lib:hud/emote_wheel"]
+}

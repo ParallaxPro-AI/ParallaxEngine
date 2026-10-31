@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_food_beans"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0868, 0.0345, 0.2083],
+      "offset": [0.0016, 0.0168, 0.0066]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pool_springboard",
+  "summary": "A competition aluminium springboard on its fulcrum stand: a 4.88 m x 0.50 m perforated plank with a non-slip… sockets takeoff, stand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pool_springboard or place \"prefab\": \"pool_springboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pool_springboard"]
+}

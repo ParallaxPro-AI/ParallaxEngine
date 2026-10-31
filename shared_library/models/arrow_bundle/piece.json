@@ -1,0 +1,10 @@
+{
+  "id": "arrow_bundle",
+  "summary": "A sheaf of nine hunting arrows lying on the ground, lashed together with hemp twine in two places: 760 mm woo…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.arrow_bundle or place \"prefab\": \"arrow_bundle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:arrow_bundle"]
+}

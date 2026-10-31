@@ -1,0 +1,10 @@
+{
+  "id": "house_window_sash",
+  "summary": "A traditional double-hung sash window unit for the HOUSE modular kit: a painted timber box frame (warm cream)… joints sash_upper, sash_lower; options panes, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_window_sash or place \"prefab\": \"house_window_sash\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_window_sash"]
+}

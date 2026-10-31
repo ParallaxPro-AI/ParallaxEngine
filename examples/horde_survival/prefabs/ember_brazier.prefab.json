@@ -1,0 +1,15 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [1.1, 1.6, 1.1], "offset": [0, 0.8, 0], "color": "#956950" }
+  },
+  "children": [
+    {
+      "at": [0, 0.8, 0],
+      "components": { "light": { "kind": "point", "color": "#ffc47c", "intensity": 10, "range": 18 } }
+    },
+    {
+      "at": [0, 2.3, 0],
+      "components": { "particles": { "effect": "vfx/brazier_fire", "emitting": true } }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "id": "landmine",
+  "summary": "A disc-shaped anti-tank blast mine: olive-drab casing, a central spring pressure plate that depresses when… joints pressure_plate, indicator.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.landmine or place \"prefab\": \"landmine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:landmine"
+  ]
+}

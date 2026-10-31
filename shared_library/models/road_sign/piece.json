@@ -1,0 +1,14 @@
+{
+  "id": "road_sign",
+  "summary": "A roadside sign: a ground-planted post carrying a flat sign board with a symbol on its face. options shape, glyph, post.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.road_sign or place \"prefab\": \"road_sign\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:road_sign"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "child_boy",
+  "summary": "A rigged eight-year-old boy on the canonical 17-bone humanoid rig at real child proportions (forked from `cow… options skin, hair, stripes; sockets eye_point, grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.child_boy or place \"prefab\": \"child_boy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:child_boy"]
+}

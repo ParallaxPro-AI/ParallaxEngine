@@ -1,0 +1,29 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [
+        3,
+        1,
+        1.6
+      ],
+      "color": "#7cc4f3",
+      "texture": "https://r2.parallaxpro.ai/assets/image_texture/b5/27/b527b80f719cbe5e1784555310bf33ad00a6b9ef653826ad896aa1ef6a724442.png",
+      "uv_scale": [
+        2,
+        1
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3,
+        1,
+        1.6
+      ]
+    },
+    "station": {
+      "kind": "delivery_window"
+    }
+  }
+}

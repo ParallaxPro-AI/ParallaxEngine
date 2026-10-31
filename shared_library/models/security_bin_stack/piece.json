@@ -1,0 +1,10 @@
+{
+  "id": "security_bin_stack",
+  "summary": "A stack of airport security screening trays on a stainless return dolly: eleven moulded grey trays with flare… options tray_colour; sockets tray_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_bin_stack or place \"prefab\": \"security_bin_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_bin_stack"]
+}

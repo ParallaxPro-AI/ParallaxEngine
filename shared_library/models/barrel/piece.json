@@ -1,0 +1,14 @@
+{
+  "id": "barrel",
+  "summary": "A wooden barrel with iron hoops and a bung. options finish; sockets socket_top.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.barrel or place \"prefab\": \"barrel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:barrel"
+  ]
+}

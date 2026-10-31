@@ -1,0 +1,10 @@
+{
+  "id": "sink",
+  "summary": "A bathroom washbasin with a swivelling gooseneck tap, a single-lever mixer and a pop-up drain plug. joints swivel, lever, plug; options style; sockets socket_basin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sink or place \"prefab\": \"sink\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sink"]
+}

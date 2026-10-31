@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/arrow_trap_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.1, 2.2, 1.66],
+      "offset": [0, 1.1, -0.08]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "obelisk",
+  "summary": "A tapered four-sided stone shaft with a bronze pyramidion cap, standing on a two-step base and a battered ped…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.obelisk or place \"prefab\": \"obelisk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:obelisk"]
+}

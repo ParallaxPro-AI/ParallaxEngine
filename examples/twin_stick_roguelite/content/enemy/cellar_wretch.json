@@ -1,0 +1,10 @@
+{
+  "name": "The Cellar Wretch", "prefab": "cellar_wretch", "boss": true,
+  "hp": 80, "contact_damage": 2, "move_speed": 1.1, "standoff": 3.0, "enrage_below": 0.4,
+  "shot": "boss_bolt", "shot_cooldown": 2.0, "burst_count": 3, "burst_spread": 26,
+  "tactics": [
+    { "wounded": true, "move": "hold", "attack": "burst" },
+    { "within": 14, "move": "standoff", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

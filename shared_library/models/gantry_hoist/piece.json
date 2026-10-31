@@ -1,0 +1,10 @@
+{
+  "id": "gantry_hoist",
+  "summary": "An electric chain hoist on a runway beam: a rolled I-section rail with end stops, a four-wheel trolley that t… joints trolley, trolley_wheel_0, trolley_wheel_1, trolley_wheel_2, trolley_wheel_3, hook_block; options mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gantry_hoist or place \"prefab\": \"gantry_hoist\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gantry_hoist"]
+}

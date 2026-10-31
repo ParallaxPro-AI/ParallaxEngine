@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/goal_flag_pole"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9012, 5.24, 1],
+      "offset": [-0.0494, 2.62, 0]
+    }
+  }
+}

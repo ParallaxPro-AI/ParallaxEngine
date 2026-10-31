@@ -1,0 +1,5 @@
+{
+  "components": {
+    "sprite": { "image": "images/bomb_badge", "size": [0.95, 0.95], "color": "#ffffffeb" }
+  }
+}

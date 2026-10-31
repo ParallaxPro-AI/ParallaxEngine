@@ -1,0 +1,10 @@
+{
+  "id": "fish_koi",
+  "summary": "A koi, the ornamental pond carp: 0.62 m snout to tail fork (a mature pond koi; they run 0.4-0.9 m), deep-bodi… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_koi or place \"prefab\": \"fish_koi\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_koi"]
+}

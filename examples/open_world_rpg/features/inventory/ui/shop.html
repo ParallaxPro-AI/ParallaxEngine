@@ -1,0 +1,111 @@
+<!-- The merchant's shop in the template's lantern glass. Rows come from ShopPanel.state(); a row's Buy
+     button calls buy(ware=...). Script-free. -->
+<link rel="stylesheet" href="../../../ui/sundermere.css">
+<style>
+.sh-modal { position: fixed; left: 50%; top: 50%; width: calc(940 * var(--u)); max-height: 96cqh; display: flex; flex-direction: column; transform: translate(-50%, -50%); animation: sh-in .22s var(--sm-ease) both; }
+@keyframes sh-in { from { opacity: 0; transform: translate(-50%, -50%) scale(.98); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.sh-hd { display: flex; align-items: flex-end; justify-content: space-between; gap: calc(32 * var(--u)); padding: calc(36 * var(--u)) calc(44 * var(--u)) calc(26 * var(--u)); border-bottom: 1px solid rgba(214,187,120,.18); }
+.sh-title { margin-top: calc(12 * var(--u)); font: 600 calc(36 * var(--u))/1 var(--sm-font-display); }
+.sh-sub { margin-top: calc(12 * var(--u)); max-width: calc(520 * var(--u)); font: 400 calc(21 * var(--u))/1.35 var(--sm-font-speech); color: rgba(244,239,220,.78); text-wrap: pretty; }
+.sh-purse { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(12 * var(--u)) calc(18 * var(--u)); border-radius: calc(8 * var(--u)); border: 1px solid rgba(224,196,140,.45); background: rgba(224,196,140,.08); white-space: nowrap; }
+.sh-purse .sm-ico { width: calc(22 * var(--u)); height: calc(22 * var(--u)); }
+.sh-purse b { font: 700 calc(24 * var(--u))/1 var(--sm-font-ui); color: var(--sm-gold-pale); }
+.sh-purse span { font: 500 calc(16 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.7); }
+.sh-purse.flash b { animation: sm-flash-gold .7s ease-out; }
+.sh-rows { padding: calc(10 * var(--u)) calc(28 * var(--u)); overflow-y: auto; min-height: 0; }
+.w { display: grid; grid-template-columns: calc(52 * var(--u)) minmax(0,1fr) calc(70 * var(--u)) calc(110 * var(--u)) calc(150 * var(--u)); align-items: center; gap: calc(18 * var(--u)); height: calc(76 * var(--u)); padding: 0 calc(16 * var(--u)); border-bottom: 1px solid rgba(214,187,120,.1); }
+.w.locked { opacity: .6; }
+.w-ico { width: calc(48 * var(--u)); height: calc(48 * var(--u)); border-radius: calc(10 * var(--u)); display: grid; place-items: center; background: rgba(0,0,0,.28); border: 1px solid rgba(214,187,120,.25); }
+.w-ico .sm-ico { width: calc(24 * var(--u)); height: calc(24 * var(--u)); }
+.w-main { min-width: 0; }
+.w-name { font: 600 calc(19 * var(--u))/1.1 var(--sm-font-display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w-name em { display: none; }
+.w-desc { margin-top: calc(5 * var(--u)); font: 400 calc(14 * var(--u))/1.3 var(--sm-font-ui); color: rgba(244,239,220,.62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.w-own { font: 600 calc(14 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.6); text-align: right; }
+.w-pr { text-align: right; }
+.w-price { display: inline-flex; align-items: center; gap: calc(6 * var(--u)); font: 700 calc(19 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.4); }
+.w.can .w-price { color: var(--sm-gold-pale); }
+.w-price .sm-ico { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+.w-price.tick { animation: sm-flash-gold .7s ease-out; }
+.w-step { margin-top: calc(4 * var(--u)); font: 500 calc(11 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.45); }
+.w-act { display: flex; justify-content: flex-end; }
+.sm-root .w-buy { width: calc(132 * var(--u)); height: max(44px, calc(44 * var(--u))); border-radius: calc(6 * var(--u)); border: 1px solid #f3dfae; background: var(--sm-gold-fill); color: var(--sm-ink-on-gold); font: 700 calc(15 * var(--u))/1 var(--sm-font-display); letter-spacing: .06em; box-shadow: 0 6px 18px rgba(0,0,0,.35); transition: background .15s, box-shadow .15s, transform .1s; }
+.sm-root .w-buy:focus-visible { box-shadow: var(--sm-focus-ring); }
+.sm-root .w-buy:active:not(:disabled) { transform: scale(.97); }
+@media (hover: hover) { .sm-root .w-buy:hover:not(:disabled) { background: var(--sm-gold-fill-hover); box-shadow: 0 0 0 4px rgba(224,196,140,.14), 0 0 24px rgba(255,196,110,.4); } }
+.sm-root .w-buy:disabled { border-color: rgba(214,187,120,.2); background: rgba(0,0,0,.25); color: rgba(244,239,220,.45); font: 600 calc(13 * var(--u))/1.1 var(--sm-font-ui); letter-spacing: 0; box-shadow: none; cursor: not-allowed; }
+.sm-root .w-buy.lock { border: 1px dashed rgba(214,187,120,.35); background: transparent; color: var(--sm-gold); display: inline-flex; align-items: center; justify-content: center; gap: calc(7 * var(--u)); }
+.w-buy.lock .sm-ico { width: calc(13 * var(--u)); height: calc(13 * var(--u)); }
+.w-buy .p, .w-buy .n { display: none; }
+.sh-ft { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--u)); padding: calc(20 * var(--u)) calc(44 * var(--u)) calc(30 * var(--u)); }
+.sh-last { min-height: calc(18 * var(--u)); font: italic 500 calc(18 * var(--u))/1 var(--sm-font-speech); color: rgba(224,196,140,.85); }
+.sm-root .sh-close { height: max(44px, calc(50 * var(--u))); padding: 0 calc(24 * var(--u)); font-size: calc(16 * var(--u)); border-color: rgba(224,196,140,.6); background: transparent; }
+.sh-touch { display: none; }
+@media (pointer: coarse) { .sh-desk { display: none; } .sh-touch { display: inline; } }
+@container (max-height: 500px) {
+  .sh-modal { left: max(calc(44 * var(--u)), env(safe-area-inset-left)); right: max(calc(44 * var(--u)), env(safe-area-inset-right)); top: calc(8 * var(--u)); bottom: calc(8 * var(--u)); width: auto; max-height: none; padding: calc(12 * var(--u)) calc(16 * var(--u)) calc(10 * var(--u)); border-radius: calc(12 * var(--u)); border-color: rgba(214,187,120,.32); box-shadow: 0 20px 60px rgba(0,0,0,.6); transform: none; animation: sm-modal-in .22s var(--sm-ease) both; }
+  .sh-modal .sm-c { width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
+  .sh-modal .sm-c.bl, .sh-modal .sm-c.br { display: none; }
+  .sh-hd { align-items: center; gap: calc(14 * var(--u)); padding: 0 0 calc(10 * var(--u)); border-bottom-color: rgba(214,187,120,.16); }
+  .sh-hd .sm-eyebrow { display: none; }
+  .sh-hd > div:first-child { flex: 1; min-width: 0; }
+  .sh-title { margin: 0; font-size: calc(19 * var(--u)); }
+  .sh-sub { margin-top: calc(4 * var(--u)); max-width: none; font-size: calc(14 * var(--u)); line-height: 1.2; }
+  .sh-purse { height: calc(36 * var(--u)); padding: 0 calc(12 * var(--u)); gap: calc(6 * var(--u)); border-radius: calc(18 * var(--u)); }
+  .sh-purse .sm-ico { width: calc(15 * var(--u)); height: calc(15 * var(--u)); }
+  .sh-purse b { font-size: calc(16 * var(--u)); }
+  .sh-purse span { font-size: calc(13 * var(--u)); }
+  .sh-rows { flex: 1; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); grid-auto-rows: calc(52 * var(--u)); column-gap: calc(14 * var(--u)); row-gap: calc(4 * var(--u)); padding: calc(8 * var(--u)) 0; align-content: start; }
+  .w { display: flex; gap: calc(10 * var(--u)); height: auto; padding: 0 calc(4 * var(--u)) 0 calc(6 * var(--u)); border-bottom-color: rgba(214,187,120,.09); }
+  .w-ico { flex: none; width: calc(34 * var(--u)); height: calc(34 * var(--u)); border-radius: calc(8 * var(--u)); border-color: rgba(214,187,120,.22); }
+  .w-ico .sm-ico { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+  .w-main { flex: 1; }
+  .w-name { font-size: calc(14 * var(--u)); }
+  .w-name em { display: inline; margin-left: calc(6 * var(--u)); font: 600 calc(11 * var(--u))/1 var(--sm-font-ui); font-style: normal; color: rgba(244,239,220,.55); }
+  .w-desc { margin-top: calc(3 * var(--u)); font-size: calc(11.5 * var(--u)); line-height: 1.2; color: rgba(244,239,220,.6); }
+  .w-own, .w-pr { display: none; }
+  .w-act { flex: none; }
+  .sm-root .w-buy { width: calc(84 * var(--u)); min-width: 64px; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: calc(3 * var(--u)); font: 700 calc(15 * var(--u))/1 var(--sm-font-ui); letter-spacing: 0; }
+  .sm-root .w-buy:disabled { font: 700 calc(14 * var(--u))/1 var(--sm-font-ui); }
+  .w-buy .t { display: none; }
+  .w-buy .p { display: inline-flex; align-items: center; gap: calc(5 * var(--u)); }
+  .w-buy .p .sm-ico { width: calc(12 * var(--u)); height: calc(12 * var(--u)); }
+  .w-buy:disabled .p .sm-ico { display: none; }
+  .w-buy:disabled .n { display: block; font: 600 calc(9.5 * var(--u))/1 var(--sm-font-ui); letter-spacing: .06em; text-transform: uppercase; }
+  .sm-root .w-buy.lock { flex-direction: row; gap: calc(5 * var(--u)); font: 600 calc(12 * var(--u))/1 var(--sm-font-ui); }
+  .w-buy.lock .sm-ico { width: calc(11 * var(--u)); height: calc(11 * var(--u)); }
+  .sh-ft { padding: 0; }
+  .sh-last { font-size: calc(15 * var(--u)); }
+  .sm-root .sh-close { height: max(44px, calc(44 * var(--u))); padding: 0 calc(22 * var(--u)); font-size: calc(14 * var(--u)); }
+}
+</style>
+<div class="sm-root">
+  <div class="sm-scrim"></div>
+  <section class="sh-modal sm-modal">
+    <b class="sm-c tl"></b><b class="sm-c tr"></b><b class="sm-c bl"></b><b class="sm-c br"></b>
+    <div class="sh-hd">
+      <div>
+        <div class="sm-eyebrow" data-text="shop_eyebrow"></div>
+        <div class="sh-title" data-text="shop_title"></div>
+        <div class="sh-sub" data-text="shop_sub"></div>
+      </div>
+      <div class="sh-purse" id="purse"><span class="sm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#e0c48c" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/></svg></span><b id="gold" data-bind="gold"></b><span data-text="gold_word"></span></div>
+    </div>
+    <div class="sh-rows" data-each="wares"><template>
+      <div class="w" data-class-locked="locked" data-class-can="can">
+        <div class="w-ico" data-style-color="color"><span class="sm-ico" data-show="potion"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3h4M10.5 3v5L6 16a3 3 0 0 0 2.6 5h6.8A3 3 0 0 0 18 16l-4.5-8V3"/><path d="M8 15h8"/></svg></span><span class="sm-ico" data-show="charm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10Z"/></svg></span><span class="sm-ico" data-show="crystal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 18 9 12 22 6 9Z"/><path d="M6 9h12"/></svg></span><span class="sm-ico" data-show="blade"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4 9 15M20 4h-4.5M20 4v4.5M6.5 12.5l5 5M5 19l2.5-2.5"/></svg></span><span class="sm-ico" data-show="oil"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 5 6 8 6 12a6 6 0 0 1-12 0c0-4 3-7 6-12Z"/></svg></span><span class="sm-ico" data-show="ward"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 20 6v6c0 5-4 8-8 9-4-1-8-4-8-9V6Z"/></svg></span></div>
+        <div class="w-main"><div class="w-name"><span data-bind="name"></span><em data-bind="owned"></em></div><div class="w-desc" data-bind="desc"></div></div>
+        <div class="w-own" data-bind="owned"></div>
+        <div class="w-pr"><div class="w-price"><span class="sm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/></svg></span><span data-bind="price"></span></div><div class="w-step" data-show="step" data-bind="step"></div></div>
+        <div class="w-act">
+          <button class="w-buy lock" data-show="locked" disabled><span class="sm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span class="sh-desk" data-text="shop_level"></span><span class="sh-touch" data-text="shop_lv"></span> <span data-bind="min_level"></span></button>
+          <button class="w-buy" data-hide="locked" data-action="buy" data-attr-disabled="cannot"><span class="t" data-bind="label"></span><span class="p"><span class="sm-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/></svg></span><span data-bind="price"></span></span><span class="n" data-bind="need_short"></span></button>
+        </div>
+      </div>
+    </template></div>
+    <div class="sh-ft">
+      <div class="sh-last" data-bind="last"></div>
+      <button class="sm-btn ghost sh-close" data-action="close" data-text="return_to_road"></button>
+    </div>
+  </section>
+</div>

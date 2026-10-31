@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/storage_chest_wooden"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.124, 0.7025, 0.6552],
+      "offset": [0, 0.3513, 0.0204]
+    }
+  }
+}

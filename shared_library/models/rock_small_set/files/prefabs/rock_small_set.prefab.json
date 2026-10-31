@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rock_small_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7022, 0.4069, 0.547],
+      "offset": [0.0098, 0.2034, 0.032]
+    }
+  }
+}

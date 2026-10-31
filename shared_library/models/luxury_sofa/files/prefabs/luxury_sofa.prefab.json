@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_sofa"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.6, 0.7795, 1.05],
+      "offset": [0, 0.3898, 0]
+    }
+  }
+}

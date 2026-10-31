@@ -1,0 +1,21 @@
+{
+  "tagline": "Descend room by room with one bomb and a bad feeling.",
+  "vault_coins": "Vault coins",
+  "runs": "Runs",
+  "boss_kills": "Bosses broken",
+  "close": "Close",
+  "pause": "Pause",
+  "resume": "Resume",
+  "abandon": "Walk out (bank your coins)",
+  "touch_bomb": "Bomb",
+  "run_won": "PURGED",
+  "again": "Descend again",
+  "price_tag": "{item} · {price} coins",
+  "need_coins": "Need {price} coins",
+  "chest_locked": "Locked — find a key",
+  "gate_opens": "A gate grinds open",
+  "way_down_opens": "The way down opens",
+  "brood_answers": "The brood answers",
+  "boss_wakes": "SOMETHING IS AWAKE DOWN HERE",
+  "relic_taken": "The relic is yours"
+}

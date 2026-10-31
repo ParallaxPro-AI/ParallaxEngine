@@ -1,0 +1,10 @@
+{
+  "id": "broken_column",
+  "summary": "A ruined classical column: a chamfered square plinth and moulded attic base carry a fluted shaft snapped off…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.broken_column or place \"prefab\": \"broken_column\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:broken_column"]
+}

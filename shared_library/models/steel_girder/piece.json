@@ -1,0 +1,10 @@
+{
+  "id": "steel_girder",
+  "summary": "A 6 m structural steel I-beam module: two flanges, a web, five welded stiffeners, and a bolted splice plate o… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.steel_girder or place \"prefab\": \"steel_girder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:steel_girder"]
+}

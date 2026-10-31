@@ -1,0 +1,5 @@
+{
+  "number": 1, "name": "Novice Servo", "tagline": "A warm-up. It reads the ball late and drifts home slowly.",
+  "color": "#c4e1c4",
+  "speed": 6.5, "aim_error": 1.7, "reaction_time": 0.30, "predict": 0.0, "ball_speed_scale": 0.95
+}

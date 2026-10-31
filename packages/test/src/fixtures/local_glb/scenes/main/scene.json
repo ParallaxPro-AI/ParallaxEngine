@@ -1,0 +1,1 @@
+{ "entities": [{ "prefab": "camera", "at": [0, 1, -4] }, { "prefab": "crate", "id": "crate", "at": [0, 0, 0] }] }

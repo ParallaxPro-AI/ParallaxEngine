@@ -1,0 +1,10 @@
+{
+  "id": "general_store_counter",
+  "summary": "A frontier general-store counter: a 2.6 m oak counter whose customer face is panelled either side of a glazed… joints bin_0, bin_1, bin_2, bin_3, bin_4, bin_5, …; options wood; sockets socket_clerk, socket_customer, socket_counter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.general_store_counter or place \"prefab\": \"general_store_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:general_store_counter"]
+}

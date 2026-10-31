@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bird_cage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.444, 0.718, 0.444],
+      "offset": [0, 0.359, 0]
+    }
+  }
+}

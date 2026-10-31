@@ -1,0 +1,359 @@
+{
+ "format": "parallax.model",
+ "version": 1,
+ "source": "library clips demo: a humanoid rig puppet (a block on every bone)",
+ "materials": {
+  "clay": {
+   "color": "#c9a27e",
+   "metallic": 0,
+   "roughness": 0.8
+  }
+ },
+ "skeleton": {
+  "bones": [
+   {
+    "name": "Hips",
+    "parent": null,
+    "position": [
+     0,
+     1,
+     0
+    ]
+   },
+   {
+    "name": "Spine",
+    "parent": 0,
+    "position": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "name": "Spine2",
+    "parent": 1,
+    "position": [
+     0,
+     0.25,
+     0
+    ]
+   },
+   {
+    "name": "Neck",
+    "parent": 2,
+    "position": [
+     0,
+     0.2,
+     0
+    ]
+   },
+   {
+    "name": "Head",
+    "parent": 3,
+    "position": [
+     0,
+     0.1,
+     0
+    ]
+   },
+   {
+    "name": "LeftArm",
+    "parent": 2,
+    "position": [
+     -0.18,
+     0.15,
+     0
+    ]
+   },
+   {
+    "name": "LeftForeArm",
+    "parent": 5,
+    "position": [
+     -0.28,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "LeftHand",
+    "parent": 6,
+    "position": [
+     -0.25,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "RightArm",
+    "parent": 2,
+    "position": [
+     0.18,
+     0.15,
+     0
+    ]
+   },
+   {
+    "name": "RightForeArm",
+    "parent": 8,
+    "position": [
+     0.28,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "RightHand",
+    "parent": 9,
+    "position": [
+     0.25,
+     0,
+     0
+    ]
+   },
+   {
+    "name": "LeftUpLeg",
+    "parent": 0,
+    "position": [
+     -0.1,
+     -0.05,
+     0
+    ]
+   },
+   {
+    "name": "LeftLeg",
+    "parent": 11,
+    "position": [
+     0,
+     -0.45,
+     0
+    ]
+   },
+   {
+    "name": "LeftFoot",
+    "parent": 12,
+    "position": [
+     0,
+     -0.42,
+     0
+    ]
+   },
+   {
+    "name": "RightUpLeg",
+    "parent": 0,
+    "position": [
+     0.1,
+     -0.05,
+     0
+    ]
+   },
+   {
+    "name": "RightLeg",
+    "parent": 14,
+    "position": [
+     0,
+     -0.45,
+     0
+    ]
+   },
+   {
+    "name": "RightFoot",
+    "parent": 15,
+    "position": [
+     0,
+     -0.42,
+     0
+    ]
+   }
+  ],
+  "inverse_bind": "f32:AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAgAAAgL8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAIDNzIy/AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAACAzcysvwAAAIAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAgGZmxr8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAIAzM9O/AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADsUTg+AADAvwAAAIAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAH4XrPgAAwL8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAI/CNT8AAMC/AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADsUTi+AADAvwAAAIAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAH4XrvgAAwL8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAI/CNb8AAMC/AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMw9MzNzvwAAAIAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMPQAAAL8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzD0K16O9AAAAgAAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAADNzMy9MzNzvwAAAIAAAIA/AACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAAAAAAAAAAAAAAAAAAAAgD8AAAAAzczMvQAAAL8AAACAAACAPwAAgD8AAAAAAAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAAAAAAIA/AAAAAM3MzL0K16O9AAAAgAAAgD8="
+ },
+ "parts": [
+  {
+   "name": "Hips_block",
+   "parent": "Hips",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Spine_block",
+   "parent": "Spine",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Spine2_block",
+   "parent": "Spine2",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Neck_block",
+   "parent": "Neck",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "Head_block",
+   "parent": "Head",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftArm_block",
+   "parent": "LeftArm",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftForeArm_block",
+   "parent": "LeftForeArm",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftHand_block",
+   "parent": "LeftHand",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightArm_block",
+   "parent": "RightArm",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightForeArm_block",
+   "parent": "RightForeArm",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightHand_block",
+   "parent": "RightHand",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftUpLeg_block",
+   "parent": "LeftUpLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftLeg_block",
+   "parent": "LeftLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "LeftFoot_block",
+   "parent": "LeftFoot",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightUpLeg_block",
+   "parent": "RightUpLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightLeg_block",
+   "parent": "RightLeg",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  },
+  {
+   "name": "RightFoot_block",
+   "parent": "RightFoot",
+   "shape": "box",
+   "size": [
+    0.08,
+    0.08,
+    0.08
+   ],
+   "material": "clay"
+  }
+ ]
+}

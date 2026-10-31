@@ -1,0 +1,11 @@
+{
+  "rig": "humanoid", "duration": 1.05, "loop": false,
+  "events": [{"time":0.3,"name":"commit"},{"time":0.55,"name":"off_seat"}],
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[5,0,0],"Spine2":[3,0,0],"Neck":[-2,0,0],"Head":[-1,0,0],"RightArm":[-9.61,-2.78,-73.77],"RightForeArm":[0,-22,0],"LeftArm":[-9.61,2.78,73.77],"LeftForeArm":[0,22,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":0.3,"ease":"out_cubic","root":{"y":-0.415,"z":-0.05},"pose":{"Hips":[5,0,0],"Spine":[31,0,0],"Spine2":[16,0,0],"Neck":[-16,0,0],"Head":[-10,0,0],"RightArm":[25.09,17.01,-54.19],"RightForeArm":[0,-34,0],"LeftArm":[25.09,-17.01,54.19],"LeftForeArm":[0,34,0],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":0.55,"ease":"linear","root":{"y":-0.25,"z":0.05},"pose":{"Hips":[4,0,0],"Spine":[26,0,0],"Spine2":[13,0,0],"Neck":[-13,0,0],"Head":[-8,0,0],"RightArm":[16.4,7.53,-64.91],"RightForeArm":[0,-30,0],"LeftArm":[16.4,-7.53,64.91],"LeftForeArm":[0,30,0],"RightUpLeg":[-61.95,-4.52,8.52],"RightLeg":[52,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-61.95,4.52,-8.52],"LeftLeg":[52,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":0.78,"root":{"y":-0.075,"z":0.1},"pose":{"Hips":[2,0,0],"Spine":[13,0,0],"Spine2":[6,0,0],"Neck":[-6,0,0],"Head":[-4,0,0],"RightArm":[5.87,1.25,-77.94],"RightForeArm":[0,-22,0],"LeftArm":[5.87,-1.25,77.94],"LeftForeArm":[0,22,0],"RightUpLeg":[-30.06,0.27,3.46],"RightLeg":[24,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-30.06,-0.27,-3.46],"LeftLeg":[24,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":1.05,"root":{"y":-0.015,"z":0.12},"pose":{"Hips":[0,0,0],"Spine":[2,0,0],"Spine2":[1,0,0],"Neck":[-2,0,0],"Head":[-1,0,0],"RightArm":[5.91,1.05,-79.95],"RightForeArm":[0,-16,0],"LeftArm":[5.91,-1.05,79.95],"LeftForeArm":[0,16,0],"RightUpLeg":[-1,0,0],"RightLeg":[3,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-1,0,0],"LeftLeg":[3,0,0],"LeftFoot":[-2,0,0]}}
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "wellspring",
+  "summary": "The base fountain a champion recalls to: a wide octagonal outer basin with a moulded rim and four carved spou… options team, trim.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wellspring or place \"prefab\": \"wellspring\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wellspring"]
+}

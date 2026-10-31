@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/media_wall_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 2.1, 0.454],
+      "offset": [0, 1.05, 0.002]
+    }
+  }
+}

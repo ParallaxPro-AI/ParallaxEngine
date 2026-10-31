@@ -1,0 +1,31 @@
+{
+ "components": {
+  "model": {
+   "model": "models/crate",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.74,
+    0.75,
+    0.74
+   ],
+   "offset": [
+    0.0,
+    0.375,
+    0.0
+   ],
+   "layer": "world"
+  },
+  "interactable": {
+   "prompt": "search_supplies",
+   "hold": 0.5,
+   "range": 2.5,
+   "once": true
+  }
+ },
+ "behaviors": {
+  "supply_cache": {}
+ }
+}

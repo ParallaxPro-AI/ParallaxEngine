@@ -1,0 +1,10 @@
+{
+  "id": "shield_round_viking",
+  "summary": "A Viking-age round shield (9th-10th c., Gokstad pattern): butt-jointed planks 0.86 m across, painted in eight… options colour_a, colour_b; sockets socket_grip, socket_boss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_round_viking or place \"prefab\": \"shield_round_viking\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_round_viking"]
+}

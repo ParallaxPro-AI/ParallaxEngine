@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fern_clump"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0292, 0.3818, 0.992],
+      "offset": [-0.0029, 0.1869, -0.0653]
+    }
+  }
+}

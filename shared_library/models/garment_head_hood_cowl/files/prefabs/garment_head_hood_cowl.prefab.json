@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_hood_cowl"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.444, 0.589, 0.375],
+      "offset": [0, 1.6905, -0.0615]
+    }
+  }
+}

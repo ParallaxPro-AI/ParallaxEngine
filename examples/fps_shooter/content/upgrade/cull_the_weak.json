@@ -1,0 +1,1 @@
+{ "name": "Cull The Weak", "description": "Bots spawn with 15% less health for the rest of the match.", "icon": "✂", "bot_health_mul": 0.85 }

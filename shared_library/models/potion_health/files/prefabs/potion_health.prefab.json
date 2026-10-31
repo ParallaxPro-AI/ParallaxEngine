@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/potion_health"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.079, 0.1575, 0.0782],
+      "offset": [0, 0.0788, 0]
+    }
+  }
+}

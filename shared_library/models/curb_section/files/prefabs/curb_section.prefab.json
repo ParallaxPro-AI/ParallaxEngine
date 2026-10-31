@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/curb_section"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 0.0684, 0.5],
+      "offset": [0, 0.0342, 0]
+    }
+  }
+}

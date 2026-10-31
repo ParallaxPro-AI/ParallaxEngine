@@ -1,0 +1,10 @@
+{
+  "id": "laundry_basket",
+  "summary": "A 45 litre rectangular plastic laundry basket: tapered walls with two rows of ventilation slots, a rolled top… options contents, colour; sockets socket_inside, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laundry_basket or place \"prefab\": \"laundry_basket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laundry_basket"]
+}

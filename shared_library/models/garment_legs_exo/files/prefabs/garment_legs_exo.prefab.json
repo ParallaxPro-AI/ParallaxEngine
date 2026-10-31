@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_legs_exo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.496, 0.94, 0.278],
+      "offset": [0, 0.566, -0.003]
+    }
+  }
+}

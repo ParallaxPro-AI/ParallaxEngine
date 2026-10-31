@@ -1,0 +1,10 @@
+{
+  "id": "restoration_ultrasonic",
+  "summary": "A 0.19 m benchtop ultrasonic bath: a stainless tank of fluid in a grey housing with a timer dial and a lit po…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_ultrasonic or place \"prefab\": \"restoration_ultrasonic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_ultrasonic"]
+}

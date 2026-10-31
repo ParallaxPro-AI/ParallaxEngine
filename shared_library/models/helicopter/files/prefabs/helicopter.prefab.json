@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/helicopter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8, 3.02, 9.8],
+      "offset": [0, 1.51, -0.55]
+    }
+  }
+}

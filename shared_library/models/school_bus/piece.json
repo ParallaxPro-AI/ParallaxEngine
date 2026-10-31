@@ -1,0 +1,10 @@
+{
+  "id": "school_bus",
+  "summary": "A classic yellow conventional school bus: a long hood and fender clam ahead of a 9.3 m coach body with a crow… joints crossing_arm, stop_arm, emergency_door, door_entry_a, door_entry_b, steering, …; options paint; sockets seat_driver, eye_point, seat_pax_1, seat_pax_2, seat_pax_3, seat_pax_4, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.school_bus or place \"prefab\": \"school_bus\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:school_bus"]
+}

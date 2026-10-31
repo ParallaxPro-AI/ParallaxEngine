@@ -1,0 +1,10 @@
+{
+  "id": "military_jeep",
+  "summary": "An open-top military utility jeep (4x4): a flat-sided steel body tub with cut-away door openings, a long bonn… joints steering, windscreen, wheel_f_l_roll, wheel_f_l_steer, wheel_f_r_roll, wheel_f_r_steer, …; options paint, top; sockets seat_driver, seat_crew_1, seat_pax_1, seat_pax_2, eye_point, socket_weapon_mount, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.military_jeep or place \"prefab\": \"military_jeep\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:military_jeep"]
+}

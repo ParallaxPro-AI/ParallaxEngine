@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/candy_mixer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.26, 2.705, 3.44],
+      "offset": [0, 1.3525, -0.09]
+    }
+  }
+}

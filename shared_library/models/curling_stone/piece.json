@@ -1,0 +1,10 @@
+{
+  "id": "curling_stone",
+  "summary": "A regulation curling stone: a 291 mm, 114 mm tall turned granite body with a cupped underside and narrow runn… joints stone_spin; options team, granite; sockets grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.curling_stone or place \"prefab\": \"curling_stone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:curling_stone"]
+}

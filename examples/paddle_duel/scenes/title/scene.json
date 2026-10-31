@@ -1,0 +1,12 @@
+{
+  "extends": "arena",
+  "exclude": ["goal", "goal_2", "player_paddle", "rival_paddle", "ball"],
+  "ui": ["title_screen"],
+  "music": null,
+  "entities": [
+    {"prefab": "goal", "at": [-11.4, 0.3, 0]},
+    {"prefab": "goal", "at": [11.4, 0.3, 0], "components": {"shape": {"color": "#c4e1c4"}}},
+    {"prefab": "display_paddle", "at": [-9, 0.77, 0]},
+    {"prefab": "display_paddle", "at": [9, 0.77, 0], "components": {"shape": {"color": "#c4e1c4"}}}
+  ]
+}

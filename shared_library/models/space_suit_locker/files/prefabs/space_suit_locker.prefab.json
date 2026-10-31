@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_suit_locker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.04, 2.374, 0.801],
+      "offset": [0, 1.187, 0.0105]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "chess_piece_set",
+  "summary": "A Staunton-pattern chess piece set laid out for display: one of each piece type in each colour, two rows of s…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chess_piece_set or place \"prefab\": \"chess_piece_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chess_piece_set"]
+}

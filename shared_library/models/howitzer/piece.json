@@ -1,0 +1,10 @@
+{
+  "id": "howitzer",
+  "summary": "A generic modern towed field howitzer: a long tube with a double-baffle muzzle brake, a sliding breech block… joints spin_l, spin_r, trail_l, trail_r, barrel; options paint; sockets socket_muzzle, socket_tow, socket_gunner, socket_loader, muzzle_flash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.howitzer or place \"prefab\": \"howitzer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:howitzer"]
+}

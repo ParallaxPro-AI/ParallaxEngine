@@ -1,0 +1,13 @@
+{
+  "components": {
+    "shape": {
+      "kind": "cylinder",
+      "color": "#f7f7f9",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

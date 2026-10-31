@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_freighter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [13.2, 10.0335, 44.45],
+      "offset": [0, 5.0168, 1.825]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "skateboard",
+  "summary": "A street skateboard: a seven-ply maple deck lofted along a kicked spine so the nose and tail turn up, with re… joints wheel_f, wheel_r; options graphic, wheels.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skateboard or place \"prefab\": \"skateboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skateboard"]
+}

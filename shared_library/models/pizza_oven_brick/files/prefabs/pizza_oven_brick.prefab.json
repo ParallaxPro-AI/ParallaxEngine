@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pizza_oven_brick"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 2.56, 1.9331],
+      "offset": [0, 1.28, 0.1465]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+ "tags": [
+  "pilot"
+ ],
+ "components": {
+  "model": {
+   "model": "models/pilot",
+   "options": {
+    "skin": "tan",
+    "jacket": "olive",
+    "hair": "brown",
+    "headwear": "cap",
+    "top": "open"
+   },
+   "cast_shadows": true
+  },
+  "animator": {
+   "default_clip": "clips/stand_idle"
+  },
+  "character": {
+   "walk_speed": 5,
+   "run_speed": 9,
+   "height": 1.9,
+   "radius": 0.2
+  }
+ },
+ "behaviors": {
+  "pilot": {}
+ }
+}

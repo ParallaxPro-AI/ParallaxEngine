@@ -1,0 +1,10 @@
+{
+  "id": "laser_pistol_compact",
+  "summary": "An original compact sci-fi laser pistol, 0.20 m long (a subcompact sidearm, the size of a real compact 9 mm)… joints trigger, power_cell; options finish, energy; sockets socket_muzzle, socket_grip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.laser_pistol_compact or place \"prefab\": \"laser_pistol_compact\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:laser_pistol_compact"]
+}

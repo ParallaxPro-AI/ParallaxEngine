@@ -1,0 +1,10 @@
+{
+  "id": "trapdoor_floor",
+  "summary": "A 2 x 2 m section of wooden plank floor with a 0.9 m square trapdoor: 150 mm boards with staggered butt joint… joints leaf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trapdoor_floor or place \"prefab\": \"trapdoor_floor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trapdoor_floor"]
+}

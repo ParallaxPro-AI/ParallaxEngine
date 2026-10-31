@@ -1,0 +1,10 @@
+{
+  "id": "watchtower_guard",
+  "summary": "A prison perimeter guard tower: four battered steel legs on a concrete footing, girts and X-bracing on every… joints door, searchlight_pan, searchlight_tilt; options finish; sockets socket_guard, socket_catwalk, socket_ladder_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watchtower_guard or place \"prefab\": \"watchtower_guard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watchtower_guard"]
+}

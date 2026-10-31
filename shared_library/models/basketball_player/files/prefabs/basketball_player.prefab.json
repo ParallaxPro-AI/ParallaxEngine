@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basketball_player"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.88, 0.278],
+      "offset": [0, 0.94, 0.001]
+    }
+  }
+}

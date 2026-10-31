@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/makeshift_shelter_tarp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.764, 1.7884, 3.5734],
+      "offset": [0, 0.8942, 0.0067]
+    }
+  }
+}

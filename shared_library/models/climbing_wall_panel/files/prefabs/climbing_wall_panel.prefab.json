@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/climbing_wall_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.22, 2.44, 0.301],
+      "offset": [0, 1.22, -0.0005]
+    }
+  }
+}

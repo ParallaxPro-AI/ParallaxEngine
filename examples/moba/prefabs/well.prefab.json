@@ -1,0 +1,1 @@
+{"components": {"model": {"model": "models/well", "cast_shadows": true}, "collider": {"shape": "box", "size": [1.587, 2.0615, 1.2], "offset": [0.0335, 1.02925, 0], "layer": "terrain"}}}

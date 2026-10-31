@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stock_case"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4, 0.178, 0.3024],
+      "offset": [0, 0.089, 0.0012]
+    }
+  }
+}

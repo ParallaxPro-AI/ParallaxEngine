@@ -1,0 +1,10 @@
+{
+  "id": "rail_tank_car",
+  "summary": "A general-purpose rail tank car at standard gauge: a 2.8 m steel tank with ellipsoidal heads and girth seams… joints manway_hatch, hand_brake, truck_f_axle_0, truck_f_axle_1, truck_r_axle_0, truck_r_axle_1; options paint; sockets socket_coupler_front, socket_coupler_rear, socket_platform, outlet, manway.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rail_tank_car or place \"prefab\": \"rail_tank_car\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rail_tank_car"]
+}

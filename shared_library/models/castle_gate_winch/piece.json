@@ -1,0 +1,10 @@
+{
+  "id": "castle_gate_winch",
+  "summary": "A castle gatehouse windlass that raises the portcullis: an iron-banded wooden drum with two layers of hemp ro… joints pawl, drum.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.castle_gate_winch or place \"prefab\": \"castle_gate_winch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:castle_gate_winch"]
+}

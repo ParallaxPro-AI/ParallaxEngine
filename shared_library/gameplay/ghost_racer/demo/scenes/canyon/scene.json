@@ -1,0 +1,8 @@
+{
+  "tags": ["playable"],
+  "entities": [
+    { "prefab": "camera" },
+    { "id": "runner", "prefab": "runner", "at": [0, 0] },
+    { "id": "ghost", "prefab": "ghost", "at": [0, 0] }
+  ]
+}

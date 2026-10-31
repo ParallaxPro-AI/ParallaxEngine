@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_goldfish"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0953, 0.1206, 0.1876],
+      "offset": [0, 0.0647, -0.0008]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "exercise_bike",
+  "summary": "An indoor cycling (spin) bike: steel frame on two floor stabilisers with transport wheels, an exposed chrome… joints flywheel, resistance_knob, crank, seat, bars; options frame_colour, accent; sockets seat_rider.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.exercise_bike or place \"prefab\": \"exercise_bike\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:exercise_bike"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "paint_roller_tray",
+  "summary": "A paint roller and tray: a moulded tray with a deep well of wet paint at the front, a ribbed ramp rising to t… joints sleeve; options paint, tray; sockets socket_roller_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paint_roller_tray or place \"prefab\": \"paint_roller_tray\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paint_roller_tray"]
+}

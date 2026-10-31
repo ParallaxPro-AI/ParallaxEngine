@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/merchant_scales"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.76, 0.691, 0.256],
+      "offset": [0, 0.3455, 0.008]
+    }
+  }
+}

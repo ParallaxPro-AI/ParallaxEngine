@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/food_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 5200,
+      "linear_damping": 0.05,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.3354,
+        3.77,
+        6.981
+      ],
+      "offset": [
+        -0.1877,
+        1.885,
+        -0.1195
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 34,
+      "grip": 8,
+      "turn_rate": 1.9
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        -0.1877,
+        1.885,
+        -0.1195
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

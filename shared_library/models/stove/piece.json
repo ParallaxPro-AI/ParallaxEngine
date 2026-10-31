@@ -1,0 +1,10 @@
+{
+  "id": "stove",
+  "summary": "A freestanding kitchen range: a stainless body with a static oven door, four turnable control knobs on the fr… joints knob_1, knob_2, knob_3, knob_4, lid; options cooktop; sockets socket_burner_fl, socket_burner_fr.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stove or place \"prefab\": \"stove\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stove"]
+}

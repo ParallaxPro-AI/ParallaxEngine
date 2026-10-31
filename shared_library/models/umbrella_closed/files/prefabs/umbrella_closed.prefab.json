@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/umbrella_closed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1286, 0.9186, 0.0742],
+      "offset": [0.0004, 0.4593, 0]
+    }
+  }
+}

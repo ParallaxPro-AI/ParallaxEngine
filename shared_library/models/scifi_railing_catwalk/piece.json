@@ -1,0 +1,10 @@
+{
+  "id": "scifi_railing_catwalk",
+  "summary": "A 4 m sci-fi catwalk guard railing, the edge piece of the space-corridor kit: a grooved edge channel 0.27 m d… sockets socket_end_left, socket_end_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_railing_catwalk or place \"prefab\": \"scifi_railing_catwalk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_railing_catwalk"]
+}

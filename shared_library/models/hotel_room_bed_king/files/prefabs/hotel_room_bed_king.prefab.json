@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hotel_room_bed_king"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.36, 1.68, 2.225],
+      "offset": [0, 0.84, -0.0625]
+    }
+  }
+}

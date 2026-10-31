@@ -1,0 +1,10 @@
+{
+  "id": "monster_truck",
+  "summary": "A show monster truck: a fibreglass pickup body with a short open bed and drop-down tailgate riding high on a… joints tailgate, steering, steer_l, spin_front_l, steer_r, spin_front_r, …; options paint, stripe; sockets seat_driver, eye_point, socket_roof, socket_bed, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.monster_truck or place \"prefab\": \"monster_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:monster_truck"]
+}

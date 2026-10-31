@@ -1,0 +1,10 @@
+{
+  "id": "splash_contestant_ragdoll",
+  "summary": "The splash_contestant mascot skinned to the engine's canonical humanoid rig so a Ragdoll component can tumble… sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.splash_contestant_ragdoll or place \"prefab\": \"splash_contestant_ragdoll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:splash_contestant_ragdoll"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_hands_gloves_work"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.612, 0.1, 0.079],
+      "offset": [0, 1.45, 0.0015]
+    }
+  }
+}

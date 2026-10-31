@@ -1,0 +1,7 @@
+{
+  "components": {
+    "sprite": { "size": [0.6, 0.6], "color": "#29389e" }
+  },
+  "tags": ["wall"],
+  "pool": 256
+}

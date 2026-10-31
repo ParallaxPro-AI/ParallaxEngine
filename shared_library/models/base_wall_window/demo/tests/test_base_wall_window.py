@@ -1,0 +1,18 @@
+from parallax import Model, vec3
+from parallax.test import playtest
+from project import Prefabs, Scenes
+
+
+@playtest("base_wall_window: the prefab spawns and its model's controls work")
+async def test_base_wall_window(game):
+    await game.start(scene=Scenes.yard)
+    thing = game.ctx.world.spawn(Prefabs.base_wall_window, at=vec3(0, 0.0, 0))
+    await game.advance(frames=1)
+    model = thing.get(Model)
+    model.pose("hatch_l", 0.28)
+    assert abs(model.joint("hatch_l") - 0.28) < 1e-3
+    model.set_option("tier", "stone")
+    assert model.option("tier") == "stone"
+    assert model.socket_position("socket_join_left").distance_to(thing.transform.position) < 50.0
+    await game.advance(seconds=1)
+    assert thing.transform.position.is_close(vec3(0, 0, 0))

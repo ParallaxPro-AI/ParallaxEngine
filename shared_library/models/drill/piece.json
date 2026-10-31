@@ -1,0 +1,10 @@
+{
+  "id": "drill",
+  "summary": "A pistol-grip power drill: horizontal motor housing with a keyless chuck that spins and a bit, a trigger that… joints chuck, trigger; options power.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drill or place \"prefab\": \"drill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drill"]
+}

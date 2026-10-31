@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/storage_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [11.2731, 9.77, 11.0811],
+      "offset": [-0.2866, 4.885, 0.1906]
+    }
+  }
+}

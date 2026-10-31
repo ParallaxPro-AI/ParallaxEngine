@@ -1,0 +1,10 @@
+{
+  "id": "gill_net",
+  "summary": "A drifting monofilament gill net: a float line of small foam floats along the top, a lead line of small weigh… sockets socket_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gill_net or place \"prefab\": \"gill_net\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gill_net"]
+}

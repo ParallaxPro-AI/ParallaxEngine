@@ -1,0 +1,45 @@
+<!-- The pause card: the template's "A moment of quiet" in gilt-cornered lantern glass. -->
+<link rel="stylesheet" href="sundermere.css">
+<style>
+.pm-scrim { position: fixed; inset: 0; background: radial-gradient(ellipse 50% 50% at 50% 50%, rgba(4,8,9,.6), rgba(4,8,9,.85)); animation: sm-fade .2s ease-out both; }
+.pm { position: fixed; left: 50%; top: 50%; width: calc(640 * var(--u)); padding: calc(56 * var(--u)) calc(60 * var(--u)) calc(52 * var(--u)); text-align: center; border-color: rgba(214,187,120,.3); transform: translate(-50%, -50%); animation: pm-in .24s var(--sm-ease) both; }
+@keyframes pm-in { from { opacity: 0; transform: translate(-50%, -50%) scale(.98); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.pm .sm-eyebrow { letter-spacing: .3em; }
+.pm .sm-rule { justify-content: center; margin: calc(20 * var(--u)) 0 calc(22 * var(--u)); }
+.pm .sm-rule > b { width: calc(6 * var(--u)); height: calc(6 * var(--u)); box-shadow: none; }
+.pm-title { font: 600 calc(46 * var(--u))/1.05 var(--sm-font-display); }
+.sm-root .pm-line { margin-top: calc(16 * var(--u)); font: 400 calc(23 * var(--u))/1.4 var(--sm-font-speech); color: rgba(244,239,220,.8); }
+.pm-btns { margin-top: calc(40 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+.sm-root .pm-btns .sm-btn { width: 100%; height: calc(54 * var(--u)); font-size: calc(17 * var(--u)); letter-spacing: .05em; }
+.sm-root .pm-btns .sm-btn:first-child { height: calc(58 * var(--u)); font-size: calc(18 * var(--u)); letter-spacing: .06em; }
+@container (max-height: 500px) {
+  .pm-scrim { background: rgba(4,8,9,.78); }
+  .pm { width: calc(560 * var(--u)); max-width: calc(100cqw - 32px); padding: calc(28 * var(--u)) calc(32 * var(--u)); display: grid; grid-template-columns: minmax(0,1fr) calc(220 * var(--u)); gap: calc(28 * var(--u)); align-items: center; text-align: left; border-radius: calc(12 * var(--u)); border-color: rgba(214,187,120,.32); box-shadow: 0 20px 60px rgba(0,0,0,.6); }
+  .pm .sm-c { width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
+  .pm .sm-c.tr, .pm .sm-c.bl { display: none; }
+  .pm .sm-eyebrow { font-size: calc(11 * var(--u)); letter-spacing: .28em; }
+  .pm .sm-rule { display: none; }
+  .pm-title { margin-top: calc(12 * var(--u)); font-size: calc(28 * var(--u)); line-height: 1.1; }
+  .sm-root .pm-line { margin-top: calc(10 * var(--u)); font-size: calc(18 * var(--u)); line-height: 1.35; color: rgba(244,239,220,.82); }
+  .pm-btns { margin: 0; gap: calc(9 * var(--u)); }
+  .sm-root .pm-btns .sm-btn { height: max(44px, calc(46 * var(--u))); font-size: calc(15 * var(--u)); padding: 0 calc(12 * var(--u)); }
+  .sm-root .pm-btns .sm-btn:first-child { height: max(44px, calc(48 * var(--u))); font-size: calc(16 * var(--u)); }
+}
+</style>
+<div class="sm-root">
+  <div class="pm-scrim"></div>
+  <main class="pm sm-modal">
+    <b class="sm-c tl"></b><b class="sm-c tr"></b><b class="sm-c bl"></b><b class="sm-c br"></b>
+    <div>
+      <div class="sm-eyebrow" data-text="game_title"></div>
+      <div class="sm-rule"><i></i><b></b><i></i></div>
+      <h1 class="pm-title" data-text="pause_title"></h1>
+      <p class="pm-line" data-text="pause_line"></p>
+    </div>
+    <div class="pm-btns">
+      <button class="sm-btn" data-action="resume"><span data-text="resume"></span><span class="sm-kbd">P</span></button>
+      <button class="sm-btn ghost" data-action="journal" data-text="journal_and_controls"></button>
+      <button class="sm-btn quiet" data-action="main_menu" data-text="main_menu"></button>
+    </div>
+  </main>
+</div>

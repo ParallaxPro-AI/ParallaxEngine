@@ -1,0 +1,10 @@
+{
+  "id": "adirondack_chair",
+  "summary": "A classic slatted Adirondack (Muskoka) lawn chair: sloping side stringers that run down to the ground as back… options finish; sockets seat_main, socket_arm_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.adirondack_chair or place \"prefab\": \"adirondack_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:adirondack_chair"]
+}

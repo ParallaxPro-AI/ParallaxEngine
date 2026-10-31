@@ -1,0 +1,5 @@
+{
+  "name": "Keeper Clinic",
+  "description": "+1.6 keeper speed and a wider sweeping range.",
+  "max_stacks": 2, "keeper_speed": 1.6, "keeper_reach": 1.6
+}

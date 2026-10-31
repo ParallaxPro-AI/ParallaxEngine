@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fireplace_mantel_stone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.02, 1.6, 0.81],
+      "offset": [0, 0.8, 0]
+    }
+  }
+}

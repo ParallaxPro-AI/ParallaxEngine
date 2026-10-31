@@ -1,0 +1,14 @@
+{
+  "z": 1,
+  "components": {
+    "sprite": { "image": "images/dot", "size": [0.56, 0.56] },
+    "grid_mover": { "blocked": ["wall"] }
+  },
+  "behaviors": {
+    "stalker": {
+      "speed": 4.7, "frightened_speed": 3.0, "eaten_speed": 9.5,
+      "frightened_color": "#3d5cf2", "warning_color": "#e6ebff", "eaten_color": "#8c99bf66",
+      "warning_seconds": 1.6, "flashes_per_second": 3
+    }
+  }
+}

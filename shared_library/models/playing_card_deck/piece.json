@@ -1,0 +1,10 @@
+{
+  "id": "playing_card_deck",
+  "summary": "A deck of standard playing cards on a table: the squared 52-card deck lying face down, showing a deep red bac…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.playing_card_deck or place \"prefab\": \"playing_card_deck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:playing_card_deck"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mugshot_height_wall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.52, 2.3, 0.079],
+      "offset": [0, 1.15, 0.0025]
+    }
+  }
+}

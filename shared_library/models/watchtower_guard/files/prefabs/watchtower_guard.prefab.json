@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/watchtower_guard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.5, 12.37, 3.964],
+      "offset": [0, 6.185, -0.232]
+    }
+  }
+}

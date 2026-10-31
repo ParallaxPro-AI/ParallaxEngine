@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paper_stunt"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2643, 0.0297, 0.322],
+      "offset": [0, 0.0148, 0]
+    }
+  }
+}

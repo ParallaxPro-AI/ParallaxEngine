@@ -1,0 +1,10 @@
+{
+  "id": "tc_floor_rug",
+  "summary": "A 3.4 x 3.4 m interior surface slab, fabric.carpetSoiled.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tc_floor_rug or place \"prefab\": \"tc_floor_rug\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tc_floor_rug"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "powder_pouch",
+  "summary": "A small leather drawstring pouch, filled and slumped, gathered at the neck by a waxed cord with two knotted t… sockets squeeze_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.powder_pouch or place \"prefab\": \"powder_pouch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:powder_pouch"]
+}

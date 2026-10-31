@@ -1,0 +1,10 @@
+{
+  "id": "rat",
+  "summary": "A brown rat (Rattus norvegicus) on the quadruped_20 rig, life size: 0.24 m head and body plus a 0.2 m tail (0… options coat; sockets mouth, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rat or place \"prefab\": \"rat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rat"]
+}

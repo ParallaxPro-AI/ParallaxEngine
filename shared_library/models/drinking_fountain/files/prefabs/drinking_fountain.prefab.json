@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drinking_fountain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.66, 1.45, 0.56],
+      "offset": [0.05, 0.725, 0]
+    }
+  }
+}

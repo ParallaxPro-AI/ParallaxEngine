@@ -1,0 +1,5 @@
+{
+  "name": "Lower Gun Deck",
+  "blurb": "+2 balls in every broadside.",
+  "stat": "broadside", "amount": 2, "max_level": 2
+}

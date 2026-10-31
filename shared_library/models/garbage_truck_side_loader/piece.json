@@ -1,0 +1,10 @@
+{
+  "id": "garbage_truck_side_loader",
+  "summary": "An automated side-loading refuse truck on the cab-over truck chassis: an open receiving hopper right behind t… joints cab_tilt, door_l, door_r, tailgate, arm_lift, arm_reach, …; options body, paint; sockets socket_driver, socket_tow, socket_bin_grip, socket_hopper, socket_step.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.garbage_truck_side_loader or place \"prefab\": \"garbage_truck_side_loader\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:garbage_truck_side_loader"]
+}

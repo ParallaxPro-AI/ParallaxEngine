@@ -1,0 +1,10 @@
+{
+  "id": "cafe_table_set",
+  "summary": "A pavement-cafe bistro set: a 0.7 m round pedestal table (bull-nosed top on a four-arm cast-iron base with le… options top, frame; sockets seat_0, seat_1, table_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cafe_table_set or place \"prefab\": \"cafe_table_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cafe_table_set"]
+}

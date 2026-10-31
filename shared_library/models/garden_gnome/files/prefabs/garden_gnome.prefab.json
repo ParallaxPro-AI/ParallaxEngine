@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garden_gnome"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.22, 0.5143, 0.22],
+      "offset": [0, 0.2571, 0]
+    }
+  }
+}

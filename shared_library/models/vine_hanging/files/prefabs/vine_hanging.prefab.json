@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vine_hanging"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9721, 2.8687, 0.4345],
+      "offset": [-0.0166, 1.4375, 0.0144]
+    }
+  }
+}

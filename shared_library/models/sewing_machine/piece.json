@@ -1,0 +1,10 @@
+{
+  "id": "sewing_machine",
+  "summary": "A 0.44 m domestic sewing machine in black enamel: a rounded bed with a chrome needle plate and bobbin slide… joints needle_bar, handwheel; options cloth, colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sewing_machine or place \"prefab\": \"sewing_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sewing_machine"]
+}

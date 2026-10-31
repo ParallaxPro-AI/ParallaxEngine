@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/handgun"
+    },
+    "viewmodel_item": {
+      "hip": [0.11, -0.21, 0.58],
+      "hip_turn": [0.859437, -1.432394, -1.432394],
+      "eye_relief": 0.34
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.034, 0.1515, 0.283],
+      "offset": [0, 0.0742, -0.0005]
+    }
+  }
+}

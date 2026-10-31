@@ -1,0 +1,3 @@
+{ "name": "Roast Meat", "order": 17, "category": "food", "station": "furnace", "seconds": 8,
+  "inputs": [{ "item": "raw_meat", "count": 1 }, { "item": "coal_ore", "count": 1 }],
+  "output": { "item": "cooked_meat", "count": 1 } }

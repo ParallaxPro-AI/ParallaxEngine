@@ -1,0 +1,7 @@
+{
+  "name": "Ember Runner",
+  "blurb": "Hot as the canyon floor at noon.",
+  "cost": 220,
+  "tint": [1.0, 0.6, 0.5],
+  "swatch": "#f0705a"
+}

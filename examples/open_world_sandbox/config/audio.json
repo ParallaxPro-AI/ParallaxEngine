@@ -1,0 +1,12 @@
+{
+  "weapon_draw": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/27/64/276403e72c3b71c47bc24db3083970c23f8e5551ffa78f436f83483c56f3f0bb.ogg", "volume": 0.22},
+  "reload": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/27/64/276403e72c3b71c47bc24db3083970c23f8e5551ffa78f436f83483c56f3f0bb.ogg", "volume": 0.3},
+  "reload_done": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/09/e2/09e2c1b643b71b9aff9932b4e02d78db116446b9a14b00a5b2a9b28d2668fd8e.ogg", "volume": 0.4},
+  "dry_fire": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/27/64/276403e72c3b71c47bc24db3083970c23f8e5551ffa78f436f83483c56f3f0bb.ogg", "volume": 0.12},
+  "bullet_hit": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/48/69/486988aa2d6440ffc4c62a0e8ccf3c23673ba84424bd4723378d451b7255eb5c.ogg", "volume": 0.4},
+  "wanted": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/72/b5/72b589eadd41781257ac859e4f4d030222e623390e4a1a83f6d05329a6e026f1.ogg", "volume": 0.3},
+  "officer_down": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d1/30/d130ae541951243d3f6ed963d0057450a445ffe117fbf9a084d34eb1635cb563.ogg", "volume": 0.4},
+  "pedestrian_down": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/49/e7/49e7ca88743fca974bb8676ea138b751cfd8f9033b5e7af8736c2a215d6edbc1.ogg", "volume": 0.4},
+  "lights_out": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg", "volume": 1.0},
+  "police_shot": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/72/b5/72b589eadd41781257ac859e4f4d030222e623390e4a1a83f6d05329a6e026f1.ogg", "volume": 0.3}
+}

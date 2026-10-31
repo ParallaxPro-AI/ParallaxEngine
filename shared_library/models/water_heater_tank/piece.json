@@ -1,0 +1,10 @@
+{
+  "id": "water_heater_tank",
+  "summary": "A 190-litre storage water heater standing in a moulded drain pan: an enamelled cylindrical jacket with a roll… joints cold_valve_lever, drain_knob_pivot, temp_dial, gas_shutoff_lever; options fuel, jacket; sockets socket_vent_outlet, socket_drain, vent_smoke, relief_drip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_heater_tank or place \"prefab\": \"water_heater_tank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_heater_tank"]
+}

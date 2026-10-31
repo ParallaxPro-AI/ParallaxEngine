@@ -1,0 +1,10 @@
+{
+  "id": "cello",
+  "summary": "A full-size cello stood on its endpin: an arched, varnished lofted body (lower bout, waist, upper bout) with… joints endpin, peg_c, peg_g, peg_d, peg_a, bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cello or place \"prefab\": \"cello\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cello"]
+}

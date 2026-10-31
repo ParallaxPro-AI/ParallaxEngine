@@ -1,0 +1,10 @@
+{
+  "id": "umbrella_stand",
+  "summary": "A 0.50 m round metal umbrella stand: a hollow powder-coated drum with a rolled rim, two pressed bands and a r… options umbrellas, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.umbrella_stand or place \"prefab\": \"umbrella_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:umbrella_stand"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pump",
+  "summary": "A belt/flywheel-driven industrial process pump on a steel skid: a painted cast pump casing with a bulging vol… joints flywheel, suction_wheel, discharge_wheel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pump or place \"prefab\": \"pump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pump"]
+}

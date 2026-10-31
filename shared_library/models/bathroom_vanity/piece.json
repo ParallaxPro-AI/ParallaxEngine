@@ -1,0 +1,10 @@
+{
+  "id": "bathroom_vanity",
+  "summary": "A 1 m freestanding bathroom vanity: a painted shaker-style cabinet on four tapered legs with chrome ferrules… joints lever, door_l, door_r; options cabinet, hardware; sockets socket_basin, socket_counter_l, socket_counter_r, socket_mirror.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bathroom_vanity or place \"prefab\": \"bathroom_vanity\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bathroom_vanity"]
+}

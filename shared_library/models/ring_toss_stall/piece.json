@@ -1,0 +1,10 @@
+{
+  "id": "ring_toss_stall",
+  "summary": "A 3 x 2 m carnival ring-toss booth: a plank deck, corner posts and a red/white striped pitched canvas roof wi… joints counter_flap, gate; options stripes; sockets socket_player, socket_operator, socket_bottles, socket_pegs, socket_rings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ring_toss_stall or place \"prefab\": \"ring_toss_stall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ring_toss_stall"]
+}

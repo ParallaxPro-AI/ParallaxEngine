@@ -1,0 +1,10 @@
+{
+  "id": "luxury_vanity",
+  "summary": "Luxury dressing table: a smoked-walnut top with a brass band and a cream-marble inset over a two-drawer apron… joints drawer_l, drawer_r, stool; options styling, wood, metal, stool_fabric; sockets seat_1, surface_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_vanity or place \"prefab\": \"luxury_vanity\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_vanity"]
+}

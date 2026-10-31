@@ -1,0 +1,10 @@
+{
+  "id": "raised_garden_bed",
+  "summary": "A 1.8 x 0.9 m timber raised vegetable bed: three courses of chamfered boards on corner posts that stand proud… options planting; sockets socket_soil, seat_cap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.raised_garden_bed or place \"prefab\": \"raised_garden_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:raised_garden_bed"]
+}

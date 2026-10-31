@@ -1,0 +1,5 @@
+{
+  "name": "Carronades",
+  "blurb": "+14 cannon damage per ball.",
+  "stat": "cannon_damage", "amount": 14, "max_level": 3
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cowboy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.957, 0.485],
+      "offset": [0, 0.9765, -0.0025]
+    }
+  }
+}

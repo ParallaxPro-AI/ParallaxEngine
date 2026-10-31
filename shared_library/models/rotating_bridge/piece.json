@@ -1,0 +1,10 @@
+{
+  "id": "rotating_bridge",
+  "summary": "A symmetric swing (rotating) bridge: a steel plate-girder deck balanced on a fixed central pivot pier in the… joints deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rotating_bridge or place \"prefab\": \"rotating_bridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rotating_bridge"]
+}

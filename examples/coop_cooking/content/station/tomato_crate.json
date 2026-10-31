@@ -1,0 +1,4 @@
+{ "label": "Tomato", "color": "#e4574a",
+  "steps": [
+  {"prompt": "Grab Tomato", "gives": "tomato", "feedback": "Grabbed a tomato", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.35}}
+] }

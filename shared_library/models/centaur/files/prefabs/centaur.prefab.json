@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/centaur"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8446, 2.428, 1.8685],
+      "offset": [0, 1.214, -0.1649]
+    }
+  }
+}

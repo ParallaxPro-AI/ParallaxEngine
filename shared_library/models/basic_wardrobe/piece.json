@@ -1,0 +1,10 @@
+{
+  "id": "basic_wardrobe",
+  "summary": "A budget flat-pack two-door wardrobe from the 'basic' apartment set: a white-laminate carcass on a recessed p… joints door_l, door_r; options contents; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_wardrobe or place \"prefab\": \"basic_wardrobe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_wardrobe"]
+}

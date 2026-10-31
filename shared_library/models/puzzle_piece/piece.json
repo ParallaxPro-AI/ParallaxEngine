@@ -1,0 +1,10 @@
+{
+  "id": "puzzle_piece",
+  "summary": "A chunky jigsaw-puzzle-piece collectible standing on edge: a square body with two round tabs (top and right)… joints spinner; options colour; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.puzzle_piece or place \"prefab\": \"puzzle_piece\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:puzzle_piece"]
+}

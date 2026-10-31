@@ -1,0 +1,1 @@
+{ "name": "Suppressive Fire", "description": "Bots flinch — their accuracy drops 22%.", "icon": "⌁", "bot_accuracy_mul": 0.78 }

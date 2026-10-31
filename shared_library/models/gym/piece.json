@@ -1,0 +1,10 @@
+{
+  "id": "gym",
+  "summary": "A two-storey neighbourhood gym: a double-height glazed front over the training floor, a strong vertical mulli… options panel_colour; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gym or place \"prefab\": \"gym\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gym"]
+}

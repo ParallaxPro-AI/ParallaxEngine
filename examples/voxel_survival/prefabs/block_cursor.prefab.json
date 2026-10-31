@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "box", "size": [1.02, 1.02, 1.02], "color": "#ffffff20", "cast_shadows": false } },
+  "behaviors": { "block_cursor": {} }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/road_work_sign"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2728, 1.6128, 0.9079],
+      "offset": [0, 0.8064, 0]
+    }
+  }
+}

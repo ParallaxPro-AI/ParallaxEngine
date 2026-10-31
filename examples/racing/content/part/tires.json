@@ -1,0 +1,10 @@
+{
+  "order": 2,
+  "name": "Tires",
+  "blurb": "Peak grip at the contact patch. The single best buy for a wet or twisty round.",
+  "tiers": [
+    { "name": "Road", "blurb": "The rubber it came on." },
+    { "name": "Sport", "blurb": "+8% peak grip, wet or dry.", "price": 1100, "grip": 1.08 },
+    { "name": "Slicks", "blurb": "+18% peak grip. The canyon stops fighting you.", "price": 2500, "grip": 1.18 }
+  ]
+}

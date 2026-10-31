@@ -1,0 +1,10 @@
+{
+  "id": "scaffold_tower_mobile",
+  "summary": "A two-lift aluminium mobile scaffold tower, 1.45 x 2.45 m: four braked swivel castors on adjustable legs, lad… joints castor_lf, castor_lb, castor_rf, castor_rb, trapdoor; options stabilisers, braces; sockets socket_platform.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scaffold_tower_mobile or place \"prefab\": \"scaffold_tower_mobile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scaffold_tower_mobile"]
+}

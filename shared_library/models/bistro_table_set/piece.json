@@ -1,0 +1,10 @@
+{
+  "id": "bistro_table_set",
+  "summary": "A Parisian cafe bistro set: a 600 mm round marble-topped table on a turned cast-iron column with a four-foot… options chairs, table_top; sockets seat_l, seat_r, table_top_socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bistro_table_set or place \"prefab\": \"bistro_table_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bistro_table_set"]
+}

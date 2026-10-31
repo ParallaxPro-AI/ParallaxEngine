@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_corner",
+  "summary": "A square stone corner pier from the DUNGEON_KIT: a 0.8 m shaft of stacked, chamfered quoin blocks on a projec… options stone.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_corner or place \"prefab\": \"dungeon_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_corner"]
+}

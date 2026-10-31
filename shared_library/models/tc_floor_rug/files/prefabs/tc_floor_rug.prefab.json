@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_floor_rug"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.4, 0.012, 3.4],
+      "offset": [0, 0.006, 0]
+    }
+  }
+}

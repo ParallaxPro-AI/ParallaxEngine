@@ -1,0 +1,10 @@
+{
+  "id": "restaurant_booth",
+  "summary": "A four-seat restaurant/diner booth: two upholstered banquette benches facing each other across a laminate tab… options upholstery, wood, table_top, dressing; sockets seat_l_front, seat_l_back, seat_r_front, seat_r_back, table_top_socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restaurant_booth or place \"prefab\": \"restaurant_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restaurant_booth"]
+}

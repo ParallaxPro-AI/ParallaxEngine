@@ -1,0 +1,10 @@
+{
+  "id": "carousel",
+  "summary": "A fairground carousel (merry-go-round): a raised circular platform under a red conical roof with a decorative… joints platform, bob_0, bob_1, bob_2, bob_3, bob_4, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.carousel or place \"prefab\": \"carousel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:carousel"]
+}

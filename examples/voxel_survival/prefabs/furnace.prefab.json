@@ -1,0 +1,7 @@
+{
+  "components": {
+    "furnace": {},
+    "light": { "kind": "point", "color": "#ff9a40", "intensity": 0, "range": 6 }
+  },
+  "behaviors": { "furnace": { "glow": 2.5 } }
+}

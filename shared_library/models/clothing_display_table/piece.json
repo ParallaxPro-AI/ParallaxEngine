@@ -1,0 +1,10 @@
+{
+  "id": "clothing_display_table",
+  "summary": "A clothing-store merchandising table: an oak-veneer top and undershelf on a black square-tube frame with rubb… options top_finish, frame_finish, contents; sockets socket_top, socket_shelf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.clothing_display_table or place \"prefab\": \"clothing_display_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:clothing_display_table"]
+}

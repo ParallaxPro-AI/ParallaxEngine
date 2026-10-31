@@ -1,0 +1,10 @@
+{
+  "id": "tugboat",
+  "summary": "A 16 m harbour tug: a lofted round-bilge hull with a raised flared bow, red antifouling below a black topside… joints door_l, door_r, radar, winch_drum, propeller, rudder; options hull, funnel; sockets seat_driver, eye_point, waterline, socket_tow, socket_bow, exhaust_0, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tugboat or place \"prefab\": \"tugboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tugboat"]
+}

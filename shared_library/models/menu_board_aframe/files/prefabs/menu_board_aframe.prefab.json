@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/menu_board_aframe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.606, 0.9809, 0.5377],
+      "offset": [0, 0.4904, 0]
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bollard",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.26,
+        1.0805,
+        0.26
+      ],
+      "offset": [
+        0.0,
+        0.5387,
+        0.0
+      ]
+    }
+  }
+}

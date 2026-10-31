@@ -1,0 +1,13 @@
+{
+  "name": "Shadowstep",
+  "blurb": "Step through the dark and cut whoever is waiting there.",
+  "kind": "dash",
+  "cooldown": { "base": 8, "per_rank": -0.7 },
+  "mana": { "base": 35, "per_rank": 3 },
+  "dash": { "base": 8, "per_rank": 0.8 },
+  "dash_seconds": 0.18,
+  "damage": { "base": 60, "per_rank": 28 },
+  "damage_kind": "physical",
+  "radius": { "base": 3 },
+  "vfx": "vfx/blink"
+}

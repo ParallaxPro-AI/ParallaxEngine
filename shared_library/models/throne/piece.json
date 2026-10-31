@@ -1,0 +1,14 @@
+{
+  "id": "throne",
+  "summary": "A grand ceremonial throne on a stepped dais: solid pedestal seat, tall crowned backrest flanked by… options finish; sockets socket_seat.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.throne or place \"prefab\": \"throne\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:throne"
+  ]
+}

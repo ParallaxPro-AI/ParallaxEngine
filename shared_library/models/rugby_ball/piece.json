@@ -1,0 +1,10 @@
+{
+  "id": "rugby_ball",
+  "summary": "A size-5 rugby ball (0.29 m tip to tip, 0.19 m across the belly): a fuller, blunter oval than a gridiron ball… options panels, print; sockets carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rugby_ball or place \"prefab\": \"rugby_ball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rugby_ball"]
+}

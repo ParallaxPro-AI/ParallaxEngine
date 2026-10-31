@@ -1,0 +1,13 @@
+{
+  "bot_rifle": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/72/b5/72b589eadd41781257ac859e4f4d030222e623390e4a1a83f6d05329a6e026f1.ogg", "volume": 0.55 },
+  "bot_sniper": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a5/6d/a56d95794cd732d6c2d66ce488c14cf557fe526c282897c9a77675c2bd9b77e6.ogg", "volume": 0.55 },
+  "bot_death": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e7/ab/e7ab9a6c4466dea874196c61f59bf1da05cfe58748f42fadd695d441a154a99b.ogg", "volume": 0.5 },
+  "elite_death": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg", "volume": 0.5 },
+  "player_death": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/cd/da/cdda50600a4928f2f1b8371224d53c171ac799c1cf2c30b11999508985250b3b.ogg", "volume": 0.6 },
+  "upgrade_taken": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg", "volume": 0.6 },
+  "round_start": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/05/1b/051b0eafc479695af4ca3607d41fd4be41bae7c21f4f9508d004722b09f1bd63.ogg", "volume": 0.55 },
+  "round_clear": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/56/89/568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661.ogg", "volume": 0.6 },
+  "victory": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/38/a9387a2cb0b13b8c794579e61ae1fb7e666e22d46a36aec6c77471635096f2fc.ogg", "volume": 0.7 },
+  "defeat": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/75/a97513d7fd2b12b1210c423be943b4c1ab0e899b11db95855e9b74836e646ae0.ogg", "volume": 0.7 },
+  "frag_explode": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg", "volume": 0.6 }
+}

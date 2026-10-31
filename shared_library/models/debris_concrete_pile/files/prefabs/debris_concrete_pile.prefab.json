@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/debris_concrete_pile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.6992, 1.6966, 2.8895],
+      "offset": [-0.0132, 0.8483, 0.0675]
+    }
+  }
+}

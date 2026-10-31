@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/organ_pipe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.66, 3.69, 0.8412],
+      "offset": [0, 1.845, 0.0006]
+    }
+  }
+}

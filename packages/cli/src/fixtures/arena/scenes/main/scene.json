@@ -1,0 +1,6 @@
+{
+  "entities": [
+    { "prefab": "player_start", "id": "start", "at": [0, 0] },
+    { "prefab": "camera", "id": "camera", "at": [0, 3] }
+  ]
+}

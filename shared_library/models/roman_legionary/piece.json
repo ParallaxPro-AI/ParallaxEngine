@@ -1,0 +1,10 @@
+{
+  "id": "roman_legionary",
+  "summary": "A Roman-era legionary on the canonical 17-bone humanoid rig: lorica segmentata (seven overlapping iron girth… options skin, hair, headgear; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roman_legionary or place \"prefab\": \"roman_legionary\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roman_legionary"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "grill",
+  "summary": "A cart-style barbecue grill: a box firebox on a rolling cart, a rounded barrel lid that hinges up at the back… joints wheel_l, wheel_r, lid, grate; options fuel; sockets socket_grate, socket_shelf_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grill or place \"prefab\": \"grill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grill"]
+}

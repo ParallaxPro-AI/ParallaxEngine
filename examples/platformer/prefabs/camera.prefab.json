@@ -1,0 +1,15 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 45,
+      "offset": [
+        0,
+        4,
+        -15
+      ],
+      "world_offset": true,
+      "smoothing": 0.12
+    }
+  }
+}

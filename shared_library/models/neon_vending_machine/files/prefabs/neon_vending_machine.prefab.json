@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/neon_vending_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.06, 1.8714, 0.913],
+      "offset": [0, 0.9357, 0.0565]
+    }
+  }
+}

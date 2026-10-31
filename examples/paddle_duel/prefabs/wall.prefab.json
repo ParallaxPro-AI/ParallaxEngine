@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [22, 0.5, 0.4], "color": "#9595a0" },
+    "collider": { "shape": "box", "size": [22, 2, 0.4], "friction": 0, "bounce": 1 }
+  },
+  "tags": ["wall"]
+}

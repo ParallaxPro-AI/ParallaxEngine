@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/double_decker_bus"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 12500,
+      "linear_damping": 0.05,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.584,
+        4.432,
+        11.589
+      ],
+      "offset": [
+        0.006,
+        2.216,
+        0.1655
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 22,
+      "steering": 34,
+      "grip": 6,
+      "turn_rate": 1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.006,
+        2.216,
+        0.1655
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

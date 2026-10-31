@@ -1,0 +1,1 @@
+{ "extends": "camp", "components": { "camp": { "kind": "titan" }, "model": { "model": "models/camp_titan" } } }

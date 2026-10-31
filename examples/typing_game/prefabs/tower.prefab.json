@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [1.8, 4.8, 1.8], "color": "#616f7c" }
+  },
+  "behaviors": {
+    "word_pulse": { "punch": 0.14, "decay": 5.0, "idle_color": "#616f7c", "hit_color": "#a0e1ed" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/carousel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.4, 4.905, 5.4],
+      "offset": [0, 2.4525, 0]
+    }
+  }
+}

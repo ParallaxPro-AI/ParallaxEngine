@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/river_boulder"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6996, 1.4, 1.6996],
+      "offset": [0, 0.7, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rooftop_antenna_cluster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7, 5.01, 2.1505],
+      "offset": [0, 2.505, 0.0752]
+    }
+  }
+}

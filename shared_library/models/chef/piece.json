@@ -1,0 +1,10 @@
+{
+  "id": "chef",
+  "summary": "A chef in a double-breasted white jacket (stand collar, two rows of black buttons, red neckerchief), a tall p… options skin, hair, headwear; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chef or place \"prefab\": \"chef\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chef"]
+}

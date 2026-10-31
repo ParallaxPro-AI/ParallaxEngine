@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lane_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.049, 6.1233, 3.3049],
+      "offset": [0.0055, 3.0583, 0.0344]
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{ "name": "Dust Bowl", "scene": "dust_bowl", "waves": ["w03", "w04", "w05", "w06"], "hp_mul": 1.1, "damage_mul": 1.05, "reward": "apcr_shell", "next": "frostline" }

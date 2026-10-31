@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_gold_pile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.54, 0.14, 0.47],
+      "offset": [0, 0.07, -0.015]
+    }
+  }
+}

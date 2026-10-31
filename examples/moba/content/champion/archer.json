@@ -1,0 +1,18 @@
+{
+  "name": "Longmarch",
+  "role": "Marksman",
+  "passive_name": "Steady Draw",
+  "model": "models/champ_archer",
+  "scale": 0.99,
+  "color": "#4dc773",
+  "role_icon": "bow",
+  "crest": "M20 10 L29 21 H23 V34 H17 V21 H11 Z",
+  "clips": {
+    "idle": "clips/stand_idle", "run": "clips/run_cycle", "attack": "clips/bow_shot",
+    "cast": "clips/cast_forward", "recall": "clips/recall_channel", "death": "clips/human_fall"
+  },
+  "bolt": "vfx/auto_attack",
+  "stats": { "max_health": 470, "max_mana": 210, "mana_regen": 5, "damage": 34, "attack_range": 11, "attack_interval": 1.0, "move_speed": 8.4 },
+  "passive": { "attack_range": 1.5, "attack_interval": -0.12 },
+  "abilities": ["splinter_shot", "hunters_mark", "vault_back", "longshot"]
+}

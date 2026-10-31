@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kart_racer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.53, 1.265, 2.268],
+      "offset": [0, 0.6325, 0.031]
+    }
+  }
+}

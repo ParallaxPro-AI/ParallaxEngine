@@ -1,0 +1,14 @@
+{
+  "id": "barricade",
+  "summary": "A wheeled portable military barricade: a steel skid frame that rolls on two rear wheels and stands on two… joints wheel_l, wheel_r, leg_l, leg_r; options fortification.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.barricade or place \"prefab\": \"barricade\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:barricade"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "hit_radius": 0.18,
+  "graze_radius": 0.72,
+  "touch_radius": 0.6,
+  "spark_radius": 0.55,
+  "standard_scale": 0.95,
+  "field_half_width": 4.5,
+  "field_top": 8.5,
+  "escape_line": -9.0,
+  "cull_half_width": 6.0,
+  "cull_half_height": 9.5,
+  "spawn_first": 0.35,
+  "spawn_gap": 0.45
+}

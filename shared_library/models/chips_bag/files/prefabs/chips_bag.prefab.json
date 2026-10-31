@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chips_bag"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.164, 0.208, 0.076],
+      "offset": [0, 0.104, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/evidence_locker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.92, 1.95, 0.581],
+      "offset": [0, 0.975, 0.0155]
+    }
+  }
+}

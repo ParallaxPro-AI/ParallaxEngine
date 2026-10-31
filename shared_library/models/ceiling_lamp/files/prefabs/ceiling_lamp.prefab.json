@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ceiling_lamp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.37, 0.85, 0.37],
+      "offset": [0, 0.425, 0]
+    }
+  }
+}

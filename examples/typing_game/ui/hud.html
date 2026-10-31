@@ -1,0 +1,173 @@
+<!-- Keystrike HUD: the terminal stat bar (time or combo, WPM, accuracy, score, grade,
+     firewall shield pips with a critical danger state), the falling word chips by kind
+     (packet / cipher / breach) with the locked target's corner brackets and typed / next /
+     remaining letters, score pops, the outlined centre combo, the milestone stamp, the
+     threat ramp bar with cleared / breached / best, and on touch the 26-key QWERTY that
+     IS the controller (the next letter lit, the first letters of falling words ringed)
+     plus the pause plate. The
+     template's PP_ON_STATE script became bindings: one-shot animations (the wrong-key shake,
+     the combo bump, the stamp, the pops) run while a class is on, from the run times the
+     feedback system records. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .kh-top { position: absolute; z-index: 10; top: 0; left: 0; right: 0; height: var(--ks-topbar-h); display: flex; align-items: stretch; padding: 0 var(--ks-safe-r) 0 var(--ks-safe-l); background: linear-gradient(180deg, rgba(2,10,9,.94), rgba(2,10,9,.6)); border-bottom: 1px solid var(--ks-line); }
+  .kh-top::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--ks-teal), transparent); opacity: .45; }
+  .kh-cell { display: flex; flex-direction: column; justify-content: center; gap: 3px; padding: 0 var(--ks-cell-px); border-right: 1px solid var(--ks-line); }
+  .kh-c-time { border-left: 1px solid var(--ks-line); order: 1; }
+  .kh-c-combo { order: 0; }
+  .kh-c-wpm { order: 2; }
+  .kh-c-acc { order: 3; }
+  .kh-c-spacer { order: 4; flex: 1; }
+  .kh-c-score { order: 5; }
+  .kh-c-grade { order: 6; }
+  .kh-c-lives { order: 7; min-width: calc(var(--ks-pip) * 4 + var(--ks-pip-gap) * 3 + var(--ks-cell-px) * 2); }
+  .kh-lbl { display: flex; gap: .5em; font-size: var(--ks-fs-micro); font-weight: 500; letter-spacing: var(--ks-track-wide); text-transform: uppercase; color: var(--ks-muted); white-space: nowrap; }
+  .kh-val { font-size: var(--ks-fs-stat); font-weight: 700; line-height: 1; color: var(--ks-ink); white-space: nowrap; }
+  .kh-unit { font-size: .5em; font-weight: 500; color: var(--ks-muted); margin-left: .15em; }
+  .kh-c-score .kh-val { color: var(--ks-teal-pale); }
+  .kh-c-grade .kh-val, .kh-c-combo .kh-val { color: var(--ks-teal); text-shadow: var(--ks-text-glow); }
+  .kh-crit { display: none; }
+  .kh-pips { display: flex; gap: var(--ks-pip-gap); }
+  .kh-pip { display: block; width: var(--ks-pip); height: calc(var(--ks-pip) * 1.1); color: var(--ks-teal); filter: drop-shadow(0 0 4px rgba(92,242,200,.6)); }
+  .kh-pip svg { display: block; width: 100%; height: 100%; }
+  .kh-pip path { fill: currentColor; stroke: var(--ks-teal-pale); stroke-width: 1.2; }
+  .kh-pip.is-gone { color: transparent; filter: none; }
+  .kh-pip.is-gone path { stroke: var(--ks-faint); stroke-dasharray: 3 2; }
+  .kh.is-danger .kh-crit { display: inline; }
+  .kh.is-danger .kh-pip:not(.is-gone) { color: var(--ks-breach); filter: drop-shadow(0 0 6px rgba(255,90,106,.9)); }
+  .kh.is-danger .kh-pip:not(.is-gone) path { stroke: #ffc2c8; }
+  .kh.is-danger .kh-c-lives { animation: ks-danger 1s ease-in-out infinite; }
+  .kh.is-danger .kh-c-lives .kh-lbl { color: var(--ks-breach); }
+  .kh-vignette { position: absolute; inset: 0; z-index: 5; pointer-events: none; opacity: 0; box-shadow: inset 0 0 calc(var(--u) * 160) rgba(255,90,106,.4); }
+  .kh.is-danger .kh-vignette { animation: ks-vignette 1s ease-in-out infinite; }
+
+  .kh-field { position: absolute; z-index: 8; left: max(var(--ks-field-x), calc(50% - var(--u) * 520)); right: max(var(--ks-field-x), calc(50% - var(--u) * 520)); top: var(--ks-field-top); bottom: var(--ks-firewall-y); }
+  .kh-layer { position: absolute; inset: 0; }
+  .kh-chip { --k: var(--ks-packet); position: absolute; transform: translate(-50%, -50%); display: flex; align-items: center; gap: var(--ks-chip-gap); padding: var(--ks-chip-py) var(--ks-chip-px); font-size: var(--ks-fs-chip); font-weight: 600; line-height: 1.1; letter-spacing: .03em; white-space: nowrap; color: var(--k); background: rgba(2,12,11,.86); border: 1px solid color-mix(in srgb, var(--k) 42%, transparent); border-radius: var(--ks-r-1); box-shadow: 0 0 16px color-mix(in srgb, var(--k) 16%, transparent), inset 0 0 10px color-mix(in srgb, var(--k) 7%, transparent); text-shadow: 0 0 8px color-mix(in srgb, var(--k) 50%, transparent); transition: top 60ms linear; }
+  .kh-chip::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: 1px; height: var(--ks-trail); background: linear-gradient(0deg, color-mix(in srgb, var(--k) 55%, transparent), transparent); }
+  .kh-chip.k-cipher { --k: var(--ks-cipher); }
+  .kh-chip.k-breach { --k: var(--ks-breach); }
+  .kh-chip.k-breach::before { width: 2px; height: calc(var(--ks-trail) * 1.8); }
+  .kh-kind { flex: none; width: .34em; height: .34em; background: var(--k); box-shadow: 0 0 6px var(--k); }
+  .kh-chip.k-cipher .kh-kind { transform: rotate(45deg); }
+  .kh-chip.k-breach .kh-kind { width: .5em; height: .42em; clip-path: polygon(0 0, 100% 0, 50% 100%); box-shadow: none; }
+  .kh-w { display: flex; }
+  .kh-done { color: var(--ks-teal-dim); opacity: .6; text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: rgba(92,242,200,.75); text-shadow: none; }
+  .kh-next { color: var(--ks-on-accent); background: var(--ks-teal); border-radius: 1px; text-shadow: none; box-shadow: 0 0 12px rgba(92,242,200,.85); animation: ks-next 1.1s ease-in-out infinite; }
+  .kh-chip.is-target { z-index: 2; border-color: var(--ks-teal); background: rgba(4,30,26,.94); box-shadow: 0 0 0 1px rgba(92,242,200,.22), 0 0 26px rgba(92,242,200,.38); }
+  .kh-chip.is-target::before { background: linear-gradient(0deg, rgba(92,242,200,.6), transparent); }
+  .kh-ring { position: absolute; inset: calc(var(--ks-ring-off) * -1); pointer-events: none; --c: var(--ks-teal); --l: 10px; --t: 2px; background: linear-gradient(var(--c),var(--c)) top left/var(--l) var(--t), linear-gradient(var(--c),var(--c)) top left/var(--t) var(--l), linear-gradient(var(--c),var(--c)) top right/var(--l) var(--t), linear-gradient(var(--c),var(--c)) top right/var(--t) var(--l), linear-gradient(var(--c),var(--c)) bottom left/var(--l) var(--t), linear-gradient(var(--c),var(--c)) bottom left/var(--t) var(--l), linear-gradient(var(--c),var(--c)) bottom right/var(--l) var(--t), linear-gradient(var(--c),var(--c)) bottom right/var(--t) var(--l); background-repeat: no-repeat; filter: drop-shadow(0 0 4px var(--ks-teal)); animation: ks-lock 1.4s ease-in-out infinite; }
+  .kh-lock { position: absolute; left: calc(var(--ks-ring-off) * -1); bottom: calc(100% + var(--ks-ring-off) + 3px); padding: 1px 5px; font-size: var(--ks-fs-micro); font-weight: 700; letter-spacing: .18em; text-transform: uppercase; line-height: 1.3; color: var(--ks-on-accent); background: var(--ks-teal); text-shadow: none; }
+  .kh-chip.is-err { animation: kh-shake 120ms linear; }
+  .kh-chip.is-err .kh-next { background: var(--ks-breach); box-shadow: 0 0 14px rgba(255,90,106,.9); }
+  @keyframes kh-shake { 0%, 100% { translate: 0 0; } 25% { translate: -5px 0; } 75% { translate: 5px 0; } }
+
+  .kh-pop { --k: var(--ks-packet); position: absolute; z-index: 3; font-size: var(--ks-fs-pop); font-weight: 800; white-space: nowrap; color: var(--k); text-shadow: 0 0 10px color-mix(in srgb, var(--k) 75%, transparent); pointer-events: none; opacity: 0; }
+  .kh-pop.is-on { animation: kh-pop 900ms var(--ks-ease-out) forwards; }
+  .kh-pop.k-cipher { --k: var(--ks-cipher); }
+  .kh-pop.k-breach { --k: var(--ks-breach); }
+  @keyframes kh-pop { 0% { opacity: 0; transform: translate(-50%, -30%) scale(.7); } 14% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); } 30% { transform: translate(-50%, -60%) scale(1); } 65% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -190%) scale(.95); } }
+
+  .kh-combo { position: absolute; left: 50%; top: 42%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; pointer-events: none; opacity: 0; transition: opacity var(--ks-dur) var(--ks-ease-out); }
+  .kh-combo.is-on { opacity: 1; }
+  .kh-combo-n { display: block; font-family: var(--ks-font-display); font-size: var(--ks-fs-combo); font-weight: 700; line-height: .85; color: rgba(92,242,200,.12); -webkit-text-stroke: 1.5px rgba(92,242,200,.5); text-shadow: 0 0 40px rgba(92,242,200,.25); }
+  .kh-combo-n.is-bump { animation: kh-bump 260ms var(--ks-ease-out); }
+  @keyframes kh-bump { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.08); } }
+  .kh-combo-l { font-size: var(--ks-fs-small); font-weight: 600; letter-spacing: .6em; text-transform: uppercase; color: var(--ks-teal); opacity: .75; margin-right: -.6em; }
+
+  .kh-notice { position: absolute; z-index: 4; left: 50%; top: 14%; transform: translate(-50%, -50%); padding: .12em .6em; font-family: var(--ks-font-display); font-size: var(--ks-fs-notice); font-weight: 700; letter-spacing: .12em; white-space: nowrap; color: var(--ks-teal-pale); background: rgba(4,24,21,.88); border: 2px solid var(--ks-teal); box-shadow: var(--ks-glow-md); text-shadow: -2px 0 var(--ks-magenta), 2px 0 var(--ks-packet); opacity: 0; pointer-events: none; }
+  .kh-notice.is-play { animation: kh-stamp 2.2s linear forwards; }
+  @keyframes kh-stamp { 0% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); } 8% { opacity: 1; transform: translate(-50%, -50%) scale(.94); clip-path: inset(38% 0 30% 0); } 11% { transform: translate(calc(-50% - 8px), -50%) scale(1); clip-path: inset(0 0 58% 0); } 14% { transform: translate(calc(-50% + 6px), -50%); clip-path: inset(62% 0 0 0); } 16% { transform: translate(-50%, -50%); clip-path: inset(-10px); } 80% { opacity: 1; transform: translate(-50%, -50%); } 100% { opacity: 0; transform: translate(-50%, -80%); clip-path: inset(-10px); } }
+
+  .kh-bottom { position: absolute; z-index: 10; left: var(--ks-safe-l); right: var(--ks-safe-r); bottom: var(--ks-bottom-y); display: flex; flex-direction: column; gap: calc(var(--u) * 10); font-size: var(--ks-fs-small); color: var(--ks-muted); }
+  .kh-threat { display: flex; align-items: center; gap: var(--ks-sp-3); flex: 1; }
+  .kh-threat-l { font-size: var(--ks-fs-micro); font-weight: 600; letter-spacing: var(--ks-track-wide); text-transform: uppercase; color: var(--ks-muted); }
+  .kh-bar { position: relative; flex: 1; height: var(--ks-threat-h); background: rgba(92,242,200,.07); border: 1px solid var(--ks-line); }
+  .kh-fill { position: absolute; inset: 0; background: linear-gradient(90deg, var(--ks-teal), var(--ks-cipher) 70%, var(--ks-breach)); clip-path: inset(0 calc(100% - var(--v, 0%)) 0 0); filter: drop-shadow(0 0 6px rgba(255,224,138,.5)); transition: clip-path var(--ks-dur-slow) linear; }
+  .kh-bar::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent 0 10px, var(--ks-bg) 10px 12px); }
+  .kh-threat-v { font-weight: 700; color: var(--ks-cipher); min-width: 3.2em; text-align: right; }
+  .kh-under { display: flex; justify-content: space-between; gap: var(--ks-sp-4); white-space: nowrap; }
+  .kh-under b { color: var(--ks-ink-2); font-weight: 700; }
+  .kh-under b.bad { color: var(--ks-breach); }
+  .kh-sep { color: var(--ks-faint); margin: 0 .4em; }
+
+  .kh-kb { display: none; }
+  .kh-pause { display: none; }
+
+  @media (pointer: coarse) {
+    .kh-top { padding-right: calc(var(--ks-safe-r) + 52px); }
+    .kh-c-time { display: none; }
+    .kh-c-combo { border-left: 1px solid var(--ks-line); }
+    .kh-c-spacer { order: 6; border-right: 1px solid var(--ks-line); }
+    .kh-c-score { order: 4; }
+    .kh-c-grade { order: 5; }
+    .kh-vignette { box-shadow: inset 0 0 70px rgba(255,90,106,.45); }
+    .kh-ring { --l: 7px; --t: 1.5px; }
+    .kh-combo { display: none; }
+    .kh-field { left: var(--ks-field-x); right: var(--ks-field-x); }
+    .kh-notice { top: 6%; border-width: 1px; text-shadow: -1px 0 var(--ks-magenta), 1px 0 var(--ks-packet); }
+    .kh-bottom { flex-direction: row; align-items: center; gap: var(--ks-sp-4); }
+    .kh-bar::after { background: repeating-linear-gradient(90deg, transparent 0 6px, var(--ks-bg) 6px 8px); }
+
+    .kh-kb { position: absolute; z-index: 12; left: 0; right: 0; bottom: 0; height: var(--ks-kb-h); display: flex; flex-direction: column; gap: var(--ks-key-gap); padding: var(--ks-kb-pt) var(--ks-safe-r) var(--ks-safe-b) var(--ks-safe-l); background: linear-gradient(180deg, rgba(3,14,13,.95), rgba(2,9,8,.99)); border-top: 1px solid var(--ks-line-2); pointer-events: auto; }
+    .kh-kb::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 1px; background: linear-gradient(90deg, transparent, var(--ks-teal), transparent); opacity: .5; }
+    .kh-row { display: grid; grid-template-columns: repeat(20, minmax(0, 1fr)); }
+    .kh-row > .kh-key { grid-column: span 2; }
+    .kh-row-2 > .kh-key:first-of-type { grid-column: 2 / span 2; }
+    .kh-row-3 > .kh-key:first-of-type { grid-column: 4 / span 2; }
+    .ks-root .kh-key { position: relative; height: var(--ks-key-h); min-height: 0; min-width: 0; margin: 0 calc(var(--ks-key-gap) / 2); display: grid; place-items: center; font-size: var(--ks-fs-key); font-weight: 600; color: var(--ks-ink-2); background: linear-gradient(180deg, #0b2724, #071a18); border: 1px solid rgba(92,242,200,.2); border-radius: var(--ks-r-2); box-shadow: var(--ks-shadow-key); transition: transform 60ms, background 60ms; }
+    .ks-root .kh-key.is-start { color: var(--ks-teal); border-color: var(--ks-teal); box-shadow: 0 0 10px rgba(92,242,200,.35), inset 0 0 10px rgba(92,242,200,.16); }
+    .ks-root .kh-key.is-next { color: var(--ks-on-accent); font-weight: 800; background: var(--ks-teal); border-color: var(--ks-teal-pale); box-shadow: 0 0 18px rgba(92,242,200,.7), inset 0 0 0 1px rgba(255,255,255,.35); animation: ks-next 1.1s ease-in-out infinite; }
+    .ks-root .kh-key:active { transform: translateY(2px); color: var(--ks-teal-pale); background: #031210; border-color: var(--ks-teal-dim); box-shadow: inset 0 2px 6px rgba(0,0,0,.65), 0 0 0 1px rgba(92,242,200,.15); animation: none; }
+
+    .ks-root .kh-pause { position: absolute; z-index: 40; top: calc(var(--ks-safe-t) + 2px); right: calc(var(--ks-safe-r) - 2px); width: 44px; height: 44px; display: grid; place-items: center; pointer-events: auto; }
+    .kh-pause-plate { width: 40px; height: 36px; display: grid; place-items: center; color: var(--ks-ink-2); background: rgba(7,26,24,.88); border: 1px solid rgba(92,242,200,.45); border-radius: var(--ks-r-2); box-shadow: 0 0 10px rgba(92,242,200,.25); transition: transform 80ms, background 80ms; }
+    .kh-pause-plate svg { width: 18px; height: 18px; display: block; }
+    .ks-root .kh-pause:active .kh-pause-plate { background: #031210; color: var(--ks-teal-pale); border-color: var(--ks-teal-dim); box-shadow: 0 0 14px rgba(92,242,200,.6); transform: translateY(2px) scale(.96); }
+  }
+</style>
+<div class="ks-root ks-stage kh" data-class-is-danger="danger">
+  <div class="kh-vignette" aria-hidden="true"></div>
+  <header class="kh-top" aria-label="Run stats">
+    <div class="kh-cell kh-c-combo ks-touch"><span class="kh-lbl" data-text="combo"></span><span class="kh-val" data-bind="combo"></span></div>
+    <div class="kh-cell kh-c-time ks-desk"><span class="kh-lbl" data-text="time"></span><span class="kh-val" data-bind="time" data-format="time"></span></div>
+    <div class="kh-cell kh-c-wpm"><span class="kh-lbl" data-text="wpm"></span><span class="kh-val" data-bind="wpm"></span></div>
+    <div class="kh-cell kh-c-acc"><span class="kh-lbl"><span class="ks-desk" data-text="accuracy"></span><span class="ks-touch" data-text="acc"></span></span><span class="kh-val"><span data-bind="accuracy"></span><span class="kh-unit">%</span></span></div>
+    <div class="kh-cell kh-c-spacer"></div>
+    <div class="kh-cell kh-c-score"><span class="kh-lbl" data-text="score"></span><span class="kh-val" data-bind="score"></span></div>
+    <div class="kh-cell kh-c-grade"><span class="kh-lbl" data-text="grade"></span><span class="kh-val" data-bind="grade"></span></div>
+    <div class="kh-cell kh-c-lives"><span class="kh-lbl"><span data-text="firewall"></span><span class="kh-crit">· <span data-text="critical"></span></span></span>
+      <div class="kh-pips" data-each="pips"><template>
+        <i class="kh-pip" data-class-is-gone="gone"><svg viewBox="0 0 20 22" aria-hidden="true"><path d="M10 1.5 18.5 4.6V11c0 4.6-3.5 8-8.5 9.5C5 19 1.5 15.6 1.5 11V4.6Z"/></svg></i>
+      </template></div>
+    </div>
+  </header>
+
+  <section class="kh-field" aria-label="Word field">
+    <div class="kh-combo" data-class-is-on="show_combo"><span class="kh-combo-n" data-class-is-bump="combo_bump" data-bind="combo"></span><span class="kh-combo-l" data-text="combo"></span></div>
+    <div class="kh-notice" role="status" data-class-is-play="notice_on" data-bind="notice"></div>
+    <div class="kh-layer" data-each="words"><template>
+      <div class="kh-chip" data-class-k-cipher="cipher" data-class-k-breach="breach" data-class-is-target="target" data-class-is-err="error" data-style-left="x" data-style-top="y">
+        <span class="kh-ring" data-show="target"></span><span class="kh-lock" data-show="target" data-text="lock"></span>
+        <i class="kh-kind"></i><span class="kh-w"><span data-hide="target" data-bind="text"></span><span class="kh-done" data-show="target" data-bind="done"></span><span class="kh-next" data-show="target" data-bind="next"></span><span class="kh-rest" data-show="target" data-bind="rest"></span></span>
+      </div>
+    </template></div>
+    <div class="kh-layer" data-each="pops"><template>
+      <span class="kh-pop" data-class-is-on="on" data-class-k-cipher="cipher" data-class-k-breach="breach" data-style-left="x" data-style-top="y" data-bind="points"></span>
+    </template></div>
+  </section>
+
+  <footer class="kh-bottom">
+    <div class="kh-threat"><span class="kh-threat-l" data-text="threat"></span><div class="kh-bar" data-style---v="threat_width"><i class="kh-fill"></i></div><span class="kh-threat-v" data-bind="threat" data-format="percent"></span></div>
+    <div class="kh-under"><span><b data-bind="cleared"></b> <span data-text="cleared"></span><span class="kh-sep">·</span><b class="bad" data-bind="breached"></b> <span data-text="breached_lower"></span></span><span><span data-text="best"></span> <b data-bind="best"></b></span></div>
+  </footer>
+
+  <nav class="kh-kb ks-touch" aria-label="On-screen keyboard">
+    <div class="kh-row kh-row-1" data-each="keys_1"><template><button class="kh-key" data-action="press" data-class-is-next="next" data-class-is-start="start" data-bind="key"></button></template></div>
+    <div class="kh-row kh-row-2" data-each="keys_2"><template><button class="kh-key" data-action="press" data-class-is-next="next" data-class-is-start="start" data-bind="key"></button></template></div>
+    <div class="kh-row kh-row-3" data-each="keys_3"><template><button class="kh-key" data-action="press" data-class-is-next="next" data-class-is-start="start" data-bind="key"></button></template></div>
+  </nav>
+
+  <button class="kh-pause ks-touch" data-action="pause" aria-label="Pause"><span class="kh-pause-plate"><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3 4.5h12M3 9h12M3 13.5h12" stroke="currentColor" stroke-width="2"/></svg></span></button>
+  <div class="ks-crt" aria-hidden="true"></div>
+</div>

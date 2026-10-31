@@ -1,0 +1,27 @@
+{
+  "start": 0.5,
+  "lowest": 0.1,
+  "highest": 0.95,
+  "drift_per_minute": 0.04,
+  "smooth_seconds": 2.5,
+  "on_caught": -0.14,
+  "on_stalker_eaten": 0.02,
+  "on_fast_clear": 0.12,
+  "on_slow_clear": -0.06,
+  "fast_clear_seconds": 90,
+  "slow_clear_seconds": 170,
+  "stalker_speed": {
+    "gentlest": 0.9,
+    "hardest": 1.1
+  },
+  "fright_seconds": {
+    "gentlest": 1.25,
+    "hardest": 0.75
+  },
+  "scatter_seconds": {
+    "gentlest": 1.3,
+    "hardest": 0.7
+  },
+  "eased_below": 0.38,
+  "hot_above": 0.62
+}

@@ -1,0 +1,1 @@
+{"extends": "effect/explosion", "burst": 18, "max": 24, "lifetime": [0.2, 0.55], "speed": [1.8, 5], "size": [0.25, 0.65], "size_end": 0.055, "color": "#ffa630", "color_end": "#59332100", "radius": 0.9, "children": [], "shake": null, "haze": null, "light": null}

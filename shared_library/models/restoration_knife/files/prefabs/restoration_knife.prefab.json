@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/restoration_knife"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0366, 0.0151, 0.3109],
+      "offset": [0, 0.0074, 0.0056]
+    }
+  }
+}

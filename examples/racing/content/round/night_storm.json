@@ -1,0 +1,7 @@
+{
+  "name": "Night Storm",
+  "blurb": "Storm, at night, on the sprint circuit. The road is glass.",
+  "conditions": "Storm · Night",
+  "number": 3, "track": "terrain_sprint", "laps": 3, "opponents": 3,
+  "weather": "storm", "time_of_day": "night", "purse_scale": 1.35, "points_scale": 1
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://parallaxpro.ai/docs/engine/contracts/test_report.schema.json",
+  "title": "parallax test --json",
+  "description": "stdout of `parallax test <project> --json [--observe] [--filter TEXT] [--timeout SECONDS]`. Exit code 0 when ok, 1 otherwise, 2 on bad usage (then stdout is not JSON).",
+  "type": "object",
+  "required": ["projectDir", "diagnostics", "built", "results", "summary", "ok"],
+  "additionalProperties": false,
+  "properties": {
+    "projectDir": { "type": "string" },
+    "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" }, "description": "Build/check diagnostics outside tests/, and run-level problems (PP9540 no tests, PP9543 timeout outside a test, PP9544 crash)." },
+    "built": { "type": "boolean", "description": "The build had no errors, so tests ran." },
+    "results": { "type": "array", "items": { "$ref": "#/$defs/result" } },
+    "summary": {
+      "type": "object", "required": ["total", "passed", "failed", "errors"], "additionalProperties": false,
+      "properties": {
+        "total": { "type": "integer", "minimum": 0 }, "passed": { "type": "integer", "minimum": 0 },
+        "failed": { "type": "integer", "minimum": 0 }, "errors": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "ok": { "type": "boolean", "description": "Built, every test passed, no error diagnostics." }
+  },
+  "$defs": {
+    "diagnostic": {
+      "type": "object",
+      "required": ["code", "severity", "message", "docs"],
+      "additionalProperties": false,
+      "properties": {
+        "code": { "type": "string" },
+        "severity": { "enum": ["error", "warning"] },
+        "message": { "type": "string" },
+        "fix": { "type": "string" },
+        "path": { "type": "string" },
+        "pointer": { "type": "string" },
+        "line": { "type": "integer", "minimum": 1 },
+        "docs": { "type": "string" }
+      }
+    },
+    "frame": {
+      "type": "object",
+      "required": ["source", "compiled", "column"],
+      "additionalProperties": false,
+      "properties": {
+        "source": { "type": "string", "description": "Project path of the .py file." },
+        "line": { "type": "integer", "minimum": 1 },
+        "compiled": { "type": "string" },
+        "compiledLine": { "type": "integer", "minimum": 1 },
+        "column": { "type": "integer", "minimum": 0 },
+        "code": { "type": "string" }
+      }
+    },
+    "result": {
+      "type": "object",
+      "required": ["id", "file", "name", "title", "kind", "status", "ms", "diagnostics", "traceback", "output", "warnings"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "description": "tests/test_x.py::test_y (the file alone for kind module)." },
+        "file": { "type": "string" },
+        "name": { "type": "string" },
+        "title": { "type": "string" },
+        "kind": { "enum": ["playtest", "test", "module"] },
+        "status": { "enum": ["passed", "failed", "error"], "description": "failed: an assertion or a timed-out wait (PP3444/PP3445/PP3452); error: the test or the game raised." },
+        "ms": { "type": "integer", "minimum": 0 },
+        "diagnostics": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+        "traceback": { "type": "array", "items": { "$ref": "#/$defs/frame" }, "description": "Outermost call first, like Python." },
+        "output": { "type": "string", "description": "Everything print()ed by the test and the game." },
+        "warnings": { "type": "array", "items": { "$ref": "#/$defs/diagnostic" } },
+        "observation": {
+          "description": "With --observe, playtests only: observation.schema.json of the game at the test's end, or null when no game was started.",
+          "anyOf": [{ "type": "null" }, { "type": "object" }]
+        }
+      }
+    }
+  }
+}

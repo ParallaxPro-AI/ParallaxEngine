@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garbage_truck_side_loader"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 12500
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.255,
+        3.685,
+        9.585
+      ],
+      "offset": [
+        0.2225,
+        1.8425,
+        0.1375
+      ]
+    },
+    "vehicle": {
+      "max_speed": 19,
+      "steering": 32
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0.2225,
+        1.8425,
+        0.1375
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "checkpoint_post",
+  "summary": "A military vehicle checkpoint: a 1.6 m olive-drab sentry booth (moulded walls with rounded corners and a slig… joints booth_door, arm; sockets sentry, lane_stop, arm_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.checkpoint_post or place \"prefab\": \"checkpoint_post\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:checkpoint_post"]
+}

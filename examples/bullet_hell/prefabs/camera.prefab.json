@@ -1,0 +1,5 @@
+{
+  "components": {
+    "camera": { "mode": "orthographic", "fit": [[-4.8, -8], [4.8, 8]], "background": "#040805" }
+  }
+}

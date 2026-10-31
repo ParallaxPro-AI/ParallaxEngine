@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/steam_pan"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.256, 0.1331, 0.2116],
+      "offset": [0, 0.0665, 0.0138]
+    }
+  }
+}

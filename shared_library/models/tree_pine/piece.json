@@ -1,0 +1,10 @@
+{
+  "id": "tree_pine",
+  "summary": "A tall evergreen conifer in the classic spruce/fir \"pine tree\" form: a straight, slowly tapering trunk with a… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_pine or place \"prefab\": \"tree_pine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_pine"]
+}

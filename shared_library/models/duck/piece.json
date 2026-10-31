@@ -1,0 +1,10 @@
+{
+  "id": "duck",
+  "summary": "A mallard duck on the engine's canonical humanoid_17 rig, so the shared humanoid clip library retargets onto… options head, breast, body, bill, markings; sockets head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.duck or place \"prefab\": \"duck\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:duck"]
+}

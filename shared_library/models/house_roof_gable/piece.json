@@ -1,0 +1,10 @@
+{
+  "id": "house_roof_gable",
+  "summary": "A 35-degree pitched gable roof module for the HOUSE modular kit, covering one 3 x 3 m module with the ridge a… options end_left, end_right, slate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_roof_gable or place \"prefab\": \"house_roof_gable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_roof_gable"]
+}

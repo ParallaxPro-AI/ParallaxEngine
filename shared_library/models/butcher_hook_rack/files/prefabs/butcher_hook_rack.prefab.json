@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/butcher_hook_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.32, 2.1904, 0.88],
+      "offset": [0, 1.0952, 0]
+    }
+  }
+}

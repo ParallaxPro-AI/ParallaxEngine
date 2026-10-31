@@ -1,0 +1,10 @@
+{
+  "id": "king",
+  "summary": "A rigged medieval-fantasy king on the canonical 17-bone humanoid rig (forked from `civilian`): floor-length v… options skin, hair, robe, cape, headwear; sockets eye_point, grip_r, grip_l, sling_back, pack_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.king or place \"prefab\": \"king\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:king"]
+}

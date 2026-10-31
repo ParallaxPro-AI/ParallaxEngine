@@ -1,0 +1,21 @@
+{
+  "search_depth": 4,
+  "node_budget": 250000,
+  "heuristic": {
+    "centre": 4,
+    "open_three": 8,
+    "open_two": 3,
+    "threat": -9
+  },
+  "think_seconds": 0.75,
+  "fall_seconds": 0.22,
+  "lane_y": 6.6,
+  "aim_bottom": -0.8,
+  "aim_top": 7.0,
+  "sounds": {
+    "drop": "https://r2.parallaxpro.ai/assets/audio_sfx/55/a1/55a15cba3be43966ee2191cd60657bae620d9e32efa75e715f17e365b7287da0.mp3",
+    "connect": "https://r2.parallaxpro.ai/assets/audio_sfx/cd/d8/cdd8994befe079e9e1283dd26e4bc782bf08d3dd0bdf2ea03fa804c2d3aced9e.mp3",
+    "win": "https://r2.parallaxpro.ai/assets/audio_sfx/02/5f/025f0a82f071d659bb62b56f0bf0edcda958ecea1e502f0ff34e7f26dfa46a47.mp3",
+    "lose": "https://r2.parallaxpro.ai/assets/audio_sfx/e3/1b/e31bfec90630155bcc6af541d1d14ae8202c435c52b42e6b6183fdb6ffb248b0.ogg"
+  }
+}

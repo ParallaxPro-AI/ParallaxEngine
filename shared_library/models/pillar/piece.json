@@ -1,0 +1,14 @@
+{
+  "id": "pillar",
+  "summary": "A modular architectural pillar / column: square plinth, round base drum, a 2.45 m shaft and a moulded… options style; sockets socket_top, socket_base.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.pillar or place \"prefab\": \"pillar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:pillar"
+  ]
+}

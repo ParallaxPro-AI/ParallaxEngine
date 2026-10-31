@@ -1,0 +1,10 @@
+{
+  "id": "hitching_post",
+  "summary": "A wild-west hitching rail: a peeled log rail strapped with iron saddles onto three hewn posts standing in sto… options trough, wood; sockets socket_hitch_0, socket_hitch_1, socket_hitch_2, socket_hitch_3.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hitching_post or place \"prefab\": \"hitching_post\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hitching_post"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "incense_burner_temple",
+  "summary": "A temple incense burner (xianglu), 1.2 m tall: a dark cast-bronze tripod cauldron with a rounded belly, raise… options finish, incense; sockets smoke.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.incense_burner_temple or place \"prefab\": \"incense_burner_temple\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:incense_burner_temple"]
+}

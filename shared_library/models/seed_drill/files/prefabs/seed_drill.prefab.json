@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/seed_drill"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.01, 1.7775, 2.612],
+      "offset": [0, 0.8848, 0.094]
+    }
+  }
+}

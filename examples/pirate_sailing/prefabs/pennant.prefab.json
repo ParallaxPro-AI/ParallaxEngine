@@ -1,0 +1,5 @@
+{
+  "components": {
+    "cloth": { "size": [1.8, 0.9], "cols": 12, "rows": 7, "pin": "left", "density": 0.25, "bend": 0.15, "damping": 0.25, "collide": false, "color": "#1b1714" }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/oyster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1045, 0.024, 0.0942],
+      "offset": [0.0037, 0.012, -0.0011]
+    }
+  }
+}

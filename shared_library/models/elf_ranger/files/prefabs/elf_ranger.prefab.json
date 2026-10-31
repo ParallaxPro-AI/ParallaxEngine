@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elf_ranger"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.882, 0.5465],
+      "offset": [0, 0.939, -0.1072]
+    }
+  }
+}

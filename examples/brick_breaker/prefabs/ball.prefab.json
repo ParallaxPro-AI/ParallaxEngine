@@ -1,0 +1,15 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.6, 0.6, 0.6], "color": "#ffffff" },
+    "rigidbody": { "kind": "dynamic", "continuous": true, "lock_rotation": true, "lock_axes": ["y"] },
+    "collider": { "shape": "sphere", "radius": 0.3, "friction": 0, "bounce": 1 }
+  },
+  "tags": ["orb"],
+  "behaviors": {
+    "orb": {
+      "base_speed": 9, "speed_step": 0.25, "max_speed": 20, "serve_delay": 2.2,
+      "launch_spread": 25, "english": 3.2, "min_climb": 0.32,
+      "rest_gap": 0.66, "lost_below": -7.7
+    }
+  }
+}

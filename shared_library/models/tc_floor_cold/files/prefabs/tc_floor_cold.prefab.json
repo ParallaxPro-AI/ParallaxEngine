@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_floor_cold"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 0.02, 8.4],
+      "offset": [0, 0.01, 0]
+    }
+  }
+}

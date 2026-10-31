@@ -1,0 +1,10 @@
+{
+  "id": "atm",
+  "summary": "A freestanding lobby ATM: dark steel casing with a lighter fascia console carrying a lit screen, side soft-ke… joints card_slot, keypad, cash_flap; sockets socket_cash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.atm or place \"prefab\": \"atm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:atm"]
+}

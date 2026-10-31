@@ -1,0 +1,16 @@
+{
+  "id": "sedan",
+  "summary": "A four-door family saloon: a lofted three-box body with real wheel arches, cut panel shut-lines round the… joints door_fl, door_fr, door_rl, door_rr, wheel_f_l_roll …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1 …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.sedan or place \"prefab\": \"sedan\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:sedan"
+  ]
+}

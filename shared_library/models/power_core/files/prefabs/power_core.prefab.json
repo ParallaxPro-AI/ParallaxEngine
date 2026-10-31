@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/power_core"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9348, 1.4588, 0.84],
+      "offset": [0, 0.7294, 0]
+    }
+  }
+}

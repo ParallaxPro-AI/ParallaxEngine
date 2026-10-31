@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rope_coil"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5049, 0.1051, 0.8005],
+      "offset": [0, 0.0504, -0.0002]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "park_fountain",
+  "summary": "A classic three-tier cast-stone park fountain: a 3.3 m round basin with a moulded coping holding a pool of wa… options stone, water; sockets socket_rim_front, socket_pool, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.park_fountain or place \"prefab\": \"park_fountain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:park_fountain"]
+}

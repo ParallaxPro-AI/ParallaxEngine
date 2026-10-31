@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/feed_sack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4971, 0.1702, 0.8138],
+      "offset": [0.0001, 0.0864, 0.0173]
+    }
+  }
+}

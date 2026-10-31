@@ -1,0 +1,10 @@
+{
+  "id": "crusher",
+  "summary": "A corridor crusher trap: a heavy welded steel frame (floor plate, top beam, two side posts, closed back) hous… joints crush_l, crush_r; sockets socket_crush.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crusher or place \"prefab\": \"crusher\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crusher"]
+}

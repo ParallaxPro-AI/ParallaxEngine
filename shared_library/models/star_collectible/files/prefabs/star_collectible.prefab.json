@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/star_collectible"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5341, 0.508, 0.242],
+      "offset": [0, 0.2492, 0]
+    }
+  }
+}

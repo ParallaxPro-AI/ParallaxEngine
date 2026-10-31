@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/accent_cabinet_curio"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.96, 1.72, 0.444],
+      "offset": [0, 0.86, 0.022]
+    }
+  }
+}

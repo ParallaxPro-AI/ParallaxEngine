@@ -1,0 +1,10 @@
+{
+  "id": "handgun",
+  "summary": "A semi-automatic pistol: polymer frame with a hollowed magazine well, a reciprocating steel slide with an eje… joints slide, trigger, hammer, magazine; options sight, suppressor, light, finish; sockets socket_muzzle, socket_grip, grip_r, grip_l, sight, muzzle, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.handgun or place \"prefab\": \"handgun\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:handgun"]
+}

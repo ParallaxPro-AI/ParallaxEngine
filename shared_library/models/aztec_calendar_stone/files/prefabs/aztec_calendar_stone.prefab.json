@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/aztec_calendar_stone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.58, 3.83, 1.6],
+      "offset": [0, 1.915, 0]
+    }
+  }
+}

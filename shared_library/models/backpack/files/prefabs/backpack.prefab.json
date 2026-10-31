@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/backpack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.344, 0.5085, 0.3106],
+      "offset": [0, 0.2527, -0.0043]
+    }
+  }
+}

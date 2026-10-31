@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/olive_press"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.71, 1.15, 1.94],
+      "offset": [0, 0.575, 0]
+    }
+  }
+}

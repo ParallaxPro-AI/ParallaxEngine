@@ -1,0 +1,4 @@
+{
+  "number": 3, "name": "Spore Fall", "act": 1, "guardian": "sporelet", "flight": "plunge", "count": 6,
+  "speed": 1.00, "amp": 2.4, "freq": 1.30, "fire_rate": 3.0, "hp_mul": 1.0, "drop_chance": 0.45
+}

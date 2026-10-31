@@ -1,0 +1,10 @@
+{
+  "id": "level_crossing",
+  "summary": "A road-rail level crossing built on a 12 m rail_track_straight section (gauge 1.435, rail-head top 0.40; join… joints barrier_a, barrier_b; options sleepers, lamps; sockets joint_a, joint_b, train_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.level_crossing or place \"prefab\": \"level_crossing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:level_crossing"]
+}

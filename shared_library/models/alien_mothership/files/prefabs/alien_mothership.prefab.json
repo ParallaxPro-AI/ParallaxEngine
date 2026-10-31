@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alien_mothership"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [79.0768, 25.0461, 61.5111],
+      "offset": [0, 12.523, -0.4445]
+    }
+  }
+}

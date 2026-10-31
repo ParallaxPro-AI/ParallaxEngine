@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/shelf", "cast_shadows": true }
+  }
+}

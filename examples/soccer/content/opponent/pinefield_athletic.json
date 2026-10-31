@@ -1,0 +1,8 @@
+{
+  "name": "Pinefield Athletic",
+  "stage": "Round of 16",
+  "scout_report": "Compact midfield. They crowd the middle - use the wings.",
+  "shirt": "#a0daaa", "kit": "green", "half_seconds": 80, "accuracy": 0.55,
+  "speed_mul": 0.95, "kick_mul": 0.95, "keeper_speed_mul": 0.95,
+  "press_radius": 20, "shot_range_bonus": 4
+}

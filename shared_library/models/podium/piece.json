@@ -1,0 +1,10 @@
+{
+  "id": "podium",
+  "summary": "A three-step winner's podium, 2.6 m wide: first (0.66 m) in the centre, second (0.52 m) to the audience's lef… options livery.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.podium or place \"prefab\": \"podium\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:podium"]
+}

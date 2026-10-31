@@ -1,0 +1,10 @@
+{
+  "id": "tennis_racket",
+  "summary": "A 0.685 m modern oversize tennis racket: a graphite hoop with a real 100 sq in elliptical head, a strung face…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tennis_racket or place \"prefab\": \"tennis_racket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tennis_racket"]
+}

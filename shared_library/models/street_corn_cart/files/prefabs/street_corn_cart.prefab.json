@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/street_corn_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7511, 2.2019, 1.4822],
+      "offset": [-0.0144, 1.1009, -0.08]
+    }
+  }
+}

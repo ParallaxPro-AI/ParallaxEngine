@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/banjo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3666, 0.9883, 0.136],
+      "offset": [0, 0.4941, -0.006]
+    }
+  }
+}

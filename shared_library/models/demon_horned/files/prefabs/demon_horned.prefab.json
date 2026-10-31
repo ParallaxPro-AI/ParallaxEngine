@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/demon_horned"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3122, 2.3981, 0.5939],
+      "offset": [0, 1.199, -0.09]
+    }
+  }
+}

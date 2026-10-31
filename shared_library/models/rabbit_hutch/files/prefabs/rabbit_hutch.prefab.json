@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rabbit_hutch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.57, 0.9691, 0.794],
+      "offset": [0, 0.4845, 0.0171]
+    }
+  }
+}

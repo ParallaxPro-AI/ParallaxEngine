@@ -1,0 +1,10 @@
+{
+  "id": "restoration_brush",
+  "summary": "A 0.19 m conservator's soft brush: a turned pale-wood handle, a rolled nickel ferrule with two crimp rings, a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_brush or place \"prefab\": \"restoration_brush\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_brush"]
+}

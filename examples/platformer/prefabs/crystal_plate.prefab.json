@@ -1,0 +1,16 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [1.5, 0.12, 1.5], "color": [0.36, 0.42, 0.7] },
+    "collider": { "shape": "box", "size": [3.2, 2, 3.2], "offset": [0, 1, 0], "trigger": true },
+    "crystal_plate": {}
+  },
+  "children": [
+    {
+      "name": "glow",
+      "at": [0, 0.06, 0],
+      "components": {
+        "shape": { "kind": "cylinder", "size": [1.15, 0.16, 1.15], "color": [0.55, 0.9, 1], "emissive": [0.55, 0.9, 1], "cast_shadows": false }
+      }
+    }
+  ]
+}

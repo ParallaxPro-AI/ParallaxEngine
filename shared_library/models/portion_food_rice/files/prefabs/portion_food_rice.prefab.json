@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_food_rice"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0851, 0.0295, 0.2156],
+      "offset": [0.0013, 0.0147, 0.0065]
+    }
+  }
+}

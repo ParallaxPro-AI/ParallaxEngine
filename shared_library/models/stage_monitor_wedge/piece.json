@@ -1,0 +1,10 @@
+{
+  "id": "stage_monitor_wedge",
+  "summary": "A passive 12-inch floor wedge stage monitor: a black textured cabinet with rolled edges and a 41-degree slope… options finish; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stage_monitor_wedge or place \"prefab\": \"stage_monitor_wedge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stage_monitor_wedge"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "fish_swordfish",
+  "summary": "A swordfish, the big-game ocean catch: 2.6 m from sword tip to tail tips (a typical landed fish; adults reach… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip, bill_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_swordfish or place \"prefab\": \"fish_swordfish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_swordfish"]
+}

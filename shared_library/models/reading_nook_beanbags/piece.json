@@ -1,0 +1,10 @@
+{
+  "id": "reading_nook_beanbags",
+  "summary": "A classroom reading corner set on a 2 m round rug with braided bands: three child-size fabric bean bags (seat… options rug, layout; sockets seat_0, seat_1, seat_2, browser_top, seat_cushion_0, seat_cushion_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reading_nook_beanbags or place \"prefab\": \"reading_nook_beanbags\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reading_nook_beanbags"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_cream_tub_display"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.31, 1.222, 0.9224],
+      "offset": [0, 0.609, 0.0032]
+    }
+  }
+}

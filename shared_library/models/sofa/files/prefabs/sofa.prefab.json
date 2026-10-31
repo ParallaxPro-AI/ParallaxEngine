@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sofa"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5815, 0.85, 1.48],
+      "offset": [0.0008, 0.425, 0]
+    }
+  }
+}

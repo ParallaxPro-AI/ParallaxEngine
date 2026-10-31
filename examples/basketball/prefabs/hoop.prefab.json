@@ -1,0 +1,13 @@
+{
+  "components": {
+    "shape": { "kind": "cylinder", "size": [1.2, 0.18, 1.2], "offset": [0, 3.05, 0], "color": "#f47326", "metallic": 0.4, "roughness": 0.5 },
+    "hoop": { "rim_height": 3.05 }
+  },
+  "children": [
+    { "at": [0, 2.5, 0], "components": { "shape": { "kind": "cylinder", "size": [1, 0.8, 1], "color": "#ffffff80" } } },
+    { "at": [-0.8, 3.5, 0], "rotation": [0, 90, 0], "components": { "shape": { "kind": "box", "size": [3, 1.8, 0.18], "color": "#f9f6ed" } } },
+    { "at": [-0.8, 2.25, 0], "components": {
+        "shape": { "kind": "cylinder", "size": [0.4, 4.5, 0.4], "color": "#333338", "metallic": 0.5 },
+        "collider": { "shape": "box", "size": [0.4, 4.5, 0.4] } } }
+  ]
+}

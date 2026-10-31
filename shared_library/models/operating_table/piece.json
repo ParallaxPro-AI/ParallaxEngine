@@ -1,0 +1,10 @@
+{
+  "id": "operating_table",
+  "summary": "A general-surgery operating table: a low stainless base with floor-lock pads, a telescoping central column, a… joints height, back, head, legs, arm_board_l, arm_board_r; options pads; sockets socket_patient, socket_surgeon_l, socket_surgeon_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.operating_table or place \"prefab\": \"operating_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:operating_table"]
+}

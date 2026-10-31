@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_overlay_cuffs"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.148, 0.076, 0.076],
+      "offset": [0, 1.02, -0.18]
+    }
+  }
+}

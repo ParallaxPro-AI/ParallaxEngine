@@ -1,0 +1,1 @@
+{ "name": "DOUBLE COINS", "prefab": "powerup_multiplier", "effect": "score_multiplier", "seconds": 10, "power": 2, "weight": 2, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/52/8e/528e7245a1b61c6fd94bcb8df1d747e6e9b76dce58a36e44be992cf9e09884f8.ogg", "volume": 0.5 }

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_spacesuit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.28, 0.65, 0.316],
+      "offset": [0, 1.253, 0.006]
+    }
+  }
+}

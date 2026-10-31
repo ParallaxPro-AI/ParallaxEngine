@@ -1,0 +1,10 @@
+{
+  "id": "soda_fountain",
+  "summary": "A countertop soda fountain: a brushed-stainless cabinet on rubber feet with a backlit red merchandiser carryi… joints lever_1, lever_2, lever_3, lever_4, lever_5, lever_6, …; options panel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.soda_fountain or place \"prefab\": \"soda_fountain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:soda_fountain"]
+}

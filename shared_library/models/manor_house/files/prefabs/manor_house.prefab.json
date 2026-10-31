@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/manor_house"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [21.625, 12.32, 12.9346],
+      "offset": [-0.2875, 6.16, 0.3173]
+    }
+  }
+}

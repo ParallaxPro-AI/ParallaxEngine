@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sliding_door"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.8, 2.2, 0.141],
+      "offset": [0, 1.1, 0.0105]
+    }
+  }
+}

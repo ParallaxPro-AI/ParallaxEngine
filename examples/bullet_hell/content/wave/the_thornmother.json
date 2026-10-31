@@ -1,0 +1,4 @@
+{
+  "number": 9, "name": "The Thornmother", "act": 3, "guardian": "thornmother", "flight": "sovereign", "count": 1,
+  "speed": 2.00, "amp": 3.1, "freq": 0.42, "fire_rate": 1.00, "hp_mul": 1.0, "drop_chance": 1.0
+}

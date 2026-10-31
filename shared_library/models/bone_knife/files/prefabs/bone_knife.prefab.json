@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bone_knife"
+    },
+    "viewmodel_item": {
+      "hip": [0.16, -0.32, 0.28],
+      "hip_turn": [-11.459156, -20.053523, -28.64789],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0383, 0.0346, 0.2459],
+      "offset": [0.0014, 0.0055, 0.1203]
+    }
+  }
+}

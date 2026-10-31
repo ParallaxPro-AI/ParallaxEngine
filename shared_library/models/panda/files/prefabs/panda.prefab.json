@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/panda"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.68, 1.0429, 1.7011],
+      "offset": [0, 0.5215, 0.1905]
+    }
+  }
+}

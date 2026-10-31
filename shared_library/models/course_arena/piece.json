@@ -1,0 +1,10 @@
+{
+  "id": "course_arena",
+  "summary": "Aquatic obstacle-racing arena with spectator terraces, pool basin, railings and pennants.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.course_arena or place \"prefab\": \"course_arena\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:course_arena"]
+}

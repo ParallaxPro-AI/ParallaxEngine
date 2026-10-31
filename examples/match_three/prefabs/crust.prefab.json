@@ -1,0 +1,7 @@
+{
+  "z": 4,
+  "components": {
+    "sprite": { "image": "images/crust", "size": [1.02, 1.02], "color": "#c7ebff" }
+  },
+  "behaviors": { "crust_look": { "thick_alpha": 0.92, "thin_alpha": 0.58 } }
+}

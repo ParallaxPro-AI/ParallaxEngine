@@ -1,0 +1,10 @@
+{
+  "id": "plastic_stool",
+  "summary": "A moulded plastic street-food stool, the kind stacked outside every hawker stall and night market: a rounded-… options colour; sockets seat_top, socket_stack.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.plastic_stool or place \"prefab\": \"plastic_stool\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:plastic_stool"]
+}

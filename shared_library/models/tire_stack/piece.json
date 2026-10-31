@@ -1,0 +1,10 @@
+{
+  "id": "tire_stack",
+  "summary": "A trackside tyre impact stack: ten road tyres laid flat and nested into three bolted columns, each column cap…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tire_stack or place \"prefab\": \"tire_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tire_stack"]
+}

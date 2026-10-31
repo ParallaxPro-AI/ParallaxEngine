@@ -1,0 +1,5 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.5, 1.1, 0.5], "offset": [0, 0.55, 0], "color": "#f3bc6c", "emissive": "#ffaa59", "emissive_strength": 4 }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/whiteboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.698, 1.869, 0.6],
+      "offset": [0, 0.9345, 0]
+    }
+  }
+}

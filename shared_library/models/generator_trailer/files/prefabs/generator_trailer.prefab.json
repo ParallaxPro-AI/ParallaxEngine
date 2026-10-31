@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/generator_trailer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.62, 2.399, 4.214],
+      "offset": [0, 1.1995, 0.027]
+    }
+  }
+}

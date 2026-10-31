@@ -1,0 +1,10 @@
+{
+  "id": "throwing_knife",
+  "summary": "A one-piece throwing knife, 0.24 m: a satin double-edged spear-point blade with a flat-ground diamond section… sockets tip, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.throwing_knife or place \"prefab\": \"throwing_knife\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:throwing_knife"]
+}

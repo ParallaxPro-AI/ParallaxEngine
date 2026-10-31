@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scepter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0662, 0.757, 0.0662],
+      "offset": [0, 0.3785, 0]
+    }
+  }
+}

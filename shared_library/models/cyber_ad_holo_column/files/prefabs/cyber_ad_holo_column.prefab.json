@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cyber_ad_holo_column"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.32, 4.61, 1.32],
+      "offset": [0, 2.305, 0]
+    }
+  }
+}

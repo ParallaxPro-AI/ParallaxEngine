@@ -1,0 +1,10 @@
+{
+  "id": "halberd",
+  "summary": "A 2.26 m halberd: a slightly oval ash shaft with an iron butt cap, a leather grip wrap and cord whipping, two… options head_finish, shaft_wood, tassel; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.halberd or place \"prefab\": \"halberd\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:halberd"]
+}

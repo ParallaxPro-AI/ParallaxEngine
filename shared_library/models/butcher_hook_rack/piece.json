@@ -1,0 +1,10 @@
+{
+  "id": "butcher_hook_rack",
+  "summary": "A freestanding butcher's hanging rail: two braced steel end frames carrying a flat-bar track with six trolley… joints hook_0, hook_1, hook_2, hook_3, hook_4, hook_5; options load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.butcher_hook_rack or place \"prefab\": \"butcher_hook_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:butcher_hook_rack"]
+}

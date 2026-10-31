@@ -1,0 +1,10 @@
+{
+  "id": "cricket_set",
+  "summary": "A cricket set: a regulation wicket (three 711 mm stumps spanning 228.6 mm with two turned bails in their groo… joints stump_l, stump_m, stump_r, bail_l, bail_r; options layout, ball, grip; sockets socket_wicket, socket_ball.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cricket_set or place \"prefab\": \"cricket_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cricket_set"]
+}

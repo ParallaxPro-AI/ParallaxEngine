@@ -1,0 +1,10 @@
+{
+  "id": "car_carrier",
+  "summary": "A rigid two-deck car transporter: the cab-over truck on a 10 m chassis with a lower deck of wheel tracks over… joints cab_tilt, door_l, door_r, upper_deck_rear, loading_ramp_l, loading_ramp_r, …; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_car_lower_0, socket_car_lower_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.car_carrier or place \"prefab\": \"car_carrier\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:car_carrier"]
+}

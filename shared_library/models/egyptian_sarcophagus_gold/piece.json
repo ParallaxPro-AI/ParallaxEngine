@@ -1,0 +1,10 @@
+{
+  "id": "egyptian_sarcophagus_gold",
+  "summary": "A gold anthropoid (mummiform) coffin of an Egyptian king, 1.9 m long: a body-shaped basin and lid with a neme… joints lid; options finish, inlay.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.egyptian_sarcophagus_gold or place \"prefab\": \"egyptian_sarcophagus_gold\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:egyptian_sarcophagus_gold"]
+}

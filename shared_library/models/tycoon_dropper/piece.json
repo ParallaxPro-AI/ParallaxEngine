@@ -1,0 +1,10 @@
+{
+  "id": "tycoon_dropper",
+  "summary": "A tycoon-game ore dropper: an orange machine housing on a four-legged steel stand, a wide feed hopper on top… joints gate; sockets socket_drop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tycoon_dropper or place \"prefab\": \"tycoon_dropper\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tycoon_dropper"]
+}

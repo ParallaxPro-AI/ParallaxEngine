@@ -1,0 +1,8 @@
+{
+  "components": {"shape": {"kind": "box", "size": [10, 5, 0.3], "color": "#0a0d14", "emissive": "#1a2236"}},
+  "children": [
+    {"at": [-3, -4.5, 0], "components": {"shape": {"kind": "cylinder", "size": [0.3, 5, 0.3], "color": "#333338"}}},
+    {"at": [3, -4.5, 0], "components": {"shape": {"kind": "cylinder", "size": [0.3, 5, 0.3], "color": "#333338"}}},
+    {"name": "screen", "at": [0, 0, 0.3], "components": {"screen": {"panel": "court_score", "size": [10, 5], "resolution": [1024, 512], "fps": 10, "interactive": false, "brightness": 1.2}}}
+  ]
+}

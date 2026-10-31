@@ -1,0 +1,10 @@
+{
+  "id": "mana_potion",
+  "summary": "A tall onion-bellied glass potion flask with a long slender neck, a pewter cap and a faceted crystal stopper… options liquid_colour, fill, fittings; sockets socket_grip, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mana_potion or place \"prefab\": \"mana_potion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mana_potion"]
+}

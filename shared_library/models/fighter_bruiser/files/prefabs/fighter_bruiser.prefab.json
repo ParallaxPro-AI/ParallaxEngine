@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fighter_bruiser"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7101, 2.0013, 0.3284],
+      "offset": [0, 1.0006, 0.0235]
+    }
+  }
+}

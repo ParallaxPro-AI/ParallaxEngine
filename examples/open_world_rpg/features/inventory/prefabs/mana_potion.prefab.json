@@ -1,0 +1,14 @@
+{
+  "extends": "health_potion",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/58/67/58672f363ec13147266602b4148356c19101dce7d3290514c80552946ba3e27c.glb"
+    },
+    "pickup": {
+      "items": [
+        "mana_potion"
+      ],
+      "xp": 5
+    }
+  }
+}

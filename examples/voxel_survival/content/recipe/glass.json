@@ -1,0 +1,3 @@
+{ "name": "Smelt Glass", "order": 16, "category": "build", "station": "furnace", "seconds": 10,
+  "inputs": [{ "item": "sand", "count": 3 }, { "item": "coal_ore", "count": 1 }],
+  "output": { "item": "glass", "count": 3 } }

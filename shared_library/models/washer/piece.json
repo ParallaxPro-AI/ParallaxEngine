@@ -1,0 +1,10 @@
+{
+  "id": "washer",
+  "summary": "A front-loading washing machine with a round glass door, a drum, and a sliding detergent drawer. joints door, drawer; sockets socket_drum.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.washer or place \"prefab\": \"washer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:washer"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/picnic_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.83, 0.762, 1.46],
+      "offset": [0, 0.379, 0]
+    }
+  }
+}

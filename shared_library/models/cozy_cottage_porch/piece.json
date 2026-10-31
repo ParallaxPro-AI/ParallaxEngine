@@ -1,0 +1,10 @@
+{
+  "id": "cozy_cottage_porch",
+  "summary": "A cosy cottage front porch vignette, 3.6 m wide and 1.9 m deep with the deck 0.48 m up (three 160 mm risers)… joints front_door, rocker_rock.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cozy_cottage_porch or place \"prefab\": \"cozy_cottage_porch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cozy_cottage_porch"]
+}

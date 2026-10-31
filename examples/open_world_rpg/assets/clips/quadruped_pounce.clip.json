@@ -1,0 +1,12 @@
+{
+  "rig": "quadruped", "duration": 0.62, "loop": false,
+  "events": [{"time":0.3,"name":"launch"}],
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":0},"pose":{"FL_UpperLeg":[0,0,0],"FL_LowerLeg":[0,0,0],"FR_UpperLeg":[0,0,0],"FR_LowerLeg":[0,0,0],"BL_UpperLeg":[0,0,0],"BL_LowerLeg":[0,0,0],"BR_UpperLeg":[0,0,0],"BR_LowerLeg":[0,0,0],"Spine":[0,0,0],"Spine2":[0,0,0],"Neck":[0,0,0],"Head":[0,0,0],"Tail1":[0,0,0],"Tail2":[0,0,0],"Tail3":[0,0,0]}},
+    {"time":0.22,"ease":"in_cubic","root":{"y":-0.06,"z":-0.02},"pose":{"FL_UpperLeg":[-30,0,0],"FL_LowerLeg":[52,0,0],"FR_UpperLeg":[-30,0,0],"FR_LowerLeg":[52,0,0],"BL_UpperLeg":[-64,0,0],"BL_LowerLeg":[94,0,0],"BR_UpperLeg":[-64,0,0],"BR_LowerLeg":[94,0,0],"Spine":[-12,0,0],"Spine2":[-8,0,0],"Neck":[10,0,0],"Head":[14,0,0],"Tail1":[10,0,0],"Tail2":[14,0,0],"Tail3":[0,0,0]}},
+    {"time":0.3,"ease":"step","root":{"y":-0.06,"z":-0.02},"pose":{"FL_UpperLeg":[-30,0,0],"FL_LowerLeg":[52,0,0],"FR_UpperLeg":[-30,0,0],"FR_LowerLeg":[52,0,0],"BL_UpperLeg":[-64,0,0],"BL_LowerLeg":[94,0,0],"BR_UpperLeg":[-64,0,0],"BR_LowerLeg":[94,0,0],"Spine":[-12,0,0],"Spine2":[-8,0,0],"Neck":[10,0,0],"Head":[14,0,0],"Tail1":[10,0,0],"Tail2":[14,0,0],"Tail3":[0,0,0]}},
+    {"time":0.37,"ease":"linear","root":{"y":-0.06,"z":-0.02},"pose":{"FL_UpperLeg":[-30,0,0],"FL_LowerLeg":[52,0,0],"FR_UpperLeg":[-30,0,0],"FR_LowerLeg":[52,0,0],"BL_UpperLeg":[-64,0,0],"BL_LowerLeg":[94,0,0],"BR_UpperLeg":[-64,0,0],"BR_LowerLeg":[94,0,0],"Spine":[-12,0,0],"Spine2":[-8,0,0],"Neck":[10,0,0],"Head":[14,0,0],"Tail1":[10,0,0],"Tail2":[14,0,0],"Tail3":[0,0,0]}},
+    {"time":0.4,"ease":"linear","root":{"y":0.02,"z":0.14},"pose":{"FL_UpperLeg":[32,0,0],"FL_LowerLeg":[-26,0,0],"FR_UpperLeg":[32,0,0],"FR_LowerLeg":[-26,0,0],"BL_UpperLeg":[42,0,0],"BL_LowerLeg":[-58,0,0],"BR_UpperLeg":[42,0,0],"BR_LowerLeg":[-58,0,0],"Spine":[14,0,0],"Spine2":[8,0,0],"Neck":[-6,0,0],"Head":[-10,0,0],"Tail1":[4,0,0],"Tail2":[-8,0,0],"Tail3":[-4,0,0]}},
+    {"time":0.62,"ease":"out_cubic","root":{"y":-0.02},"pose":{"FL_UpperLeg":[-10,0,0],"FL_LowerLeg":[18,0,0],"FR_UpperLeg":[-10,0,0],"FR_LowerLeg":[18,0,0],"BL_UpperLeg":[-16,0,0],"BL_LowerLeg":[28,0,0],"BR_UpperLeg":[-16,0,0],"BR_LowerLeg":[28,0,0],"Spine":[-2,0,0],"Spine2":[0,0,0],"Neck":[0,0,0],"Head":[0,0,0],"Tail1":[-6,0,0],"Tail2":[-4,0,0],"Tail3":[0,0,0]}}
+  ]
+}

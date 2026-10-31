@@ -1,0 +1,9 @@
+{
+  "z": 3,
+  "components": {"sprite": {"image": "images/crate", "size": [0.9, 0.9], "color": "#d99e52"}},
+  "tags": ["crate"],
+  "pool": 12,
+  "behaviors": {
+    "dock_light": {"color": "#d99e52", "docked_color": "#75de85"}
+  }
+}

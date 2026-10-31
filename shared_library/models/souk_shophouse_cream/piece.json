@@ -1,0 +1,10 @@
+{
+  "id": "souk_shophouse_cream",
+  "summary": "A two-storey Middle-Eastern souk shophouse in the Claude-of-Duty 'Crash/Backlot' idiom: weathered plaster ove… sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.souk_shophouse_cream or place \"prefab\": \"souk_shophouse_cream\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:souk_shophouse_cream"]
+}

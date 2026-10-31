@@ -1,0 +1,10 @@
+{
+  "id": "space_shuttle",
+  "summary": "A reusable winged orbiter about 37 m long: a lofted fuselage with a raised flight deck and a band of dark coc… joints bay_door_l, bay_door_r, wing_elevon_l, wing_elevon_r, fin_rudder, body_flap, …; options configuration; sockets eye_point, payload.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_shuttle or place \"prefab\": \"space_shuttle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_shuttle"]
+}

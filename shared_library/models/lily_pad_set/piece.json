@@ -1,0 +1,10 @@
+{
+  "id": "lily_pad_set",
+  "summary": "A floating cluster of water-lily pads of eight round pads 15-34 cm across, each with the V-shaped notch to it…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lily_pad_set or place \"prefab\": \"lily_pad_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lily_pad_set"]
+}

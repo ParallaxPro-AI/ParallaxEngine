@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/banshee"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6322, 1.8141, 0.737],
+      "offset": [0, 0.907, -0.0736]
+    }
+  }
+}

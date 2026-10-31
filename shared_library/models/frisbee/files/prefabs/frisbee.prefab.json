@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/frisbee"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.271, 0.0326, 0.271],
+      "offset": [0, 0.0163, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/taiko_drum"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.086, 1.3255, 0.8755],
+      "offset": [0, 0.6627, 0.0008]
+    }
+  }
+}

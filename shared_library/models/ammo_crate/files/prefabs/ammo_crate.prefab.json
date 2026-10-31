@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ammo_crate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.459, 0.3485, 0.284],
+      "offset": [-0.0005, 0.1727, 0.008]
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/machete"
+    },
+    "viewmodel_item": {
+      "hip": [0.14, -0.32, 0.26],
+      "hip_turn": [-12.605071, -17.188734, -31.512679],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.066, 0.0252, 0.6095],
+      "offset": [0.0198, 0.0118, 0.3048]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wagon_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2024, 1.1875, 0.3475],
+      "offset": [0, 0.5917, 0.0158]
+    }
+  }
+}

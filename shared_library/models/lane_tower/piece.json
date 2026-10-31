@@ -1,0 +1,10 @@
+{
+  "id": "lane_tower",
+  "summary": "A lane defence tower: a battered stepped footing with corner spurs, a tapering shaft, a corbelled gallery tha… joints turret_yaw, barrel_pitch; options team, trim, damage.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lane_tower or place \"prefab\": \"lane_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lane_tower"]
+}

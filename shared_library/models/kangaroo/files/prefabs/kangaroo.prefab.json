@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kangaroo"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.51, 0.9332, 2.153],
+      "offset": [0, 0.4684, -0.3335]
+    }
+  }
+}

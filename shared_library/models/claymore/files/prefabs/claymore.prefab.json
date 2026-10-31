@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/claymore"
+    },
+    "viewmodel_item": {
+      "hip": [0.16, -0.36, 0.3],
+      "hip_turn": [-16.042818, -24.064227, -35.523383],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3691, 0.06, 1.4],
+      "offset": [0, 0, 0.7]
+    }
+  }
+}

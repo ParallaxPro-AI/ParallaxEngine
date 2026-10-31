@@ -1,0 +1,10 @@
+{
+  "id": "valve_wheel",
+  "summary": "A floor-standing industrial rising-stem (OS&Y) gate valve: a cast-iron body inline in a flanged pipe run, a b… joints handwheel, indicator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.valve_wheel or place \"prefab\": \"valve_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:valve_wheel"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "flower_patch_mixed",
+  "summary": "A patch of mixed meadow wildflowers about 0.6 m across: six white ox-eye daisies with yellow eyes, five red f…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flower_patch_mixed or place \"prefab\": \"flower_patch_mixed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flower_patch_mixed"]
+}

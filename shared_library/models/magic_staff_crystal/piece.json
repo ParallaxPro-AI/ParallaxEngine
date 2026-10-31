@@ -1,0 +1,10 @@
+{
+  "id": "magic_staff_crystal",
+  "summary": "A wizard's crystal staff: a gnarled, twisting hardwood shaft with an iron foot ferrule, a ribbed leather cord… options focus; sockets socket_head, socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.magic_staff_crystal or place \"prefab\": \"magic_staff_crystal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:magic_staff_crystal"]
+}

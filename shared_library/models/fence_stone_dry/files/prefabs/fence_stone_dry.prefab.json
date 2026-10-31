@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fence_stone_dry"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0011, 1.2109, 0.6766],
+      "offset": [-0.0041, 0.6054, 0.0049]
+    }
+  }
+}

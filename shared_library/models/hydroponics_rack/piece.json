@@ -1,0 +1,10 @@
+{
+  "id": "hydroponics_rack",
+  "summary": "A three-tier hydroponic grow rack for a ship or station: a white powder-coated frame with dark back and top p… joints tray_0, tray_1, tray_2; options lights, hull, glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hydroponics_rack or place \"prefab\": \"hydroponics_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hydroponics_rack"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "coin",
+  "summary": "A collectible coin standing on its edge: a rolled-rim disc with a recessed field, a dark inlay ring and a rai… joints spinner; options metal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coin or place \"prefab\": \"coin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coin"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/supply_drop_crate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.1301, 3.8659, 3.1301],
+      "offset": [0, 1.9329, 0]
+    }
+  }
+}

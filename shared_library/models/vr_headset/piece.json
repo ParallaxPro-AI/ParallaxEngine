@@ -1,0 +1,10 @@
+{
+  "id": "vr_headset",
+  "summary": "A generic standalone virtual-reality headset (original design, no branding): a lofted visor with a gloss blac… joints visor, dial; options colour; sockets socket_eyes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vr_headset or place \"prefab\": \"vr_headset\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vr_headset"]
+}

@@ -1,0 +1,49 @@
+<!-- The title: the template's lantern-glass card over a dusk gradient, the village showing on the right. -->
+<link rel="stylesheet" href="sundermere.css">
+<style>
+.t-scene { position: fixed; inset: 0; background: linear-gradient(90deg, rgba(6,11,13,.97) 0%, rgba(6,11,13,.86) 28%, rgba(6,11,13,.45) 50%, rgba(6,11,13,0) 72%); }
+.t-card { position: fixed; left: calc(150 * var(--u)); top: 50%; width: calc(700 * var(--u)); padding: calc(64 * var(--u)) calc(64 * var(--u)) calc(56 * var(--u)); transform: translateY(-52%); background: linear-gradient(180deg, rgba(15,27,31,.78), rgba(21,34,35,.62)); border: 1px solid rgba(214,187,120,.22); border-radius: calc(12 * var(--u)); box-shadow: 0 30px 80px rgba(0,0,0,.5), inset 0 1px 0 rgba(244,239,220,.06); }
+.t-in { animation: sm-rise .48s var(--sm-ease) both; }
+.t-eyebrow { font: 600 calc(13 * var(--u))/1 var(--sm-font-ui); letter-spacing: .28em; text-transform: uppercase; color: var(--sm-gold); }
+.t-rule { display: flex; align-items: center; gap: calc(10 * var(--u)); margin: calc(24 * var(--u)) 0 calc(28 * var(--u)); }
+.t-rule i { width: calc(120 * var(--u)); height: 1px; background: linear-gradient(90deg, #d9bf80, rgba(217,191,128,.2)); }
+.t-rule b { width: calc(7 * var(--u)); height: calc(7 * var(--u)); transform: rotate(45deg); background: #e0c48c; box-shadow: 0 0 10px rgba(255,196,110,.7); animation: sm-flicker 3s ease-in-out infinite; }
+.t-title { font: 600 calc(86 * var(--u))/.95 var(--sm-font-display); letter-spacing: .01em; color: var(--sm-ink); text-shadow: 0 0 40px rgba(255,196,110,.18); }
+.t-sub { margin-top: calc(14 * var(--u)); font: italic 500 calc(40 * var(--u))/1.1 var(--sm-font-speech); color: #e0c48c; }
+.sm-root .t-blurb { margin: calc(30 * var(--u)) 0 calc(44 * var(--u)); max-width: calc(500 * var(--u)); font: 400 calc(25 * var(--u))/1.45 var(--sm-font-speech); color: rgba(244,239,220,.84); text-wrap: pretty; }
+.sm-root .t-play { height: calc(66 * var(--u)); padding: 0 calc(36 * var(--u)); gap: calc(16 * var(--u)); font-size: calc(19 * var(--u)); box-shadow: 0 12px 30px rgba(0,0,0,.4), 0 0 24px rgba(255,196,110,.18); }
+.t-play span + span { font-family: var(--sm-font-ui); font-weight: 500; }
+.t-meta { margin-top: calc(34 * var(--u)); font: 600 calc(12 * var(--u))/1 var(--sm-font-ui); letter-spacing: .22em; color: rgba(244,239,220,.55); }
+.t-foot { position: fixed; left: calc(150 * var(--u)); bottom: calc(52 * var(--u)); display: flex; align-items: center; gap: calc(12 * var(--u)); font: 600 calc(11 * var(--u))/1 var(--sm-font-ui); letter-spacing: .24em; color: rgba(217,191,128,.7); }
+.t-foot b { width: calc(6 * var(--u)); height: calc(6 * var(--u)); transform: rotate(45deg); border: 1px solid #d9bf80; }
+@container (max-height: 500px) {
+  .t-scene { background: linear-gradient(90deg, rgba(6,11,13,.97) 0%, rgba(6,11,13,.85) 36%, rgba(6,11,13,.3) 62%, rgba(6,11,13,0) 80%); }
+  .t-card { left: max(calc(48 * var(--u)), env(safe-area-inset-left)); width: calc(420 * var(--u)); padding: 0; transform: translateY(-50%); background: none; border: 0; box-shadow: none; }
+  .t-card .sm-c { display: none; }
+  .t-eyebrow { font-size: calc(10.5 * var(--u)); }
+  .t-rule { gap: calc(8 * var(--u)); margin: calc(12 * var(--u)) 0 calc(14 * var(--u)); }
+  .t-rule i { width: calc(72 * var(--u)); }
+  .t-rule b { width: calc(5 * var(--u)); height: calc(5 * var(--u)); }
+  .t-title { font-size: calc(52 * var(--u)); text-shadow: 0 0 30px rgba(255,196,110,.18); }
+  .t-sub { margin-top: calc(6 * var(--u)); font-size: calc(24 * var(--u)); }
+  .sm-root .t-blurb { margin: calc(12 * var(--u)) 0 calc(18 * var(--u)); font-size: calc(17 * var(--u)); line-height: 1.35; max-width: none; }
+  .sm-root .t-play { height: calc(52 * var(--u)); min-height: 44px; padding: 0 calc(24 * var(--u)); gap: calc(10 * var(--u)); font-size: calc(16 * var(--u)); letter-spacing: .05em; }
+  .t-meta { margin-top: calc(14 * var(--u)); font-size: calc(10 * var(--u)); letter-spacing: .2em; }
+  .t-foot { left: auto; right: max(calc(48 * var(--u)), env(safe-area-inset-right)); bottom: calc(18 * var(--u)); font-size: calc(9.5 * var(--u)); letter-spacing: .22em; }
+  .t-foot b { display: none; }
+}
+</style>
+<div class="sm-root">
+  <div class="t-scene"></div>
+  <main class="t-card t-in">
+    <b class="sm-c tl"></b><b class="sm-c tr"></b><b class="sm-c bl"></b><b class="sm-c br"></b>
+    <div class="t-eyebrow" data-text="title_eyebrow"></div>
+    <div class="t-rule"><i></i><b></b></div>
+    <h1 class="t-title" data-text="game_title"></h1>
+    <div class="t-sub" data-text="title_subtitle"></div>
+    <p class="t-blurb" data-text="title_blurb"></p>
+    <button class="sm-btn t-play" data-action="start_game"><span data-text="title_play"></span> <span>→</span></button>
+    <div class="t-meta" data-text="title_meta"></div>
+  </main>
+  <div class="t-foot"><b></b><span data-text="title_saved"></span></div>
+</div>

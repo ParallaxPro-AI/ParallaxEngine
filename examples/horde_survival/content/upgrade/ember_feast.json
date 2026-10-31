@@ -1,0 +1,2 @@
+{ "name": "Ember Feast", "desc": "Every kill heals 1.5 health.",
+  "icon": "fang", "tier": "rare", "weight": 4, "max_stacks": 4, "effect": { "lifesteal_add": 1.5 } }

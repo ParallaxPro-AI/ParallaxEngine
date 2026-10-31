@@ -1,0 +1,10 @@
+{
+  "id": "rover_charging_dock",
+  "summary": "A rover charging dock for a base or outpost: a dark panelled pad with a diamond-plate ramp, two rubber wheel… joints arm_yaw, shoulder, elbow; options hull, glow; sockets plug.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rover_charging_dock or place \"prefab\": \"rover_charging_dock\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rover_charging_dock"]
+}

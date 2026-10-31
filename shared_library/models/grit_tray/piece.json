@@ -1,0 +1,10 @@
+{
+  "id": "grit_tray",
+  "summary": "A shallow galvanised steel tray with folded rims and a wire handle at each end, filled with a bed of loose gr… sockets bed_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grit_tray or place \"prefab\": \"grit_tray\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grit_tray"]
+}

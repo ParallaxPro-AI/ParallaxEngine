@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/radiator"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.023, 0.72, 0.117],
+      "offset": [-0.0085, 0.36, 0.0035]
+    }
+  }
+}

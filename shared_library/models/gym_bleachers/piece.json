@@ -1,0 +1,10 @@
+{
+  "id": "gym_bleachers",
+  "summary": "A four-row aluminium spectator bleacher, 4.5 m wide: extruded seat planks with rounded noses and black end ca… options seat_finish; sockets seat_r0_0, seat_r0_1, seat_r0_2, seat_r0_3, seat_r0_4, seat_r0_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gym_bleachers or place \"prefab\": \"gym_bleachers\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gym_bleachers"]
+}

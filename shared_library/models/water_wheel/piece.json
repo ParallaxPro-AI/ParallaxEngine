@@ -1,0 +1,10 @@
+{
+  "id": "water_wheel",
+  "summary": "A 4 m overshot timber water wheel beside a mill wall: two spoked rims joined by 24 angled buckets on a sole d… joints wheel; sockets spill, splash.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_wheel or place \"prefab\": \"water_wheel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_wheel"]
+}

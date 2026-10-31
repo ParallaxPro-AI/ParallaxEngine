@@ -1,0 +1,10 @@
+{
+  "id": "mech_suit",
+  "summary": "A piloted bipedal battle-mech: two legs (hip + knee), two weapon arms (shoulder + elbow), a chest with an ope… joints hip_l, knee_l, hip_r, knee_r, cockpit, shoulder_l, …; options loadout; sockets socket_pilot, socket_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mech_suit or place \"prefab\": \"mech_suit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mech_suit"]
+}

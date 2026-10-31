@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/camel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8062, 2.3598, 3.0396],
+      "offset": [0, 1.1749, 0.4967]
+    }
+  }
+}

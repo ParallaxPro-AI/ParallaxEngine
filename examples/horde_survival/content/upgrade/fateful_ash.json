@@ -1,0 +1,2 @@
+{ "name": "Fateful Ash", "desc": "+2 draft rerolls.",
+  "icon": "dice", "tier": "rare", "weight": 3, "max_stacks": 2, "effect": { "reroll_add": 2 } }

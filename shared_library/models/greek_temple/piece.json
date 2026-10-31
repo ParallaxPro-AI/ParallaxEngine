@@ -1,0 +1,10 @@
+{
+  "id": "greek_temple",
+  "summary": "A peripteral Doric temple of white marble in the classical Greek manner, 9 m by 19 m on the stylobate (10.2 m…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.greek_temple or place \"prefab\": \"greek_temple\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:greek_temple"]
+}

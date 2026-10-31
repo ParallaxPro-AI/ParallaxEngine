@@ -1,0 +1,10 @@
+{
+  "id": "space_freighter",
+  "summary": "An original industrial cargo freighter, about 44 m long and 13 m wide (like a small real coastal cargo vessel… joints thrust, leg_l0, leg_l1, leg_r0, leg_r1, ramp; options hull; sockets socket_pilot, engine_0, engine_1, engine_2.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_freighter or place \"prefab\": \"space_freighter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_freighter"]
+}

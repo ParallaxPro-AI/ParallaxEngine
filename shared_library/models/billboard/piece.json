@@ -1,0 +1,10 @@
+{
+  "id": "billboard",
+  "summary": "A roadside billboard: a 9.6 x 3.6 m advertising face in a steel frame, carried 5 m up on two I-beam posts wit… options face_colour, layout, lamps; sockets socket_face, catwalk_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.billboard or place \"prefab\": \"billboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:billboard"]
+}

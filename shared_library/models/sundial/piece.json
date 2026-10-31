@@ -1,0 +1,10 @@
+{
+  "id": "sundial",
+  "summary": "A garden sundial: a turned stone baluster pedestal on a two-step square plinth, a moulded square cap, and a b…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sundial or place \"prefab\": \"sundial\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sundial"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dim_sum_cart",
+  "summary": "A yum-cha dim sum trolley, 1.1 m long and 0.85 m to the deck: a brushed stainless cabinet with rubber corner… joints door, lid_0, lid_1; options body; sockets steam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dim_sum_cart or place \"prefab\": \"dim_sum_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dim_sum_cart"]
+}

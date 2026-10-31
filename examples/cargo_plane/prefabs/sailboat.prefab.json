@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sailboat",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.244,
+        9.3,
+        6.8052
+      ],
+      "offset": [
+        0.0,
+        4.65,
+        -0.1274
+      ]
+    }
+  }
+}

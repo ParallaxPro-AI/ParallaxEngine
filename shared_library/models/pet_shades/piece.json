@@ -1,0 +1,10 @@
+{
+  "id": "pet_shades",
+  "summary": "A pair of 7 cm dark sunglasses with a gold bridge and arms, sized for an animal face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pet_shades or place \"prefab\": \"pet_shades\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pet_shades"]
+}

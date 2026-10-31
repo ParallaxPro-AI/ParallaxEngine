@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dirt_bike"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 105,
+      "linear_damping": 0.05,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.84,
+        1.2269,
+        2.178
+      ],
+      "offset": [
+        0,
+        0.6135,
+        0.015
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 30,
+      "steering": 34
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.6135,
+        0.015
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

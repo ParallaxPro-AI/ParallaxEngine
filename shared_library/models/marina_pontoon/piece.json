@@ -1,0 +1,10 @@
+{
+  "id": "marina_pontoon",
+  "summary": "A 6.0 x 2.4 m floating marina pontoon module: three black polyethylene float drums riding two thirds under th… options deck, pile; sockets cleat_f0, cleat_f1, cleat_f2, cleat_b0, cleat_b1, cleat_b2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.marina_pontoon or place \"prefab\": \"marina_pontoon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:marina_pontoon"]
+}

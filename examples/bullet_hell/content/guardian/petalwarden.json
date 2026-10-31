@@ -1,0 +1,4 @@
+{
+  "name": "Petal Warden", "animation": "petalwarden", "hp": 4, "scale": 1.1, "score": 300,
+  "fire": "fan", "arms": 7, "spread": 51.6, "spin_step": 0, "petal_speed": 6.4
+}

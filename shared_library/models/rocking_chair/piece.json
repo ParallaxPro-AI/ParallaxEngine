@@ -1,0 +1,10 @@
+{
+  "id": "rocking_chair",
+  "summary": "A classic wooden rocking chair: two curved rocker runners, turned legs, a saddle seat with side stretchers, b… joints rock; options cushions, finish, cushion_fabric; sockets socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rocking_chair or place \"prefab\": \"rocking_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rocking_chair"]
+}

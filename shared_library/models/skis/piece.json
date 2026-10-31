@@ -1,0 +1,10 @@
+{
+  "id": "skis",
+  "summary": "A pair of 1.70 m alpine skis lying side by side with their poles: each ski a lofted wood core with real sidec… joints ski_l_lever, ski_r_lever; options skis, stripe, poles, with_poles; sockets boot_l, boot_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skis or place \"prefab\": \"skis\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skis"]
+}

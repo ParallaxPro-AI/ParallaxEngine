@@ -1,0 +1,10 @@
+{
+  "id": "command_table_map",
+  "summary": "A command-post planning table: a steel-framed folding table with a ply top at standing height (0.9 m), covere… options frame; sockets brief_front, side_left, side_right, map_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.command_table_map or place \"prefab\": \"command_table_map\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:command_table_map"]
+}

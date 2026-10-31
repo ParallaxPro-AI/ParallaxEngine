@@ -1,0 +1,8 @@
+{
+  "ui": ["title_screen"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/0b/7b/0b7b920beab167a8d34d83bd6be8ae245b55afd68018ad6fb79f93e527e7826e.mp3",
+  "environment": { "ambient": "#1a1414" },
+  "entities": [
+    { "prefab": "top_down_camera", "at": [0, 4, -9], "rotation": [10, 0, 0], "components": { "camera": { "rig": "fixed", "background": "#000000" } } }
+  ]
+}

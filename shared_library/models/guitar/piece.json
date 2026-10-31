@@ -1,0 +1,10 @@
+{
+  "id": "guitar",
+  "summary": "A stringed guitar stood on its lower bout: a lofted figure-8 body, a fretted neck, a headstock with six tunin… joints peg_l_0, peg_l_1, peg_l_2, peg_r_0, peg_r_1, peg_r_2, …; options instrument.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.guitar or place \"prefab\": \"guitar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:guitar"]
+}

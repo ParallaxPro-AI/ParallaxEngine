@@ -1,0 +1,10 @@
+{
+  "id": "cave_floor_segment",
+  "summary": "A 4 x 4 m natural cave floor tile from the UNDERGROUND kit: broken, flat limestone plates bedded 20-50 mm pro…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cave_floor_segment or place \"prefab\": \"cave_floor_segment\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cave_floor_segment"]
+}

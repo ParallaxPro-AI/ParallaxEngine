@@ -1,0 +1,10 @@
+{
+  "id": "chest_rare",
+  "summary": "A rare-rarity RPG loot chest, about 0.86 m wide, 0.52 m deep and 0.6 m tall: dark stained walnut planks frame… joints lid, hasp; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chest_rare or place \"prefab\": \"chest_rare\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chest_rare"]
+}

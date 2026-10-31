@@ -1,0 +1,10 @@
+{
+  "id": "rusted_sign_bent",
+  "summary": "A bent, rusted stop sign from an abandoned road: a 750 mm octagonal sign (red face, white border and STOP let…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rusted_sign_bent or place \"prefab\": \"rusted_sign_bent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rusted_sign_bent"]
+}

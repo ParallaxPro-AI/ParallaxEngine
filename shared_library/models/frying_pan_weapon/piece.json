@@ -1,0 +1,10 @@
+{
+  "id": "frying_pan_weapon",
+  "summary": "A cast-iron skillet carried as an improvised blunt weapon: a 0.26 m pan (real 10-inch skillets are 0.26 m acr… sockets strike, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.frying_pan_weapon or place \"prefab\": \"frying_pan_weapon\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:frying_pan_weapon"]
+}

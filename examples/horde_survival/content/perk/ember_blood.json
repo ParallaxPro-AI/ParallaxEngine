@@ -1,0 +1,1 @@
+{"name": "Ember Blood", "desc": "+12 starting max health per level.", "cost": 40, "cost_step": 30, "max_level": 5, "effect": {"max_health_add": 12}, "order": 1}

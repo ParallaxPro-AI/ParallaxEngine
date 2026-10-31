@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/obstacle_dumpster",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

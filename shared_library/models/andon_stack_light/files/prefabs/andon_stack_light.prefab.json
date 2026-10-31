@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/andon_stack_light"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.104, 0.42, 0.104],
+      "offset": [0, 0.21, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ceiling_fan"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2742, 0.52, 1.3398],
+      "offset": [0.0429, 0.26, 0]
+    }
+  }
+}

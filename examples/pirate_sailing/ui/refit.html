@@ -1,0 +1,43 @@
+<!-- Ported from the template: the turnkey hud/choice card draft as Buccaneer Bay's kit
+     dresses it (bb_kit.html): "Outfit the Ship" in Pirata One, the italic next-leg brief,
+     and parchment cards with a round wood badge, small-caps name, blurb and a teal Take it plate. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .bbr { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: calc(24 * var(--u)); background: radial-gradient(ellipse 60% 55% at 50% 45%, rgba(9,40,44,.55), rgba(5,12,14,.86)); font-family: var(--bb-ui); pointer-events: auto; animation: bbr-in .28s ease both; }
+  @keyframes bbr-in { from { opacity: 0; } to { opacity: 1; } }
+  .bbr-title { margin: 0; font: 400 calc(92 * var(--u))/1 var(--bb-display); letter-spacing: .03em; color: var(--bb-gold); text-shadow: 0 calc(4 * var(--u)) 0 #451a03, 0 0 calc(36 * var(--u)) rgba(252,211,77,.22); text-align: center; }
+  .bbr-sub { margin-top: calc(14 * var(--u)); max-width: calc(1180 * var(--u)); font: italic 400 calc(26 * var(--u))/1.35 var(--bb-serif); color: var(--bb-muted); text-align: center; }
+  .bbr-row { display: flex; gap: calc(28 * var(--u)); margin-top: calc(40 * var(--u)); flex-wrap: wrap; justify-content: center; }
+  .bbr-card { width: calc(380 * var(--u)); min-height: calc(330 * var(--u)); padding: calc(26 * var(--u)) calc(26 * var(--u)) calc(22 * var(--u)); display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; pointer-events: auto; color: var(--bb-ink); background: var(--bb-parch); border: 2px solid var(--bb-brass); border-radius: calc(4 * var(--u)); outline: 1px solid rgba(107,79,42,.45); outline-offset: calc(-9 * var(--u)); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-wood-deep), 0 calc(18 * var(--u)) calc(40 * var(--u)) rgba(0,0,0,.5); transition: transform .14s ease, box-shadow .14s ease, background .14s ease; }
+  .bbr-card:hover { transform: translateY(calc(-6 * var(--u))); background: var(--bb-parch-hi); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-wood-deep), 0 0 0 2px var(--bb-gold), var(--bb-glow), 0 calc(22 * var(--u)) calc(44 * var(--u)) rgba(0,0,0,.55); }
+  .bbr-card:active { transform: translateY(calc(3 * var(--u))); }
+  .bbr-ico { width: calc(76 * var(--u)); height: calc(76 * var(--u)); border-radius: 50%; display: grid; place-items: center; font-size: calc(38 * var(--u)); line-height: 1; background: radial-gradient(circle at 35% 30%, #4c3725, var(--bb-wood) 60%, var(--bb-wood-deep)); border: 3px solid var(--bb-brass); box-shadow: 0 0 0 2px var(--bb-wood-deep), 0 calc(4 * var(--u)) calc(10 * var(--u)) rgba(0,0,0,.35); }
+  .bbr-name { margin-top: calc(16 * var(--u)); font: 400 calc(34 * var(--u))/1.1 var(--bb-sc); letter-spacing: .04em; color: var(--bb-ink); }
+  .bbr-desc { margin-top: calc(10 * var(--u)); font: 500 calc(21 * var(--u))/1.4 var(--bb-ui); color: var(--bb-ink-muted); }
+  .bbr-take { margin-top: auto; padding: calc(10 * var(--u)) calc(26 * var(--u)); font: 400 calc(22 * var(--u))/1 var(--bb-sc); letter-spacing: .08em; color: var(--bb-cream-ink); background: var(--bb-teal); border: 2px solid var(--bb-gold); border-radius: calc(4 * var(--u)); box-shadow: 0 calc(4 * var(--u)) 0 var(--bb-teal-deep); }
+  @media (pointer: coarse) {
+    .bbr { padding: calc(28 * var(--u)) calc(40 * var(--u)); }
+    .bbr-title { font-size: calc(84 * var(--u)); }
+    .bbr-sub { margin-top: calc(8 * var(--u)); font-size: calc(28 * var(--u)); max-width: calc(1500 * var(--u)); }
+    .bbr-row { gap: calc(24 * var(--u)); margin-top: calc(26 * var(--u)); flex-wrap: nowrap; }
+    .bbr-card { width: calc(480 * var(--u)); min-height: 0; padding: calc(24 * var(--u)) calc(26 * var(--u)) calc(22 * var(--u)); border-width: 3px; }
+    .bbr-ico { width: calc(84 * var(--u)); height: calc(84 * var(--u)); font-size: calc(42 * var(--u)); }
+    .bbr-name { margin-top: calc(12 * var(--u)); font-size: calc(40 * var(--u)); }
+    .bbr-desc { font-size: calc(28 * var(--u)); line-height: 1.3; }
+    .bbr-take { margin-top: calc(18 * var(--u)); min-height: calc(88 * var(--u)); display: flex; align-items: center; padding: 0 calc(40 * var(--u)); font-size: calc(34 * var(--u)); border-width: 3px; }
+  }
+</style>
+<div class="bbr">
+  <h2 class="bbr-title" data-text="refit_title"></h2>
+  <div class="bbr-sub" data-bind="sub"></div>
+  <div class="bbr-row" data-each="cards">
+    <template>
+      <button class="bbr-card" data-action="pick">
+        <div class="bbr-ico" data-bind="icon"></div>
+        <div class="bbr-name" data-bind="name"></div>
+        <div class="bbr-desc" data-bind="blurb"></div>
+        <div class="bbr-take" data-text="refit_take"></div>
+      </button>
+    </template>
+  </div>
+</div>

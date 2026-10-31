@@ -1,0 +1,10 @@
+{
+  "id": "prison_bunk_steel",
+  "summary": "A welded steel prison double bunk: four square posts bolted to the floor through flanges, two solid steel bed… options mattress, frame, bedding; sockets socket_bunk_lower, socket_bunk_upper, seat_lower.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.prison_bunk_steel or place \"prefab\": \"prison_bunk_steel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:prison_bunk_steel"]
+}

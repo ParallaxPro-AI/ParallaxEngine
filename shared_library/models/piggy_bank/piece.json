@@ -1,0 +1,10 @@
+{
+  "id": "piggy_bank",
+  "summary": "A glossy ceramic piggy bank: a round pig body with a real coin slot cut in its back, a flat snout with nostri… joints stopper; options glaze, coin, flowers; sockets slot, coin_slot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.piggy_bank or place \"prefab\": \"piggy_bank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:piggy_bank"]
+}

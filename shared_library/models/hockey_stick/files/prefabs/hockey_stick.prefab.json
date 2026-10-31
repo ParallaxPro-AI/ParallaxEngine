@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hockey_stick"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2632, 1.6723, 0.0654],
+      "offset": [0.0892, 0.8322, -0.0172]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "hot_line",
+  "summary": "A commercial kitchen's hot line, as one assembly: a stainless base run carrying a six-burner range over two g… joints oven_door_0, oven_door_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hot_line or place \"prefab\": \"hot_line\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hot_line"]
+}

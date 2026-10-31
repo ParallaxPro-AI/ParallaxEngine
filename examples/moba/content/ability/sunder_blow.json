@@ -1,0 +1,12 @@
+{
+  "name": "Sunder Blow",
+  "blurb": "A heavy cleave through everything in front of you.",
+  "kind": "melee",
+  "cooldown": { "base": 7, "per_rank": -0.6 },
+  "mana": { "base": 45, "per_rank": 5 },
+  "damage": { "base": 85, "per_rank": 32 },
+  "damage_kind": "physical",
+  "range": { "base": 6.5, "per_rank": 0.4 },
+  "cast_vfx": "vfx/slash_cast",
+  "vfx": "vfx/slash"
+}

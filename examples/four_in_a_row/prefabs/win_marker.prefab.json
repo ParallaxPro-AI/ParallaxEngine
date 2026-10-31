@@ -1,0 +1,6 @@
+{
+  "z": 2,
+  "components": {
+    "sprite": { "image": "images/win_marker", "size": [1.0, 1.0] }
+  }
+}

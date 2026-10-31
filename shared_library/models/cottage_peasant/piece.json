@@ -1,0 +1,10 @@
+{
+  "id": "cottage_peasant",
+  "summary": "A medieval peasant's cruck cottage, 7.4 x 4.6 m on plan (a typical one-room late-medieval cottage: eaves abou… joints door, shutter_l, shutter_r; sockets socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cottage_peasant or place \"prefab\": \"cottage_peasant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cottage_peasant"]
+}

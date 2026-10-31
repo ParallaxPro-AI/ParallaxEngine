@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wyvern"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.8101, 3.2113, 6.2756],
+      "offset": [0, 1.6035, -0.8836]
+    }
+  }
+}

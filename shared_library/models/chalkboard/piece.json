@@ -1,0 +1,10 @@
+{
+  "id": "chalkboard",
+  "summary": "A wall-mounted classroom chalkboard: a walnut-framed green writing panel with a chalk tray along the bottom h…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chalkboard or place \"prefab\": \"chalkboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chalkboard"]
+}

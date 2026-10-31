@@ -1,0 +1,10 @@
+{
+  "id": "check_in_counter",
+  "summary": "An airport check-in position: a veneered counter with a raised passenger transaction ledge, a low agent desk… joints drawer, belt; options finish, accent; sockets socket_passenger, socket_agent, socket_bag.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.check_in_counter or place \"prefab\": \"check_in_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:check_in_counter"]
+}

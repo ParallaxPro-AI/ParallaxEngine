@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shield",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.84,
+        0.95,
+        0.2
+      ],
+      "offset": [
+        0.0,
+        0.475,
+        0.01
+      ]
+    }
+  }
+}

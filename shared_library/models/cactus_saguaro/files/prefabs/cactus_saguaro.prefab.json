@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cactus_saguaro"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0831, 5.3733, 1.417],
+      "offset": [0.0846, 2.6866, 0.0485]
+    }
+  }
+}

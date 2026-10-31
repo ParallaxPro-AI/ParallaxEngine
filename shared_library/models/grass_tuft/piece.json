@@ -1,0 +1,10 @@
+{
+  "id": "grass_tuft",
+  "summary": "A single tuft of wild bunchgrass: about 46 narrow V-folded blades fanning out from one crown, the inner blade…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.grass_tuft or place \"prefab\": \"grass_tuft\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:grass_tuft"]
+}

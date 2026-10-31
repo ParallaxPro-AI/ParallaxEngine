@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stalagmite_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6476, 1.5011, 1.3271],
+      "offset": [-0.011, 0.7505, 0.0158]
+    }
+  }
+}

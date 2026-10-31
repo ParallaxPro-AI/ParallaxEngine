@@ -1,0 +1,10 @@
+{
+  "id": "saloon_piano",
+  "summary": "A wild-west saloon upright: a battered dark-oak honky-tonk piano with a carved cornice and crest, an upper fr… joints fallboard, top_lid, sconce_l, sconce_r; options finish, stool; sockets seat_stool, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saloon_piano or place \"prefab\": \"saloon_piano\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saloon_piano"]
+}

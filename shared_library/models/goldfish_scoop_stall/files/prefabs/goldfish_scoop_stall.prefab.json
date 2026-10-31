@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/goldfish_scoop_stall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.53, 2.4896, 2.1522],
+      "offset": [0, 1.2448, 0.0239]
+    }
+  }
+}

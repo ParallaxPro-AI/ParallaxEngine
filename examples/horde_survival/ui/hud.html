@@ -1,0 +1,158 @@
+<!-- The template's combat HUD: the ember clock (m:ss, tier name, tier-ticked run bar, LV / SWARM /
+     KILLS / VIGIL chips, the Ash Warden bar), the run seed, the gold kill-chain multiplier, the
+     ember / XP / Nova / Dash / score vitals with Second Wind and reroll pips, the warden alert
+     banner and the touch pause button. -->
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ember.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .root { font-family: var(--ec-font-ui); color: var(--ec-ink); pointer-events: none; -webkit-font-smoothing: antialiased; }
+
+  .clock { position: fixed; top: calc(24 * var(--ec-u)); left: 50%; transform: translateX(-50%); width: calc(440 * var(--ec-u)); display: flex; flex-direction: column; align-items: center; gap: calc(8 * var(--ec-u)); padding: calc(14 * var(--ec-u)) calc(24 * var(--ec-u)) calc(16 * var(--ec-u)); }
+  .clock-t { font-size: calc(64 * var(--ec-u)); line-height: 1; color: var(--ec-ink); text-shadow: 0 0 calc(24 * var(--ec-u)) rgba(249,115,22,.4); }
+  .tier { font: 700 calc(13 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .42em; padding-left: .42em; color: var(--ec-danger); text-transform: uppercase; }
+  .tier:empty { display: none; }
+  .prog { width: 100%; height: calc(3 * var(--ec-u)); background: rgba(255,255,255,.08); position: relative; margin-top: calc(2 * var(--ec-u)); }
+  .prog > i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: linear-gradient(90deg, var(--ec-ember-hi), var(--ec-ember)); transition: width var(--ec-dur-slow) linear; }
+  .prog .marks b { position: absolute; top: calc(-3 * var(--ec-u)); width: calc(1 * var(--ec-u)); height: calc(9 * var(--ec-u)); background: rgba(253,186,116,.35); }
+  .chips { display: flex; gap: calc(6 * var(--ec-u)); margin-top: calc(4 * var(--ec-u)); }
+  .chip-vg { border-color: rgba(168,85,247,.55); color: var(--ec-violet-hi); background: var(--ec-violet-deep); align-items: center; }
+  .warden { width: 100%; display: flex; flex-direction: column; gap: calc(6 * var(--ec-u)); margin-top: calc(6 * var(--ec-u)); }
+  .warden-h { display: flex; align-items: center; gap: calc(8 * var(--ec-u)); color: var(--ec-violet-hi); }
+  .warden-h .ec-lbl { color: var(--ec-violet-hi); flex: 1; text-align: left; }
+  .warden-h .ec-mono { font-size: calc(12 * var(--ec-u)); }
+  .warden .ec-bar > i { background: var(--ec-grad-nova); box-shadow: 0 0 calc(12 * var(--ec-u)) rgba(168,85,247,.8); }
+
+  .seedbox { position: fixed; top: calc(24 * var(--ec-u)); right: calc(32 * var(--ec-u)); display: flex; flex-direction: column; align-items: flex-end; gap: calc(6 * var(--ec-u)); padding: calc(12 * var(--ec-u)) calc(16 * var(--ec-u)); }
+  .seedbox .ec-lbl { color: var(--ec-ice); }
+  .seedbox .v { font-size: calc(22 * var(--ec-u)); color: var(--ec-ice); letter-spacing: .14em; }
+  .seedbox small { font: 500 calc(11 * var(--ec-u)) var(--ec-font-ui); color: var(--ec-ink-mute); letter-spacing: .06em; }
+
+  .mpause { display: none; }
+
+  .chain { position: fixed; right: calc(56 * var(--ec-u)); top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; align-items: flex-end; gap: calc(6 * var(--ec-u)); }
+  .chain-v { font-size: calc(64 * var(--ec-u)); line-height: 1; color: var(--ec-gold); text-shadow: var(--ec-glow-gold); transform-origin: right center; }
+  .chain-l { color: var(--ec-gold); letter-spacing: .42em; }
+  .chain .ec-bar { width: calc(140 * var(--ec-u)); height: calc(3 * var(--ec-u)); background: rgba(251,191,36,.18); }
+  .chain .ec-bar > i { background: var(--ec-gold); transition: width 120ms linear; }
+
+  .vitals { position: fixed; left: calc(32 * var(--ec-u)); bottom: calc(32 * var(--ec-u)); width: calc(260 * var(--ec-u)); padding: calc(16 * var(--ec-u)); display: flex; flex-direction: column; gap: calc(10 * var(--ec-u)); transition: border-color var(--ec-dur); }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: calc(8 * var(--ec-u)); }
+  .row .ec-mono { font-size: calc(16 * var(--ec-u)); }
+  .row .ec-mono small { color: var(--ec-ink-mute); font-size: calc(12 * var(--ec-u)); }
+  .hp { height: calc(12 * var(--ec-u)); }
+  .hp > i { background: var(--ec-grad-hp); box-shadow: 0 0 calc(12 * var(--ec-u)) rgba(249,115,22,.5); }
+  .xp { height: calc(3 * var(--ec-u)); margin-top: calc(-4 * var(--ec-u)); }
+  .xp > i { background: var(--ec-grad-xp); }
+  .nova { display: grid; grid-template-columns: auto auto 1fr auto; gap: calc(10 * var(--ec-u)); align-items: center; border-top: calc(1 * var(--ec-u)) solid var(--ec-line); margin-top: calc(2 * var(--ec-u)); padding-top: calc(12 * var(--ec-u)); }
+  .nova .ec-lbl { color: var(--ec-violet-hi); }
+  .nova .ec-bar { height: calc(4 * var(--ec-u)); }
+  .nova .ec-bar > i { background: var(--ec-grad-nova); box-shadow: 0 0 calc(10 * var(--ec-u)) rgba(168,85,247,.7); transition: width 120ms linear; }
+  .dashrow { display: grid; grid-template-columns: auto auto 1fr auto; gap: calc(10 * var(--ec-u)); align-items: center; }
+  .dashrow .ec-lbl { color: var(--ec-ember-hi, var(--ec-ink)); }
+  .dashrow .ec-bar { height: calc(4 * var(--ec-u)); }
+  .dashrow .ec-bar > i { background: var(--ec-grad-xp); transition: width 120ms linear; }
+  .dashrow .dst { font: 800 calc(10 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .2em; color: var(--ec-ink-mute); }
+  .dashrow.ready .dst { color: #fff; }
+  .rdy { font: 800 calc(10 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .2em; padding: calc(4 * var(--ec-u)) calc(7 * var(--ec-u)); border-radius: calc(2 * var(--ec-u)); background: rgba(168,85,247,.3); color: #fff; border: calc(1 * var(--ec-u)) solid var(--ec-violet-hi); box-shadow: var(--ec-glow-violet); animation: rdy 1.6s ease-in-out infinite; }
+  @keyframes rdy { 50% { box-shadow: 0 0 calc(8 * var(--ec-u)) rgba(168,85,247,.3); } }
+  .cdt { display: none; font: 700 calc(12 * var(--ec-u)) var(--ec-font-mono); color: var(--ec-ink-mute); }
+  .charging .rdy { display: none; }
+  .charging .cdt { display: inline; }
+  .charging .nova .ec-bar > i { background: rgba(168,85,247,.45); box-shadow: none; }
+  .score .ec-mono { font-size: calc(22 * var(--ec-u)); }
+  .pipr { display: flex; gap: calc(6 * var(--ec-u)); flex-wrap: wrap; }
+  .pip { display: inline-flex; gap: calc(6 * var(--ec-u)); align-items: center; padding: calc(4 * var(--ec-u)) calc(7 * var(--ec-u)); border-radius: calc(2 * var(--ec-u)); font: 700 calc(10 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .14em; border: calc(1 * var(--ec-u)) solid; }
+  .pip.sw2 { color: #fca5a5; border-color: rgba(248,113,113,.4); background: rgba(127,29,29,.3); }
+  .pip.rr { color: var(--ec-ice); border-color: rgba(125,211,252,.35); background: rgba(12,40,56,.35); }
+  .low .hp > i { animation: hpp .55s ease-in-out infinite alternate; }
+  .low .vitals { border-color: rgba(248,113,113,.55); }
+  .low .vitals .row:first-child .ec-lbl { color: var(--ec-danger); }
+  @keyframes hpp { to { filter: brightness(1.6); box-shadow: 0 0 calc(18 * var(--ec-u)) rgba(248,113,113,.9); } }
+
+  .banner { position: fixed; left: 0; right: 0; top: 32%; display: flex; align-items: center; justify-content: center; gap: calc(28 * var(--ec-u)); animation: bannerin 400ms var(--ec-ease-out) both; }
+  .banner::before, .banner::after { content: ''; width: calc(180 * var(--ec-u)); height: calc(1 * var(--ec-u)); background: linear-gradient(90deg, transparent, var(--ec-violet-hi)); }
+  .banner::after { transform: scaleX(-1); }
+  .banner-t { font: 900 calc(56 * var(--ec-u))/1 var(--ec-font-display); letter-spacing: .14em; color: var(--ec-violet-hi); text-shadow: 0 0 calc(32 * var(--ec-u)) rgba(168,85,247,.85), 0 calc(2 * var(--ec-u)) 0 #000; white-space: nowrap; animation: bannertrack 400ms var(--ec-ease-out) both; }
+  @keyframes bannerin { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes bannertrack { from { letter-spacing: .3em; } to { letter-spacing: .14em; } }
+
+  @media (pointer: coarse) {
+    .clock { top: calc(12 * var(--ec-u)); width: calc(500 * var(--ec-u)); padding: calc(12 * var(--ec-u)) calc(24 * var(--ec-u)) calc(16 * var(--ec-u)); gap: calc(8 * var(--ec-u)); }
+    .clock-t { font-size: calc(48 * var(--ec-u)); }
+    .tier { font-size: calc(18 * var(--ec-u)); letter-spacing: .32em; padding-left: .32em; }
+    .prog { height: calc(4 * var(--ec-u)); }
+    .prog .marks b { top: calc(-4 * var(--ec-u)); height: calc(12 * var(--ec-u)); }
+    .chips { gap: calc(8 * var(--ec-u)); margin-top: calc(4 * var(--ec-u)); }
+    .ec-chip { padding: calc(6 * var(--ec-u)) calc(10 * var(--ec-u)); font-size: calc(16 * var(--ec-u)); gap: calc(8 * var(--ec-u)); }
+    .ec-chip b { font-size: calc(18 * var(--ec-u)); }
+    .warden { margin-top: calc(4 * var(--ec-u)); gap: calc(6 * var(--ec-u)); }
+    .warden .ec-bar { height: calc(10 * var(--ec-u)); }
+    .warden-h .ec-lbl, .warden-h .ec-mono { font-size: calc(18 * var(--ec-u)); }
+    .warden-h svg, .chip-vg svg { width: calc(18 * var(--ec-u)); height: calc(18 * var(--ec-u)); }
+
+    .seedbox { top: calc(16 * var(--ec-u)); right: calc(200 * var(--ec-u)); flex-direction: row; align-items: center; gap: calc(12 * var(--ec-u)); padding: 0 calc(20 * var(--ec-u)); height: calc(88 * var(--ec-u)); }
+    .seedbox .ec-lbl { font-size: calc(18 * var(--ec-u)); }
+    .seedbox .v { font-size: calc(26 * var(--ec-u)); }
+    .seedbox small { display: none; }
+
+    .mpause { display: grid; place-items: center; position: fixed; top: calc(16 * var(--ec-u)); right: calc(96 * var(--ec-u)); width: calc(88 * var(--ec-u)); height: calc(88 * var(--ec-u)); padding: 0; color: var(--ec-ember-hi); pointer-events: auto; cursor: pointer; touch-action: manipulation; border-radius: calc(16 * var(--ec-u)); }
+    .mpause:active { background: rgba(249,115,22,.18); border-color: var(--ec-line-strong); transform: scale(.94); }
+    .mpause svg { width: calc(40 * var(--ec-u)); height: calc(40 * var(--ec-u)); }
+
+    .vitals { top: calc(16 * var(--ec-u)); left: calc(96 * var(--ec-u)); bottom: auto; width: calc(380 * var(--ec-u)); padding: calc(16 * var(--ec-u)) calc(20 * var(--ec-u)); gap: calc(12 * var(--ec-u)); border-radius: calc(16 * var(--ec-u)); }
+    .vitals .ec-lbl { font-size: calc(18 * var(--ec-u)); }
+    .row .ec-mono { font-size: calc(24 * var(--ec-u)); }
+    .row .ec-mono small { font-size: calc(20 * var(--ec-u)); }
+    .hp { height: calc(16 * var(--ec-u)); }
+    .xp { margin-top: calc(-6 * var(--ec-u)); height: calc(4 * var(--ec-u)); }
+    .nova, .dashrow { display: none; }
+    .score .ec-mono { font-size: calc(28 * var(--ec-u)); }
+    .pipr { gap: calc(8 * var(--ec-u)); }
+    .pip { font-size: calc(16 * var(--ec-u)); padding: calc(6 * var(--ec-u)) calc(10 * var(--ec-u)); gap: calc(8 * var(--ec-u)); border-radius: calc(4 * var(--ec-u)); }
+
+    .chain { right: calc(128 * var(--ec-u)); top: 38%; gap: calc(6 * var(--ec-u)); }
+    .chain-v { font-size: calc(60 * var(--ec-u)); }
+    .chain-l { font-size: calc(18 * var(--ec-u)); }
+    .chain .ec-bar { width: calc(140 * var(--ec-u)); height: calc(6 * var(--ec-u)); }
+
+    .banner { top: 30%; gap: calc(28 * var(--ec-u)); }
+    .banner-t { font-size: calc(44 * var(--ec-u)); }
+    .banner::before, .banner::after { width: calc(120 * var(--ec-u)); height: calc(2 * var(--ec-u)); }
+  }
+</style>
+<div class="root" data-class-low="low" data-class-charging="charging">
+  <div class="clock ec-panel">
+    <div class="clock-t ec-mono" data-bind="clock"></div>
+    <div class="tier" data-bind="tier"></div>
+    <div class="prog"><i data-style-width="run_width"></i><span class="marks" data-each="tier_marks"><template><b data-style-left="left"></b></template></span></div>
+    <div class="chips">
+      <span class="ec-chip"><span data-text="level_short"></span> <b data-bind="level"></b></span>
+      <span class="ec-chip"><span data-text="swarm_label"></span> <b data-bind="swarm"></b></span>
+      <span class="ec-chip"><span data-text="kills_label"></span> <b data-bind="kills"></b></span>
+      <span class="ec-chip chip-vg" data-show="vigil"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M6 0l6 6-6 6-6-6z" fill="currentColor"/></svg><span data-text="vigil_chip"></span></span>
+    </div>
+    <div class="warden" data-show="warden">
+      <div class="warden-h"><svg viewBox="0 0 12 12" width="10" height="10"><path d="M6 0l6 6-6 6-6-6z" fill="currentColor"/></svg><span class="ec-lbl" data-text="warden_label"></span><span class="ec-mono" data-bind="warden_pct"></span></div>
+      <div class="ec-bar"><i data-style-width="warden_width"></i></div>
+    </div>
+  </div>
+
+  <div class="seedbox ec-panel"><span class="ec-lbl" data-text="seed"></span><span class="v ec-mono" data-bind="seed"></span><small data-text="same_seed"></small></div>
+
+  <button class="mpause ec-panel" data-action="pause" aria-label="Pause"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 7h14M5 12h14M5 17h14"/></svg></button>
+
+  <div class="chain" data-show="chained"><span class="chain-v ec-mono" data-bind="combo"></span><span class="ec-lbl chain-l" data-text="chain_label"></span><div class="ec-bar"><i data-style-width="chain_width"></i></div></div>
+
+  <div class="banner" data-show="alert"><span class="banner-t" data-bind="alert"></span></div>
+
+  <div class="vitals ec-panel">
+    <div class="row"><span class="ec-lbl" data-text="ember_label"></span><span class="ec-mono"><span data-bind="hp"></span> <small>/ <span data-bind="hp_max"></span></small></span></div>
+    <div class="ec-bar hp"><i data-style-width="hp_width"></i></div>
+    <div class="ec-bar xp"><i data-style-width="xp_width"></i></div>
+    <div class="nova"><span class="ec-kbd">SPACE</span><span class="ec-lbl" data-text="nova_label"></span><div class="ec-bar"><i data-style-width="nova_width"></i></div><span><span class="rdy" data-text="ready"></span><span class="cdt" data-bind="nova_left"></span></span></div>
+    <div class="dashrow" data-class-ready="dash_ready"><span class="ec-kbd">SHIFT</span><span class="ec-lbl" data-text="dash_label"></span><div class="ec-bar"><i data-style-width="dash_width"></i></div><span class="dst" data-bind="dash_state"></span></div>
+    <div class="row score"><span class="ec-lbl" data-text="score_label"></span><span class="ec-mono" data-bind="score"></span></div>
+    <div class="pipr"><span class="pip sw2" data-show="revives"><span data-text="second_wind_pip"></span><b data-bind="revives"></b></span><span class="pip rr" data-show="rerolls"><span data-text="reroll_pip"></span><b data-bind="rerolls"></b></span></div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cable_crossover"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.62, 2.45, 0.87],
+      "offset": [0, 1.225, 0.025]
+    }
+  }
+}

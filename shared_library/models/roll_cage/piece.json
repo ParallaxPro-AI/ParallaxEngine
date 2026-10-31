@@ -1,0 +1,10 @@
+{
+  "id": "roll_cage",
+  "summary": "A retail ROLL CAGE — the wheeled mesh cage a shop's stock actually arrives in, 0.72 x 1.72 x 0.86 on four cas… joints gate; options load; sockets socket_handle, socket_load.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roll_cage or place \"prefab\": \"roll_cage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roll_cage"]
+}

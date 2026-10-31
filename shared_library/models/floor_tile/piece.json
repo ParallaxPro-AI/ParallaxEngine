@@ -1,0 +1,10 @@
+{
+  "id": "floor_tile",
+  "summary": "A modular 0.6 m square floor tile module for building floors on a grid. options grid, surface.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.floor_tile or place \"prefab\": \"floor_tile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:floor_tile"]
+}

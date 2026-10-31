@@ -1,0 +1,10 @@
+{
+  "id": "witch_broom",
+  "summary": "A witch's besom broom, 1.59 m: a crooked, knotted branch handle with two snapped-off side shoots, driven into… options handle_wood; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.witch_broom or place \"prefab\": \"witch_broom\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:witch_broom"]
+}

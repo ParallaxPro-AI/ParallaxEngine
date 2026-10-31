@@ -1,0 +1,116 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .msx { position: fixed; inset: 0; pointer-events: none; }
+  .msx-wrap { position: absolute; inset: var(--sr-edge-y) var(--sr-edge); display: flex; flex-direction: column; gap: clamp(calc(18 * var(--u)),3cqh,calc(32 * var(--u))); }
+  .msx-head { display: flex; flex-direction: column; gap: calc(10 * var(--u)); animation: sr-fade 300ms ease both; }
+  .msx-cal { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: calc(10 * var(--u)); }
+  .msx-cal:empty { display: none; }
+  .msx-round { --c: calc(12 * var(--u)); position: relative; display: flex; align-items: center; gap: calc(14 * var(--u)); padding: calc(14 * var(--u)) calc(18 * var(--u)); background: var(--sr-plate); clip-path: polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c)); box-shadow: inset 0 calc(3 * var(--u)) 0 rgba(255,247,237,0.10); min-width: 0; }
+  .msx-round > .sr-num { font-size: calc(34 * var(--u)); color: var(--sr-cream); }
+  .msx-round-t { display: flex; flex-direction: column; gap: calc(4 * var(--u)); min-width: 0; }
+  .msx-round-n { display: flex; align-items: center; gap: calc(8 * var(--u)); min-width: 0; }
+  .msx-round-n b { font: italic 800 calc(22 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msx-round-n svg { width: calc(16 * var(--u)); height: calc(16 * var(--u)); color: var(--sr-orange-hi); }
+  .msx-round-n .sr-lbl { font-size: calc(11 * var(--u)); color: var(--sr-orange-hi); white-space: nowrap; }
+  .msx-round-n .sr-lbl.is-x2 { color: var(--sr-amber); }
+  .msx-round-m { font: 700 calc(11 * var(--u))/1.1 var(--sr-f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--sr-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .msx-round.is-done { box-shadow: inset 0 calc(3 * var(--u)) 0 rgba(249,115,22,0.4); }
+  .msx-round.is-done > .sr-num, .msx-round.is-done .msx-round-n b { color: var(--sr-mute); }
+  .msx-round.is-now { background: rgba(249,115,22,0.18); box-shadow: inset 0 calc(3 * var(--u)) 0 var(--sr-orange); }
+  .msx-round.is-now > .sr-num { color: var(--sr-orange); }
+  .msx-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: calc(24 * var(--u)); }
+  .msx-card { position: relative; height: 100%; pointer-events: auto; cursor: pointer; transition: opacity 160ms; animation: sr-rise 360ms var(--sr-ease) both; }
+  .msx-card.is-dim { opacity: .42; cursor: default; }
+  .msx-plate { --c: calc(20 * var(--u)); height: 100%; display: flex; flex-direction: column; }
+  .msx-card.is-sel .msx-plate { box-shadow: inset 0 0 0 calc(2 * var(--u)) var(--sr-orange); }
+  .msx-card.is-sel .msx-plate::before { content: ''; position: absolute; left: calc(20 * var(--u)); top: 0; right: 0; height: calc(3 * var(--u)); background: var(--sr-orange); }
+  .msx-thumb { position: relative; flex: 1; min-height: calc(120 * var(--u)); background: repeating-linear-gradient(135deg, rgba(255,247,237,0.05) 0 calc(1 * var(--u)), transparent calc(1 * var(--u)) calc(14 * var(--u))); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .msx-thumb-n { font: italic 900 calc(180 * var(--u))/.8 var(--sr-f-display); color: rgba(255,247,237,0.06); }
+  .msx-flag { position: absolute; right: calc(20 * var(--u)); top: calc(20 * var(--u)); }
+  .msx-body { padding: calc(24 * var(--u)) calc(28 * var(--u)) calc(26 * var(--u)); display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .msx-name-row { display: flex; align-items: center; gap: calc(14 * var(--u)); }
+  .msx-name { font: italic 900 calc(52 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .msx-desc { font: 500 calc(18 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .msx-stats { display: flex; gap: calc(40 * var(--u)); border-top: calc(1 * var(--u)) solid var(--sr-line); padding-top: calc(14 * var(--u)); }
+  .msx-stat { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+  .msx-stat .sr-lbl { font-size: calc(12 * var(--u)); }
+  .msx-stat .sr-num { font-size: calc(34 * var(--u)); color: var(--sr-cream); }
+  .msx-stat .sr-num.is-rec { color: var(--sr-amber); }
+  .msx-stat .sr-num.is-none { font-weight: 700; color: var(--sr-dim); }
+  .msx-flag-m, .msx-spacer, .msx-label-m { display: none; }
+  .msx-foot { display: flex; align-items: center; gap: calc(14 * var(--u)); pointer-events: auto; }
+  .msx-flex { flex: 1; }
+  @media (pointer: coarse) {
+    .msx-wrap { inset: var(--sr-safe-t) var(--sr-safe-r) var(--sr-safe-b) var(--sr-safe-l); gap: calc(16 * var(--u)); }
+    .msx-head { gap: calc(6 * var(--u)); }
+    .msx-head .sr-kicker { display: none; }
+    .msx-head .sr-h1 { font-size: calc(60 * var(--u)); }
+    .msx-head .sr-sub { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .msx-head.is-season .sr-sub { color: var(--sr-orange-hi); }
+    .msx-cal { gap: calc(12 * var(--u)); }
+    .msx-round { --c: calc(14 * var(--u)); height: calc(68 * var(--u)); padding: 0 calc(20 * var(--u)); gap: calc(14 * var(--u)); box-shadow: inset 0 calc(4 * var(--u)) 0 rgba(255,247,237,0.10); }
+    .msx-round.is-done { box-shadow: inset 0 calc(4 * var(--u)) 0 rgba(249,115,22,0.4); }
+    .msx-round.is-now { box-shadow: inset 0 calc(4 * var(--u)) 0 var(--sr-orange); }
+    .msx-round > .sr-num { font-size: calc(34 * var(--u)); }
+    .msx-round-n b { font-size: calc(28 * var(--u)); font-weight: 700; }
+    .msx-round-n svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+    .msx-round-n .sr-lbl, .msx-round-m { display: none; }
+    .msx-grid { gap: calc(16 * var(--u)); }
+    .msx-plate { --c: calc(24 * var(--u)); padding: calc(24 * var(--u)) calc(28 * var(--u)); gap: calc(14 * var(--u)); }
+    .msx-card.is-sel .msx-plate::before { left: calc(24 * var(--u)); }
+    .msx-thumb, .msx-flag { display: none; }
+    .msx-body { padding: 0; gap: calc(14 * var(--u)); flex: 1; }
+    .msx-name-row { gap: calc(14 * var(--u)); flex-wrap: nowrap; min-width: 0; }
+    .msx-name { font-size: calc(52 * var(--u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+    .msx-name-row .sr-badge { height: calc(36 * var(--u)); padding: 0 calc(12 * var(--u)); gap: calc(8 * var(--u)); font-size: calc(18 * var(--u)); letter-spacing: .12em; }
+    .msx-name-row .sr-badge svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); }
+    .msx-flag-m { display: inline-flex; }
+    .msx-spacer { display: block; flex: 1; }
+    .msx-desc { font-size: calc(24 * var(--u)); }
+    .msx-stats { gap: calc(44 * var(--u)); padding-top: calc(14 * var(--u)); border-top-width: calc(2 * var(--u)); margin-top: auto; }
+    .msx-stat .sr-lbl { font-size: calc(20 * var(--u)); }
+    .msx-stat .sr-num { font-size: calc(44 * var(--u)); }
+    .msx-label-d { display: none; }
+    .msx-label-m { display: inline; }
+  }
+  [data-off] {}
+  .is-hidden { display: none !important; }
+</style>
+<div class="sr msx">
+  <div class="sr-vignette"></div>
+  <div class="sr-scene-dim"></div>
+  <div class="msx-wrap">
+    <div class="msx-head" data-class-is-season="season_mode">
+      <div class="sr-kicker" data-bind="kicker"></div>
+      <h1 class="sr-h1" data-text="select_track"></h1>
+      <p class="sr-sub" data-bind="sub"></p>
+    </div>
+    <div class="msx-cal" data-each="calendar"><template>
+      <div class="msx-round" data-class-is-done="done" data-class-is-now="now"><span class="sr-num" data-bind="tag"></span><div class="msx-round-t"><div class="msx-round-n"><b data-bind="name"></b><span data-class-is-hidden="not_done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><div class="sr-lbl" data-class-is-hidden="not_now" data-text="now_tag"></div><div class="sr-lbl is-x2" data-class-is-hidden="not_x2" data-bind="x2"></div></div>
+        <div class="msx-round-m" data-bind="meta"></div></div></div>
+    </template></div>
+    <div class="msx-grid" data-each="tracks"><template>
+      <div class="msx-card" data-class-is-sel="selected" data-class-is-dim="dim" data-action="pick_track">
+        <div class="sr-plate msx-plate">
+          <div class="msx-thumb"><span class="msx-thumb-n" data-bind="number"></span><div class="msx-flag"><span class="sr-badge is-pri" data-class-is-hidden="not_selected"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span data-text="selected"></span></span><span class="sr-badge" data-class-is-hidden="not_dim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-text="not_this_round"></span></span></div></div>
+          <div class="msx-body">
+            <div class="msx-name-row"><div class="msx-name" data-bind="name"></div><span class="sr-badge" data-class-is-sky="diff_easy" data-class-is-amber="diff_medium" data-class-is-red="diff_hard" data-bind="difficulty"></span><span class="msx-spacer"></span></div>
+            <div class="msx-desc" data-bind="desc"></div>
+            <div class="msx-stats">
+              <div class="msx-stat"><div class="sr-lbl"><span class="msx-label-d" data-text="default_laps"></span><span class="msx-label-m" data-text="laps_short"></span></div><span class="sr-num" data-bind="laps"></span></div>
+              <div class="msx-stat"><div class="sr-lbl" data-text="best_lap_card"></div><span class="sr-num" data-class-is-rec="has_record" data-class-is-none="no_record" data-bind="best"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template></div>
+    <div class="msx-foot">
+      <button class="sr-btn" data-action="back" data-key="KeyP"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><span data-text="back"></span></button>
+      <div class="msx-flex"></div>
+      <button class="sr-btn is-pri" data-action="next" data-key="Enter"><span data-text="next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+</div>

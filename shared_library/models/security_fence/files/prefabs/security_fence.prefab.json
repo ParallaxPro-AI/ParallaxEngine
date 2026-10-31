@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/security_fence"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.82, 3.0644, 0.5232],
+      "offset": [0, 1.5322, 0.0922]
+    }
+  }
+}

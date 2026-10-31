@@ -1,0 +1,121 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sam",
+      "cast_shadows": true
+    },
+    "animator": {
+      "params": {
+        "speed": 0,
+        "crouched": false,
+        "driving": false
+      },
+      "layers": [
+        {
+          "name": "base",
+          "states": {
+            "move": {
+              "blend": {
+                "param": "speed",
+                "clips": [
+                  {
+                    "at": 0,
+                    "clip": "clips/stand_idle"
+                  },
+                  {
+                    "at": 2,
+                    "clip": "clips/walk_cycle"
+                  },
+                  {
+                    "at": 6,
+                    "clip": "clips/run_cycle"
+                  }
+                ]
+              }
+            },
+            "drive": {
+              "clip": "clips/driver_seated"
+            }
+          },
+          "transitions": [
+            {
+              "from": "move",
+              "to": "drive",
+              "when": [
+                "driving"
+              ],
+              "fade": 0.15
+            },
+            {
+              "from": "drive",
+              "to": "move",
+              "when": [
+                "not driving"
+              ],
+              "fade": 0.15
+            }
+          ]
+        }
+      ]
+    },
+    "character": {
+      "walk_speed": 5,
+      "run_speed": 9,
+      "jump_height": 1.4,
+      "radius": 0.35,
+      "height": 1.88,
+      "stances": {
+        "crouch_height": 1.1,
+        "crouch_speed": 2
+      }
+    },
+    "health": {
+      "current": 100,
+      "max": 100,
+      "shield": 0,
+      "destroy_on_death": false
+    },
+    "armour": {
+      "capacity": 100
+    },
+    "minimap": {
+      "range": 90
+    },
+    "arsenal": {
+      "owned": [
+        "fists",
+        "pistol"
+      ],
+      "current": "fists",
+      "loaded": {
+        "pistol": 12
+      },
+      "reserve": {
+        "pistol": 60
+      }
+    },
+    "hurt_feedback": {
+      "flash": 0.6,
+      "shake": 0.4,
+      "low_health": 0.35,
+      "direction": true
+    }
+  },
+  "tags": [
+    "player"
+  ],
+  "behaviors": {
+    "player_movement": {},
+    "take_cover": {
+      "reach": 1.6
+    },
+    "player_vitals": {
+      "regen_delay": 8,
+      "regen_rate": 10
+    },
+    "gunplay": {
+      "muzzle_height": 1.4
+    },
+    "driver": {}
+  }
+}

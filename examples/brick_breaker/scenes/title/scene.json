@@ -1,0 +1,6 @@
+{
+  "extends": "arena",
+  "exclude": ["wall", "paddle", "ball"],
+  "ui": ["title_screen"],
+  "music": null
+}

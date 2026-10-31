@@ -1,0 +1,7 @@
+{
+  "name": "Storm Reef",
+  "brief": "Black water, standing squalls, and a reef full of tentacles. The gold is heavier out here — so is the sea.",
+  "bounty_label": "Slay two krakens",
+  "scene": "storm_reef", "duration": 240, "gold_quota": 480, "treasure_count": 18, "treasure_value": 34,
+  "bounty_tag": "kraken", "bounty_count": 2, "storm_chance": 0.9, "enemy_damage_scale": 1.15
+}

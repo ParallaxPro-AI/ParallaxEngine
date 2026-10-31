@@ -1,0 +1,10 @@
+{
+  "id": "paper_dart",
+  "summary": "A folded paper dart: a long swept delta on a deep central keel, the nose folded to a hard point and the wing… joints crease_wing_l, crease_wing_r, crease_nose, crease_tail; options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_dart or place \"prefab\": \"paper_dart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_dart"]
+}

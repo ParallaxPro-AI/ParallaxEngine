@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wall_sconce"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.13, 0.385, 0.204],
+      "offset": [0, 0.1975, 0.002]
+    }
+  }
+}

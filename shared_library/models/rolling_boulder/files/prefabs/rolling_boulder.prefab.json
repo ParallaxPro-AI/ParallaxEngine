@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rolling_boulder"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0495, 2.0331, 2.06],
+      "offset": [0.039, 1.0125, 0]
+    }
+  }
+}

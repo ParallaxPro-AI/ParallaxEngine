@@ -1,0 +1,10 @@
+{
+  "id": "kids_play_kitchen",
+  "summary": "A wooden pretend-play kitchen at child height (worktop 0.53 m): a white cabinet with a bottom-hinged oven doo… joints knob_0, knob_1, knob_2, oven_door, cupboard_door; options accent; sockets socket_hob_front, socket_sink, socket_shelf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kids_play_kitchen or place \"prefab\": \"kids_play_kitchen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kids_play_kitchen"]
+}

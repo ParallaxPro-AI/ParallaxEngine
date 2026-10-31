@@ -1,0 +1,11 @@
+{
+  "components": {
+    "camera": {
+      "rig": "follow",
+      "mode": "perspective",
+      "fov": 76,
+      "offset": [0, 2.55, -6.6],
+      "smoothing": 0.12
+    }
+  }
+}

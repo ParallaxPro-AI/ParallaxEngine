@@ -1,0 +1,10 @@
+{
+  "id": "tow_truck",
+  "summary": "A medium recovery truck: a day cab, a short deck and a telescoping boom with a hook and a spectacle lift on t… joints cab_tilt, door_l, door_r, boom_lift, boom_extend; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_hook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.tow_truck or place \"prefab\": \"tow_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:tow_truck"]
+}

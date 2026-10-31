@@ -1,0 +1,10 @@
+{
+  "id": "cassette_player",
+  "summary": "A generic 1980s portable stereo cassette player / boombox (no brand): a dark moulded case with rolled edges… joints deck_door, antenna; options body_colour, tape; sockets socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cassette_player or place \"prefab\": \"cassette_player\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cassette_player"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bird_bath",
+  "summary": "A cast-stone garden bird bath: a square chamfered plinth, a turned baluster pedestal with a knop, and a 0.64… options stone, water; sockets socket_rim, socket_water.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bird_bath or place \"prefab\": \"bird_bath\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bird_bath"]
+}

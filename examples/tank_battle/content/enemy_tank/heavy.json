@@ -1,0 +1,1 @@
+{ "name": "Heavy tank", "prefab": "enemy_tank_heavy", "role": "sniper", "health": 300, "armor": 15, "speed": 4, "damage": 40, "range": 50, "fire_interval": 4.0, "detect": 50, "ride": 0.92, "standoff": 0.9, "shell_speed": 34, "spread": 2.29, "score": 250 }

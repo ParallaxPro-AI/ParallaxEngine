@@ -1,0 +1,10 @@
+{
+  "id": "shotgun",
+  "summary": "A shotgun with three interchangeable configurations: a pump-action with a single barrel, magazine tube and sl… joints pump, break, eject; options type; sockets grip_r, grip_l, sight, muzzle, eject.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.shotgun or place \"prefab\": \"shotgun\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:shotgun"]
+}

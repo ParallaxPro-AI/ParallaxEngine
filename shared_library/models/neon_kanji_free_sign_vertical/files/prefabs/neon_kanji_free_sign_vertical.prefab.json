@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/neon_kanji_free_sign_vertical"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.69, 2.6, 0.491],
+      "offset": [0, 1.3, 0.0055]
+    }
+  }
+}

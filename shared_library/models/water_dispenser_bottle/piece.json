@@ -1,0 +1,10 @@
+{
+  "id": "water_dispenser_bottle",
+  "summary": "A 19-litre (5-gallon) water-cooler refill bottle: a pale-blue translucent polycarbonate shell with a stepped… options level, cap; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.water_dispenser_bottle or place \"prefab\": \"water_dispenser_bottle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:water_dispenser_bottle"]
+}

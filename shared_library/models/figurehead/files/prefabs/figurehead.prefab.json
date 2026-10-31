@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/figurehead"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 1.97, 0.8455],
+      "offset": [0, 0.985, -0.0004]
+    }
+  }
+}

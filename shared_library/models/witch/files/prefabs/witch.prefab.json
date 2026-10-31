@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/witch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 2.215, 0.6513],
+      "offset": [0, 1.1075, -0.0224]
+    }
+  }
+}

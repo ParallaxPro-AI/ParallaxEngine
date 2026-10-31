@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/suppressor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.055, 0.055, 0.203],
+      "offset": [0, 0.0275, 0]
+    }
+  }
+}

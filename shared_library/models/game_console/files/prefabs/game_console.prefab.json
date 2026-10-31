@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/game_console"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.306, 0.0764, 0.238],
+      "offset": [0, 0.0382, 0.002]
+    }
+  }
+}

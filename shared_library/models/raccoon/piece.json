@@ -1,0 +1,10 @@
+{
+  "id": "raccoon",
+  "summary": "A raccoon on the engine's quadruped_20 rig: ~0.3 m at the shoulder, ~0.95 m nose to tail-tip. options fur.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.raccoon or place \"prefab\": \"raccoon\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:raccoon"]
+}

@@ -1,0 +1,1 @@
+{ "name": "Cinder Spitter", "prefab": "spitter", "hp": 26, "damage": 6, "move_speed": 3.4, "xp": 3, "score": 30, "heart_chance": 0.05 }

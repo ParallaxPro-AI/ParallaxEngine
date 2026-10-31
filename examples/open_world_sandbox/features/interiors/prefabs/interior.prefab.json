@@ -1,0 +1,6 @@
+{
+  "components": {
+    "interior_zone": { "name": "place_safehouse", "size": [9, 3.2, 8], "camera_distance": 2.6 },
+    "light": { "kind": "point", "color": "#ffd9a8", "intensity": 1.6, "range": 9 }
+  }
+}

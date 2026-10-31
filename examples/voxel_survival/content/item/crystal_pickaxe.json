@@ -1,0 +1,1 @@
+{ "name": "Crystal Pickaxe", "icon": "pickaxe", "color": "#33c9db", "stack_max": 1, "tool": "pickaxe", "view": "pickaxe_view", "tier": 3, "mine_speed": 4.6, "damage": 22, "reach": 5 }

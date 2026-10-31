@@ -1,0 +1,10 @@
+{
+  "id": "evidence_locker",
+  "summary": "A police evidence locker bank: a 0.92 x 1.95 m welded steel cabinet of twelve compartments (3 x 4) behind ove… joints door_r0_c0, door_r0_c1, door_r0_c2, door_r1_c0, door_r1_c1, door_r1_c2, …; options color; sockets socket_cell_r0_c0, socket_cell_r0_c1, socket_cell_r0_c2, socket_cell_r1_c0, socket_cell_r1_c1, socket_cell_r1_c2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.evidence_locker or place \"prefab\": \"evidence_locker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:evidence_locker"]
+}

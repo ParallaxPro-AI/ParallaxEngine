@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/road_paver"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 16500,
+      "linear_damping": 0.15,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.64,
+        3.2,
+        6.36
+      ],
+      "offset": [
+        0,
+        1.6,
+        0.15
+      ],
+      "bounce": 0.03
+    },
+    "vehicle": {
+      "max_speed": 4.5,
+      "steering": 26,
+      "grip": 9,
+      "turn_rate": 0.8
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.6,
+        0.15
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

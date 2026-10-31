@@ -1,0 +1,10 @@
+{
+  "id": "tablet",
+  "summary": "A generic 11-inch tablet computer lying flat, screen up: a thin anodised slab with rolled edges and rounded c… options cover, colour, cover_colour, screen_state; sockets socket_screen.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tablet or place \"prefab\": \"tablet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tablet"]
+}

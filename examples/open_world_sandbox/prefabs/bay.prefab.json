@@ -1,0 +1,5 @@
+{
+  "components": {
+    "shape": { "kind": "plane", "size": [6, 1, 9], "color": "#fbbf2499", "cast_shadows": false }
+  }
+}

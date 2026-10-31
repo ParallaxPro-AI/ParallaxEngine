@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trireme"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 50000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [15.109, 12.35, 35.2135],
+      "offset": [0, 6.175, 0.0932]
+    }
+  }
+}

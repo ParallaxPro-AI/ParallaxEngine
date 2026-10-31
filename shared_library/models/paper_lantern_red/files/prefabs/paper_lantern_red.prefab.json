@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paper_lantern_red"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7288, 1.534, 0.7288],
+      "offset": [0, 0.767, 0]
+    }
+  }
+}

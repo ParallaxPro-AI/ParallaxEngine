@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boombox"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.62, 0.3925, 0.176],
+      "offset": [0, 0.1963, 0.013]
+    }
+  }
+}

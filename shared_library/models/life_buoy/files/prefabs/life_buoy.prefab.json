@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/life_buoy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8472, 0.167, 0.8472],
+      "offset": [0, 0.08, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sewing_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.448, 0.34, 0.192],
+      "offset": [-0.013, 0.17, 0]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/65/32/65324842bd92f8e8bf7ee4637e7130a8b0fd47b6ec0b749c193dc7c1e2080d53.glb",
+      "cast_shadows": true,
+      "colors": {
+        "DarkWood": "#ed897c",
+        "Wood": "#ed897c"
+      }
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    },
+    "station": {
+      "kind": "tomato_crate"
+    }
+  },
+  "scale": [
+    1.6,
+    1,
+    1.6
+  ]
+}

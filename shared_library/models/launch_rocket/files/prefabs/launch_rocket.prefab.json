@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/launch_rocket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.86, 48, 5.5437],
+      "offset": [0, 24, 0]
+    }
+  }
+}

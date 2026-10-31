@@ -1,0 +1,35 @@
+<!-- Ported from the template: chess pawn promotion picker - modal with queen/rook/bishop/knight buttons over the board -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .pr { position: fixed; inset: 0; z-index: 260; pointer-events: auto; }
+  .pr-row { display: flex; gap: var(--cx-s-4); justify-content: center; margin-top: var(--cx-s-7); }
+  .pr-btn {
+    width: var(--cx-promo-w); height: var(--cx-promo-h); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--cx-s-2);
+    padding: 0; background: var(--cx-bg-2); border: 1px solid var(--cx-line-2); cursor: pointer; pointer-events: auto;
+    transition: background var(--cx-t-fast), border-color var(--cx-t-fast), transform var(--cx-t-fast);
+  }
+  .pr-g { font-family: var(--cx-f-glyph); font-size: var(--cx-fs-promo); line-height: 1; color: var(--cx-ink); transition: color var(--cx-t-fast); }
+  .pr-n { font: 500 var(--cx-fs-label)/1 var(--cx-f-mono); letter-spacing: .16em; text-transform: uppercase; color: var(--cx-ink-3); transition: color var(--cx-t-fast); }
+  .pr-btn:hover { background: var(--cx-bg-3); border-color: var(--cx-accent); }
+  .pr-btn:hover .pr-g { color: var(--cx-accent); }
+  .pr-btn:hover .pr-n { color: var(--cx-ink-2); }
+  .pr-btn:focus-visible { outline: 2px solid var(--cx-accent); outline-offset: 4px; }
+  .pr-btn:active { transform: translateY(1px); background: var(--cx-bg-3); border-color: var(--cx-accent); }
+  .pr-btn:active .pr-g { color: var(--cx-accent); }
+  @container (max-height: 500px) {
+    .pr-row { gap: var(--cx-s-3); }
+  }
+</style>
+<div class="cx-root pr">
+  <div class="cx-scrim"></div>
+  <div class="cx-modal" role="dialog" aria-modal="true">
+    <div class="cx-label" data-bind="where"></div>
+    <h2 class="cx-h2">Promote Pawn</h2>
+    <div class="pr-row">
+      <button class="pr-btn" data-action="choose" data-piece="q" data-key="KeyQ" aria-label="Queen"><span class="pr-g" aria-hidden="true">&#9819;&#xFE0E;</span><span class="pr-n" data-text="piece_queen"></span></button>
+      <button class="pr-btn" data-action="choose" data-piece="r" data-key="KeyR" aria-label="Rook"><span class="pr-g" aria-hidden="true">&#9820;&#xFE0E;</span><span class="pr-n" data-text="piece_rook"></span></button>
+      <button class="pr-btn" data-action="choose" data-piece="b" data-key="KeyB" aria-label="Bishop"><span class="pr-g" aria-hidden="true">&#9821;&#xFE0E;</span><span class="pr-n" data-text="piece_bishop"></span></button>
+      <button class="pr-btn" data-action="choose" data-piece="n" data-key="KeyN" aria-label="Knight"><span class="pr-g" aria-hidden="true">&#9822;&#xFE0E;</span><span class="pr-n" data-text="piece_knight"></span></button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/fuse_box",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    0.363,
+    0.48,
+    0.1475
+   ],
+   "offset": [
+    0,
+    0.24,
+    -0.0008
+   ]
+  }
+ }
+}

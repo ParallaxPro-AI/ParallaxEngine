@@ -1,0 +1,10 @@
+{
+  "id": "scifi_wall_panel_vent",
+  "summary": "A 4 m sci-fi wall module with a large louvred air vent, the wall piece of the space-corridor kit: a sloped ki… sockets socket_end_left, socket_end_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_wall_panel_vent or place \"prefab\": \"scifi_wall_panel_vent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_wall_panel_vent"]
+}

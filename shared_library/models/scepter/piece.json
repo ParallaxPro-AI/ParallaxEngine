@@ -1,0 +1,10 @@
+{
+  "id": "scepter",
+  "summary": "A royal scepter stood tip-up: a turned gold rod with knopped collars and a ball foot, a velvet-wrapped grip… options gem, metal; sockets socket_grip, socket_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scepter or place \"prefab\": \"scepter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scepter"]
+}

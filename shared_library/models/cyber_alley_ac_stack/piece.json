@@ -1,0 +1,10 @@
+{
+  "id": "cyber_alley_ac_stack",
+  "summary": "A cyberpunk back-alley stack of three outdoor split air-conditioner condensers bolted one above another on a… joints u0_fan, u1_fan, u2_fan.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyber_alley_ac_stack or place \"prefab\": \"cyber_alley_ac_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyber_alley_ac_stack"]
+}

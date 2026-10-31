@@ -1,0 +1,34 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bar_stool",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.42,
+        1.0375,
+        0.42
+      ],
+      "offset": [
+        0.0,
+        0.5188,
+        0.0
+      ]
+    }
+  },
+  "behaviors": {
+    "model_ambient": {
+      "motions": [
+        {
+          "joint": "swivel",
+          "mode": "oscillate",
+          "period": 11,
+          "low": 126,
+          "high": 234
+        }
+      ]
+    }
+  }
+}

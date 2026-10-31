@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spawn_pad"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.808, 0.15, 1.808],
+      "offset": [0, 0.075, 0]
+    }
+  }
+}

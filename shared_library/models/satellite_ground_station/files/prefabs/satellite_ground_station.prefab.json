@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/satellite_ground_station"
+    }
+  }
+}

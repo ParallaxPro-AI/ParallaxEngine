@@ -1,0 +1,10 @@
+{
+  "id": "nail_gun",
+  "summary": "A pneumatic framing nailer: a magnesium cylinder housing with a black exhaust cap at the rear, a narrow drive… joints trigger, safety_tip, depth_wheel, pusher; options accent; sockets socket_grip, socket_muzzle, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.nail_gun or place \"prefab\": \"nail_gun\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:nail_gun"]
+}

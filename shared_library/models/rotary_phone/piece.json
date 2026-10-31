@@ -1,0 +1,10 @@
+{
+  "id": "rotary_phone",
+  "summary": "A mid-century rotary desk telephone in black bakelite (generic design, about 22 x 23 x 15 cm like a real 1950… joints dial, handset; options body_colour; sockets socket_handset.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rotary_phone or place \"prefab\": \"rotary_phone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rotary_phone"]
+}

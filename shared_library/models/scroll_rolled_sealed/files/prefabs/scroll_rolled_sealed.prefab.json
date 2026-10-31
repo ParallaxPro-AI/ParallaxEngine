@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scroll_rolled_sealed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2512, 0.053, 0.0674],
+      "offset": [0, 0.0263, 0]
+    }
+  }
+}

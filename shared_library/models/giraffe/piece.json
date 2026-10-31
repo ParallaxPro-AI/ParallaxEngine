@@ -1,0 +1,10 @@
+{
+  "id": "giraffe",
+  "summary": "An adult reticulated giraffe (4.6 m to the ossicones, 2.9 m at the withers) on the engine's quadruped_20 rig… options coat, patches_colour, pattern; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.giraffe or place \"prefab\": \"giraffe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:giraffe"]
+}

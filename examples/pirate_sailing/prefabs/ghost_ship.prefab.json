@@ -1,0 +1,91 @@
+{
+  "tags": [
+    "ghost"
+  ],
+  "components": {
+    "model": {
+      "model": "models/ghost_ship_small",
+      "offset": [
+        0,
+        -2.37,
+        0
+      ],
+      "cast_shadows": true
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 2400,
+      "linear_damping": 0.08,
+      "angular_damping": 0.5
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3,
+        0.85,
+        4.4
+      ],
+      "offset": [
+        0,
+        -0.8,
+        0
+      ]
+    },
+    "buoyancy": {},
+    "vehicle": {
+      "kind": "boat",
+      "max_speed": 8,
+      "acceleration": 2,
+      "braking": 3,
+      "steering": 35
+    },
+    "health": {
+      "current": 90,
+      "max": 90
+    },
+    "side": {
+      "side": "side_sea"
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        4,
+        0
+      ],
+      "color": "#a3261b"
+    },
+    "bounty": {
+      "gold": 70
+    }
+  },
+  "behaviors": {
+    "ghost_ship": {
+      "sight": 120,
+      "gun_range": 32,
+      "fire_every": 2.6,
+      "damage": 18,
+      "muzzle_speed": 40,
+      "wander_radius": 40,
+      "wander_every": 6,
+      "wander_sail": 0.5,
+      "full_rudder_at": 45,
+      "look_ahead": 6
+    }
+  },
+  "children": [
+    {
+      "name": "pennant",
+      "prefab": "ghost_pennant",
+      "at": [
+        0,
+        1.36,
+        -0.5
+      ],
+      "rotation": [
+        0,
+        90,
+        0
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "zipline",
+  "summary": "A zipline: a 5.6 m four-post timber launch tower with cross-bracing, a railed deck at 4 m reached by a steel… joints trolley.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.zipline or place \"prefab\": \"zipline\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:zipline"]
+}

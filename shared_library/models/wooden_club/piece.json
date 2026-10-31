@@ -1,0 +1,10 @@
+{
+  "id": "wooden_club",
+  "summary": "A primitive war club whittled from one hardwood root-branch: a flared butt knob with a leather wrist thong, a… options wood; sockets strike, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.wooden_club or place \"prefab\": \"wooden_club\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:wooden_club"]
+}

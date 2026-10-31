@@ -1,0 +1,6 @@
+{
+  "components": { "shape": { "kind": "box", "size": [0.24, 0.24, 0.24] } },
+  "behaviors": {
+    "item_pickup": { "magnet_range": 6, "magnet_speed": 6, "collect_range": 1.5, "spin": 90 }
+  }
+}

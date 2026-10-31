@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dune_buggy"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 620,
+      "linear_damping": 0.05,
+      "angular_damping": 0.75
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.838,
+        2.649,
+        3.707
+      ],
+      "offset": [
+        0,
+        1.3255,
+        -0.0985
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 28,
+      "steering": 34,
+      "grip": 6,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.3255,
+        -0.0985
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

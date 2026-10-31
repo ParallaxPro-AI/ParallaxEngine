@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_dead"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.7229, 7.5605, 5.8985],
+      "offset": [0.0331, 3.7787, 0.1135]
+    }
+  }
+}

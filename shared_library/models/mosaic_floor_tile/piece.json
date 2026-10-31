@@ -1,0 +1,10 @@
+{
+  "id": "mosaic_floor_tile",
+  "summary": "A 2 m square Roman tessellated floor panel on a mortar bed: a pale limestone ground framed by a black fillet… options palette.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mosaic_floor_tile or place \"prefab\": \"mosaic_floor_tile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mosaic_floor_tile"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bone_knife",
+  "summary": "A primitive knife ground from a split deer cannon bone, 0.25 m long (real bone knives run 15-30 cm): the knuc… sockets tip, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.bone_knife or place \"prefab\": \"bone_knife\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:bone_knife"]
+}

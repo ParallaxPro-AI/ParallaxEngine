@@ -1,0 +1,10 @@
+{
+  "id": "trampoline",
+  "summary": "A round backyard trampoline: six splayed steel legs carry a tube frame ring, a black woven jump mat stretched…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trampoline or place \"prefab\": \"trampoline\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trampoline"]
+}

@@ -1,0 +1,24 @@
+{
+  "number": 4,
+  "title": "Break the binding",
+  "summary": "Two channelers feed the rift from a beacon in the woods.",
+  "checkpoint": "rowan_shrine",
+  "reward_xp": 140,
+  "reward_gold": 70,
+  "reward_items": [
+    "health_potion"
+  ],
+  "start": "interrupt",
+  "steps": {
+    "interrupt": {
+      "text": "Interrupt the two channelers at the blue woodland beacon.",
+      "verb": "defeat",
+      "target": "goblin_shaman",
+      "count": 2,
+      "marker": "beacon_channelers",
+      "sets": [
+        "shaman_circle_done"
+      ]
+    }
+  }
+}

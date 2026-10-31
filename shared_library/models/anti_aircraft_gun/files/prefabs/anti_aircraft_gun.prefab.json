@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/anti_aircraft_gun"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.2363, 1.838, 3.5082],
+      "offset": [0, 0.919, 0.0059]
+    }
+  }
+}

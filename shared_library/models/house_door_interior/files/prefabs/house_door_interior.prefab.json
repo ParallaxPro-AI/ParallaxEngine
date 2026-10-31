@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/house_door_interior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.04, 2.1188, 0.167],
+      "offset": [0, 1.0606, 0]
+    }
+  }
+}

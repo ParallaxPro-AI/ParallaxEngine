@@ -1,0 +1,10 @@
+{
+  "id": "washer_dryer_stack",
+  "summary": "A stacked laundry pair: a front-loading washing machine with a tumble dryer on top, joined by a grey stacking… joints washer_door, detergent_drawer, dryer_door, stack_shelf; options finish; sockets socket_washer_drum, socket_dryer_drum, socket_top, dryer_exhaust.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.washer_dryer_stack or place \"prefab\": \"washer_dryer_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:washer_dryer_stack"]
+}

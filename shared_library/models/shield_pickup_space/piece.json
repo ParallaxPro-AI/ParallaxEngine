@@ -1,0 +1,10 @@
+{
+  "id": "shield_pickup_space",
+  "summary": "A sci-fi shield power-up pickup for a space shooter: a chunky glowing cyan heater-shield emblem (a crest shap… joints spinner; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_pickup_space or place \"prefab\": \"shield_pickup_space\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_pickup_space"]
+}

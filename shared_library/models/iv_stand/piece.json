@@ -1,0 +1,10 @@
+{
+  "id": "iv_stand",
+  "summary": "A rolling IV / drip stand: a five-star castored base, a chrome pole whose upper section telescopes for height… joints castor_0, castor_1, castor_2, castor_3, castor_4, height, …; sockets socket_hook_front.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.iv_stand or place \"prefab\": \"iv_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:iv_stand"]
+}

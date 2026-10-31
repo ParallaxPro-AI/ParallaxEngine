@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/proto_cube_grid"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1, 1, 1],
+      "offset": [0, 0.5, 0]
+    }
+  }
+}

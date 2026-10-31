@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wanted_poster_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.02, 2.5249, 0.7024],
+      "offset": [0, 1.2596, 0.0082]
+    }
+  }
+}

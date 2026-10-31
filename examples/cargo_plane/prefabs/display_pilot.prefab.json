@@ -1,0 +1,18 @@
+{
+ "components": {
+  "model": {
+   "model": "models/pilot",
+   "options": {
+    "skin": "tan",
+    "jacket": "olive",
+    "hair": "brown",
+    "headwear": "cap",
+    "top": "open"
+   },
+   "cast_shadows": true
+  },
+  "animator": {
+   "default_clip": "clips/stand_idle"
+  }
+ }
+}

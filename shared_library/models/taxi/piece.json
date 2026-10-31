@@ -1,0 +1,16 @@
+{
+  "id": "taxi",
+  "summary": "A classic yellow taxi cab: a LOFTED three-box body (plan-swept lower body with a tucked rocker, a shoulder… joints door_front_l, door_front_r, door_rear_l, door_rear_r, roof_sign …; options indicate_l, indicate_r; sockets seat_driver, seat_pax_1, seat_pax_2, seat_pax_3 …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.taxi or place \"prefab\": \"taxi\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:taxi"
+  ]
+}

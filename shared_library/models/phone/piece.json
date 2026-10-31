@@ -1,0 +1,10 @@
+{
+  "id": "phone",
+  "summary": "A classic desk telephone: a low body with a cradle, a lift-off handset on a coiled cord, and a swappable rota… joints handset, coiled_cord; options dial; sockets socket_handset.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.phone or place \"prefab\": \"phone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:phone"]
+}

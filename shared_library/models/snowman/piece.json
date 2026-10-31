@@ -1,0 +1,10 @@
+{
+  "id": "snowman",
+  "summary": "A classic three-ball snowman standing in a low snow drift: packed-snow base, body and head balls, coal eyes… options hat, scarf.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.snowman or place \"prefab\": \"snowman\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:snowman"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coal_tender"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.04, 3.704, 7.6],
+      "offset": [0, 1.848, -0.05]
+    }
+  }
+}

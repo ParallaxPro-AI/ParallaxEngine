@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/patio_dining_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5019, 2.5014, 2.5019],
+      "offset": [0, 1.2493, 0]
+    }
+  }
+}

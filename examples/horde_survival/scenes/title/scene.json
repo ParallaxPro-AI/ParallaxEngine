@@ -1,0 +1,36 @@
+{
+  "ui": [
+    "title_screen"
+  ],
+  "environment": {
+    "sky": "night",
+    "ambient": "#a596ad",
+    "fog": {
+      "color": "#4a3d55",
+      "near": 45,
+      "far": 160
+    }
+  },
+  "entities": [
+    {
+      "prefab": "chase_camera",
+      "at": [
+        0,
+        34,
+        -22
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "components": {
+        "camera": {
+          "rig": "fixed",
+          "focus_distance": 37.1,
+          "background": "#302738"
+        }
+      }
+    }
+  ]
+}

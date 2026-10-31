@@ -1,0 +1,10 @@
+{
+  "id": "chemistry_fume_hood",
+  "summary": "A bench-mounted chemistry fume hood on its base cabinet: white powder-coated side posts and roof, a black epo… joints cab_door_l, cab_door_r, sash; options contents; sockets work_surface, operator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chemistry_fume_hood or place \"prefab\": \"chemistry_fume_hood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chemistry_fume_hood"]
+}

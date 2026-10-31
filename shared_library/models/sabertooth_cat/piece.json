@@ -1,0 +1,10 @@
+{
+  "id": "sabertooth_cat",
+  "summary": "A sabre-toothed cat (Smilodon-style, about 1 m at the shoulder, ~2 m nose to bobbed tail) on the engine's qua… options coat; sockets head_top, back, collar, mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sabertooth_cat or place \"prefab\": \"sabertooth_cat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sabertooth_cat"]
+}

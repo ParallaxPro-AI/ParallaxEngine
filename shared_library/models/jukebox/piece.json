@@ -1,0 +1,10 @@
+{
+  "id": "jukebox",
+  "summary": "A classic bubbler jukebox: walnut cabinet with an illuminated amber dome and colored pilaster tubes, a glass-… joints record_arm, selector.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.jukebox or place \"prefab\": \"jukebox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:jukebox"]
+}

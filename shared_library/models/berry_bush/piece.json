@@ -1,0 +1,10 @@
+{
+  "id": "berry_bush",
+  "summary": "A highbush blueberry bush in fruit: seven reddish woody canes arching up from a crown, clothed in leafy masse…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.berry_bush or place \"prefab\": \"berry_bush\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:berry_bush"]
+}

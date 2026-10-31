@@ -1,0 +1,5 @@
+{
+  "name": "Second Wind",
+  "blurb": "Recover your lead faster after a hit.",
+  "icon": "M13 1L3 14h7l-1.5 9L19 10h-7z", "effect": "guard_recover", "per_level": 0.35, "costs": [140, 340, 760]
+}

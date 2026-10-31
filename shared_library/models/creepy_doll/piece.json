@@ -1,0 +1,10 @@
+{
+  "id": "creepy_doll",
+  "summary": "A broken porcelain doll, 0.45 m tall: buttoned boots, a flared dress with a scalloped lace hem and a lace col… joints head; options dress_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.creepy_doll or place \"prefab\": \"creepy_doll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:creepy_doll"]
+}

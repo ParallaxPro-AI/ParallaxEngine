@@ -1,0 +1,10 @@
+{
+  "id": "staircase",
+  "summary": "A modular staircase offered in three footprints (straight / L-shaped / spiral) with an optional handrail set. options shape, railing, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.staircase or place \"prefab\": \"staircase\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:staircase"]
+}

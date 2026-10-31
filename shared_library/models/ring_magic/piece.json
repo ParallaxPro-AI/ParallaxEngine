@@ -1,0 +1,10 @@
+{
+  "id": "ring_magic",
+  "summary": "An enchanted gold ring at real size (17.3 mm bore, US size 7; about 25 mm across and 27 mm tall standing): a…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ring_magic or place \"prefab\": \"ring_magic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ring_magic"]
+}

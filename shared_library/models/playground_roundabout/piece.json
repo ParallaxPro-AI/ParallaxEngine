@@ -1,0 +1,10 @@
+{
+  "id": "playground_roundabout",
+  "summary": "Low spinning playground disk with six radial grab rails. joints platform.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.playground_roundabout or place \"prefab\": \"playground_roundabout\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:playground_roundabout"]
+}

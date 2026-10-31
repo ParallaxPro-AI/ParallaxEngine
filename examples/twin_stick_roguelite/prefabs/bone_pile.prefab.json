@@ -1,0 +1,8 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [1.4, 0.4, 1.4], "offset": [0, 0.2, 0], "color": "#c7bd9e" },
+    "collider": { "shape": "box", "size": [1.4, 0.4, 1.4], "offset": [0, 0.2, 0], "layer": "prop" },
+    "health": { "current": 4, "max": 4 }
+  },
+  "tags": ["breakable"]
+}

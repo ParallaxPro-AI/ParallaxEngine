@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_food_salsa"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0913, 0.0349, 0.2404],
+      "offset": [0.0014, 0.0133, -0.0003]
+    }
+  }
+}

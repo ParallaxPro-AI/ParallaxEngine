@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crystal_formation_cave"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6082, 1.6074, 1.2964],
+      "offset": [0.0448, 0.8025, 0.0153]
+    }
+  }
+}

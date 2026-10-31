@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sticky_bomb"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.15, 0.35],
+      "hip_turn": [6.875494, 11.459156, -6.875494],
+      "eye_relief": 0.2,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1232, 0.1063, 0.1138],
+      "offset": [0.0023, 0.0486, 0.003]
+    }
+  }
+}

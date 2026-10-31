@@ -1,0 +1,10 @@
+{
+  "id": "squat_rack",
+  "summary": "A 2.2 m four-post power rack: 75 mm box uprights with 3-inch hole spacing on floor runners, top crossmembers… joints safeties, j_hooks, barbell; options load, frame, plates; sockets socket_bar, socket_lifter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.squat_rack or place \"prefab\": \"squat_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:squat_rack"]
+}

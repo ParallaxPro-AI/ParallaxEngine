@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/office_kitchenette"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 2.15, 0.657],
+      "offset": [0, 1.075, 0.0185]
+    }
+  }
+}

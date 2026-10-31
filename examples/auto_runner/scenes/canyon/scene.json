@@ -1,0 +1,112 @@
+{
+  "ui": [
+    "hud"
+  ],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/aa/38/aa382c853274b28019e614c20d9b0ad2273875c9eaefa6ccfe80462a0fb5b239.mp3",
+  "entities": [
+    {
+      "prefab": "camera",
+      "at": [
+        0,
+        0
+      ]
+    },
+    {
+      "prefab": "sun",
+      "at": [
+        6.5,
+        3
+      ]
+    },
+    {
+      "prefab": "band_clouds",
+      "grid": {
+        "cols": 3,
+        "rows": 1,
+        "spacing": [
+          20,
+          0
+        ],
+        "origin": [
+          -20,
+          3.4
+        ]
+      }
+    },
+    {
+      "prefab": "band_far",
+      "grid": {
+        "cols": 3,
+        "rows": 1,
+        "spacing": [
+          25,
+          0
+        ],
+        "origin": [
+          -25,
+          -0.8
+        ]
+      }
+    },
+    {
+      "prefab": "band_mesa",
+      "grid": {
+        "cols": 4,
+        "rows": 1,
+        "spacing": [
+          12,
+          0
+        ],
+        "origin": [
+          -18,
+          -0.3
+        ]
+      }
+    },
+    {
+      "prefab": "ground",
+      "at": [
+        0,
+        -16
+      ]
+    },
+    {
+      "prefab": "band_sand",
+      "grid": {
+        "cols": 34,
+        "rows": 1,
+        "spacing": [
+          1,
+          0
+        ],
+        "origin": [
+          -16.5,
+          -3.48
+        ]
+      }
+    },
+    {
+      "prefab": "band_pebbles",
+      "grid": {
+        "cols": 6,
+        "rows": 1,
+        "spacing": [
+          5,
+          0
+        ],
+        "origin": [
+          -12.5,
+          -3.55
+        ]
+      }
+    },
+    {
+      "id": "runner",
+      "prefab": "runner",
+      "at": [
+        -7,
+        -2.45
+      ]
+    }
+  ]
+}

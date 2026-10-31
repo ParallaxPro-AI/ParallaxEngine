@@ -1,0 +1,10 @@
+{
+  "id": "luxury_dining_table",
+  "summary": "Luxury eight-seat dining table: a thick honed travertine top with rounded corners and an eased edge on twin f… options styling, stone, metal; sockets surface_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_dining_table or place \"prefab\": \"luxury_dining_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_dining_table"]
+}

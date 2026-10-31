@@ -1,0 +1,1 @@
+{ "name": "Frostline", "scene": "frostline", "waves": ["w06", "w07", "w08", "w09"], "hp_mul": 1.2, "damage_mul": 1.1, "reward": "heat_shell", "next": "rubble_city" }

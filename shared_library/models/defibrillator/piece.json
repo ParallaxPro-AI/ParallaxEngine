@@ -1,0 +1,10 @@
+{
+  "id": "defibrillator",
+  "summary": "A portable manual defibrillator-monitor: a light-grey case with yellow rubber corner bumpers, a dark front pa… joints energy, shock, paddle_l, paddle_r, handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.defibrillator or place \"prefab\": \"defibrillator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:defibrillator"]
+}

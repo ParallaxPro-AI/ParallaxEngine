@@ -1,0 +1,10 @@
+{
+  "extends": "tank_turret",
+  "children": [
+    {
+      "name": "gun",
+      "prefab": "tank_gun_long",
+      "at": [0, 0.35, 1.19]
+    }
+  ]
+}

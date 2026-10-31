@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.455, 4.73, 4.95],
+      "offset": [-0.1325, 2.365, -0.125]
+    }
+  }
+}

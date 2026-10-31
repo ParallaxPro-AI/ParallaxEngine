@@ -1,0 +1,12 @@
+{
+  "rig": "humanoid", "duration": 0.7, "loop": false,
+  "events": [{"time":0.22,"name":"windup"},{"time":0.38,"name":"hit"}],
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":0},"pose":{"RightArm":[-13.45,-3.93,-73.54],"RightForeArm":[0,-34,0],"LeftArm":[-13.45,3.93,73.54],"LeftForeArm":[0,34,0],"Spine":[0,0,0],"Spine2":[0,0,0],"Neck":[0,0,0],"RightUpLeg":[0,0,0],"RightLeg":[0,0,0],"LeftUpLeg":[0,0,0],"LeftLeg":[0,0,0],"RightFoot":[0,0,0],"LeftFoot":[0,0,0]}},
+    {"time":0.22,"ease":"out_cubic","root":{"y":-0.04,"z":-0.08,"yaw":28},"pose":{"RightArm":[6.95,29.26,-12.18],"RightForeArm":[0,92,0],"LeftArm":[-37.59,28.76,48.03],"LeftForeArm":[0,44,0],"Spine":[2,14,0],"Spine2":[4,18,0],"Neck":[0,-14,0],"RightUpLeg":[14,0,0],"RightLeg":[18,0,0],"LeftUpLeg":[-12,0,0],"LeftLeg":[14,0,0],"RightFoot":[0,0,0],"LeftFoot":[0,0,0]}},
+    {"time":0.3,"ease":"step","root":{"y":-0.04,"z":-0.08,"yaw":28},"pose":{"RightArm":[6.95,29.26,-12.18],"RightForeArm":[0,92,0],"LeftArm":[-37.59,28.76,48.03],"LeftForeArm":[0,44,0],"Spine":[2,14,0],"Spine2":[4,18,0],"Neck":[0,-14,0],"RightUpLeg":[14,0,0],"RightLeg":[18,0,0],"LeftUpLeg":[-12,0,0],"LeftLeg":[14,0,0],"RightFoot":[0,0,0],"LeftFoot":[0,0,0]}},
+    {"time":0.38,"ease":"in_cubic","root":{"y":-0.14,"z":0.34,"yaw":6},"pose":{"RightArm":[-11.88,-81.82,-1.69],"RightForeArm":[0,-6,0],"LeftArm":[-28.39,10.12,69.43],"LeftForeArm":[0,26,0],"Spine":[10,2,0],"Spine2":[8,4,0],"Neck":[-10,-2,0],"RightUpLeg":[30,0,0],"RightLeg":[20,0,0],"LeftUpLeg":[-34,0,0],"LeftLeg":[34,0,0],"RightFoot":[24,0,0],"LeftFoot":[0,0,0]}},
+    {"time":0.48,"ease":"step","root":{"y":-0.14,"z":0.34,"yaw":6},"pose":{"RightArm":[-11.88,-81.82,-1.69],"RightForeArm":[0,-6,0],"LeftArm":[-28.39,10.12,69.43],"LeftForeArm":[0,26,0],"Spine":[10,2,0],"Spine2":[8,4,0],"Neck":[-10,-2,0],"RightUpLeg":[30,0,0],"RightLeg":[20,0,0],"LeftUpLeg":[-34,0,0],"LeftLeg":[34,0,0],"RightFoot":[24,0,0],"LeftFoot":[0,0,0]}},
+    {"time":0.7,"root":{"y":-0.14,"z":0.34,"yaw":6},"pose":{"RightArm":[-13.45,-3.93,-73.54],"RightForeArm":[0,-34,0],"LeftArm":[-13.45,3.93,73.54],"LeftForeArm":[0,34,0],"Spine":[0,0,0],"Spine2":[0,0,0],"Neck":[0,0,0]}}
+  ]
+}

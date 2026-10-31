@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/electric_sedan"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1400,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2,
+        1.4716,
+        4.7129
+      ],
+      "offset": [
+        0,
+        0.7358,
+        -0.0016
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 38,
+      "steering": 32,
+      "grip": 8,
+      "turn_rate": 1.8
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.7358,
+        -0.0016
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

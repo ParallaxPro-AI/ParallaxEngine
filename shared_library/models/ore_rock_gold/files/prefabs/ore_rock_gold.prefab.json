@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ore_rock_gold"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2391, 0.8198, 0.8901],
+      "offset": [-0.0715, 0.4099, -0.0106]
+    }
+  }
+}

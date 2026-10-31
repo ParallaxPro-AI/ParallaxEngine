@@ -1,0 +1,10 @@
+{
+  "id": "spinning_log",
+  "summary": "A rough-barked log with pale cut end-caps, mounted to spin freely about its own long axis.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spinning_log or place \"prefab\": \"spinning_log\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spinning_log"]
+}

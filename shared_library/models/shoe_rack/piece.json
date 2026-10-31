@@ -1,0 +1,10 @@
+{
+  "id": "shoe_rack",
+  "summary": "A 0.80 m three-tier slatted wooden shoe rack: four square posts, two lower tiers tipped 8 degrees front-down… options shoes, finish; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shoe_rack or place \"prefab\": \"shoe_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shoe_rack"]
+}

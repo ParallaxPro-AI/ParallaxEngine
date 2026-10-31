@@ -1,0 +1,10 @@
+{
+  "id": "airliner",
+  "summary": "A narrow-body twin-jet airliner: tube fuselage with a drooped nose and a long up-swept tail, wing-body fairin… joints flap_l, flap_r, fan_l, fan_r, nose_gear, mgear_l, …; options livery; sockets eye_point, instrument_anchor, seat_driver, seat_crew_1, seat_crew_2, seat_crew_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.airliner or place \"prefab\": \"airliner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:airliner"]
+}

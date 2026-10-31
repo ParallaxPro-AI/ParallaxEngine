@@ -1,0 +1,10 @@
+{
+  "id": "boxing_gloves",
+  "summary": "A pair of 14 oz training boxing gloves lying palm-down side by side: a lofted leather mitt with a padded, dom… options leather, strap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boxing_gloves or place \"prefab\": \"boxing_gloves\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boxing_gloves"]
+}

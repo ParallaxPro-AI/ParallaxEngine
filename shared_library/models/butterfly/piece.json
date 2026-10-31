@@ -1,0 +1,10 @@
+{
+  "id": "butterfly",
+  "summary": "A butterfly with a 0.12 m wingspan, basking with its wings open in a shallow V, standing on four thin legs (o… joints wing_l, wing_r; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.butterfly or place \"prefab\": \"butterfly\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:butterfly"]
+}

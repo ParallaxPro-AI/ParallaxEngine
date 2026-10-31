@@ -1,0 +1,10 @@
+{
+  "id": "tree_palm",
+  "summary": "A tropical coconut palm: a tall, gently curving trunk ringed with leaf scars and swollen at the base, topped… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_palm or place \"prefab\": \"tree_palm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_palm"]
+}

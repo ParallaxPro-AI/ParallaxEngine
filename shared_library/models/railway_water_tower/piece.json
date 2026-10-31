@@ -1,0 +1,10 @@
+{
+  "id": "railway_water_tower",
+  "summary": "A steam-era railway water tower: a 6.6 m wooden stave tank bound by seven iron hoops (closer at the bottom)… joints spout; options tank_paint; sockets track_side, spout_mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.railway_water_tower or place \"prefab\": \"railway_water_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:railway_water_tower"]
+}

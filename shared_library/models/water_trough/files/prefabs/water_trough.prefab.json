@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_trough"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.843, 0.615, 0.643],
+      "offset": [0, 0.3075, 0]
+    }
+  }
+}

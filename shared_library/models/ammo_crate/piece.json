@@ -1,0 +1,10 @@
+{
+  "id": "ammo_crate",
+  "summary": "A steel military ammunition can in olive drab: an open-top body, a hinged lid with a folding carry handle, tw… joints lid, latches; options calibre_stencil; sockets socket_interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ammo_crate or place \"prefab\": \"ammo_crate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ammo_crate"]
+}

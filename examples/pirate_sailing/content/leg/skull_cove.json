@@ -1,0 +1,7 @@
+{
+  "name": "Skull Cove",
+  "brief": "The dead fleet's anchorage. Break their line, take the hoard, and sail home legends.",
+  "bounty_label": "Break the dead fleet",
+  "scene": "skull_cove", "duration": 220, "gold_quota": 700, "treasure_count": 16, "treasure_value": 42,
+  "bounty_tag": "ghost", "bounty_count": 3, "storm_chance": 0.35, "enemy_damage_scale": 1.3
+}

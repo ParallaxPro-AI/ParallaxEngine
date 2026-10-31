@@ -1,0 +1,10 @@
+{
+  "id": "beer_tap_tower",
+  "summary": "A countertop T-bar draught beer tower: a chrome column on a flared base flange, a horizontal T-bar carrying t… joints tap_1, tap_2, tap_3; options handles, dressing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.beer_tap_tower or place \"prefab\": \"beer_tap_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:beer_tap_tower"]
+}

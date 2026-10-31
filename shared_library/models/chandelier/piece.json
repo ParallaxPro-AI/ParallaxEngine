@@ -1,0 +1,10 @@
+{
+  "id": "chandelier",
+  "summary": "A hanging brass chandelier: a ceiling canopy, a drop chain, a turned central body, and arms that sweep outwar… options arm_count, style.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chandelier or place \"prefab\": \"chandelier\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chandelier"]
+}

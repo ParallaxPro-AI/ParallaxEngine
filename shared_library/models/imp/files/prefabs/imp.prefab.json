@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/imp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0473, 0.9252, 0.4854],
+      "offset": [0, 0.4594, -0.0848]
+    }
+  }
+}

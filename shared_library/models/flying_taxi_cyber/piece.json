@@ -1,0 +1,10 @@
+{
+  "id": "flying_taxi_cyber",
+  "summary": "A cyberpunk flying taxi cab: a 4.8 m lofted yellow four-door body (a city-cab footprint) with a black checker… joints fan_f_l, fan_r_l, fan_f_r, fan_r_r; sockets seat_driver, seat_passenger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.flying_taxi_cyber or place \"prefab\": \"flying_taxi_cyber\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:flying_taxi_cyber"]
+}

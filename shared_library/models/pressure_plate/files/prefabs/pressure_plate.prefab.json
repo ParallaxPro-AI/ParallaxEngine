@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pressure_plate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.56, 0.098, 0.56],
+      "offset": [0, 0.046, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flower_bucket_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.25, 1.4449, 0.899],
+      "offset": [0, 0.7225, 0.0111]
+    }
+  }
+}

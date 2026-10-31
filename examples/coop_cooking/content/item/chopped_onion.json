@@ -1,0 +1,2 @@
+{ "name": "Chopped Onion", "stage": 3, "task": "Soup it or plate it", "hint": "stove \u00b7 plating station",
+  "carry_shape": "box", "carry_color": "#eaddf6", "carry_size": [0.34, 0.14, 0.34] }

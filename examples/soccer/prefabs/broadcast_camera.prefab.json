@@ -1,0 +1,31 @@
+{
+  "components": {
+    "camera": {
+      "rig": "follow",
+      "mode": "perspective",
+      "fov": 50,
+      "offset": [
+        0,
+        32,
+        -42
+      ],
+      "world_offset": true,
+      "smoothing": 0.3,
+      "bounds": [
+        [
+          -30,
+          -24
+        ],
+        [
+          30,
+          24
+        ]
+      ],
+      "min_visible": [
+        44,
+        0
+      ],
+      "focus_distance": 52.8
+    }
+  }
+}

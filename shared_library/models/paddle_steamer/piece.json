@@ -1,0 +1,10 @@
+{
+  "id": "paddle_steamer",
+  "summary": "A river paddle steamer of the sternwheeler type: a shallow, flat-bottomed green-black hull with a spoon bow… joints stern_wheel; sockets waterline, seat_driver, eye_point, socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paddle_steamer or place \"prefab\": \"paddle_steamer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paddle_steamer"]
+}

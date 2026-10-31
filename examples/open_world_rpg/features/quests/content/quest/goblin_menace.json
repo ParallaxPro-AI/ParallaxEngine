@@ -1,0 +1,23 @@
+{
+  "number": 2,
+  "title": "Ambush on the lantern road",
+  "summary": "Raiders hold the caravan Scout Rowan was guarding.",
+  "reward_xp": 70,
+  "reward_gold": 45,
+  "reward_items": [
+    "health_potion"
+  ],
+  "start": "clear",
+  "steps": {
+    "clear": {
+      "text": "Clear the three raiders surrounding the caravan.",
+      "verb": "defeat",
+      "target": "goblin_scout",
+      "count": 3,
+      "marker": "beacon_caravan",
+      "sets": [
+        "goblin_menace_done"
+      ]
+    }
+  }
+}

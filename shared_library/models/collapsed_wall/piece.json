@@ -1,0 +1,10 @@
+{
+  "id": "collapsed_wall",
+  "summary": "A 4 m run of ruined dry-laid masonry: ten courses of squared blocks laid half-bond that stand 3.1 m at the le…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.collapsed_wall or place \"prefab\": \"collapsed_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:collapsed_wall"]
+}

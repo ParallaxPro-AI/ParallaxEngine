@@ -1,0 +1,10 @@
+{
+  "id": "dice_set_polyhedral",
+  "summary": "A seven-piece polyhedral role-playing dice set in polished sapphire-blue resin with white numerals, in two lo…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dice_set_polyhedral or place \"prefab\": \"dice_set_polyhedral\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dice_set_polyhedral"]
+}

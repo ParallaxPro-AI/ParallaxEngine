@@ -1,0 +1,1 @@
+{"name": "Rich Soul", "desc": "+8% XP from soul motes per level -- you draft sooner.", "cost": 55, "cost_step": 45, "max_level": 4, "effect": {"xp_mul": 1.08}, "order": 4}

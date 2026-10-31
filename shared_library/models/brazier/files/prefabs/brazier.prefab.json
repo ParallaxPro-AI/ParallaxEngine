@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/brazier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.589, 1.385, 0.584],
+      "offset": [-0.0025, 0.6925, 0]
+    }
+  }
+}

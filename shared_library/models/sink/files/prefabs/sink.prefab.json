@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sink"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.0045, 1.049, 0.531],
+      "offset": [0.0008, 0.5245, -0.0145]
+    }
+  }
+}

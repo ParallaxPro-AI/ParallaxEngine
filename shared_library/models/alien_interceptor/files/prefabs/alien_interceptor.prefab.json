@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alien_interceptor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.9121, 2.1628, 11.12],
+      "offset": [0, 1.0813, -0.06]
+    }
+  }
+}

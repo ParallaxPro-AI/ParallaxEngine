@@ -1,0 +1,4 @@
+{ "name": "Neon Foundry Forgers", "taunt": "Nothing soft comes out of the foundry.",
+  "color": "#f28c33", "speed": 5.4,
+  "style": { "shoot_range": 7.8, "skill": 0.98, "perfect_rate": 0.34, "good_rate": 0.52,
+             "steal_chance": 0.44, "close_pressure": 0.85, "pass_chance": 0.45 } }

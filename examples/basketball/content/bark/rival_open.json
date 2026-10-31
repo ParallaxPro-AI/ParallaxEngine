@@ -1,0 +1,9 @@
+{
+  "voice": "rival",
+  "trigger": "open",
+  "lines": [
+    "Open!",
+    "Swing it!",
+    "I got a lane!"
+  ]
+}

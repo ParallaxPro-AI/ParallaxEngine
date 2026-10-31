@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_capsule"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.38, 3.5515, 3.1129],
+      "offset": [0, 1.7743, 0.0264]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dock_fishing_village",
+  "summary": "A fishing-village dock: a 2.6 m timber walkway running 9 m out from a stone landing to a 6.8 x 3.2 m T-head… joints shed_door, rb_oar_l, rb_oar_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dock_fishing_village or place \"prefab\": \"dock_fishing_village\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dock_fishing_village"]
+}

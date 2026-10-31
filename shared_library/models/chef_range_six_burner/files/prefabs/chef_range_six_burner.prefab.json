@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chef_range_six_burner"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.951, 1.525, 0.9185],
+      "offset": [-0.0145, 0.7625, 0.0592]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/archery_target"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.306, 2.0735, 1.535],
+      "offset": [0, 1.0378, -0.354]
+    }
+  }
+}

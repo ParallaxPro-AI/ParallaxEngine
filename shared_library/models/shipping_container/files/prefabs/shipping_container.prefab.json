@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shipping_container"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.438, 2.591, 6.058],
+      "offset": [0, 1.2955, 0]
+    }
+  }
+}

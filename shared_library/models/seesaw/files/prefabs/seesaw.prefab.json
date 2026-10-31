@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/seesaw",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        3.2,
+        0.945,
+        0.6
+      ],
+      "offset": [
+        0.0,
+        0.4725,
+        0.0
+      ]
+    }
+  }
+}

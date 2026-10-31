@@ -1,0 +1,16 @@
+{
+  "id": "van",
+  "summary": "A modern panel van: a short bonnet and raked windscreen ahead of a tall flat-sided cargo box, flush… joints side_door, barn_door_l, barn_door_r, wheel_f_l_roll, wheel_f_l_steer …; options config, paint; sockets seat_driver, seat_pax_1, socket_driver, socket_cargo …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.van or place \"prefab\": \"van\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:van"
+  ]
+}

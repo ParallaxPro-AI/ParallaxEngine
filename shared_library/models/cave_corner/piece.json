@@ -1,0 +1,10 @@
+{
+  "id": "cave_corner",
+  "summary": "A 4 x 4 m cave corner tile from the UNDERGROUND kit: the cave_floor_segment's limestone plates, gravel and pu…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cave_corner or place \"prefab\": \"cave_corner\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cave_corner"]
+}

@@ -1,0 +1,1 @@
+{ "name": "Iron Sword", "icon": "sword", "color": "#bdccd9", "stack_max": 1, "tool": "sword", "view": "sword_view", "tier": 2, "mine_speed": 1, "damage": 27, "reach": 5 }

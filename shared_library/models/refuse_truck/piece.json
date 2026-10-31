@@ -1,0 +1,10 @@
+{
+  "id": "refuse_truck",
+  "summary": "A rear-loading refuse collection vehicle on the cab-over truck chassis: a ribbed compaction body, a sloped ho… joints lifter, packer, tailgate, cab_tilt, door_l, door_r; options body, paint; sockets socket_driver, socket_tow, socket_lift_dock, socket_hopper, socket_step_l, socket_step_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.refuse_truck or place \"prefab\": \"refuse_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:refuse_truck"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chain_link_fence"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.79, 2.1291, 0.5982],
+      "offset": [0.015, 1.0646, 0]
+    }
+  }
+}

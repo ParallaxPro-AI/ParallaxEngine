@@ -1,0 +1,10 @@
+{
+  "id": "chemical_drum",
+  "summary": "A 208-litre (55 US gal) tighthead steel chemical drum, 585 mm across and 880 mm tall: one lathed shell with r… options paint, hazard.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chemical_drum or place \"prefab\": \"chemical_drum\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chemical_drum"]
+}

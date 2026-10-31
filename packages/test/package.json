@@ -1,0 +1,28 @@
+{
+  "name": "@parallax/test",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The headless playtest harness: runs a Parallax game deterministically (fixed seed, fixed timestep) and drives it like a player.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts",
+    "./sdk": "./src/sdk.ts",
+    "./vitest": "./src/vitest.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests"
+  },
+  "dependencies": {
+    "@parallax/check": "workspace:*",
+    "@parallax/editor": "workspace:*",
+    "@parallax/runtime": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

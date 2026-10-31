@@ -1,0 +1,10 @@
+{
+  "id": "yurt",
+  "summary": "A walk-in felt yurt (ger) on a timber deck: a 6 m round lattice wall wrapped in felt with rope tension bands… joints door; options felt, trim; sockets socket_entrance, socket_interior, socket_stove.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.yurt or place \"prefab\": \"yurt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:yurt"]
+}

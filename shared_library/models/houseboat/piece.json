@@ -1,0 +1,10 @@
+{
+  "id": "houseboat",
+  "summary": "A ~15 m pontoon houseboat: a stained-timber clapboard cabin with framed sash windows and a hinged front door… joints front_door, outboard; sockets waterline, front_door, roof_deck, helm.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.houseboat or place \"prefab\": \"houseboat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:houseboat"]
+}

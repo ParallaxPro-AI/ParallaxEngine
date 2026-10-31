@@ -1,0 +1,2 @@
+{ "name": "Tallow Wick", "blurb": "Burns slow, thinks fast.",
+  "icon": "flask", "category": "relic", "tier": 1, "cost": 420, "stats": { "max_mana": 140 }, "builds_from": ["dim_crystal"] }

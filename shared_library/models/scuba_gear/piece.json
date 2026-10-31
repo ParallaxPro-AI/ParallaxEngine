@@ -1,0 +1,10 @@
+{
+  "id": "scuba_gear",
+  "summary": "A scuba kit laid out ready to dive: an aluminium cylinder in a rubber boot with a yoke valve and hand wheel… joints valve_knob; options trim, fins, layout; sockets socket_valve, socket_mask.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scuba_gear or place \"prefab\": \"scuba_gear\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scuba_gear"]
+}

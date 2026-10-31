@@ -1,0 +1,10 @@
+{
+  "id": "fries_carton",
+  "summary": "A takeaway carton of fries: a tapered card scoop carton, hollow, whose front and back panels rise in a curved… options carton, emblem; sockets socket_grip, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fries_carton or place \"prefab\": \"fries_carton\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fries_carton"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "anti_tank_hedgehog",
+  "summary": "A Czech hedgehog anti-tank obstacle: three 2 m steel angle beams crossing at their midpoints, mutually perpen… options finish; sockets top_tip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.anti_tank_hedgehog or place \"prefab\": \"anti_tank_hedgehog\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:anti_tank_hedgehog"]
+}

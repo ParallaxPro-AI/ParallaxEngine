@@ -1,0 +1,10 @@
+{
+  "id": "shower",
+  "summary": "An alcove shower: three tiled walls, an exposed thermostatic valve with a turning handle, and a wall-fed head… joints door, head, valve; options install; sockets socket_floor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shower or place \"prefab\": \"shower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shower"]
+}

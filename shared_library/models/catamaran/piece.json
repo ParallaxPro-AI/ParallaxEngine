@@ -1,0 +1,10 @@
+{
+  "id": "catamaran",
+  "summary": "A ~12 m cruising sailing catamaran: twin lofted fine-entry hulls with navy boot stripes and black toe rails… joints boom, rudder_l, rudder_r; sockets waterline, helm, eye_point, trampoline.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.catamaran or place \"prefab\": \"catamaran\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:catamaran"]
+}

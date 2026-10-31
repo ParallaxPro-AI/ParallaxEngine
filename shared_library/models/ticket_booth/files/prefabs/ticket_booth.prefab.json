@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ticket_booth"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.863, 2.45, 1.5115],
+      "offset": [0, 1.225, 0.0008]
+    }
+  }
+}

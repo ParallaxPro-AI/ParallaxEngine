@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spinning_top"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.097, 0.1005, 0.097],
+      "offset": [0, 0.0503, 0]
+    }
+  }
+}

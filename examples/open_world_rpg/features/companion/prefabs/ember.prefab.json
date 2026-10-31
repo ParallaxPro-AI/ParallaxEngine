@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": { "model": "models/ember" },
+    "animator": {},
+    "nav_agent": { "speed": 5.2, "radius": 0.3, "stopping_distance": 0.6 },
+    "collider": { "shape": "capsule", "radius": 0.3, "height": 0.7, "offset": [0, 0.35, 0] },
+    "health": { "current": 120, "max": 120, "destroy_on_death": false },
+    "companion": { "name": "npc_ember" }
+  },
+  "tags": ["ally"],
+  "behaviors": {
+    "companion_fox": {
+      "follow_distance": 3.2, "teleport_distance": 34, "assist_range": 9,
+      "bite_damage": 9, "bite_cooldown": 1.2, "taunt_every": 6, "taunt_seconds": 3.5,
+      "revive_seconds": 14
+    }
+  }
+}

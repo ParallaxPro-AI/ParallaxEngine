@@ -1,0 +1,42 @@
+{
+  "base_kind": "packet",
+  "rare_kinds": ["breach", "cipher"],
+  "columns": [-8, -4, 0, 4, 8],
+  "lives": 4,
+  "low_lives": 1,
+
+  "base_speed": 3.2,
+  "speed_ramp": 0.05,
+  "max_speed": 11,
+  "base_interval": 2.1,
+  "interval_ramp": 0.014,
+  "min_interval": 0.55,
+
+  "points_per_word": 120,
+  "points_per_letter": 14,
+  "combo_step": 0.2,
+  "combo_cap": 10,
+  "points_per_meter_left": 4,
+  "combo_milestone": 10,
+  "show_combo_from": 4,
+
+  "chars_per_word": 5,
+  "wpm_min_seconds": 1.0,
+  "grades": [
+    { "letter": "S", "min_accuracy": 0.97 },
+    { "letter": "A", "min_accuracy": 0.92 },
+    { "letter": "B", "min_accuracy": 0.84 },
+    { "letter": "C", "min_accuracy": 0.72 },
+    { "letter": "D", "min_accuracy": 0 }
+  ],
+
+  "breach_shake": 0.28,
+  "breach_shake_seconds": 0.24,
+  "end_shake": 0.5,
+  "end_shake_seconds": 0.7,
+  "lock_rumble": { "strength": 0.2, "seconds": 0.008 },
+  "purge_rumble": { "strength": 0.35, "seconds": 0.014 },
+  "breach_rumble": { "strength": 0.7, "seconds": 0.08 },
+  "combo_rumble": { "strength": 0.5, "seconds": 0.04 },
+  "end_rumble": { "strength": 1.0, "seconds": 0.26 }
+}

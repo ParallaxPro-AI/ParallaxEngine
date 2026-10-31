@@ -1,0 +1,5 @@
+{
+  "name": "Sprint Coach",
+  "description": "+1.2 control speed, +1.8 sprint speed.",
+  "max_stacks": 3, "control_speed": 1.2, "control_sprint": 1.8
+}

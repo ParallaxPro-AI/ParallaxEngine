@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_treasure_chest_gold"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.35, 1.471, 1.1043],
+      "offset": [0, 0.7355, -0.0721]
+    }
+  }
+}

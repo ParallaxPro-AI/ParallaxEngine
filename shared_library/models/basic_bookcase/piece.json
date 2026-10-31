@@ -1,0 +1,10 @@
+{
+  "id": "basic_bookcase",
+  "summary": "A budget flat-pack open bookcase from the 'basic' apartment set: white-laminate sides and back with four pine… options contents; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.basic_bookcase or place \"prefab\": \"basic_bookcase\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:basic_bookcase"]
+}

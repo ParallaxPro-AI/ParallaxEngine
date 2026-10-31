@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ev_charging_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.697, 0.8],
+      "offset": [0, 0.8485, 0]
+    }
+  }
+}

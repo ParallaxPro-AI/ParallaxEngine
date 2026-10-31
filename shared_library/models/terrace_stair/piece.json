@@ -1,0 +1,10 @@
+{
+  "id": "terrace_stair",
+  "summary": "A tiling LEVEL-BREAK module: the 1.30 m retaining lip that turns a raised plaza, courtyard or gun platform in… options team, face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.terrace_stair or place \"prefab\": \"terrace_stair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:terrace_stair"]
+}

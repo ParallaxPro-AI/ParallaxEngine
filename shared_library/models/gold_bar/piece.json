@@ -1,0 +1,10 @@
+{
+  "id": "gold_bar",
+  "summary": "A cast gold bullion bar: a draft-angled loft with rolled corners and a crowned belly, a rolled-over top edge… options metal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gold_bar or place \"prefab\": \"gold_bar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gold_bar"]
+}

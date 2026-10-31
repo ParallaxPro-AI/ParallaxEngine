@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/batting_cage"
+    }
+  }
+}

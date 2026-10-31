@@ -1,0 +1,10 @@
+{
+  "id": "star_pickup",
+  "summary": "A chunky five-point collectible star standing on its two lower points: a puffy lofted star with faceted pyram… joints spinner; options colour; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.star_pickup or place \"prefab\": \"star_pickup\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:star_pickup"]
+}

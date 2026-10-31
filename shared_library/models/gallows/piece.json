@@ -1,0 +1,10 @@
+{
+  "id": "gallows",
+  "summary": "A wild-west town gallows: a 3 m square plank deck 2.4 m up on six braced timber posts with stone pads, reache… joints trap_l, trap_r, trap_lever; options noose; sockets socket_trap, socket_lever, socket_stair_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gallows or place \"prefab\": \"gallows\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gallows"]
+}

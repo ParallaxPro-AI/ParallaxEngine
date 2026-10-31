@@ -1,0 +1,10 @@
+{
+  "id": "drop_pod",
+  "summary": "A 4.3 m orbital drop pod landed upright: a scorched retro-thruster base on four splayed landing legs, a conic… joints petal_0, petal_1, petal_2, petal_3; options hull; sockets socket_seat, exit, retro_burn.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drop_pod or place \"prefab\": \"drop_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drop_pod"]
+}

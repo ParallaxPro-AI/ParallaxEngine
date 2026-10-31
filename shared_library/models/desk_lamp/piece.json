@@ -1,0 +1,10 @@
+{
+  "id": "desk_lamp",
+  "summary": "An articulated task lamp: a weighted round base, a two-segment folding arm, and a tilting head that carries t… joints arm_lower, arm_upper, head; options style; sockets socket_bulb.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.desk_lamp or place \"prefab\": \"desk_lamp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:desk_lamp"]
+}

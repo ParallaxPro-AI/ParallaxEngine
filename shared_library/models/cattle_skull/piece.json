@@ -1,0 +1,10 @@
+{
+  "id": "cattle_skull",
+  "summary": "A sun-bleached longhorn steer skull lying on the ground, jawless: broad poll with a crest, bony orbit rims ar…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cattle_skull or place \"prefab\": \"cattle_skull\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cattle_skull"]
+}

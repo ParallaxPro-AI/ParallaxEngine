@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/t_rex"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3041, 4.0164, 10.97],
+      "offset": [0, 2.0123, -0.015]
+    }
+  }
+}

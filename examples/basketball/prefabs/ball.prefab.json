@@ -1,0 +1,13 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.48, 0.48, 0.48], "color": "#e0620a", "roughness": 0.7 },
+    "ball": { "pass_speed": 18 }
+  },
+  "behaviors": {
+    "ball_motion": {
+      "hand": [0.4, 1.1, 0.3], "floor": 0.28, "dribble_rate": 8.5,
+      "loose_rate": 5.5, "loose_bounce": 0.5,
+      "shot_arc": 4.5, "shot_arc_per_meter": 0.18, "pass_arc": 2.5, "pass_arc_per_meter": 0.1
+    }
+  }
+}

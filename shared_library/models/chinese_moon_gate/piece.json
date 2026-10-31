@@ -1,0 +1,10 @@
+{
+  "id": "chinese_moon_gate",
+  "summary": "A Chinese garden moon gate (yuedongmen), 5.9 m wide and 3.7 m tall: a lime-washed wall segment on a granite p…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chinese_moon_gate or place \"prefab\": \"chinese_moon_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chinese_moon_gate"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ninja"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.64, 1.8233, 0.3346],
+      "offset": [0, 0.9076, -0.0067]
+    }
+  }
+}

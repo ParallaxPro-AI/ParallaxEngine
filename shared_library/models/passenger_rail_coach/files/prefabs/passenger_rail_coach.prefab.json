@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/passenger_rail_coach"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.05, 4.194, 24.3374],
+      "offset": [0, 2.093, 0]
+    }
+  }
+}

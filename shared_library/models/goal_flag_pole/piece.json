@@ -1,0 +1,10 @@
+{
+  "id": "goal_flag_pole",
+  "summary": "A level-end goal flagpole for platformers: a 5 m white-painted steel pole with brass collars and a gold ball… joints flag.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.goal_flag_pole or place \"prefab\": \"goal_flag_pole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:goal_flag_pole"]
+}

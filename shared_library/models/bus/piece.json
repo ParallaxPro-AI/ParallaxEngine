@@ -1,0 +1,14 @@
+{
+  "id": "bus",
+  "summary": "A full-size single-deck bus: a lofted monocoque body with a tucked skirt, a waist moulding, tumblehome… joints door_front, door_front_fold, door_rear, door_rear_fold; options type; sockets eye_point, socket_driver, socket_front_door, socket_rear_door.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.bus or place \"prefab\": \"bus\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:bus"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.3, 7, 0.3], "color": "#d9d9e0" },
+    "collider": { "shape": "box", "size": [0.3, 7, 0.3] }
+  }
+}

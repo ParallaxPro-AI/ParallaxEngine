@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/car_wreck_rusted"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.334, 1.3446, 4.9052],
+      "offset": [0.1126, 0.6723, 0.0224]
+    }
+  }
+}

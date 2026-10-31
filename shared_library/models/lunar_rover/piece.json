@@ -1,0 +1,10 @@
+{
+  "id": "lunar_rover",
+  "summary": "A two-seat crewed lunar roving vehicle: an open aluminium chassis on four woven-wire-mesh wheels with cut tre… joints hand_controller, dust_cover_l, dust_cover_r, hga, camera, wheel_f_l_roll, …; options fenders; sockets seat_driver, seat_pax_1, eye_point, socket_cargo, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.lunar_rover or place \"prefab\": \"lunar_rover\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:lunar_rover"]
+}

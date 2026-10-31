@@ -1,0 +1,10 @@
+{
+  "id": "who_hit_contestant",
+  "summary": "Identical hot-seat contestant. options skin, jacket, hair, headwear, top; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.who_hit_contestant or place \"prefab\": \"who_hit_contestant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:who_hit_contestant"]
+}

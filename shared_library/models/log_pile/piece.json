@@ -1,0 +1,10 @@
+{
+  "id": "log_pile",
+  "summary": "A stacked cord of firewood between four driven stakes: split billets eight courses high at the left end with… sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.log_pile or place \"prefab\": \"log_pile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:log_pile"]
+}

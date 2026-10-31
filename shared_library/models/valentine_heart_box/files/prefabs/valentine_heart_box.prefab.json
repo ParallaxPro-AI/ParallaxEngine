@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/valentine_heart_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3182, 0.1255, 0.2905],
+      "offset": [0, 0.0628, 0.0009]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/armored_truck"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9500,
+      "linear_damping": 0.06,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.98,
+        3.23,
+        7.02
+      ],
+      "offset": [
+        0,
+        1.615,
+        0
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 30,
+      "steering": 32,
+      "grip": 7,
+      "turn_rate": 1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.615,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

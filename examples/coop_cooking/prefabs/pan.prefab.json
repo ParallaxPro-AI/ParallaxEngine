@@ -1,0 +1,13 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "color": "#868993",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

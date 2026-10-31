@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spike_strip"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.598, 0.0826, 0.14],
+      "offset": [-0.0065, 0.0413, 0]
+    }
+  }
+}

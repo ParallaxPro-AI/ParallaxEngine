@@ -1,0 +1,10 @@
+{
+  "id": "fish_pufferfish",
+  "summary": "A pufferfish blown up into its defensive ball, the spiny catch every fishing game has: 0.32 m snout to tail (… joints jaw, pectoral_l, pectoral_r, body_flex, tail_beat; sockets mouth, tail_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_pufferfish or place \"prefab\": \"fish_pufferfish\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_pufferfish"]
+}

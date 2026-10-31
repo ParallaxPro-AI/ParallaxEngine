@@ -1,0 +1,14 @@
+{
+  "id": "fridge",
+  "summary": "A two-door fridge-freezer with glass shelves, door bins and a sliding crisper drawer. joints fridge_door, freezer_door, crisper; options finish, interior, handle_finish; sockets socket_shelf_top, socket_freezer.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fridge or place \"prefab\": \"fridge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fridge"
+  ]
+}

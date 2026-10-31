@@ -1,0 +1,16 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 31,
+      "background": "#141217"
+    }
+  },
+  "behaviors": {
+    "oche_view": {
+      "settle": 8.0,
+      "nudge": 0.22,
+      "look_lead": 0.6
+    }
+  }
+}

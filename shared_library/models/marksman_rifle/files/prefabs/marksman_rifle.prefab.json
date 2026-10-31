@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/marksman_rifle"
+    },
+    "viewmodel_item": {
+      "hip": [0.1, -0.322, 0.45],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.1
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.084, 0.3063, 1.163],
+      "offset": [0, 0.1508, 0.0385]
+    }
+  }
+}

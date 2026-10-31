@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/street_hacker_rig"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.12, 2.4506, 2.2995],
+      "offset": [0, 1.2253, -0.0373]
+    }
+  }
+}

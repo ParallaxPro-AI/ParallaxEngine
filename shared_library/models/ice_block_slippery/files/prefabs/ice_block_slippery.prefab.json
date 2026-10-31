@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ice_block_slippery"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.07, 1.085, 1.07],
+      "offset": [0, 0.5425, 0]
+    }
+  }
+}

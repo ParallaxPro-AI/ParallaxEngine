@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skull_pile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2205, 0.6483, 1.1964],
+      "offset": [0.008, 0.3241, 0.0191]
+    }
+  }
+}

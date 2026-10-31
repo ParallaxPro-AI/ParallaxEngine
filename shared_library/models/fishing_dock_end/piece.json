@@ -1,0 +1,10 @@
+{
+  "id": "fishing_dock_end",
+  "summary": "The seaward end of a weathered timber fishing dock: a 2.4 m wide, 3.6 m long module with its deck 1.2 m above…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fishing_dock_end or place \"prefab\": \"fishing_dock_end\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fishing_dock_end"]
+}

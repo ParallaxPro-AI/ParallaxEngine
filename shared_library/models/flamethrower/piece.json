@@ -1,0 +1,10 @@
+{
+  "id": "flamethrower",
+  "summary": "A twin-tank flamethrower: two pressurised fuel cylinders and a slim propellant bottle on a padded backpack fr… joints valve, trigger; sockets socket_muzzle, socket_optic, socket_foregrip, socket_fuel, grip_r, grip_l, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.flamethrower or place \"prefab\": \"flamethrower\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:flamethrower"]
+}

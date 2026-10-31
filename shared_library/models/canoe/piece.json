@@ -1,0 +1,10 @@
+{
+  "id": "canoe",
+  "summary": "A 4.9 m two-person open canoe: a lofted hull with a rockered keel, flared bilges and a sheer that sweeps up t… options colour, paddle; sockets seat_driver, seat_pax_1, eye_point, waterline, socket_bow, socket_stern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.canoe or place \"prefab\": \"canoe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:canoe"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "building_blocks",
+  "summary": "A pile of smooth wooden toy building blocks in natural wood and bright paint: a little gatehouse (two pillars… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.building_blocks or place \"prefab\": \"building_blocks\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:building_blocks"]
+}

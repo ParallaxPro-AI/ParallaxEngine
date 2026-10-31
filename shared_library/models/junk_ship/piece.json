@@ -1,0 +1,10 @@
+{
+  "id": "junk_ship",
+  "summary": "A three-masted East Asian trading junk in the classic style: a flat-bottomed, transom-bowed hull with a stron… joints rudder, main_sail; sockets waterline, seat_driver, socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.junk_ship or place \"prefab\": \"junk_ship\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:junk_ship"]
+}

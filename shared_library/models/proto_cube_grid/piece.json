@@ -1,0 +1,10 @@
+{
+  "id": "proto_cube_grid",
+  "summary": "A greybox prototype cube: a 1 x 1 x 1 m level-design blockout block with a 0.25 m grid printed on every face… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_cube_grid or place \"prefab\": \"proto_cube_grid\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_cube_grid"]
+}

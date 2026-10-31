@@ -1,0 +1,10 @@
+{
+  "id": "baseball_base_set",
+  "summary": "A full baseball infield set at regulation spacing: a five-sided home plate with a black rubber bevel, cushion… options markings; sockets home, first, second, third, mound.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.baseball_base_set or place \"prefab\": \"baseball_base_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:baseball_base_set"]
+}

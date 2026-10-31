@@ -1,0 +1,12 @@
+{
+  "area_enter": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/4a/b9/4ab93bab96522d8eb109ff96dc57cb6765deb02448fe14c10472084be5bb2a0b.ogg", "volume": 1 },
+  "sword_hit": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/4c/d9/4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f.ogg", "volume": 0.32 },
+  "sword_miss": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/4c/d9/4cd96dc630bed9840c15f1dd2306da2cc56a4da26a5d3f1a03c5a7265ac5e54f.ogg", "volume": 0.12 },
+  "potion": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg", "volume": 0.4 },
+  "level_up": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/fd/ef/fdeff2e096b1e5b9e9239f79488b2914db4e9e54d2fd703a3082430e729abede.ogg", "volume": 0.5 },
+  "purchase": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/68/f8/68f8443926d5cffce18661e123ad2119b61396ba655c31b1518cd36027fae1b4.ogg", "volume": 0.4 },
+  "quest_complete": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/68/f8/68f8443926d5cffce18661e123ad2119b61396ba655c31b1518cd36027fae1b4.ogg", "volume": 0.5 },
+  "hero_falls": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg", "volume": 1 },
+  "victory": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/38/a9387a2cb0b13b8c794579e61ae1fb7e666e22d46a36aec6c77471635096f2fc.ogg", "volume": 1 },
+  "defeat": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/3c/b4/3cb48d86dab63140cfb9aaeea4d4a6846abaca5831d157d8adbec0490da26343.ogg", "volume": 1 }
+}

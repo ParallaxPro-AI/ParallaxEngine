@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/radio"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.488, 0.3265, 0.174],
+      "offset": [0, 0.1618, 0.012]
+    }
+  }
+}

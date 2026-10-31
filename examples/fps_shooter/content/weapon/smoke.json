@@ -1,0 +1,14 @@
+{
+  "name": "Smoke Grenade",
+  "short": "Smoke",
+  "slot": 3,
+  "kind": "thrown",
+  "damage": 0,
+  "fire_interval": 0.6,
+  "magazine": 3,
+  "reserve": 0,
+  "max_reserve": 2,
+  "reload_time": 0,
+  "projectile": "smoke_grenade",
+  "throw_speed": 16
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bollard_planter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.91, 0.795, 0.91],
+      "offset": [0, 0.3975, 0]
+    }
+  }
+}

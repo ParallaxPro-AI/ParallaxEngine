@@ -1,0 +1,10 @@
+{
+  "id": "crt_monitor",
+  "summary": "A retro 15-inch CRT computer monitor in yellowed beige plastic: a chamfered front bezel framing a doubly-curv… joints swivel, tilt; options screen_state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crt_monitor or place \"prefab\": \"crt_monitor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crt_monitor"]
+}

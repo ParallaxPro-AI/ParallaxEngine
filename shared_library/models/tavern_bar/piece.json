@@ -1,0 +1,10 @@
+{
+  "id": "tavern_bar",
+  "summary": "A medieval tavern bar counter: a 3.2 m oak counter with plank-boarded bays between square posts, iron bands w… joints bar_flap, bar_gate; options wood; sockets serve_0, serve_1.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tavern_bar or place \"prefab\": \"tavern_bar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tavern_bar"]
+}

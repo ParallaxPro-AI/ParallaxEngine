@@ -1,0 +1,71 @@
+<!-- Ported from the template: Dockbot title screen - night-shift warehouse crate-push (Sokoban) main menu card with the best-shift record, the saved resume level and its progress bar, and Continue / New Game or Play -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .pp-mobile-only { display: none; }
+  @media (pointer: coarse) { .pp-desktop-only { display: none; } .pp-mobile-only { display: inline; } }
+  .dbt-scene { position: fixed; inset: 0; display: grid; place-items: center; }
+  .dbt-card { z-index: 1; width: calc(680 * var(--db-u)); max-width: calc(100cqw - 24px); max-height: calc(100cqh - 16px); overflow-y: auto; padding: calc(60 * var(--db-u)) calc(64 * var(--db-u)) calc(52 * var(--db-u)); display: flex; flex-direction: column; animation: dbt-in 240ms var(--db-ease-out) both; }
+  @keyframes dbt-in { from { opacity: 0; transform: translateY(calc(10 * var(--db-u))); } to { opacity: 1; transform: none; } }
+  .dbt-hazard { position: absolute; left: calc(64 * var(--db-u)); top: 0; width: calc(112 * var(--db-u)); height: calc(6 * var(--db-u)); background: repeating-linear-gradient(-45deg, var(--db-crate) 0 calc(8 * var(--db-u)), transparent calc(8 * var(--db-u)) calc(16 * var(--db-u))); }
+  .dbt-col { display: contents; }
+  .dbt-tag { order: 1; font-family: var(--db-f-num); font-size: calc(14 * var(--db-u)); font-weight: 600; letter-spacing: 0.32em; color: var(--db-accent); }
+  .dbt-title { order: 2; margin-top: calc(14 * var(--db-u)); font-size: calc(120 * var(--db-u)); font-weight: 700; line-height: 0.9; letter-spacing: 0.01em; }
+  .dbt-rule { order: 3; display: flex; align-items: center; margin: calc(30 * var(--db-u)) 0 calc(26 * var(--db-u)); }
+  .dbt-rule i { width: calc(6 * var(--db-u)); height: calc(6 * var(--db-u)); background: var(--db-pad); box-shadow: 0 0 calc(8 * var(--db-u)) var(--db-pad); }
+  .dbt-rule b { flex: 1; height: 1px; background: rgba(126,224,255,0.35); }
+  .dbt-hint { order: 4; font-size: calc(21 * var(--db-u)); font-weight: 500; line-height: 1.5; color: var(--db-ink-2); text-wrap: pretty; }
+  .dbt-rows { order: 5; display: flex; flex-direction: column; margin-top: calc(28 * var(--db-u)); }
+  .dbt-rows:empty, .dbt-rows.is-empty { display: none; }
+  .dbt-row { display: flex; align-items: center; gap: calc(14 * var(--db-u)); padding: calc(14 * var(--db-u)) 0; border-top: 1px solid var(--db-rule); font-size: calc(19 * var(--db-u)); font-weight: 600; color: var(--db-ink-2); }
+  .dbt-row:last-child { border-bottom: 1px solid var(--db-rule); }
+  .dbt-row .db-label { width: calc(96 * var(--db-u)); flex: none; font-size: calc(13 * var(--db-u)); }
+  .dbt-row b { font-family: var(--db-f-num); font-weight: 600; color: var(--db-ink); }
+  .dbt-bar { flex: 1; min-width: calc(40 * var(--db-u)); height: calc(4 * var(--db-u)); margin-left: calc(8 * var(--db-u)); background: var(--db-floor); }
+  .dbt-bar i { display: block; height: 100%; width: 0; background: var(--db-pad); }
+  .dbt-actions .db-btn:focus-visible { outline: 2px solid rgba(126,224,255,0.45); outline-offset: 3px; }
+  .dbt-actions { order: 6; display: flex; gap: calc(16 * var(--db-u)); margin-top: calc(36 * var(--db-u)); }
+  .dbt-actions .is-primary { padding: 0 calc(44 * var(--db-u)); }
+  .dbt-actions .is-play { padding: 0 calc(56 * var(--db-u)); }
+
+  @media (pointer: coarse) {
+    .dbt-card { width: calc(736 * var(--db-u)); padding: calc(30 * var(--db-u)) calc(34 * var(--db-u)) calc(28 * var(--db-u)); display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: calc(32 * var(--db-u)); }
+    .dbt-hazard { left: calc(34 * var(--db-u)); width: calc(80 * var(--db-u)); height: calc(5 * var(--db-u)); background: repeating-linear-gradient(-45deg, var(--db-crate) 0 calc(6 * var(--db-u)), transparent calc(6 * var(--db-u)) calc(12 * var(--db-u))); }
+    .dbt-col { display: flex; flex-direction: column; min-width: 0; }
+    .dbt-col.b { justify-content: space-between; gap: calc(18 * var(--db-u)); }
+    .dbt-tag { font-size: calc(11 * var(--db-u)); letter-spacing: 0.3em; }
+    .dbt-title { margin-top: calc(10 * var(--db-u)); font-size: calc(66 * var(--db-u)); letter-spacing: 0; }
+    .dbt-rule { margin: calc(18 * var(--db-u)) 0 calc(14 * var(--db-u)); }
+    .dbt-rule i { width: calc(5 * var(--db-u)); height: calc(5 * var(--db-u)); box-shadow: 0 0 calc(6 * var(--db-u)) var(--db-pad); }
+    .dbt-hint { font-size: calc(15 * var(--db-u)); line-height: 1.45; }
+    .dbt-rows { margin-top: 0; }
+    .dbt-row { gap: calc(10 * var(--db-u)); padding: calc(8 * var(--db-u)) 0; font-size: calc(14 * var(--db-u)); }
+    .dbt-row .db-label { display: none; }
+    .dbt-bar { height: calc(3 * var(--db-u)); margin-left: 0; }
+    .dbt-actions { margin-top: 0; gap: calc(10 * var(--db-u)); }
+    .dbt-actions .db-btn { padding: 0 calc(12 * var(--db-u)); flex: 1; }
+    .dbt-actions .is-primary { flex: 1.3; }
+  }
+</style>
+<div class="db-root dbt-scene">
+  <div class="db-scrim"></div>
+  <main class="db-card dbt-card">
+    <i class="db-br tl"></i><i class="db-br tr"></i><i class="db-br bl"></i><i class="db-br br"></i>
+    <div class="dbt-hazard"></div>
+    <div class="dbt-col a">
+      <div class="dbt-tag">PUSH &amp; SOLVE</div>
+      <h1 class="dbt-title">Dockbot</h1>
+      <div class="dbt-rule"><i></i><b></b><i></i></div>
+      <div class="dbt-rows" data-class-is-empty="no_rows">
+        <div class="dbt-row" data-show="has_record"><span class="db-label">RECORD</span><span data-bind="record"></span></div>
+        <div class="dbt-row" data-show="has_save"><span class="db-label">SAVE</span><span>Resume from level <b data-bind="resume_level"></b> / <span data-bind="levels"></span></span><div class="dbt-bar"><i data-style-width="resume_width"></i></div></div>
+      </div>
+    </div>
+    <div class="dbt-col b">
+      <p class="dbt-hint">You're a loader-bot on the night shift. Use the <span class="pp-desktop-only">arrow keys</span><span class="pp-mobile-only">d-pad</span> to shove every cargo crate onto a glowing dock pad. You can only push — never pull, never two at once — so think before you shove. <span class="pp-desktop-only">Z undoes, R resets.</span><span class="pp-mobile-only">The Undo button takes a move back; Reset restarts the level.</span></p>
+      <div class="dbt-actions">
+        <button class="db-btn is-primary" data-class-is-play="no_save" data-action="play" data-key="Enter" data-bind="play_label"></button>
+        <button class="db-btn" data-action="new_game" data-show="has_save" data-text="new_game"></button>
+      </div>
+    </div>
+  </main>
+</div>

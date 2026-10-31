@@ -1,0 +1,10 @@
+{
+  "id": "winner_diner_burger",
+  "summary": "A stylized sesame cheeseburger with a continuous lathed crown, rounded grilled patty, individual ruffled leav…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.winner_diner_burger or place \"prefab\": \"winner_diner_burger\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:winner_diner_burger"]
+}

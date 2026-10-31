@@ -1,0 +1,13 @@
+{
+  "components": {
+    "camera": {
+      "mode": "perspective",
+      "fov": 50,
+      "min_visible": [
+        8.8,
+        0
+      ],
+      "focus_distance": 9.5
+    }
+  }
+}

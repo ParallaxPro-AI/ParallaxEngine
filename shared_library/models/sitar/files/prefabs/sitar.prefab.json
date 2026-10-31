@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sitar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.356, 1.258, 0.3495],
+      "offset": [0, 0.629, -0.0032]
+    }
+  }
+}

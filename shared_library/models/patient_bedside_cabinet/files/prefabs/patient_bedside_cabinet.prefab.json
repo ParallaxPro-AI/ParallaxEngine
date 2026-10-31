@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/patient_bedside_cabinet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.542, 1.048, 0.5355],
+      "offset": [0.011, 0.524, -0.0018]
+    }
+  }
+}

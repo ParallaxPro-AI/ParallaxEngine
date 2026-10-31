@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/riot_barrier_police"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3475, 1.079, 0.66],
+      "offset": [0.0107, 0.5395, 0]
+    }
+  }
+}

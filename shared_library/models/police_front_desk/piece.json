@@ -1,0 +1,10 @@
+{
+  "id": "police_front_desk",
+  "summary": "A police-station front desk: a 2 m public counter with a POLICE-lettered contrast band and a star-in-ring bad… joints drawer_1, drawer_2, gate; options finish, glazing; sockets socket_officer, socket_visitor, socket_ledge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.police_front_desk or place \"prefab\": \"police_front_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:police_front_desk"]
+}

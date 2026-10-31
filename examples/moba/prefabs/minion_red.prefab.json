@@ -1,0 +1,1 @@
+{"extends": "minion", "components": {"model": {"model": "models/minion_red"}, "map_icon": {"icon": "dot", "color": "#ff6a5a", "size": 0.6}}}

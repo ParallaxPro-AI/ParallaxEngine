@@ -1,0 +1,10 @@
+{
+  "id": "concrete_bunker",
+  "summary": "A reinforced-concrete field bunker (5.2 x 4.4 m walls, 2.4 m to the roof): battered cast walls 0.75 m thick w… joints door; sockets firing_position, entrance.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.concrete_bunker or place \"prefab\": \"concrete_bunker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:concrete_bunker"]
+}

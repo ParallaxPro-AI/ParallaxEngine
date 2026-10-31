@@ -1,0 +1,14 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [
+        0.3,
+        0.01,
+        60
+      ],
+      "color": "#ffffff",
+      "cast_shadows": false
+    }
+  }
+}

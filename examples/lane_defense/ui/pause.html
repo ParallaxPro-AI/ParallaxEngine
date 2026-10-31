@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="garden.css">
+<div class="ld-root" id="garden-pause" data-class-ld-reduced="reduced_motion">
+  <div class="ld-paper card">
+    <div class="head">
+      <span class="ld-eyebrow gold" data-text="pause_eyebrow"></span>
+      <h1 data-text="pause_title"></h1>
+      <p class="saved" data-text="pause_saved"></p>
+    </div>
+    <div class="actions">
+      <button class="ld-primary" data-action="resume"><span data-text="resume"></span><span>→</span></button>
+      <button class="ld-outline" data-action="quit" data-text="save_and_map"></button>
+    </div>
+    <div class="rule"></div>
+    <div class="settings">
+      <button class="opt" data-class-on="sound_on" data-action="toggle_sound" data-attr-aria-pressed="sound_pressed">
+        <span><span data-text="sound"></span>: <span data-show="sound_on" data-text="on"></span><span data-hide="sound_on" data-text="off"></span></span>
+        <span class="switch"></span>
+      </button>
+      <div class="opt motion">
+        <span data-text="motion"></span>
+        <div class="seg">
+          <button data-action="toggle_motion" data-attr-aria-pressed="motion_full" data-attr-disabled="motion_full_disabled" data-text="motion_full"></button>
+          <button data-action="toggle_motion" data-attr-aria-pressed="motion_reduced" data-attr-disabled="reduced_motion" data-text="motion_reduced"></button>
+        </div>
+      </div>
+      <button class="opt motion-m" data-action="toggle_motion">
+        <span><span data-text="motion"></span> <span data-show="reduced_motion" data-text="motion_reduced"></span><span data-hide="reduced_motion" data-text="motion_full"></span></span>
+        <small data-text="change"></small>
+      </button>
+    </div>
+  </div>
+</div>

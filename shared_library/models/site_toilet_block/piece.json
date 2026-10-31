@@ -1,0 +1,10 @@
+{
+  "id": "site_toilet_block",
+  "summary": "A 3.6 x 2.44 m steel site toilet block on four jack legs: ribbed painted cladding, container corner posts and… joints door_0, door_1, door_2, wc_0_cistern, wc_0_flush_lever, wc_0_seat, …; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.site_toilet_block or place \"prefab\": \"site_toilet_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:site_toilet_block"]
+}

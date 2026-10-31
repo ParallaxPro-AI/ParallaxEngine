@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/portion_food_guac"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0827, 0.0355, 0.2118],
+      "offset": [-0.0027, 0.0177, -0.001]
+    }
+  }
+}

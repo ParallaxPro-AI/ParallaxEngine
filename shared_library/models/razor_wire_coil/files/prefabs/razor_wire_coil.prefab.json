@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/razor_wire_coil"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9315, 1.05, 0.7733],
+      "offset": [0, 0.525, 0]
+    }
+  }
+}

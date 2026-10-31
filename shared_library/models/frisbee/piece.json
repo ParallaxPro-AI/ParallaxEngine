@@ -1,0 +1,10 @@
+{
+  "id": "frisbee",
+  "summary": "A sport flying disc: 0.27 m moulded plastic disc 32 mm tall with a gently domed flight plate, a rolled rim th… options colour, print.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.frisbee or place \"prefab\": \"frisbee\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:frisbee"]
+}

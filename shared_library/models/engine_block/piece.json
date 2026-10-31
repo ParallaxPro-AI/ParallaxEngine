@@ -1,0 +1,10 @@
+{
+  "id": "engine_block",
+  "summary": "A dressed inline-four car engine standing on its oil pan: a cast-iron block with a tapered skirt, freeze plug… joints crank; options cover, block; sockets lift_hook.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.engine_block or place \"prefab\": \"engine_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:engine_block"]
+}

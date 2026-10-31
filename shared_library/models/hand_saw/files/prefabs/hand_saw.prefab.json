@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hand_saw"
+    },
+    "viewmodel_item": {
+      "hip": [0.16, -0.3, 0.42],
+      "hip_turn": [-6.875494, -4.583662, -89.954374],
+      "eye_relief": 0.32,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1898, 0.0304, 0.6717],
+      "offset": [-0.0231, 0.013, 0.1941]
+    }
+  }
+}

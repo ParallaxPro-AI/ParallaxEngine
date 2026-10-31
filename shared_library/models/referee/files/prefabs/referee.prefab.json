@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/referee"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.895, 0.3142],
+      "offset": [0, 0.9475, 0.0278]
+    }
+  }
+}

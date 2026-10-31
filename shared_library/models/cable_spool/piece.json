@@ -1,0 +1,10 @@
+{
+  "id": "cable_spool",
+  "summary": "A 1 m wooden cable drum lying on its rim: two chamfered plywood flanges with arbor holes, octagonal steel arb… joints reel; options cable, wood; sockets top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cable_spool or place \"prefab\": \"cable_spool\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cable_spool"]
+}

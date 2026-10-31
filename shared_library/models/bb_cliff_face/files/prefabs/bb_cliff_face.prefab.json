@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_cliff_face"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.15, 6.8, 7.079],
+      "offset": [0.075, 3.4, -0.0395]
+    }
+  }
+}

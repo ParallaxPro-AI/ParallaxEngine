@@ -1,0 +1,10 @@
+{
+  "id": "laundromat",
+  "summary": "A corner laundromat. options render_paint; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laundromat or place \"prefab\": \"laundromat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laundromat"]
+}

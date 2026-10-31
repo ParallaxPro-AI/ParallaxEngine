@@ -1,0 +1,10 @@
+{
+  "id": "wanted_poster_board",
+  "summary": "A wild-west town notice board: a board of weathered vertical planks between two braced posts under a little p… options wood; sockets socket_poster, socket_lantern.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wanted_poster_board or place \"prefab\": \"wanted_poster_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wanted_poster_board"]
+}

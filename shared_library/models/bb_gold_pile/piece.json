@@ -1,0 +1,10 @@
+{
+  "id": "bb_gold_pile",
+  "summary": "Small overlapping octagonal stacks of gold coins.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_gold_pile or place \"prefab\": \"bb_gold_pile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_gold_pile"]
+}

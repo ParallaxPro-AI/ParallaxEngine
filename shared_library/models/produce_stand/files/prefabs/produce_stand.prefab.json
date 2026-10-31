@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/produce_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.46, 1.66, 1.2558],
+      "offset": [0, 0.83, -0.0365]
+    }
+  }
+}

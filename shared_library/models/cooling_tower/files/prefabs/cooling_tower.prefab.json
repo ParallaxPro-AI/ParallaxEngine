@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cooling_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [80.2, 101.05, 82.1],
+      "offset": [0, 50.525, -0.95]
+    }
+  }
+}

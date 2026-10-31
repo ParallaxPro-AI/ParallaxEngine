@@ -1,0 +1,10 @@
+{
+  "id": "voting_booth",
+  "summary": "A curtained polling booth: a square aluminium-tube frame on levelling feet with fabric-covered privacy panels… joints curtain_left, curtain_right; options panels, curtain; sockets socket_voter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.voting_booth or place \"prefab\": \"voting_booth\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:voting_booth"]
+}

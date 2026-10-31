@@ -1,0 +1,10 @@
+{
+  "id": "reception_desk",
+  "summary": "A 2 m straight reception desk: a tall white front panel with a wood-veneer feature band, a raised transaction… joints drawer_1, drawer_2; options front, ledge, equipment; sockets visitor_spot, staff_spot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reception_desk or place \"prefab\": \"reception_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reception_desk"]
+}

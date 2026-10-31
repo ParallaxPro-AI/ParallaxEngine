@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rooftop_water_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.9, 8.212, 4.1],
+      "offset": [0, 4.104, 0.16]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "pets_tortoise",
+  "summary": "Little Paw House stylized tortoise. sockets head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pets_tortoise or place \"prefab\": \"pets_tortoise\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pets_tortoise"]
+}

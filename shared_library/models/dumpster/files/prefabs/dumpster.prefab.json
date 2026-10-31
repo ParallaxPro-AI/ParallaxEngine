@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dumpster"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.022, 1.289, 1.353],
+      "offset": [0, 0.6445, -0.0035]
+    }
+  }
+}

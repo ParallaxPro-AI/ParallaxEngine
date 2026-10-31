@@ -1,0 +1,10 @@
+{
+  "id": "laser_turret",
+  "summary": "An automated sci-fi laser turret: a splayed revolved pedestal on a toothed slew ring, a lofted armoured housi… joints yaw, pitch, recoil; options glow_colour; sockets socket_muzzle, socket_mount.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laser_turret or place \"prefab\": \"laser_turret\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laser_turret"]
+}

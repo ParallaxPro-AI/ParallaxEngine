@@ -1,0 +1,7 @@
+{
+  "name": "Courier",
+  "blurb": "The stock delivery rig.",
+  "cost": 0,
+  "tint": [1.0, 1.0, 1.0],
+  "swatch": "#e9d8b4"
+}

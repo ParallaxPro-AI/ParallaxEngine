@@ -1,0 +1,10 @@
+{
+  "id": "floor_mirror_arched",
+  "summary": "A full-length arched floor mirror: a slim 28 mm metal frame with rolled faces around a round-topped silvered… options frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.floor_mirror_arched or place \"prefab\": \"floor_mirror_arched\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:floor_mirror_arched"]
+}

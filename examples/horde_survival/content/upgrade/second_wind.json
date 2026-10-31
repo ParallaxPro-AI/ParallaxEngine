@@ -1,0 +1,1 @@
+{"name": "Second Wind", "desc": "The ember rekindles ONCE: survive a killing blow at half health.", "icon": "phoenix", "tier": "rare", "weight": 3, "max_stacks": 1, "effect": {"revive_add": 1}}

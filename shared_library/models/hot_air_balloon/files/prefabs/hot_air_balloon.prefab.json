@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hot_air_balloon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [15, 17.69, 15],
+      "offset": [0, 8.845, 0]
+    }
+  }
+}

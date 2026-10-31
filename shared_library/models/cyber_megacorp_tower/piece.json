@@ -1,0 +1,10 @@
+{
+  "id": "cyber_megacorp_tower",
+  "summary": "A cyberpunk megacorporation headquarters skyscraper (exterior landmark, no interior): a 14 m stone podium wit…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyber_megacorp_tower or place \"prefab\": \"cyber_megacorp_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyber_megacorp_tower"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vase_ceramic"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.204, 0.3228, 0.204],
+      "offset": [0, 0.1614, 0]
+    }
+  }
+}

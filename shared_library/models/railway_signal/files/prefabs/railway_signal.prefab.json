@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/railway_signal"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.14, 7.34, 1.13],
+      "offset": [-0.47, 3.67, 0.065]
+    }
+  }
+}

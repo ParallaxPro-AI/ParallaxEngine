@@ -1,0 +1,10 @@
+{
+  "id": "garment_legs_exo",
+  "summary": "Powered exo-leg armour: a hip girdle, thigh and shin plates standing proud of a ribbed pressure underlayer, a… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_legs_exo or place \"prefab\": \"garment_legs_exo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_legs_exo"]
+}

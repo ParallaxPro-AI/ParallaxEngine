@@ -1,0 +1,50 @@
+<link rel="stylesheet" href="greenwood.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+#gw-pause{position:fixed;inset:0;pointer-events:auto}
+#gw-pause .scrim{position:absolute;inset:0;background:rgba(6,10,8,.66);animation:gw-fade .2s ease-out both}
+#gw-pause .card{position:absolute;left:50%;top:50%;width:calc(50 * var(--gw-r));margin:0;padding:calc(3.6 * var(--gw-r)) calc(4 * var(--gw-r)) calc(3.2 * var(--gw-r));display:flex;flex-direction:column;gap:calc(1.8 * var(--gw-r));transform:translate(-50%,-50%)}
+#gw-pause .card>*{animation:gw-rise .24s var(--gw-ease) both}
+#gw-pause .head{display:flex;flex-direction:column;align-items:center;gap:calc(1.2 * var(--gw-r));margin-bottom:calc(.6 * var(--gw-r))}
+#gw-pause h1{font:900 calc(6 * var(--gw-r))/1 var(--gw-font-display);letter-spacing:.14em;padding-left:.14em}
+#gw-pause .saved{display:flex;align-items:center;gap:calc(.8 * var(--gw-r));padding:calc(.5 * var(--gw-r)) calc(1.4 * var(--gw-r)) calc(.5 * var(--gw-r)) calc(1 * var(--gw-r));border-radius:calc(999 * var(--u));background:rgba(167,243,208,.1);border:calc(1 * var(--u)) solid rgba(167,243,208,.35);font:800 calc(1.4 * var(--gw-r))/1.2 var(--gw-font-ui);color:var(--gw-good)}
+#gw-pause .saved svg{width:calc(1.4 * var(--gw-r));height:calc(1.4 * var(--gw-r))}
+#gw-pause #gw-resume{height:calc(6.2 * var(--gw-r));font-size:calc(2.1 * var(--gw-r))}
+#gw-pause .gfx{display:grid;gap:calc(.8 * var(--gw-r))}
+#gw-pause .gfx .gw-eyebrow{font-size:calc(1.3 * var(--gw-r));letter-spacing:.14em}
+#gw-pause #gw-menu{height:calc(5.4 * var(--gw-r))}
+#gw-pause .hint{display:flex;align-items:center;justify-content:center;gap:calc(.8 * var(--gw-r));font:700 calc(1.4 * var(--gw-r))/1 var(--gw-font-ui);color:var(--gw-ink-faint)}
+@media (pointer:coarse){
+#gw-pause .scrim{background:rgba(6,10,8,.7)}
+#gw-pause .card{top:calc(50% - calc(1 * var(--gw-r)));width:calc(56 * var(--gw-r));padding:calc(2 * var(--gw-r)) calc(2.4 * var(--gw-r));display:grid;grid-template-columns:1fr 1fr;gap:calc(1.2 * var(--gw-r)) calc(2 * var(--gw-r));align-items:center;border-radius:calc(2 * var(--gw-r))}
+#gw-pause .left{display:flex;flex-direction:column;align-items:flex-start;gap:calc(1 * var(--gw-r))}
+#gw-pause .right{display:grid;gap:calc(1 * var(--gw-r))}
+#gw-pause .head{align-items:flex-start;gap:calc(1 * var(--gw-r));margin:0}
+#gw-pause h1{font-size:calc(4 * var(--gw-r));letter-spacing:.12em;padding-left:0}
+#gw-pause .saved{gap:calc(.6 * var(--gw-r));padding:calc(.4 * var(--gw-r)) calc(1.2 * var(--gw-r)) calc(.4 * var(--gw-r)) calc(.8 * var(--gw-r));font-size:calc(1.2 * var(--gw-r))}
+#gw-pause .saved svg{width:calc(1.2 * var(--gw-r));height:calc(1.2 * var(--gw-r))}
+#gw-pause .gfx{width:100%;margin-top:calc(.6 * var(--gw-r))}
+#gw-pause .gfx .gw-eyebrow{font-size:calc(1.1 * var(--gw-r))}
+#gw-pause .gw-seg{gap:calc(.3 * var(--gw-r));padding:calc(.3 * var(--gw-r));border-radius:calc(1.1 * var(--gw-r))}
+#gw-pause .gw-seg>button{border-radius:calc(.8 * var(--gw-r))}
+#gw-pause #gw-resume{height:calc(5.6 * var(--gw-r));font-size:calc(1.8 * var(--gw-r))}
+#gw-pause #gw-menu{height:calc(4.8 * var(--gw-r))}
+}
+@media not all and (pointer:coarse){#gw-pause .left,#gw-pause .right{display:contents}#gw-pause #gw-resume{order:1}#gw-pause .gfx{order:2}#gw-pause #gw-menu{order:3}#gw-pause .hint{order:4}}
+</style>
+<div class="gw" id="gw-pause">
+<div class="scrim"></div>
+<div class="card gw-sheet">
+<div class="left">
+<div class="head"><h1 data-text="paused"></h1><div class="saved"><svg viewBox="0 0 14 14" aria-hidden="true"><polyline points="2.5,7.5 5.5,10.5 11.5,3.5" fill="none" stroke="#a7f3d0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-text="world_saved"></span></div></div>
+<div class="gfx"><div class="gw-eyebrow" data-text="graphics"></div><div class="gw-seg" data-each="qualities"><template><button type="button" data-action="quality" data-attr-aria-pressed="pressed" data-bind="label"></button></template></div></div>
+</div>
+<div class="right">
+<button class="gw-btn primary" data-action="resume" data-text="pause_resume"></button>
+<button class="gw-btn secondary" data-action="quit" data-text="main_menu"></button>
+</div>
+<div class="hint" data-gw-desk><span data-text="pause_press"></span><span class="gw-kbd">P</span><span data-text="pause_to_resume"></span></div>
+</div>
+</div>

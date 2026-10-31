@@ -1,0 +1,10 @@
+{
+  "id": "luxury_bed",
+  "summary": "Luxury king platform bed: an ivory boucle base floating on a recessed black plinth with a brass shadow line… options style, fabric, accent, metal; sockets sleep_l, sleep_r, seat_edge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.luxury_bed or place \"prefab\": \"luxury_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:luxury_bed"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/egyptian_sarcophagus_gold"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9, 0.7224, 0.608],
+      "offset": [0, 0.3612, 0]
+    }
+  }
+}

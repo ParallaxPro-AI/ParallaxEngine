@@ -1,0 +1,10 @@
+{
+  "id": "sewer_tunnel_straight",
+  "summary": "A straight 4 m Victorian brick sewer tile from the UNDERGROUND kit: an upright-oval bore 3.4 m wide and 4.2 m…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sewer_tunnel_straight or place \"prefab\": \"sewer_tunnel_straight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sewer_tunnel_straight"]
+}

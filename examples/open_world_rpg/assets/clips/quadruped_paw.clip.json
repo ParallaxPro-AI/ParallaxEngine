@@ -1,0 +1,11 @@
+{
+  "rig": "quadruped", "duration": 0.7, "loop": false,
+  "events": [{"time":0.32,"name":"paw_contact"}],
+  "keys": [
+    {"time":0,"ease":"linear","pose":{"FR_UpperLeg":[0,0,0],"FR_LowerLeg":[0,0,0],"Head":[0,0,0]}},
+    {"time":0.2,"pose":{"FR_UpperLeg":[-37.03,9.23,-15.1],"FR_LowerLeg":[-32,0,0],"Head":[-5,8,0]}},
+    {"time":0.284,"ease":"linear","pose":{"FR_UpperLeg":[-37.03,9.23,-15.1],"FR_LowerLeg":[-32,0,0],"Head":[-5,8,0]}},
+    {"time":0.32,"ease":"linear","pose":{"FR_UpperLeg":[-55.37,-21.16,25.2],"FR_LowerLeg":[12,0,0],"Head":[-8,-8,0]}},
+    {"time":0.7,"ease":"out_cubic","pose":{"FR_UpperLeg":[0,0,0],"FR_LowerLeg":[0,0,0],"Head":[0,0,0]}}
+  ]
+}

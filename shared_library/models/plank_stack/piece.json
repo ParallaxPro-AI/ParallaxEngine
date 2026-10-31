@@ -1,0 +1,10 @@
+{
+  "id": "plank_stack",
+  "summary": "A stickered stack of sawn timber boards drying on three bearers: seven courses of 2 m x 145 mm x 32 mm boards…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.plank_stack or place \"prefab\": \"plank_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:plank_stack"]
+}

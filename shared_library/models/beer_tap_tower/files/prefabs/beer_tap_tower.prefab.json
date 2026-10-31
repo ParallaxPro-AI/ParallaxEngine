@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/beer_tap_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.468, 0.626, 0.2611],
+      "offset": [0, 0.313, 0.0115]
+    }
+  }
+}

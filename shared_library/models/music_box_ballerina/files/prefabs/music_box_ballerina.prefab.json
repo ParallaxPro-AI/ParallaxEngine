@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/music_box_ballerina"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2043, 0.198, 0.1942],
+      "offset": [0.0108, 0.099, -0.0034]
+    }
+  }
+}

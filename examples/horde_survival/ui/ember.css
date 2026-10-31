@@ -1,0 +1,74 @@
+/* The ember kit, ported from the template's hud/ember_kit: the --ec-* tokens and the shared
+   .ec-* panels, buttons, chips, bars and keycaps every Ember Circle panel uses. The faces are
+   in fonts.css. The rules are wrapped in :where() so a panel's own reset (`* { padding: 0 }`)
+   wins over them, as it did when the old engine injected the kit as a global block: the
+   template's chips, keycaps and buttons were drawn that way. */
+html{height:100%;}
+:root{
+container-type:size;
+/* One design pixel: the template was laid out at 1920 × 1080 and scaled to fit the view. */
+--ec-u:min(calc(100cqw / 1920),calc(100cqh / 1080));
+--ec-void:#090506;--ec-panel:#170a06;--ec-panel-a:rgba(23,10,6,.6);
+--ec-panel-solid:linear-gradient(180deg,rgba(29,13,8,.97),rgba(12,6,6,.97));
+--ec-scrim:rgba(6,3,3,.72);--ec-line:rgba(253,186,116,.14);--ec-line-strong:rgba(249,115,22,.45);
+--ec-ink:#f6e9df;--ec-ink-dim:#c4ad9f;--ec-ink-mute:#8a766b;
+--ec-ember:#f97316;--ec-ember-deep:#ea580c;--ec-ember-hi:#fdba74;--ec-peach:#fed7aa;--ec-blood:#b91c1c;--ec-ember-ink:#1c0803;
+--ec-hp-lo:#dc2626;--ec-hp-hi:#f97316;--ec-danger:#f87171;--ec-ice:#7dd3fc;
+--ec-violet:#a855f7;--ec-violet-hi:#f0abfc;--ec-violet-deep:rgba(88,28,135,.35);
+--ec-gold:#fbbf24;--ec-gold-hi:#fde68a;--ec-ash:#a8a29e;
+--ec-grad-title:linear-gradient(180deg,#fed7aa 0%,#f97316 55%,#b91c1c 100%);
+--ec-grad-win:linear-gradient(180deg,#fef3c7 0%,#fbbf24 50%,#ea580c 100%);
+--ec-grad-loss:linear-gradient(180deg,#e7e5e4 0%,#a8a29e 45%,#7f1d1d 100%);
+--ec-grad-hp:linear-gradient(90deg,#dc2626,#f97316);--ec-grad-xp:linear-gradient(90deg,#38bdf8,#7dd3fc);
+--ec-grad-nova:linear-gradient(90deg,#7e22ce,#a855f7 60%,#f0abfc);--ec-grad-btn:linear-gradient(180deg,#fb8a3c,#ea580c);
+--ec-font-display:'Cinzel','Trajan Pro',Georgia,serif;--ec-font-ui:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;--ec-font-mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+--ec-shadow-panel:0 calc(24 * var(--ec-u)) calc(64 * var(--ec-u)) rgba(0,0,0,.6),0 0 0 calc(1 * var(--ec-u)) rgba(0,0,0,.4);
+--ec-glow-ember:0 0 calc(24 * var(--ec-u)) rgba(249,115,22,.45),0 0 calc(2 * var(--ec-u)) rgba(253,186,116,.8);--ec-glow-ember-soft:0 0 calc(80 * var(--ec-u)) rgba(249,115,22,.12);
+--ec-glow-violet:0 0 calc(24 * var(--ec-u)) rgba(168,85,247,.55);--ec-glow-gold:0 0 calc(28 * var(--ec-u)) rgba(251,191,36,.45);
+--ec-glow-ice:0 0 0 calc(1 * var(--ec-u)) rgba(125,211,252,.45),0 0 calc(18 * var(--ec-u)) rgba(125,211,252,.15);
+--ec-ease-out:cubic-bezier(.2,.8,.2,1);--ec-dur-fast:120ms;--ec-dur:220ms;--ec-dur-slow:480ms;
+--ec-safe:calc(88 * var(--ec-u));
+}
+:where(.ec-lbl){font:600 calc(12 * var(--ec-u))/1 var(--ec-font-ui);letter-spacing:.22em;text-transform:uppercase;color:var(--ec-ink-dim);}
+:where(.ec-mono){font-family:var(--ec-font-mono);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;}
+:where(.ec-grad){background:var(--ec-grad-title);-webkit-background-clip:text;background-clip:text;color:transparent;}
+:where(.ec-panel){background:var(--ec-panel-a);border:calc(1 * var(--ec-u)) solid var(--ec-line);border-radius:calc(8 * var(--ec-u));}
+:where(.ec-solid){background:var(--ec-panel-solid);border:calc(1 * var(--ec-u)) solid var(--ec-line);border-radius:calc(12 * var(--ec-u));box-shadow:var(--ec-shadow-panel),var(--ec-glow-ember-soft);}
+:where(.ec-scrim){position:fixed;inset:0;background:var(--ec-scrim);}
+:where(.ec-btn){appearance:none;-webkit-appearance:none;margin:0;display:inline-flex;align-items:center;justify-content:center;gap:calc(10 * var(--ec-u));height:calc(48 * var(--ec-u));padding:0 calc(24 * var(--ec-u));border-radius:calc(4 * var(--ec-u));font:600 calc(14 * var(--ec-u))/1 var(--ec-font-ui);letter-spacing:.18em;text-transform:uppercase;border:calc(1 * var(--ec-u)) solid var(--ec-line-strong);background:rgba(249,115,22,.06);color:var(--ec-ember-hi);cursor:pointer;pointer-events:auto;white-space:nowrap;transition:background var(--ec-dur) var(--ec-ease-out),border-color var(--ec-dur),transform var(--ec-dur-fast),filter var(--ec-dur);}
+:where(.ec-btn:hover){background:rgba(249,115,22,.15);border-color:var(--ec-ember);}
+:where(.ec-btn:active){transform:translateY(calc(1 * var(--ec-u))) scale(.99);}
+:where(.ec-btn b){font-family:var(--ec-font-mono);font-weight:800;letter-spacing:.04em;color:var(--ec-peach);}
+:where(.ec-btn svg){flex:none;display:block;}
+:where(.ec-btn-primary){background:var(--ec-grad-btn);color:var(--ec-ember-ink);border-color:var(--ec-ember-hi);box-shadow:var(--ec-glow-ember);font-weight:800;}
+:where(.ec-btn-primary:hover){background:var(--ec-grad-btn);border-color:var(--ec-ember-hi);filter:brightness(1.1);}
+:where(.ec-btn-ghost){border-color:var(--ec-line);background:transparent;color:var(--ec-ink-dim);}
+:where(.ec-btn-ghost:hover){color:var(--ec-ember-hi);background:rgba(249,115,22,.06);}
+:where(.ec-btn-sm){height:calc(36 * var(--ec-u));padding:0 calc(16 * var(--ec-u));font-size:calc(12 * var(--ec-u));}
+:where(.ec-btn.is-off){opacity:.38;border-style:dashed;box-shadow:none;}
+:where(.ec-kbd){display:inline-grid;place-items:center;min-width:calc(22 * var(--ec-u));height:calc(22 * var(--ec-u));padding:0 calc(6 * var(--ec-u));font:700 calc(11 * var(--ec-u))/1 var(--ec-font-mono);color:var(--ec-ember-hi);border:calc(1 * var(--ec-u)) solid var(--ec-line-strong);border-bottom-width:calc(2 * var(--ec-u));border-radius:calc(3 * var(--ec-u));background:rgba(0,0,0,.35);box-sizing:border-box;}
+:where(.ec-chip){display:inline-flex;gap:calc(6 * var(--ec-u));align-items:baseline;padding:calc(4 * var(--ec-u)) calc(8 * var(--ec-u));border:calc(1 * var(--ec-u)) solid var(--ec-line);border-radius:calc(2 * var(--ec-u));background:rgba(9,5,6,.55);font:600 calc(11 * var(--ec-u))/1 var(--ec-font-ui);letter-spacing:.16em;text-transform:uppercase;color:var(--ec-ink-dim);white-space:nowrap;}
+:where(.ec-chip b){font:800 calc(12 * var(--ec-u))/1 var(--ec-font-mono);color:var(--ec-ink);letter-spacing:.04em;}
+:where(.ec-bar){position:relative;height:calc(8 * var(--ec-u));background:rgba(255,255,255,.07);border-radius:calc(2 * var(--ec-u));overflow:hidden;}
+:where(.ec-bar>i){position:absolute;left:0;top:0;bottom:0;width:0;transition:width var(--ec-dur-slow) var(--ec-ease-out);}
+:where(.ec-dot){width:calc(8 * var(--ec-u));height:calc(8 * var(--ec-u));border-radius:50%;background:var(--ec-ember);animation:ec-emb 1.8s ease-in-out infinite;flex:none;}
+@keyframes ec-emb{0%,100%{box-shadow:0 0 0 0 rgba(249,115,22,.7),0 0 calc(8 * var(--ec-u)) rgba(249,115,22,.9);opacity:1;}50%{box-shadow:0 0 0 calc(6 * var(--ec-u)) rgba(249,115,22,0),0 0 calc(14 * var(--ec-u)) rgba(249,115,22,.6);opacity:.75;}}
+@keyframes ec-fade{from{opacity:0;}to{opacity:1;}}
+@keyframes ec-rise{from{opacity:0;transform:translateY(calc(12 * var(--ec-u)));}to{opacity:1;transform:none;}}
+@keyframes ec-card-in{from{opacity:0;transform:scale(.98);}to{opacity:1;transform:none;}}
+@media (pointer:coarse){
+:where(.ec-lbl){font-size:calc(24 * var(--ec-u));}
+:where(.ec-btn){height:calc(96 * var(--ec-u));padding:0 calc(48 * var(--ec-u));font-size:calc(28 * var(--ec-u));gap:calc(20 * var(--ec-u));border-radius:calc(8 * var(--ec-u));}
+:where(.ec-btn-sm){height:calc(72 * var(--ec-u));padding:0 calc(32 * var(--ec-u));font-size:calc(24 * var(--ec-u));}
+:where(.ec-btn:hover){background:rgba(249,115,22,.06);border-color:var(--ec-line-strong);}
+:where(.ec-btn-primary:hover){background:var(--ec-grad-btn);border-color:var(--ec-ember-hi);filter:none;}
+:where(.ec-btn-ghost:hover){background:transparent;border-color:var(--ec-line);color:var(--ec-ink-dim);}
+:where(.ec-btn:active){filter:brightness(.85);transform:scale(.98);}
+:where(.ec-kbd){min-width:calc(44 * var(--ec-u));height:calc(44 * var(--ec-u));padding:0 calc(12 * var(--ec-u));font-size:calc(22 * var(--ec-u));border-radius:calc(6 * var(--ec-u));border-bottom-width:calc(4 * var(--ec-u));}
+:where(.ec-chip){padding:calc(8 * var(--ec-u)) calc(16 * var(--ec-u));gap:calc(12 * var(--ec-u));font-size:calc(22 * var(--ec-u));border-radius:calc(4 * var(--ec-u));}
+:where(.ec-chip b){font-size:calc(24 * var(--ec-u));}
+:where(.ec-bar){height:calc(16 * var(--ec-u));border-radius:calc(4 * var(--ec-u));}
+:where(.ec-dot){width:calc(16 * var(--ec-u));height:calc(16 * var(--ec-u));}
+}
+:root{text-shadow:none;}
+

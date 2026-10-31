@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="choice.css">
+<div class="lib">
+<div id="pp-choice" class="on">
+  <div class="choice-title" data-text="draft_title"></div>
+  <div class="choice-sub"><span data-bind="duel_won"></span>  ·  <span data-text="score"></span> <span data-bind="score"></span>  ·  <span data-text="draft_stacks"></span>  ·  <span data-text="next_rival"></span>: <span data-bind="next_rival"></span> — <span data-bind="next_tagline"></span></div>
+  <div class="choice-row" data-each="cards">
+    <template>
+      <button class="choice-card" data-action="pick" data-key="Digit{index1}">
+        <div class="choice-ico">◈</div>
+        <div class="choice-name" data-bind="name"></div>
+        <div class="choice-desc" data-bind="description"></div>
+        <div class="choice-take" data-text="take_it"></div>
+      </button>
+    </template>
+  </div>
+</div>
+</div>

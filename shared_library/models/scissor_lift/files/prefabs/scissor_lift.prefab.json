@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scissor_lift"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1300,
+      "linear_damping": 0.2,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.84,
+        2.355,
+        1.935
+      ],
+      "offset": [
+        0,
+        1.1775,
+        -0.0125
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 1.6,
+      "steering": 38,
+      "grip": 7,
+      "turn_rate": 1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.1775,
+        -0.0125
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

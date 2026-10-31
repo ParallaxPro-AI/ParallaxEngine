@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crutches"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.52, 1.325, 0.065],
+      "offset": [0, 0.6625, 0]
+    }
+  }
+}

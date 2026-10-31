@@ -1,0 +1,1 @@
+{"extends": "effect/sparks", "burst": 7, "max": 7, "radius": 0.35, "speed": [2, 6], "lifetime": [0.25, 0.7], "size": [0.16, 0.256], "size_end": 0.056, "color": "#cfe6ff", "color_end": "#7c738000", "light": null}

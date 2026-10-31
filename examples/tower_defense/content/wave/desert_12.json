@@ -1,0 +1,1 @@
+{ "announce": "THE SUNSCAR BROOD", "boss": true, "groups": [{ "enemy": "dragon", "count": 3 }, { "enemy": "skeleton", "count": 10 }, { "enemy": "goblin", "count": 15 }] }

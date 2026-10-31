@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/kelp_strand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9081, 3.9548, 1.8682],
+      "offset": [0.0412, 1.9774, 0.0219]
+    }
+  }
+}

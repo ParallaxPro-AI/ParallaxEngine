@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bat_swarm_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4823, 1.0422, 0.8606],
+      "offset": [-0.0775, 0.5211, -0.0348]
+    }
+  }
+}

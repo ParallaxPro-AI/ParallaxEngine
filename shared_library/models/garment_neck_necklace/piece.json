@@ -1,0 +1,10 @@
+{
+  "id": "garment_neck_necklace",
+  "summary": "A gold pendant necklace: a round-link (rolo) chain of 8 mm interlocking rings worn round the neck over the co… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_neck_necklace or place \"prefab\": \"garment_neck_necklace\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_neck_necklace"]
+}

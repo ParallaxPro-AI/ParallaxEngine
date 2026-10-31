@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_fish_tang"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.552, 0.48, 0.65],
+      "offset": [0, 0.24, 0]
+    }
+  }
+}

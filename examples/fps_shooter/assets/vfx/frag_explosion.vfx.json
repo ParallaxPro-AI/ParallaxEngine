@@ -1,0 +1,1 @@
+{ "burst": 70, "lifetime": [0.3, 0.9], "speed": [4, 11], "spread": 360, "gravity": -6, "size": 0.4, "size_end": 0.05, "color": "#ffc261ff", "color_end": "#40302000", "max": 90 }

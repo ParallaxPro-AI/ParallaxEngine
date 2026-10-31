@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/obstacle_barrier_high",
+      "cast_shadows": true
+    }
+  },
+  "pool": 12
+}

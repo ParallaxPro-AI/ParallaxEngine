@@ -1,0 +1,10 @@
+{
+  "id": "bumper_car",
+  "summary": "A fairground bumper car (dodgem): a low, rounded fibreglass shell riding on a fat black rubber bumper ring, a… joints steer, fwheel_l, fwheel_r, rwheel_l, rwheel_r, pole.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bumper_car or place \"prefab\": \"bumper_car\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bumper_car"]
+}

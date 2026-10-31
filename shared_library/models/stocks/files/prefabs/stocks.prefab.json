@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stocks"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.36, 1.63, 0.6],
+      "offset": [0, 0.815, 0]
+    }
+  }
+}

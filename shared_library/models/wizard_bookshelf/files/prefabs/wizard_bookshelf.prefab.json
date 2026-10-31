@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wizard_bookshelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 2.57, 0.508],
+      "offset": [0, 1.285, 0.009]
+    }
+  }
+}

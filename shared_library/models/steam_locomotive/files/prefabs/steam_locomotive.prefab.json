@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/steam_locomotive"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.92, 4.448, 16.39],
+      "offset": [0, 2.224, -0.155]
+    }
+  }
+}

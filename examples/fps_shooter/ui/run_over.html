@@ -1,0 +1,102 @@
+<link rel="stylesheet" href="dustline.css">
+<style>
+  .dg-wrap { position: fixed; inset: 0; animation: dgIn .3s ease; }
+  @keyframes dgIn { from { opacity: 0; } to { opacity: 1; } }
+  .dg-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,23,27,.97) 0, rgba(10,23,27,.9) 58%, rgba(10,23,27,.62) 100%); }
+  .dg-wrap.defeat .dg-shade { background: radial-gradient(ellipse at 20% 30%, rgba(130,26,16,.4), transparent 60%), linear-gradient(90deg, rgba(10,23,27,.97) 0, rgba(10,23,27,.9) 58%, rgba(10,23,27,.62) 100%); }
+  .dg { position: absolute; inset: 0; display: grid; grid-template-columns: minmax(0,1fr) calc(620 * var(--u)); gap: calc(96 * var(--u)); align-items: center; padding: 0 calc(128 * var(--u)); pointer-events: auto; overflow-y: auto; }
+  .dg-eyebrow { display: flex; align-items: center; gap: calc(14 * var(--u)); font-size: calc(16 * var(--u)); font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--dl-sage); font-variant-numeric: tabular-nums; }
+  .dg-eyebrow::before { content: ""; width: calc(40 * var(--u)); height: calc(2 * var(--u)); background: currentColor; }
+  .dg-title { margin-top: calc(14 * var(--u)); font: 400 calc(200 * var(--u))/.86 var(--dl-f-display); letter-spacing: .02em; text-transform: uppercase; color: var(--dl-brass); text-shadow: var(--dl-sh-display); }
+  .dg-wrap.defeat .dg-title { color: var(--dl-danger); }
+  .dg-score { margin-top: calc(32 * var(--u)); display: flex; align-items: center; gap: calc(24 * var(--u)); flex-wrap: wrap; }
+  .dg-big { font-size: calc(96 * var(--u)); font-weight: 700; line-height: .9; font-variant-numeric: tabular-nums lining-nums; }
+  .dg-wrap.best .dg-big { color: var(--dl-brass-hi); }
+  .dg-newbest { display: none; flex-direction: column; gap: calc(4 * var(--u)); padding: calc(10 * var(--u)) calc(16 * var(--u)); background: var(--dl-brass); color: var(--dl-brass-ink); clip-path: polygon(calc(6 * var(--u)) 0,100% 0,100% calc(100% - calc(6 * var(--u))),calc(100% - calc(6 * var(--u))) 100%,0 100%,0 calc(6 * var(--u))); animation: dgNb 1.6s ease-in-out infinite alternate; }
+  .dg-wrap.best .dg-newbest { display: inline-flex; }
+  .dg-newbest b { font-size: calc(20 * var(--u)); font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+  .dg-newbest span { font-size: calc(13 * var(--u)); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+  @keyframes dgNb { to { filter: drop-shadow(0 0 calc(16 * var(--u)) rgba(230,186,112,.6)); } }
+  .dg-stats { margin-top: calc(40 * var(--u)); padding-top: calc(20 * var(--u)); border-top: 1px solid var(--dl-brass-line); display: grid; grid-template-columns: repeat(4, auto) minmax(0,1fr); gap: 0 calc(44 * var(--u)); }
+  .dg-stats > div { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+  .dg-v { font-size: calc(40 * var(--u)); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+  .dg-chips { display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); }
+  .dg-none { font-size: calc(18 * var(--u)); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--dl-ink-2); }
+  .dg-btns { margin-top: calc(44 * var(--u)); display: flex; gap: calc(14 * var(--u)); }
+  .dg-results { padding: calc(28 * var(--u)) calc(32 * var(--u)) calc(20 * var(--u)); background: var(--dl-panel); border-top: calc(2 * var(--u)) solid var(--dl-brass); box-shadow: var(--dl-sh-slab); }
+  .dg-results h2 { font-size: calc(18 * var(--u)); font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--dl-brass); }
+  .dg-results table { margin-top: calc(16 * var(--u)); width: 100%; border-collapse: collapse; }
+  .dg-results th { padding: 0 0 calc(10 * var(--u)); text-align: right; font-size: calc(13 * var(--u)); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--dl-sage); }
+  .dg-results th:first-child, .dg-results td:first-child { text-align: left; }
+  .dg-results td { padding: calc(14 * var(--u)) 0; border-top: 1px solid var(--dl-sage-line); text-align: right; font-size: calc(30 * var(--u)); font-weight: 700; font-variant-numeric: tabular-nums lining-nums; }
+  .dg-results td:first-child { font-size: calc(16 * var(--u)); font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--dl-ink-2); }
+  .dg-results td.up { color: var(--dl-brass); }
+  .dg-results td.up::before { content: "▲ "; font-size: calc(14 * var(--u)); vertical-align: calc(4 * var(--u)); }
+  .dg-results td.dim { color: var(--dl-sage); }
+  .dg-record { margin-top: calc(22 * var(--u)); padding-top: calc(18 * var(--u)); border-top: 1px solid var(--dl-sage-line); }
+  .dg-record h3 { font-size: calc(15 * var(--u)); font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--dl-brass); }
+  .dg-record table { margin-top: calc(8 * var(--u)); }
+  .dg-record th { font-size: calc(12 * var(--u)); padding: 0 0 calc(6 * var(--u)); }
+  .dg-record td { padding: calc(7 * var(--u)) 0; border-top: 1px solid rgba(154,173,170,.16); font-size: calc(22 * var(--u)); }
+  .dg-record td:first-child { font-size: calc(14 * var(--u)); }
+  @media (pointer: coarse) {
+    .dg { grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: calc(48 * var(--u)); padding: 0 calc(calc(48 * var(--u)) + env(safe-area-inset-right, 0px)) 0 calc(calc(48 * var(--u)) + env(safe-area-inset-left, 0px)); }
+    .dg-eyebrow { font-size: calc(20 * var(--u)); gap: calc(16 * var(--u)); }
+    .dg-title { margin-top: calc(8 * var(--u)); font-size: calc(136 * var(--u)); }
+    .dg-score { margin-top: calc(20 * var(--u)); }
+    .dg-big { font-size: calc(80 * var(--u)); }
+    .dg-newbest { padding: calc(10 * var(--u)) calc(18 * var(--u)); }
+    .dg-newbest b { font-size: calc(22 * var(--u)); }
+    .dg-newbest span { font-size: calc(18 * var(--u)); }
+    .dg-stats { margin-top: calc(24 * var(--u)); padding-top: calc(16 * var(--u)); grid-template-columns: repeat(4, auto); gap: calc(12 * var(--u)) calc(36 * var(--u)); }
+    .dg-stats .dg-lo { grid-column: 1 / -1; }
+    .dg-btns { margin-top: calc(28 * var(--u)); gap: calc(20 * var(--u)); }
+    .dg-results { padding: calc(24 * var(--u)) calc(28 * var(--u)) calc(12 * var(--u)); }
+    .dg-results h2 { font-size: calc(22 * var(--u)); }
+    .dg-results th { font-size: calc(18 * var(--u)); padding-bottom: calc(8 * var(--u)); }
+    .dg-results td { padding: calc(12 * var(--u)) 0; font-size: calc(34 * var(--u)); }
+    .dg-results td:first-child { font-size: calc(20 * var(--u)); }
+    .dg-record { margin-top: calc(12 * var(--u)); padding-top: calc(10 * var(--u)); }
+    .dg-record h3 { font-size: calc(18 * var(--u)); }
+    .dg-record th { font-size: calc(15 * var(--u)); }
+    .dg-record td { padding: calc(5 * var(--u)) 0; font-size: calc(24 * var(--u)); }
+    .dg-record td:first-child { font-size: calc(17 * var(--u)); }
+  }
+</style>
+<div class="dl dg-wrap" data-class-defeat="defeat" data-class-best="new_best">
+  <div class="dg-shade"></div>
+  <div class="dg">
+    <div>
+      <div class="dg-eyebrow" data-bind="eyebrow"></div>
+      <h1 class="dg-title" data-bind="headline"></h1>
+      <div class="dg-score">
+        <div><span class="lbl" data-text="score_label"></span><div class="dg-big" data-bind="score"></div></div>
+        <div class="dg-newbest"><b data-text="new_best"></b><span data-bind="previous"></span></div>
+      </div>
+      <div class="dg-stats">
+        <div><span class="lbl" data-text="rounds_label"></span><span class="dg-v" data-bind="rounds"></span></div>
+        <div><span class="lbl" data-text="frags_label"></span><span class="dg-v" data-bind="frags"></span></div>
+        <div><span class="lbl" data-text="deaths_label"></span><span class="dg-v" data-bind="deaths"></span></div>
+        <div><span class="lbl" data-text="best_streak_label"></span><span class="dg-v" data-bind="best_streak"></span></div>
+        <div class="dg-lo"><span class="lbl" data-text="loadout_label"></span>
+          <span class="dg-chips" data-show="loadout" data-each="loadout"><template><span class="dl-chip"><span class="g" data-bind="icon"></span><span data-bind="name"></span></span></template></span>
+          <span class="dg-none" data-hide="loadout" data-text="no_upgrades"></span>
+        </div>
+      </div>
+      <div class="dg-btns">
+        <button class="dl-btn primary" data-action="again"><span data-text="play_again"></span> <span class="arr">→</span></button>
+        <button class="dl-btn" data-action="quit" data-text="main_menu"></button>
+      </div>
+    </div>
+    <section class="dg-results" aria-label="Run results">
+      <h2 data-text="run_results"></h2>
+      <table><thead><tr><th></th><th data-text="this_run"></th><th data-text="career_best"></th></tr></thead>
+        <tbody data-each="results"><template><tr><td data-bind="label"></td><td data-class-up="up" data-bind="run"></td><td class="dim" data-bind="best"></td></tr></template></tbody></table>
+      <div class="dg-record">
+        <h3 data-text="combat_record"></h3>
+        <table><thead><tr><th></th><th data-text="this_run"></th><th data-text="all_runs"></th></tr></thead>
+          <tbody data-each="record"><template><tr><td data-bind="label"></td><td data-bind="run"></td><td class="dim" data-bind="life"></td></tr></template></tbody></table>
+      </div>
+    </section>
+  </div>
+</div>

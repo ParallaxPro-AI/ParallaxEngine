@@ -1,0 +1,10 @@
+{
+  "id": "alchemy_table",
+  "summary": "An alchemist's worktable: a heavy oak table on turned legs with a lower shelf and a front drawer that slides… joints drawer; options wood; sockets socket_work, burner_flame, flask_steam, candle_flame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alchemy_table or place \"prefab\": \"alchemy_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alchemy_table"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tnt_crate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7029, 0.7587, 0.4487],
+      "offset": [0, 0.3794, -0.0103]
+    }
+  }
+}

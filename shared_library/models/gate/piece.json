@@ -1,0 +1,10 @@
+{
+  "id": "gate",
+  "summary": "A single-leaf yard gate hung between two posts, with a lift-up drop-bar latch. joints leaf, drop_bar; options style.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gate or place \"prefab\": \"gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gate"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "semi_tractor",
+  "summary": "An articulated tractor unit: a high sleeper cab, a short 6.5 m chassis and a fifth-wheel coupling plate over… joints cab_tilt, door_l, door_r; options body, paint; sockets socket_driver, socket_tow, seat_driver, seat_pax_1, socket_fifth_wheel.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.semi_tractor or place \"prefab\": \"semi_tractor\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:semi_tractor"]
+}

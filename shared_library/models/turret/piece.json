@@ -1,0 +1,10 @@
+{
+  "id": "turret",
+  "summary": "A pedestal-mounted rotary-cannon gun turret: a fixed base bearing, a housing that pans 360 about vertical, a… joints pan, tilt, barrels, ammo_feed; options station; sockets socket_muzzle, socket_gunner.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.turret or place \"prefab\": \"turret\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:turret"]
+}

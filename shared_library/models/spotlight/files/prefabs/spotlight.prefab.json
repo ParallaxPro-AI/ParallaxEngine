@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spotlight"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.447, 0.495, 0.56],
+      "offset": [0, 0.2475, 0.02]
+    }
+  }
+}

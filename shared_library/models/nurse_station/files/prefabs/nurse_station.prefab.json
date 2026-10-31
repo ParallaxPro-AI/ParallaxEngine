@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/nurse_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.48, 1.31, 1.26],
+      "offset": [0, 0.655, 0]
+    }
+  }
+}

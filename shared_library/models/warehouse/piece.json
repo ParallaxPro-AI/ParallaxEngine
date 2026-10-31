@@ -1,0 +1,10 @@
+{
+  "id": "warehouse",
+  "summary": "A 30 x 20 m steel-clad warehouse, 9.5 m to the eaves under a shallow gable roof: a concrete dado, three numbe… joints curtain_0, curtain_1, curtain_2, office_desk_drawer, office_desk_keyboard_tray, office_chair_lift, …; options cladding_colour; sockets socket_dock_0, socket_dock_1, socket_dock_2, socket_floor, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.warehouse or place \"prefab\": \"warehouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:warehouse"]
+}

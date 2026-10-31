@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_heater_tank"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7099, 1.9723, 0.76],
+      "offset": [0.015, 0.9862, -0.02]
+    }
+  }
+}

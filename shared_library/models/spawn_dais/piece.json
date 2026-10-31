@@ -1,0 +1,10 @@
+{
+  "id": "spawn_dais",
+  "summary": "THE SPAWN PLATFORM: a two-tier octagonal dais with a battered retaining course and chamfered coping on each t… options team, trim.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spawn_dais or place \"prefab\": \"spawn_dais\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spawn_dais"]
+}

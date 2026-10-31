@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bow_longbow_elven"
+    },
+    "viewmodel_item": {
+      "hip": [-0.12, -1.02, 0.52],
+      "hip_turn": [0.0, 0.0, 10.31324],
+      "eye_relief": 0.62,
+      "grips": ["", "grip_l"]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0474, 1.716, 0.1607],
+      "offset": [0, 0.86, 0.0492]
+    }
+  }
+}

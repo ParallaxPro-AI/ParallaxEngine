@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/coffin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.044, 0.531, 0.7227],
+      "offset": [0, 0.2655, 0]
+    }
+  }
+}

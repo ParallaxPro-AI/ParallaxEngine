@@ -1,0 +1,10 @@
+{
+  "id": "xray_lightbox",
+  "summary": "A wall-mounted double X-ray film viewer (negatoscope): an enamelled steel housing with two lit opal diffuser… options lamp, films.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.xray_lightbox or place \"prefab\": \"xray_lightbox\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:xray_lightbox"]
+}

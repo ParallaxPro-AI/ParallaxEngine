@@ -1,0 +1,10 @@
+{
+  "id": "townhouse_row",
+  "summary": "A terrace of four narrow brick townhouses under one slated pitched roof: stone plinth, a stuccoed raised grou… joints door_a, door_b, door_c, door_d; options brick.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.townhouse_row or place \"prefab\": \"townhouse_row\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:townhouse_row"]
+}

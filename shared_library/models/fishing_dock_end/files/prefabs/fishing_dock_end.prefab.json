@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fishing_dock_end"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.835, 3.1564, 4.2417],
+      "offset": [0.0175, 1.5754, 0.3209]
+    }
+  }
+}

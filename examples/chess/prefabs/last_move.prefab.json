@@ -1,0 +1,7 @@
+{
+  "z": -0.5,
+  "components": {
+    "sprite": {"color": "#9eb85a6b", "size": [1, 1]}
+  },
+  "tags": ["move_marker"]
+}

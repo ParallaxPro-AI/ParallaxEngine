@@ -1,0 +1,10 @@
+{
+  "id": "car_wreck_burnt",
+  "summary": "A burnt-out four-door saloon car wreck: the fire has stripped the paint to rust-brown scale and black char, e… joints door_fl, door_fr, door_rl, door_rr.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.car_wreck_burnt or place \"prefab\": \"car_wreck_burnt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:car_wreck_burnt"]
+}

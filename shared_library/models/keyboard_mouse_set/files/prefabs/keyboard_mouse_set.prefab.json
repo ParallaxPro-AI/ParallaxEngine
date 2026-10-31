@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/keyboard_mouse_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.725, 0.0446, 0.2526],
+      "offset": [-0.0025, 0.0223, -0.0188]
+    }
+  }
+}

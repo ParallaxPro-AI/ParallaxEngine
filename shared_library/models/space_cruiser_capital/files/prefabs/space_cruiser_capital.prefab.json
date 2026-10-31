@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_cruiser_capital"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [24.12, 17.65, 57.8],
+      "offset": [0, 8.825, -1.8]
+    }
+  }
+}

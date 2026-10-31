@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/robot_arm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.34, 1.0578, 0.7274],
+      "offset": [0, 0.5289, -0.0093]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "advertising_column",
+  "summary": "A Morris (Litfass) advertising column: a granite ring and moulded cast-iron base, a 1.2 m pasted drum wrapped… options paint, posters.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.advertising_column or place \"prefab\": \"advertising_column\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:advertising_column"]
+}

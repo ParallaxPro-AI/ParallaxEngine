@@ -1,0 +1,33 @@
+{
+  "ui": ["title_screen"],
+  "environment": {"ambient": "#aab6c0", "time_of_day": 13.5, "sun": {"direction": [0.375, -0.906, 0.196], "color": "#fff6e2", "intensity": 2.1, "shadow_distance": 150}, "fog": {"color": "#bcc4d3", "near": 60, "far": 160}, "post": {"exposure": 1.12, "contrast": 1.04, "saturation": 0.896, "temperature": 0.1, "bloom": 0.13, "vignette": 0.1}},
+  "entities": [
+    {"prefab": "road_market", "at": [0, 0, -40]},
+    {"prefab": "road_market", "at": [0, 0, 0]},
+    {"prefab": "road_market", "at": [0, 0, 40]},
+    {"prefab": "road_market", "at": [0, 0, 80]},
+    {"prefab": "building_market_0", "at": [-11.5, 0, -18], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_0", "at": [11.5, 0, -18], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_1", "at": [-11.5, 0, 0], "rotation": [0, -90, 0]},
+    {"prefab": "landmark_market_stall", "at": [-6.6, 0, 7], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_1", "at": [11.5, 0, 0], "rotation": [0, 90, 0]},
+    {"prefab": "landmark_market_stall", "at": [6.6, 0, 7], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_0", "at": [-11.5, 0, 18], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_0", "at": [11.5, 0, 18], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_1", "at": [-11.5, 0, 36], "rotation": [0, -90, 0]},
+    {"prefab": "landmark_market_stall", "at": [-6.6, 0, 43], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_1", "at": [11.5, 0, 36], "rotation": [0, 90, 0]},
+    {"prefab": "landmark_market_stall", "at": [6.6, 0, 43], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_0", "at": [-11.5, 0, 54], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_0", "at": [11.5, 0, 54], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_1", "at": [-11.5, 0, 72], "rotation": [0, -90, 0]},
+    {"prefab": "landmark_market_stall", "at": [-6.6, 0, 79], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_1", "at": [11.5, 0, 72], "rotation": [0, 90, 0]},
+    {"prefab": "landmark_market_stall", "at": [6.6, 0, 79], "rotation": [0, 90, 0]},
+    {"prefab": "building_market_1", "at": [-11.5, 0, 90], "rotation": [0, -90, 0]},
+    {"prefab": "building_market_0", "at": [11.5, 0, 90], "rotation": [0, 90, 0]},
+    {"prefab": "title_runner", "at": [0, 0, -2]},
+    {"prefab": "title_guard", "at": [-2.5, 0, -3]},
+    {"prefab": "title_camera", "at": [0, 6, -10], "rotation": [24.4, 0, 0]}
+  ]
+}

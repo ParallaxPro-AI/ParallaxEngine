@@ -1,0 +1,14 @@
+{
+  "id": "motorbike",
+  "summary": "A motorbike: a tubular steel frame with a moulded tank / seat / tail, a transverse twin engine with a… joints steer, wheel_front, wheel_rear, kickstand; options style; sockets seat_driver, seat_pax_1, socket_rider, socket_pillion.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.motorbike or place \"prefab\": \"motorbike\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:motorbike"
+  ]
+}

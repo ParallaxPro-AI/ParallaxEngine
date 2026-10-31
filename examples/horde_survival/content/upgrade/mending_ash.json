@@ -1,0 +1,2 @@
+{ "name": "Mending Ash", "desc": "Heal 45% of max health right now.",
+  "icon": "cross", "weight": 6, "max_stacks": 99, "effect": { "heal_pct": 0.45 } }

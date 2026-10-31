@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rope_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.836, 0.993, 0.336],
+      "offset": [0, 0.4955, 0]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/map_parchment_spread"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.376, 0.0249, 0.296],
+      "offset": [0.0035, 0.0125, -0.0008]
+    }
+  }
+}

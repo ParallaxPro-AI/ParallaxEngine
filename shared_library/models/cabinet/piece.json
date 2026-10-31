@@ -1,0 +1,10 @@
+{
+  "id": "cabinet",
+  "summary": "A kitchen base cabinet with a worktop and three sliding drawers. joints drawer_0, drawer_1, drawer_2; options finish; sockets socket_worktop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cabinet or place \"prefab\": \"cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cabinet"]
+}

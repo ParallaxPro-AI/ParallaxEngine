@@ -1,0 +1,10 @@
+{
+  "id": "survivor_barricade_door",
+  "summary": "A survivor's barricaded door: a ledged-and-braced plank door (0.92 x 2.05 m leaf, 1.18 x 2.24 m overall in a… joints door, bar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.survivor_barricade_door or place \"prefab\": \"survivor_barricade_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:survivor_barricade_door"]
+}

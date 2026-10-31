@@ -1,0 +1,10 @@
+{
+  "id": "bellhop_stand",
+  "summary": "A grand-hotel bell captain's stand: a narrow mahogany case with raised-and-fielded panels on a black-marble p… joints lid; options wood, metal; sockets staff_spot, guest_spot, landing_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bellhop_stand or place \"prefab\": \"bellhop_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bellhop_stand"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "team_core",
+  "summary": "A team core: a broad stepped stone dais, three buttress pylons and a large team-coloured crystal turning slow… options team, trim.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.team_core or place \"prefab\": \"team_core\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:team_core"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "medal",
+  "summary": "An award medal: a struck disc with a rolled rim, a dark enamel field, a raised star and a laurel ring on BOTH… joints spinner; options metal, ribbon; sockets socket_hang.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.medal or place \"prefab\": \"medal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:medal"]
+}

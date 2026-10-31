@@ -1,0 +1,10 @@
+{
+  "id": "condiment_station",
+  "summary": "A self-serve condiment station for a fast-food restaurant, cafe or food court: a laminate cabinet with a stai… joints door, trash_flap, pump_1, pump_2, pump_3; options cabinet.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.condiment_station or place \"prefab\": \"condiment_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:condiment_station"]
+}

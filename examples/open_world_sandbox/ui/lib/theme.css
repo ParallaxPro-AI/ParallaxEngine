@@ -1,0 +1,69 @@
+/* Library panel theme (library piece `ui_theme`), retinted to the Sunset Bay kit (ui/sunset_bay.css). Every library panel links this file.
+   Change the tokens to restyle them all; the classes are lib-* so they never collide
+   with the game's own stylesheets. */
+:root {
+  container-type: size;
+  --lib-ink: #f4efe6;
+  --lib-dim: #93a2a4;
+  --lib-panel: rgba(13, 29, 38, 0.84);
+  --lib-line: rgba(147, 216, 189, 0.36);
+  --lib-accent: #fbbf24;
+  --lib-accent-ink: #111f28;
+  --lib-good: #8de3c0;
+  --lib-bad: #dc2626;
+  --lib-radius: 14px;
+  --lib-font: "Inter", var(--parallax-font), system-ui, sans-serif;
+}
+
+.lib-modal {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(4, 6, 10, 0.58);
+  font-family: var(--lib-font);
+  color: var(--lib-ink);
+}
+.lib-card {
+  min-width: min(22em, 86vw);
+  max-width: 30em;
+  padding: 1.4em 1.6em;
+  border-radius: var(--lib-radius);
+  border: 1px solid var(--lib-line);
+  background: var(--lib-panel);
+  display: grid;
+  gap: 0.7em;
+  text-align: center;
+}
+.lib-card h2 { margin: 0 0 0.2em; font-size: 1.6em; letter-spacing: 0.02em; }
+.lib-card p { margin: 0; color: var(--lib-dim); }
+.lib-button {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.65em 1.2em;
+  border-radius: calc(var(--lib-radius) - 4px);
+  border: 1px solid var(--lib-line);
+  background: transparent;
+  color: var(--lib-ink);
+  cursor: pointer;
+}
+.lib-button:hover, .lib-button:focus-visible { border-color: var(--lib-accent); outline: none; }
+.lib-button--primary { background: var(--lib-accent); color: var(--lib-accent-ink); border-color: var(--lib-accent); }
+.lib-rows { display: grid; gap: 0.35em; margin: 0.3em 0; }
+.lib-row { display: flex; justify-content: space-between; gap: 1.5em; }
+.lib-row span:first-child { color: var(--lib-dim); }
+.lib-big { font-size: 2.6em; font-weight: 800; line-height: 1.1; }
+.lib-good { color: var(--lib-good); }
+.lib-bad { color: var(--lib-bad); }
+.lib-hud { position: fixed; inset: 0; pointer-events: none; font-family: var(--lib-font); color: var(--lib-ink); }
+.lib-chip {
+  display: inline-block;
+  padding: 0.3em 0.8em;
+  border-radius: 999px;
+  background: var(--lib-panel);
+  border: 1px solid var(--lib-line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lib-modal *, .lib-hud * { animation: none !important; transition: none !important; }
+}

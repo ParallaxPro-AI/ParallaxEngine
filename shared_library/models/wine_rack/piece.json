@@ -1,0 +1,10 @@
+{
+  "id": "wine_rack",
+  "summary": "A floor-standing solid-wood wine rack: a 6 x 8 grid of single-bottle cubbies on a kick plinth under a chamfer… options wood, stock; sockets top_socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wine_rack or place \"prefab\": \"wine_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wine_rack"]
+}

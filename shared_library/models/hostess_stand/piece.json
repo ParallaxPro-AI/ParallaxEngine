@@ -1,0 +1,10 @@
+{
+  "id": "hostess_stand",
+  "summary": "A restaurant host stand / maitre d' podium: a wood carcass with a sloped writing top lipped at the low edge… joints door; options wood; sockets desk_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hostess_stand or place \"prefab\": \"hostess_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hostess_stand"]
+}

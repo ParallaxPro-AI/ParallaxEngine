@@ -1,0 +1,6 @@
+{
+  "components": {
+    "shape": {"kind": "cylinder", "size": [3.2, 0.08, 3.2], "color": "#ede7bf47", "emissive": "#766f50", "cast_shadows": false},
+    "map_icon": {"icon": "dot", "size": 0.1, "color": "#eef3ff"}
+  }
+}

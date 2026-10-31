@@ -1,0 +1,6 @@
+{
+  "extends": "scenery",
+  "components": {
+    "model": { "model": "https://r2.parallaxpro.ai/assets/model_static/66/72/66720552fe1d83dc39762396f5ebbbf3ef1fb260de4e768e936147f997b4da70.glb" }
+  }
+}

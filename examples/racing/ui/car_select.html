@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .csx { position: fixed; inset: 0; pointer-events: none; }
+  .csx-shade-b { position: absolute; left: 0; right: 0; bottom: 0; height: 52%; background: linear-gradient(0deg, rgba(10,8,9,0.9), transparent); }
+  .csx-shade-t { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,8,9,0.7), transparent 30%); }
+  .csx-head { position: absolute; left: var(--sr-edge); top: var(--sr-edge-y); display: flex; flex-direction: column; gap: calc(20 * var(--u)); animation: sr-fade 300ms ease both; }
+  .csx-title { display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+  .csx-season { --tw: calc(72 * var(--u)); width: calc(440 * var(--u)); margin-top: calc(8 * var(--u)); padding: calc(18 * var(--u)) calc(22 * var(--u)); display: flex; flex-direction: column; gap: calc(10 * var(--u)); }
+  .csx-season .sr-lbl { color: var(--sr-orange-hi); }
+  .csx-season-name { font: italic 800 calc(36 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .csx-season-body { font: 500 calc(17 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .csx-wallet { position: absolute; right: var(--sr-edge); top: var(--sr-edge-y); display: flex; gap: calc(12 * var(--u)); }
+  .csx-dock { position: absolute; left: 0; right: 0; margin: 0 auto; bottom: clamp(calc(28 * var(--u)),4.5cqh,calc(48 * var(--u))); width: min(calc(1320 * var(--u)), calc(100% - calc(96 * var(--u)))); animation: sr-rise 420ms var(--sr-ease) both; }
+  .csx-card { --c: calc(20 * var(--u)); --tw: calc(120 * var(--u)); padding: calc(24 * var(--u)) calc(28 * var(--u)); display: flex; flex-direction: column; gap: calc(20 * var(--u)); pointer-events: auto; }
+  .csx-main { display: flex; gap: calc(28 * var(--u)); align-items: stretch; }
+  .sr .csx-arrow { --c: calc(14 * var(--u)); width: calc(76 * var(--u)); min-height: calc(120 * var(--u)); flex: none; display: flex; align-items: center; justify-content: center; background: rgba(255,247,237,0.08); color: var(--sr-cream); clip-path: polygon(var(--c) 0,100% 0,100% calc(100% - var(--c)),calc(100% - var(--c)) 100%,0 100%,0 var(--c)); transition: background 120ms, transform 120ms; }
+  .sr .csx-arrow:hover { background: rgba(255,247,237,0.16); }
+  .sr .csx-arrow:active { transform: scale(.96); }
+  .csx-arrow svg { width: calc(30 * var(--u)); height: calc(30 * var(--u)); }
+  .csx-info { display: grid; grid-template-columns: minmax(0,1.1fr) minmax(0,1fr); gap: calc(40 * var(--u)); align-items: center; flex: 1; min-width: 0; }
+  .csx-info.is-swap { animation: sr-fade 160ms ease both; }
+  .csx-id { display: flex; flex-direction: column; gap: calc(10 * var(--u)); min-width: 0; }
+  .csx-name-row { display: flex; align-items: center; gap: calc(16 * var(--u)); flex-wrap: wrap; }
+  .csx-name { font: italic 900 calc(68 * var(--u))/.9 var(--sr-f-display); text-transform: uppercase; color: var(--sr-cream); }
+  .csx-count { margin-left: auto; font-size: calc(30 * var(--u)); font-weight: 700; color: var(--sr-mute); }
+  .csx-desc { font: 500 calc(19 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .csx-price { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .csx-price .sr-num { font-size: calc(26 * var(--u)); font-weight: 700; color: var(--sr-amber); }
+  .csx-price.is-short .sr-num, .csx-price.is-short .sr-lbl { color: var(--sr-redline); }
+  .csx-price .sr-coin { width: calc(22 * var(--u)); height: calc(22 * var(--u)); }
+  .csx-stats { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: calc(24 * var(--u)); }
+  .csx-stat { display: flex; flex-direction: column; gap: calc(7 * var(--u)); min-width: 0; }
+  .csx-stat-h { display: flex; justify-content: space-between; align-items: baseline; gap: calc(8 * var(--u)); }
+  .csx-stat-h .sr-num { font-size: calc(21 * var(--u)); font-weight: 700; color: var(--sr-cream); }
+  .csx-foot { display: flex; align-items: center; gap: calc(14 * var(--u)); border-top: calc(1 * var(--u)) solid var(--sr-line); padding-top: calc(18 * var(--u)); }
+  .csx-flex { flex: 1; }
+  .csx-foot .sr-btn.is-buy svg { width: calc(20 * var(--u)); height: calc(20 * var(--u)); }
+  .csx-short, .csx-season-meta { display: none; }
+  @media (pointer: coarse) {
+    .csx-head { left: var(--sr-safe-l); top: var(--sr-safe-t); gap: calc(12 * var(--u)); }
+    .csx-title { gap: calc(6 * var(--u)); }
+    .csx-head .sr-kicker { display: none; }
+    .csx-head .sr-sub { max-width: calc(820 * var(--u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .csx-season { --c: calc(16 * var(--u)); --tw: calc(56 * var(--u)); width: auto; margin-top: 0; padding: calc(14 * var(--u)) calc(24 * var(--u)); flex-direction: row; align-items: center; gap: calc(16 * var(--u)); }
+    .csx-season .sr-lbl { font-size: calc(22 * var(--u)); }
+    .csx-season-name { font-size: calc(34 * var(--u)); white-space: nowrap; }
+    .csx-season-body { display: none; }
+    .csx-season-meta { display: block; font: 700 calc(20 * var(--u))/1.1 var(--sr-f-ui); letter-spacing: .08em; text-transform: uppercase; color: var(--sr-mute); white-space: nowrap; }
+    .csx-wallet { right: var(--sr-safe-r); top: var(--sr-safe-t); gap: calc(12 * var(--u)); }
+    .csx-dock { left: var(--sr-safe-l); right: var(--sr-safe-r); bottom: var(--sr-safe-b); width: auto; margin: 0; }
+    .csx-card { --c: calc(24 * var(--u)); --tw: calc(120 * var(--u)); padding: calc(20 * var(--u)) calc(24 * var(--u)); gap: calc(16 * var(--u)); }
+    .csx-main { gap: calc(24 * var(--u)); }
+    .sr .csx-arrow { --c: calc(16 * var(--u)); width: calc(88 * var(--u)); min-height: calc(112 * var(--u)); }
+    .csx-arrow svg { width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+    .csx-info { display: flex; align-items: center; gap: calc(32 * var(--u)); }
+    .csx-id { flex: 1; gap: calc(8 * var(--u)); }
+    .csx-name-row { flex-wrap: nowrap; gap: calc(16 * var(--u)); }
+    .csx-name { font-size: calc(64 * var(--u)); }
+    .csx-count { margin-left: 0; font-size: calc(32 * var(--u)); }
+    .csx-desc { font-size: calc(24 * var(--u)); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .csx-price { display: none; }
+    .csx-stats { grid-template-columns: repeat(3,calc(184 * var(--u))); gap: calc(24 * var(--u)); flex: none; }
+    .csx-stat { gap: calc(8 * var(--u)); }
+    .csx-stat .sr-lbl { font-size: calc(22 * var(--u)); }
+    .csx-stat-h .sr-num { font-size: calc(36 * var(--u)); }
+    .csx-foot { gap: calc(16 * var(--u)); padding-top: 0; border-top: 0; }
+  }
+  [data-off] {}
+  .is-hidden { display: none !important; }
+</style>
+<div class="sr csx">
+  <div class="sr-vignette"></div>
+  <div class="csx-shade-b"></div>
+  <div class="csx-shade-t"></div>
+  <div class="csx-head">
+    <div class="csx-title">
+      <div class="sr-kicker" data-text="brand"></div>
+      <h1 class="sr-h1" data-text="select_car"></h1>
+      <p class="sr-sub" data-text="select_car_sub"></p>
+    </div>
+    <div class="sr-plate is-tick csx-season" data-class-is-hidden="no_season">
+      <div class="sr-lbl" data-bind="season_kick"></div>
+      <div class="csx-season-name" data-bind="season_name"></div>
+      <div class="csx-season-meta" data-bind="season_meta"></div>
+      <div class="csx-season-body" data-bind="season_body"></div>
+    </div>
+  </div>
+
+  <div class="csx-wallet">
+    <div class="sr-pill"><svg class="sr-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fbbf24"/><circle cx="12" cy="12" r="6" fill="none" stroke="#7c2d12" stroke-width="2.2"/></svg><span class="sr-num" data-bind="credits"></span><span class="sr-cr">CR</span></div>
+    <div class="sr-pill is-star" data-class-is-hidden="no_titles"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 6 6.5.7-4.9 4.4 1.4 6.4L12 17l-5.8 3.3 1.4-6.4L2.7 9.5l6.5-.7z"/></svg><span class="sr-num" data-bind="titles"></span></div>
+  </div>
+
+  <div class="csx-dock">
+    <div class="sr-plate is-tick csx-card">
+      <div class="csx-main">
+        <button class="csx-arrow" data-action="previous_car" data-key="ArrowLeft" aria-label="Previous car"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 4L5.5 12l11 8z"/></svg></button>
+        <div class="csx-info">
+          <div class="csx-id">
+            <div class="csx-name-row">
+              <div class="csx-name" data-bind="name"></div>
+              <span class="sr-badge" data-class-is-amber="locked"><span data-class-is-hidden="locked"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><span data-class-is-hidden="owned"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span data-bind="badge"></span></span>
+              <span class="sr-num csx-count" data-bind="count"></span>
+            </div>
+            <div class="csx-desc" data-bind="desc"></div>
+            <div class="csx-price" data-class-is-hidden="no_price" data-class-is-short="short"><svg class="sr-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fbbf24"/><circle cx="12" cy="12" r="6" fill="none" stroke="#7c2d12" stroke-width="2.2"/></svg><span class="sr-num" data-bind="price"></span><div class="sr-lbl" data-bind="short_text"></div></div>
+          </div>
+          <div class="csx-stats">
+            <div class="csx-stat"><div class="csx-stat-h"><div class="sr-lbl" data-text="stat_speed"></div><span class="sr-num" data-bind="speed"></span></div><div class="sr-segbar" data-each="speed_segs"><template><i data-class-is-on="on" data-class-is-top="top"></i></template></div></div>
+            <div class="csx-stat"><div class="csx-stat-h"><div class="sr-lbl" data-text="stat_accel"></div><span class="sr-num" data-bind="accel"></span></div><div class="sr-segbar" data-each="accel_segs"><template><i data-class-is-on="on" data-class-is-top="top"></i></template></div></div>
+            <div class="csx-stat"><div class="csx-stat-h"><div class="sr-lbl" data-text="stat_handling"></div><span class="sr-num" data-bind="handling"></span></div><div class="sr-segbar" data-each="handling_segs"><template><i data-class-is-on="on" data-class-is-top="top"></i></template></div></div>
+          </div>
+        </div>
+        <button class="csx-arrow" data-action="next_car" data-key="ArrowRight" aria-label="Next car"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.5 4l11 8-11 8z"/></svg></button>
+      </div>
+      <div class="csx-foot">
+        <button class="sr-btn" data-action="back" data-key="KeyP"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg><span data-text="back"></span></button>
+        <div class="csx-flex"></div>
+        <button class="sr-btn" data-class-is-hidden="no_price" data-class-is-buy="affordable" data-class-is-off="short" data-action="buy_car"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#fbbf24"/><circle cx="12" cy="12" r="6" fill="none" stroke="#7c2d12" stroke-width="2.2"/></svg><span data-bind="buy_label"></span></button>
+        <button class="sr-btn" data-action="garage"><span data-text="garage"></span></button>
+        <button class="sr-btn" data-class-is-pri="owned" data-class-is-off="locked" data-action="next" data-attr-disabled="locked" data-key="Enter"><span data-text="next"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>

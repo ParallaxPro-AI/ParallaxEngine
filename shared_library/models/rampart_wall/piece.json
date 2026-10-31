@@ -1,0 +1,10 @@
+{
+  "id": "rampart_wall",
+  "summary": "A tiling curtain-wall module for a MOBA base: a battered plinth that splays out to meet the ground, five stag… options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rampart_wall or place \"prefab\": \"rampart_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rampart_wall"]
+}

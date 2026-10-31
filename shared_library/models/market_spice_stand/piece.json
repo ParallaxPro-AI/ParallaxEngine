@@ -1,0 +1,10 @@
+{
+  "id": "market_spice_stand",
+  "summary": "A souk spice stand, 1.6 m wide under a striped canvas awning on four poles: a stepped timber stand with brass… options awning.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_spice_stand or place \"prefab\": \"market_spice_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_spice_stand"]
+}

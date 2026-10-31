@@ -1,0 +1,10 @@
+{
+  "id": "crater_impact",
+  "summary": "A fresh shell/bomb impact crater blown into a 9 m square of asphalt road: a scorched, blackened bowl about 5…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crater_impact or place \"prefab\": \"crater_impact\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crater_impact"]
+}

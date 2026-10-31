@@ -1,0 +1,10 @@
+{
+  "id": "ice_cream_van",
+  "summary": "A soft-serve ice cream van: chunky rounded body, oversized wheels, a serving hatch on the LEFT (-X) flank wit… joints hatch, arm, steer_l, spin_fl, steer_r, spin_fr, …; options paint; sockets socket_driver, seat_driver, seat_pax_1, socket_hatch, socket_roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.ice_cream_van or place \"prefab\": \"ice_cream_van\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:ice_cream_van"]
+}

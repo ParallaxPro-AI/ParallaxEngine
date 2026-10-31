@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/apartment_lowrise"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [16.48, 10.99, 13.72],
+      "offset": [0, 5.495, 0.62]
+    }
+  }
+}

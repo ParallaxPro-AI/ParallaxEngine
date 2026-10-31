@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sentry_turret_floor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.976, 0.9925, 1.293],
+      "offset": [0, 0.4963, 0.0915]
+    }
+  }
+}

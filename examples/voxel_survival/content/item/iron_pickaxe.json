@@ -1,0 +1,1 @@
+{ "name": "Iron Pickaxe", "icon": "pickaxe", "color": "#bac4c7", "stack_max": 1, "tool": "pickaxe", "view": "pickaxe_view", "tier": 2, "mine_speed": 3.2, "damage": 15, "reach": 5 }

@@ -1,0 +1,10 @@
+{
+  "id": "bubble_tea_stand",
+  "summary": "A night-market bubble tea kiosk: a pastel counter clad in timber slats with an oak top showing three finished… joints rear_door; options theme; sockets socket_vendor, socket_customer, socket_serve.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bubble_tea_stand or place \"prefab\": \"bubble_tea_stand\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bubble_tea_stand"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "safety_shower",
+  "summary": "A floor-mounted combination emergency drench shower and eyewash station, 2.3 m tall: a safety-yellow 1-1/4 in… joints pull_rod, push_flag; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.safety_shower or place \"prefab\": \"safety_shower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:safety_shower"]
+}

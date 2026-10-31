@@ -1,0 +1,10 @@
+{
+  "id": "stone_lantern_japanese",
+  "summary": "A 2.2 m six-sided Kasuga-style granite stone lantern (toro): a hexagonal kiso foundation with a lotus crown… options stone, lamp, moss.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stone_lantern_japanese or place \"prefab\": \"stone_lantern_japanese\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stone_lantern_japanese"]
+}

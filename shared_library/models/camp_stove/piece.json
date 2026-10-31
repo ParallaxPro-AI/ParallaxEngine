@@ -1,0 +1,10 @@
+{
+  "id": "camp_stove",
+  "summary": "A two-burner camping gas stove: a painted steel case on rubber feet holding two burner heads with lit flame r… joints lid, wing_l, wing_r; options case_colour, lit; sockets socket_burner_l, socket_burner_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camp_stove or place \"prefab\": \"camp_stove\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camp_stove"]
+}

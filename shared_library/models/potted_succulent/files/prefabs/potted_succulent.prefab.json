@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/potted_succulent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.113, 0.1191, 0.113],
+      "offset": [0, 0.0596, 0]
+    }
+  }
+}

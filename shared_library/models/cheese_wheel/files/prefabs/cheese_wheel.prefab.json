@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cheese_wheel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.344, 0.1016, 0.389],
+      "offset": [0, 0.0508, 0.0225]
+    }
+  }
+}

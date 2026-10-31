@@ -1,0 +1,10 @@
+{
+  "id": "restoration_oiler",
+  "summary": "A 0.16 m thumb-pump oil can in polished brass with a long drawn spout — it removes nothing at all.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_oiler or place \"prefab\": \"restoration_oiler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_oiler"]
+}

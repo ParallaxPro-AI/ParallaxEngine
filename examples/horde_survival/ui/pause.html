@@ -1,0 +1,39 @@
+<!-- The template's pause card: the frozen clock and tier, Resume / Settings / Main Menu, and the
+     P hint on desktop. -->
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ember.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .ecp { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: auto; font-family: var(--ec-font-ui); color: var(--ec-ink); -webkit-font-smoothing: antialiased; animation: ec-fade 200ms ease both; }
+  .pz { position: relative; width: calc(440 * var(--ec-u)); padding: calc(36 * var(--ec-u)) calc(40 * var(--ec-u)) calc(32 * var(--ec-u)); display: flex; flex-direction: column; align-items: center; text-align: center; animation: ec-rise 260ms var(--ec-ease-out) both; }
+  .pz > .ec-lbl { color: var(--ec-ink-mute); }
+  .pz > .ec-lbl b { font-family: var(--ec-font-mono); color: var(--ec-ink-dim); letter-spacing: .04em; }
+  .pz h2 { font: 900 calc(56 * var(--ec-u))/1.05 var(--ec-font-display); letter-spacing: .06em; margin-top: calc(14 * var(--ec-u)); }
+  .menu { display: flex; flex-direction: column; gap: calc(12 * var(--ec-u)); width: 100%; margin-top: calc(28 * var(--ec-u)); }
+  .menu .ec-btn { width: 100%; }
+  .menu .ec-btn-primary { height: calc(56 * var(--ec-u)); font-size: calc(16 * var(--ec-u)); }
+  .phint { margin-top: calc(18 * var(--ec-u)); font: 500 calc(12 * var(--ec-u)) var(--ec-font-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--ec-ink-mute); display: flex; gap: calc(8 * var(--ec-u)); align-items: center; }
+
+  @media (pointer: coarse) {
+    .ecp { background: rgba(6,3,3,.35); }
+    .pz { width: calc(720 * var(--ec-u)); padding: calc(36 * var(--ec-u)) calc(48 * var(--ec-u)) calc(36 * var(--ec-u)); border-radius: calc(24 * var(--ec-u)); }
+    .pz > .ec-lbl { font-size: calc(18 * var(--ec-u)); }
+    .pz h2 { font-size: calc(60 * var(--ec-u)); margin-top: calc(12 * var(--ec-u)); }
+    .menu { margin-top: calc(28 * var(--ec-u)); gap: calc(16 * var(--ec-u)); }
+    .menu .ec-btn, .menu .ec-btn-primary { height: calc(88 * var(--ec-u)); font-size: calc(24 * var(--ec-u)); }
+    .phint { display: none; }
+  }
+</style>
+<div class="ec-scrim"></div>
+<div class="ecp">
+  <div class="pz ec-solid">
+    <span class="ec-lbl"><span data-text="fight_frozen"></span> <b data-bind="clock"></b> · <span data-bind="tier"></span></span>
+    <h2 class="ec-grad" data-text="paused"></h2>
+    <div class="menu">
+      <button class="ec-btn ec-btn-primary" data-action="resume" data-text="resume"></button>
+      <button class="ec-btn" data-action="settings" data-text="settings"></button>
+      <button class="ec-btn ec-btn-ghost" data-action="main_menu" data-text="main_menu"></button>
+    </div>
+    <div class="phint"><span class="ec-kbd">P</span><span data-text="resume"></span></div>
+  </div>
+</div>

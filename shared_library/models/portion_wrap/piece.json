@@ -1,0 +1,10 @@
+{
+  "id": "portion_wrap",
+  "summary": "portion wrap joints left, right, bottom, top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.portion_wrap or place \"prefab\": \"portion_wrap\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:portion_wrap"]
+}

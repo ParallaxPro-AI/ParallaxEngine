@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drop_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.72, 4.55, 3.72],
+      "offset": [0, 2.275, 0]
+    }
+  }
+}

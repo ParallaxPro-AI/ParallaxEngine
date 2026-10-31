@@ -1,0 +1,1 @@
+{ "name": "Dampener", "description": "The ball speeds up half as fast during a rally. Long points stay controllable.", "ball_accel": 0.5 }

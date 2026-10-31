@@ -1,0 +1,10 @@
+{
+  "id": "lunar_new_year_dragon_head",
+  "summary": "A Lunar New Year dragon-dance head on its carrying pole in a cross-foot display stand: a lacquered red papier… joints jaw; options scheme; sockets mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lunar_new_year_dragon_head or place \"prefab\": \"lunar_new_year_dragon_head\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lunar_new_year_dragon_head"]
+}

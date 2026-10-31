@@ -1,0 +1,39 @@
+{
+  "components": {
+    "structure": {
+      "plan": "buildings/inn.plan",
+      "materials": {
+        "wall": {
+          "color": "#b89976",
+          "roughness": 0.95
+        },
+        "roof": {
+          "color": "#617e79",
+          "roughness": 0.9
+        },
+        "slab": {
+          "color": "#a68661",
+          "roughness": 0.95
+        },
+        "stair": {
+          "color": "#a68661",
+          "roughness": 0.95
+        },
+        "boards": {
+          "color": "#a68661",
+          "roughness": 0.95
+        },
+        "tile": {
+          "color": "#8a7a66",
+          "roughness": 0.8
+        }
+      },
+      "cell": 1,
+      "slab": 0.2,
+      "roof": {
+        "kind": "gable",
+        "pitch": 48
+      }
+    }
+  }
+}

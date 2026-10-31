@@ -1,0 +1,2 @@
+{ "name": "Powder Satchel", "blurb": "Start with another bomb.",
+  "effect": "bombs", "amount": 1, "costs": [25, 60] }

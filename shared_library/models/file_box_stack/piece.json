@@ -1,0 +1,10 @@
+{
+  "id": "file_box_stack",
+  "summary": "A stack of five corrugated bankers boxes (310 x 260 x 400 mm each): a three-high column and a two-high column… joints box_a2_lid; options count, board; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.file_box_stack or place \"prefab\": \"file_box_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:file_box_stack"]
+}

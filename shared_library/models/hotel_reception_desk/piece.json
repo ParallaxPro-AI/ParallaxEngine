@@ -1,0 +1,10 @@
+{
+  "id": "hotel_reception_desk",
+  "summary": "A 3 m grand-hotel front desk: a French-polished mahogany front of five raised-and-fielded panels between pila… joints drawer_l1, drawer_l2, drawer_r1, drawer_r2; options wood, metal, top, equipment; sockets visitor_spot, staff_spot_l, staff_spot_r, ledge_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hotel_reception_desk or place \"prefab\": \"hotel_reception_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hotel_reception_desk"]
+}

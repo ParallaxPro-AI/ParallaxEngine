@@ -1,0 +1,36 @@
+{
+ "duration": 4.0,
+ "seed": 850,
+ "gain": 0.42,
+ "layers": [
+  {
+   "wave": "noise",
+   "sustain": 1,
+   "decay": 0,
+   "attack": 0.6,
+   "release": 0.6,
+   "gain": 1,
+   "lfo_depth": 0.4,
+   "lfo_hz": 0.15,
+   "filter": {
+    "type": "bandpass",
+    "freq": 900,
+    "q": 0.6
+   }
+  },
+  {
+   "wave": "noise",
+   "sustain": 1,
+   "decay": 0,
+   "attack": 0.8,
+   "release": 0.8,
+   "gain": 0.4,
+   "lfo_depth": 0.3,
+   "lfo_hz": 0.09,
+   "filter": {
+    "type": "lowpass",
+    "freq": 350
+   }
+  }
+ ]
+}

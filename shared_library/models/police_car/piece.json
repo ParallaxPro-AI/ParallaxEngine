@@ -1,0 +1,16 @@
+{
+  "id": "police_car",
+  "summary": "A black-and-white police cruiser (full-size sedan): white body with black doors, four opening passenger… joints door_front_l, door_front_r, door_rear_l, door_rear_r, lightbar …; options livery; sockets seat_driver, seat_crew_1, seat_pax_1, seat_pax_2 …; drivable (vehicles).",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d",
+    "vehicles"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.police_car or place \"prefab\": \"police_car\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles().",
+    "Drive it from a behavior: e.get(Vehicle).drive(throttle=..., steer=...)."
+  ],
+  "replaces": [
+    "lib:police_car"
+  ]
+}

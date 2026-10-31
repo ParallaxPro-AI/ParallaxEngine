@@ -1,0 +1,10 @@
+{
+  "id": "chute_racer",
+  "summary": "A single-seat open-wheel downhill chute racer: a lofted wedge tub on a flat floor pan, an exposed helmeted dr… joints steer_l, steer_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.chute_racer or place \"prefab\": \"chute_racer\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:chute_racer"]
+}

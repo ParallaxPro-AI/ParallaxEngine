@@ -1,0 +1,25 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/fc/08/fc08d9d57ed76e84d9b646ca5753ebdd71ac0b10048881949443a8cbb87b1d24.glb",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    },
+    "station": {
+      "kind": "plating_station"
+    },
+    "plate": {}
+  },
+  "scale": [
+    1.8,
+    1,
+    1.4
+  ]
+}

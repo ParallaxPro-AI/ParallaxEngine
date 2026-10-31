@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_coffee_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 0.545, 0.9],
+      "offset": [0, 0.2725, 0]
+    }
+  }
+}

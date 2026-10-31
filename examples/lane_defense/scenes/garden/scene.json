@@ -1,0 +1,20 @@
+{
+  "ui": ["hud"],
+  "music": "music/garden_melody",
+  "environment": {
+    "sky": "atmosphere",
+    "time_of_day": 15.3,
+    "ambient": "#878f99",
+    "sun": { "color": "#fff8e7", "intensity": 3 },
+    "post": { "contrast": 1.14, "saturation": 1.05, "bloom": 0.015 }
+  },
+  "entities": [
+    { "id": "camera", "prefab": "garden_camera", "at": [0, 14.04, -17.84], "rotation": [38, 0, 0] },
+    { "prefab": "lawn_floor", "at": [0, -0.32, 0], "scale": [80, 1, 80] },
+    { "prefab": "lawn" },
+    { "id": "lawn_grid", "prefab": "lawn_grid" },
+    { "prefab": "cell_highlight", "id": "cell_highlight", "at": [0, 0.14, 0] },
+    { "prefab": "water_strip", "id": "water_strip", "at": [0, 0.12, 0] },
+    { "id": "sky_pollen","prefab": "sky_pollen" }
+  ]
+}

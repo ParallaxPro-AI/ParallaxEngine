@@ -1,0 +1,136 @@
+/* The hierarchy's rows, drop indicators and in-place rename (hierarchy.ts), its context menus (context_menu.ts). */
+
+.hierarchy-body { min-height: 0; }
+.hierarchy-body.drop-root .tree { box-shadow: inset 0 -2px 0 var(--accent); }
+
+.tree-row { position: relative; }
+.tree-row .tree-label { flex: 0 1 auto; min-width: 0; }
+.tree-row .tree-prefab { flex: 0 1 auto; min-width: 0; }
+.tree-row .tree-inherited { font-style: italic; opacity: 0.7; }
+.tree-row.kind-camera > svg { color: #6fb3ff; }
+.tree-row.kind-sun > svg, .tree-row.kind-light > svg { color: #f2c94c; }
+.tree-row.kind-model > svg { color: #b48cf2; }
+.tree-row.kind-prefab > svg { color: #5fcfb0; }
+.tree-row.kind-empty > svg { color: var(--text-disabled); }
+.tree-row.hidden-entity > svg, .tree-row.hidden-entity .tree-prefab { opacity: 0.5; }
+.tree-row.editor-hidden .tree-label { opacity: 0.5; font-style: italic; }
+
+/* The eye: shown on hover, and always while the entity is hidden. */
+.tree-eye {
+  margin-left: auto;
+  flex: none;
+  width: 20px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-disabled);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+.tree-row:hover .tree-eye, .tree-eye.off, .tree-eye:focus-visible { opacity: 1; }
+.tree-eye:hover { color: var(--text-primary); background: var(--bg-active); }
+.tree-eye.off { color: var(--text-secondary); }
+.tree-row .tree-eye svg { color: inherit; }
+body.mobile .tree-eye { opacity: 1; }
+
+/* Drop indicators: a line above or below the row, or the row outlined for "inside". */
+.tree-row.drop-above::before, .tree-row.drop-below::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+  pointer-events: none;
+}
+.tree-row.drop-above::before { top: -1px; }
+.tree-row.drop-below::after { bottom: -1px; }
+.tree-row.drop-inside { background: var(--accent-dim); box-shadow: inset 0 0 0 1px var(--accent); }
+
+.tree-rename {
+  flex: 1;
+  min-width: 0;
+  height: 20px;
+  padding: 0 4px;
+  background: var(--bg-input);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--font-size-md);
+  outline: none;
+}
+
+.tree-more {
+  padding: 6px 10px;
+  color: var(--accent);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+}
+.tree-more:hover { text-decoration: underline; }
+
+/* Scenes that aren't open, and their placements (read from the file, not live). */
+.tree-row.tree-scene.inactive-scene { font-weight: 500; color: var(--text-secondary); }
+.tree-row.tree-scene.inactive-scene svg { color: var(--text-secondary); }
+.tree-row.tree-preview { color: var(--text-secondary); }
+.tree-row.tree-preview .tree-label { font-style: italic; }
+
+/* Context menus: fixed popovers attached to <body>. */
+.ctx-menu {
+  position: fixed;
+  z-index: var(--z-popover);
+  min-width: 190px;
+  max-width: 320px;
+  max-height: calc(100vh - 8px);
+  overflow-y: auto;
+  padding: 4px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  font-size: var(--font-size-md);
+}
+.ctx-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: 5px 8px;
+  background: none;
+  border: none;
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-align: left;
+  cursor: pointer;
+}
+.ctx-item:hover:not(:disabled), .ctx-item:focus-visible { background: var(--bg-hover); outline: none; }
+.ctx-item:disabled { color: var(--text-disabled); cursor: default; }
+.ctx-item.danger:not(:disabled) { color: var(--danger); }
+.ctx-item.danger:hover:not(:disabled) { background: rgba(224, 82, 82, 0.12); }
+.ctx-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ctx-shortcut { color: var(--text-disabled); font-size: var(--font-size-sm); }
+.ctx-separator { height: 1px; margin: 4px 2px; background: var(--border); }
+.ctx-heading { padding: 4px 8px 2px; color: var(--text-disabled); font-size: var(--font-size-xs); text-transform: uppercase; letter-spacing: 0.04em; }
+body.mobile .ctx-item { min-height: 36px; }
+
+/* The name prompt (New Scene…). */
+.prompt-input {
+  width: 100%;
+  height: 30px;
+  padding: 0 8px;
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: var(--font-size-md);
+}
+.prompt-input:focus { border-color: var(--accent); outline: none; }
+.prompt-hint { color: var(--text-secondary); font-size: var(--font-size-sm); }

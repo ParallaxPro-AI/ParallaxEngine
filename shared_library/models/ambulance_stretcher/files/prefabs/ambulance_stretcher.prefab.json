@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ambulance_stretcher"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.59, 1.3736, 2.035],
+      "offset": [0, 0.6868, 0.0375]
+    }
+  }
+}

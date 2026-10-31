@@ -1,0 +1,1 @@
+{ "components": {"shape": {"kind": "cylinder", "size": [5, 3, 5], "color": "#bcbcbf"}, "grounded": {"lift": 1.5}, "collider": {"shape": "box", "size": [5, 3, 5], "layer": "prop"}}}

@@ -1,0 +1,53 @@
+<!-- "Leave the streets?" — the template pause menu's confirmation card (code/ui/pause_menu.html #sbp-confirm). -->
+<link rel="stylesheet" href="sunset_bay.css">
+<style>
+  .sbp { position: fixed; inset: 0; z-index: 250; pointer-events: auto; font-family: var(--sb-font, 'Inter', system-ui, sans-serif); color: var(--sb-ink, #f4efe6); -webkit-font-smoothing: antialiased; }
+  .sbp [hidden] { display: none !important; }
+  .sbp button { font: inherit; color: inherit; cursor: pointer; }
+  .sbp-bd { position: absolute; inset: 0; background: rgba(4,10,14,.7); }
+  .sbp-grid { position: absolute; left: calc(200 * var(--sb-u)); right: calc(200 * var(--sb-u)); top: 50%; transform: translateY(-50%); display: grid; grid-template-columns: calc(480 * var(--sb-u)); gap: calc(80 * var(--sb-u)); align-items: start; }
+  .sbp-l { display: flex; flex-direction: column; gap: calc(14 * var(--sb-u)); }
+  .sbp-wmk { font: 400 calc(28 * var(--sb-u))/1 var(--sb-font-display); letter-spacing: .06em; color: var(--sb-amber, #fbbf24); text-transform: uppercase; }
+  .sbp-l h1 { margin: 0 0 calc(24 * var(--sb-u)); font: 400 calc(140 * var(--sb-u))/.9 var(--sb-font-display); text-transform: uppercase; }
+  .sbp-btn { display: inline-flex; align-items: center; justify-content: center; gap: calc(10 * var(--sb-u)); min-height: calc(48 * var(--sb-u)); padding: 0 calc(20 * var(--sb-u)); border-radius: calc(10 * var(--sb-u)); font: 600 calc(16 * var(--sb-u))/1.1 var(--sb-font) !important; background: rgba(244,239,230,.08); border: 1px solid rgba(244,239,230,.2); color: var(--sb-ink, #f4efe6) !important; white-space: nowrap; transition: background .12s, transform 80ms; }
+  .sbp-btn:hover, .sbp-btn[data-parallax-hover] { background: rgba(244,239,230,.15); }
+  .sbp-btn:active { transform: scale(.97); }
+  .sbp-btn:focus-visible { outline: calc(3 * var(--sb-u)) solid #fff; outline-offset: calc(3 * var(--sb-u)); }
+  .sbp-btn.primary { background: var(--sb-amber, #fbbf24); border-color: transparent; color: var(--sb-panel, #111f28) !important; }
+  .sbp-btn.primary:hover, .sbp-btn.primary[data-parallax-hover] { background: var(--sb-amber-hi, #fcd34d); }
+  .sbp-btn.warn { border-color: rgba(220,38,38,.6); background: rgba(220,38,38,.18); }
+  .sbp-btn.warn:hover, .sbp-btn.warn[data-parallax-hover] { background: rgba(220,38,38,.3); }
+  .sbp-l .sbp-btn { justify-content: space-between; width: 100%; min-height: calc(64 * var(--sb-u)); font-size: calc(20 * var(--sb-u)) !important; padding: 0 calc(24 * var(--sb-u)); }
+  .sbp-l .sbp-btn.sel { border-color: var(--sb-amber, #fbbf24); background: rgba(251,191,36,.1); }
+  .sbp-kbd { display: inline-flex; align-items: center; justify-content: center; min-width: calc(28 * var(--sb-u)); height: calc(28 * var(--sb-u)); padding: 0 calc(7 * var(--sb-u)); border-radius: calc(6 * var(--sb-u)); background: rgba(17,31,40,.14); border: 1px solid rgba(17,31,40,.3); border-bottom-width: calc(3 * var(--sb-u)); font: 700 calc(13 * var(--sb-u))/1 var(--sb-font); }
+  .sbp-l small { font: 500 calc(14 * var(--sb-u))/1.4 var(--sb-font); color: var(--sb-ink-3, #93a2a4); margin-top: calc(6 * var(--sb-u)); }
+  .sbp-cf { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(4,10,14,.6); }
+  .sbp-cfp { width: calc(620 * var(--sb-u)); padding: calc(40 * var(--sb-u)); display: flex; flex-direction: column; gap: calc(16 * var(--sb-u)); background: rgba(13,29,38,.98); border: 1px solid var(--sb-line, rgba(147,216,189,.18)); border-radius: calc(14 * var(--sb-u)); box-shadow: var(--sb-sh-panel); }
+  .sbp-eyebrow { font: 600 calc(13 * var(--sb-u))/1.2 var(--sb-font); letter-spacing: .16em; text-transform: uppercase; color: var(--sb-peach, #e7b77b); }
+  .sbp-cfp h3 { margin: 0; font: 400 calc(56 * var(--sb-u))/1 var(--sb-font-display); text-transform: uppercase; }
+  .sbp-cfp p { margin: 0; font: 400 calc(17 * var(--sb-u))/1.45 var(--sb-font); color: var(--sb-ink-2, #cdd3cf); }
+  @media (pointer: coarse) {
+    .sbp-grid { left: calc(calc(64 * var(--sb-u)) + env(safe-area-inset-left, 0px)); right: calc(calc(64 * var(--sb-u)) + env(safe-area-inset-right, 0px)); grid-template-columns: calc(420 * var(--sb-u)); gap: calc(40 * var(--sb-u)); }
+    .sbp-l { gap: calc(14 * var(--sb-u)); }
+    .sbp-wmk { font-size: calc(28 * var(--sb-u)); }
+    .sbp-l h1 { font-size: calc(104 * var(--sb-u)); margin-bottom: calc(8 * var(--sb-u)); }
+    .sbp-btn { min-height: calc(88 * var(--sb-u)); padding: 0 calc(28 * var(--sb-u)); border-radius: calc(18 * var(--sb-u)); font-size: calc(26 * var(--sb-u)) !important; }
+    .sbp-l .sbp-btn { min-height: calc(88 * var(--sb-u)); font-size: calc(26 * var(--sb-u)) !important; padding: 0 calc(32 * var(--sb-u)); }
+    .sbp-kbd { display: none; }
+    .sbp-l small { font-size: calc(20 * var(--sb-u)); }
+    .sbp-cfp { width: calc(720 * var(--sb-u)); padding: calc(36 * var(--sb-u)); gap: calc(20 * var(--sb-u)); border-radius: calc(20 * var(--sb-u)); }
+    .sbp-eyebrow { font-size: calc(20 * var(--sb-u)); }
+    .sbp-cfp h3 { font-size: calc(52 * var(--sb-u)); }
+    .sbp-cfp p { font-size: calc(24 * var(--sb-u)); }
+  }
+</style>
+<div class="sbp">
+  <div class="sbp-cf">
+    <div class="sbp-cfp" role="dialog" aria-modal="true">
+      <div class="sbp-eyebrow" data-text="main_menu"></div>
+      <h3 data-text="leave_title"></h3>
+      <p data-text="leave_body"></p>
+      <div class="sbp-row2"><button class="sbp-btn" data-action="stay" data-text="stay"></button><button class="sbp-btn warn" data-action="leave" data-text="leave"></button></div>
+    </div>
+  </div>
+</div>

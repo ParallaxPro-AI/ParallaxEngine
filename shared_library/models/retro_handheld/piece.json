@@ -1,0 +1,10 @@
+{
+  "id": "retro_handheld",
+  "summary": "A generic, original 1990s-style landscape handheld game console (no brand, logo or real-product trade dress)… options face_colour, screen_state, cartridge; sockets socket_cartridge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.retro_handheld or place \"prefab\": \"retro_handheld\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:retro_handheld"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/parrot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.172, 0.3485, 0.6376],
+      "offset": [0, 0.1707, -0.1094]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paraglider"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.0576, 8.2512, 2.6545],
+      "offset": [0, 4.1256, 0.0002]
+    }
+  }
+}

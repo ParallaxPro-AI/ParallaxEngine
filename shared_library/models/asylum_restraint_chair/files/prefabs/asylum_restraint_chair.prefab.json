@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/asylum_restraint_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.706, 1.36, 0.58],
+      "offset": [0, 0.68, 0.005]
+    }
+  }
+}

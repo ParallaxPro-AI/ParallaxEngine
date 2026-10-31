@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cubicle_partition"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.5, 1.706, 0.4675],
+      "offset": [0, 0.853, 0.0338]
+    }
+  }
+}

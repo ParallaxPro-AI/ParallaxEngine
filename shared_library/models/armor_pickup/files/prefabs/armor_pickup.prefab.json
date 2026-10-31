@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/armor_pickup"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5606, 0.474, 0.281],
+      "offset": [0, 0.237, 0.0155]
+    }
+  }
+}

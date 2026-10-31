@@ -1,0 +1,10 @@
+{
+  "id": "cemetery_gate",
+  "summary": "A wrought-iron double cemetery gate between two square stone pillars with sunk panels, pyramid caps and ball… joints leaf_l, leaf_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cemetery_gate or place \"prefab\": \"cemetery_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cemetery_gate"]
+}

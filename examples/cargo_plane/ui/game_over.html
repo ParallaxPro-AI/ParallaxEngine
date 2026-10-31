@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="sky_freight.css">
+<style>
+  .sfg { position: fixed; inset: 0; pointer-events: auto; display: flex; align-items: center; justify-content: center; animation: sf-fade 300ms ease both; --acc: var(--sf-bad); }
+  .sfg.win { --acc: var(--sf-good); }
+  .sfg-scrim { position: fixed; inset: 0; background: rgba(2,6,23,.6); }
+  .sfg-card { position: relative; width: calc(var(--u) * 900); padding: calc(var(--u) * 40) calc(var(--u) * 52) calc(var(--u) * 44); background: rgba(2,6,23,.6); display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 28); text-align: center; }
+  .sfg-l, .sfg-r { display: contents; }
+  .sfg-head { align-self: stretch; font-size: calc(var(--u) * 13); letter-spacing: .24em; padding-bottom: calc(var(--u) * 14); }
+  .sfg-kick { display: none; }
+  .sfg-stamp { padding: calc(var(--u) * 14) calc(var(--u) * 32); border: calc(var(--u) * 4) double var(--acc); color: var(--acc); font: 700 calc(var(--u) * 58)/1 var(--sf-f-mono); letter-spacing: .06em; white-space: nowrap; transform: rotate(-3deg); opacity: 0; }
+  .sfg-stamp.in { animation: sf-stamp-in 160ms ease-out both; }
+  .sfg-line { margin: 0; font: 400 calc(var(--u) * 19)/1.5 var(--sf-f-mono); color: var(--sf-sky-200); text-wrap: pretty; }
+  .sfg-line:empty { display: none; }
+  .sfg-score { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 6); }
+  .sfg-score .sf-lbl { font-size: calc(var(--u) * 13); letter-spacing: .26em; font-weight: 400; }
+  .sfg-score b { font: 700 calc(var(--u) * 104)/1 var(--sf-f-num); font-variant-numeric: tabular-nums; color: var(--sf-cream); }
+  .sfg.win .sfg-score b { color: var(--sf-good); }
+  .sfg-stats { align-self: stretch; display: grid; grid-template-columns: repeat(4, 1fr); border: calc(var(--u) * 1) solid rgba(186,230,253,.35); border-radius: calc(var(--u) * 4); text-align: left; }
+  .sfg-stats > div { display: flex; flex-direction: column; gap: calc(var(--u) * 6); padding: calc(var(--u) * 16) calc(var(--u) * 18); border-left: calc(var(--u) * 1) solid rgba(186,230,253,.25); }
+  .sfg-stats > div:first-child { border-left: 0; }
+  .sfg-stats .sf-lbl { font-weight: 400; letter-spacing: .2em; }
+  .sfg-stats b { font: 700 calc(var(--u) * 32)/1 var(--sf-f-num); color: var(--sf-cream); }
+  .sfg-stats b.rank { font: 700 calc(var(--u) * 26)/1.2 var(--sf-f-hud); color: var(--sf-info); }
+  .sfg-stats b.zero { color: var(--sf-bad); }
+  .sfg-btns { display: flex; gap: calc(var(--u) * 16); }
+  .sfg-btns .sf-btn { height: calc(var(--u) * 64); padding: 0 calc(var(--u) * 44); }
+  @media (pointer: coarse) {
+    .sfg-card { width: min(calc(var(--u) * 1480), calc(100cqw - calc(var(--u) * 96))); padding: calc(var(--u) * 40) calc(var(--u) * 52); display: grid; grid-template-columns: 1.1fr 1fr; gap: calc(var(--u) * 48); align-items: center; text-align: left; box-shadow: 0 calc(var(--u) * 40) calc(var(--u) * 100) rgba(0,0,0,.45); }
+    .sfg-l, .sfg-r { display: flex; flex-direction: column; }
+    .sfg-l { align-items: flex-start; gap: calc(var(--u) * 28); }
+    .sfg-r { gap: calc(var(--u) * 24); }
+    .sfg-head { display: none; }
+    .sfg-kick { display: block; font-size: calc(var(--u) * 18); letter-spacing: .22em; font-weight: 400; }
+    .sfg-stamp { padding: calc(var(--u) * 16) calc(var(--u) * 28); border-width: calc(var(--u) * 6); font-size: calc(var(--u) * 52); letter-spacing: .04em; }
+    .sfg-line { font-size: calc(var(--u) * 24); }
+    .sfg-score { align-items: flex-start; gap: calc(var(--u) * 4); }
+    .sfg-score .sf-lbl { font-size: calc(var(--u) * 18); letter-spacing: .24em; }
+    .sfg-score b { font-size: calc(var(--u) * 116); }
+    .sfg-stats { grid-template-columns: 1fr 1fr; }
+    .sfg-stats > div { padding: calc(var(--u) * 18) calc(var(--u) * 24); gap: calc(var(--u) * 6); }
+    .sfg-stats > div:nth-child(3) { border-left: 0; }
+    .sfg-stats > div:nth-child(n+3) { border-top: calc(var(--u) * 1) solid rgba(186,230,253,.25); }
+    .sfg-stats .sf-lbl { font-size: calc(var(--u) * 16); letter-spacing: .18em; }
+    .sfg-stats b { font-size: calc(var(--u) * 40); }
+    .sfg-stats b.rank { font-size: calc(var(--u) * 32); }
+    .sfg-btns { flex-direction: column; gap: calc(var(--u) * 16); }
+    .sfg-btns .sf-btn { width: 100%; height: calc(var(--u) * 92); font-size: calc(var(--u) * 30); border-width: calc(var(--u) * 3); border-radius: calc(var(--u) * 12); }
+    .sfg-btns .sf-btn-primary { height: calc(var(--u) * 100); font-size: calc(var(--u) * 34); box-shadow: 0 calc(var(--u) * 8) 0 var(--sf-cream-lo); }
+  }
+</style>
+<div class="sfg sf-root" data-class-win="won">
+  <div class="sfg-scrim"></div>
+  <div class="sf-sheet sfg-card">
+    <div class="sf-sheet-head sfg-head"><span data-text="career_log_head"></span><span data-bind="home"></span></div>
+    <div class="sfg-l">
+      <span class="sf-lbl sfg-kick" data-text="career_log_head"></span>
+      <div class="sfg-stamp" id="stamp" data-bind="stamp"></div>
+      <p class="sfg-line" data-bind="line"></p>
+      <div class="sfg-score"><span class="sf-lbl" data-text="final_score"></span><b id="score"></b></div>
+    </div>
+    <div class="sfg-r">
+      <div class="sfg-stats">
+        <div><span class="sf-lbl" data-text="stat_deliveries"></span><b data-bind="deliveries"></b></div>
+        <div><span class="sf-lbl" data-text="stat_distance"></span><b data-bind="distance"></b></div>
+        <div><span class="sf-lbl" data-text="stat_rank"></span><b class="rank" data-bind="rank"></b></div>
+        <div><span class="sf-lbl" data-text="stat_airframes"></span><b data-class-zero="no_airframes" data-bind="airframes"></b></div>
+      </div>
+      <div class="sfg-btns">
+        <button class="sf-btn sf-btn-primary" data-action="play_again" data-text="play_again"></button>
+        <button class="sf-btn" data-action="main_menu" data-text="main_menu"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // As on the template's card: the final bank counts up over 0.9 s (ease-out cubic),
+  // then the stamp lands.
+  let shown = null;
+  parallax.on_state((state) => {
+    if (state.score === shown) return;
+    shown = state.score;
+    const out = document.getElementById("score");
+    const stamp = document.getElementById("stamp");
+    stamp.classList.remove("in");
+    const t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 900);
+      out.textContent = "$" + Math.round(state.score * (1 - Math.pow(1 - k, 3))).toLocaleString("en-US");
+      if (k < 1) requestAnimationFrame(step);
+      else stamp.classList.add("in");
+    };
+    requestAnimationFrame(step);
+  });
+</script>

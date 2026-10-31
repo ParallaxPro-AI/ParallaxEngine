@@ -1,0 +1,1 @@
+{"duration":0.9,"seed":192,"gain":0.65,"layers":[{"wave":"triangle","freq":160,"freq_end":640,"attack":0.12,"decay":0.6,"sustain":0.2,"release":0.2,"gain":0.6,"detune_cents":8,"filter":{"type":"lowpass","freq":700,"freq_end":3400}},{"wave":"sine","freq":1280,"delay":0.3,"attack":0.02,"decay":0.5,"sustain":0,"gain":0.3,"ring_hz":320}]}

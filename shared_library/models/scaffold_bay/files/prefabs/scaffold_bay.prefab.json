@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scaffold_bay"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.45, 3.0015, 1.25],
+      "offset": [0, 1.4992, 0]
+    }
+  }
+}

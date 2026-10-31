@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wrap_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.555, 2.55, 1.78],
+      "offset": [-0.0025, 1.275, 0]
+    }
+  }
+}

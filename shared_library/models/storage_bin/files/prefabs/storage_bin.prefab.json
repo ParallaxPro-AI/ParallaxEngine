@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/storage_bin",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.663,
+        0.3835,
+        0.608
+      ],
+      "offset": [
+        0.0,
+        0.1903,
+        0.0
+      ]
+    }
+  }
+}

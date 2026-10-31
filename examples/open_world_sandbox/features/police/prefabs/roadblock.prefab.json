@@ -1,0 +1,30 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roadblock_barrier",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        8,
+        1.3,
+        0.8
+      ],
+      "offset": [
+        0,
+        0.65,
+        0
+      ]
+    },
+    "light": {
+      "kind": "point",
+      "color": "#ff3b3b",
+      "intensity": 2,
+      "range": 8
+    }
+  },
+  "tags": [
+    "roadblock"
+  ]
+}

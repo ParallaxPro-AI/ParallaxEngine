@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hoarding_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.687, 2.524, 1.79],
+      "offset": [-0.0735, 1.258, -0.805]
+    }
+  }
+}

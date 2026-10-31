@@ -1,0 +1,10 @@
+{
+  "id": "battery_storage_container",
+  "summary": "A 20 ft battery energy storage (BESS) container on a concrete plinth: smooth white panelled walls with corner… joints door_0, door_1, door_2, door_3; options shell.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.battery_storage_container or place \"prefab\": \"battery_storage_container\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:battery_storage_container"]
+}

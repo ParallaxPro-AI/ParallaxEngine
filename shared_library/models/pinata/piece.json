@@ -1,0 +1,10 @@
+{
+  "id": "pinata",
+  "summary": "A seven-point star pinata hanging from a rope: a fringed paper ball with seven fringed cones (five round the… joints sway; options body_finish; sockets candy.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pinata or place \"prefab\": \"pinata\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pinata"]
+}

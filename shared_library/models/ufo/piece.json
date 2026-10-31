@@ -1,0 +1,10 @@
+{
+  "id": "ufo",
+  "summary": "A 9 m classic flying saucer: a lathed metal hull with a raised rim band, a glass cockpit dome with a console… joints tractor_beam, rim_lights, leg_0, leg_1, leg_2, leg_3, …; options finish, lights, beam_colour; sockets socket_tractor_beam, seat_pilot, ramp_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ufo or place \"prefab\": \"ufo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ufo"]
+}

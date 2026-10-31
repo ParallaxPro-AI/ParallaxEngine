@@ -1,0 +1,10 @@
+{
+  "id": "centrifuge",
+  "summary": "A benchtop laboratory centrifuge: an off-white instrument housing with a carved circular chamber holding a me… joints lid, rotor; sockets socket_chamber.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.centrifuge or place \"prefab\": \"centrifuge\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:centrifuge"]
+}

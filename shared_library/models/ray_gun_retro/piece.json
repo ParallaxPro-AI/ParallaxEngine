@@ -1,0 +1,10 @@
+{
+  "id": "ray_gun_retro",
+  "summary": "An original 1950s pulp-style ray gun: a chrome teardrop body with a red belt, glowing side portholes, a swept… joints trigger; options energy, fins; sockets socket_muzzle, socket_grip, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.ray_gun_retro or place \"prefab\": \"ray_gun_retro\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:ray_gun_retro"]
+}

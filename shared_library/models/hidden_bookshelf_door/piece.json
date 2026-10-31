@@ -1,0 +1,10 @@
+{
+  "id": "hidden_bookshelf_door",
+  "summary": "A secret bookcase door: a fully stocked oak bookcase (five shelves of leather-bound books, some leaning, a fe… joints trigger_book, bookcase_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hidden_bookshelf_door or place \"prefab\": \"hidden_bookshelf_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hidden_bookshelf_door"]
+}

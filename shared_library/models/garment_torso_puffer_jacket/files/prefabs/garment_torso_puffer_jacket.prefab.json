@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_puffer_jacket"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.35, 0.907, 0.4079],
+      "offset": [0, 1.2185, 0.007]
+    }
+  }
+}

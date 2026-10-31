@@ -1,0 +1,10 @@
+{
+  "id": "desk_globe",
+  "summary": "A 12-inch desk globe on a turned walnut base: a lathed brass stem rising to a half meridian that holds the gl… joints globe; options ocean, land, base.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.desk_globe or place \"prefab\": \"desk_globe\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:desk_globe"]
+}

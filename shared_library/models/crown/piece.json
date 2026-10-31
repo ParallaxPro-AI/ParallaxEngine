@@ -1,0 +1,10 @@
+{
+  "id": "crown",
+  "summary": "A royal crown at real head size: a gold circlet with beaded rims and set gemstones, eight alternating tall an… options metal, cap, style; sockets socket_head, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crown or place \"prefab\": \"crown\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crown"]
+}

@@ -1,0 +1,21 @@
+{
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/81/45/814511d3a8c5a279c7ad182e1703ac16cc18a2a429ba73d52f0250a7a6f04dc8.png",
+      "size": [
+        1.1,
+        1.1
+      ],
+      "animations": {
+        "flutter": {
+          "frames": [
+            "https://r2.parallaxpro.ai/assets/image_sprite/81/45/814511d3a8c5a279c7ad182e1703ac16cc18a2a429ba73d52f0250a7a6f04dc8.png",
+            "https://r2.parallaxpro.ai/assets/image_sprite/be/92/be92a27c5272fc5668086a95a06b9c2947f89e18b8eaa36dfdac2a39bddf8879.png"
+          ],
+          "fps": 12,
+          "loop": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "Crown Vanguard",
+  "stage": "The Final",
+  "scout_report": "Champions. No weakness - you will have to be better on the day.",
+  "shirt": "#f3e789", "kit": "gold", "half_seconds": 90, "accuracy": 0.85,
+  "speed_mul": 1.24, "kick_mul": 1.2, "keeper_speed_mul": 1.2,
+  "press_radius": 40, "shot_range_bonus": 10
+}

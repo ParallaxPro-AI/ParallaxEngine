@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_torture_rack",
+  "summary": "A dungeon stretching rack: a heavy grimy oak frame on four legs with a slatted bed, a turned roller log at ea… joints roller_r, roller_l, pawl.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_torture_rack or place \"prefab\": \"dungeon_torture_rack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_torture_rack"]
+}

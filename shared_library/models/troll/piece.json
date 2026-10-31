@@ -1,0 +1,10 @@
+{
+  "id": "troll",
+  "summary": "A hulking fantasy TROLL, about 2.7 m tall, on the canonical 17-bone humanoid rig so every shared humanoid cli… options skin, warts; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.troll or place \"prefab\": \"troll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:troll"]
+}

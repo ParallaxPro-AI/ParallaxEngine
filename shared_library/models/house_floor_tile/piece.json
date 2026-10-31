@@ -1,0 +1,10 @@
+{
+  "id": "house_floor_tile",
+  "summary": "A HOUSE kit floor tile for a kitchen, bathroom or hall: 3 x 3 m, 0.15 m thick, laid with a 12 x 12 checkerboa…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_floor_tile or place \"prefab\": \"house_floor_tile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_floor_tile"]
+}

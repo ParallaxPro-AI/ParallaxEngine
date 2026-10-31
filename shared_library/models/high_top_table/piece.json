@@ -1,0 +1,10 @@
+{
+  "id": "high_top_table",
+  "summary": "A bar-height (1.05 m) pub high-top table: a 700 mm solid-wood top (square by default, round via the `shape` p… options shape, top, frame; sockets table_top_socket.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.high_top_table or place \"prefab\": \"high_top_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:high_top_table"]
+}

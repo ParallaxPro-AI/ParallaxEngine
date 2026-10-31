@@ -1,0 +1,10 @@
+{
+  "id": "torii_shrine",
+  "summary": "A small Shinto shrine precinct. joints door_l, door_r; options paint_colour, roof_finish; sockets socket_altar, socket_offering, socket_torii.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.torii_shrine or place \"prefab\": \"torii_shrine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:torii_shrine"]
+}

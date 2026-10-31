@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/photocopier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.643, 1.13, 0.756],
+      "offset": [0.0215, 0.565, 0.045]
+    }
+  }
+}

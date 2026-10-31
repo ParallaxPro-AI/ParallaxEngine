@@ -1,0 +1,10 @@
+{
+  "id": "toddler_bed",
+  "summary": "A low toddler bed for a crib-size mattress: painted corner posts with round ball finials, arched head and foo… options frame, accent, bedding, plush; sockets socket_sleep, socket_pillow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toddler_bed or place \"prefab\": \"toddler_bed\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toddler_bed"]
+}

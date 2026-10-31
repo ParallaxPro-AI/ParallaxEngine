@@ -1,0 +1,10 @@
+{
+  "id": "restoration_knife",
+  "summary": "A 0.30 m bench knife found rusted solid: a flat spear-point blade, a brass bolster, two wooden scales on a vi… options handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_knife or place \"prefab\": \"restoration_knife\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_knife"]
+}

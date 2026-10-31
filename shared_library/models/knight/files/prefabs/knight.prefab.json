@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/knight"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 2.0764, 0.5862],
+      "offset": [0, 1.0382, -0.0411]
+    }
+  }
+}

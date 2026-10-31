@@ -1,0 +1,10 @@
+{
+  "id": "cooler_box",
+  "summary": "A hard-shell picnic cool box: an insulated moulded tub with a white liner, a lift-off-style lid hinged along… joints lid, handle_l, handle_r; options colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cooler_box or place \"prefab\": \"cooler_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cooler_box"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "space_station_module",
+  "summary": "A cylindrical pressurised space-station module about 10 m long: a lathed barrel with conical end bulkheads in… joints fwd_hatch, array_l, array_r, radiator, dish_pan; sockets socket_dock_fwd, socket_dock_aft, socket_grapple, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.space_station_module or place \"prefab\": \"space_station_module\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:space_station_module"]
+}

@@ -1,0 +1,1 @@
+{"prefab": "pickup_spot", "at": [-450, 0.5, -180], "params": {"pickup_spawner": {"prefab": "shotgun_pickup", "restock": 45}}}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wood_stove"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.56, 1.698, 0.523],
+      "offset": [0, 0.849, 0.0315]
+    }
+  }
+}

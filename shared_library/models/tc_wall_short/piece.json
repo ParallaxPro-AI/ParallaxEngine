@@ -1,0 +1,10 @@
+{
+  "id": "tc_wall_short",
+  "summary": "A 0.1 x 8.6 m interior surface slab, plaster.white.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tc_wall_short or place \"prefab\": \"tc_wall_short\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tc_wall_short"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "firefighter",
+  "summary": "A firefighter in tan turnout gear: a long bunker coat and trousers with lime/silver reflective trim, a tradit… options skin, hair, gear_colour, helmet_colour, headwear, air_pack; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.firefighter or place \"prefab\": \"firefighter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:firefighter"]
+}

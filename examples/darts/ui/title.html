@@ -1,0 +1,203 @@
+<!-- Ported from the template: Tungsten Alley title screen — the serif masthead over the hall, the Tour tier picker, the record board, the first leg, a Step to the Oche button and a How to Play sheet (keycaps on desktop, the d-pad and Throw plate on touch) -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  h1, h2, p { margin: 0; }
+
+  .shade { position: fixed; inset: 0; background: linear-gradient(90deg, rgba(10,7,5,.96) 0%, rgba(10,7,5,.86) 34%, rgba(10,7,5,.25) 62%, rgba(10,7,5,.4) 100%); }
+  .stage { position: fixed; left: calc(160 * var(--u)); top: 0; bottom: 0; width: calc(780 * var(--u)); display: flex; flex-direction: column; justify-content: center; gap: calc(44 * var(--u)); }
+  .mast { display: flex; flex-direction: column; gap: calc(20 * var(--u)); }
+  .lead { display: contents; }
+  .side { display: contents; }
+  .mast { order: 1; } .tour { order: 2; } .stats { order: 3; } .first { order: 4; } .actions { order: 5; }
+  .creed.m { display: none; }
+
+  .in { opacity: 0; animation: ta-rise 600ms var(--ta-ease-out) forwards; }
+  .in.d1 { animation-delay: 60ms; } .in.d2 { animation-delay: 120ms; } .in.d3 { animation-delay: 180ms; } .in.d4 { animation-delay: 240ms; }
+
+  .kicker { font: 500 calc(18 * var(--u))/1 var(--ta-font-condensed); letter-spacing: .34em; color: var(--ta-amber); text-transform: uppercase; }
+  h1 { font: 700 calc(156 * var(--u))/.92 var(--ta-font-display); letter-spacing: -.015em; color: var(--ta-ink); }
+  h1 em { display: block; font-style: italic; color: var(--ta-amber); }
+
+  .tour { display: flex; align-items: center; gap: calc(16 * var(--u)); width: calc(620 * var(--u)); padding: calc(20 * var(--u)); }
+  .arrow { width: calc(56 * var(--u)); height: calc(56 * var(--u)); flex: none; display: flex; align-items: center; justify-content: center; border-radius: calc(12 * var(--u));
+           border: 1px solid rgba(240,190,110,.4); background: var(--ta-ghost-fill); color: var(--ta-amber); cursor: pointer; pointer-events: auto;
+           transition: background 120ms var(--ta-ease-out), opacity 160ms ease; }
+  .arrow:hover { background: var(--ta-ghost-fill-hover); }
+  .arrow svg { width: calc(22 * var(--u)); height: calc(22 * var(--u)); }
+  .arrow.off { opacity: .3; cursor: default; }
+  .arrow.off:hover { background: var(--ta-ghost-fill); }
+  .tier { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--u)); text-align: center; }
+  .tier-name { display: flex; align-items: center; gap: calc(12 * var(--u)); font: 600 italic calc(38 * var(--u))/1.1 var(--ta-font-display); color: var(--ta-ink); }
+  .tier-name.swap { animation: ta-fade 160ms ease-out; }
+  .tier-sub { font: 500 calc(17 * var(--u))/1.4 var(--ta-font-body); color: var(--ta-ink-soft); }
+  .tier-lock { display: none; align-items: center; gap: calc(8 * var(--u)); font: 500 calc(17 * var(--u))/1.4 var(--ta-font-body); color: var(--ta-amber); }
+  .tier-lock.on { display: flex; }
+  .tier-lock svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); flex: none; }
+
+  .stats { display: flex; gap: calc(52 * var(--u)); width: calc(620 * var(--u)); padding-top: calc(28 * var(--u)); border-top: 1px solid var(--ta-hairline); }
+  .stat { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .stat b { font: 600 calc(34 * var(--u))/1 var(--ta-font-body); color: var(--ta-ink); }
+  .stat b.gold { color: var(--ta-gold); }
+
+  .first { display: flex; align-items: baseline; gap: calc(16 * var(--u)); }
+  .first .ta-lbl { color: var(--ta-amber); }
+  .first span + span { font: 500 calc(20 * var(--u))/1.3 var(--ta-font-body); color: var(--ta-ink); }
+
+  .actions { display: flex; align-items: center; gap: calc(40 * var(--u)); }
+  .cta { height: calc(72 * var(--u)); padding: 0 calc(40 * var(--u)); font-size: calc(24 * var(--u)); gap: calc(14 * var(--u)); box-shadow: var(--ta-shadow-cta); }
+  .cta svg { width: calc(22 * var(--u)); height: calc(22 * var(--u)); }
+  .how { border: 0; background: none; padding: calc(8 * var(--u)) 0; cursor: pointer; pointer-events: auto; font: 500 calc(19 * var(--u))/1 var(--ta-font-body); color: var(--ta-ink);
+         text-decoration: underline; text-underline-offset: calc(7 * var(--u)); text-decoration-color: rgba(240,190,110,.55); transition: color 120ms ease; }
+  .how:hover { color: var(--ta-amber); }
+
+  .howto { position: fixed; inset: 0; z-index: 5; display: none; align-items: center; justify-content: center; }
+  .howto.show { display: flex; }
+  .howto .ta-scrim { background: rgba(8,6,4,.8); pointer-events: auto; }
+  .sheet { position: relative; width: calc(880 * var(--u)); padding: calc(56 * var(--u)) calc(64 * var(--u)); display: flex; flex-direction: column; gap: calc(34 * var(--u)); border-radius: calc(18 * var(--u));
+           box-shadow: var(--ta-shadow-sheet); pointer-events: auto; animation: ta-sheet 240ms var(--ta-ease-out) both; }
+  .sheet h2 { font: 700 calc(72 * var(--u))/1 var(--ta-font-display); color: var(--ta-ink); }
+  .sheet h2 em { font-style: italic; color: var(--ta-amber); }
+  .sheet p { font: 400 calc(21 * var(--u))/1.6 var(--ta-font-body); color: rgba(241,233,221,.86); }
+  .sheet p strong { color: var(--ta-ink); font-weight: 600; }
+  .sheet .copy { display: flex; flex-direction: column; gap: calc(34 * var(--u)); }
+  .p-touch { display: none; }
+  .demo { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .demo-head { display: flex; justify-content: space-between; }
+  .demo-head .clean { color: var(--ta-green); }
+  .demo-bar { position: relative; height: calc(16 * var(--u)); border-radius: calc(8 * var(--u)); background: rgba(0,0,0,.5); border: 1px solid var(--ta-hairline); }
+  .demo-band { position: absolute; left: 42%; width: 24%; top: -1px; bottom: -1px; background: rgba(126,224,138,.22); border: 1px solid var(--ta-green); border-radius: calc(4 * var(--u)); }
+  .demo-fill { position: absolute; left: 2px; top: 2px; bottom: 2px; width: 54%; border-radius: calc(6 * var(--u)); background: linear-gradient(90deg, var(--ta-gold-deep), var(--ta-gold)); }
+  .keys { display: flex; flex-wrap: wrap; gap: calc(20 * var(--u)) calc(44 * var(--u)); }
+  .keys > div { display: flex; align-items: center; gap: calc(10 * var(--u)); }
+  .keys .wide { min-width: calc(120 * var(--u)); font-size: calc(15 * var(--u)); }
+  .keys span:last-child { margin-left: calc(6 * var(--u)); font: 500 calc(18 * var(--u))/1 var(--ta-font-body); color: rgba(241,233,221,.8); }
+  .touch { display: none; }
+  .foot { display: flex; align-items: center; justify-content: space-between; padding-top: calc(30 * var(--u)); border-top: 1px solid var(--ta-hairline); }
+  .creed { font: 600 italic calc(30 * var(--u))/1.2 var(--ta-font-display); color: var(--ta-amber); }
+  .got { height: calc(64 * var(--u)); }
+
+  @media (pointer: coarse) {
+    .shade { background: rgba(10,7,5,.8); }
+    .stage { left: 0; right: 0; width: auto; padding: calc(56 * var(--u)) calc(64 * var(--u)); display: grid; grid-template-columns: minmax(0,1fr) calc(720 * var(--u)); gap: calc(64 * var(--u)); align-items: center; }
+    .lead, .side { display: flex; flex-direction: column; }
+    .lead { gap: calc(36 * var(--u)); }
+    .side { gap: calc(28 * var(--u)); }
+    .mast { gap: calc(20 * var(--u)); }
+    .kicker { font-size: calc(22 * var(--u)); letter-spacing: .32em; }
+    h1 { font-size: calc(128 * var(--u)); letter-spacing: 0; }
+    .tour { width: auto; gap: calc(20 * var(--u)); padding: calc(24 * var(--u)); border-radius: calc(24 * var(--u)); }
+    .arrow { width: calc(88 * var(--u)); height: calc(88 * var(--u)); border-radius: calc(20 * var(--u)); }
+    .arrow svg { width: calc(36 * var(--u)); height: calc(36 * var(--u)); }
+    .tier { gap: calc(10 * var(--u)); }
+    .tier .ta-lbl { font-size: calc(20 * var(--u)); letter-spacing: .2em; }
+    .tier-name { font-size: calc(44 * var(--u)); gap: calc(14 * var(--u)); }
+    .tier-sub, .tier-lock { font-size: calc(23 * var(--u)); line-height: 1.35; }
+    .tier-lock svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); }
+    .stats { width: auto; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: calc(28 * var(--u)) calc(24 * var(--u)); padding: calc(28 * var(--u)) calc(32 * var(--u)); border: 1px solid var(--ta-hairline); border-radius: calc(24 * var(--u)); background: rgba(12,9,7,.7); }
+    .stat { gap: calc(12 * var(--u)); }
+    .stat b { font-size: calc(38 * var(--u)); }
+    .first { gap: calc(20 * var(--u)); }
+    .first .ta-lbl { font-size: calc(20 * var(--u)); letter-spacing: .2em; }
+    .first span + span { font-size: calc(26 * var(--u)); }
+    .actions { gap: calc(44 * var(--u)); }
+    .cta { height: calc(104 * var(--u)); padding: 0 calc(48 * var(--u)); font-size: calc(32 * var(--u)); gap: calc(20 * var(--u)); box-shadow: none; }
+    .cta svg { width: calc(32 * var(--u)); height: calc(32 * var(--u)); }
+    .how { min-height: calc(88 * var(--u)); font-size: calc(28 * var(--u)); text-underline-offset: calc(10 * var(--u)); }
+
+    .sheet { position: fixed; inset: calc(32 * var(--u)); width: auto; padding: calc(44 * var(--u)) calc(52 * var(--u)); display: grid; grid-template-columns: minmax(0,1fr) calc(460 * var(--u)); gap: calc(52 * var(--u)); border-radius: calc(28 * var(--u)); }
+    .sheet .copy { gap: calc(24 * var(--u)); justify-content: center; }
+    .sheet h2 { font-size: calc(76 * var(--u)); }
+    .sheet p { font-size: calc(26 * var(--u)); line-height: 1.55; }
+    .p-desk, .demo, .keys, .foot { display: none; }
+    .p-touch { display: block; }
+    .sheet .copy .creed.m { display: block; font-size: calc(36 * var(--u)); }
+    .touch { display: flex; flex-direction: column; gap: calc(28 * var(--u)); justify-content: center; padding-left: calc(48 * var(--u)); border-left: 1px solid var(--ta-hairline); }
+    .touch-row { display: flex; align-items: center; gap: calc(24 * var(--u)); font: 500 calc(25 * var(--u))/1.35 var(--ta-font-body); color: rgba(241,233,221,.84); }
+    .mini-pad { display: grid; grid-template-columns: repeat(3, calc(44 * var(--u))); grid-template-rows: repeat(3, calc(44 * var(--u))); gap: calc(4 * var(--u)); flex: none; }
+    .mini-pad i { border-radius: calc(10 * var(--u)); background: linear-gradient(180deg, var(--ta-wood-top), var(--ta-wood-bottom)); border: 2px solid var(--ta-brass); }
+    .mini-pad i.u { grid-area: 1/2; } .mini-pad i.l { grid-area: 2/1; } .mini-pad i.d { grid-area: 3/2; }
+    .mini-pad i.r { grid-area: 2/3; background: var(--ta-amber); border-color: #f6cd85; }
+    .mini-throw { width: calc(140 * var(--u)); height: calc(140 * var(--u)); flex: none; border-radius: calc(36 * var(--u)); background: var(--ta-amber); color: var(--ta-amber-ink); display: flex; align-items: center; justify-content: center; }
+    .mini-throw svg { width: calc(52 * var(--u)); height: calc(52 * var(--u)); }
+    .touch .ta-btn { height: calc(96 * var(--u)); width: 100%; }
+  }
+</style>
+<div class="ta-root">
+<div class="shade"></div>
+<div class="stage">
+  <div class="lead">
+    <div class="mast in">
+      <div class="kicker" data-text="kicker"></div>
+      <h1>Tungsten<em>Alley</em></h1>
+    </div>
+    <div class="first in d3">
+      <span class="ta-lbl" data-text="first_up"></span>
+      <span data-bind="opener"></span>
+    </div>
+    <div class="actions in d4">
+      <button class="ta-btn cta" data-action="start"><span data-text="step_up"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="how" id="btn-how" data-text="how_to_play"></button>
+    </div>
+  </div>
+  <div class="side">
+    <div class="tour ta-card in d1">
+      <button class="arrow" data-class-off="first_tier" data-action="tier" data-step="-1" aria-label="Previous tier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="tier">
+        <div class="ta-lbl" data-bind="tier_position"></div>
+        <div class="tier-name"><span data-bind="tier_name"></span></div>
+        <div class="tier-sub" data-bind="tier_terms"></div>
+        <div class="tier-lock" data-class-on="can_unlock"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-text="tier_hint_unlock"></span></div>
+      </div>
+      <button class="arrow" data-class-off="top_tier" data-action="tier" data-step="1" aria-label="Next tier"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="stats in d2">
+      <div class="stat"><div class="ta-lbl" data-text="card_par_label"></div><b data-bind="card_par"></b></div>
+      <div class="stat"><div class="ta-lbl" data-text="best_match_label"></div><b data-bind="best_match"></b></div>
+      <div class="stat"><div class="ta-lbl" data-text="best_score_label"></div><b class="gold" data-bind="best_score"></b></div>
+      <div class="stat"><div class="ta-lbl" data-text="matches_label"></div><b data-bind="matches"></b></div>
+      <div class="stat"><div class="ta-lbl" data-text="bullseyes_label"></div><b data-bind="bullseyes"></b></div>
+    </div>
+  </div>
+</div>
+
+<div class="howto" id="howto">
+  <div class="ta-scrim" id="howto-scrim"></div>
+  <div class="sheet ta-card">
+    <div class="copy">
+      <h2>How to <em>Play</em></h2>
+      <p class="p-desk">Walk the reticle onto the treble you want, then hold the meter and let go on a settled hand. Release inside the green band and the dart flies true; outside it, the dart scatters. Gravity drops it and the draught pushes it, so aim a touch high and into the wind. <strong>Close every leg on exactly zero</strong> inside the dart budget. Go below zero or leave 1 and it's a bust.</p>
+      <p class="p-touch">Walk the reticle onto the treble you want, then hold the meter and let go on a settled hand. Release inside the green band and the dart flies true; outside it, the dart scatters. The draught pushes it sideways. <strong>Close every leg on exactly zero</strong> inside the dart budget. Below zero or leaving 1 is a bust.</p>
+      <div class="creed m" data-text="motto"></div>
+      <div class="demo">
+        <div class="demo-head ta-lbl"><span data-text="power_label"></span><span class="clean" data-bind="clean_band"></span></div>
+        <div class="demo-bar"><div class="demo-band"></div><div class="demo-fill"></div></div>
+      </div>
+      <div class="keys">
+        <div><span class="ta-key">A</span><span class="ta-key">D</span><span>Aim ◀▶</span></div>
+        <div><span class="ta-key">W</span><span class="ta-key">S</span><span>Aim ▲▼</span></div>
+        <div><span class="ta-key wide">Space</span><span>Hold &amp; release to throw</span></div>
+      </div>
+      <div class="foot">
+        <div class="creed" data-text="motto"></div>
+        <button class="ta-btn got" id="btn-how-close">Got It</button>
+      </div>
+    </div>
+    <div class="touch">
+      <div class="touch-row"><div class="mini-pad"><i class="u"></i><i class="l"></i><i class="r"></i><i class="d"></i></div>D-pad moves the reticle</div>
+      <div class="touch-row"><div class="mini-throw"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>Hold Throw to charge, release to throw</div>
+      <button class="ta-btn" id="btn-how-close-touch">Got It</button>
+    </div>
+  </div>
+</div>
+</div>
+<script>
+  // Presentation only: the How to Play sheet opens and closes inside the panel.
+  (function () {
+    function show(on) { document.getElementById('howto').classList.toggle('show', on); }
+    document.getElementById('btn-how').addEventListener('click', function () { show(true); });
+    ['btn-how-close', 'btn-how-close-touch', 'howto-scrim'].forEach(function (id) {
+      document.getElementById(id).addEventListener('click', function () { show(false); });
+    });
+  })();
+</script>

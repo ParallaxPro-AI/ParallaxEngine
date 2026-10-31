@@ -1,0 +1,10 @@
+{
+  "id": "cow",
+  "summary": "A dairy cow (1.4 m at the withers, ~2.3 m nose to tail) on the engine's quadruped_20 rig, so the built-in qua… options coat, legs, muzzle, markings, horns, udder; sockets head_top, back, collar.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cow or place \"prefab\": \"cow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cow"]
+}

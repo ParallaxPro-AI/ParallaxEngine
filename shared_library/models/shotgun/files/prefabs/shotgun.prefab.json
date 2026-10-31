@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shotgun"
+    },
+    "viewmodel_item": {
+      "hip": [0.126, -0.191, 0.36],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.13
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0565, 0.1285, 1.0696],
+      "offset": [0.0003, 0.0653, 0.0752]
+    }
+  }
+}

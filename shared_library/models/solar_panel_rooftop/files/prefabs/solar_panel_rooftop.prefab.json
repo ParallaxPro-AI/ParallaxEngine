@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/solar_panel_rooftop"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.77, 0.6139, 4.5812],
+      "offset": [0.165, 0.3069, -0.0494]
+    }
+  }
+}

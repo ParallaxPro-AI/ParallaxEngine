@@ -1,0 +1,31 @@
+{
+  "components": {
+    "shape": {
+      "kind": "cylinder",
+      "size": [
+        2.4,
+        0.8,
+        2.4
+      ],
+      "color": [
+        0.95,
+        0.3,
+        0.32
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.6,
+        0.4,
+        1.6
+      ]
+    }
+  },
+  "behaviors": {
+    "bounce_pad": {
+      "launch_speed": 18,
+      "cooldown": 0.3
+    }
+  }
+}

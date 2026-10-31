@@ -1,0 +1,10 @@
+{
+  "id": "arrow_projectile",
+  "summary": "A single hunting arrow: a 760 mm (30 in) turned wooden shaft, 8.5 mm thick, with three goose-feather vanes (o… sockets tip, tail.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.arrow_projectile or place \"prefab\": \"arrow_projectile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:arrow_projectile"]
+}

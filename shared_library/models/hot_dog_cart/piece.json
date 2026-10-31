@@ -1,0 +1,10 @@
+{
+  "id": "hot_dog_cart",
+  "summary": "A stainless-steel street hot-dog cart: a cabinet on two 600 mm spoked wheels and two fixed legs, a push handl… joints lid_franks, lid_buns, door_l, door_r, wheel_l, wheel_r; options panel, canopy, umbrella; sockets socket_vendor, socket_customer, socket_serve, socket_handle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hot_dog_cart or place \"prefab\": \"hot_dog_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hot_dog_cart"]
+}

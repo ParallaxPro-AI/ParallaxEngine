@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/businesswoman"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4695, 1.7261, 0.3144],
+      "offset": [0, 0.8613, 0.0203]
+    }
+  }
+}

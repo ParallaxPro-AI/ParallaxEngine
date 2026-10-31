@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_lab_coat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.31, 1.052, 0.412],
+      "offset": [0, 1.066, -0.0131]
+    }
+  }
+}

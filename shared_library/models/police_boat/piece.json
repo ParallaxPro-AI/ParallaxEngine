@@ -1,0 +1,10 @@
+{
+  "id": "police_boat",
+  "summary": "An 11 m harbour patrol launch: a hard-top wheelhouse over the helm, a searchlight, a blue beacon bar and a bo… joints windshield, outboard_tilt, outboard_steer; sockets eye_point, waterline, socket_helm, socket_bow, seat_driver, seat_crew_1, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.police_boat or place \"prefab\": \"police_boat\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:police_boat"]
+}

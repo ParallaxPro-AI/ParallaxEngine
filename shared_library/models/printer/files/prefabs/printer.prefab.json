@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/printer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.44, 0.3601, 0.422],
+      "offset": [0, 0.1785, 0.011]
+    }
+  }
+}

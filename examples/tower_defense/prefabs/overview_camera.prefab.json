@@ -1,0 +1,4 @@
+{
+  "components": { "camera": { "mode": "perspective", "fov": 50, "min_visible": [66, 0], "focus_distance": 52.4 } },
+  "behaviors": { "overview_camera": {} }
+}

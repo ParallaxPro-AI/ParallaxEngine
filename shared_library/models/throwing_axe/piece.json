@@ -1,0 +1,10 @@
+{
+  "id": "throwing_axe",
+  "summary": "A 0.39 m throwing axe: a hickory haft with a swelled butt and a leather thong grip, and a compact forged head… options head_finish, haft_wood; sockets edge, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.throwing_axe or place \"prefab\": \"throwing_axe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:throwing_axe"]
+}

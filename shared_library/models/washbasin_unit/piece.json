@@ -1,0 +1,10 @@
+{
+  "id": "washbasin_unit",
+  "summary": "A bathroom washbasin unit (vanity): an oak base cabinet with a quartz countertop carrying a round ceramic ves… joints door_l, door_r, drawer; sockets socket_basin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.washbasin_unit or place \"prefab\": \"washbasin_unit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:washbasin_unit"]
+}

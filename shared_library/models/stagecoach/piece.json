@@ -1,0 +1,10 @@
+{
+  "id": "stagecoach",
+  "summary": "A Concord stagecoach WITHOUT the team: a hollow, egg-curved red body with tumblehome sides slung on leather t… joints door_l, door_r, spin_rear_l, spin_rear_r, front_axle, spin_front_l, …; options body_paint, gear_paint, luggage; sockets socket_hitch, seat_driver, seat_shotgun, seat_pax_0, seat_pax_1, seat_pax_2, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.stagecoach or place \"prefab\": \"stagecoach\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:stagecoach"]
+}

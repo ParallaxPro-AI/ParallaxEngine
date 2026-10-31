@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/swimmer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6479, 1.88, 0.2801],
+      "offset": [0, 0.94, 0.0119]
+    }
+  }
+}

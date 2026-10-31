@@ -1,0 +1,30 @@
+{
+  "components": {
+    "collider": {
+      "shape": "sphere",
+      "radius": 0.6,
+      "trigger": true
+    },
+    "collectible": {
+      "kind": "coin"
+    }
+  },
+  "behaviors": {
+    "spin": {
+      "speed": 120,
+      "bob": 0.15,
+      "bob_rate": 2.5
+    }
+  },
+  "children": [
+    {
+      "name": "art",
+      "components": {
+        "model": {
+          "model": "https://r2.parallaxpro.ai/assets/model_static/62/b4/62b45795704596fea6baa943bb926846721e0b93e460ff077f82f30dbce38f58.glb",
+          "cast_shadows": true
+        }
+      }
+    }
+  ]
+}

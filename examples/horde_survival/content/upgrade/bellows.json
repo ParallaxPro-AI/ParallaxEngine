@@ -1,0 +1,2 @@
+{ "name": "Bellows", "desc": "The staff fires 18% faster.",
+  "icon": "wind", "weight": 9, "max_stacks": 6, "effect": { "fire_interval_mul": 0.82 } }

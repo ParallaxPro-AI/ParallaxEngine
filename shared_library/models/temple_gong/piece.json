@@ -1,0 +1,10 @@
+{
+  "id": "temple_gong",
+  "summary": "A cast-bronze temple boss gong hung by two cords from an iron rod under the crossbeam of a timber gong stand… joints swing; sockets mallet_grip, player.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.temple_gong or place \"prefab\": \"temple_gong\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:temple_gong"]
+}

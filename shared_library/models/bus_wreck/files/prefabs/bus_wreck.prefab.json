@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bus_wreck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3692, 3.271, 11.5792],
+      "offset": [0.2252, 1.6355, -0.0315]
+    }
+  }
+}

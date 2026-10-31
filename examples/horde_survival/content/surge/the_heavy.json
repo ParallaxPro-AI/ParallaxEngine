@@ -1,0 +1,2 @@
+{ "name": "THE HEAVY", "at_second": 75, "interval": 1.8, "hp_scale": 1.45, "speed_scale": 1.08,
+  "groups": { "swarmling": 12, "spitter": 2, "brute": 2 } }

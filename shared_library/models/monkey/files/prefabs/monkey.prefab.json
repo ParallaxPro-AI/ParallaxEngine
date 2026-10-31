@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/monkey"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.834, 0.7459, 0.3403],
+      "offset": [0, 0.3707, -0.0672]
+    }
+  }
+}

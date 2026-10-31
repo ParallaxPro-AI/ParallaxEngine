@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_heater"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4, 0.577, 0.24],
+      "offset": [0, 0.2885, 0]
+    }
+  }
+}

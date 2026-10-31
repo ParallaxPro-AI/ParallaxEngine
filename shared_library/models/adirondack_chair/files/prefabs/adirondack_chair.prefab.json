@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/adirondack_chair"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.92, 1.0009, 1.0087],
+      "offset": [0, 0.5005, 0.0257]
+    }
+  }
+}

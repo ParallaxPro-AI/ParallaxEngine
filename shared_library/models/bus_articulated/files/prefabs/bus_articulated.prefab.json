@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bus_articulated"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 18000,
+      "linear_damping": 0.06,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.95,
+        3.33,
+        18.639
+      ],
+      "offset": [
+        0,
+        1.665,
+        -3.5345
+      ],
+      "bounce": 0.05
+    },
+    "vehicle": {
+      "max_speed": 24,
+      "steering": 34
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.665,
+        -3.5345
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

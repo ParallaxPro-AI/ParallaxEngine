@@ -1,0 +1,10 @@
+{
+  "id": "elliptical_trainer",
+  "summary": "A rear-drive elliptical cross-trainer (0.75 x 1.8 x 1.6 m): a rounded flywheel housing with red trim rings at… joints crank, arm_l, arm_r; options frame, shroud, accent; sockets foot_l, grip_l, foot_r, grip_r, stand_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elliptical_trainer or place \"prefab\": \"elliptical_trainer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elliptical_trainer"]
+}

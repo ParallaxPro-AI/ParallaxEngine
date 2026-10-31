@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/raft"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.98, 2.85, 3.4211],
+      "offset": [0, 1.425, 0.0195]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "manhole",
+  "summary": "A cast-iron manhole set flush in the pavement: a heavy circular cover with a raised sunburst pattern, seated… joints cover.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.manhole or place \"prefab\": \"manhole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:manhole"]
+}

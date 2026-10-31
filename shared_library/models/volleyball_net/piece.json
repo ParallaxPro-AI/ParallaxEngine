@@ -1,0 +1,10 @@
+{
+  "id": "volleyball_net",
+  "summary": "A regulation indoor volleyball net system: 9.5 m x 1 m black 10 cm-mesh net with white 7 cm top and 5 cm bott… joints net; options pads; sockets socket_net_top_centre, socket_antenna_l, socket_antenna_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.volleyball_net or place \"prefab\": \"volleyball_net\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:volleyball_net"]
+}

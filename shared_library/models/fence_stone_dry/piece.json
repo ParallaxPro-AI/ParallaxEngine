@@ -1,0 +1,10 @@
+{
+  "id": "fence_stone_dry",
+  "summary": "One 2.0 m length of a dry-stone field wall: two battered skins of irregular rough stones laid in broken cours…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fence_stone_dry or place \"prefab\": \"fence_stone_dry\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fence_stone_dry"]
+}

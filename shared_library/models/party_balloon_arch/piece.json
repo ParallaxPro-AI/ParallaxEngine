@@ -1,0 +1,10 @@
+{
+  "id": "party_balloon_arch",
+  "summary": "A free-standing party balloon arch about 2.7 m wide and 2.45 m tall: quad clusters of glossy 11-inch balloons… options color_a, color_b, color_c.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.party_balloon_arch or place \"prefab\": \"party_balloon_arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:party_balloon_arch"]
+}

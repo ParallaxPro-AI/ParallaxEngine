@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/parking_ticket_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.56, 1.9787, 0.5543],
+      "offset": [0, 0.9893, 0.0171]
+    }
+  }
+}

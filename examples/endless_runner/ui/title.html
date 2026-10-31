@@ -1,0 +1,87 @@
+<link rel="stylesheet" href="street.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .cg-root { pointer-events: none; overflow: hidden; }
+  .cgt { position: fixed; inset: 0; pointer-events: none; }
+  .cgt-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(4,18,24,.88) 0%, rgba(4,18,24,.55) 38%, rgba(4,18,24,0) 62%); animation: cg-fade .4s ease both; }
+  .cgt-word { position: absolute; left: calc(var(--cg-u) * 128); top: calc(var(--cg-u) * 150); transform: rotate(-4deg); transform-origin: left center; animation: cgt-in .5s var(--cg-pop) both; }
+  @keyframes cgt-in { from { opacity: 0; transform: translateY(calc(var(--cg-u) * 24)) rotate(-4deg); } to { opacity: 1; transform: rotate(-4deg); } }
+  .cgt-kick { display: inline-block; padding: calc(var(--cg-u) * 6) calc(var(--cg-u) * 16); background: var(--cg-mint); color: var(--cg-ink-on-mint); border-radius: calc(var(--cg-u) * 6); font: 800 calc(var(--cg-u) * 24)/1.2 var(--cg-font-num); letter-spacing: .22em; white-space: nowrap; }
+  .cgt-w1, .cgt-w2 { font-family: var(--cg-font-word); line-height: .95; white-space: nowrap; text-shadow: calc(var(--cg-u) * 7) calc(var(--cg-u) * 7) 0 var(--cg-teal-700), calc(var(--cg-u) * 14) calc(var(--cg-u) * 14) 0 rgba(2,12,16,.45); }
+  .cgt-w1 { font-size: calc(var(--cg-u) * 156); margin-top: calc(var(--cg-u) * 18); color: var(--cg-ink); }
+  .cgt-w2 { font-size: calc(var(--cg-u) * 184); color: var(--cg-yellow-hi); margin-left: calc(var(--cg-u) * 60); }
+  .cgt-tag { position: absolute; left: calc(var(--cg-u) * 132); top: calc(var(--cg-u) * 600); font-size: calc(var(--cg-u) * 28); font-weight: 500; color: var(--cg-ink-2); white-space: nowrap; }
+  .cgt-btns { position: absolute; left: calc(var(--cg-u) * 132); top: calc(var(--cg-u) * 700); width: calc(var(--cg-u) * 560); display: flex; flex-direction: column; gap: calc(var(--cg-u) * 18); pointer-events: auto; }
+  .cg-root .cgt-btns .cg-btn { justify-content: space-between; padding: 0 calc(var(--cg-u) * 28) 0 calc(var(--cg-u) * 32); }
+  .cg-root .cgt-btns .cg-btn.gold { justify-content: center; }
+  .cgt-wal { display: flex; align-items: center; gap: calc(var(--cg-u) * 8); font: 800 calc(var(--cg-u) * 30)/1 var(--cg-font-num); color: var(--cg-gold-hi); }
+  .cgt-wal svg { width: calc(var(--cg-u) * 28); height: calc(var(--cg-u) * 28); }
+  .cg-root .cgt-night { background: linear-gradient(90deg, #4a1260, #2a1050); border-color: var(--cg-neon); animation: cg-shine 2.4s ease-in-out infinite; }
+  .cg-root .cgt-night:hover { background: #5a1874; }
+  .cgt-new { padding: calc(var(--cg-u) * 4) calc(var(--cg-u) * 12); border-radius: calc(var(--cg-u) * 8); background: var(--cg-neon); color: #2a0838; font: 800 calc(var(--cg-u) * 20)/1 var(--cg-font-num); letter-spacing: .14em; }
+  .cgt-new:empty { display: none; }
+  .cgt-lock { height: calc(var(--cg-u) * 80); border-radius: calc(var(--cg-u) * 18); border: calc(var(--cg-u) * 3) dashed rgba(255,246,222,.35); background: rgba(4,18,24,.6); display: flex; align-items: center; gap: calc(var(--cg-u) * 18); padding: 0 calc(var(--cg-u) * 24); pointer-events: none; }
+  .cgt-lock svg { width: calc(var(--cg-u) * 34); height: calc(var(--cg-u) * 34); }
+  .cgt-lock-t { font-size: calc(var(--cg-u) * 30); color: rgba(255,246,222,.8); }
+  .cgt-lock-s { font-size: calc(var(--cg-u) * 18); font-weight: 600; color: rgba(255,246,222,.75); white-space: nowrap; margin-top: calc(var(--cg-u) * 4); }
+  .hidden { display: none !important; }
+  .cgt-chips { position: absolute; right: calc(var(--cg-u) * 56); top: calc(var(--cg-u) * 56); display: flex; gap: calc(var(--cg-u) * 12); }
+  .cgt-chips .cg-chip { padding: calc(var(--cg-u) * 10) calc(var(--cg-u) * 18); border-radius: calc(var(--cg-u) * 12); font-size: calc(var(--cg-u) * 20); }
+  .cgt-chips .cg-chip b { font-size: calc(var(--cg-u) * 26); }
+  .cgt-keys { position: absolute; left: calc(var(--cg-u) * 132); bottom: calc(var(--cg-u) * 48); display: flex; gap: calc(var(--cg-u) * 28); align-items: center; font: 700 calc(var(--cg-u) * 22)/1 var(--cg-font-num); letter-spacing: .1em; color: rgba(255,246,222,.85); }
+  .cgt-keys > div { display: flex; gap: calc(var(--cg-u) * 8); align-items: center; }
+  .cgt-keys .cg-kbd { height: auto; padding: calc(var(--cg-u) * 2) calc(var(--cg-u) * 10); border-radius: calc(var(--cg-u) * 6); font-size: calc(var(--cg-u) * 22); }
+
+  @media (pointer: coarse) {
+    .cgt-scrim { background: linear-gradient(90deg, rgba(4,18,24,.85) 0%, rgba(4,18,24,.4) 50%, rgba(4,18,24,.8) 100%); }
+    .cgt-word { left: calc(var(--cg-sl) + calc(var(--cg-u) * 16)); top: calc(var(--cg-st) + calc(var(--cg-u) * 32)); }
+    .cgt-kick { padding: calc(var(--cg-u) * 3) calc(var(--cg-u) * 8); border-radius: calc(var(--cg-u) * 4); font-size: calc(var(--cg-u) * 12); letter-spacing: .2em; }
+    .cgt-w1 { font-size: calc(var(--cg-u) * 62); margin-top: calc(var(--cg-u) * 10); text-shadow: calc(var(--cg-u) * 4) calc(var(--cg-u) * 4) 0 var(--cg-teal-700); }
+    .cgt-w2 { font-size: calc(var(--cg-u) * 72); margin-left: calc(var(--cg-u) * 24); text-shadow: calc(var(--cg-u) * 4) calc(var(--cg-u) * 4) 0 var(--cg-teal-700); }
+    .cgt-tag { left: calc(var(--cg-sl) + calc(var(--cg-u) * 20)); top: calc(var(--cg-u) * 232); width: calc(var(--cg-u) * 360); white-space: normal; font-size: calc(var(--cg-u) * 14); }
+    .cgt-btns { left: auto; right: calc(var(--cg-sr) + calc(var(--cg-u) * 12)); top: 50%; transform: translateY(-50%); width: calc(var(--cg-u) * 310); gap: calc(var(--cg-u) * 10); }
+    .cg-root .cgt-btns .cg-btn { padding: 0 calc(var(--cg-u) * 14) 0 calc(var(--cg-u) * 18); }
+    .cgt-wal { font-size: calc(var(--cg-u) * 19); gap: calc(var(--cg-u) * 5); }
+    .cgt-wal svg { width: calc(var(--cg-u) * 18); height: calc(var(--cg-u) * 18); }
+    .cg-root .cgt-night { animation: none; box-shadow: 0 calc(var(--cg-u) * 4) 0 #3b0a4a, 0 0 0 calc(var(--cg-u) * 3) rgba(230,107,255,.25); }
+    .cgt-new { padding: calc(var(--cg-u) * 2) calc(var(--cg-u) * 8); border-radius: calc(var(--cg-u) * 6); font-size: calc(var(--cg-u) * 13); letter-spacing: .12em; }
+    .cgt-lock { height: max(44px, calc(var(--cg-u) * 52)); border-radius: calc(var(--cg-u) * 14); border-width: calc(var(--cg-u) * 2); gap: calc(var(--cg-u) * 10); padding: 0 calc(var(--cg-u) * 14); }
+    .cgt-lock svg { width: calc(var(--cg-u) * 22); height: calc(var(--cg-u) * 22); }
+    .cgt-lock-t { font-size: calc(var(--cg-u) * 17); }
+    .cgt-lock-s { font-size: calc(var(--cg-u) * 11); margin-top: calc(var(--cg-u) * 2); }
+    .cgt-chips { right: auto; top: auto; left: calc(var(--cg-sl) + calc(var(--cg-u) * 20)); bottom: calc(var(--cg-sb) + calc(var(--cg-u) * 13)); gap: calc(var(--cg-u) * 8); }
+    .cgt-chips .cg-chip { padding: calc(var(--cg-u) * 5) calc(var(--cg-u) * 10); border-radius: calc(var(--cg-u) * 8); font-size: calc(var(--cg-u) * 13); }
+    .cgt-chips .cg-chip b { font-size: calc(var(--cg-u) * 16); }
+    .cgt-keys { display: none; }
+  }
+</style>
+<div class="cgt cg-root">
+  <div class="cgt-scrim"></div>
+  <div class="cgt-word">
+    <div class="cgt-kick" data-text="title_kick"></div>
+    <h1 class="cgt-w1" data-text="title_w1"></h1>
+    <div class="cgt-w2" data-text="title_w2"></div>
+  </div>
+  <p class="cgt-tag" data-bind="tagline"></p>
+  <div class="cgt-btns">
+    <button class="cg-btn gold" data-action="play" data-endless="false" data-key="Enter" data-text="title_escape"></button>
+    <button class="cg-btn" data-action="lockup"><span data-text="title_lockup"></span><span class="cgt-wal"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#ffda78" stroke="#a8761a" stroke-width="1.5"/><circle cx="12" cy="12" r="7" fill="none" stroke="#c9922a" stroke-width="1.5"/><rect x="10.8" y="8" width="2.4" height="8" rx="1" fill="#a8761a"/></svg><span data-bind="wallet"></span></span></button>
+    <button class="cg-btn cgt-night" data-action="play" data-endless="true" data-show="night_shift_unlocked"><span data-text="title_night_shift"></span><span class="cgt-new"></span></button>
+    <div class="cgt-lock" data-hide="night_shift_unlocked">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="10" width="16" height="12" rx="2.5" fill="rgba(255,246,222,.75)"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="rgba(255,246,222,.75)" stroke-width="2.5"/></svg>
+      <div><div class="cgt-lock-t cg-display" data-text="title_night_shift"></div><div class="cgt-lock-s" data-text="title_night_shift_locked"></div></div>
+    </div>
+  </div>
+  <div class="cgt-chips">
+    <span class="cg-chip"><span data-text="chip_best"></span> <b data-bind="best_distance"></b></span>
+    <span class="cg-chip"><span data-text="chip_escapes"></span> <b data-bind="escapes"></b></span>
+  </div>
+  <div class="cgt-keys">
+    <div><span class="cg-kbd">A / D</span><span data-text="key_lane"></span></div>
+    <div><span class="cg-kbd">W / SPACE</span><span data-text="key_jump"></span></div>
+    <div><span class="cg-kbd">S</span><span data-text="key_slide"></span></div>
+    <div><span class="cg-kbd">P</span><span data-text="key_pause"></span></div>
+  </div>
+</div>

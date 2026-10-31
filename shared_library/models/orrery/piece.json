@@ -1,0 +1,10 @@
+{
+  "id": "orrery",
+  "summary": "A brass clockwork orrery on a turned walnut tripod: a gilded sun on the central arbor, six planets (Mercury t… joints orbit_mercury, orbit_venus, orbit_earth, moon_orbit, orbit_mars, orbit_jupiter, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.orrery or place \"prefab\": \"orrery\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:orrery"]
+}

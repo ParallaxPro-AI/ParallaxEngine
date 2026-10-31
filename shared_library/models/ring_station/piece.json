@@ -1,0 +1,10 @@
+{
+  "id": "ring_station",
+  "summary": "A rotating orbital station: twelve pressurised habitat modules strung round a slim octagonal spine ring, four… options condition, beacons; sockets socket_port.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ring_station or place \"prefab\": \"ring_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ring_station"]
+}

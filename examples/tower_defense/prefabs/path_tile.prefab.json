@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "color": "#d3c29e",
+      "roughness": 1
+    }
+  }
+}

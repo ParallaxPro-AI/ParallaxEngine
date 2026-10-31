@@ -1,0 +1,10 @@
+{
+  "id": "wall_panel",
+  "summary": "A 3 m modular wall panel that reconfigures between a straight run, an L-corner (with a return leg), a doorway… options config.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wall_panel or place \"prefab\": \"wall_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wall_panel"]
+}

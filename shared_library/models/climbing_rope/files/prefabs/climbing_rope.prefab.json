@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/climbing_rope"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.9098, 4.27, 1.8082],
+      "offset": [0, 2.135, -0.1541]
+    }
+  }
+}

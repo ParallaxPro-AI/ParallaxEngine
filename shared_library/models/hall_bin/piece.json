@@ -1,0 +1,10 @@
+{
+  "id": "hall_bin",
+  "summary": "A big open-top galvanised waste bin of the kind that stands at the end of a school hall: a tapered swaged bod… options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hall_bin or place \"prefab\": \"hall_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hall_bin"]
+}

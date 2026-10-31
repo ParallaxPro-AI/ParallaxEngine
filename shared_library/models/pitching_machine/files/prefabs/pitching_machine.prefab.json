@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pitching_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.974, 1.377, 1.1949],
+      "offset": [0, 0.6885, -0.0775]
+    }
+  }
+}

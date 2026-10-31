@@ -1,0 +1,76 @@
+{
+ "components": {
+  "structure": {
+   "cell": 0.5,
+   "slab": 0.2,
+   "door_height": 2.1,
+   "layer": "world",
+   "roof": {
+    "kind": "none"
+   },
+   "facade": {
+    "plinth": 0.45
+   },
+   "materials": {
+    "wall": {
+     "color": [
+      0.9261,
+      0.8808,
+      0.7858,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/39/16/391649dbb391c978b0d95cdd2351617fe3b7a577e432b94171208e576c9b2c63.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/b7/fe/b7fed15cca6c3687b699b60aa96c8b9a9ff7bf672234f3079f771131da1c3931.jpg",
+     "tile": 3.2,
+     "roughness": 0.95
+    },
+    "glass": {
+     "color": [
+      0.8095,
+      0.865,
+      0.8962,
+      0.28
+     ],
+     "tile": 2,
+     "roughness": 0.08
+    },
+    "concrete": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/45/ef/45ef8951432f0b692dc461178a898fb83b2e5a873ba53fb19041e9356e118e4a.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/d3/c1/d3c157904afca269836192f27ac02363e15f0661256298948f81335a9c666a30.jpg",
+     "tile": 3.2,
+     "roughness": 0.91
+    },
+    "stair": {
+     "color": [
+      1.0,
+      1.0,
+      1.0,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/45/ef/45ef8951432f0b692dc461178a898fb83b2e5a873ba53fb19041e9356e118e4a.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/d3/c1/d3c157904afca269836192f27ac02363e15f0661256298948f81335a9c666a30.jpg",
+     "tile": 3.2,
+     "roughness": 0.91
+    },
+    "plinth": {
+     "color": [
+      0.865,
+      0.821,
+      0.722,
+      1
+     ],
+     "texture": "https://r2.parallaxpro.ai/assets/image_texture/a1/39/a1399a26a60b5024a832c8dd0f1a27bc7ad6c4d06fd60143d803ff6d93b778ed.jpg",
+     "normal_map": "https://r2.parallaxpro.ai/assets/image_texture/c3/19/c3190ba9edbc0d1b6eff2a0976bdc307661dbfc98ecf4e2fed9b346c1d81a52f.jpg",
+     "tile": 2.0,
+     "roughness": 0.85
+    }
+   }
+  }
+ }
+}

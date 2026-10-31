@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/party_balloon_arch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.8677, 2.589, 0.5926],
+      "offset": [-0.0039, 1.2945, -0.0001]
+    }
+  }
+}

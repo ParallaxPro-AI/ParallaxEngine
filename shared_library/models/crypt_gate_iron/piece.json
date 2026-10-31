@@ -1,0 +1,10 @@
+{
+  "id": "crypt_gate_iron",
+  "summary": "A rusted wrought-iron double gate hung between two grimy ashlar piers with urn finials: spear-topped bars ris… joints leaf_l, leaf_r; options lock, metal.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crypt_gate_iron or place \"prefab\": \"crypt_gate_iron\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crypt_gate_iron"]
+}

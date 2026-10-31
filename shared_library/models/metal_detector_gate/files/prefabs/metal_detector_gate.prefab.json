@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/metal_detector_gate"
+    }
+  }
+}

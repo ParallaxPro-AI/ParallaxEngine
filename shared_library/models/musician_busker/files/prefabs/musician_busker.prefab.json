@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/musician_busker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.725, 0.3847],
+      "offset": [0, 0.8625, -0.0493]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "mobility_scooter",
+  "summary": "A four-wheel electric mobility scooter: a moulded front shroud over the steered front wheels with a wire shop… joints seat_swivel, armrest_l, armrest_r, steering, wheel_f_l_roll, wheel_f_l_steer, …; options paint; sockets seat_driver, eye_point, socket_basket, socket_rear.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.mobility_scooter or place \"prefab\": \"mobility_scooter\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:mobility_scooter"]
+}

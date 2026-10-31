@@ -1,0 +1,10 @@
+{
+  "id": "plush_bear",
+  "summary": "A small prize teddy-bear plush of the kind that fills a claw machine: a sitting, pot-bellied bear with an ove… joints head_nod; options fur, ribbon, accessory.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.plush_bear or place \"prefab\": \"plush_bear\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:plush_bear"]
+}

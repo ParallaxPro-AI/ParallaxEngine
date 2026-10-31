@@ -1,0 +1,10 @@
+{
+  "id": "dunk_tank",
+  "summary": "A carnival dunk tank: a 1.5 x 1.2 x 1.35 m steel water tank on skids with a clear acrylic front showing the w… joints seat, target; options frame; sockets socket_seat, socket_target, socket_splash, socket_thrower.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dunk_tank or place \"prefab\": \"dunk_tank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dunk_tank"]
+}

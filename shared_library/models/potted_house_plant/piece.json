@@ -1,0 +1,10 @@
+{
+  "id": "potted_house_plant",
+  "summary": "A potted snake plant from the 'basic' apartment set: eleven upright sword-shaped leaves in two greens (lens-s… options pot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.potted_house_plant or place \"prefab\": \"potted_house_plant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:potted_house_plant"]
+}

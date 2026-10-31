@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gallery_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 0.452, 0.493],
+      "offset": [0, 0.226, 0]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tortilla",
+  "summary": "A flat round wrap laid open on the counter: a pale disc with a slightly raised, faintly toasted outer band fr…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tortilla or place \"prefab\": \"tortilla\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tortilla"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dice_set_d6"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.071, 0.0316, 0.0758],
+      "offset": [-0.0005, 0.0158, 0.0019]
+    }
+  }
+}

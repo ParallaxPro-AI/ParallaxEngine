@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gyrocopter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.09, 2.585, 8.4],
+      "offset": [0, 1.2925, -0.33]
+    }
+  }
+}

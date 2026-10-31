@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/base_roof_ramp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.0007, 1.9, 3.2323],
+      "offset": [-0.002, 0.95, -0.0938]
+    }
+  }
+}

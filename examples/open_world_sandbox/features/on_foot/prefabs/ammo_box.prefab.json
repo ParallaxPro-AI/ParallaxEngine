@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.5, 0.35, 0.35], "color": "#9f9b8c" },
+    "collider": { "shape": "sphere", "radius": 0.9, "trigger": true },
+    "weapon_pickup": { "ammo": 30 }
+  }
+}

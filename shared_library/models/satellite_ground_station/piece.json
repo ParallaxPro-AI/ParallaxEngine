@@ -1,0 +1,10 @@
+{
+  "id": "satellite_ground_station",
+  "summary": "An 11 m satellite earth-station antenna: a white paraboloid reflector with panel rings, a radial truss back s… joints azimuth, elevation.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.satellite_ground_station or place \"prefab\": \"satellite_ground_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:satellite_ground_station"]
+}

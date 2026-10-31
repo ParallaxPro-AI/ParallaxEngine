@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dynamite_plunger"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.533, 0.4575, 0.2211],
+      "offset": [0.0085, 0.2288, -0.0126]
+    }
+  }
+}

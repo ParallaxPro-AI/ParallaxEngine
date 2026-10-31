@@ -1,0 +1,14 @@
+{
+  "plant": {"sound": "sfx/plant", "volume": 0.18},
+  "dig_up": {"sound": "sfx/dig_up", "volume": 0.24},
+  "thorn_shoot": {"sound": "sfx/thorn_shoot", "volume": 0.096},
+  "thorn_hit": {"sound": "sfx/thorn_hit", "volume": 0.132},
+  "husk_munch": {"sound": "sfx/husk_munch", "volume": 0.12},
+  "husk_die": {"sound": "sfx/husk_die", "volume": 0.18},
+  "pollen_pickup": {"sound": "sfx/pollen_pickup", "volume": 0.192},
+  "gourd_boom": {"sound": "sfx/gourd_boom", "volume": 0.42},
+  "wave_start": {"sound": "sfx/wave_start", "volume": 0.144},
+  "water": {"sound": "sfx/water", "volume": 0.12},
+  "win": {"sound": "sfx/win", "volume": 0.21},
+  "lose": {"sound": "sfx/lose", "volume": 0.21}
+}

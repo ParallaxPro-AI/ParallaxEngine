@@ -1,0 +1,10 @@
+{
+  "id": "military_tent",
+  "summary": "A general-purpose medium army tent (4.9 x 9.75 m walls, 3.1 m ridge): olive canvas hipped roof on three centr… joints door_l, door_r; options canvas; sockets entrance, inside, cot_row_left, cot_row_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.military_tent or place \"prefab\": \"military_tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:military_tent"]
+}

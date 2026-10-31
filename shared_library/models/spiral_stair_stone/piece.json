@@ -1,0 +1,10 @@
+{
+  "id": "spiral_stair_stone",
+  "summary": "A medieval stone spiral (newel) staircase: sixteen solid wedge treads winding a full turn counter-clockwise r…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spiral_stair_stone or place \"prefab\": \"spiral_stair_stone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spiral_stair_stone"]
+}

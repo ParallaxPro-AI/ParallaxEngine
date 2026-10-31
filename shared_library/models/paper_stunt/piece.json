@@ -1,0 +1,10 @@
+{
+  "id": "paper_stunt",
+  "summary": "A paper stunt plane: a short broad wing with slight ANHEDRAL (panels below flat), a tiny fin and big folded-d… joints crease_wing_l, crease_wing_r, crease_nose, crease_tail; options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_stunt or place \"prefab\": \"paper_stunt\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_stunt"]
+}

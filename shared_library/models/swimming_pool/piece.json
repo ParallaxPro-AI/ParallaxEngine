@@ -1,0 +1,10 @@
+{
+  "id": "swimming_pool",
+  "summary": "A residential/hotel swimming pool: an 8 x 4 m tiled basin with 1.0 m shallow end, a ramp to a 1.6 m deep end… options tiles, deck, access; sockets socket_water, socket_ladder, socket_deck_front.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.swimming_pool or place \"prefab\": \"swimming_pool\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:swimming_pool"]
+}

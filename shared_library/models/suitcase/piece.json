@@ -1,0 +1,14 @@
+{
+  "id": "suitcase",
+  "summary": "An upright hardshell roller carry-on: four spinner wheels, a telescoping pull handle that extends up, a… joints lid, catch_top, catch_bottom, handle; options shell_type, stickers, finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.suitcase or place \"prefab\": \"suitcase\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:suitcase"
+  ]
+}

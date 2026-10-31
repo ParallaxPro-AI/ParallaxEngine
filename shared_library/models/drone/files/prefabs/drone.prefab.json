@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3904, 0.1308, 0.2833],
+      "offset": [0, 0.0647, 0]
+    }
+  }
+}

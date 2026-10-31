@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sky_galleon"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [29.502, 22.86, 32.1419],
+      "offset": [0, 11.43, 1.371]
+    }
+  }
+}

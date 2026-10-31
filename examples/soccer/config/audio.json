@@ -1,0 +1,14 @@
+{
+  "whistle": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/f2/f4/f2f44effce087e47683f0fea05a71002bd8dca78fb10bf93d9f0b38d49f9590e.ogg", "volume": 0.5 },
+  "whistle_go": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/35/c7/35c7b85d74935a2718e067ba26cdddbb114ccea23fa7253ad2586a9065f1bec1.ogg", "volume": 0.6 },
+  "full_time": { "sound": "https://r2.parallaxpro.ai/assets/audio_tts/cf/a5/cfa5557052e6ee604fe53925ef79edc2901f7c8288f51a7429b1cabab4da311d.ogg", "volume": 0.6 },
+  "goal_cheer": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/56/89/568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661.ogg", "volume": 0.6 },
+  "shot": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/7d/3b/7d3ba0bb5e60a11b5d3e558c141303dcf494256675fbf753c0d252d2cf0481e3.ogg", "volume": 0.5 },
+  "pass_ball": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/06/35/063564703b6094d70718a3e787a55cc9141611e4ecd6b6637f8828f79b4a8c3a.ogg", "volume": 0.45 },
+  "steal": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg", "volume": 0.5 },
+  "save": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/df/69/df6992456056af760815460b66d2ca1c3a07c200cca26325db5820b90104d177.ogg", "volume": 0.4 },
+  "denied": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/8a/91/8a91f969e932df709df80ee124d86a51389eed9b67f22e5e716bc2bbf60d8dab.ogg", "volume": 0.35 },
+  "round_won": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/38/a9387a2cb0b13b8c794579e61ae1fb7e666e22d46a36aec6c77471635096f2fc.ogg", "volume": 0.7 },
+  "cup_won": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/38/a9387a2cb0b13b8c794579e61ae1fb7e666e22d46a36aec6c77471635096f2fc.ogg", "volume": 0.7 },
+  "knocked_out": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/75/a97513d7fd2b12b1210c423be943b4c1ab0e899b11db95855e9b74836e646ae0.ogg", "volume": 0.7 }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "spring_pad",
+  "summary": "A generic platformer spring pad: a 0.9 m round yellow-and-black hazard base, an exposed 4.5-turn steel coil s… joints plate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spring_pad or place \"prefab\": \"spring_pad\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spring_pad"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "toy_chest_wooden",
+  "summary": "A natural pine toy chest on four painted bun feet: plank-grooved body with painted corner battens, a gently d… joints lid; options paint, contents; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toy_chest_wooden or place \"prefab\": \"toy_chest_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toy_chest_wooden"]
+}

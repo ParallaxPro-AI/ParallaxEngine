@@ -1,0 +1,10 @@
+{
+  "id": "violin",
+  "summary": "A full-size violin stood upright with its varnished top plate facing the viewer: a lofted maple body with a w… joints peg_g, peg_a, peg_d, peg_e, bow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.violin or place \"prefab\": \"violin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:violin"]
+}

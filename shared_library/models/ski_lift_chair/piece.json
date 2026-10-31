@@ -1,0 +1,10 @@
+{
+  "id": "ski_lift_chair",
+  "summary": "A detachable quad chairlift chair: a black spring-loaded rope grip with jaws and station rollers on top, a si… joints safety_bar; options cushion; sockets seat_0, seat_1, seat_2, seat_3, socket_cable.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ski_lift_chair or place \"prefab\": \"ski_lift_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ski_lift_chair"]
+}

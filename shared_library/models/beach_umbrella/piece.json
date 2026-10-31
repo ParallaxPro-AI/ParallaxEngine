@@ -1,0 +1,10 @@
+{
+  "id": "beach_umbrella",
+  "summary": "A 2.1 m striped beach umbrella: eight-gore domed canopy in alternating colour and white with a scalloped vala… joints tilt, runner, fold_a_0, squeeze_a_0, fold_a_1, squeeze_a_1, …; options colour; sockets socket_shade.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.beach_umbrella or place \"prefab\": \"beach_umbrella\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:beach_umbrella"]
+}

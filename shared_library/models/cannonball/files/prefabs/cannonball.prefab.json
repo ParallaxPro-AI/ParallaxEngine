@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cannonball"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1183, 0.117, 0.1192],
+      "offset": [0, 0.0585, 0.0005]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "z": -1,
+  "components": {
+    "sprite": { "image": "images/column_glow", "size": [1.0, 6.2] }
+  },
+  "behaviors": {
+    "drop_preview": {"snap_to_slot": false}
+  }
+}

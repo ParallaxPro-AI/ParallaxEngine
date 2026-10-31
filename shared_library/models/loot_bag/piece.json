@@ -1,0 +1,10 @@
+{
+  "id": "loot_bag",
+  "summary": "A dropped drawstring sack: a slumped hessian bag with the load settled low into a belly, a cinched neck with… sockets socket_mouth, socket_carry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.loot_bag or place \"prefab\": \"loot_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:loot_bag"]
+}

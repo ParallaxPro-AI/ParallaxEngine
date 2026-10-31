@@ -1,0 +1,10 @@
+{
+  "id": "who_hit_stage",
+  "summary": "Midnight party arena with an open motion-reading ring, red hot seat, brass inlays, low seating tiers and teal…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.who_hit_stage or place \"prefab\": \"who_hit_stage\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:who_hit_stage"]
+}

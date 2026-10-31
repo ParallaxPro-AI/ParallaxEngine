@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cave_wall_segment"
+    }
+  }
+}

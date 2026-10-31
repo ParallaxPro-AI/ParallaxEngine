@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tram"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.04, 4.0119, 14.16],
+      "offset": [0, 2.0059, 0]
+    }
+  }
+}

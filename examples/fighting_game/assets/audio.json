@@ -1,0 +1,64 @@
+{
+ "sfx/swing_light": {
+  "volume": 0.32,
+  "pitch": [
+   0.94,
+   1.08
+  ]
+ },
+ "sfx/swing_heavy": {
+  "volume": 0.36,
+  "pitch": [
+   0.95,
+   1.05
+  ]
+ },
+ "sfx/swing_super": {
+  "volume": 0.44
+ },
+ "sfx/swing_charge": {
+  "volume": 0.36
+ },
+ "sfx/hit_light": {
+  "volume": 0.48,
+  "pitch": [
+   0.93,
+   1.08
+  ]
+ },
+ "sfx/hit_heavy": {
+  "volume": 0.56,
+  "pitch": [
+   0.96,
+   1.04
+  ]
+ },
+ "sfx/hit_super": {
+  "volume": 0.64
+ },
+ "sfx/hit_bolt": {
+  "volume": 0.52
+ },
+ "sfx/block_clank": {
+  "volume": 0.44,
+  "pitch": [
+   0.96,
+   1.05
+  ]
+ },
+ "sfx/bolt_fire": {
+  "volume": 0.48
+ },
+ "sfx/round_bell": {
+  "volume": 0.525
+ },
+ "sfx/fight_horn": {
+  "volume": 0.562
+ },
+ "sfx/ko_horn": {
+  "volume": 0.637
+ },
+ "sfx/crowd_murmur": {
+  "volume": 0.225
+ }
+}

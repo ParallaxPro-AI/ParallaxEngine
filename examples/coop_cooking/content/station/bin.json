@@ -1,0 +1,4 @@
+{ "label": "Bin", "color": "#9aa0a6",
+  "steps": [
+  {"prompt": "Bin It", "takes_anything": true, "discard": true, "feedback": "Tossed it", "cue": {"sound": "https://r2.parallaxpro.ai/assets/audio_sfx/0b/57/0b574cea597d96507e782ae9764f88482ce49f46e931e57054bf7150047f2d69.ogg", "volume": 0.4}}
+] }

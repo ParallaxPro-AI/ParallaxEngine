@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/gold_pan_station"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.3355, 0.9824, 1.568],
+      "offset": [-0.0008, 0.4897, 0.0367]
+    }
+  }
+}

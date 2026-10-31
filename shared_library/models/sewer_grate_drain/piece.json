@@ -1,0 +1,10 @@
+{
+  "id": "sewer_grate_drain",
+  "summary": "A cast-iron gully drain grate in a precast concrete surround, set into a 1.8 m square of 75 mm stone paving f… joints grate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sewer_grate_drain or place \"prefab\": \"sewer_grate_drain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sewer_grate_drain"]
+}

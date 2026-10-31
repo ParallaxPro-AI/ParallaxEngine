@@ -1,0 +1,10 @@
+{
+  "id": "sump_pump",
+  "summary": "A pedestal sump pump: a cast-iron volute on three feet with an intake strainer band, a steel column carrying… joints float_assembly; options motor; sockets socket_discharge_end, motor_hum, discharge.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sump_pump or place \"prefab\": \"sump_pump\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sump_pump"]
+}

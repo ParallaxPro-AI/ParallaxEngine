@@ -1,0 +1,10 @@
+{
+  "id": "combine_harvester",
+  "summary": "A self-propelled combine harvester: a 5 m grain header (trough, cross auger, knife guards, crop dividers) wit… joints auger, header, reel, spin_front_l, spin_front_r, steer_l, …; options paint; sockets seat_driver, socket_spout, exhaust_0, engine.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.combine_harvester or place \"prefab\": \"combine_harvester\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:combine_harvester"]
+}

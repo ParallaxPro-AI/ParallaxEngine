@@ -1,0 +1,5 @@
+{
+  "number": 4, "name": "Cascade", "tagline": "Banded rows. Keep the rally alive.",
+  "color": "#d973ff", "ball_speed_scale": 1.24,
+  "rows": ["233333332", "211111112", "233333332", "211111112"]
+}

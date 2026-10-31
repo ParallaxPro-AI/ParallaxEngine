@@ -1,0 +1,6 @@
+{
+  "z": 2,
+  "components": {"sprite": {"image": "images/pad", "size": [0.9, 0.9], "color": "#5cd6faf2"}},
+  "tags": ["pad"],
+  "pool": 12
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dollhouse",
+  "summary": "A two-storey wooden dollhouse with a gable roof, chimney and attic vent. joints front_wall; options siding, furniture, roof; sockets room_kitchen, room_living, room_bedroom, room_bath.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dollhouse or place \"prefab\": \"dollhouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dollhouse"]
+}

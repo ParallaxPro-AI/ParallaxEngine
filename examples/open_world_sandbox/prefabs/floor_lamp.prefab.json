@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/floor_lamp", "cast_shadows": true }
+  }
+}

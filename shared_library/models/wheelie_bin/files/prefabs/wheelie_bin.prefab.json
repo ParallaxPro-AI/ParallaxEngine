@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wheelie_bin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 1.104, 0.813],
+      "offset": [0, 0.552, -0.0125]
+    }
+  }
+}

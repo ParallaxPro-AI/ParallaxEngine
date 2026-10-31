@@ -1,0 +1,3 @@
+{ "name": "Drifter", "health": 40, "damage": 6, "attack_range": 1.65, "attack_interval": 1.0, "windup": 0.65,
+  "move_speed": 2.4, "scale": 1.0, "color": "#33733f", "min_wave": 1, "weight": 6,
+  "drops": [{ "item": "raw_meat" }] }

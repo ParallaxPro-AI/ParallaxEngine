@@ -1,0 +1,10 @@
+{
+  "id": "fighter_jet",
+  "summary": "A single-seat swept-wing fighter jet: pointed radome, bubble canopy that hinges open, chin intake, lofted swe… joints canopy, wing_aileron_l, wing_aileron_r, stab, fin_rudder, airbrake, …; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fighter_jet or place \"prefab\": \"fighter_jet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fighter_jet"]
+}

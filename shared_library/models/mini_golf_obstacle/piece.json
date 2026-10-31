@@ -1,0 +1,10 @@
+{
+  "id": "mini_golf_obstacle",
+  "summary": "A complete windmill mini-golf hole: a 5 m raised timber lane with green putting carpet, capped rails and rubb… joints flagstick, sails; options carpet; sockets socket_tee, socket_cup, socket_tunnel, socket_player.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mini_golf_obstacle or place \"prefab\": \"mini_golf_obstacle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mini_golf_obstacle"]
+}

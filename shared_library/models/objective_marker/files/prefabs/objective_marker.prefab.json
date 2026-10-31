@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/objective_marker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4879, 1.816, 0.4879],
+      "offset": [0, 0.908, 0]
+    }
+  }
+}

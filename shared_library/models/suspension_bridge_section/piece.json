@@ -1,0 +1,10 @@
+{
+  "id": "suspension_bridge_section",
+  "summary": "One 60 m tileable module of a road suspension bridge: a 23 m twin-leg concrete tower (battered legs, three po…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.suspension_bridge_section or place \"prefab\": \"suspension_bridge_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:suspension_bridge_section"]
+}

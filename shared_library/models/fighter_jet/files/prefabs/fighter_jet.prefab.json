@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fighter_jet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [10.06, 4.5, 15.85],
+      "offset": [0, 2.25, 0.275]
+    }
+  }
+}

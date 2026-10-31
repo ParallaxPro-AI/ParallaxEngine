@@ -1,0 +1,10 @@
+{
+  "id": "moon_base_dome",
+  "summary": "A pressurized lunar habitat dome: an 8 m semi-ellipsoidal shell on a sintered-regolith ring foundation with l… joints outer_door; sockets socket_airlock_entry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.moon_base_dome or place \"prefab\": \"moon_base_dome\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:moon_base_dome"]
+}

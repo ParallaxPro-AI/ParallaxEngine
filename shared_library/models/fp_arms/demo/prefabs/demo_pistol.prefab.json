@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/demo_pistol" },
+    "viewmodel_item": { "hip": [0.12, -0.17, 0.4] }
+  }
+}

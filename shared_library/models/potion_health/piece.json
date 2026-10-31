@@ -1,0 +1,10 @@
+{
+  "id": "potion_health",
+  "summary": "A round-bellied glass potion flask: a lathed transmissive body with a punted foot, a waisted neck and a rolle… options liquid_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.potion_health or place \"prefab\": \"potion_health\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:potion_health"]
+}

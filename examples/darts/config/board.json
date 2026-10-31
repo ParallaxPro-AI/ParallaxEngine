@@ -1,0 +1,11 @@
+{
+  "radius": 0.9,
+  "inner_bull": 0.055,
+  "outer_bull": 0.12,
+  "treble_inner": 0.54,
+  "treble_outer": 0.63,
+  "double_inner": 0.91,
+  "inner_bull_points": 50,
+  "outer_bull_points": 25,
+  "sequence": [20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5]
+}

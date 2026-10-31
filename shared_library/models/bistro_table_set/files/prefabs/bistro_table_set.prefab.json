@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bistro_table_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.437, 1.0201, 0.606],
+      "offset": [0, 0.5084, 0]
+    }
+  }
+}

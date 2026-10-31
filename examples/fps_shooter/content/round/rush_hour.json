@@ -1,0 +1,1 @@
+{ "name": "Round 2 — Rush Hour", "tagline": "They come at you fast now. Keep your back to a wall.", "number": 2, "frag_target": 7, "damage_mul": 1.0, "accuracy_mul": 1.0, "roster": [{ "bot": "grunt", "count": 3 }, { "bot": "rusher", "count": 3 }] }

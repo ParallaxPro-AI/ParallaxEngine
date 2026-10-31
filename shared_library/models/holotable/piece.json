@@ -1,0 +1,10 @@
+{
+  "id": "holotable",
+  "summary": "A sci-fi holotable: a pedestal table with a glowing central emitter that projects a floating holographic glob… joints ring, projection.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.holotable or place \"prefab\": \"holotable\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:holotable"]
+}

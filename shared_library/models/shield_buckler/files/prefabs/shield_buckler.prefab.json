@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shield_buckler"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3344, 0.3344, 0.111],
+      "offset": [0, 0.165, 0]
+    }
+  }
+}

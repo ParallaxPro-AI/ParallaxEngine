@@ -1,0 +1,1 @@
+{"name": "Cinder Aura", "desc": "You burn: +8 dps in a ring around you, +1.8m wider each time.", "icon": "aura", "tier": "rare", "weight": 4, "max_stacks": 5, "effect": {"aura_dps_add": 8, "aura_radius_add": 1.8}}

@@ -1,0 +1,89 @@
+<!-- Keystrike results: terminal card over a dark scrim: the grade box (slams in), [Run
+     terminated] FIREWALL BREACHED with the survived time, Score / WPM / Accuracy / Max Combo
+     tiles, Words Cleared / Breached rows, Best with the gold NEW BEST stamp, and Jack In
+     Again / Menu. Two columns on touch. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .kr-card { width: calc(var(--u) * 980); max-width: 100%; display: flex; flex-direction: column; gap: var(--ks-sp-7); }
+  .kr-head { display: flex; align-items: center; gap: var(--ks-sp-8); }
+  .kr-headtext { display: flex; flex-direction: column; gap: var(--ks-sp-2); min-width: 0; }
+  .kr-grade { position: relative; flex: none; width: var(--ks-grade-box); height: var(--ks-grade-box); display: grid; place-items: center; border: 1px solid var(--ks-line-2); background: radial-gradient(circle, rgba(92,242,200,.16), transparent 70%); }
+  .kr-grade-l { font-family: var(--ks-font-display); font-size: var(--ks-fs-grade); font-weight: 700; line-height: 1; color: var(--ks-teal); text-shadow: 0 0 2px #fff, 0 0 24px rgba(92,242,200,.8), 0 0 70px rgba(92,242,200,.4); animation: ks-grade 700ms var(--ks-ease-snap) 200ms both; }
+  .kr-grade-cap { position: absolute; left: 50%; bottom: 0; transform: translate(-50%, 50%); padding: 0 .7em; font-size: var(--ks-fs-micro); font-weight: 600; letter-spacing: var(--ks-track-wide); text-transform: uppercase; color: var(--ks-muted); background: #061815; white-space: nowrap; }
+  .kr-title { font-family: var(--ks-font-display); font-size: var(--ks-fs-h2); font-weight: 700; line-height: 1.05; letter-spacing: .02em; color: var(--ks-breach); text-shadow: 0 0 22px rgba(255,90,106,.45); overflow-wrap: anywhere; }
+  .kr-tagline { font-size: var(--ks-fs-body); color: var(--ks-muted); letter-spacing: .06em; }
+  .kr-tagline b { color: var(--ks-ink); font-weight: 700; }
+  .kr-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--ks-sp-3); }
+  .kr-tile { display: flex; flex-direction: column; gap: 6px; padding: var(--ks-sp-4) var(--ks-sp-5); background: rgba(92,242,200,.035); border: 1px solid var(--ks-line); border-top-color: var(--ks-line-2); min-width: 0; }
+  .kr-tile-v { font-size: var(--ks-fs-tile); font-weight: 700; line-height: 1.05; color: var(--ks-ink); white-space: nowrap; }
+  .kr-tile-v small { font-size: .5em; color: var(--ks-muted); font-weight: 500; margin-left: .15em; }
+  .kr-rows { display: grid; grid-template-columns: 1fr 1fr; column-gap: var(--ks-sp-7); }
+  .kr-row { display: flex; justify-content: space-between; align-items: baseline; padding: var(--ks-sp-2) 0; border-bottom: 1px dashed var(--ks-line); font-size: var(--ks-fs-body); color: var(--ks-ink-2); }
+  .kr-row span { white-space: nowrap; }
+  .kr-row b { font-weight: 700; color: var(--ks-ink); }
+  .kr-row b.bad { color: var(--ks-breach); }
+  .kr-foot { display: flex; align-items: center; justify-content: space-between; gap: var(--ks-sp-5); }
+  .kr-best { display: flex; align-items: center; gap: var(--ks-sp-3); font-size: var(--ks-fs-body); }
+  .kr-best b { font-weight: 700; color: var(--ks-ink-2); }
+  .kr-new { display: none; padding: 2px 8px; font-size: var(--ks-fs-micro); font-weight: 800; letter-spacing: .2em; text-transform: uppercase; color: var(--ks-on-accent); background: var(--ks-cipher); box-shadow: var(--ks-glow-gold); animation: ks-badge 900ms var(--ks-ease-snap) 500ms both; }
+  .kr.is-newbest .kr-best b { color: var(--ks-cipher); text-shadow: 0 0 12px rgba(255,224,138,.5); }
+  .kr.is-newbest .kr-new { display: inline-block; }
+  .kr.is-newbest .kr-tile:first-child { border-color: rgba(255,224,138,.5); background: rgba(255,224,138,.06); }
+  .kr.is-newbest .kr-tile:first-child .kr-tile-v { color: var(--ks-cipher); }
+  .kr-actions { display: flex; gap: var(--ks-sp-3); }
+  .kr-actions .ks-btn.ks-btn--primary { min-width: calc(var(--u) * 280); }
+  .kr-left, .kr-right { display: contents; }
+
+  @media (pointer: coarse) {
+    .kr-card { width: min(calc(var(--u) * 760), 100%); display: grid; grid-template-columns: calc(var(--u) * 200) minmax(0, 1fr); gap: var(--ks-sp-6); align-items: center; max-height: calc(100cqh - 12px); overflow-y: auto; }
+    .kr-head { display: contents; }
+    .kr-left { display: flex; flex-direction: column; align-items: center; gap: var(--ks-sp-2); text-align: center; }
+    .kr-left .kr-grade { margin-bottom: var(--ks-sp-3); }
+    .kr-headtext { align-items: center; }
+    .kr-title { font-size: 22px; }
+    .kr-right { display: flex; flex-direction: column; gap: var(--ks-sp-3); }
+    .kr-tiles { grid-template-columns: 1fr 1fr; gap: 6px; }
+    .kr-tile { padding: 8px 12px; gap: 3px; }
+    .kr-rows { column-gap: var(--ks-sp-5); }
+    .kr-row { padding: 5px 0; }
+    .kr-foot { display: contents; }
+    .kr-actions .ks-btn.ks-btn--primary { min-width: 0; flex: 1; }
+  }
+</style>
+<div class="ks-root ks-stage kr" data-class-is-newbest="new_best">
+  <div class="ks-scrim"></div>
+  <div class="ks-center">
+    <section class="ks-card ks-corners kr-card" role="dialog" aria-label="Results">
+      <div class="kr-left">
+        <div class="kr-head">
+          <div class="kr-grade ks-corners"><span class="kr-grade-l" data-bind="grade"></span><span class="kr-grade-cap" data-text="grade"></span></div>
+          <div class="kr-headtext">
+            <span class="ks-tag ks-tag--bad" data-text="run_terminated"></span>
+            <h1 class="kr-title" data-text="firewall_breached"></h1>
+            <p class="kr-tagline"><b data-bind="survived" data-format="time"></b> <span data-text="survived_lower"></span></p>
+          </div>
+        </div>
+      </div>
+      <div class="kr-right">
+        <div class="kr-tiles">
+          <div class="kr-tile"><span class="ks-label" data-text="score"></span><span class="kr-tile-v" data-bind="score"></span></div>
+          <div class="kr-tile"><span class="ks-label" data-text="wpm"></span><span class="kr-tile-v" data-bind="wpm"></span></div>
+          <div class="kr-tile"><span class="ks-label" data-text="accuracy"></span><span class="kr-tile-v"><span data-bind="accuracy"></span><small>%</small></span></div>
+          <div class="kr-tile"><span class="ks-label" data-text="max_combo"></span><span class="kr-tile-v" data-bind="max_combo"></span></div>
+        </div>
+        <div class="kr-rows">
+          <div class="kr-row"><span data-text="words_cleared"></span><b data-bind="cleared"></b></div>
+          <div class="kr-row"><span data-text="breached"></span><b class="bad" data-bind="breached"></b></div>
+        </div>
+        <div class="kr-foot">
+          <div class="kr-best"><span class="ks-label" data-text="best"></span><b data-bind="best"></b><span class="kr-new" data-text="new_best"></span></div>
+          <div class="kr-actions">
+            <button class="ks-btn ks-btn--primary" data-action="retry"><span data-text="jack_in_again"></span> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg></button>
+            <button class="ks-btn" data-action="quit" data-text="menu"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="ks-crt" aria-hidden="true"></div>
+</div>

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/security_bin_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.76, 0.932, 0.642],
+      "offset": [0, 0.466, -0.016]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bow_longbow_elven",
+  "summary": "An elven longbow of high-fantasy style, 1.72 m tip to tip (real longbows run 1.7-1.9 m), braced: pale ash lim… joints limb_upper, string_upper, limb_lower, string_lower; sockets socket_arrow, nocking_point, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.bow_longbow_elven or place \"prefab\": \"bow_longbow_elven\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:bow_longbow_elven"]
+}

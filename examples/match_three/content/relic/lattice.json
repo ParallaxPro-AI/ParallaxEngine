@@ -1,0 +1,7 @@
+{
+  "name": "Lattice",
+  "description": "Every stage starts with two LINE gems already on the board.",
+  "short": "Each stage starts with two LINE gems.",
+  "highlight": "two LINE gems",
+  "start_lines": 2
+}

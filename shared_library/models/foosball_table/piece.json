@@ -1,0 +1,10 @@
+{
+  "id": "foosball_table",
+  "summary": "A full-size table-football cabinet: a 1.40 x 0.76 m walnut cabinet on four tapered legs with levelers and bra… joints rod_1_slide, rod_1_spin, rod_2_slide, rod_2_spin, rod_3_slide, rod_3_spin, …; options team_a, team_b, cabinet; sockets ball_drop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.foosball_table or place \"prefab\": \"foosball_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:foosball_table"]
+}

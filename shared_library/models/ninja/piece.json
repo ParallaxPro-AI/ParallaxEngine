@@ -1,0 +1,10 @@
+{
+  "id": "ninja",
+  "summary": "A rigged ninja (shinobi) on the canonical 17-bone humanoid rig: a lean figure in a dark suit - hood and face… options outfit, wraps, sash, skin, hair, mask; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ninja or place \"prefab\": \"ninja\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ninja"]
+}

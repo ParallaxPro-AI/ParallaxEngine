@@ -1,0 +1,4 @@
+{
+  "components": { "shape": { "kind": "box", "size": [0.14, 2, 0.98], "offset": [-0.42, 1, 0], "color": "#73471f" } },
+  "behaviors": { "door": { "swaps_to": "door" } }
+}

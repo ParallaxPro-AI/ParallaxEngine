@@ -1,0 +1,10 @@
+{
+  "id": "tree_baobab",
+  "summary": "An African-savanna baobab: an enormous, smooth, grey bottle-shaped trunk with shallow vertical fluting and a… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_baobab or place \"prefab\": \"tree_baobab\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_baobab"]
+}

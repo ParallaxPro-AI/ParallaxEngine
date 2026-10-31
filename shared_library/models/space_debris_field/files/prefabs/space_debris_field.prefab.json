@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_debris_field"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.5729, 1.6452, 2.5456],
+      "offset": [0, 0.8226, 0]
+    }
+  }
+}

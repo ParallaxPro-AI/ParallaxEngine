@@ -1,0 +1,10 @@
+{
+  "id": "restoration_wax",
+  "summary": "A 0.078 m tin of microcrystalline wax, lid off and leaning against it, the paste dished where a cloth has bee…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.restoration_wax or place \"prefab\": \"restoration_wax\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:restoration_wax"]
+}

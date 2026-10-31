@@ -1,0 +1,12 @@
+{
+  "land": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d7/26/d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe.ogg", "volume": 0.18 },
+  "jump": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/c6/00/c60069ed7108678dd6a1306404d168a93cc2575cda37b06add9dd6c4d46352a3.ogg", "volume": 0.3 },
+  "boing": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/c6/00/c60069ed7108678dd6a1306404d168a93cc2575cda37b06add9dd6c4d46352a3.ogg", "volume": 0.55 },
+  "creak": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/d7/26/d7267e183067757c92c169de2a379abea592cfca6b39bb2e8feea15221ad79fe.ogg", "volume": 0.35 },
+  "stomp": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/69/e2/69e25a1b7b0781f57af84eb4424973ec406d34bc48eed8b6964787b2d74093a9.ogg", "volume": 0.5 },
+  "hurt": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/c6/00/c60069ed7108678dd6a1306404d168a93cc2575cda37b06add9dd6c4d46352a3.ogg", "volume": 1.0 },
+  "fanfare": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/56/89/568967a3d9f8a8f6af54ea01729c4882284308f2a27d78c07ffd7ee0d6951661.ogg", "volume": 1.0 },
+  "fail": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/a9/75/a97513d7fd2b12b1210c423be943b4c1ab0e899b11db95855e9b74836e646ae0.ogg", "volume": 1.0 },
+  "plate": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/30/91/3091bf0be0497f825769ee0733ca7bdc3bcd59bd6c6e8f2ba8f93d580ff38022.ogg", "volume": 0.4 },
+  "vault": { "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/15/e3/15e3fe971ffd3415e5ab641d3a4d043fb31f6712b0956315b524ba29c3889cda.ogg", "volume": 0.5 }
+}

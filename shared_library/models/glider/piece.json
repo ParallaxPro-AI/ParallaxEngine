@@ -1,0 +1,10 @@
+{
+  "id": "glider",
+  "summary": "A single-seat sailplane (glider): a slender lofted body-of-revolution fuselage with a bulbous cockpit pod tap… joints wing_aileron_l, wing_aileron_r, fin_rudder, hstab_elevator_l, hstab_elevator_r, canopy; sockets socket_pilot, socket_tow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.glider or place \"prefab\": \"glider\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:glider"]
+}

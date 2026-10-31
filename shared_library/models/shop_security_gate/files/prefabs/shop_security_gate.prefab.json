@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shop_security_gate"
+    }
+  }
+}

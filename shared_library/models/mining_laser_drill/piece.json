@@ -1,0 +1,10 @@
+{
+  "id": "mining_laser_drill",
+  "summary": "A heavy tracked sci-fi mining laser rig, 4.9 m long with the head out: two stadium crawler tracks with sprock… joints turret, boom, head, crown; options paint, glow; sockets laser.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mining_laser_drill or place \"prefab\": \"mining_laser_drill\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mining_laser_drill"]
+}

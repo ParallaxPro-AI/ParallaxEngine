@@ -1,0 +1,10 @@
+{
+  "id": "work_light",
+  "summary": "A portable halogen/LED work light on a splayed tripod stand: three legs meeting a spider hub, a central mast… joints head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.work_light or place \"prefab\": \"work_light\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:work_light"]
+}

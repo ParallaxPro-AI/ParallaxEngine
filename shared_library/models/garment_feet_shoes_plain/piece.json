@@ -1,0 +1,10 @@
+{
+  "id": "garment_feet_shoes_plain",
+  "summary": "A low casual shoe: a long toe box, a low round ankle collar the trouser hem drapes over, and a thin rubber so… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_feet_shoes_plain or place \"prefab\": \"garment_feet_shoes_plain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_feet_shoes_plain"]
+}

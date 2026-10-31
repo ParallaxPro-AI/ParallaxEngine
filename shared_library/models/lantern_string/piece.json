@@ -1,0 +1,10 @@
+{
+  "id": "lantern_string",
+  "summary": "A run of glowing red paper lanterns hung on a sagging black cord between two freestanding festival poles: sev… options mounts, colour; sockets socket_end_l, socket_end_r, socket_mid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lantern_string or place \"prefab\": \"lantern_string\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lantern_string"]
+}

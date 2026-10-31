@@ -1,0 +1,10 @@
+{
+  "id": "asylum_restraint_chair",
+  "summary": "A heavy oak asylum restraint chair bolted to the floor with rusted angle brackets: a tall planked back with a… joints cuff_l, cuff_r; options wood; sockets seat_main.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.asylum_restraint_chair or place \"prefab\": \"asylum_restraint_chair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:asylum_restraint_chair"]
+}

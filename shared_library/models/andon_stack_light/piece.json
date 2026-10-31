@@ -1,0 +1,10 @@
+{
+  "id": "andon_stack_light",
+  "summary": "A 3-tier industrial andon stack light on a short stalk — the signal tower bolted to the top of every machine… options state.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.andon_stack_light or place \"prefab\": \"andon_stack_light\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:andon_stack_light"]
+}

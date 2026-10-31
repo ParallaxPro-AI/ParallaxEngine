@@ -1,0 +1,35 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hostile_mob"
+    },
+    "character": {
+      "face_movement": false,
+      "radius": 0.4,
+      "height": 1.8,
+      "jump_height": 1.2
+    },
+    "health": {
+      "destroy_on_death": true
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        2.4,
+        0
+      ],
+      "color": "#e2674f"
+    }
+  },
+  "tags": [
+    "creature",
+    "hostile"
+  ],
+  "behaviors": {
+    "hostile_mob": {
+      "detect_range": 30,
+      "reach_height": 1.5,
+      "eye_height": 1.0
+    }
+  }
+}

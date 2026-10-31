@@ -1,0 +1,3 @@
+{ "name": "Stalker", "health": 30, "damage": 9, "attack_range": 1.65, "attack_interval": 0.71, "windup": 0.65,
+  "move_speed": 4.3, "scale": 0.94, "color": "#6b3385", "min_wave": 2, "weight": 4,
+  "drops": [{ "item": "raw_meat" }] }

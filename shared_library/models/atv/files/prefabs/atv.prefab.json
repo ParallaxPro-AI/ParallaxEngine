@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/atv"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 300,
+      "linear_damping": 0.06,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.23,
+        1.108,
+        2.097
+      ],
+      "offset": [
+        0,
+        0.5538,
+        -0.0265
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 18,
+      "steering": 34,
+      "grip": 7,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.5538,
+        -0.0265
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

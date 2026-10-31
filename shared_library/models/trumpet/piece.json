@@ -1,0 +1,10 @@
+{
+  "id": "trumpet",
+  "summary": "A Bb trumpet: a flaring bell pointing forward, three vertical piston valves with pearl finger buttons, a lead… joints tuning_slide, valve1, valve2, valve3, valve1_slide, valve3_slide.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.trumpet or place \"prefab\": \"trumpet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:trumpet"]
+}

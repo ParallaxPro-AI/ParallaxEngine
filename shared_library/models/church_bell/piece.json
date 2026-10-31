@@ -1,0 +1,10 @@
+{
+  "id": "church_bell",
+  "summary": "A cast-bronze church bell hung mouth-down from an oak headstock in a timber A-frame belfry stand. joints swing, clapper; options patina; sockets rope_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.church_bell or place \"prefab\": \"church_bell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:church_bell"]
+}

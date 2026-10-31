@@ -1,0 +1,11 @@
+{
+  "name": "Hunter's Mark",
+  "blurb": "Hit harder and reach further for a few seconds.",
+  "kind": "buff",
+  "cooldown": { "base": 15, "per_rank": -1.1 },
+  "mana": { "base": 45, "per_rank": 4 },
+  "duration": { "base": 5, "per_rank": 0.7 },
+  "buff": { "damage": 14, "attack_range": 1.5 },
+  "cast_vfx": "vfx/heal_glow_cast",
+  "vfx": "vfx/heal_glow"
+}

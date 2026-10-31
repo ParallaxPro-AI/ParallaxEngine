@@ -1,0 +1,14 @@
+{
+  "id": "picture_frame",
+  "summary": "A framed picture for a wall: moulded frame, mount, glass, and a subject that is either a dark ancestral… options subject, finish.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.picture_frame or place \"prefab\": \"picture_frame\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:picture_frame"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "bullet_round",
+  "summary": "A single loaded rifle cartridge lying on its side: a bottlenecked brass case (rim, extractor groove, tapered… sockets tip, tail.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bullet_round or place \"prefab\": \"bullet_round\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bullet_round"]
+}

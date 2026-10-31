@@ -1,0 +1,1 @@
+{ "extends": "camp", "components": { "camp": { "kind": "war_stone" }, "model": { "model": "models/camp_war_stone" } } }

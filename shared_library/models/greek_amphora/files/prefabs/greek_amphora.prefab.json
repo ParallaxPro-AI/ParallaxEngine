@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/greek_amphora"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4204, 0.62, 0.3902],
+      "offset": [0, 0.31, 0]
+    }
+  }
+}

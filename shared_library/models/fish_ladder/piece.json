@@ -1,0 +1,10 @@
+{
+  "id": "fish_ladder",
+  "summary": "A pool-and-weir fish ladder run beside a river weir: 8 stepped concrete pools climbing ~2.6 m over ~12 m, eac… options flow; sockets socket_entrance, socket_exit.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fish_ladder or place \"prefab\": \"fish_ladder\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fish_ladder"]
+}

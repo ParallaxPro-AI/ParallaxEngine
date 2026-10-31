@@ -1,0 +1,10 @@
+{
+  "id": "garment_feet_boots_work",
+  "summary": "A lace-up safety boot: a tall padded ankle shaft, a steel toe cap and a deep lugged sole. options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_feet_boots_work or place \"prefab\": \"garment_feet_boots_work\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_feet_boots_work"]
+}

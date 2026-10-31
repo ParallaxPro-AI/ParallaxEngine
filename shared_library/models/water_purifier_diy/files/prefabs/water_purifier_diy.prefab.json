@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_purifier_diy"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6855, 1.865, 0.669],
+      "offset": [-0.0071, 0.9325, 0.0375]
+    }
+  }
+}

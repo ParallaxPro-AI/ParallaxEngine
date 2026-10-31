@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/xray_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.604, 2.145, 1.3835],
+      "offset": [0, 1.0725, 0.0092]
+    }
+  }
+}

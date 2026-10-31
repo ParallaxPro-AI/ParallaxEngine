@@ -1,0 +1,10 @@
+{
+  "id": "bb_dolphin_pod",
+  "summary": "Low-poly dolphin pod with a tapered body, forked tail, dorsal and paired pectoral fins.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_dolphin_pod or place \"prefab\": \"bb_dolphin_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_dolphin_pod"]
+}

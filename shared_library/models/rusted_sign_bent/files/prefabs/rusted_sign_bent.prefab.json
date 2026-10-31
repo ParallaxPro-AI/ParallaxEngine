@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rusted_sign_bent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9644, 2.3245, 0.9353],
+      "offset": [-0.0004, 1.1603, -0.0003]
+    }
+  }
+}

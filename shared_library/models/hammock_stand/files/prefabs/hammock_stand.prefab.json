@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hammock_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.1059, 1.1895, 1.08],
+      "offset": [0, 0.5947, 0]
+    }
+  }
+}

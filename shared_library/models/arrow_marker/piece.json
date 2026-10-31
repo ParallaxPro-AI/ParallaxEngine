@@ -1,0 +1,10 @@
+{
+  "id": "arrow_marker",
+  "summary": "A 1.3 m floor-standing directional arrow: a weighted base, a short post, and a chunky solid 0.94 m arrow — bo… joints aim; options livery.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.arrow_marker or place \"prefab\": \"arrow_marker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:arrow_marker"]
+}

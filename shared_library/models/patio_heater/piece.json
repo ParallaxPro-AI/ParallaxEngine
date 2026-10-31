@@ -1,0 +1,10 @@
+{
+  "id": "patio_heater",
+  "summary": "A 2.3 m propane \"mushroom\" patio heater: a tapered tank housing on a weighted base with a hinged door (propan… joints door; options state, finish; sockets socket_top, heat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.patio_heater or place \"prefab\": \"patio_heater\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:patio_heater"]
+}

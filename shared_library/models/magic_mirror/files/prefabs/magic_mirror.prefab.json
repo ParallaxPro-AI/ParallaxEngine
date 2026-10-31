@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magic_mirror"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.87, 1.738, 0.54],
+      "offset": [0, 0.869, 0]
+    }
+  }
+}

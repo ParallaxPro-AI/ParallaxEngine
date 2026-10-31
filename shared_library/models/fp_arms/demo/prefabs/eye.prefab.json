@@ -1,0 +1,6 @@
+{
+  "components": { "camera": { "rig": "fixed", "fov": 75 } },
+  "children": [
+    { "name": "hands", "components": { "viewmodel": { "item": "demo_pistol", "arms": "fp_arms" } } }
+  ]
+}

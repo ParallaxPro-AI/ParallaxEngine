@@ -1,0 +1,10 @@
+{
+  "id": "blunderbuss",
+  "summary": "A flintlock blunderbuss, 0.8 m: a walnut stock with a brass butt plate, a short brass barrel with an octagona… joints hammer, frizzen, trigger, ramrod; options stock_wood, furniture, barrel_finish; sockets socket_muzzle, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.blunderbuss or place \"prefab\": \"blunderbuss\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:blunderbuss"]
+}

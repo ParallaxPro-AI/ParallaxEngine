@@ -1,0 +1,80 @@
+<!-- Title card over the frozen maze: the Maze Chase tag, stacked GLOW GOBBLER, the gobbler
+     pip-trail rule, the Stalker parade, best score + deepest level and Play. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ggt { position: fixed; inset: 0; pointer-events: auto; }
+  .ggt-card { width: calc(820 * var(--gg-u)); }
+  .ggt-col { display: contents; }
+  .ggt-tag { font: 600 calc(16 * var(--gg-u))/1 var(--gg-font-mono); letter-spacing: .36em; color: var(--gg-cyan); text-transform: uppercase; display: flex; align-items: center; gap: calc(14 * var(--gg-u)); }
+  .ggt-tag::before, .ggt-tag::after { content: ""; width: calc(6 * var(--gg-u)); height: calc(6 * var(--gg-u)); border-radius: 50%; background: #ffe28c; box-shadow: 0 0 calc(8 * var(--gg-u)) rgba(255,226,140,.8); }
+  .ggt-title { font-size: var(--gg-fs-hero); line-height: 1.18; text-align: center; text-transform: uppercase; }
+  .ggt-title span { display: block; }
+  .ggt-rule { display: flex; align-items: center; gap: calc(10 * var(--gg-u)); align-self: stretch; }
+  .ggt-gob { flex: none; width: calc(30 * var(--gg-u)); height: calc(30 * var(--gg-u)); filter: drop-shadow(0 0 calc(8 * var(--gg-u)) rgba(255,206,51,.7)); }
+  .ggt-trail { flex: 1; height: calc(10 * var(--gg-u)); background: radial-gradient(circle, rgba(255,226,140,.9) 0 calc(2.5 * var(--gg-u)), transparent calc(3 * var(--gg-u))) 0 50% / calc(22 * var(--gg-u)) calc(10 * var(--gg-u)) repeat-x; }
+  .ggt-trail.after { opacity: .45; }
+  .ggt-flare { width: calc(18 * var(--gg-u)); height: calc(18 * var(--gg-u)); flex: none; border-radius: 50%; background: radial-gradient(circle, #fff 0 22%, #ffe58a 48%, rgba(255,210,74,0) 74%); box-shadow: 0 0 calc(16 * var(--gg-u)) rgba(255,210,74,.8); }
+  .ggt-blurb { font: 400 var(--gg-fs-body)/1.55 var(--gg-font-body); color: var(--gg-ink-2); max-width: calc(600 * var(--gg-u)); text-wrap: pretty; }
+  .ggt-blurb b { color: var(--gg-gold); font-weight: 600; }
+  .ggt-parade { display: flex; gap: calc(40 * var(--gg-u)); }
+  .ggt-st { --c: var(--gg-ink-2); display: flex; flex-direction: column; align-items: center; gap: calc(10 * var(--gg-u)); }
+  .ggt-st[data-stalker="crimson"] { --c: #f2474d; }
+  .ggt-st[data-stalker="azure"] { --c: #4db8fa; }
+  .ggt-st[data-stalker="amber"] { --c: #fab83d; }
+  .ggt-st[data-stalker="violet"] { --c: #b86beb; }
+  .ggt-st svg { width: calc(48 * var(--gg-u)); height: calc(48 * var(--gg-u)); filter: drop-shadow(0 0 calc(10 * var(--gg-u)) var(--c)); }
+  .ggt-st .body { fill: var(--c); }
+  .ggt-st .nm { font-family: var(--gg-font-arcade); font-size: calc(12 * var(--gg-u)); color: var(--c); text-transform: uppercase; }
+  .ggt-st .rl { font: 500 calc(13 * var(--gg-u))/1 var(--gg-font-mono); color: var(--gg-ink-3); letter-spacing: .08em; }
+  .ggt-best { font: 500 calc(18 * var(--gg-u))/1 var(--gg-font-mono); color: var(--gg-ink-2); letter-spacing: .05em; }
+  .ggt-best b { color: var(--gg-gold); font-weight: 700; }
+  .ggt-play { min-width: calc(320 * var(--gg-u)); }
+  @container (max-height: 500px) {
+    .ggt-card { flex-direction: row; align-items: stretch; text-align: left; width: min(calc(740 * var(--gg-u)), calc(100cqw - 2 * var(--gg-safe-l))); gap: calc(30 * var(--gg-u)); padding: calc(24 * var(--gg-u)) calc(30 * var(--gg-u)); }
+    .ggt-col { display: flex; flex-direction: column; gap: calc(12 * var(--gg-u)); justify-content: center; min-width: 0; }
+    .ggt-col.a { flex: 1.3; align-items: flex-start; }
+    .ggt-col.b { flex: 1; align-items: stretch; }
+    .ggt-tag { font-size: calc(9 * var(--gg-u)); gap: calc(8 * var(--gg-u)); letter-spacing: .3em; }
+    .ggt-tag::before, .ggt-tag::after { width: calc(4 * var(--gg-u)); height: calc(4 * var(--gg-u)); }
+    .ggt-title { text-align: left; }
+    .ggt-gob { width: calc(18 * var(--gg-u)); height: calc(18 * var(--gg-u)); }
+    .ggt-rule { gap: calc(6 * var(--gg-u)); }
+    .ggt-trail { height: calc(8 * var(--gg-u)); background-size: calc(14 * var(--gg-u)) calc(8 * var(--gg-u)); background-image: radial-gradient(circle, rgba(255,226,140,.9) 0 calc(1.8 * var(--gg-u)), transparent calc(2.2 * var(--gg-u))); }
+    .ggt-flare { width: calc(12 * var(--gg-u)); height: calc(12 * var(--gg-u)); }
+    .ggt-blurb { line-height: 1.5; }
+    .ggt-parade { gap: 0; justify-content: space-between; }
+    .ggt-st { gap: calc(5 * var(--gg-u)); }
+    .ggt-st svg { width: calc(30 * var(--gg-u)); height: calc(30 * var(--gg-u)); }
+    .ggt-st .nm { font-size: calc(7 * var(--gg-u)); }
+    .ggt-st .rl { font-size: calc(8 * var(--gg-u)); }
+    .ggt-best { font-size: calc(10 * var(--gg-u)); text-align: center; }
+    .ggt-play { min-width: 0; width: 100%; }
+  }
+</style>
+<div class="gg-root ggt">
+  <div class="gg-veil"></div>
+  <main class="gg-card ggt-card">
+    <div class="ggt-col a">
+      <div class="ggt-tag" data-text="title_tag"></div>
+      <h1 class="ggt-title gg-arc gg-t-gold"><span data-text="title_first"></span><span data-text="title_second"></span></h1>
+      <div class="ggt-rule" aria-hidden="true">
+        <svg class="ggt-gob" viewBox="0 0 24 24"><defs><radialGradient id="ggt-orb" cx=".35" cy=".32" r=".75"><stop offset="0" stop-color="#fff3b0"/><stop offset=".48" stop-color="#ffce33"/><stop offset="1" stop-color="#e5a600"/></radialGradient></defs><path d="M12 12 L21.5 6.5 A11 11 0 1 0 21.5 17.5 Z" fill="url(#ggt-orb)"/></svg>
+        <span class="ggt-trail"></span><span class="ggt-flare"></span><span class="ggt-trail after"></span>
+      </div>
+      <p class="ggt-blurb"><span data-text="title_blurb_before"></span><b data-text="title_blurb_flare"></b><span data-text="title_blurb_after"></span></p>
+    </div>
+    <div class="ggt-col b">
+      <div class="ggt-parade" data-each="stalkers">
+        <template>
+          <div class="ggt-st" data-attr-data-stalker="id">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="body" d="M4 22V11a8 8 0 0 1 16 0v11l-2.667-2-2.667 2-2.667-2-2.667 2-2.667-2-2.667 2z"/><circle cx="9" cy="11" r="2.6" fill="#fff"/><circle cx="15" cy="11" r="2.6" fill="#fff"/><circle cx="9.8" cy="11.6" r="1.3" fill="#1a1050"/><circle cx="15.8" cy="11.6" r="1.3" fill="#1a1050"/></svg>
+            <span class="nm" data-bind="name"></span>
+            <span class="rl" data-bind="style"></span>
+          </div>
+        </template>
+      </div>
+      <div class="ggt-best" data-show="has_best"><span data-text="best"></span> <b data-bind="best_score"></b><span data-show="has_level" data-bind="best_level"></span></div>
+      <button class="gg-btn pri ggt-play" data-action="start" data-text="title_start"></button>
+    </div>
+  </main>
+</div>

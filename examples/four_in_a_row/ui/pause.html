@@ -1,0 +1,32 @@
+<!-- Pause: the template's Paused card with the live disc count, Resume, Main Menu and Settings
+     (the template's Settings view held only a graphics switch; here it opens the engine's settings). -->
+<link rel="stylesheet" href="dropline.css">
+<style>
+  .pz { position: fixed; inset: 0; z-index: 250; pointer-events: auto; }
+  .pz-card { width: min(calc(520 * var(--dl-u)), calc(100cqw - 24px)); padding: calc(44 * var(--dl-u)) calc(48 * var(--dl-u)) calc(48 * var(--dl-u)); }
+  .pz-eyebrow { font-size: calc(13 * var(--dl-u)); color: var(--dl-peri-muted); margin-bottom: calc(10 * var(--dl-u)); }
+  .pz-card h1 { font-size: calc(88 * var(--dl-u)); line-height: .95; font-weight: 700; letter-spacing: var(--dl-track-title); margin-bottom: calc(32 * var(--dl-u)); }
+  .pz-stack { display: flex; flex-direction: column; gap: calc(12 * var(--dl-u)); }
+  .pz .pz-menu { justify-content: flex-start; width: 100%; }
+  @container ((max-height: 500px) and (orientation: landscape)) or ((orientation: portrait) and (max-width: 600px)) {
+    .pz-card { width: min(calc(400 * var(--dl-u)), calc(100cqw - 24px)); padding: calc(24 * var(--dl-u)) calc(28 * var(--dl-u)) calc(28 * var(--dl-u)); }
+    .pz-eyebrow { font-size: calc(11 * var(--dl-u)); margin-bottom: calc(6 * var(--dl-u)); }
+    .pz-card h1 { font-size: calc(52 * var(--dl-u)); margin-bottom: calc(18 * var(--dl-u)); }
+    .pz-stack { gap: calc(10 * var(--dl-u)); }
+    .pz .pz-menu { padding: 0 calc(18 * var(--dl-u)); }
+  }
+</style>
+<div class="dl-root pz">
+  <div class="dl-scrim"></div>
+  <div class="dl-layer">
+    <main class="dl-card dl-modal dl-enter pz-card" role="dialog" aria-modal="true">
+      <p class="pz-eyebrow dl-mono" data-bind="context"></p>
+      <h1 data-text="paused"></h1>
+      <div class="pz-stack">
+        <button class="dl-btn dl-btn-primary pz-menu" data-action="resume"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg><span data-text="resume"></span><span class="dl-end"><span class="dl-kbd">P</span></span></button>
+        <button class="dl-btn dl-btn-ghost pz-menu" data-action="quit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></svg><span data-text="main_menu"></span></button>
+        <button class="dl-btn dl-btn-ghost pz-menu" data-action="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span data-text="settings"></span><span class="dl-end"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></span></button>
+      </div>
+    </main>
+  </div>
+</div>

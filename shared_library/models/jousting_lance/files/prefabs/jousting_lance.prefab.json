@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/jousting_lance"
+    },
+    "viewmodel_item": {
+      "hip": [0.22, -0.42, 0.25],
+      "hip_turn": [-2.291831, -5.729578, -6.875494],
+      "eye_relief": 0.6,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.36, 0.36, 3.5],
+      "offset": [0, 0, 1.12]
+    }
+  }
+}

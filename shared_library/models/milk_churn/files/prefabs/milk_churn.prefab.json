@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/milk_churn"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 14,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3998, 0.696, 0.3353],
+      "offset": [0, 0.348, 0]
+    }
+  }
+}

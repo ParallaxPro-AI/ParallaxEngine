@@ -1,0 +1,10 @@
+{
+  "id": "crop_potato_stages",
+  "summary": "A 1 x 1 m plot of four potato plants on hilled, tilled soil, in four growth stages selected by the `stage` ax… options stage, bed.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crop_potato_stages or place \"prefab\": \"crop_potato_stages\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crop_potato_stages"]
+}

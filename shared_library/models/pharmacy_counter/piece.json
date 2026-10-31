@@ -1,0 +1,10 @@
+{
+  "id": "pharmacy_counter",
+  "summary": "A pharmacy dispensing counter: a white melamine counter with a green brand band, an illuminated green cross a… joints drawer_00, drawer_01, drawer_10, drawer_11; options brand, stock; sockets customer, pharmacist, counter_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pharmacy_counter or place \"prefab\": \"pharmacy_counter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pharmacy_counter"]
+}

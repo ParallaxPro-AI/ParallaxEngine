@@ -1,0 +1,10 @@
+{
+  "id": "oven",
+  "summary": "A built-in oven with a drop-down glass door, two sliding wire racks and turning control dials. joints door_single, door_bottom, door_top, rack_0, rack_1, dial_0, …; options config, mount; sockets socket_rack_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.oven or place \"prefab\": \"oven\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:oven"]
+}

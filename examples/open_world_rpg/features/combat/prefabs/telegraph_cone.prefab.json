@@ -1,0 +1,7 @@
+{
+  "components": {
+    "shape": { "kind": "plane", "size": [1, 1, 1], "texture": "images/telegraph_cone", "color": "#e23a2c90", "emissive": "#ff5c46", "cast_shadows": false }
+  },
+  "tags": ["telegraph"],
+  "pool": 24
+}

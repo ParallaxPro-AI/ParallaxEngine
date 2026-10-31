@@ -1,0 +1,10 @@
+{
+  "id": "porch_swing",
+  "summary": "A freestanding timber porch swing: a 2.5 m top beam on two braced A-frames with ground runners, and a slatted… joints swing; options cushions, cushion_colour, finish; sockets seat_l, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.porch_swing or place \"prefab\": \"porch_swing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:porch_swing"]
+}

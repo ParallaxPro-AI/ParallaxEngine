@@ -1,0 +1,10 @@
+{
+  "id": "security_monitor_wall",
+  "summary": "A security guard's surveillance station: a steel monitor rack holding six chunky CRT monitors in two rows of… joints joystick, door_l, door_r; options screens.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.security_monitor_wall or place \"prefab\": \"security_monitor_wall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:security_monitor_wall"]
+}

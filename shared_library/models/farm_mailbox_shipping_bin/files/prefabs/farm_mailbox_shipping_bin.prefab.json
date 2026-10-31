@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/farm_mailbox_shipping_bin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.57, 1.3125, 0.6956],
+      "offset": [-0.045, 0.6562, -0.0203]
+    }
+  }
+}

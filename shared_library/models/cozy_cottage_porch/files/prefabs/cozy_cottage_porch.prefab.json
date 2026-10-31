@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cozy_cottage_porch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.015, 3.1285, 2.615],
+      "offset": [0, 1.5643, -0.0025]
+    }
+  }
+}

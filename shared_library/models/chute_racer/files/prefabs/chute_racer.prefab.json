@@ -1,0 +1,43 @@
+{
+  "components": {
+    "model": {
+      "model": "models/chute_racer"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1150,
+      "linear_damping": 0.025,
+      "angular_damping": 0.85
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.214,
+        1.28,
+        3.62
+      ],
+      "offset": [
+        0,
+        0.64,
+        0
+      ],
+      "bounce": 0.1
+    },
+    "vehicle": {
+      "steering": 0
+    }
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.64,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mine_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.896, 0.9864, 1.62],
+      "offset": [0, 0.4682, 0]
+    }
+  }
+}

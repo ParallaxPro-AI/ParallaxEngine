@@ -1,0 +1,10 @@
+{
+  "id": "mixing_console_live",
+  "summary": "A 16-channel analogue live-sound mixing console in its flight-case base: a graphite chassis with hardwood end… joints fader_0, fader_1, fader_2, fader_3, fader_4, fader_5, …; options cheeks; sockets engineer, bridge_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mixing_console_live or place \"prefab\": \"mixing_console_live\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mixing_console_live"]
+}

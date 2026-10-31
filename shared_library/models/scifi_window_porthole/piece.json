@@ -1,0 +1,10 @@
+{
+  "id": "scifi_window_porthole",
+  "summary": "A 4 m sci-fi wall module with a round porthole window, the window piece of the space-corridor kit: the same c… sockets socket_end_left, socket_end_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_window_porthole or place \"prefab\": \"scifi_window_porthole\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_window_porthole"]
+}

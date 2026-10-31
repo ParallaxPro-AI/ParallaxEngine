@@ -1,0 +1,10 @@
+{
+  "id": "shoji_screen",
+  "summary": "A freestanding pair of sliding shoji panels in a cedar frame, 2.0 m wide and 2.0 m tall: two posts on splayed… joints panel_l, panel_r; options wood, paper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shoji_screen or place \"prefab\": \"shoji_screen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shoji_screen"]
+}

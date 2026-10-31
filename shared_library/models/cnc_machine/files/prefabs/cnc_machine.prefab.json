@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cnc_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.5631, 2.91, 2.3075],
+      "offset": [-0.1185, 1.455, 0.0737]
+    }
+  }
+}

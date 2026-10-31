@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/basic_wardrobe"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1, 1.907, 0.55],
+      "offset": [0, 0.9535, 0]
+    }
+  }
+}

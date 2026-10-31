@@ -1,0 +1,28 @@
+{
+ "duration": 0.16,
+ "seed": 7001,
+ "gain": 0.4,
+ "layers": [
+  {
+   "wave": "noise",
+   "attack": 0.001,
+   "decay": 0.09,
+   "sustain": 0,
+   "gain": 0.7,
+   "filter": {
+    "type": "bandpass",
+    "freq": 950,
+    "q": 1.2
+   }
+  },
+  {
+   "wave": "sine",
+   "freq": 110,
+   "attack": 0.001,
+   "decay": 0.12,
+   "sustain": 0,
+   "gain": 0.3,
+   "freq_end": 65
+  }
+ ]
+}

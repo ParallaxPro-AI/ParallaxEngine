@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/speedboat"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1800,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4557, 1.606, 8.149],
+      "offset": [0, 0.803, -0.2965]
+    }
+  }
+}

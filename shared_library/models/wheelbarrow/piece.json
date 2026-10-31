@@ -1,0 +1,10 @@
+{
+  "id": "wheelbarrow",
+  "summary": "A single-wheel contractor wheelbarrow: a flared steel tray on a tubular steel frame, two handles with grips… joints wheel, tipping.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wheelbarrow or place \"prefab\": \"wheelbarrow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wheelbarrow"]
+}

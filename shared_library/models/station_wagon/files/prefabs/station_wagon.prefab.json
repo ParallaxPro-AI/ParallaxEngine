@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/station_wagon"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 1500,
+      "linear_damping": 0.05,
+      "angular_damping": 0.7
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.99,
+        1.56,
+        4.8628
+      ],
+      "offset": [
+        0,
+        0.78,
+        -0.0016
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 40,
+      "steering": 34,
+      "grip": 8,
+      "turn_rate": 2
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.78,
+        -0.0016
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

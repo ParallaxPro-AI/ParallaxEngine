@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/snowboard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3134, 0.216, 1.5428],
+      "offset": [0.0101, 0.1065, 0]
+    }
+  }
+}

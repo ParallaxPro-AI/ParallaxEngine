@@ -1,0 +1,10 @@
+{
+  "id": "mansion",
+  "summary": "A large two-storey Georgian-style country mansion: a red-brick central block on a rusticated ashlar base with… joints door_l, door_r; options door_colour.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mansion or place \"prefab\": \"mansion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mansion"]
+}

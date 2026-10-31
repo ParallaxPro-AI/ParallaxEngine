@@ -1,0 +1,10 @@
+{
+  "id": "finish_line_arch",
+  "summary": "A race finish arch: two square aluminium box-truss towers on chamfered concrete ballast blocks, joined by cor…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.finish_line_arch or place \"prefab\": \"finish_line_arch\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:finish_line_arch"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/water_mill"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [9.6128, 10.03, 8.61],
+      "offset": [-0.0364, 5.015, 0.495]
+    }
+  }
+}

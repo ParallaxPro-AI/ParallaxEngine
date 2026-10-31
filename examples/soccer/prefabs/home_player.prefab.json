@@ -1,0 +1,11 @@
+{
+  "extends": "player_base",
+  "tags": [
+    "home"
+  ],
+  "components": {
+    "footballer": {
+      "ai_speed": 8
+    }
+  }
+}

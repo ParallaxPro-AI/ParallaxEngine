@@ -1,0 +1,10 @@
+{
+  "id": "ore_rock_coal",
+  "summary": "A harvestable coal node: a ~1.3 m mottled grey boulder fused from three fractured chunks, with five black coa…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ore_rock_coal or place \"prefab\": \"ore_rock_coal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ore_rock_coal"]
+}

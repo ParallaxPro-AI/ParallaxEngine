@@ -1,0 +1,10 @@
+{
+  "ui": ["hud"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "entities": [
+    {"prefab": "camera", "at": [0, 0]},
+    {"prefab": "backdrop", "at": [0, 0]},
+    {"prefab": "board_frame", "at": [0, 0]},
+    {"id": "board", "prefab": "board", "at": [0, 0]}
+  ]
+}

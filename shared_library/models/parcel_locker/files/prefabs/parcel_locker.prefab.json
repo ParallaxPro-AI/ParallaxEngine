@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/parcel_locker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.168, 1.95, 0.679],
+      "offset": [0, 0.975, 0.0345]
+    }
+  }
+}

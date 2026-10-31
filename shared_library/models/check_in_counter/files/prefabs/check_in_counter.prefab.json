@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/check_in_counter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.37, 1.6, 0.964],
+      "offset": [0.01, 0.8, 0.008]
+    }
+  }
+}

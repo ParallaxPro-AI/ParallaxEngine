@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/drone_delivery_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 2.965, 1.3325],
+      "offset": [0, 1.4825, -0.0337]
+    }
+  }
+}

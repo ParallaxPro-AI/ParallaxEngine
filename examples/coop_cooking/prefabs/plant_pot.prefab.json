@@ -1,0 +1,21 @@
+{
+  "components": {
+    "shape": {
+      "kind": "cylinder",
+      "color": "#daaa86",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1,
+        1,
+        1
+      ]
+    }
+  }
+}

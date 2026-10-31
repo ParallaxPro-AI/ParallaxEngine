@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lifeguard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.699, 0.4129],
+      "offset": [0, 0.8495, -0.0352]
+    }
+  }
+}

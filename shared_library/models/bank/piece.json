@@ -1,0 +1,10 @@
+{
+  "id": "bank",
+  "summary": "A 20 x 18 m classical stone bank on a raised rusticated base: a portico of four turned columns under an entab… joints vault_door, vault_safe_door, vault_safe_dial, vault_safe_spoke_handle, teller_chair_0_lift, teller_chair_0_swivel, …; options facade_stone; sockets socket_entrance, socket_hall, socket_vault, socket_vault_door, eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bank or place \"prefab\": \"bank\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bank"]
+}

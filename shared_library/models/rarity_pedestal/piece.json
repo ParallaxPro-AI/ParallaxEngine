@@ -1,0 +1,10 @@
+{
+  "id": "rarity_pedestal",
+  "summary": "A loot rarity display pedestal: a dark octagonal stone plinth with a stepped base, a tall shaft ringed by fou… options rarity; sockets socket_item.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rarity_pedestal or place \"prefab\": \"rarity_pedestal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rarity_pedestal"]
+}

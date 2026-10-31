@@ -1,0 +1,17 @@
+{
+  "burst": 30,
+  "lifetime": 0.4,
+  "speed": [
+    1.4,
+    3.8
+  ],
+  "spread": 360,
+  "drag": 2.5,
+  "size": 0.16,
+  "size_end": 0,
+  "color": "#fff280f2",
+  "color_end": "#ffcc3300",
+  "image": "images/glow",
+  "max": 30,
+  "blend": "additive"
+}

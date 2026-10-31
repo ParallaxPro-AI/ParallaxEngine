@@ -1,0 +1,10 @@
+{
+  "id": "chess_set_board",
+  "summary": "A wooden chessboard with a full Staunton chess set in the starting position.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.chess_set_board or place \"prefab\": \"chess_set_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:chess_set_board"]
+}

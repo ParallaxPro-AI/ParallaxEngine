@@ -1,0 +1,14 @@
+{
+  "id": "table",
+  "summary": "A dining table. joints leaf; options top_shape, leg_style, top_material, finish; sockets socket_centre.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.table or place \"prefab\": \"table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:table"
+  ]
+}

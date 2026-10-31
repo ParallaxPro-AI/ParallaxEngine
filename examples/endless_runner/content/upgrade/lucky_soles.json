@@ -1,0 +1,5 @@
+{
+  "name": "Lucky Soles",
+  "blurb": "Every coin is worth 35% more per tier.",
+  "icon": "M12 2a10 10 0 110 20 10 10 0 010-20zm-1.5 5v10h3V7z", "effect": "coin_value", "per_level": 0.35, "costs": [220, 540, 1200]
+}

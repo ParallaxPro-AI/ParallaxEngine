@@ -1,0 +1,10 @@
+{
+  "id": "executive_desk",
+  "summary": "A large twin-pedestal executive desk, 1.8 x 0.9 m: a thick dark-walnut veneered top with a shadow-line sub-to… joints drawer_l1, drawer_l2, drawer_l3, drawer_r1, drawer_file, drawer_pencil; options wood, leather, hardware; sockets socket_desktop, socket_monitor, socket_user, socket_visitor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.executive_desk or place \"prefab\": \"executive_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:executive_desk"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plough"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.11, 1.362, 3.4548],
+      "offset": [0.005, 0.677, -0.0774]
+    }
+  }
+}

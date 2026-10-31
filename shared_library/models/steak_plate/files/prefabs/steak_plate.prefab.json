@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/steak_plate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2724, 0.04, 0.2724],
+      "offset": [0, 0.02, 0]
+    }
+  }
+}

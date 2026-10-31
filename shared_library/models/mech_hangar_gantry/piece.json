@@ -1,0 +1,10 @@
+{
+  "id": "mech_hangar_gantry",
+  "summary": "A mech maintenance gantry for a hangar bay: two 7 m braced lattice towers in yellow steel with ladders, landi… joints trolley, walkway_l, walkway_r; options paint, glow; sockets mech_bay.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mech_hangar_gantry or place \"prefab\": \"mech_hangar_gantry\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mech_hangar_gantry"]
+}

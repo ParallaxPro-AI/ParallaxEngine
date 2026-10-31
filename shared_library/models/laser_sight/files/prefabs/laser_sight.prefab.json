@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/laser_sight"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0391, 0.0518, 0.095],
+      "offset": [-0.001, 0.0129, -0.003]
+    }
+  }
+}

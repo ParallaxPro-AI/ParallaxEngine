@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/starfighter_player_b"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [10.62, 3.8827, 12.33],
+      "offset": [0, 1.9413, -0.235]
+    }
+  }
+}

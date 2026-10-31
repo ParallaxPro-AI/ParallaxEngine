@@ -1,0 +1,5 @@
+{
+  "name": "Hull Plating",
+  "blurb": "+70 max hull.",
+  "stat": "max_hull", "amount": 70, "max_level": 3
+}

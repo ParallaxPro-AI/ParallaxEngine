@@ -1,0 +1,35 @@
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1) x uiScale 2; --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: calc(2 * min(100cqw / 1920, 100cqh / 1080, 1px)); }
+/* The shared hud/controls keycap legend the template uses (shared_ui/hud/controls.html). */
+#pp-controls, #pp-controls * { margin:0; padding:0; box-sizing:border-box; }
+#pp-controls { font-family:'Inter',system-ui,sans-serif; }
+#pp-controls { direction:ltr; position:fixed; display:none; flex-direction:row; flex-wrap:wrap; align-items:center;
+                 gap:calc(5 * var(--u)) calc(16 * var(--u)); max-width:calc(100cqw - calc(24 * var(--u)));
+                 background:rgba(12,16,22,0.62);
+                 border:calc(1 * var(--u)) solid rgba(255,255,255,0.12); border-radius:calc(10 * var(--u));
+                 padding:calc(7 * var(--u)) calc(13 * var(--u)); box-shadow:0 calc(6 * var(--u)) calc(22 * var(--u)) rgba(0,0,0,0.4); }
+  #pp-controls.on { display:flex; }
+  #pp-controls { transition: opacity 0.5s ease; }
+  #pp-controls.faded { opacity: 0; }
+  #pp-controls.stack { flex-direction:column; flex-wrap:nowrap; align-items:stretch; gap:calc(4 * var(--u)); }
+  #pp-controls.top-center, #pp-controls.bottom-center { justify-content:center; }
+  #pp-controls.top-left     { top:calc(12 * var(--u)); left:calc(12 * var(--u)); }
+  #pp-controls.top-center   { top:calc(12 * var(--u)); left:50%; transform:translateX(-50%); }
+  #pp-controls.top-right    { top:calc(12 * var(--u)); right:calc(12 * var(--u)); }
+  #pp-controls.bottom-left  { bottom:calc(12 * var(--u)); left:calc(12 * var(--u)); }
+  #pp-controls.bottom-right { bottom:calc(12 * var(--u)); right:calc(12 * var(--u)); }
+  #pp-controls.bottom-center { bottom:calc(12 * var(--u)); left:50%; transform:translateX(-50%); }
+  .ctrl-row { display:flex; align-items:center; gap:calc(8 * var(--u)); white-space:nowrap; }
+  #pp-controls .ctrl-cap { flex-shrink:0; display:inline-grid; place-items:center; min-width:calc(22 * var(--u)); height:calc(22 * var(--u)); padding:0 calc(6 * var(--u));
+              background:#e8edf4; color:#12161e; border-radius:calc(5 * var(--u)); font-size:calc(11 * var(--u)); font-weight:900;
+              box-shadow:0 calc(2 * var(--u)) 0 rgba(0,0,0,0.35); }
+  .ctrl-cap.touch { display:none; }
+  .ctrl-lbl { font-size:calc(12 * var(--u)); font-weight:700; color:#f0f4fa; text-shadow:0 calc(1 * var(--u)) calc(2 * var(--u)) rgba(0,0,0,0.6); }
+  @media (pointer:coarse) {
+    .ctrl-row[data-has-touch] .ctrl-cap.key { display:none; }
+    .ctrl-row[data-has-touch] .ctrl-cap.touch { display:inline-grid; }
+    #pp-controls.desktop-only { display:none !important; }   
+  }
+  @media (pointer:fine) {
+    #pp-controls.mobile-only { display:none !important; }     
+  }

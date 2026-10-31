@@ -1,0 +1,3 @@
+{ "name": "Furnace", "order": 8, "category": "build", "station": "workbench",
+  "inputs": [{ "item": "stone", "count": 8 }],
+  "output": { "item": "furnace", "count": 1 } }

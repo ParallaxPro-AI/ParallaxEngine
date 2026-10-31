@@ -1,0 +1,10 @@
+{
+  "id": "oil_drum_fire",
+  "summary": "A post-apocalyptic burn barrel: a rusted 208-litre (55 US gal, 585 mm across, 880 mm tall) steel oil drum wit… joints damp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.oil_drum_fire or place \"prefab\": \"oil_drum_fire\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:oil_drum_fire"]
+}

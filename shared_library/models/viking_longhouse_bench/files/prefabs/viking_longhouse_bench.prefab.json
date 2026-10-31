@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/viking_longhouse_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4, 1.305, 0.54],
+      "offset": [0, 0.6525, 0]
+    }
+  }
+}

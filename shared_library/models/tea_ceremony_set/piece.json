@@ -1,0 +1,10 @@
+{
+  "id": "tea_ceremony_set",
+  "summary": "A Japanese tea-ceremony set on a black-and-vermilion lacquered tray: a cast-iron kettle with a waist flange… joints kettle_lid, natsume_lid; sockets bowl_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tea_ceremony_set or place \"prefab\": \"tea_ceremony_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tea_ceremony_set"]
+}

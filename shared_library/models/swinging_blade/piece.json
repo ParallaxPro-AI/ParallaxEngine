@@ -1,0 +1,10 @@
+{
+  "id": "swinging_blade",
+  "summary": "A pit-and-pendulum swinging-blade trap: a portal frame of two posts and a top beam, with a heavy crescent ste… joints pendulum.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.swinging_blade or place \"prefab\": \"swinging_blade\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:swinging_blade"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "house_railing_balcony",
+  "summary": "A 3 m balcony and porch balustrade module for the HOUSE modular kit: painted stop-chamfered posts with turned… options style, end_post, rail_wood, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_railing_balcony or place \"prefab\": \"house_railing_balcony\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_railing_balcony"]
+}

@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="dustline.css">
+<style>
+  .dlt { position: fixed; inset: 0; }
+  .dlt-shade { position: fixed; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(10,23,27,.97) 0%, rgba(10,23,27,.88) 30%, rgba(10,23,27,.4) 52%, rgba(10,23,27,0) 66%), linear-gradient(0deg, rgba(10,23,27,.6), transparent 30%); }
+  .dlt-card { position: fixed; left: calc(128 * var(--u)); top: 50%; transform: translateY(-50%); width: calc(780 * var(--u)); display: flex; flex-direction: column; pointer-events: auto; }
+  .dlt-eyebrow { display: flex; align-items: center; gap: calc(14 * var(--u)); font-size: calc(17 * var(--u)); font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--dl-brass); }
+  .dlt-eyebrow::before { content: ""; width: calc(40 * var(--u)); height: calc(2 * var(--u)); background: var(--dl-brass); }
+  .dlt-word { margin: calc(22 * var(--u)) 0 calc(14 * var(--u)) calc(-6 * var(--u)); font: 400 calc(228 * var(--u))/.84 var(--dl-f-display); letter-spacing: .01em; text-transform: uppercase; text-shadow: var(--dl-sh-display); }
+  .dlt-sub { font-size: calc(28 * var(--u)); font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: var(--dl-sage); font-variant-numeric: tabular-nums; }
+  .dlt-sub b { color: var(--dl-ink); font-weight: 700; }
+  .dlt-cta { margin-top: calc(48 * var(--u)); display: flex; align-items: center; gap: calc(28 * var(--u)); }
+  .dlt .dl-btn.primary { min-height: calc(68 * var(--u)); padding: 0 calc(40 * var(--u)); font-size: calc(24 * var(--u)); }
+  .dlt-keys { font-size: calc(14 * var(--u)); font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--dl-sage); line-height: 2; }
+  .dlt-career { margin-top: calc(64 * var(--u)); padding-top: calc(16 * var(--u)); border-top: 1px solid var(--dl-brass-line); }
+  .dlt-row { margin-top: calc(12 * var(--u)); display: flex; gap: calc(44 * var(--u)); }
+  .dlt-row > div { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+  .dlt-v { font-size: calc(36 * var(--u)); font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums lining-nums; }
+  .dlt-best .dlt-v { color: var(--dl-brass); }
+  .dlt-bar { position: relative; display: block; width: calc(120 * var(--u)); height: calc(3 * var(--u)); margin-top: calc(4 * var(--u)); background: rgba(237,241,237,.12); overflow: hidden; }
+  .dlt-bar i { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--dl-brass); transition: width 240ms var(--dl-ease-out); }
+  @media (pointer: coarse) {
+    .dlt-shade { background: linear-gradient(90deg, rgba(10,23,27,.97) 0%, rgba(10,23,27,.9) 45%, rgba(10,23,27,.3) 62%, rgba(10,23,27,0) 74%); }
+    .dlt-card { left: calc(calc(64 * var(--u)) + env(safe-area-inset-left, 0px)); width: calc(60% - calc(48 * var(--u)) - env(safe-area-inset-left, 0px)); }
+    .dlt-eyebrow { font-size: calc(22 * var(--u)); gap: calc(20 * var(--u)); }
+    .dlt-eyebrow::before { width: calc(48 * var(--u)); height: calc(3 * var(--u)); }
+    .dlt-word { margin: calc(20 * var(--u)) 0 calc(16 * var(--u)) calc(-6 * var(--u)); font-size: calc(192 * var(--u)); }
+    .dlt-sub { font-size: calc(30 * var(--u)); }
+    .dlt-keys { display: none; }
+    .dlt-cta { margin-top: calc(44 * var(--u)); }
+    .dlt .dl-btn.primary { min-height: calc(100 * var(--u)); padding: 0 calc(52 * var(--u)); font-size: calc(34 * var(--u)); gap: calc(20 * var(--u)); }
+    .dlt-career { margin-top: calc(48 * var(--u)); padding-top: calc(20 * var(--u)); }
+    .dlt-career > .lbl { display: none; }
+    .dlt-row { margin-top: 0; gap: calc(28 * var(--u)); white-space: nowrap; }
+    .dlt-row > div { flex-direction: row; align-items: baseline; gap: calc(10 * var(--u)); }
+    .dlt .lbl { font-size: calc(22 * var(--u)); }
+    .dlt-v { font-size: calc(34 * var(--u)); }
+    .dlt-bar { display: none; }
+  }
+</style>
+<div class="dl dlt">
+  <div class="dlt-shade"></div>
+  <main class="dlt-card">
+    <div class="dlt-eyebrow" data-text="title_eyebrow"></div>
+    <h1 class="dlt-word" data-text="game_title"></h1>
+    <p class="dlt-sub"><b data-bind="rounds"></b> <span data-text="rounds_word"></span> · <b data-bind="lives"></b> <span data-text="lives_word"></span></p>
+    <div class="dlt-cta">
+      <button class="dl-btn primary" data-action="start"><span data-text="start_run"></span> <span class="arr">→</span></button>
+      <span class="dlt-keys desktop-only"><kbd>WASD</kbd> <span data-text="move_word"></span> · <kbd>P</kbd> <span data-text="pause_word"></span></span>
+    </div>
+    <div class="dlt-career">
+      <span class="lbl" data-text="career"></span>
+      <div class="dlt-row">
+        <div><span class="lbl" data-text="runs_label"></span><span class="dlt-v" data-bind="runs"></span></div>
+        <div><span class="lbl" data-text="wins_label"></span><span class="dlt-v" data-bind="wins"></span></div>
+        <div><span class="lbl" data-text="frags_label"></span><span class="dlt-v" data-bind="frags"></span></div>
+        <div class="dlt-best"><span class="lbl" data-text="best_label"></span><span class="dlt-v" data-bind="best"></span></div>
+        <div><span class="lbl" data-text="rounds_cleared_label"></span><span class="dlt-v" data-bind="cleared"></span><span class="dlt-bar"><i data-style-width="cleared_fill"></i></span></div>
+      </div>
+    </div>
+  </main>
+</div>

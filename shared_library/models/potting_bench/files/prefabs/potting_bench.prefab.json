@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/potting_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.315, 1.509, 0.588],
+      "offset": [0.0225, 0.7545, 0.021]
+    }
+  }
+}

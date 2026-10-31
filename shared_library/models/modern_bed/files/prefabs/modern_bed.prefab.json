@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.704, 1.1, 2.1525],
+      "offset": [0, 0.55, -0.0013]
+    }
+  }
+}

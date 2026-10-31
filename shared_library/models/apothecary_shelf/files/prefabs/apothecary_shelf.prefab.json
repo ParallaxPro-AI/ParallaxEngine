@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/apothecary_shelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.364, 2.263, 0.5],
+      "offset": [0, 1.1315, 0.015]
+    }
+  }
+}

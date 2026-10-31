@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/towel_rail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.638, 1.0345, 0.0893],
+      "offset": [0.013, 0.5172, 0.0006]
+    }
+  }
+}

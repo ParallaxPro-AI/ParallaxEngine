@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/swing",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.45,
+        2.3074,
+        1.3769
+      ],
+      "offset": [
+        0.0,
+        1.1543,
+        0.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "gem_cut_set",
+  "summary": "A set of seven loose cut gemstones nested in a black velvet pad inside a small filleted walnut jeweller's tra…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gem_cut_set or place \"prefab\": \"gem_cut_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gem_cut_set"]
+}

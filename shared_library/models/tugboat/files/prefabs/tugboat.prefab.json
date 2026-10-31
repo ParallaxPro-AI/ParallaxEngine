@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tugboat"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 150000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.52, 9.87, 16.35],
+      "offset": [0, 4.935, -0.065]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "valentine_heart_box",
+  "summary": "A heart-shaped Valentine's chocolate box: a red satin heart tray with a gold-foil liner holding rows of dark… joints lid.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.valentine_heart_box or place \"prefab\": \"valentine_heart_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:valentine_heart_box"]
+}

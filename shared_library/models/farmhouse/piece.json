@@ -1,0 +1,10 @@
+{
+  "id": "farmhouse",
+  "summary": "A two-storey rural farmhouse, 9.6 x 7.2 m on a fieldstone foundation: barn-red stained lap siding with white… joints door; sockets socket_porch, socket_door_outside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.farmhouse or place \"prefab\": \"farmhouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:farmhouse"]
+}

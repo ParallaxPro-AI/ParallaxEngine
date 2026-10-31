@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/blood_bag_stand"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.535, 1.788, 0.4737],
+      "offset": [-0.0035, 0.894, 0]
+    }
+  }
+}

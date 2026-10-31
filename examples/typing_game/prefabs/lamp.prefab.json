@@ -1,0 +1,9 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.85, 0.85, 0.85], "color": "#bcf3f9" },
+    "light": { "kind": "point", "color": "#bcf3ff", "intensity": 9, "range": 30 }
+  },
+  "behaviors": {
+    "word_pulse": { "alarm": true, "punch": 0.4, "decay": 3.4, "idle_color": "#95cbda", "hit_color": "#daffff" }
+  }
+}

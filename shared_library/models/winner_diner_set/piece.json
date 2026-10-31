@@ -1,0 +1,10 @@
+{
+  "id": "winner_diner_set",
+  "summary": "Warm Art Deco diner backdrop with fluted panels, brass wainscot, upholstered banquettes and a lit marquee.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.winner_diner_set or place \"prefab\": \"winner_diner_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:winner_diner_set"]
+}

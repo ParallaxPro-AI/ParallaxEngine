@@ -1,0 +1,10 @@
+{
+  "id": "police_suv",
+  "summary": "A police patrol SUV built on the library SUV's lofted body: gloss black paint, a roof light bar with red and… joints door_f_l, door_f_r, door_r_l, door_r_r, tailgate, lightbar, …; options kit, paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.police_suv or place \"prefab\": \"police_suv\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:police_suv"]
+}

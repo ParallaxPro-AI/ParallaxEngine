@@ -1,0 +1,10 @@
+{
+  "id": "robot_arm",
+  "summary": "A 6-axis industrial robot manipulator on a fixed pedestal: base yaw, shoulder, elbow, wrist roll/pitch and to… joints base_yaw, shoulder, elbow, wrist_roll, wrist_pitch, tool_roll, …; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.robot_arm or place \"prefab\": \"robot_arm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:robot_arm"]
+}

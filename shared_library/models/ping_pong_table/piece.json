@@ -1,0 +1,10 @@
+{
+  "id": "ping_pong_table",
+  "summary": "A regulation table-tennis table: 2.74 x 1.525 m blue playing surface 0.76 m high, white 20 mm edge lines and… joints half_a, half_a_legs, half_b, half_b_legs; options surface; sockets socket_net_centre, socket_serve_a, socket_serve_b, socket_court_a, socket_court_b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ping_pong_table or place \"prefab\": \"ping_pong_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ping_pong_table"]
+}

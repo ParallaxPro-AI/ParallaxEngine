@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bowling_pin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1211, 0.381, 0.1211],
+      "offset": [0, 0.1905, 0]
+    }
+  }
+}

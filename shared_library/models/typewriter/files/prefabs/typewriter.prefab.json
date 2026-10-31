@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/typewriter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.477, 0.3251, 0.3475],
+      "offset": [0, 0.1625, 0.0037]
+    }
+  }
+}

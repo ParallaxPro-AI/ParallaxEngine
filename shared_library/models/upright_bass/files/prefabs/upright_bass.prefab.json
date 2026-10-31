@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/upright_bass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.683, 1.878, 0.794],
+      "offset": [0, 0.939, -0.013]
+    }
+  }
+}

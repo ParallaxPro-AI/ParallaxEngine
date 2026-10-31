@@ -1,0 +1,14 @@
+{
+  "id": "treasure_chest",
+  "summary": "A barrel-lidded treasure chest: wooden coffer with iron banding, a brass lock plate with a flip-up keyhole… joints lid, hasp, lock; options style, variant.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.treasure_chest or place \"prefab\": \"treasure_chest\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:treasure_chest"
+  ]
+}

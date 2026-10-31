@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vtol_dropship"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [17.04, 6.4926, 21.3859],
+      "offset": [0, 3.2463, -1.0929]
+    }
+  }
+}

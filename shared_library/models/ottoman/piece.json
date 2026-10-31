@@ -1,0 +1,10 @@
+{
+  "id": "ottoman",
+  "summary": "A 0.80 m upholstered storage ottoman on four turned bun feet: a hollow fabric-wrapped box with a lined interi… joints lid; options fabric; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ottoman or place \"prefab\": \"ottoman\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ottoman"]
+}

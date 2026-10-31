@@ -1,0 +1,10 @@
+{
+  "id": "roundabout",
+  "summary": "A children's playground roundabout (merry-go-round): a low circular steel platform on a fixed central column… joints spin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.roundabout or place \"prefab\": \"roundabout\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:roundabout"]
+}

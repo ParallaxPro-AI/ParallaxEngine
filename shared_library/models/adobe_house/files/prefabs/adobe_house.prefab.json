@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/adobe_house"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.64, 5.7002, 8.93],
+      "offset": [0, 2.8499, 0.165]
+    }
+  }
+}

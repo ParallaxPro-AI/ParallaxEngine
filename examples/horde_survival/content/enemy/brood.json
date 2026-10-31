@@ -1,0 +1,2 @@
+{ "name": "Brood Sac", "prefab": "brood", "hp": 44, "damage": 9, "move_speed": 2.6, "xp": 3, "score": 40,
+  "heart_chance": 0.04, "split_into": "swarmling", "split_count": 3, "split_spread": 1.8 }

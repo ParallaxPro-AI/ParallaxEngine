@@ -1,0 +1,120 @@
+<!-- The template's title card over the dark arena: the run brief, the SEED box (type a friend's
+     seed to replay their run, or roll one), the Ashen Vigil switch, Light the Circle, the best
+     run and the Ember Shrine button. -->
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="ember.css">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .scene { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; font-family: var(--ec-font-ui); color: var(--ec-ink); -webkit-font-smoothing: antialiased; }
+  .scene::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.75)); }
+  :where(.scene button:not(.ec-btn)) { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+  .tcard { position: relative; width: calc(720 * var(--ec-u)); padding-bottom: calc(32 * var(--ec-u)); pointer-events: auto; animation: ec-card-in var(--ec-dur-slow) var(--ec-ease-out) both; }
+  .tstrip { display: flex; align-items: center; gap: calc(10 * var(--ec-u)); padding: calc(14 * var(--ec-u)) calc(24 * var(--ec-u)); border-bottom: calc(1 * var(--ec-u)) solid var(--ec-line); }
+  .tstrip .ec-lbl { color: var(--ec-ember-hi); letter-spacing: .3em; }
+  .tbody { padding: calc(28 * var(--ec-u)) calc(48 * var(--ec-u)) 0; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .tcol-a, .tcol-b { display: flex; flex-direction: column; align-items: center; width: 100%; }
+  .t-h1 { font: 900 calc(76 * var(--ec-u))/1 var(--ec-font-display); letter-spacing: .05em; filter: drop-shadow(0 0 calc(30 * var(--ec-u)) rgba(249,115,22,.25)); white-space: nowrap; }
+  .tagline { font: 600 calc(13 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .32em; text-transform: uppercase; color: var(--ec-ember-hi); margin-top: calc(14 * var(--ec-u)); }
+  .blurb { font: 400 calc(16 * var(--ec-u))/1.6 var(--ec-font-ui); color: var(--ec-ink-dim); max-width: calc(560 * var(--ec-u)); margin-top: calc(20 * var(--ec-u)); text-wrap: pretty; }
+  .hints { display: flex; gap: calc(20 * var(--ec-u)); margin-top: calc(20 * var(--ec-u)); flex-wrap: wrap; justify-content: center; }
+  .hint { display: flex; gap: calc(8 * var(--ec-u)); align-items: center; font: 500 calc(12 * var(--ec-u))/1 var(--ec-font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--ec-ink-dim); }
+  .touch-only { display: none; }
+
+  .ctrls { width: 100%; display: flex; flex-direction: column; gap: calc(12 * var(--ec-u)); margin-top: calc(28 * var(--ec-u)); }
+  .seed { display: grid; grid-template-columns: auto 1fr auto; gap: calc(14 * var(--ec-u)); align-items: center; padding: calc(6 * var(--ec-u)) calc(6 * var(--ec-u)) calc(6 * var(--ec-u)) calc(18 * var(--ec-u)); border: calc(1 * var(--ec-u)) solid var(--ec-line); border-radius: calc(8 * var(--ec-u)); background: rgba(0,0,0,.35); text-align: left; }
+  .seed:focus-within { border-color: rgba(125,211,252,.5); box-shadow: var(--ec-glow-ice); }
+  .seed .ec-lbl { color: var(--ec-ice); }
+  #seed { pointer-events: auto; background: transparent; border: 0; outline: 0; font: 700 calc(20 * var(--ec-u)) var(--ec-font-mono); color: var(--ec-ice); letter-spacing: .14em; width: 100%; min-width: 0; }
+  #seed::placeholder { color: rgba(125,211,252,.38); }
+
+  .vigil { display: flex; align-items: center; gap: calc(14 * var(--ec-u)); width: 100%; padding: calc(12 * var(--ec-u)) calc(16 * var(--ec-u)); border: calc(1 * var(--ec-u)) solid var(--ec-line); border-radius: calc(8 * var(--ec-u)); background: rgba(0,0,0,.35); text-align: left; color: var(--ec-ink-dim); font: 500 calc(14 * var(--ec-u))/1.3 var(--ec-font-ui); letter-spacing: .04em; pointer-events: auto; transition: all var(--ec-dur) var(--ec-ease-out); }
+  .vigil b { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+  .sw { position: relative; width: calc(40 * var(--ec-u)); height: calc(22 * var(--ec-u)); border-radius: calc(11 * var(--ec-u)); background: rgba(255,255,255,.08); border: calc(1 * var(--ec-u)) solid rgba(255,255,255,.14); flex: none; transition: background var(--ec-dur); }
+  .sw::after { content: ''; position: absolute; left: calc(2 * var(--ec-u)); top: calc(2 * var(--ec-u)); width: calc(16 * var(--ec-u)); height: calc(16 * var(--ec-u)); border-radius: 50%; background: var(--ec-ink-mute); transition: left var(--ec-dur) var(--ec-ease-out), background var(--ec-dur); }
+  .lock-ic { display: none; flex: none; }
+  .vt { display: none; }
+  .vigil-locked .vigil { opacity: .45; cursor: not-allowed; }
+  .vigil-locked .sw { display: none; }
+  .vigil-locked .lock-ic { display: block; }
+  .vigil-locked .vt-lock, .vigil-off .vt-off, .vigil-lit .vt-lit { display: inline; }
+  .vigil-lit .vigil { border-color: rgba(168,85,247,.65); background: var(--ec-violet-deep); box-shadow: var(--ec-glow-violet); color: var(--ec-violet-hi); }
+  .vigil-lit .sw { background: var(--ec-violet); border-color: var(--ec-violet-hi); }
+  .vigil-lit .sw::after { left: calc(20 * var(--ec-u)); background: #fff; }
+  .cta { width: 100%; height: calc(64 * var(--ec-u)); font-size: calc(18 * var(--ec-u)); letter-spacing: .26em; margin-top: calc(6 * var(--ec-u)); }
+  .vigil-lit .cta { box-shadow: var(--ec-glow-ember), 0 0 0 calc(1 * var(--ec-u)) rgba(168,85,247,.5), 0 0 calc(40 * var(--ec-u)) rgba(168,85,247,.25); }
+  .tfoot { display: flex; justify-content: space-between; align-items: center; gap: calc(16 * var(--ec-u)); width: 100%; margin-top: calc(20 * var(--ec-u)); }
+  .best { font: 500 calc(13 * var(--ec-u))/1.3 var(--ec-font-ui); color: var(--ec-ink-dim); letter-spacing: .04em; }
+  .best b { font-family: var(--ec-font-mono); font-weight: 800; color: var(--ec-ink); }
+
+  @media (pointer: coarse) {
+    .desk-only { display: none; }
+    .touch-only { display: flex; }
+    .tcard { width: calc(100cqw - calc(192 * var(--ec-u))); padding-bottom: calc(32 * var(--ec-u)); }
+    .tstrip { padding: calc(18 * var(--ec-u)) calc(36 * var(--ec-u)); gap: calc(20 * var(--ec-u)); }
+    .tbody { display: grid; grid-template-columns: 1.05fr 1fr; gap: calc(48 * var(--ec-u)); padding: calc(28 * var(--ec-u)) calc(40 * var(--ec-u)) 0; text-align: left; align-items: start; }
+    .tcol-a, .tcol-b { align-items: flex-start; }
+    .t-h1 { font-size: calc(68 * var(--ec-u)); }
+    .tagline { font-size: calc(20 * var(--ec-u)); margin-top: calc(16 * var(--ec-u)); }
+    .blurb { font-size: calc(26 * var(--ec-u)); line-height: 1.5; margin-top: calc(24 * var(--ec-u)); }
+    .hints { flex-direction: column; gap: calc(14 * var(--ec-u)); margin-top: calc(24 * var(--ec-u)); justify-content: flex-start; }
+    .hint { font-size: calc(20 * var(--ec-u)); gap: calc(16 * var(--ec-u)); }
+    .ctrls { margin-top: 0; gap: calc(16 * var(--ec-u)); }
+    .seed { padding: calc(8 * var(--ec-u)) calc(8 * var(--ec-u)) calc(8 * var(--ec-u)) calc(24 * var(--ec-u)); gap: calc(20 * var(--ec-u)); border-radius: calc(16 * var(--ec-u)); }
+    #seed { font-size: calc(32 * var(--ec-u)); }
+    .vigil { padding: calc(18 * var(--ec-u)) calc(24 * var(--ec-u)); font-size: calc(24 * var(--ec-u)); gap: calc(20 * var(--ec-u)); border-radius: calc(16 * var(--ec-u)); }
+    .sw { width: calc(80 * var(--ec-u)); height: calc(44 * var(--ec-u)); border-radius: calc(22 * var(--ec-u)); }
+    .sw::after { left: calc(4 * var(--ec-u)); top: calc(4 * var(--ec-u)); width: calc(32 * var(--ec-u)); height: calc(32 * var(--ec-u)); }
+    .vigil-lit .sw::after { left: calc(40 * var(--ec-u)); }
+    .lock-ic { width: calc(36 * var(--ec-u)); height: calc(36 * var(--ec-u)); }
+    .cta { height: calc(96 * var(--ec-u)); font-size: calc(28 * var(--ec-u)); margin-top: calc(4 * var(--ec-u)); }
+    .tfoot { flex-direction: column; align-items: stretch; gap: calc(16 * var(--ec-u)); margin-top: calc(20 * var(--ec-u)); }
+    .best { font-size: calc(22 * var(--ec-u)); text-align: center; }
+    .tfoot .ec-btn { height: calc(80 * var(--ec-u)); font-size: calc(22 * var(--ec-u)); }
+  }
+</style>
+<div class="scene" data-class-vigil-locked="vigil_locked" data-class-vigil-off="vigil_off" data-class-vigil-lit="vigil_lit">
+  <section class="tcard ec-solid">
+    <div class="tstrip"><span class="ec-dot"></span><span class="ec-lbl" data-text="strip_title"></span></div>
+    <div class="tbody">
+      <div class="tcol-a">
+        <h1 class="t-h1 ec-grad" data-text="game_title"></h1>
+        <p class="tagline" data-text="tagline"></p>
+        <p class="blurb" data-text="blurb"></p>
+        <div class="hints desk-only">
+          <span class="hint"><span class="ec-kbd">WASD</span><span data-text="hint_move"></span></span>
+          <span class="hint"><span class="ec-kbd">SPACE</span><span data-text="hint_nova"></span></span>
+          <span class="hint"><span class="ec-kbd">P</span><span data-text="hint_pause"></span></span>
+          <span class="hint"><span class="ec-kbd">S</span><span data-text="hint_shrine"></span></span>
+        </div>
+        <div class="hints touch-only">
+          <span class="hint"><span class="ec-kbd">&#9678;</span><span data-text="hint_stick"></span></span>
+          <span class="hint"><span class="ec-kbd">&#9679;</span><span data-text="hint_nova_touch"></span></span>
+          <span class="hint"><span class="ec-kbd">&#9776;</span><span data-text="hint_pause_touch"></span></span>
+        </div>
+      </div>
+      <div class="tcol-b">
+        <div class="ctrls">
+          <label class="seed"><span class="ec-lbl" data-text="seed"></span><input id="seed" inputmode="numeric" maxlength="6" autocomplete="off" data-attr-placeholder="seed_placeholder"><button class="ec-btn ec-btn-sm" id="roll" type="button"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v5h-5"/></svg><span data-text="roll"></span></button></label>
+          <button class="vigil" data-action="vigil"><svg class="lock-ic" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="sw"></span>
+            <span class="vt vt-lock"><b data-text="vigil_toggle"></b> <span data-text="vigil_locked"></span></span>
+            <span class="vt vt-off"><b data-text="vigil_toggle"></b> <span data-text="vigil_off"></span></span>
+            <span class="vt vt-lit"><b data-text="vigil_lit"></b> <span data-text="vigil_lit_note"></span></span>
+          </button>
+          <button class="ec-btn ec-btn-primary cta" id="start" data-text="light_circle"></button>
+        </div>
+        <div class="tfoot">
+          <span class="best"><span data-text="best_run"></span> <span data-show="has_best"><b data-bind="best_seconds"></b> · <b data-bind="best_score"></b> <span data-text="pts"></span></span><span data-hide="has_best"><b>—</b> <span data-text="best_none"></span></span></span>
+          <button class="ec-btn ec-btn-ghost ec-btn-sm" data-action="shrine" data-key="KeyS">&#9880; <span data-text="shrine_button"></span> <b data-bind="dust"></b> <span data-text="dust_word"></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<script>
+  // An <input>'s value can't fill an action parameter, so Light the Circle sends the seed by
+  // hand (see NOTES.md); Roll and the digits-only filter are presentation.
+  const seed = document.getElementById("seed");
+  seed.addEventListener("input", () => { seed.value = seed.value.replace(/\D/g, "").slice(0, 6); });
+  document.getElementById("roll").onclick = () => { seed.value = String(100000 + Math.floor(Math.random() * 900000)); };
+  document.getElementById("start").onclick = () => { parallax.action("start", { seed: Number(seed.value) || 0 }); };
+</script>

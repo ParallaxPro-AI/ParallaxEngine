@@ -1,0 +1,10 @@
+{
+  "id": "campfire_cooking_tripod",
+  "summary": "A bushcraft cooking station: three bark-on poles (about 1.65 m long, 45-55 mm thick) lashed with rope where t… joints damp, swing; sockets socket_pot, socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.campfire_cooking_tripod or place \"prefab\": \"campfire_cooking_tripod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:campfire_cooking_tripod"]
+}

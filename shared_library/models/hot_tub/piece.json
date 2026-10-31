@@ -1,0 +1,10 @@
+{
+  "id": "hot_tub",
+  "summary": "A 2.13 m square outdoor hot tub: a wood-slat skirt cabinet with a dark plinth, a moulded acrylic shell with b… joints cover_lift, cover_fold; options cabinet, shell, cover; sockets socket_water, socket_step.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hot_tub or place \"prefab\": \"hot_tub\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hot_tub"]
+}

@@ -1,0 +1,10 @@
+{
+  "components": {
+    "shape": { "kind": "sphere", "size": [0.38, 0.38, 0.38], "color": "#e1a0f9", "emissive": "#e1a0f9" },
+    "rigidbody": { "kind": "kinematic" },
+    "collider": { "shape": "sphere", "radius": 1.15, "trigger": true, "layer": "shard", "collides_with": ["survivor"] }
+  },
+  "tags": ["cinder_shard"],
+  "behaviors": { "cinder_shard": {} },
+  "pool": 80
+}

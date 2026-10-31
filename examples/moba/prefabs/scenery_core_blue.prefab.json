@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": {"model": "models/core_blue", "cast_shadows": true}
+  }
+}

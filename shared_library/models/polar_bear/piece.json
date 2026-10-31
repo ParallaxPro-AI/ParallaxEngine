@@ -1,0 +1,10 @@
+{
+  "id": "polar_bear",
+  "summary": "A polar bear on the engine's quadruped_20 rig: ~1.3 m at the shoulder, ~2.65 m nose to tail. options fur; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.polar_bear or place \"prefab\": \"polar_bear\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:polar_bear"]
+}

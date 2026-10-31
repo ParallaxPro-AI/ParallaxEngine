@@ -1,0 +1,30 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [
+        1.8,
+        0.25,
+        1.4
+      ],
+      "color": "#eacea6",
+      "roughness": 0.8,
+      "texture": "https://r2.parallaxpro.ai/assets/image_texture/ff/6f/ff6fd42a8638c5090b1c14e5569cb19f103c248f1ebee89f5f617996a0272c32.png",
+      "uv_scale": [
+        2,
+        2
+      ]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.8,
+        0.25,
+        1.4
+      ]
+    },
+    "station": {
+      "kind": "chopping_board"
+    }
+  }
+}

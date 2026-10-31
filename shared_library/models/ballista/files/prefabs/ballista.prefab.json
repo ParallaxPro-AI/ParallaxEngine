@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ballista"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0736, 1.965, 3.2606],
+      "offset": [0, 0.9825, -0.0997]
+    }
+  }
+}

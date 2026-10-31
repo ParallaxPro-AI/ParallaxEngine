@@ -1,0 +1,10 @@
+{
+  "id": "boar",
+  "summary": "A wild boar on the engine's quadruped_20 rig, sized from a real adult male: ~0.85 m at the shoulder, ~1.5 m s… options coat; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boar or place \"prefab\": \"boar\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boar"]
+}

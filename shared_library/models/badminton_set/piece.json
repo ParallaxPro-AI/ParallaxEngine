@@ -1,0 +1,10 @@
+{
+  "id": "badminton_set",
+  "summary": "A badminton set laid out on the ground: two 0.67 m rackets (oval 230 x 200 mm graphite hoops, strung face, sl… options racket_a_accent, racket_b_accent, frame; sockets socket_shuttle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.badminton_set or place \"prefab\": \"badminton_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:badminton_set"]
+}

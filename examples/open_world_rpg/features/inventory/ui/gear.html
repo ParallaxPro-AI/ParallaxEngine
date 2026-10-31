@@ -1,0 +1,91 @@
+<!-- The gear screen in the template's lantern glass: the three slots, the pieces that have dropped for each with
+     Equip buttons, the worn totals and the damage kind the sword swings. Script-free. -->
+<link rel="stylesheet" href="../../../ui/sundermere.css">
+<style>
+html, body { background: transparent; pointer-events: none; }
+[hidden] { display: none !important; }
+.gm-root { position: fixed; inset: 0; }
+.gm-root .sm-scrim { pointer-events: auto; }
+.gm { position: fixed; left: 50%; top: 50%; width: calc(1000 * var(--u)); max-height: 96cqh; display: flex; flex-direction: column; transform: translate(-50%, -50%); pointer-events: auto; animation: gm-in .22s var(--sm-ease, ease-out); }
+@keyframes gm-in { from { opacity: 0; transform: translate(-50%, -50%) scale(.98); } to { opacity: 1; transform: translate(-50%, -50%); } }
+.gm-hd { display: flex; align-items: flex-end; justify-content: space-between; gap: calc(32 * var(--u)); padding: calc(34 * var(--u)) calc(44 * var(--u)) calc(22 * var(--u)); border-bottom: 1px solid rgba(214,187,120,.18); }
+.gm-title { margin-top: calc(12 * var(--u)); font: 600 calc(36 * var(--u))/1 var(--sm-font-display); }
+.gm-sub { margin-top: calc(10 * var(--u)); max-width: calc(560 * var(--u)); font: 400 calc(19 * var(--u))/1.35 var(--sm-font-speech); color: rgba(244,239,220,.78); text-wrap: pretty; }
+.gm-el { display: flex; align-items: center; gap: calc(10 * var(--u)); padding: calc(10 * var(--u)) calc(16 * var(--u)); border-radius: calc(8 * var(--u)); border: 1px solid rgba(224,196,140,.45); background: rgba(0,0,0,.22); font: 600 calc(13 * var(--u))/1 var(--sm-font-ui); letter-spacing: .12em; text-transform: uppercase; color: rgba(244,239,220,.7); white-space: nowrap; }
+.gm-el b { font: 700 calc(19 * var(--u))/1 var(--sm-font-ui); letter-spacing: .04em; }
+.gm-body { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); min-height: 0; overflow: auto; }
+.gm-slots { padding: calc(18 * var(--u)) calc(30 * var(--u)) calc(22 * var(--u)) calc(34 * var(--u)); border-right: 1px solid rgba(214,187,120,.14); display: flex; flex-direction: column; gap: calc(16 * var(--u)); }
+.gm-lab { font: 600 calc(11 * var(--u))/1 var(--sm-font-ui); letter-spacing: .24em; text-transform: uppercase; color: rgba(217,191,128,.8); }
+.gs { display: flex; flex-direction: column; gap: calc(6 * var(--u)); }
+.gi { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: center; gap: calc(14 * var(--u)); min-height: calc(54 * var(--u)); padding: calc(8 * var(--u)) calc(14 * var(--u)); border-radius: calc(8 * var(--u)); border: 1px solid rgba(214,187,120,.16); background: rgba(0,0,0,.18); }
+.gi.worn { border-color: rgba(224,196,140,.55); background: linear-gradient(90deg, rgba(224,196,140,.14), rgba(224,196,140,.03)); }
+.gi.empty { border-style: dashed; color: rgba(244,239,220,.45); font: italic 500 calc(17 * var(--u))/1 var(--sm-font-speech); }
+.gi-n { font: 600 calc(19 * var(--u))/1.15 var(--sm-font-display); }
+.gi-s { margin-top: calc(6 * var(--u)); display: flex; flex-wrap: wrap; gap: calc(6 * var(--u)); }
+.chip { font: 600 calc(12 * var(--u))/1 var(--sm-font-ui); letter-spacing: .04em; padding: calc(4 * var(--u)) calc(8 * var(--u)); border-radius: calc(10 * var(--u)); border: 1px solid rgba(214,187,120,.3); color: var(--sm-gold-pale); }
+.chip.fire { color: #ff9a6a; border-color: rgba(255,154,106,.55); }
+.chip.frost { color: #8fe3ff; border-color: rgba(143,227,255,.55); }
+.chip.arcane { color: #c9a0ff; border-color: rgba(201,160,255,.55); }
+.gi-t { font: 600 calc(12 * var(--u))/1 var(--sm-font-ui); letter-spacing: .14em; text-transform: uppercase; color: var(--sm-gold); }
+.sm-root .gi-b { height: max(40px, calc(42 * var(--u))); min-width: calc(96 * var(--u)); border-radius: calc(6 * var(--u)); border: 1px solid #f3dfae; background: var(--sm-gold-fill); color: var(--sm-ink-on-gold); font: 700 calc(14 * var(--u))/1 var(--sm-font-ui); cursor: pointer; }
+.sm-root .gi-b:focus-visible { box-shadow: var(--sm-focus-ring); }
+.gm-side { padding: calc(18 * var(--u)) calc(40 * var(--u)) calc(22 * var(--u)) calc(34 * var(--u)); display: flex; flex-direction: column; gap: calc(14 * var(--u)); }
+.tot { display: grid; grid-template-columns: minmax(0,1fr) auto; row-gap: calc(8 * var(--u)); font: 500 calc(17 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.8); }
+.tot-rows, .gi-s > span { display: contents; }
+.tot b { font: 700 calc(18 * var(--u))/1 var(--sm-font-ui); color: var(--sm-gold-pale); text-align: right; }
+.tip { padding: calc(14 * var(--u)) calc(18 * var(--u)); border-radius: calc(8 * var(--u)); background: rgba(224,196,140,.07); border: 1px solid rgba(224,196,140,.28); font: italic 500 calc(18 * var(--u))/1.3 var(--sm-font-speech); color: var(--sm-ink); text-wrap: pretty; }
+.gm-ft { display: flex; align-items: center; justify-content: space-between; gap: calc(12 * var(--u)); padding: calc(18 * var(--u)) calc(44 * var(--u)) calc(28 * var(--u)); border-top: 1px solid rgba(214,187,120,.14); }
+.gm-ft .k { font: 500 calc(14 * var(--u))/1 var(--sm-font-ui); color: rgba(244,239,220,.6); }
+.sm-root .gm-close { height: max(44px, calc(50 * var(--u))); padding: 0 calc(24 * var(--u)); font-size: calc(16 * var(--u)); border-color: rgba(224,196,140,.6); background: transparent; }
+@container (max-height: 500px) {
+  .gm { left: max(calc(44 * var(--u)), env(safe-area-inset-left)); right: max(calc(44 * var(--u)), env(safe-area-inset-right)); top: calc(8 * var(--u)); bottom: calc(8 * var(--u)); width: auto; max-height: none; transform: none; animation: none; }
+  .gm .sm-c { width: calc(16 * var(--u)); height: calc(16 * var(--u)); }
+  .gm .sm-c.bl, .gm .sm-c.br { display: none; }
+  .gm-hd { padding: calc(10 * var(--u)) calc(16 * var(--u)); align-items: center; }
+  .gm-hd .sm-eyebrow, .gm-sub, .gm-title { display: none; }
+  .gm-body { grid-template-columns: minmax(0,1fr); }
+  .gm-slots { padding: calc(8 * var(--u)) calc(16 * var(--u)); gap: calc(8 * var(--u)); border-right: 0; }
+  .gm-side { display: none; }
+  .gi { min-height: calc(40 * var(--u)); padding: calc(4 * var(--u)) calc(10 * var(--u)); }
+  .gi-n { font-size: calc(15 * var(--u)); }
+  .gi-s { margin-top: calc(3 * var(--u)); }
+  .sm-root .gi-b { height: max(36px, calc(36 * var(--u))); min-width: calc(72 * var(--u)); font-size: calc(13 * var(--u)); }
+  .gm-ft { padding: calc(6 * var(--u)) calc(16 * var(--u)); }
+  .gm-ft .k { display: none; }
+  .sm-root .gm-close { height: max(40px, calc(40 * var(--u))); padding: 0 calc(18 * var(--u)); font-size: calc(14 * var(--u)); margin-left: auto; }
+}
+</style>
+<div class="sm-root">
+  <div class="gm-root">
+    <div class="sm-scrim"></div>
+    <section class="gm sm-modal">
+      <b class="sm-c tl"></b><b class="sm-c tr"></b><b class="sm-c bl"></b><b class="sm-c br"></b>
+      <div class="gm-hd">
+        <div>
+          <div class="sm-eyebrow" data-text="gear_eyebrow"></div>
+          <div class="gm-title" data-text="gear_title"></div>
+          <div class="gm-sub" data-text="gear_sub"></div>
+        </div>
+        <div class="gm-el"><span data-text="gear_swinging"></span><b data-bind="element"></b></div>
+      </div>
+      <div class="gm-body">
+        <div class="gm-slots" data-each="slots"><template>
+          <div class="gs"><div class="gm-lab" data-bind="name"></div>
+            <div class="gi worn" data-show="worn"><div><div class="gi-n" data-bind="worn.name"></div><div class="gi-s"><span class="chip" data-hide="worn.chips" data-text="gear_no_bonus"></span><span data-each="worn.chips"><template><span class="chip" data-class-fire="fire" data-class-frost="frost" data-class-arcane="arcane" data-bind="text"></span></template></span></div></div><span class="gi-t" data-text="gear_worn"></span></div>
+            <div class="gi empty" data-hide="worn" data-text="gear_nothing_worn"></div>
+            <div data-each="spares"><template><div class="gi"><div><div class="gi-n" data-bind="name"></div><div class="gi-s"><span class="chip" data-hide="chips" data-text="gear_no_bonus"></span><span data-each="chips"><template><span class="chip" data-class-fire="fire" data-class-frost="frost" data-class-arcane="arcane" data-bind="text"></span></template></span></div></div><button class="sm-btn gi-b" data-action="equip" data-text="gear_equip"></button></div></template></div>
+          </div>
+        </template></div>
+        <div class="gm-side">
+          <div class="gm-lab" data-text="gear_worn_stats"></div>
+          <div class="tot"><span data-hide="totals" data-text="gear_nothing_yet"></span><b data-hide="totals">-</b><span class="tot-rows" data-each="totals"><template><span data-bind="label"></span><b data-bind="value"></b></template></span></div>
+          <div class="tip" data-text="gear_tip"></div>
+        </div>
+      </div>
+      <div class="gm-ft">
+        <div class="k" data-text="gear_leave"></div>
+        <button class="sm-btn ghost gm-close" data-action="close" data-text="return_to_road"></button>
+      </div>
+    </section>
+  </div>
+</div>

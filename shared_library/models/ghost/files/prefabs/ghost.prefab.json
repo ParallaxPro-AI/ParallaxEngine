@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ghost"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8253, 1.7901, 0.6143],
+      "offset": [0, 0.895, 0.0007]
+    }
+  }
+}

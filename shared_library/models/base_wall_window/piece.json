@@ -1,0 +1,10 @@
+{
+  "id": "base_wall_window",
+  "summary": "A survival base-building log wall module with a shuttered window, 3.0 m long x 3.0 m tall x 0.3 m thick: a 1.… joints hatch_l, hatch_r; options tier; sockets socket_join_left, socket_join_right, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.base_wall_window or place \"prefab\": \"base_wall_window\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:base_wall_window"]
+}

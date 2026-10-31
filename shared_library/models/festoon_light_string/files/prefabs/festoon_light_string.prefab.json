@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/festoon_light_string"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.4, 3.092, 0.4],
+      "offset": [0, 1.546, 0]
+    }
+  }
+}

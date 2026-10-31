@@ -1,0 +1,9 @@
+{
+  "extends": "garden",
+  "exclude": ["wisp"],
+  "ui": ["title_screen"],
+  "music": null,
+  "entities": [
+    {"prefab": "title_wisp", "at": [0, -5.5]}
+  ]
+}

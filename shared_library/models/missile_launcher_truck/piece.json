@@ -1,0 +1,10 @@
+{
+  "id": "missile_launcher_truck",
+  "summary": "A generic military rocket/missile launcher truck: the cab-over truck in matte olive with a steel launch deck… joints cab_tilt, door_l, door_r, launcher, wheel_f_l_roll, wheel_f_l_steer, …; options body, paint; sockets socket_driver, socket_tow, socket_launch, exhaust_0, launch_blast.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.missile_launcher_truck or place \"prefab\": \"missile_launcher_truck\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:missile_launcher_truck"]
+}

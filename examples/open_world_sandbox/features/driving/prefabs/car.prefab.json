@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {"model": "models/sedan", "cast_shadows": true},
+    "rigidbody": {"kind": "dynamic", "mass": 1420, "linear_damping": 0.05, "angular_damping": 0.7},
+    "collider": {"shape": "box", "size": [2.0, 1.4716, 4.7129], "offset": [0.0, 0.7358, -0.0016]},
+    "vehicle": {"kind": "car", "max_speed": 30, "acceleration": 9, "braking": 22, "steering": 36, "grip": 1.0},
+    "vehicle_rig": {"wheels": ["wheel_f_l_roll", "wheel_f_r_roll", "wheel_r_l_roll", "wheel_r_r_roll"], "steer": ["wheel_f_l_steer", "wheel_f_r_steer"]},
+    "car_condition": {},
+    "particles": {"effect": "vfx/engine_smoke", "emitting": false},
+    "audio_source": {"sound": "https://r2.parallaxpro.ai/assets/audio_ambient/d0/a0/d0a08a51578c1c302cfc0ecc0ac39608e9ba9e2a9d3f1ab35aa36e59b1a79774.mp3", "loop": true, "playing": false, "volume": 0.5, "spatial": false}
+  },
+  "behaviors": {"car_damage": {}, "engine_note": {}},
+  "children": [
+    {"name": "driver_seat", "at": [-0.407, -0.472, 0.06], "components": {"seat": {"enter_time": 0}}},
+    {"name": "passenger_seat", "at": [0.407, -0.472, 0.06], "components": {"seat": {"enter_time": 0}}}
+  ]
+}

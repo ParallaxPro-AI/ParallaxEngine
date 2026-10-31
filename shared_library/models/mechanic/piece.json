@@ -1,0 +1,10 @@
+{
+  "id": "mechanic",
+  "summary": "A garage mechanic in navy overalls tied off at the waist (the top half hangs round the hips, sleeves knotted… options skin, hair, headwear, overall_colour; sockets eye_point, grip_r, grip_l, holster_r, sling_back, pack_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mechanic or place \"prefab\": \"mechanic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mechanic"]
+}

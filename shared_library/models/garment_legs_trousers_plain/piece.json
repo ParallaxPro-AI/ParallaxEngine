@@ -1,0 +1,10 @@
+{
+  "id": "garment_legs_trousers_plain",
+  "summary": "Plain straight-leg trousers: a waistband, a fly, and two tapered leg tubes with a break over the shoe. options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_legs_trousers_plain or place \"prefab\": \"garment_legs_trousers_plain\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_legs_trousers_plain"]
+}

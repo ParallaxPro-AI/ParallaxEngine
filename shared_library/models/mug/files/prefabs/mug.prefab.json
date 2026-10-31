@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mug"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1238, 0.096, 0.0824],
+      "offset": [0, 0.048, 0]
+    }
+  }
+}

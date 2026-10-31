@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/scorpion_giant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.1282, 1.5405, 2.6183],
+      "offset": [0, 0.7692, 0.3658]
+    }
+  }
+}

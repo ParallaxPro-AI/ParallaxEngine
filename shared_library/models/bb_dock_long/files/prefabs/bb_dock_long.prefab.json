@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_dock_long"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.18, 3, 2.66],
+      "offset": [0, 1.5, 0]
+    }
+  }
+}

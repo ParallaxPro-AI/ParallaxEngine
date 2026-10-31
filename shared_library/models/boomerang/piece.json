@@ -1,0 +1,10 @@
+{
+  "id": "boomerang",
+  "summary": "A classic two-armed wooden returning boomerang about 0.41 m tip to tip: a smooth 106-degree V with a rounded… options wood, paint, bands; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.boomerang or place \"prefab\": \"boomerang\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:boomerang"]
+}

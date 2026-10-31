@@ -1,0 +1,10 @@
+{
+  "id": "whiteboard",
+  "summary": "A mobile double-sided whiteboard: a gloss white board in an aluminium frame, pivoting between two upright pos… joints flip; options writing.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.whiteboard or place \"prefab\": \"whiteboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:whiteboard"]
+}

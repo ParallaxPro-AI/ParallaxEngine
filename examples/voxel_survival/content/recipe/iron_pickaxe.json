@@ -1,0 +1,3 @@
+{ "name": "Iron Pickaxe", "order": 19, "category": "tools", "station": "workbench",
+  "inputs": [{ "item": "iron_ingot", "count": 3 }, { "item": "wood_log", "count": 2 }],
+  "output": { "item": "iron_pickaxe", "count": 1 } }

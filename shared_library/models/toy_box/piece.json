@@ -1,0 +1,10 @@
+{
+  "id": "toy_box",
+  "summary": "A painted wooden toy chest: a hollow box with a contrasting plinth, corner posts and top rim, finger-hole han… joints lid; options paint, trim, contents; sockets socket_cavity.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.toy_box or place \"prefab\": \"toy_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:toy_box"]
+}

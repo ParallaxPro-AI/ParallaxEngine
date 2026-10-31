@@ -1,0 +1,32 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14'
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - name: Examples check and playtest
+        run: |
+          for d in examples/*/; do
+            [ -d "$d/game" ] || continue
+            pnpm -s parallax check "$d" --no-write || exit 1
+          done
+          pnpm -s parallax test examples/paddle_duel
+          pnpm -s parallax test examples/brick_breaker

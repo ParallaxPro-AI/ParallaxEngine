@@ -1,0 +1,10 @@
+{
+  "id": "road_straight",
+  "summary": "A 12 m straight two-lane road tile from the ROAD_KIT: a 7 m asphalt carriageway with a dashed white centre li… options markings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.road_straight or place \"prefab\": \"road_straight\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:road_straight"]
+}

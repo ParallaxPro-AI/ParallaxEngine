@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_cowboy_hat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4038, 0.1527, 0.385],
+      "offset": [0, 1.8396, -0.0145]
+    }
+  }
+}

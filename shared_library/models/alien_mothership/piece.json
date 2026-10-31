@@ -1,0 +1,10 @@
+{
+  "id": "alien_mothership",
+  "summary": "An original alien mothership / carrier boss ship. joints thrust, hangar_door; options carapace, glow; sockets engine_0, engine_1, engine_2, muzzle_eye, hangar_launch.",
+  "version": "2026.10.27",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.alien_mothership or place \"prefab\": \"alien_mothership\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:alien_mothership"]
+}

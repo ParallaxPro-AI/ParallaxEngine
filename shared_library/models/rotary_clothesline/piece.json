@@ -1,0 +1,10 @@
+{
+  "id": "rotary_clothesline",
+  "summary": "A 2.9 m rotary washing line on a steel pole in a ground socket: a winder box with a crank, a rotating head wi… joints head, arm_0, arm_1, arm_2, arm_3, lines; options fittings_colour; sockets socket_winder.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rotary_clothesline or place \"prefab\": \"rotary_clothesline\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rotary_clothesline"]
+}

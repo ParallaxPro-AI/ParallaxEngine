@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_birch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.6321, 10.6308, 4.7393],
+      "offset": [0.1452, 5.3154, 0.0627]
+    }
+  }
+}

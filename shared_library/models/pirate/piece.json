@@ -1,0 +1,10 @@
+{
+  "id": "pirate",
+  "summary": "A rigged pirate on the canonical 17-bone humanoid rig: a knee-length frock coat open down the front over a li… options coat, sash, skin, hair, headgear, beard, …; sockets grip_r, grip_l, sling_back, holster_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pirate or place \"prefab\": \"pirate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pirate"]
+}

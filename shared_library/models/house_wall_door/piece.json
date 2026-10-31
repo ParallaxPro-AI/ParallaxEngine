@@ -1,0 +1,10 @@
+{
+  "id": "house_wall_door",
+  "summary": "A HOUSE kit wall with a centred doorway: 3.0 x 2.85 x 0.2 m, opening 1.0 m wide x 2.1 m tall from the floor t… options exterior, interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.house_wall_door or place \"prefab\": \"house_wall_door\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:house_wall_door"]
+}

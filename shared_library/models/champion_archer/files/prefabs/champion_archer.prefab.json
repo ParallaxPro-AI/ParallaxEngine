@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/champion_archer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 1.8181, 0.3501],
+      "offset": [0, 0.9091, -0.0454]
+    }
+  }
+}

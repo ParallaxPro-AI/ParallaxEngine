@@ -1,0 +1,17 @@
+{
+  "children": [
+    {
+      "scale": [
+        2.2,
+        2.2,
+        2.2
+      ],
+      "components": {
+        "model": {
+          "model": "https://r2.parallaxpro.ai/assets/model_static/d8/39/d839ba4d1d2c048cbd08f7a984fdc65f6049283b43286f5c5e4ea225a28bd4e6.glb",
+          "cast_shadows": true
+        }
+      }
+    }
+  ]
+}

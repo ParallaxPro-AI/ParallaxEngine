@@ -1,0 +1,10 @@
+{
+  "id": "floating_island_grass",
+  "summary": "A floating grassy sky island for platformer levels: a 4.2 m wide irregular lumpy grass top over a band of dar…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.floating_island_grass or place \"prefab\": \"floating_island_grass\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:floating_island_grass"]
+}

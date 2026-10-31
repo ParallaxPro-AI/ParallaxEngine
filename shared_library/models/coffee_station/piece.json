@@ -1,0 +1,10 @@
+{
+  "id": "coffee_station",
+  "summary": "An office coffee point: a 1.2 m base unit with a laminate worktop, a cutlery drawer and cupboard on the left… joints drawer, cupboard, fridge_door, machine_drip_tray, machine_portafilter, machine_lever, …; options units, worktop; sockets socket_counter, socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffee_station or place \"prefab\": \"coffee_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffee_station"]
+}

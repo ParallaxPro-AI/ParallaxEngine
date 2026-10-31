@@ -1,0 +1,10 @@
+{
+  "id": "garment_overlay_cuffs",
+  "summary": "Wrist restraints: two hinged steel cuffs and a short chain, worn at the small of the back. options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_overlay_cuffs or place \"prefab\": \"garment_overlay_cuffs\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_overlay_cuffs"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cash_stack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.212, 0.0494, 0.1738],
+      "offset": [-0.0001, 0.0227, -0.0024]
+    }
+  }
+}

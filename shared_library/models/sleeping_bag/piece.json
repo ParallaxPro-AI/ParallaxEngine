@@ -1,0 +1,10 @@
+{
+  "id": "sleeping_bag",
+  "summary": "A quilted mummy sleeping bag laid out flat: nine puffed down baffles tapering from broad shoulders to a boxed… options state, shell_colour; sockets socket_sleeper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sleeping_bag or place \"prefab\": \"sleeping_bag\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sleeping_bag"]
+}

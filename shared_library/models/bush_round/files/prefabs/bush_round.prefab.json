@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bush_round"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4134, 0.9442, 1.355],
+      "offset": [-0.0012, 0.474, -0.0188]
+    }
+  }
+}

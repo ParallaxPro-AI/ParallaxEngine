@@ -1,0 +1,5 @@
+{
+  "extends": "maze",
+  "ui": ["title_screen"],
+  "music": null
+}

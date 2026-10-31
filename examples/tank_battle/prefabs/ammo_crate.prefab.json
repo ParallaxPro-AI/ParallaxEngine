@@ -1,0 +1,1 @@
+{ "components": {"shape": {"kind": "box", "size": [2.2, 1.6, 2.2], "color": "#aab195"}, "grounded": {"lift": 0.8}, "collider": {"shape": "box", "size": [2.2, 1.6, 2.2], "layer": "prop"}}, "behaviors": {"ammo_crate": {"radius": 7, "cooldown": 20}}}

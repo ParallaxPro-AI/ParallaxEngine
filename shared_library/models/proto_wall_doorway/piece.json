@@ -1,0 +1,10 @@
+{
+  "id": "proto_wall_doorway",
+  "summary": "A greybox prototype wall with a doorway: a 4 m wide, 3 m tall, 0.25 m thick level-design wall module with a c… options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.proto_wall_doorway or place \"prefab\": \"proto_wall_doorway\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:proto_wall_doorway"]
+}

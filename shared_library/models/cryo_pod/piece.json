@@ -1,0 +1,10 @@
+{
+  "id": "cryo_pod",
+  "summary": "An upright cryogenic sleep pod: a rounded capsule on a lit round plinth, its rear half a white composite shel… joints canopy; options hull, glow; sockets seat_occupant.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cryo_pod or place \"prefab\": \"cryo_pod\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cryo_pod"]
+}

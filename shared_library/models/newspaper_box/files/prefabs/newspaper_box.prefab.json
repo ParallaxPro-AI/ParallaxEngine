@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/newspaper_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.52, 1.12, 0.497],
+      "offset": [0, 0.56, 0.0285]
+    }
+  }
+}

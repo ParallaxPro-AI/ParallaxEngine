@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/electric_guitar"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.344, 0.989, 0.0657],
+      "offset": [0, 0.4945, -0.0003]
+    }
+  }
+}

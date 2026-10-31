@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fries_carton"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0959, 0.1609, 0.056],
+      "offset": [0, 0.0805, 0]
+    }
+  }
+}

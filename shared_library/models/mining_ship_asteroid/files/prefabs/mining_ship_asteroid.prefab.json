@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mining_ship_asteroid"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [14, 9.25, 31.65],
+      "offset": [0, 4.625, 1.5]
+    }
+  }
+}

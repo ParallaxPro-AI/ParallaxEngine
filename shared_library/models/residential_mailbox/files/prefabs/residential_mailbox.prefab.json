@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/residential_mailbox"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.184, 1.2775, 0.498],
+      "offset": [-0.0055, 0.6388, 0.007]
+    }
+  }
+}

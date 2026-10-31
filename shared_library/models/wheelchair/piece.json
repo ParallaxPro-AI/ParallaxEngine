@@ -1,0 +1,10 @@
+{
+  "id": "wheelchair",
+  "summary": "A folding wheelchair: tubular side frame, two large rear drive wheels with push-rim handrims, two swivel-fork… joints seat_fold, rspin_l, rspin_r, cspin_l, cspin_r, footrest_l, …; options drive; sockets socket_seat, socket_handles.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wheelchair or place \"prefab\": \"wheelchair\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wheelchair"]
+}

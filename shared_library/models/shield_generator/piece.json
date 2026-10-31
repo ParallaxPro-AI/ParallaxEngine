@@ -1,0 +1,10 @@
+{
+  "id": "shield_generator",
+  "summary": "A 3 m sci-fi shield generator pylon: an octagonal plinth with a lit skirt and vents, four inward-leaning pill… joints ring_a, ring_b, ring_c; options energy, core; sockets core.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shield_generator or place \"prefab\": \"shield_generator\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shield_generator"]
+}

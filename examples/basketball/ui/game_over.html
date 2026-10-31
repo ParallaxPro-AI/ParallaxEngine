@@ -1,0 +1,57 @@
+<!-- Ported from the template: Court Clash run end - RUN OVER in danger red with the crew that took it in its colour, or BLACKTOP CHAMPIONS in monarch gold; your points counting up, the five-crew ladder with the lost stage struck through, the run stats plate (final, games taken, your line, playmaking, perks, career wins, titles) and Play again / Main menu -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .ccg { position: fixed; inset: 0; background: rgba(10,11,14,.86); display: grid; grid-template-columns: minmax(0, 1fr) calc(var(--u) * 580); gap: calc(var(--u) * 120); align-items: center; padding: 0 calc(var(--u) * 180); --go-c: var(--cc-danger); pointer-events: auto; animation: cc-fade var(--cc-dur-med) ease-out both; }
+  .ccg::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: calc(var(--u) * 8); background: var(--go-c); }
+  .ccg.victory { --go-c: var(--cc-crew-monarchs); }
+  .ccg-t { font-size: calc(var(--u) * 200); color: var(--go-c); margin-top: calc(var(--u) * 18); line-height: .84; animation: ccg-slam 300ms var(--cc-ease-out) both; }
+  .ccg.victory .ccg-t { text-shadow: 0 0 calc(var(--u) * 60) rgba(245,204,77,.35); }
+  @keyframes ccg-slam { from { transform: scale(1.15); opacity: 0; } to { transform: none; opacity: 1; } }
+  .ccg-line { font-size: calc(var(--u) * 64); color: var(--line-c, var(--cc-crew-vipers)); margin-top: calc(var(--u) * 14); }
+  .ccg.victory .ccg-line { color: var(--cc-chalk); }
+  .ccg-score { display: flex; align-items: flex-end; gap: calc(var(--u) * 20); margin-top: calc(var(--u) * 44); }
+  .ccg-score > .cc-num { font-size: calc(var(--u) * 200); line-height: .8; }
+  .ccg-pts { display: flex; flex-direction: column; gap: calc(var(--u) * 10); padding-bottom: calc(var(--u) * 10); }
+  .ccg-pts .cc-display { font-size: calc(var(--u) * 56); color: var(--cc-chalk-dim); }
+  .ccg-l .cc-ladder { margin-top: calc(var(--u) * 48); }
+  .ccg-stats { list-style: none; padding: calc(var(--u) * 8) calc(var(--u) * 36); background: var(--cc-plate); clip-path: var(--cc-cut-lg); box-shadow: inset 0 0 0 1px var(--cc-line-faint); }
+  .ccg-stats li { display: flex; justify-content: space-between; align-items: baseline; gap: calc(var(--u) * 24); padding: calc(var(--u) * 17) 0; border-top: 1px solid var(--cc-line-faint); animation: cc-rise 300ms var(--cc-ease-out) both; }
+  .ccg-stats li:first-child { border-top: 0; }
+  .ccg-stats .cc-eyebrow { font-size: max(10px, calc(var(--u) * 12)); flex: none; }
+  .ccg-stats b { font: 600 max(13px, calc(var(--u) * 22))/1.2 var(--cc-font-num); text-align: right; }
+  .ccg-btns { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 16); margin-top: calc(var(--u) * 24); }
+  .cc-root .ccg-btns .cc-btn { height: calc(var(--u) * 72); font-size: calc(var(--u) * 34); }
+  @media (pointer: coarse) {
+    .ccg { grid-template-columns: minmax(0, 1fr) calc(var(--u) * 348); gap: calc(var(--u) * 32); padding: 0 var(--cc-safe); }
+    .ccg-t { font-size: calc(var(--u) * 76); margin-top: calc(var(--u) * 8); }
+    .ccg-line { font-size: calc(var(--u) * 24); margin-top: calc(var(--u) * 6); }
+    .ccg-score { margin-top: calc(var(--u) * 16); gap: calc(var(--u) * 10); }
+    .ccg-score > .cc-num { font-size: calc(var(--u) * 84); }
+    .ccg-pts { gap: calc(var(--u) * 5); padding-bottom: calc(var(--u) * 4); }
+    .ccg-pts .cc-display { font-size: calc(var(--u) * 26); }
+    .ccg-pts .cc-eyebrow, .ccg-l > .cc-eyebrow { font-size: 9px; }
+    .ccg-l .cc-ladder { display: none; }
+    .ccg-stats { padding: calc(var(--u) * 4) calc(var(--u) * 16); clip-path: var(--cc-cut-md); }
+    .ccg-stats li { padding: calc(var(--u) * 7) 0; gap: calc(var(--u) * 12); }
+    .ccg-stats .cc-eyebrow { font-size: 9px; }
+    .ccg-stats b { font-size: max(12px, calc(var(--u) * 14)); }
+    .ccg-btns { gap: calc(var(--u) * 10); margin-top: calc(var(--u) * 12); }
+    .cc-root .ccg-btns .cc-btn { height: calc(var(--u) * 48); font-size: calc(var(--u) * 24); }
+  }
+</style>
+<div class="cc-root ccg" data-class-victory="won">
+  <div class="ccg-l">
+    <span class="cc-eyebrow" data-bind="kicker"></span>
+    <h1 class="cc-display ccg-t" data-bind="title"></h1>
+    <p class="cc-display ccg-line" data-bind="final"></p>
+    <div class="ccg-score"><span class="cc-num" data-bind="points"></span><span class="ccg-pts"><span class="cc-display">Pts</span><span class="cc-eyebrow">Your points</span></span></div>
+    <ol class="cc-ladder" data-each="ladder"><template><li data-attr-class="state" data-style---crew="color"><i></i><span data-bind="name"></span></li></template></ol>
+  </div>
+  <div class="ccg-r">
+    <ul class="ccg-stats" data-each="stats"><template><li><span class="cc-eyebrow" data-bind="label"></span><b data-bind="value"></b></li></template></ul>
+    <div class="ccg-btns">
+      <button class="cc-btn cc-btn-primary" data-action="play_again" data-text="play_again"></button>
+      <button class="cc-btn cc-btn-ghost" data-action="quit">Main menu</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+{
+  "id": "kart_racer",
+  "summary": "An arcade racing kart with chunky toy proportions: fat rear fenders over oversized rear slicks, a low open tu… joints steer_l, spin_front_l, steer_r, spin_front_r, spin_rear_l, spin_rear_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kart_racer or place \"prefab\": \"kart_racer\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kart_racer"]
+}

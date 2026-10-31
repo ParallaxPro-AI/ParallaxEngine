@@ -1,0 +1,10 @@
+{
+  "id": "wheelchair_rusted",
+  "summary": "A rusted mid-century hospital wheelchair, abandoned (a real standard chair is about 0.66 m wide, 1.0 m long… joints rear_wheel_l, rear_wheel_r, caster_l, caster_spin_l, caster_r, caster_spin_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wheelchair_rusted or place \"prefab\": \"wheelchair_rusted\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wheelchair_rusted"]
+}

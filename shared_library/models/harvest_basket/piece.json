@@ -1,0 +1,10 @@
+{
+  "id": "harvest_basket",
+  "summary": "A round woven-wicker harvest basket heaped with garden vegetables: a cabbage, ripe tomatoes, potatoes, onions…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.harvest_basket or place \"prefab\": \"harvest_basket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:harvest_basket"]
+}

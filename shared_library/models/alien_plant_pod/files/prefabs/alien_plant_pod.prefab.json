@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/alien_plant_pod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.03, 1.617, 1.024],
+      "offset": [0, 0.8085, 0]
+    }
+  }
+}

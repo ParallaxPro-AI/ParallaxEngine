@@ -1,0 +1,10 @@
+{
+  "id": "snake_enemy",
+  "summary": "A GIANT SNAKE - a hostile python-sized serpent about 3.9 m long and 31 cm across at its thickest, built as an… joints neck, head, jaw, tongue_slide, spine_0, spine_1, …; options skin, markings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.snake_enemy or place \"prefab\": \"snake_enemy\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:snake_enemy"]
+}

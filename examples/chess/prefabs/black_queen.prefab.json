@@ -1,0 +1,8 @@
+{
+  "extends": "piece",
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_decal/d7/1d/d71d986cb5f0c40b843a96002c58b1b0071e20213ce6004be627e93dd71e7bc5.png"
+    }
+  }
+}

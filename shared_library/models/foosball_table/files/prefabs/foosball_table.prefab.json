@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/foosball_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4, 0.943, 1.348],
+      "offset": [0, 0.4715, 0]
+    }
+  }
+}

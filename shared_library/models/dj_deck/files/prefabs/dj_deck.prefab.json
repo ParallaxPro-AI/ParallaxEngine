@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dj_deck"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.308, 0.202, 0.448],
+      "offset": [0, 0.101, 0]
+    }
+  }
+}

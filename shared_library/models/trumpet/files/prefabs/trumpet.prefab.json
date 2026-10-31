@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/trumpet"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.124, 0.1902, 0.494],
+      "offset": [0, 0.0969, 0.003]
+    }
+  }
+}

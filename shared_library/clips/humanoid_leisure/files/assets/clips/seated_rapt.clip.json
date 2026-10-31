@@ -1,0 +1,9 @@
+{
+  "rig": "humanoid", "duration": 6.5, "loop": true,
+  "keys": [
+    {"time":0,"ease":"linear","root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[25,0,0],"Spine2":[15,0,0],"Neck":[-18,0,0],"Head":[-15,0,0],"RightArm":[-32.93,-20.14,-55.99],"RightForeArm":[0,-86,0],"RightHand":[2.41,9.71,-13.8],"LeftArm":[-32.93,20.14,55.99],"LeftForeArm":[0,86,0],"LeftHand":[2.41,-9.71,13.8],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":2.4,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[23.8,0,0],"Spine2":[14.2,0,0],"Neck":[-17.4,0,0],"Head":[-15,0,0],"RightArm":[-33.13,-19.78,-56.66],"RightForeArm":[0,-86,0],"RightHand":[2.41,9.71,-13.8],"LeftArm":[-33.13,19.78,56.66],"LeftForeArm":[0,86,0],"LeftHand":[2.41,-9.71,13.8],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":4.6,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[25.4,0,0],"Spine2":[15.3,0,0],"Neck":[-18.2,0,0],"Head":[-15,0,0],"RightArm":[-32.79,-20.38,-55.54],"RightForeArm":[0,-86,0],"RightHand":[2.41,9.71,-13.8],"LeftArm":[-32.79,20.38,55.54],"LeftForeArm":[0,86,0],"LeftHand":[2.41,-9.71,13.8],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}},
+    {"time":6.5,"root":{"y":-0.43,"z":-0.05},"pose":{"Hips":[4,0,0],"Spine":[25,0,0],"Spine2":[15,0,0],"Neck":[-18,0,0],"Head":[-15,0,0],"RightArm":[-32.93,-20.14,-55.99],"RightForeArm":[0,-86,0],"RightHand":[2.41,9.71,-13.8],"LeftArm":[-32.93,20.14,55.99],"LeftForeArm":[0,86,0],"LeftHand":[2.41,-9.71,13.8],"RightUpLeg":[-85.62,-62.83,65.9],"RightLeg":[88,0,0],"RightFoot":[-2,0,0],"LeftUpLeg":[-85.62,62.83,-65.9],"LeftLeg":[88,0,0],"LeftFoot":[-2,0,0]}}
+  ]
+}

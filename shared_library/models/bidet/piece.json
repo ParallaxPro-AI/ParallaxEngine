@@ -1,0 +1,10 @@
+{
+  "id": "bidet",
+  "summary": "A floor-standing back-to-wall bidet: a lofted vitreous-china pedestal flaring into an egg-shaped basin with a… joints lever, popup; options ceramic, fittings.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bidet or place \"prefab\": \"bidet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bidet"]
+}

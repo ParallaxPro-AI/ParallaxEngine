@@ -1,0 +1,10 @@
+{
+  "id": "loot_box",
+  "summary": "A game reward crate: a chamfered painted box framed in gold corner posts and rim bands, a hinged lid with a g… joints lid; options rarity, glow; sockets socket_cavity, socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.loot_box or place \"prefab\": \"loot_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:loot_box"]
+}

@@ -1,0 +1,5 @@
+{
+  "number": 2, "name": "Drill Unit", "tagline": "Metronomic. It punishes a lazy centre return.",
+  "color": "#f9e7a0",
+  "speed": 8.2, "aim_error": 1.15, "reaction_time": 0.26, "predict": 0.25, "ball_speed_scale": 1.0
+}

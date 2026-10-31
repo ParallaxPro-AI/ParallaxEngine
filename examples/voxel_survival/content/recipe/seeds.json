@@ -1,0 +1,3 @@
+{ "name": "Sort Wheat Seeds", "order": 13, "category": "food", "station": "hand",
+  "inputs": [{ "item": "leaves", "count": 3 }],
+  "output": { "item": "seeds", "count": 2 } }

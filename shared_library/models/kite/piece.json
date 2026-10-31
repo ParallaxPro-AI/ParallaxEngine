@@ -1,0 +1,10 @@
+{
+  "id": "kite",
+  "summary": "A classic diamond kite: 0.9 m x 0.7 m two-tone ripstop sail on a wooden spine and cross spar, bound edges, a… joints tail; options sail_lower, sail_upper; sockets socket_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kite or place \"prefab\": \"kite\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kite"]
+}

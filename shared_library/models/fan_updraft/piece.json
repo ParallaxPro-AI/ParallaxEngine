@@ -1,0 +1,10 @@
+{
+  "id": "fan_updraft",
+  "summary": "A floor-mounted updraft fan for platformer and arena games: a low 2.4 m square steel housing with a hazard-ye… joints rotor; sockets updraft.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fan_updraft or place \"prefab\": \"fan_updraft\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fan_updraft"]
+}

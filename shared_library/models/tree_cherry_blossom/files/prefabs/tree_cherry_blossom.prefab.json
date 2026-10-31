@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tree_cherry_blossom"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [8.4308, 6.748, 8.8592],
+      "offset": [0.0382, 3.373, 0.022]
+    }
+  }
+}

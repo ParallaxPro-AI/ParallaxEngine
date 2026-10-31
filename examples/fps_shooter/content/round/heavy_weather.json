@@ -1,0 +1,1 @@
+{ "name": "Round 4 — Heavy Weather", "tagline": "Armour on the field. Bring the sniper.", "number": 4, "frag_target": 10, "damage_mul": 1.1, "accuracy_mul": 1.1, "roster": [{ "bot": "rusher", "count": 2 }, { "bot": "marksman", "count": 2 }, { "bot": "heavy", "count": 2 }] }

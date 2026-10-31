@@ -1,0 +1,10 @@
+{
+  "id": "forklift",
+  "summary": "A counterbalance warehouse forklift: boxy body with a heavy rear counterweight, an operator station under a c… joints mast, forks, spin_front_l, spin_front_r, steer_l, spin_rear_l, …; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.forklift or place \"prefab\": \"forklift\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:forklift"]
+}

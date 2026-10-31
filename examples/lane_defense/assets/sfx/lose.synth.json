@@ -1,0 +1,1 @@
+{"duration": 1.1, "seed": 42, "gain": 0.6, "layers": [{"wave": "triangle", "freq": 220, "attack": 0.004, "decay": 0.935, "sustain": 0, "gain": 0.7, "freq_end": 110}]}

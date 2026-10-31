@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bar_cart"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.937, 0.955, 0.51],
+      "offset": [-0.0215, 0.4775, 0]
+    }
+  }
+}

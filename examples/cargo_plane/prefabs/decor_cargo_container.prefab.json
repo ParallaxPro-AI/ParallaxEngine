@@ -1,0 +1,21 @@
+{
+ "components": {
+  "model": {
+   "model": "models/cargo_container",
+   "cast_shadows": true
+  },
+  "collider": {
+   "shape": "box",
+   "size": [
+    2.02,
+    1.905,
+    3.355
+   ],
+   "offset": [
+    0,
+    0.949,
+    0.063
+   ]
+  }
+ }
+}

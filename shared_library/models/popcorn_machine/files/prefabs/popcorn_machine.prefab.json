@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/popcorn_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.986, 1.71, 0.5923],
+      "offset": [0.043, 0.855, -0.0221]
+    }
+  }
+}

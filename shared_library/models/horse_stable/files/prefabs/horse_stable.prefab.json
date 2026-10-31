@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/horse_stable"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.1, 3.5263, 4.2367],
+      "offset": [0, 1.7632, -0.0019]
+    }
+  }
+}

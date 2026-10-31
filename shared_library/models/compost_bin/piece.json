@@ -1,0 +1,10 @@
+{
+  "id": "compost_bin",
+  "summary": "A 330-litre recycled-plastic garden composter (\"dalek\" bin): a tapered moulded drum with three stiffening bea… joints hatch, lid; options colour; sockets socket_lid, socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.compost_bin or place \"prefab\": \"compost_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:compost_bin"]
+}

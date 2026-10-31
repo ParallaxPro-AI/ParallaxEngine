@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pull_up_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 2.2125, 1.22],
+      "offset": [0, 1.1062, 0.02]
+    }
+  }
+}

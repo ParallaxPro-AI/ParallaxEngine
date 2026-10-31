@@ -1,0 +1,10 @@
+{
+  "id": "ruined_archway",
+  "summary": "A free-standing ruined gateway: two masonry piers on moulded plinths frame a 2.4 m opening.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ruined_archway or place \"prefab\": \"ruined_archway\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ruined_archway"]
+}

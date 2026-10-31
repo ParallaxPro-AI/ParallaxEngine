@@ -1,0 +1,10 @@
+{
+  "id": "ironing_board",
+  "summary": "A full-size 1.22 m ironing board at working height (0.89 m): a steel deck with a padded fabric cover and a ta… joints legs_a, legs_b; options iron, cover; sockets socket_deck.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ironing_board or place \"prefab\": \"ironing_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ironing_board"]
+}

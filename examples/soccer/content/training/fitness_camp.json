@@ -1,0 +1,5 @@
+{
+  "name": "Fitness Camp",
+  "description": "+35 max stamina, +4 stamina regen.",
+  "max_stacks": 3, "stamina_max": 35, "stamina_regen": 4
+}

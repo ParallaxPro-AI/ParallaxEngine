@@ -1,0 +1,10 @@
+{
+  "id": "data_server_tower",
+  "summary": "A 2.6 m octagonal street data tower: a tapering powder-coated prism on a cast plinth with glowing light strip… joints door; options strip_a, strip_b, body_colour; sockets socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.data_server_tower or place \"prefab\": \"data_server_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:data_server_tower"]
+}

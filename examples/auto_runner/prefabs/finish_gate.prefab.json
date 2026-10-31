@@ -1,0 +1,4 @@
+{
+  "z": 15,
+  "components": {"sprite": {"image": "images/finish_gate", "size": [3.2, 6.5]}, "scrolls": {"factor": 1}}
+}

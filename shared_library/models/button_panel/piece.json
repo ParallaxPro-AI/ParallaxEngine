@@ -1,0 +1,10 @@
+{
+  "id": "button_panel",
+  "summary": "A wall-mounted puzzle control panel: a grey steel enclosure whose face carries a large red push-button that d… joints button, lamp.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.button_panel or place \"prefab\": \"button_panel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:button_panel"]
+}

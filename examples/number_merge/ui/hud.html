@@ -1,0 +1,51 @@
+<link rel="stylesheet" href="twofold.css">
+<style>
+  /* The template's board HUD: score (left), best tile + ladder bar (right), control hint (bottom). */
+  .side { position: fixed; top: calc(12 * var(--u)); padding: calc(12 * var(--u)) calc(16 * var(--u)); font-family: ui-monospace, monospace; color: var(--ink);
+          text-shadow: 0 calc(2 * var(--u)) 0 rgba(0, 0, 0, .4); }
+  .left { left: calc(12 * var(--u)); }
+  .right { right: calc(12 * var(--u)); text-align: right; }
+  .lbl { font-size: calc(12 * var(--u)); letter-spacing: calc(2 * var(--u)); opacity: .7; text-transform: uppercase; }
+  .big { font-size: calc(40 * var(--u)); font-weight: 900; line-height: 1.05; }
+  .sub { font-size: calc(12 * var(--u)); letter-spacing: calc(1 * var(--u)); opacity: .7; text-transform: uppercase; }
+  #score { display: inline-block; transform-origin: left center; }
+  #score.bump-a { animation: scoreBumpA 0.28s ease; }
+  #score.bump-b { animation: scoreBumpB 0.28s ease; }
+  @keyframes scoreBumpA {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.14); color: #edc22e; }
+    100% { transform: scale(1); }
+  }
+  @keyframes scoreBumpB {
+    0% { transform: scale(1); }
+    40% { transform: scale(1.14); color: #edc22e; }
+    100% { transform: scale(1); }
+  }
+  .bar { width: calc(150 * var(--u)); height: calc(6 * var(--u)); margin: calc(4 * var(--u)) 0 calc(5 * var(--u)) auto; border-radius: calc(4 * var(--u)); background: rgba(255, 255, 255, .16); overflow: hidden; }
+  .bar i { display: block; height: 100%; width: 0%; border-radius: calc(4 * var(--u)); background: linear-gradient(90deg, #f2b179, #edc22e);
+           transition: width .2s ease-out; }
+  .bar i.done { background: linear-gradient(90deg, #7ed957, #b6ff8a); }
+  .foot { position: fixed; bottom: calc(22 * var(--u)); left: 0; right: 0; text-align: center; }
+  .hint { font: 600 calc(12 * var(--u)) ui-monospace, monospace; color: var(--ink); opacity: .75; text-shadow: 0 calc(1 * var(--u)) calc(2 * var(--u)) rgba(0, 0, 0, .6); }
+  @media (pointer: coarse) {
+    .big { font-size: calc(30 * var(--u)); }
+    .bar { width: calc(110 * var(--u)); }
+    .hint { font-size: calc(11 * var(--u)); }
+  }
+</style>
+<div class="view">
+<div class="side left">
+  <div class="lbl" data-text="score"></div>
+  <div class="big"><span id="score" data-bind="score" data-class-bump-a="bump_a" data-class-bump-b="bump_b"></span></div>
+  <div class="sub"><span data-text="best"></span> <span data-bind="best"></span></div>
+</div>
+<div class="side right">
+  <div class="lbl" data-text="best_tile"></div>
+  <div class="big" data-bind="highest"></div>
+  <div class="bar"><i data-style-width="ladder" data-class-done="ladder_done"></i></div>
+  <div class="sub"><span data-text="goal"></span> <span data-bind="target"></span></div>
+</div>
+<div class="foot">
+  <div class="hint"><span class="desktop-only" data-text="hint_keys"></span><span class="mobile-only" data-text="hint_touch"></span> · <span data-text="hint_rule"></span> <span data-bind="target"></span></div>
+</div>
+</div>

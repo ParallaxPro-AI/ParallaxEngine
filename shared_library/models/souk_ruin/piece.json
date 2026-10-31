@@ -1,0 +1,10 @@
+{
+  "id": "souk_ruin",
+  "summary": "A bombed-out Middle-Eastern souk building in the Claude-of-Duty idiom: a shelled two-storey shophouse with it… sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.souk_ruin or place \"prefab\": \"souk_ruin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:souk_ruin"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "speaker",
+  "summary": "A two-way loudspeaker head (woofer + tweeter + bass port) whose mounting is a part-set: a bookshelf stand, a… options form; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.speaker or place \"prefab\": \"speaker\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:speaker"]
+}

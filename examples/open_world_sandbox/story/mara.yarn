@@ -1,0 +1,35 @@
+title: call
+---
+<<if $contracts_completed == 0>>
+Mara: The car outside the safehouse is yours to borrow. Open Contracts when you're ready.
+Mara: Bay Supply has our first package.
+<<elseif not $permit_owned>>
+Mara: Mike can sell you a loading permit. Faster handovers, fewer questions.
+<<else>>
+Mara: Quiet week. Keep it that way.
+<<endif>>
+===
+
+title: first_run_brief
+---
+Mara: Take my car. Sealed cargo at Bay Supply.
+Mara: Wait for a quiet handover and there's a bonus in it. Force a fast pickup and the police come with it.
+Mara: Bring it home clean — no heat on you at my door.
+===
+
+title: first_run_paid
+---
+Mara: Clean work. Money's in your pocket.
+Mara: Mike's been asking about you. Check the board.
+===
+
+title: closing_window_brief
+---
+Mara: My runner is waiting at the canal bay. Armed response is already on the way.
+Mara: From pickup you have two and a half minutes to get them to me. Plan the route before you go.
+===
+
+title: closing_window_paid
+---
+Mara: They're inside. You've got a future in this, Sam.
+===

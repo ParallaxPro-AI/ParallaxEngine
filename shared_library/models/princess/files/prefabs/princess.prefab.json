@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/princess"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6646, 1.705, 0.9714],
+      "offset": [0, 0.8525, -0.0188]
+    }
+  }
+}

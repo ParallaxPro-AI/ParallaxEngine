@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rock_arch"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [7.3283, 4.4287, 2.8432],
+      "offset": [0.0991, 2.2114, -0.0623]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/monkey_bars"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.669, 2.1545, 0.9638],
+      "offset": [0, 1.0773, 0]
+    }
+  }
+}

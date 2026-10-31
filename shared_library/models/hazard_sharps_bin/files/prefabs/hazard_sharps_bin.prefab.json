@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hazard_sharps_bin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.292, 0.3765, 0.212],
+      "offset": [0, 0.1882, 0]
+    }
+  }
+}

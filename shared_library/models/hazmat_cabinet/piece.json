@@ -1,0 +1,10 @@
+{
+  "id": "hazmat_cabinet",
+  "summary": "A 45-gallon double-wall flammable-liquid safety cabinet, 1.09 m wide, 1.65 m tall and 0.46 m deep: powder-coa… joints door_l, door_r; options paint, hazard.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.hazmat_cabinet or place \"prefab\": \"hazmat_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:hazmat_cabinet"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "reindeer_sleigh",
+  "summary": "A Santa-style two-seat sleigh, about 2.8 m long: a lacquered red tub with a rounded nose, a curled dash, a sc… options cargo, paint; sockets seat_driver, seat_passenger, hitch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.reindeer_sleigh or place \"prefab\": \"reindeer_sleigh\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:reindeer_sleigh"]
+}

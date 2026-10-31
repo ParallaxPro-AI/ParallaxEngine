@@ -1,0 +1,10 @@
+{
+  "id": "rope_coil",
+  "summary": "A coil of 26 mm laid hemp rope lying flat: about 17 m of line wound in four layers of three flat-spiral loops…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rope_coil or place \"prefab\": \"rope_coil\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rope_coil"]
+}

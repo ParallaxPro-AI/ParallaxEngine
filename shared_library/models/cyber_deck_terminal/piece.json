@@ -1,0 +1,10 @@
+{
+  "id": "cyber_deck_terminal",
+  "summary": "A home-built rugged cyberdeck: a milled slate case with rubber corner bumpers, a sunken key grid with lit ESC… joints antenna, lid; options glow, accent, case_colour; sockets socket_user.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cyber_deck_terminal or place \"prefab\": \"cyber_deck_terminal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cyber_deck_terminal"]
+}

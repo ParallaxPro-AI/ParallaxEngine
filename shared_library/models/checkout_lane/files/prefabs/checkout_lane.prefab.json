@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/checkout_lane"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.669, 1.865, 1.07],
+      "offset": [-0.0045, 0.9325, 0.005]
+    }
+  }
+}

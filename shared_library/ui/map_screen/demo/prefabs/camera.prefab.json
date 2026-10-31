@@ -1,0 +1,1 @@
+{ "components": { "camera": { "rig": "follow", "offset": [0, 10, -10] } } }

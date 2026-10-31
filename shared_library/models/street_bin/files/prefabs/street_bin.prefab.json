@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/street_bin",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.6,
+        0.888,
+        0.6569
+      ],
+      "offset": [
+        0.0,
+        0.444,
+        0.0285
+      ]
+    }
+  }
+}

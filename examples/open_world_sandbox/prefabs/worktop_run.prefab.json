@@ -1,0 +1,6 @@
+{
+  "components": {
+    "model": { "model": "models/worktop_run", "cast_shadows": true },
+    "collider": { "shape": "box", "size": [2.4, 0.95, 0.65], "offset": [0, 0.475, 0.025] }
+  }
+}

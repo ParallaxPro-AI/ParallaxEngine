@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fish_market_ice_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8203, 1.0873, 0.963],
+      "offset": [0.0052, 0.5417, 0.0315]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/golf_cart"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 480,
+      "linear_damping": 0.08,
+      "angular_damping": 0.8
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.2,
+        1.9375,
+        2.52
+      ],
+      "offset": [
+        0,
+        0.9688,
+        -0.01
+      ],
+      "bounce": 0.08
+    },
+    "vehicle": {
+      "max_speed": 7.5,
+      "steering": 34,
+      "grip": 6,
+      "turn_rate": 1.7
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.9688,
+        -0.01
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

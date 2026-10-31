@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/traffic_barrel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8, 1.24, 0.8],
+      "offset": [0, 0.62, 0]
+    }
+  }
+}

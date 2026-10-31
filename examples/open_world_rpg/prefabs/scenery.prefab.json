@@ -1,0 +1,10 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_static/07/ee/07ee46943885688fb89aa321d0aa717559b1fcf4ac501c3f9aa40f5ef6bd4b40.glb"
+    },
+    "collider": {
+      "shape": "convex"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "start_gantry",
+  "summary": "The start / finish gantry: two braced towers on concrete footings spanning 12 m of track, an open box truss b… sockets socket_start_line.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.start_gantry or place \"prefab\": \"start_gantry\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:start_gantry"]
+}

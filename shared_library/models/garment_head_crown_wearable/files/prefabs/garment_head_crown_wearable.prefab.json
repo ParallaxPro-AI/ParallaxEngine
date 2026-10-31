@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_head_crown_wearable"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2588, 0.259, 0.2708],
+      "offset": [0, 1.8975, -0.026]
+    }
+  }
+}

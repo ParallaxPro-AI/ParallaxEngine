@@ -1,0 +1,1 @@
+{"name": "Shotgun", "damage": 13, "range": 28, "interval": 0.85, "magazine": 6, "reserve_max": 60, "reload_time": 2.6, "pellets": 8, "spread": 5.5, "sound": "https://r2.parallaxpro.ai/assets/audio_sfx/e7/01/e70139466c3e801358c9041ee17db7ff82c0e9a9cdf44647ad0ea6b9f8458f63.ogg", "volume": 0.5}

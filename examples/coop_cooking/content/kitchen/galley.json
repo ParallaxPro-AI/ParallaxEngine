@@ -1,0 +1,3 @@
+{ "name": "The Galley", "brief": "A wall down the middle: prep on one side, the window on the other. Soups are on.",
+  "scene": "galley", "seconds": 95, "target": 100, "order_interval": 5,
+  "menu": ["tomato_plate", "lettuce_bowl", "garden_salad", "tomato_soup", "onion_soup"] }

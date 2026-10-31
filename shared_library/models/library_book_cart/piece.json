@@ -1,0 +1,10 @@
+{
+  "id": "library_book_cart",
+  "summary": "A double-sided steel library book truck: arched steel end panels, a centre spine, three tiers of V-sloped she… options ends, load; sockets top_shelf_f, top_shelf_b.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.library_book_cart or place \"prefab\": \"library_book_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:library_book_cart"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "donut",
+  "summary": "A ring doughnut: a golden fried dough torus with a paler band round its waist, a thick glossy icing cap over… options icing, sprinkles; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.donut or place \"prefab\": \"donut\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:donut"]
+}

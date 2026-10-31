@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/slime"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.79, 0.53, 0.79],
+      "offset": [0, 0.265, 0]
+    }
+  }
+}

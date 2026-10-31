@@ -1,0 +1,7 @@
+{
+  "components": {
+    "light": { "kind": "point", "color": "#cfefff", "intensity": 1.5, "range": 12 },
+    "safe_zone": { "radius": 0 }
+  },
+  "behaviors": { "beacon": {} }
+}

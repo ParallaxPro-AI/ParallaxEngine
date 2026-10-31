@@ -1,0 +1,14 @@
+{
+  "id": "swing",
+  "summary": "A galvanised-steel A-frame swing set. joints seat; options kind.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.swing or place \"prefab\": \"swing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:swing"
+  ]
+}

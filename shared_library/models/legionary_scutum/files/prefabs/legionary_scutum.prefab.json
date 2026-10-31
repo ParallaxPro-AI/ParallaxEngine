@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/legionary_scutum"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6571, 1.062, 0.2506],
+      "offset": [0, 0.531, -0.0103]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/saloon_bar_counter"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.645, 1.385, 1.1731],
+      "offset": [-0.0075, 0.6925, 0.0066]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "boarding_gate_desk",
+  "summary": "An airport boarding-gate podium: a curved dark-veneer passenger fascia with a backlit accent strip and stainl… joints ped_door; options finish, accent; sockets socket_agent_l, socket_agent_r, socket_passenger.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.boarding_gate_desk or place \"prefab\": \"boarding_gate_desk\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:boarding_gate_desk"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cargo_trike",
+  "summary": "A three-wheeled delivery trike: a moped front end, a widened rear axle carrying a wheel at each end of it, an… joints steer, spin_front, spin_rear, cargo_lid; options type, paint; sockets seat_driver, socket_cargo.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.cargo_trike or place \"prefab\": \"cargo_trike\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:cargo_trike"]
+}

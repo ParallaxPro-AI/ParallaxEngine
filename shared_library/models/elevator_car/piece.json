@@ -1,0 +1,10 @@
+{
+  "id": "elevator_car",
+  "summary": "A passenger elevator car (lift cab) for an 8-person, 1.8 x 1.4 m car: a steel cab with brushed-stainless inte… joints door_l, door_r; options interior, doors; sockets socket_floor.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elevator_car or place \"prefab\": \"elevator_car\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elevator_car"]
+}

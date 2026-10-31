@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hotel_reception_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.08, 1.515, 0.966],
+      "offset": [0, 0.7575, 0.022]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/siege_ram"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.1212, 3.1, 3.65],
+      "offset": [0, 1.55, 0.025]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "base_roof_ramp",
+  "summary": "A survival base-building roof ramp covering one 3 x 3 m bay and rising 1.5 m: hand-split wooden shakes laid i… options tier; sockets socket_eave, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.base_roof_ramp or place \"prefab\": \"base_roof_ramp\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:base_roof_ramp"]
+}

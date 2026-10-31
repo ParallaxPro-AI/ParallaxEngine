@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cloud_platform"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.55, 0.88, 1.9],
+      "offset": [0.025, 0.44, 0]
+    }
+  }
+}

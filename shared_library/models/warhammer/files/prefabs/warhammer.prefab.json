@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/warhammer"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.36, 0.3],
+      "hip_turn": [-14.896903, -22.918312, -35.523383],
+      "eye_relief": 0.3,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.247, 0.047, 0.84],
+      "offset": [-0.0265, 0, 0.42]
+    }
+  }
+}

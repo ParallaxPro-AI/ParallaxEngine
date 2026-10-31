@@ -1,0 +1,47 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mini_excavator"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 3200,
+      "linear_damping": 0.15,
+      "angular_damping": 0.9
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        1.7,
+        2.5481,
+        4.096
+      ],
+      "offset": [
+        0,
+        1.2709,
+        0.022
+      ],
+      "bounce": 0.02
+    },
+    "vehicle": {
+      "max_speed": 1.3,
+      "steering": 30,
+      "grip": 10,
+      "turn_rate": 1
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        1.2709,
+        0.022
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

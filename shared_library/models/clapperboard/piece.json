@@ -1,0 +1,10 @@
+{
+  "id": "clapperboard",
+  "summary": "A film-set clapperboard: a black acrylic slate with a chalk-white grid and lettered fields (PROD, ROLL, SCENE… joints clapper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.clapperboard or place \"prefab\": \"clapperboard\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:clapperboard"]
+}

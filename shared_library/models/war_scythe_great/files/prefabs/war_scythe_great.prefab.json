@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/war_scythe_great"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.42, 0.36],
+      "hip_turn": [-17.188734, -26.356059, -40.107046],
+      "eye_relief": 0.32
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.065, 0.063, 2.071],
+      "offset": [0.3875, 0.033, 1.0355]
+    }
+  }
+}

@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="card.css">
+<div class="fct">
+  <section class="card">
+    <div class="card-main">
+      <span class="badge" data-show="champion"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="9" width="20" height="6" rx="1"/><rect x="8.5" y="6.5" width="7" height="11" rx="1.5"/></svg><span data-text="champion_badge"></span></span>
+      <h1 class="title"><span data-text="title_fist"></span><span class="g" data-text="title_circuit"></span></h1>
+      <p class="tag" data-text="tagline"></p>
+    </div>
+    <nav class="menu">
+      <button class="btn primary" data-action="start" data-mode="circuit"><span data-text="fight"></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      <button class="btn" data-action="start" data-mode="training"><span data-text="tutorial"></span><span class="meta" data-text="tutorial_meta"></span></button>
+      <button class="btn" data-action="start" data-mode="practice"><span data-text="practice"></span><span class="meta" data-text="practice_meta"></span></button>
+      <button class="btn" data-action="continue" data-show="can_continue"><span data-bind="continue_label"></span><span class="meta" data-bind="continue_rival"></span></button>
+      <button class="btn ghost" data-action="moves"><svg class="ic-set" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg><span data-text="settings_moves"></span></button>
+    </nav>
+    <footer class="career">
+      <span><b data-bind="career_wins"></b> <span data-text="career_wins"></span></span>
+      <span><b data-bind="belts"></b> <span data-bind="belts_label"></span></span>
+      <span><span data-text="best_rival"></span> <b data-bind="best_rival"></b></span>
+    </footer>
+  </section>
+  <aside class="ladder">
+    <div class="ld-h"><h3 data-bind="ladder_title"></h3><span data-bind="ladder_sub"></span></div>
+    <div data-each="rungs">
+      <template>
+        <div class="rung" data-class-done="done" data-class-next="next" data-class-belt="belt" data-class-lost="lost">
+          <span class="n" data-bind="n"></span>
+          <div class="who"><b data-bind="name"></b><span data-bind="role"></span></div>
+          <span class="st" data-bind="status"></span>
+        </div>
+      </template>
+    </div>
+  </aside>
+</div>

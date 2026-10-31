@@ -1,0 +1,10 @@
+{
+  "id": "fast_food_restaurant",
+  "summary": "A drive-thru fast-food restaurant on its own asphalt lot: a 16x12 m single-storey box set back from the stree… options house_colour; sockets eye_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fast_food_restaurant or place \"prefab\": \"fast_food_restaurant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fast_food_restaurant"]
+}

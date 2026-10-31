@@ -1,0 +1,10 @@
+{
+  "id": "sewer_tunnel_junction",
+  "summary": "A T-junction tile of the UNDERGROUND kit's Victorian brick sewer: the same upright-oval 3.4 x 4.2 m bore in a… joints sluice_gate.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.sewer_tunnel_junction or place \"prefab\": \"sewer_tunnel_junction\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:sewer_tunnel_junction"]
+}

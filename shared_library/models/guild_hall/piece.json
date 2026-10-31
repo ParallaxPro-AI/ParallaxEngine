@@ -1,0 +1,10 @@
+{
+  "id": "guild_hall",
+  "summary": "A fantasy-medieval guild hall, exterior only, on the pattern of a real English market guildhall: a 16 x 10 m… joints hall_door_l, hall_door_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.guild_hall or place \"prefab\": \"guild_hall\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:guild_hall"]
+}

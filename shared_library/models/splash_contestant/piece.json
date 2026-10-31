@@ -1,0 +1,10 @@
+{
+  "id": "splash_contestant",
+  "summary": "Padded game-show contestant with a helmet, expressive visor and four independently articulated limbs. joints arm_left, arm_right, leg_left, leg_right.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.splash_contestant or place \"prefab\": \"splash_contestant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:splash_contestant"]
+}

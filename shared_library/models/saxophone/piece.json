@@ -1,0 +1,10 @@
+{
+  "id": "saxophone",
+  "summary": "An alto saxophone stood upright on its bow guard: a conical lacquered-brass body swept round a U-bow into a f… joints key_1, key_2, key_3, key_4, key_5, key_6, …; options finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.saxophone or place \"prefab\": \"saxophone\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:saxophone"]
+}

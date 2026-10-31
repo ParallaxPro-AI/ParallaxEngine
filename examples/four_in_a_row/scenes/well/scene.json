@@ -1,0 +1,12 @@
+{
+  "ui": ["hud"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "entities": [
+    { "prefab": "camera", "at": [3, 2.5] },
+    { "prefab": "backdrop", "at": [3, 2.5] },
+    { "prefab": "well_frame", "at": [3, 2.5] },
+    { "prefab": "column_glow", "id": "column_glow", "at": [3, 2.5] },
+    { "prefab": "column_ghost", "id": "column_ghost", "at": [3, 0] },
+    { "id": "well", "prefab": "well", "at": [3, 2.5] }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "number": 4,
+  "label": "Clear 3 lurkers from the reef",
+  "kind": "monster",
+  "goal": 3,
+  "gold": 180
+}

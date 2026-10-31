@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/amp_stack_full"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.792, 1.904, 0.372],
+      "offset": [0, 0.952, 0]
+    }
+  }
+}

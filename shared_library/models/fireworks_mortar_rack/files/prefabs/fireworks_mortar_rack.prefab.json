@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/fireworks_mortar_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6044, 0.4963, 0.3224],
+      "offset": [-0.0122, 0.2481, 0.0257]
+    }
+  }
+}

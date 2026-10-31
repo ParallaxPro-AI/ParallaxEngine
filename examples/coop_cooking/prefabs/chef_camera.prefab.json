@@ -1,0 +1,18 @@
+{
+  "components": {
+    "camera": {
+      "rig": "follow",
+      "mode": "perspective",
+      "fov": 55,
+      "offset": [
+        0,
+        19.8,
+        -14
+      ],
+      "world_offset": true,
+      "smoothing": 0,
+      "pitch": -54.33
+    },
+    "audio_listener": {}
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "cherry_picker",
+  "summary": "A self-propelled articulating boom lift (cherry picker): a 4WD chassis on foam-filled lug tyres with fenders… joints slew, riser, riser_level, boom, telescope, boom_tip, …; options paint; sockets seat_driver.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.cherry_picker or place \"prefab\": \"cherry_picker\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:cherry_picker"]
+}

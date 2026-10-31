@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/owl"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2876, 0.5925, 0.3416],
+      "offset": [0, 0.2921, -0.0318]
+    }
+  }
+}

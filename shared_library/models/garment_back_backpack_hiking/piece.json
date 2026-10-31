@@ -1,0 +1,10 @@
+{
+  "id": "garment_back_backpack_hiking",
+  "summary": "A large top-loading hiking backpack (about 60 litres) worn on the back: a tall quilted nylon bag with a float… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_back_backpack_hiking or place \"prefab\": \"garment_back_backpack_hiking\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_back_backpack_hiking"]
+}

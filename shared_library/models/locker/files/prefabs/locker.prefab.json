@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/locker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9, 1.8, 0.503],
+      "offset": [0, 0.9, 0.0265]
+    }
+  }
+}

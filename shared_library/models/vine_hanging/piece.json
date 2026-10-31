@@ -1,0 +1,10 @@
+{
+  "id": "vine_hanging",
+  "summary": "Hanging vines draped over a mossy branch: nine trailing strands of heart-leaved creeper, each looped once ove…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vine_hanging or place \"prefab\": \"vine_hanging\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vine_hanging"]
+}

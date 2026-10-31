@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": { "model": "models/sheep" },
+    "character": { "walk_speed": 0.65, "run_speed": 3.5, "radius": 0.38, "height": 1.0 },
+    "health": { "current": 20, "max": 20 },
+    "loot": { "drops": [{ "item": "raw_meat", "count": 2 }, { "item": "wool", "count": 2 }] }
+  },
+  "tags": ["creature", "wildlife"],
+  "behaviors": {
+    "grazer": { "stroll_seconds": 3, "graze_seconds": 2, "turn": 97, "flee_seconds": 5 }
+  }
+}

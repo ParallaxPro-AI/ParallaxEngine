@@ -1,0 +1,10 @@
+{
+  "id": "lighthouse_lens",
+  "summary": "A third-order rotating Fresnel lens on its cast-iron clockwork pedestal: a moulded plinth, a cabinet with a g… joints clock_door, lens; options pedestal; sockets keeper.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lighthouse_lens or place \"prefab\": \"lighthouse_lens\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lighthouse_lens"]
+}

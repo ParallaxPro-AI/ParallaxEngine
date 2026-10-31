@@ -1,0 +1,2 @@
+{ "name": "Rough Hide", "blurb": "Cured on the rampart in one night. It smells like it, too.",
+  "icon": "cloak", "category": "guard", "tier": 1, "cost": 250, "stats": { "max_health": 90 } }

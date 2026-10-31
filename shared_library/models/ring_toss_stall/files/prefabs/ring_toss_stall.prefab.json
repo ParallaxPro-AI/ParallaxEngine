@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ring_toss_stall"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3, 3.35, 2.3617],
+      "offset": [0, 1.675, 0.0232]
+    }
+  }
+}

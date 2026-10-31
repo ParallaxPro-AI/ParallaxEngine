@@ -1,0 +1,10 @@
+{
+  "id": "skip_bin",
+  "summary": "An open 8-yard builder's skip: a hollow welded steel tub with raked ends and slightly flared sides, a rolled… options paint, contents.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skip_bin or place \"prefab\": \"skip_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skip_bin"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/teepee_play_tent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1853, 1.6743, 1.1633],
+      "offset": [0, 0.8371, -0.0415]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "town_hall_medieval",
+  "summary": "A late-medieval town hall of the market-hall type, 16 x 9 m on plan, 14.6 m to the ridge and about 25 m to th… joints loggia_door_l, loggia_door_r, upper_door, bell, vane; sockets socket_arcade, socket_stair_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.town_hall_medieval or place \"prefab\": \"town_hall_medieval\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:town_hall_medieval"]
+}

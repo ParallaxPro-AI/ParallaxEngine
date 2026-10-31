@@ -1,0 +1,10 @@
+{
+  "id": "shop_sign_board",
+  "summary": "A projecting shop sign: a wrought-iron wall plate, a 0.95 m bracket arm with a diagonal brace and a scroll ri… joints swing; options field, device.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shop_sign_board or place \"prefab\": \"shop_sign_board\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shop_sign_board"]
+}

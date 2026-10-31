@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/champion_warrior"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.68, 1.9673, 0.5606],
+      "offset": [0, 0.9836, -0.0437]
+    }
+  }
+}

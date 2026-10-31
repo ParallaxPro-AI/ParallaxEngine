@@ -1,0 +1,10 @@
+{
+  "id": "crutches",
+  "summary": "A pair of adjustable aluminium underarm crutches standing side by side: on each, two bowed side rails run fro… joints crutch_l_frame, crutch_r_frame.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crutches or place \"prefab\": \"crutches\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crutches"]
+}

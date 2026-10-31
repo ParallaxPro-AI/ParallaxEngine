@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hospital_bed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.013, 1.06, 2.2],
+      "offset": [0, 0.53, 0]
+    }
+  }
+}

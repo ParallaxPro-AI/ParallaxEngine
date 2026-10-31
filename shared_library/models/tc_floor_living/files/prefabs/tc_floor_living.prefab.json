@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_floor_living"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [6.8, 0.02, 8.4],
+      "offset": [0, 0.01, 0]
+    }
+  }
+}

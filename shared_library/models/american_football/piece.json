@@ -1,0 +1,10 @@
+{
+  "id": "american_football",
+  "summary": "A regulation-size American football (0.28 m tip to tip, 0.17 m across the belly): a pointed prolate leather b… options leather, stripes.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.american_football or place \"prefab\": \"american_football\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:american_football"]
+}

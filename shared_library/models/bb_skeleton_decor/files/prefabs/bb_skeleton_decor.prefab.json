@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_skeleton_decor"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.8899, 1.593, 0.36],
+      "offset": [0, 0.7965, 0.04]
+    }
+  }
+}

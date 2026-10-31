@@ -1,0 +1,10 @@
+{
+  "id": "bowling_set",
+  "summary": "A racked ten-pin set: ten `bowling_pin`s on the regulation 12 in (0.3048 m) equilateral triangle -- head pin… sockets socket_head_pin, socket_ball.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bowling_set or place \"prefab\": \"bowling_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bowling_set"]
+}

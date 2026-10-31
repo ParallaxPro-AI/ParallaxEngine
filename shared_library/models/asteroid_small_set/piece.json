@@ -1,0 +1,10 @@
+{
+  "id": "asteroid_small_set",
+  "summary": "A set of five small space asteroids (meteoroid chunks) for a space shooter, from a 1.6 m elongated rock down…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.asteroid_small_set or place \"prefab\": \"asteroid_small_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:asteroid_small_set"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/skis"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.47, 0.094, 1.6936],
+      "offset": [0, 0.0431, -0.0011]
+    }
+  }
+}

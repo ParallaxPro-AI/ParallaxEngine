@@ -1,0 +1,10 @@
+{
+  "id": "fog_machine",
+  "summary": "A 1000 W stage fog machine: a black steel case with side vent slots and a top heat-sink grille, a recessed br… joints bracket; sockets remote, fog.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fog_machine or place \"prefab\": \"fog_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fog_machine"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tandem_rotor_helicopter",
+  "summary": "A heavy-lift twin-rotor (tandem) transport helicopter: a long lofted rounded-box fuselage with a glazed nose… joints ramp, rotor_front, rotor_rear; sockets seat_driver, seat_pax_1, eye_point, cargo_hook, ramp_entry.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tandem_rotor_helicopter or place \"prefab\": \"tandem_rotor_helicopter\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tandem_rotor_helicopter"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tent",
+  "summary": "A canvas ridge tent: two end uprights carrying an overhanging ridge pole, two sloping canvas walls that sag b… joints door; sockets socket_ridge, socket_door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tent or place \"prefab\": \"tent\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tent"]
+}

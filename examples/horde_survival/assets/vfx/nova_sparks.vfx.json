@@ -1,0 +1,1 @@
+{ "extends": "effect/sparks", "burst": 90, "max": 120, "speed": [10, 26], "radius": 1.5 }

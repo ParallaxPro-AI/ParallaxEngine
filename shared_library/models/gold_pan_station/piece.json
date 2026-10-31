@@ -1,0 +1,10 @@
+{
+  "id": "gold_pan_station",
+  "summary": "A gold-rush prospector's washing station: a wooden rocker box (cradle) with riffle cleats, a canvas apron and… joints cradle; sockets socket_panner, socket_rocker, socket_nugget.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.gold_pan_station or place \"prefab\": \"gold_pan_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:gold_pan_station"]
+}

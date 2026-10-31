@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/turnstile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.922, 1.05, 0.806],
+      "offset": [0, 0.525, 0.125]
+    }
+  }
+}

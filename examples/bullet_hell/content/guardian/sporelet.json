@@ -1,0 +1,4 @@
+{
+  "name": "Sporelet", "animation": "sporelet", "hp": 1, "scale": 0.8, "score": 120,
+  "fire": "aimed", "arms": 1, "spread": 0, "spin_step": 0, "petal_speed": 7.4
+}

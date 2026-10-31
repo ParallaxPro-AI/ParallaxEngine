@@ -1,0 +1,10 @@
+{
+  "id": "garment_torso_suit_jacket",
+  "summary": "A single-breasted two-button suit jacket worn over a white shirt and tie: notch lapels that conform to the ch… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_torso_suit_jacket or place \"prefab\": \"garment_torso_suit_jacket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_torso_suit_jacket"]
+}

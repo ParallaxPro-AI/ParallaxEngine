@@ -1,0 +1,10 @@
+{
+  "id": "triceratops",
+  "summary": "A three-horned ceratopsian dinosaur on the engine's quadruped_20 rig: about 8 m beak to tail tip and 3 m tall… options skin; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.triceratops or place \"prefab\": \"triceratops\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:triceratops"]
+}

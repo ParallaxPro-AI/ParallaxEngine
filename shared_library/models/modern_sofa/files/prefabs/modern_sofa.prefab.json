@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_sofa"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.187, 0.8302, 0.94],
+      "offset": [0.0085, 0.4151, 0]
+    }
+  }
+}

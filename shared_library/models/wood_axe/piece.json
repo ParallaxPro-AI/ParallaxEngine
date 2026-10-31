@@ -1,0 +1,10 @@
+{
+  "id": "wood_axe",
+  "summary": "A woodcutter's felling axe, 0.79 m: a curved hickory haft with a swelled fawn's-foot butt, and a single-bit f… options sheath, head_finish; sockets grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.wood_axe or place \"prefab\": \"wood_axe\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:wood_axe"]
+}

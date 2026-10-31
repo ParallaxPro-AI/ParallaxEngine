@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/metro_car"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9155, 3.6, 15.6],
+      "offset": [0, 1.8, 0]
+    }
+  }
+}

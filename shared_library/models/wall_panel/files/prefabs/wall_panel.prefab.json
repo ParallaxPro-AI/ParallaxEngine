@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wall_panel"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3, 2.7015, 2.63],
+      "offset": [0, 1.3493, -1.185]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "garment_face_bandana",
+  "summary": "A cotton bandana worn as an outlaw-style face mask: a folded triangle of red cloth tied over the bridge of th… options channel0; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_face_bandana or place \"prefab\": \"garment_face_bandana\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_face_bandana"]
+}

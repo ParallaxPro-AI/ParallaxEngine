@@ -1,0 +1,10 @@
+{
+  "id": "mahjong_table",
+  "summary": "A square mahjong table mid-game, 0.86 m and 0.78 m tall: a walnut frame with a raised rim round a green baize… joints drawer_s, drawer_e, drawer_n, drawer_w; options felt, wood; sockets chair_s, chair_e, chair_n, chair_w.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mahjong_table or place \"prefab\": \"mahjong_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mahjong_table"]
+}

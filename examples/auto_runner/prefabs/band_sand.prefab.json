@@ -1,0 +1,16 @@
+{
+  "z": 10,
+  "components": {
+    "sprite": {
+      "image": "https://r2.parallaxpro.ai/assets/image_sprite/47/76/47768de322ddeb85b33fec957963e0d1fff3011a7e768ab4586773b1c8e2a52a.png",
+      "size": [
+        1.02,
+        1
+      ]
+    },
+    "scrolls": {
+      "factor": 1,
+      "wrap_span": 34
+    }
+  }
+}

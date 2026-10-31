@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/foil_wad"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.22,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1448, 0.1454, 0.1476],
+      "offset": [-0.0015, 0.0684, 0.0074]
+    }
+  }
+}

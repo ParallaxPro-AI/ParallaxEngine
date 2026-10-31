@@ -1,0 +1,10 @@
+{
+  "id": "tin_sheet",
+  "summary": "A thunder sheet: a tall panel of thin tin hung from a timber batten with a turned grip, its face slightly buc… sockets grip_point, strike_face.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tin_sheet or place \"prefab\": \"tin_sheet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tin_sheet"]
+}

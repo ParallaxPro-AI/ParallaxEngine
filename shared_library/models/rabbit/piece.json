@@ -1,0 +1,10 @@
+{
+  "id": "rabbit",
+  "summary": "A rabbit sitting in its hunched rest posture, on the engine's quadruped_20 rig so the built-in quadruped clip… options coat; sockets head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rabbit or place \"prefab\": \"rabbit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rabbit"]
+}

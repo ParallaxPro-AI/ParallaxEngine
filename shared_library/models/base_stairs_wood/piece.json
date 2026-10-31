@@ -1,0 +1,10 @@
+{
+  "id": "base_stairs_wood",
+  "summary": "A survival base-building staircase that climbs one 3.0 m storey inside a single 3 x 3 m bay: two open-riser f… options tier; sockets socket_foot, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.base_stairs_wood or place \"prefab\": \"base_stairs_wood\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:base_stairs_wood"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "tanning_frame",
+  "summary": "A hide-tanning station: a 1.5 x 1.55 m frame of four bark poles lashed at the corners with long overhangs, le… sockets socket_hide, socket_beam.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tanning_frame or place \"prefab\": \"tanning_frame\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tanning_frame"]
+}

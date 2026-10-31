@@ -1,0 +1,15 @@
+{
+  "number": 3,
+  "title": "A gift from the old guard",
+  "summary": "Rowan survived the ambush and has something for you.",
+  "reward_xp": 30,
+  "reward_gold": 25,
+  "teaches": "runebreak",
+  "start": "rescue",
+  "steps": {
+    "rescue": {
+      "text": "Speak to Scout Rowan at the caravan.",
+      "verb": "talk", "target": "scout_rowan", "marker": "beacon_rowan", "sets": ["restless_barrow_done"]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "components": {
+    "camera": {
+      "rig": "fixed",
+      "fov": 60,
+      "pitch": 15
+    }
+  }
+}

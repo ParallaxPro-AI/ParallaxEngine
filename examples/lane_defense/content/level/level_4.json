@@ -1,0 +1,19 @@
+{
+  "number": 4,
+  "title": "The quick and the chilled",
+  "subtitle": "Slow the scarf runners",
+  "hint": "Scarf runners leap over their first blocker. Rimecap slows them before they jump.",
+  "reward": "Twinthorn",
+  "lanes": [0, 1, 2, 3, 4],
+  "cards": ["pollenbloom", "thornspitter", "barkshell", "rimecap"],
+  "start_pollen": 500,
+  "buildup": 18,
+  "interval": 24,
+  "irrigation": true,
+  "waves": [
+    { "husks": ["shambler", "sprinter", "shambler"] },
+    { "husks": ["sprinter", "shambler", "sprinter", "scrapmask"] },
+    { "husks": ["sprinter", "sprinter", "scrapmask", "shambler"] },
+    { "husks": ["ironhelm", "sprinter", "shambler", "sprinter"] }
+  ]
+}

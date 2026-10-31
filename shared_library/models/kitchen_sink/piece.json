@@ -1,0 +1,10 @@
+{
+  "id": "kitchen_sink",
+  "summary": "A base-cabinet kitchen sink: stone countertop with a stainless basin, a swivelling gooseneck tap and a single… joints swivel, lever; options bowl; sockets socket_basin.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kitchen_sink or place \"prefab\": \"kitchen_sink\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kitchen_sink"]
+}

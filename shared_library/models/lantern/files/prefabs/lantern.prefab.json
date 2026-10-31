@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lantern",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.168,
+        0.455,
+        0.181
+      ],
+      "offset": [
+        0.0,
+        0.2275,
+        0.0065
+      ]
+    }
+  }
+}

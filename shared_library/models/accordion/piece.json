@@ -1,0 +1,10 @@
+{
+  "id": "accordion",
+  "summary": "A piano accordion: a red bass end-box with round bass buttons on the left, a red treble end-box carrying a pi… joints bellows, keys; sockets socket_strap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.accordion or place \"prefab\": \"accordion\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:accordion"]
+}

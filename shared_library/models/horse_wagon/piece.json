@@ -1,0 +1,10 @@
+{
+  "id": "horse_wagon",
+  "summary": "A horse-drawn wagon WITHOUT the horse: a plank box on oak running gear, four wooden spoked wheels with iron t… joints brake, tailgate, spin_rear_l, spin_rear_r, front_axle, spin_front_l, …; options cover, box_paint, gear_paint, cover_colour; sockets socket_hitch, socket_traces, seat_driver, seat_pax_1, eye_point, socket_cargo, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.horse_wagon or place \"prefab\": \"horse_wagon\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:horse_wagon"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "skewer_grill_cart",
+  "summary": "A night-market charcoal skewer cart: a brushed stainless cabinet on four swivel casters with a painted custom… joints cab_door; options panel, awning; sockets socket_vendor, socket_customer, socket_serve, socket_handle, grill_smoke.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skewer_grill_cart or place \"prefab\": \"skewer_grill_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skewer_grill_cart"]
+}

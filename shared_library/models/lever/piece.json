@@ -1,0 +1,10 @@
+{
+  "id": "lever",
+  "summary": "A heavy actuation lever on a pivot housing: a throw handle with a ball grip, a swinging state indicator on a… joints handle, indicator; options mount, finish; sockets socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lever or place \"prefab\": \"lever\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lever"]
+}

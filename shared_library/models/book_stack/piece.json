@@ -1,0 +1,10 @@
+{
+  "id": "book_stack",
+  "summary": "A loose pile of six books stacked largest to smallest and knocked a few degrees off true: four cloth hardcove…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.book_stack or place \"prefab\": \"book_stack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:book_stack"]
+}

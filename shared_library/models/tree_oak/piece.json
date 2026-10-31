@@ -1,0 +1,10 @@
+{
+  "id": "tree_oak",
+  "summary": "A mature broadleaf oak: a thick, buttress-flared trunk forking into heavy spreading limbs under a broad, lump… joints wind.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tree_oak or place \"prefab\": \"tree_oak\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tree_oak"]
+}

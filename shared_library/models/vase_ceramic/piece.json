@@ -1,0 +1,10 @@
+{
+  "id": "vase_ceramic",
+  "summary": "A wheel-thrown stoneware flower vase about 0.32 m tall and 0.20 m across the belly: a round belly that swells…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.vase_ceramic or place \"prefab\": \"vase_ceramic\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:vase_ceramic"]
+}

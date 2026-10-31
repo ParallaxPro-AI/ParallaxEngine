@@ -1,0 +1,6 @@
+{
+  "name": "A draught",
+  "weight": 4,
+  "speed_min": 0.8,
+  "speed_max": 1.8
+}

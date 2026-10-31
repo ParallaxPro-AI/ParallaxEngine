@@ -1,0 +1,10 @@
+{
+  "id": "camel",
+  "summary": "A dromedary (one-humped camel) on the engine's quadruped_20 rig: ~2.0 m at the shoulder, ~2.3 m over the hump… options coat; sockets saddle, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.camel or place \"prefab\": \"camel\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:camel"]
+}

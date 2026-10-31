@@ -1,0 +1,10 @@
+{
+  "id": "window_boards",
+  "summary": "Planks nailed across the inside of a window: five mismatched boards on two battens, with visible nail heads. options coverage, timber; sockets gap.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.window_boards or place \"prefab\": \"window_boards\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:window_boards"]
+}

@@ -1,0 +1,45 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baller",
+      "options": {
+        "skin": "brown",
+        "kit": "white",
+        "trim": "red"
+      },
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "character": {
+      "walk_speed": 5.5,
+      "run_speed": 5.5,
+      "radius": 0.4,
+      "height": 1.9
+    },
+    "bot": {
+      "style": {
+        "shoot_range": 7.6,
+        "perfect_rate": 0.2,
+        "good_rate": 0.44,
+        "skill": 1,
+        "steal_chance": 0.32,
+        "close_pressure": 0.7,
+        "pass_chance": 0.5
+      }
+    },
+    "edge": {},
+    "box_score": {},
+    "barker": {
+      "voice": "mate",
+      "cooldown": 7
+    }
+  },
+  "tags": [
+    "home"
+  ],
+  "behaviors": {
+    "baller_animation": {}
+  }
+}

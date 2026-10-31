@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/clothes_rail"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2, 1.587, 0.504],
+      "offset": [0, 0.7935, 0.002]
+    }
+  }
+}

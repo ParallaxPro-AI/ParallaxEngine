@@ -1,0 +1,10 @@
+{
+  "id": "sticky_bomb",
+  "summary": "A thrown adhesive explosive (sticky bomb / sticky grenade), 0.11 m across: a ribbed steel charge puck with a… joints arming_dial, safety_tab; sockets blast, blink, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.sticky_bomb or place \"prefab\": \"sticky_bomb\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:sticky_bomb"]
+}

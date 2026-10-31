@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tent"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.0961, 1.5852, 3.7121],
+      "offset": [0, 0.7909, 0]
+    }
+  }
+}

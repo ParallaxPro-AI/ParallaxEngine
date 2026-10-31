@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_hull",
+      "scale": 0.7,
+      "cast_shadows": true,
+      "offset": [0, -0.55, 0]
+    }
+  },
+  "children": [
+    {
+      "name": "turret",
+      "prefab": "tank_turret",
+      "at": [0, 0.332, 0.175]
+    }
+  ]
+}

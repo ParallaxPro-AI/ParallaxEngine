@@ -1,0 +1,9 @@
+{
+  "name": "The Cellar", "tint": "#ffffff",
+  "rooms": 6, "loops": 0.08, "has_gauntlet": false, "locked_chests": 0, "locks": 1,
+  "enemy_hp_mult": 1.0, "boss_hp_mult": 1.0, "shop_price_mult": 1.0, "elite_chance": 0.0,
+  "squads": {
+    "combat": { "husk": 4 },
+    "boss": { "cellar_wretch": 1 }
+  }
+}

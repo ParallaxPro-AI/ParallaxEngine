@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sheep"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6122, 0.923, 1.4774],
+      "offset": [0, 0.4615, 0.0847]
+    }
+  }
+}

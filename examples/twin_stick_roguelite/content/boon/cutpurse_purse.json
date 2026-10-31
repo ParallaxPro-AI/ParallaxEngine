@@ -1,0 +1,2 @@
+{ "name": "Cutpurse Purse", "blurb": "Start with 6 coins in your pocket.",
+  "effect": "coins", "amount": 6, "costs": [20, 50] }

@@ -1,0 +1,10 @@
+{
+  "id": "bison",
+  "summary": "An American plains bison bull on the engine's quadruped_20 rig, sized from a real bull: ~1.8 m at the shoulde… options coat, cape; sockets back, head_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bison or place \"prefab\": \"bison\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bison"]
+}

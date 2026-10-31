@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/timer_hourglass"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.196, 0.31, 0.196],
+      "offset": [0, 0.155, 0]
+    }
+  }
+}

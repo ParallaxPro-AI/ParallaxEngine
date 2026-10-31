@@ -1,0 +1,10 @@
+{
+  "id": "farm_mailbox_shipping_bin",
+  "summary": "A farmyard drop-off point: a lidded wooden shipping bin beside a rural mailbox on a post. joints lid, mail_door, flag.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.farm_mailbox_shipping_bin or place \"prefab\": \"farm_mailbox_shipping_bin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:farm_mailbox_shipping_bin"]
+}

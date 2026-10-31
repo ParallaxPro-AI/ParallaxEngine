@@ -1,0 +1,10 @@
+{
+  "id": "skull_pile",
+  "summary": "A heap of thirty-one weathered skulls stacked in rings on a packed-earth mound, with long bones thrown across…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.skull_pile or place \"prefab\": \"skull_pile\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:skull_pile"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/base_floor_wood"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.9891, 0.157, 2.986],
+      "offset": [-0.0035, 0.0825, 0.001]
+    }
+  }
+}

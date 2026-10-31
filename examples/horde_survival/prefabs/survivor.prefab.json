@@ -1,0 +1,89 @@
+{
+  "components": {
+    "model": {
+      "model": "models/emberwarden",
+      "options": {
+        "skin": "tan",
+        "hair": "grey",
+        "headgear": "hooded",
+        "trim": "red"
+      },
+      "cast_shadows": true
+    },
+    "character": {
+      "mode": "3d",
+      "walk_speed": 8,
+      "acceleration": 40,
+      "radius": 0.45,
+      "height": 1.8
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.45,
+      "height": 1.8,
+      "layer": "survivor",
+      "collides_with": [
+        "shard",
+        "pickup",
+        "wall"
+      ]
+    },
+    "health": {
+      "current": 100,
+      "max": 100,
+      "invulnerable_after_hit": 0.55,
+      "destroy_on_death": false
+    },
+    "side": {
+      "side": "side_survivor"
+    },
+    "build": {
+      "damage": 12,
+      "fire_interval": 0.5,
+      "bolts": 1,
+      "pierce": 0,
+      "hit_radius": 1.0,
+      "bolt_speed": 34,
+      "bolt_range": 34,
+      "pickup_radius": 5.5,
+      "nova_cooldown": 10,
+      "nova_radius": 14,
+      "nova_damage": 90
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    },
+    "hurt_feedback": {
+      "flash": 0.6,
+      "shake": 0.32,
+      "low_health": 0.25,
+      "color": "#dc2626",
+      "direction": false
+    },
+    "surface_fx": {
+      "dissolve": 1,
+      "dissolve_color": "#ffb361",
+      "dissolve_glow": 3.6,
+      "rim": 2.3,
+      "rim_color": "#ffb361",
+      "rim_power": 0.1
+    }
+  },
+  "behaviors": {
+    "survivor_movement": {},
+    "dash": {
+      "speed": 22,
+      "untouchable": 0.35,
+      "cooldown": 1.6
+    },
+    "ember_staff": {},
+    "ember_nova": {},
+    "cinder_aura": {},
+    "survivor_vitals": {}
+  },
+  "scale": [
+    1.0879,
+    1.0879,
+    1.0879
+  ]
+}

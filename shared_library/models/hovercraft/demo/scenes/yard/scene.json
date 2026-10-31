@@ -1,0 +1,11 @@
+{
+  "entities": [
+    {
+      "prefab": "demo_camera",
+      "at": [0, 4, -12]
+    },
+    {
+      "prefab": "demo_ground"
+    }
+  ]
+}

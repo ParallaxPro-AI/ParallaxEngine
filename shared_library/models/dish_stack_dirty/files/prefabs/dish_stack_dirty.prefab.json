@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dish_stack_dirty"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.2755, 0.0535, 0.2763],
+      "offset": [-0.0009, 0.0267, 0.0002]
+    }
+  }
+}

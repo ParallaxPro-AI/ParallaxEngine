@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bike_rack"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.04, 0.8237, 0.74],
+      "offset": [0, 0.4119, 0]
+    }
+  }
+}

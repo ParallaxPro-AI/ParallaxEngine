@@ -1,0 +1,10 @@
+{
+  "id": "tunnel_section",
+  "summary": "A 12 m road tunnel section from the ROAD_KIT: a 1 m thick cast-concrete lining - vertical walls to 4.2 m risi…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.tunnel_section or place \"prefab\": \"tunnel_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:tunnel_section"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "moose",
+  "summary": "A bull moose on the engine's quadruped_20 rig: ~1.9 m at the shoulder hump, ~2.6 m over the antlers, ~2.6 m n… options coat, antlers; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.moose or place \"prefab\": \"moose\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:moose"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "medical_monitor",
+  "summary": "A rolling patient vital-signs monitor: a five-star castored base, a chrome pole, an articulated support arm a… joints arm, screen_tilt; sockets socket_screen.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.medical_monitor or place \"prefab\": \"medical_monitor\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:medical_monitor"]
+}

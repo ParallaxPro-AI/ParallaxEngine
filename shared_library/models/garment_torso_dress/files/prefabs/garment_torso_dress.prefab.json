@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_dress"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7116, 1.074, 0.642],
+      "offset": [0, 1.067, -0.009]
+    }
+  }
+}

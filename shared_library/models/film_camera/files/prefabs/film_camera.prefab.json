@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/film_camera"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7641, 1.6178, 0.9351],
+      "offset": [0, 0.8123, -0.0362]
+    }
+  }
+}

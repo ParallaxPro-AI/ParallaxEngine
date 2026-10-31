@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/welding_rig"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6, 1.484, 1.0219],
+      "offset": [0, 0.742, -0.0001]
+    }
+  }
+}

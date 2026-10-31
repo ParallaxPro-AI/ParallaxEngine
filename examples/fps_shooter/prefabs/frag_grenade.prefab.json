@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": { "model": "models/frag_grenade", "offset": [0, -0.055, -0.004] },
+    "rigidbody": { "kind": "dynamic", "mass": 0.4, "continuous": true },
+    "collider": { "shape": "sphere", "radius": 0.09, "bounce": 0.35, "layer": "grenade", "collides_with": ["world"] }
+  },
+  "behaviors": { "grenade": { "fuse": 1.6, "radius": 6 } },
+  "pool": 8
+}

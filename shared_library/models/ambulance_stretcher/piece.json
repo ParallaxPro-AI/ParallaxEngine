@@ -1,0 +1,10 @@
+{
+  "id": "ambulance_stretcher",
+  "summary": "A powered ambulance stretcher (EMS cot): a black anodised litter on a hi-vis yellow scissor X-frame undercarr… joints castor_0_roll, castor_1_roll, castor_2_roll, castor_3_roll, load_wheel_l, load_wheel_r, …; options accent, mattress; sockets patient, medic_foot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ambulance_stretcher or place \"prefab\": \"ambulance_stretcher\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ambulance_stretcher"]
+}

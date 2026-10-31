@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/boomerang"
+    },
+    "viewmodel_item": {
+      "hip": [0.2, -0.2, 0.36],
+      "hip_turn": [5.729578, 14.323945, -11.459156],
+      "eye_relief": 0.24,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4076, 0.0095, 0.1702],
+      "offset": [0, 0.0048, 0.0026]
+    }
+  }
+}

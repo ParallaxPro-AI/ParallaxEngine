@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/sauropod"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.3463, 9.1708, 19.81],
+      "offset": [0, 4.5814, -0.345]
+    }
+  }
+}

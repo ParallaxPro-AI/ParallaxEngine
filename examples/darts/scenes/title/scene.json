@@ -1,0 +1,9 @@
+{
+  "extends": "oche_hall",
+  "exclude": ["camera", "dart"],
+  "ui": ["title"],
+  "music": null,
+  "entities": [
+    {"prefab": "title_camera", "at": [0, 1.72, 1.1], "rotation": [0, 180, 0]}
+  ]
+}

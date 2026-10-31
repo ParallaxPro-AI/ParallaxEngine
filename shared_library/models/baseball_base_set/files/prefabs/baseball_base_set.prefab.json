@@ -1,0 +1,7 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baseball_base_set"
+    }
+  }
+}

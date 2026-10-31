@@ -1,0 +1,16 @@
+{
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/1d/8d/1d8dfc8aea187208faa2549f7174f051f07f9025b54d2905251b8e6a5c28fd71.glb",
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "Idle"
+    }
+  },
+  "scale": [
+    1.65,
+    1.65,
+    1.65
+  ]
+}

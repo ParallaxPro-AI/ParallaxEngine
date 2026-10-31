@@ -1,0 +1,10 @@
+{
+  "id": "advent_calendar_house",
+  "summary": "A wooden advent-calendar house: a painted red body on a walnut plinth with a green, snow-capped gable roof, c… joints door_02, door_04, door_14, door_11, door_10, door_17, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.advent_calendar_house or place \"prefab\": \"advent_calendar_house\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:advent_calendar_house"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "scifi_floor_grate",
+  "summary": "A 4 x 4 m sci-fi floor tile of open steel grating, the floor piece of the space-corridor kit: a C-channel per… sockets socket_walk_centre.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_floor_grate or place \"prefab\": \"scifi_floor_grate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_floor_grate"]
+}

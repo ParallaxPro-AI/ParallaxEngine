@@ -1,0 +1,10 @@
+{
+  "id": "oil_pumpjack",
+  "summary": "A conventional beam pumping unit (a 'nodding donkey') over an oil well: a steel skid, a four-legged samson po… joints crank, beam, pitman, bridle, ropes; options paint; sockets wellhead.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.oil_pumpjack or place \"prefab\": \"oil_pumpjack\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:oil_pumpjack"]
+}

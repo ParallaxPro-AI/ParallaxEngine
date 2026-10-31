@@ -1,0 +1,2 @@
+{ "name": "Dim Crystal", "blurb": "A shard from the gorge floor that has not yet decided what it is for.",
+  "icon": "gem", "category": "relic", "tier": 1, "cost": 220, "stats": { "max_mana": 70 } }

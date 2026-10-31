@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/pie"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.254, 0.0478, 0.254],
+      "offset": [0, 0.0239, 0]
+    }
+  }
+}

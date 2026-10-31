@@ -1,0 +1,1 @@
+{ "components": {"shape": {"kind": "cylinder", "size": [1.1, 1.6, 1.1], "color": "#c2493d"}, "grounded": {"lift": 0.8}, "collider": {"shape": "box", "size": [1.1, 1.6, 1.1], "layer": "prop"}}, "tags": ["explosive"], "behaviors": {"fuel_drum": {"radius": 13, "damage": 110, "self_damage": 55}}}

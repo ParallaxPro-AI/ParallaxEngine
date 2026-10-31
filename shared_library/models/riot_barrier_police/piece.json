@@ -1,0 +1,10 @@
+{
+  "id": "riot_barrier_police",
+  "summary": "A 2.2 m galvanised steel police crowd-control barricade (the interlocking 'bike rack' type): a bent-tube fram… options finish, sign.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.riot_barrier_police or place \"prefab\": \"riot_barrier_police\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:riot_barrier_police"]
+}

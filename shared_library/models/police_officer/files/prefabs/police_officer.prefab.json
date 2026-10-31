@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/police_officer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 1.88, 0.3261],
+      "offset": [0, 0.94, 0.0291]
+    }
+  }
+}

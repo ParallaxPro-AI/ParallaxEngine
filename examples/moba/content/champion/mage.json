@@ -1,0 +1,18 @@
+{
+  "name": "Emberwright",
+  "role": "Mage",
+  "passive_name": "Arcane Wake",
+  "model": "models/champ_mage",
+  "scale": 0.98,
+  "color": "#8c59e6",
+  "role_icon": "spark",
+  "crest": "M20 11 L29 23 L20 35 L11 23 Z",
+  "clips": {
+    "idle": "clips/stand_idle", "run": "clips/walk_cycle", "attack": "clips/cast_forward",
+    "cast": "clips/cast_overhead", "recall": "clips/recall_channel", "death": "clips/human_fall"
+  },
+  "bolt": "vfx/auto_attack",
+  "stats": { "max_health": 430, "max_mana": 310, "mana_regen": 8, "damage": 26, "attack_range": 9, "attack_interval": 1.0, "move_speed": 7.4 },
+  "passive": { "mana_regen": 3, "damage": 4 },
+  "abilities": ["emberlance", "frost_veil", "mending_light", "starfall"]
+}

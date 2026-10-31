@@ -1,0 +1,10 @@
+{
+  "id": "throne_room_dais",
+  "summary": "A throne-room dais: three stepped tiers of dressed ashlar (back edges flush, stepping toward the hall) with m… options carpet, stone; sockets throne.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.throne_room_dais or place \"prefab\": \"throne_room_dais\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:throne_room_dais"]
+}

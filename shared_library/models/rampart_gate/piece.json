@@ -1,0 +1,10 @@
+{
+  "id": "rampart_gate",
+  "summary": "The base gatehouse: two battered flanking towers with corbel tables, team banners and crenellated tops, carry… joints gate_lift; options team.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.rampart_gate or place \"prefab\": \"rampart_gate\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:rampart_gate"]
+}

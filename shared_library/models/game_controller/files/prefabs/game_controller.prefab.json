@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/game_controller"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1523, 0.0531, 0.1161],
+      "offset": [0, 0.0266, -0.0045]
+    }
+  }
+}

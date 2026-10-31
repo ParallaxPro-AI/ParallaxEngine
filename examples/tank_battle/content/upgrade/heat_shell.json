@@ -1,0 +1,1 @@
+{ "name": "HEAT shell", "description": "Frostline cleared — HEAT shell: +10 damage, +30 hull", "icon": "●", "offered": false, "damage": 10, "max_health": 30 }

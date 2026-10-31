@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ac_condenser_unit"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.072, 0.74, 0.5],
+      "offset": [-0.046, 0.37, -0.04]
+    }
+  }
+}

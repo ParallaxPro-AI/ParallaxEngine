@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_torso_tactical_vest"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.503, 0.478, 0.448],
+      "offset": [0, 1.329, 0.018]
+    }
+  }
+}

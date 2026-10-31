@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/garment_legs_jeans"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.4277, 0.997, 0.3081],
+      "offset": [0, 0.5565, -0.0155]
+    }
+  }
+}

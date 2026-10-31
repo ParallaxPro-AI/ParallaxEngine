@@ -1,0 +1,10 @@
+{
+  "id": "pinball_machine",
+  "summary": "A full-size pinball machine with an original moonlit-racing theme: a cabinet pitched 6.5 deg on four chrome l… joints flipper_l, flipper_r, drop_targets, coin_door, plunger, backbox; options cabinet; sockets player.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pinball_machine or place \"prefab\": \"pinball_machine\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pinball_machine"]
+}

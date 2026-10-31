@@ -1,0 +1,42 @@
+{
+  "components": {
+    "model": {
+      "model": "models/self_balancing_scooter"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 11
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        0.656,
+        0.1915,
+        0.216
+      ],
+      "offset": [
+        0,
+        0.0958,
+        0
+      ]
+    },
+    "vehicle": {
+      "max_speed": 4.5,
+      "steering": 45
+    },
+    "vehicle_damage": {}
+  },
+  "children": [
+    {
+      "name": "driver_seat",
+      "at": [
+        0,
+        0.0958,
+        0
+      ],
+      "components": {
+        "seat": {}
+      }
+    }
+  ]
+}

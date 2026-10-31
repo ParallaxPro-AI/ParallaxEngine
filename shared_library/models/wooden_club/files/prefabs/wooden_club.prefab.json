@@ -1,0 +1,18 @@
+{
+  "components": {
+    "model": {
+      "model": "models/wooden_club"
+    },
+    "viewmodel_item": {
+      "hip": [0.18, -0.36, 0.32],
+      "hip_turn": [-14.896903, -22.918312, -35.523383],
+      "eye_relief": 0.32,
+      "grips": ["grip_r", ""]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1274, 0.1568, 0.8345],
+      "offset": [0.0032, 0.0469, 0.3412]
+    }
+  }
+}

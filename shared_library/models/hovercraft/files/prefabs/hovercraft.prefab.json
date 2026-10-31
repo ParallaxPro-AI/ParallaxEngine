@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hovercraft"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 850,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.522, 2.56, 5.32],
+      "offset": [0, 1.28, 0]
+    }
+  }
+}

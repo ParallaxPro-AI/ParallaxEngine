@@ -1,0 +1,8 @@
+{
+  "entities": [
+    { "prefab": "camera", "at": [0, 4, -10] },
+    { "id": "guard", "prefab": "npc", "at": [0, 0, 0], "components": { "barker": { "voice": "guard", "cooldown": 3 } } },
+    { "id": "villager", "prefab": "npc", "at": [10, 0, 0], "components": { "barker": { "voice": "villager", "cooldown": 2 } } },
+    { "id": "hero", "prefab": "hero", "at": [-10, 0, 0] }
+  ]
+}

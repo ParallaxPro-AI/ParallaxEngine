@@ -1,0 +1,10 @@
+{
+  "id": "adobe_house",
+  "summary": "A flat-roofed adobe house in the desert-southwest pueblo style, 8 x 6 m: battered mud-plaster walls with soft… joints door; sockets socket_portal, socket_door_outside, socket_roof.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.adobe_house or place \"prefab\": \"adobe_house\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:adobe_house"]
+}

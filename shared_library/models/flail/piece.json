@@ -1,0 +1,10 @@
+{
+  "id": "flail",
+  "summary": "A one-handed medieval flail: an ash haft with an iron pommel, a corded leather grip and an iron cap with lang… joints chain0, chain1, chain2, chain3, chain4, chain5, …; options head_finish, haft_wood; sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.flail or place \"prefab\": \"flail\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:flail"]
+}

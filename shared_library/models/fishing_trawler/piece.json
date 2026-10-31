@@ -1,0 +1,14 @@
+{
+  "id": "fishing_trawler",
+  "summary": "A stern trawler: a lofted displacement hull with a bulwarked working deck aft, a two-tier cream wheelhouse… joints door_l, door_r, net_drum, crane_boom; sockets eye_point, waterline, seat_driver, seat_crew_1 ….",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fishing_trawler or place \"prefab\": \"fishing_trawler\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fishing_trawler"
+  ]
+}

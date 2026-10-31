@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toy_train_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.2652, 0.133, 0.8001],
+      "offset": [0.0006, 0.0665, -0.0051]
+    }
+  }
+}

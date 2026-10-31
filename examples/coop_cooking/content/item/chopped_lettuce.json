@@ -1,0 +1,2 @@
+{ "name": "Chopped Lettuce", "stage": 3, "task": "Plate it or serve it", "hint": "plating station \u00b7 delivery window",
+  "carry_shape": "box", "carry_color": "#c4edb3", "carry_size": [0.36, 0.14, 0.36] }

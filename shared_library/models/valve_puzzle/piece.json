@@ -1,0 +1,10 @@
+{
+  "id": "valve_puzzle",
+  "summary": "An inline gate-valve puzzle part: a red cast valve body on a flanged steel pipe, a spoked hand-wheel on the b… joints wheel, indicator.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.valve_puzzle or place \"prefab\": \"valve_puzzle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:valve_puzzle"]
+}

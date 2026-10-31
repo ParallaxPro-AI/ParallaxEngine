@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stock_shelf",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.055,
+        1.86,
+        0.5554
+      ],
+      "offset": [
+        0.0,
+        0.93,
+        0.0277
+      ]
+    }
+  }
+}

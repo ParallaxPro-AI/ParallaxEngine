@@ -1,0 +1,11 @@
+{
+  "target": 2048,
+  "start_tiles": 2,
+  "four_chance": 0.1,
+  "slide_seconds": 0.2,
+  "milestone": 128,
+  "shake": 0.08,
+  "shake_per_value": 4e-05,
+  "shake_max": 0.35,
+  "shake_seconds": 0.16
+}

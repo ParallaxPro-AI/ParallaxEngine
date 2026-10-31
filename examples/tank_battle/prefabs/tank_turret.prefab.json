@@ -1,0 +1,16 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tank_turret",
+      "scale": 0.7,
+      "cast_shadows": true
+    }
+  },
+  "children": [
+    {
+      "name": "gun",
+      "prefab": "tank_gun",
+      "at": [0, 0.35, 1.19]
+    }
+  ]
+}

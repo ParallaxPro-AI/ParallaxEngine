@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/donut"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1005, 0.0351, 0.1005],
+      "offset": [0, 0.0175, 0]
+    }
+  }
+}

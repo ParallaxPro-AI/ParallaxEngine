@@ -1,0 +1,10 @@
+{
+  "id": "bedroll",
+  "summary": "A frontier bedroll laid out on the ground: a 0.96 x 2.1 m khaki waxed-canvas ground sheet under a grey wool b… sockets socket_sleep, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bedroll or place \"prefab\": \"bedroll\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bedroll"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "assault_rifle",
+  "summary": "An AK-pattern assault rifle: stamped receiver with a rounded top cover, laminated wooden handguards over a ga… joints trigger, selector, bolt, magazine; options furniture; sockets socket_muzzle, socket_optic, socket_rail_l, socket_foregrip, socket_magazine, grip_r, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.assault_rifle or place \"prefab\": \"assault_rifle\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:assault_rifle"]
+}

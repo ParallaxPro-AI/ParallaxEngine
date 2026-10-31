@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/mannequin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6, 1.84, 0.251],
+      "offset": [0, 0.92, -0.0095]
+    }
+  }
+}

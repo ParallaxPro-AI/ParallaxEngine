@@ -1,0 +1,10 @@
+{
+  "id": "projector_screen",
+  "summary": "A wall-mounted manual pull-down projection screen: a 1.96 m extruded case with end caps and wall brackets, a… joints screen_roll, hem; options image, case; sockets socket_image.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.projector_screen or place \"prefab\": \"projector_screen\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:projector_screen"]
+}

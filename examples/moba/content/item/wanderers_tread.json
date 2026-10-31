@@ -1,0 +1,2 @@
+{ "name": "Wanderer's Tread", "blurb": "Every jungle path in one pair of soles.",
+  "icon": "boot", "category": "swift", "tier": 2, "cost": 1150, "stats": { "move_speed": 1.4, "dash_bonus": 2 }, "builds_from": ["worn_tread"] }

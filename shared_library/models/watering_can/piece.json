@@ -1,0 +1,10 @@
+{
+  "id": "watering_can",
+  "summary": "A ten-litre galvanised garden watering can: a round body with a swaged foot bead and a domed shoulder round a… options finish; sockets spout.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.watering_can or place \"prefab\": \"watering_can\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:watering_can"]
+}

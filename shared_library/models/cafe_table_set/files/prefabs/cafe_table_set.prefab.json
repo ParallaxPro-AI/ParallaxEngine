@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cafe_table_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7, 0.8806, 1.616],
+      "offset": [0, 0.4403, 0]
+    }
+  }
+}

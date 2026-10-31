@@ -1,0 +1,10 @@
+{
+  "id": "fruit_bowl",
+  "summary": "A wide 29 cm glazed stoneware fruit bowl with an unglazed foot ring, heaped with fruit: a ring of red and gre… sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.fruit_bowl or place \"prefab\": \"fruit_bowl\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:fruit_bowl"]
+}

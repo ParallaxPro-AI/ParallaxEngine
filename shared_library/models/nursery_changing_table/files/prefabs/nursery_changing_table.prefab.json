@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/nursery_changing_table"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.907, 1.001, 0.5345],
+      "offset": [0, 0.5005, 0.0138]
+    }
+  }
+}

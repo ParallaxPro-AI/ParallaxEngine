@@ -1,0 +1,10 @@
+{
+  "id": "buoy_navigation",
+  "summary": "A steel lateral-mark navigation buoy: a 1.8 m float with a red topside over anti-fouling and a weedy boot top… options mark, light, topmark; sockets mooring, perch.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.buoy_navigation or place \"prefab\": \"buoy_navigation\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:buoy_navigation"]
+}

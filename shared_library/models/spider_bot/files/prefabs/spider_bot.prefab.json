@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spider_bot"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.492, 0.728, 1.2363],
+      "offset": [0, 0.36, -0.0142]
+    }
+  }
+}

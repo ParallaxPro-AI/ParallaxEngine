@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_shark_patrol"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.99, 1.2, 4.5],
+      "offset": [0, 0.6, 0]
+    }
+  }
+}

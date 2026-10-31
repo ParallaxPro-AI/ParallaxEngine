@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/tc_wall_long"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [14.9, 2.4, 0.1],
+      "offset": [0, 1.2, 0]
+    }
+  }
+}

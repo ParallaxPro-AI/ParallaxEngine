@@ -1,0 +1,8 @@
+{
+  "name": "Gilded Mesa",
+  "blurb": "Pure gold. Needs Ember first.",
+  "cost": 400,
+  "tint": [1.0, 0.86, 0.4],
+  "requires": "ember",
+  "swatch": "#ffcf49"
+}

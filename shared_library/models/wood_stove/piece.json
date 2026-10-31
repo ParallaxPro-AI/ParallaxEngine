@@ -1,0 +1,10 @@
+{
+  "id": "wood_stove",
+  "summary": "A cast-iron box stove: firebox on four legs, a glazed door on a real hinge, a top plate you can cook on, an a… joints door; options fire, finish; sockets socket_fire, socket_hob.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wood_stove or place \"prefab\": \"wood_stove\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wood_stove"]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Husk", "prefab": "husk",
+  "hp": 12, "contact_damage": 1, "move_speed": 1.6, "standoff": 2.5,
+  "shot": "spit", "shot_cooldown": 3.5,
+  "tactics": [
+    { "within": 11, "move": "standoff", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

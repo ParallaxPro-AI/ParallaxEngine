@@ -1,0 +1,10 @@
+{
+  "id": "crew_jelly",
+  "summary": "A soft station crewmate: rounded head, pear-shaped torso, short padded limbs and mitten hands. options suit; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.crew_jelly or place \"prefab\": \"crew_jelly\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:crew_jelly"]
+}

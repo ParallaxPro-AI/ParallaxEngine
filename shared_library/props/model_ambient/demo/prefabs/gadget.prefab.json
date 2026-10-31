@@ -1,0 +1,13 @@
+{
+  "components": { "model": { "model": "models/gadget" } },
+  "behaviors": {
+    "model_ambient": {
+      "desync": false,
+      "motions": [
+        { "joint": "fan", "mode": "spin", "period": 2 },
+        { "joint": "lid", "mode": "oscillate", "period": 2, "high": 0.2 },
+        { "joint": "hatch", "mode": "proximity", "near": "visitor", "radius": 2.5 }
+      ]
+    }
+  }
+}

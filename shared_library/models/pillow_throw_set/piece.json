@@ -1,0 +1,10 @@
+{
+  "id": "pillow_throw_set",
+  "summary": "A set of three plump throw pillows piled on each other: a 480 mm (19 in) square teal woven-cotton cushion wit…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.pillow_throw_set or place \"prefab\": \"pillow_throw_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:pillow_throw_set"]
+}

@@ -1,0 +1,34 @@
+<!-- Keystrike pause menu: terminal card over a blurred scrim with [System halt] PAUSED,
+     Resume / Settings / Main Menu and a desktop-only Press 0 to resume hint. Settings opens
+     the engine's settings panel (the template's own view held one graphics switch). -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .kp-card { width: calc(var(--u) * 560); max-width: 100%; text-align: center; }
+  .kp-view { display: flex; flex-direction: column; align-items: center; gap: var(--ks-sp-6); }
+  .kp-title { font-family: var(--ks-font-display); font-size: var(--ks-fs-h1); font-weight: 700; line-height: .95; letter-spacing: .18em; margin-right: -.18em; text-transform: uppercase; color: var(--ks-ink); text-shadow: 0 0 22px rgba(92,242,200,.45); }
+  .kp-menu { display: flex; flex-direction: column; gap: var(--ks-sp-3); width: 100%; }
+  .kp-hint { display: flex; align-items: center; gap: .6em; font-size: var(--ks-fs-small); color: var(--ks-muted); }
+
+  @media (pointer: coarse) {
+    .kp-card { width: calc(var(--u) * 380); max-height: calc(100cqh - 16px); overflow-y: auto; }
+    .kp-view { gap: var(--ks-sp-3); }
+    .kp-menu { gap: var(--ks-sp-2); }
+  }
+</style>
+<div class="ks-root ks-stage">
+  <div class="ks-scrim"></div>
+  <div class="ks-center">
+    <section class="ks-card ks-corners kp-card" role="dialog" aria-label="Paused">
+      <div class="kp-view">
+        <span class="ks-tag" data-text="system_halt"></span>
+        <h1 class="kp-title" data-text="paused"></h1>
+        <div class="kp-menu">
+          <button class="ks-btn ks-btn--primary ks-btn--block" data-action="resume"><span data-text="resume"></span> <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3l5 5-5 5" fill="none" stroke="currentColor" stroke-width="2.2"/></svg></button>
+          <button class="ks-btn ks-btn--block" data-action="settings" data-text="settings"></button>
+          <button class="ks-btn ks-btn--block" data-action="quit" data-text="main_menu"></button>
+        </div>
+        <p class="kp-hint ks-desk"><span data-text="press"></span> <kbd class="ks-kbd">0</kbd> <span data-text="to_resume"></span></p>
+      </div>
+    </section>
+  </div>
+</div>

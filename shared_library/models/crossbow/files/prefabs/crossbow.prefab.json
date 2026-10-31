@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/crossbow"
+    },
+    "viewmodel_item": {
+      "hip": [0.095, -0.275, 0.41],
+      "hip_turn": [-2.864789, -4.640958, -7.73493],
+      "eye_relief": 0.13
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.7403, 0.2811, 0.728],
+      "offset": [0, 0.1415, -0.015]
+    }
+  }
+}

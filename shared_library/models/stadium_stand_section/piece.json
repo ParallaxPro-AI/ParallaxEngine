@@ -1,0 +1,10 @@
+{
+  "id": "stadium_stand_section",
+  "summary": "One 12 m tileable bay of a covered stadium grandstand: a cast-concrete raker of twelve 0.8 m x 0.4 m seating…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.stadium_stand_section or place \"prefab\": \"stadium_stand_section\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:stadium_stand_section"]
+}

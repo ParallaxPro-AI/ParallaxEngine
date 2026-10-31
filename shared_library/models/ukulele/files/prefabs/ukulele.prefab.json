@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ukulele"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1662, 0.53, 0.0756],
+      "offset": [0, 0.265, 0.0078]
+    }
+  }
+}

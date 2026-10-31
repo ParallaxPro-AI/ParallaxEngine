@@ -1,0 +1,10 @@
+{
+  "id": "diwali_lamp_set",
+  "summary": "A Diwali floor arrangement: a 0.94 m coloured-powder rangoli (white ground, magenta, orange and blue bands, e… options lit, palette; sockets socket_glow.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.diwali_lamp_set or place \"prefab\": \"diwali_lamp_set\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:diwali_lamp_set"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "prize_counter_arcade",
+  "summary": "An arcade ticket-redemption prize counter: a lit glass display counter full of small prizes (bouncy balls, bo… joints case_door_l, case_door_r; options trim; sockets customer, staff, counter_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.prize_counter_arcade or place \"prefab\": \"prize_counter_arcade\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:prize_counter_arcade"]
+}

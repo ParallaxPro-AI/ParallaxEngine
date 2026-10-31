@@ -1,0 +1,10 @@
+{
+  "id": "laid_table",
+  "summary": "A restaurant table laid for four and caught mid-service: cloth with real drops, four covers of charger, side…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.laid_table or place \"prefab\": \"laid_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:laid_table"]
+}

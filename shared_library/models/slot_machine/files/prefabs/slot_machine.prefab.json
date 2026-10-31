@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/slot_machine"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.714, 2.057, 0.7449],
+      "offset": [-0.037, 1.0285, 0.035]
+    }
+  }
+}

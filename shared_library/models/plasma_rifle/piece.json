@@ -1,0 +1,10 @@
+{
+  "id": "plasma_rifle",
+  "summary": "An original sci-fi plasma rifle, 0.74 m long (assault-rifle length): an olive two-tone receiver with a glowin… joints trigger, power_cell; options finish, energy; sockets socket_muzzle, socket_optic, socket_rail_l, socket_magazine, grip_r, grip_l, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.plasma_rifle or place \"prefab\": \"plasma_rifle\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:plasma_rifle"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "marksman_rifle",
+  "summary": "A semi-automatic 7.62 marksman rifle in the SR-25 idiom: long free-floated barrel in a full-length railed tub… joints trigger, bolt, bipod, magazine; options finish, optic; sockets socket_muzzle, socket_optic, socket_foregrip, socket_rail_l, socket_rail_r, socket_magazine, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.marksman_rifle or place \"prefab\": \"marksman_rifle\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:marksman_rifle"]
+}

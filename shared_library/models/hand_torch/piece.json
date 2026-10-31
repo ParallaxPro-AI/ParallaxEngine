@@ -1,0 +1,10 @@
+{
+  "id": "hand_torch",
+  "summary": "A carried wooden fire torch: a 0.45 m hand-hewn stick swelling toward the head, a rusted iron collar, and a h… options state, wood; sockets socket_fire, socket_grip, flame, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.hand_torch or place \"prefab\": \"hand_torch\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:hand_torch"]
+}

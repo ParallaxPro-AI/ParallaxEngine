@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/magic_bolt_projectile"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.112, 0.121, 0.7052],
+      "offset": [0, 0.058, 0.0004]
+    }
+  }
+}

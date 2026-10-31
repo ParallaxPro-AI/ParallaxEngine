@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rain_collector"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8664, 1.786, 1.9598],
+      "offset": [0, 0.893, 0.0531]
+    }
+  }
+}

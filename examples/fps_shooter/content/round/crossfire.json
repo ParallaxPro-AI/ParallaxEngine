@@ -1,0 +1,1 @@
+{ "name": "Round 3 — Crossfire", "tagline": "Marksmen hold the long lanes. Use the pillars.", "number": 3, "frag_target": 9, "damage_mul": 1.05, "accuracy_mul": 1.05, "roster": [{ "bot": "grunt", "count": 2 }, { "bot": "rusher", "count": 2 }, { "bot": "marksman", "count": 2 }] }

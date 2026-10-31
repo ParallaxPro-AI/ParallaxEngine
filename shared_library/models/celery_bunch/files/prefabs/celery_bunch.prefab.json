@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/celery_bunch"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 0.55,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0939, 0.3428, 0.0908],
+      "offset": [-0.0009, 0.1714, 0.0001]
+    }
+  }
+}

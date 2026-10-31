@@ -1,0 +1,68 @@
+{
+  "components": {
+    "model": {
+      "model": "models/channeler"
+    },
+    "nav_agent": {
+      "speed": 2.4,
+      "radius": 0.45
+    },
+    "collider": {
+      "shape": "capsule",
+      "radius": 0.45,
+      "height": 1.8,
+      "offset": [
+        0,
+        0.9,
+        0
+      ]
+    },
+    "health": {
+      "current": 145,
+      "max": 145
+    },
+    "threat": {},
+    "nameplate": {
+      "text": "Rift Channeler",
+      "offset": [
+        0,
+        2.6,
+        0
+      ],
+      "range": 35,
+      "color": "#e2584a"
+    },
+    "affinity": {
+      "multipliers": {
+        "frost": 2.0,
+        "fire": 0.5
+      }
+    },
+    "bounty": {
+      "gold_min": 9,
+      "gold_max": 18,
+      "xp": 30,
+      "loot": "channeler",
+      "gear": [
+        "rimefang",
+        "voidglass_edge"
+      ]
+    },
+    "animator": {
+      "default_clip": "clips/stand_idle"
+    }
+  },
+  "tags": [
+    "hostile"
+  ],
+  "behaviors": {
+    "encounter_enemy": {
+      "attacks": [
+        "channel_hex"
+      ],
+      "damage": 22,
+      "reach": 12,
+      "detect_range": 18
+    }
+  }
+}

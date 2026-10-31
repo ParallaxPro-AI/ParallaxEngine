@@ -1,0 +1,10 @@
+{
+  "id": "coffin",
+  "summary": "A six-sided wooden coffin (the classic tapered \"toe-pincher\"): a moulded plinth, board walls hollowed to a re… joints lid; options finish, lining; sockets interior.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.coffin or place \"prefab\": \"coffin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:coffin"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/modern_bookshelf"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9, 1.9, 0.35],
+      "offset": [0, 0.95, 0]
+    }
+  }
+}

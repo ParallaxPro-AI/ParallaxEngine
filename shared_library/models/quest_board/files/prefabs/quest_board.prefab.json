@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/quest_board"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.07, 3.66, 1.5503],
+      "offset": [0.105, 1.83, 0]
+    }
+  }
+}

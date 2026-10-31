@@ -1,0 +1,14 @@
+{
+  "id": "fuse_box",
+  "summary": "A wall-mount electrical fuse box / breaker panel: a shallow grey steel enclosure with a hinged front… joints door, toggle_0, toggle_1, toggle_2, toggle_3 …; sockets socket_conduit_bottom.",
+  "version": "2026.10.23",
+  "plugins": [
+    "physics3d"
+  ],
+  "setup": [
+    "Spawn it with Prefabs.fuse_box or place \"prefab\": \"fuse_box\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": [
+    "lib:fuse_box"
+  ]
+}

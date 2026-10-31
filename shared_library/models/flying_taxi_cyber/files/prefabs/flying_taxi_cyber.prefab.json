@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flying_taxi_cyber"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.78, 2.35, 4.8],
+      "offset": [0, 1.175, 0.03]
+    }
+  }
+}

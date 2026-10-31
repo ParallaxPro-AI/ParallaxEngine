@@ -1,0 +1,10 @@
+{
+  "id": "ship_wheel_helm",
+  "summary": "A sailing ship's helm: an eight-spoke walnut wheel (1.2 m rim, 1.72 m across the hand grips) with a brass rim… joints wheel; options wood; sockets stand_helmsman, grip_l, grip_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.ship_wheel_helm or place \"prefab\": \"ship_wheel_helm\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:ship_wheel_helm"]
+}

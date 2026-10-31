@@ -1,0 +1,10 @@
+{
+  "id": "scoop",
+  "summary": "A hollow stainless serving scoop with a continuous bent neck, rounded charcoal handle and fitted one-handed p… sockets grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.scoop or place \"prefab\": \"scoop\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:scoop"]
+}

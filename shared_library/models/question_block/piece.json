@@ -1,0 +1,10 @@
+{
+  "id": "question_block",
+  "summary": "A generic platformer mystery block: a 1 m chamfered teal cube (one 1 m grid cell, the standard platformer blo… joints block.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.question_block or place \"prefab\": \"question_block\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:question_block"]
+}

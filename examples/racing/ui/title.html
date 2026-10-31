@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="racer.css">
+<style>
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+
+  .srt { position: fixed; inset: 0; pointer-events: none; }
+  .srt-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,8,9,0.88) 0%, rgba(10,8,9,0.55) 38%, transparent 62%); }
+  .srt-col { position: absolute; left: clamp(calc(56 * var(--u)),6cqw,calc(120 * var(--u))); top: 0; bottom: 0; width: min(calc(820 * var(--u)), 62cqw); display: flex; flex-direction: column; justify-content: center; gap: clamp(calc(16 * var(--u)),3cqh,calc(30 * var(--u))); }
+  .srt-gantry { align-self: flex-start; padding: calc(12 * var(--u)) calc(24 * var(--u)); display: flex; align-items: center; gap: calc(18 * var(--u)); }
+  .srt-lamps { display: flex; gap: calc(10 * var(--u)); }
+  .srt-lamp { width: calc(26 * var(--u)); height: calc(26 * var(--u)); border-radius: 50%; background: rgba(255,247,237,0.08); box-shadow: inset 0 0 0 calc(2 * var(--u)) rgba(255,247,237,0.16); transition: background 120ms, box-shadow 120ms; }
+  .srt-lamp.is-lit { background: var(--sr-redline); box-shadow: 0 0 calc(26 * var(--u)) var(--sr-redline), inset 0 0 0 calc(3 * var(--u)) rgba(255,255,255,0.22); }
+  .srt-rule { width: calc(1 * var(--u)); align-self: stretch; background: var(--sr-line-2); }
+  .srt-gtext { display: flex; flex-direction: column; gap: calc(4 * var(--u)); }
+  .srt-gtext .sr-lbl { font-size: calc(14 * var(--u)); color: var(--sr-cream); }
+  .srt-gtext .sr-lbl + .sr-lbl { color: var(--sr-orange-hi); }
+  .srt-brand { display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
+  .srt-word { margin: 0; font: italic 900 clamp(calc(104 * var(--u)),17.5cqh,calc(200 * var(--u)))/.8 var(--sr-f-display); text-transform: uppercase; letter-spacing: -0.005em; animation: sr-slide-in 420ms var(--sr-ease) both; }
+  .srt-word span { display: block; color: var(--sr-cream); }
+  .srt-word span + span { color: var(--sr-orange); }
+  .srt-tag { display: flex; align-items: center; gap: calc(18 * var(--u)); }
+  .srt-tag .sr-lbl { font-size: calc(26 * var(--u)); letter-spacing: .42em; color: var(--sr-cream-2); }
+  .srt-stripes { display: flex; gap: calc(6 * var(--u)); }
+  .srt-stripes i { width: calc(34 * var(--u)); height: calc(8 * var(--u)); transform: skewX(-30deg); background: var(--sr-orange); }
+  .srt-stripes i:nth-child(2) { background: var(--sr-rust); }
+  .srt-stripes i:nth-child(3) { background: var(--sr-rust-deep); }
+  .srt-throttle { display: flex; align-items: center; gap: calc(18 * var(--u)); max-width: calc(720 * var(--u)); }
+  .srt-throttle .sr-lbl { font-size: calc(14 * var(--u)); }
+  .srt-bar { display: flex; gap: calc(4 * var(--u)); flex: 1; }
+  .srt-bar i { flex: 1; height: calc(16 * var(--u)); transform: skewX(-24deg); background: rgba(255,247,237,0.10); }
+  .srt-bar i.is-amber { animation: srt-amber 1ms linear forwards; }
+  .srt-bar i.is-orange { animation: srt-orange 1ms linear forwards; }
+  @keyframes srt-amber { to { background: var(--sr-amber); } }
+  @keyframes srt-orange { to { background: var(--sr-orange); } }
+  .srt-lap { display: flex; align-items: baseline; gap: calc(8 * var(--u)); }
+  .srt-lap .sr-num { font-size: calc(46 * var(--u)); color: var(--sr-cream); }
+  .srt-note { max-width: calc(620 * var(--u)); font: 500 calc(22 * var(--u))/1.35 var(--sr-f-ui); color: var(--sr-mute); }
+  .srt-actions { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: calc(20 * var(--u)); max-width: calc(800 * var(--u)); }
+  .srt-go { display: flex; flex-direction: column; gap: calc(12 * var(--u)); }
+  .sr .srt-go .sr-btn { --h: calc(84 * var(--u)); --s: calc(21 * var(--u)); width: 100%; font-size: calc(40 * var(--u)); }
+  .srt-go .sr-btn svg { width: calc(26 * var(--u)); height: calc(26 * var(--u)); color: var(--sr-orange-hi); }
+  .srt-cap { display: flex; align-items: center; gap: calc(8 * var(--u)); padding-left: calc(18 * var(--u)); min-height: calc(20 * var(--u)); }
+  .srt-cap .sr-lbl { font-size: calc(14 * var(--u)); }
+  .srt-cap svg { width: calc(18 * var(--u)); height: calc(18 * var(--u)); color: var(--sr-amber); }
+  .srt-cap.is-gold .sr-lbl { color: var(--sr-amber); }
+  @media (pointer: coarse) {
+    .srt-shade { background: linear-gradient(90deg, rgba(10,8,9,0.88) 0%, rgba(10,8,9,0.5) 50%, transparent 75%); }
+    .srt-col { left: var(--sr-safe-l); top: var(--sr-safe-t); bottom: var(--sr-safe-b); width: calc(860 * var(--u)); gap: calc(20 * var(--u)); }
+    .srt-gantry { --c: calc(16 * var(--u)); padding: calc(14 * var(--u)) calc(28 * var(--u)); gap: calc(20 * var(--u)); }
+    .srt-lamps { gap: calc(12 * var(--u)); }
+    .srt-lamp { width: calc(28 * var(--u)); height: calc(28 * var(--u)); box-shadow: inset 0 0 0 calc(3 * var(--u)) rgba(255,247,237,0.16); }
+    .srt-lamp.is-lit { box-shadow: 0 0 calc(28 * var(--u)) var(--sr-redline); }
+    .srt-gtext { flex-direction: row; gap: calc(20 * var(--u)); }
+    .srt-gtext .sr-lbl { font-size: calc(22 * var(--u)); }
+    .srt-brand { gap: calc(20 * var(--u)); }
+    .srt-word { font-size: calc(136 * var(--u)); line-height: .82; }
+    .srt-tag .sr-lbl { font-size: calc(28 * var(--u)); letter-spacing: .4em; }
+    .srt-stripes { display: none; }
+    .srt-throttle { gap: calc(20 * var(--u)); max-width: calc(760 * var(--u)); }
+    .srt-throttle .sr-lbl { font-size: calc(22 * var(--u)); }
+    .srt-bar { gap: calc(6 * var(--u)); }
+    .srt-bar i { height: calc(22 * var(--u)); }
+    .srt-lap { gap: calc(16 * var(--u)); }
+    .srt-lap .sr-num { font-size: calc(52 * var(--u)); }
+    .srt-note { max-width: calc(780 * var(--u)); font-size: calc(26 * var(--u)); }
+    .srt-actions { position: fixed; right: var(--sr-safe-r); top: var(--sr-safe-t); bottom: var(--sr-safe-b); width: calc(540 * var(--u)); max-width: none; display: flex; flex-direction: column; justify-content: center; gap: calc(28 * var(--u)); }
+    .srt-go { gap: calc(12 * var(--u)); }
+    .sr .srt-go .sr-btn { --h: calc(120 * var(--u)); --s: calc(30 * var(--u)); font-size: calc(56 * var(--u)); }
+    .srt-go .sr-btn svg { width: calc(40 * var(--u)); height: calc(40 * var(--u)); }
+    .srt-cap { padding-left: calc(24 * var(--u)); gap: calc(12 * var(--u)); }
+    .srt-cap .sr-lbl { font-size: calc(22 * var(--u)); }
+    .srt-cap svg { width: calc(28 * var(--u)); height: calc(28 * var(--u)); }
+  }
+</style>
+<div class="sr srt">
+  <div class="sr-vignette"></div>
+  <div class="srt-shade"></div>
+  <div class="srt-col">
+    <div class="sr-plate srt-gantry">
+      <div class="srt-lamps" aria-hidden="true"><i class="srt-lamp"></i><i class="srt-lamp"></i><i class="srt-lamp"></i></div>
+      <div class="srt-rule"></div>
+      <div class="srt-gtext"><div class="sr-lbl" data-text="start_gantry"></div><div class="sr-lbl" data-text="stunt_circuit"></div></div>
+    </div>
+    <div class="srt-brand">
+      <h1 class="srt-word"><span data-text="title_street"></span><span data-text="title_racer"></span></h1>
+      <div class="srt-tag"><div class="sr-lbl" data-text="title_tag"></div><div class="srt-stripes" aria-hidden="true"><i></i><i></i><i></i></div></div>
+    </div>
+    <div class="srt-throttle">
+      <div class="sr-lbl" data-text="throttle"></div>
+      <div class="srt-bar" aria-hidden="true"></div>
+      <div class="srt-lap"><div class="sr-lbl" data-text="lap_word"></div><span class="sr-num">03</span></div>
+    </div>
+    <p class="srt-note" data-text="title_note"></p>
+    <div class="srt-actions">
+      <div class="srt-go">
+        <button class="sr-btn is-pri" data-action="quick_race" data-key="Enter"><span data-text="quick_race"></span></button>
+        <div class="srt-cap"><div class="sr-lbl" data-bind="trophies"></div></div>
+      </div>
+      <div class="srt-go">
+        <button class="sr-btn" data-action="championship"><span data-text="championship"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h12l-2.5 4L17 12H5"/></svg></button>
+        <div class="srt-cap"><div class="sr-lbl" data-text="season_cap"></div></div>
+      </div>
+    </div>
+  </div>
+</div>

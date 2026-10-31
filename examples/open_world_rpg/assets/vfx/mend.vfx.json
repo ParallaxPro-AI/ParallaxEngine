@@ -1,0 +1,1 @@
+{"extends": "effect/magic", "max": 40, "rate": 0, "lifetime": [0.5, 1], "speed": [0.5, 1.4], "direction": 90, "spread": 40, "gravity": 0.5, "size": [0.3, 0.6], "size_end": 0, "color": "#33ff4ccc", "color_end": "#80ff8000", "spin": [-115, 115], "burst": 30, "radius": 0.65, "light": null}

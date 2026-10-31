@@ -1,0 +1,10 @@
+{
+  "id": "cellar_door_wooden",
+  "summary": "A sloped bulkhead cellar entrance: two peeling-painted plank leaves on rusted strap hinges lying across a con… joints door_l, door_r; options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cellar_door_wooden or place \"prefab\": \"cellar_door_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cellar_door_wooden"]
+}

@@ -1,0 +1,266 @@
+<link rel="stylesheet" href="sky_freight.css">
+<style>
+  .sfh { position: fixed; inset: 0; pointer-events: none; font-family: var(--sf-f-hud); color: var(--sf-cream); }
+  .sfh-num { font-family: var(--sf-f-num); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .sfh-career { position: absolute; left: calc(var(--u) * 40); top: calc(var(--u) * 36); width: calc(var(--u) * 560); display: flex; flex-direction: column; gap: calc(var(--u) * 10); }
+  .sfh-res { display: flex; }
+  .sfh-res > div { display: flex; align-items: center; gap: calc(var(--u) * 10); padding: calc(var(--u) * 12) calc(var(--u) * 16); min-width: 0; }
+  .sfh-res > div:nth-child(1), .sfh-res > div:nth-child(5) { flex: 1; }
+  .sfh-res > div:nth-child(3) { flex: 1.8; }
+  .sfh-res > i { width: calc(var(--u) * 1); background: rgba(125,211,252,.18); }
+  .sfh-res svg { width: calc(var(--u) * 20); height: calc(var(--u) * 20); }
+  .sfh-res dl { margin: 0; display: flex; flex-direction: column; gap: calc(var(--u) * 3); min-width: 0; }
+  .sfh-res dd { margin: 0; font-size: calc(var(--u) * 24); line-height: 1; }
+  .sfh-res dd.sfh-rank { font: 700 calc(var(--u) * 20)/1.2 var(--sf-f-hud); color: var(--sf-info); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .sfh-bank { color: var(--sf-good); }
+  .sfh-stats { display: flex; flex-direction: column; gap: calc(var(--u) * 12); padding: calc(var(--u) * 14) calc(var(--u) * 16); }
+  .sfh-loan { display: flex; flex-direction: column; gap: calc(var(--u) * 7); }
+  .sfh-row { display: flex; justify-content: space-between; align-items: baseline; }
+  .sfh-row b { white-space: nowrap; font: 600 calc(var(--u) * 17)/1 var(--sf-f-num); }
+  .sfh-row b span { color: rgba(186,230,253,.6); }
+  .sfh-row b .sfh-loan-bank { color: inherit; }
+  .sfh-track { height: calc(var(--u) * 8); border-radius: calc(var(--u) * 4); background: rgba(186,230,253,.12); overflow: hidden; }
+  .sfh-track i { display: block; height: 100%; width: 0; background: var(--sf-good); border-radius: calc(var(--u) * 4); transition: width .3s ease; }
+  .sfh-fleet { display: flex; align-items: center; justify-content: space-between; }
+  .sfh-pips { display: flex; gap: calc(var(--u) * 6); align-items: center; }
+  .sfh-pips i { width: calc(var(--u) * 24); height: calc(var(--u) * 10); border-radius: calc(var(--u) * 3); border: calc(var(--u) * 1.5) solid rgba(125,211,252,.35); }
+  .sfh-pips i.on { background: var(--sf-sky-300); border-color: var(--sf-sky-300); }
+  .sfh-pips b { white-space: nowrap; margin-left: calc(var(--u) * 6); font: 600 calc(var(--u) * 17)/1 var(--sf-f-num); }
+
+  .sfh-obj { position: absolute; left: 50%; top: calc(var(--u) * 36); transform: translateX(-50%); display: flex; align-items: center; gap: calc(var(--u) * 14); padding: calc(var(--u) * 10) calc(var(--u) * 20) calc(var(--u) * 10) calc(var(--u) * 10); white-space: nowrap; max-width: calc(var(--u) * 760); }
+  .sfh-tag { flex: none; font: 700 calc(var(--u) * 13)/1 var(--sf-f-mono); letter-spacing: .16em; padding: calc(var(--u) * 6) calc(var(--u) * 10); border-radius: calc(var(--u) * 3); color: #0a1200; }
+  .sfh-tag:empty { width: calc(var(--u) * 8); padding: 0; background: none !important; }
+  .sfh-obj-t { min-width: 0; overflow: hidden; text-overflow: ellipsis; font: 600 calc(var(--u) * 22)/1.2 var(--sf-f-hud); }
+  .sfh-obj-d { flex: none; font: 600 calc(var(--u) * 18)/1 var(--sf-f-num); color: rgba(186,230,253,.7); }
+  .sfh-obj-d:empty { display: none; }
+
+  .sfh-dl { position: absolute; right: calc(var(--u) * 40); top: calc(var(--u) * 36); width: calc(var(--u) * 260); display: flex; flex-direction: column; gap: calc(var(--u) * 8); padding: calc(var(--u) * 12) calc(var(--u) * 16) calc(var(--u) * 14); }
+  .sfh-dl b { font-size: calc(var(--u) * 40); line-height: 1; }
+  .sfh-dl .sfh-track { height: calc(var(--u) * 6); border-radius: calc(var(--u) * 3); }
+  .sfh-dl .sfh-track i { background: var(--sf-cream); border-radius: calc(var(--u) * 3); transition: width .25s linear; }
+  .sfh-dl.late b { color: var(--sf-bad); }
+  .sfh-dl.late .sfh-track i { background: var(--sf-bad); }
+
+  .sfh-toasts { position: absolute; right: calc(var(--u) * 40); top: calc(var(--u) * 150); width: calc(var(--u) * 520); display: flex; flex-direction: column; gap: calc(var(--u) * 10); align-items: flex-end; }
+  .sfh-toast { display: flex; align-items: center; gap: calc(var(--u) * 12); padding: calc(var(--u) * 12) calc(var(--u) * 16); background: rgba(2,6,23,.72); border: calc(var(--u) * 1) solid rgba(87,182,255,.55); border-radius: calc(var(--u) * 8); font: 600 calc(var(--u) * 18)/1.35 var(--sf-f-hud); text-wrap: pretty; animation: sf-toast-r 180ms ease-out both; transition: opacity .4s ease; }
+  .sfh-toast i { flex: none; width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: calc(var(--u) * 2); background: var(--sf-info); }
+  .sfh-toast.good { border-color: rgba(46,224,106,.55); }
+  .sfh-toast.good i { background: var(--sf-good); }
+  .sfh-toast.bad { border-color: rgba(255,90,77,.6); }
+  .sfh-toast.bad i { background: var(--sf-bad); }
+
+  .sfh-alert { position: absolute; left: 0; right: 0; top: calc(var(--u) * 300); display: flex; justify-content: center; }
+  .sfh-alert div { display: flex; align-items: center; gap: calc(var(--u) * 12); padding: calc(var(--u) * 12) calc(var(--u) * 28); border: calc(var(--u) * 2) solid var(--sf-pickup); background: rgba(40,26,0,.6); border-radius: calc(var(--u) * 8); color: var(--sf-pickup); font: 700 calc(var(--u) * 28)/1 var(--sf-f-mono); letter-spacing: .12em; }
+  .sfh-alert svg { width: calc(var(--u) * 26); height: calc(var(--u) * 24); }
+  .sfh-alert.stall div { padding: calc(var(--u) * 14) calc(var(--u) * 40); border-color: var(--sf-bad); background: rgba(60,8,4,.7); color: var(--sf-bad); font-size: calc(var(--u) * 40); letter-spacing: .2em; animation: sf-pulse .8s ease-in-out infinite; }
+  .sfh-alert.stall svg { width: calc(var(--u) * 34); height: calc(var(--u) * 31); }
+
+  .sfh-ctrls { position: absolute; left: calc(var(--u) * 40); top: calc(var(--u) * 430); width: calc(var(--u) * 250); display: none; flex-direction: column; gap: calc(var(--u) * 10); padding: calc(var(--u) * 14) calc(var(--u) * 16); transition: opacity .6s ease; }
+  .sfh.fly .sfh-ctrls { display: flex; }
+  .sfh:not(.fly) .sfh-ctrls.foot { display: flex; }
+  .sfh.fly .sfh-ctrls.foot { display: none; }
+  .sfh-ctrls > div { display: flex; justify-content: space-between; align-items: center; font: 600 calc(var(--u) * 17)/1 var(--sf-f-hud); }
+  .sfh-ctrls > div span { display: flex; gap: calc(var(--u) * 4); }
+  .sfh-ctrls .sf-key.wide { width: auto; padding: 0 calc(var(--u) * 8); }
+  .sfh-ctrls .sf-key { width: calc(var(--u) * 28); height: calc(var(--u) * 28); border-radius: calc(var(--u) * 5); font-size: calc(var(--u) * 15); }
+
+  .sfh-prompts { position: absolute; left: 0; right: 0; bottom: calc(var(--u) * 72); display: flex; justify-content: center; gap: calc(var(--u) * 14); }
+  .sfh.fly .sfh-prompts { bottom: calc(var(--u) * 262); }
+  .sfh-prompt { display: flex; align-items: center; gap: calc(var(--u) * 12); padding: calc(var(--u) * 10) calc(var(--u) * 18) calc(var(--u) * 10) calc(var(--u) * 10); font: 600 calc(var(--u) * 20)/1 var(--sf-f-hud); }
+  .sfh-prompt.plain { padding: calc(var(--u) * 10) calc(var(--u) * 20); }
+  .sfh-prompt.plain .sf-key { display: none; }
+
+  .sfh-inst { position: absolute; left: 50%; bottom: calc(var(--u) * 40); transform: translateX(-50%); width: calc(var(--u) * 660); display: none; grid-template-columns: calc(var(--u) * 64) 1fr calc(var(--u) * 124) 1fr calc(var(--u) * 128); gap: calc(var(--u) * 14); align-items: stretch; padding: calc(var(--u) * 14) calc(var(--u) * 16); background: var(--sf-glass-deep); border: calc(var(--u) * 1) solid rgba(125,211,252,.22); border-radius: calc(var(--u) * 14); box-shadow: 0 calc(var(--u) * 10) calc(var(--u) * 30) rgba(0,0,0,.45); }
+  .sfh.fly .sfh-inst { display: grid; }
+  .sfh-inst .sf-lbl { font-size: calc(var(--u) * 10); letter-spacing: .16em; }
+  .sfh-thr { display: flex; flex-direction: column; align-items: center; gap: calc(var(--u) * 6); }
+  .sfh-lever { position: relative; width: calc(var(--u) * 14); height: calc(var(--u) * 104); border-radius: calc(var(--u) * 4); background: rgba(186,230,253,.1); }
+  .sfh-lever-rev { position: absolute; left: 0; right: 0; bottom: 0; height: calc(var(--u) * 18); border-radius: 0 0 calc(var(--u) * 4) calc(var(--u) * 4); background: repeating-linear-gradient(135deg, rgba(255,190,46,.35) 0 calc(var(--u) * 3), transparent calc(var(--u) * 3) calc(var(--u) * 6)); }
+  .sfh-lever-fill { position: absolute; left: 0; right: 0; bottom: calc(var(--u) * 18); height: 0; border-radius: calc(var(--u) * 3); background: var(--sf-sky-300); transition: height .1s linear; }
+  .sfh-lever-grip { position: absolute; left: calc(var(--u) * -9); bottom: calc(var(--u) * 14); width: calc(var(--u) * 32); height: calc(var(--u) * 8); border-radius: calc(var(--u) * 2); background: var(--sf-cream); box-shadow: 0 calc(var(--u) * 2) calc(var(--u) * 6) rgba(0,0,0,.5); transition: bottom .1s linear; }
+  .sfh-thr-v { font-size: calc(var(--u) * 16); line-height: 1; color: var(--sf-sky-300); }
+  .sfh-aoa { font: 600 calc(var(--u) * 13)/1 var(--sf-f-num); color: var(--sf-sky-200); white-space: nowrap; }
+  .sfh-thr.rev .sfh-lever-fill { bottom: 0; height: calc(var(--u) * 18) !important; background: var(--sf-pickup); }
+  .sfh-thr.rev .sfh-thr-v { color: var(--sf-pickup); }
+  .sfh-cell { display: flex; flex-direction: column; justify-content: center; gap: calc(var(--u) * 4); min-width: 0; }
+  .sfh-cell.ias { padding-left: calc(var(--u) * 4); border-left: calc(var(--u) * 1) solid rgba(125,211,252,.14); }
+  .sfh-big { font-size: calc(var(--u) * 60); line-height: 1; }
+  .sfh-unit { font: 600 calc(var(--u) * 12)/1 var(--sf-f-mono); letter-spacing: .12em; color: rgba(186,230,253,.75); }
+  .sfh-altrow { display: flex; align-items: baseline; gap: calc(var(--u) * 6); white-space: nowrap; }
+  .sfh-vs { font: 700 calc(var(--u) * 17)/1 var(--sf-f-num); color: var(--sf-sky-200); white-space: nowrap; }
+  .sfh-att-c { display: flex; align-items: center; justify-content: center; }
+  .sfh-att { position: relative; width: calc(var(--u) * 118); height: calc(var(--u) * 118); border-radius: 50%; overflow: hidden; border: calc(var(--u) * 2) solid rgba(186,230,253,.45); box-shadow: inset 0 0 calc(var(--u) * 18) rgba(0,0,0,.6); }
+  .sfh-att-sky { position: absolute; left: -50%; top: -50%; width: 200%; height: 200%; background: linear-gradient(180deg, #1f5f94 0 49.4%, #fef3c7 49.4% 50.6%, #4d3720 50.6%); }
+  .sfh-att-ptr { position: absolute; left: 50%; top: calc(var(--u) * 8); margin-left: calc(var(--u) * -6); width: 0; height: 0; border-left: calc(var(--u) * 6) solid transparent; border-right: calc(var(--u) * 6) solid transparent; border-top: calc(var(--u) * 9) solid var(--sf-pickup); }
+  .sfh-att-wl, .sfh-att-wr { position: absolute; top: calc(var(--u) * 56); width: calc(var(--u) * 26); height: calc(var(--u) * 3); background: var(--sf-pickup); border-radius: calc(var(--u) * 2); }
+  .sfh-att-wl { left: calc(var(--u) * 20); }
+  .sfh-att-wr { right: calc(var(--u) * 20); }
+  .sfh-att-dot { position: absolute; left: calc(var(--u) * 53); top: calc(var(--u) * 53); width: calc(var(--u) * 8); height: calc(var(--u) * 8); border-radius: 50%; background: var(--sf-pickup); }
+  .sfh-cell.ph { gap: calc(var(--u) * 6); padding-left: calc(var(--u) * 14); border-left: calc(var(--u) * 1) solid rgba(125,211,252,.14); }
+  .sfh-ph { font: 700 calc(var(--u) * 19)/1.15 var(--sf-f-mono); text-transform: uppercase; }
+  .sfh-ph-sub { font: 600 calc(var(--u) * 13)/1.3 var(--sf-f-hud); color: var(--sf-sky-200); }
+  .sfh .amber { color: var(--sf-pickup) !important; }
+  .sfh .red { color: var(--sf-bad) !important; }
+  .sfh .green { color: var(--sf-good) !important; }
+
+  .sfh-m, .sfh-pause { display: none; }
+
+  @media (pointer: coarse) {
+    .sfh-career, .sfh-dl, .sfh-ctrls, .sfh.fly .sfh-ctrls, .sfh-inst, .sfh.fly .sfh-inst, .sfh-prompts { display: none !important; }
+    .sfh-m { display: flex; }
+    .sfh-mtop { position: absolute; top: calc(var(--u) * 16); left: calc(var(--u) * 88); right: calc(var(--u) * 124); gap: calc(var(--u) * 12); align-items: flex-start; }
+    .sfh-mchips { display: flex; gap: calc(var(--u) * 12); flex: none; }
+    .sfh-chip { display: flex; align-items: center; gap: calc(var(--u) * 12); height: calc(var(--u) * 60); padding: 0 calc(var(--u) * 20); border-radius: calc(var(--u) * 16); background: var(--sf-glass); border: calc(var(--u) * 1) solid var(--sf-glass-line); box-shadow: none; }
+    .sfh.fly .sfh-chip { height: calc(var(--u) * 76); padding: 0 calc(var(--u) * 18); gap: calc(var(--u) * 10); }
+    .sfh-chip svg { width: calc(var(--u) * 28); height: calc(var(--u) * 28); }
+    .sfh-chip b { font-size: calc(var(--u) * 32); line-height: 1; }
+    .sfh.fly .sfh-chip b { font-size: calc(var(--u) * 30); }
+    .sfh.fly .sfh-chip.foot { display: none; }
+    .sfh-chip .sf-lbl { font: 600 calc(var(--u) * 18)/1 var(--sf-f-mono); letter-spacing: .14em; }
+    .sfh-mloan .sfh-track { width: calc(var(--u) * 80); height: calc(var(--u) * 10); border-radius: calc(var(--u) * 6); }
+    .sfh-mloan b { font-size: calc(var(--u) * 28); }
+    .sfh-mfleet { gap: calc(var(--u) * 6); }
+    .sfh-mfleet i { width: calc(var(--u) * 18); height: calc(var(--u) * 18); border-radius: calc(var(--u) * 4); border: calc(var(--u) * 3) solid rgba(125,211,252,.4); }
+    .sfh.fly .sfh-mfleet i { width: calc(var(--u) * 14); height: calc(var(--u) * 24); }
+    .sfh-mfleet i.on { background: var(--sf-sky-300); border-color: var(--sf-sky-300); }
+    .sfh-mstrip { display: none; flex: 0 1 calc(var(--u) * 880); min-width: 0; height: calc(var(--u) * 76); align-items: center; justify-content: space-between; gap: calc(var(--u) * 18); padding: 0 calc(var(--u) * 22); background: var(--sf-glass-deep); border: calc(var(--u) * 1) solid rgba(125,211,252,.22); border-radius: calc(var(--u) * 18); }
+    .sfh.fly .sfh-mstrip { display: flex; }
+    .sfh-mstrip > div { display: flex; flex-direction: column; gap: calc(var(--u) * 4); min-width: 0; }
+    .sfh-mstrip .sf-lbl { font-size: calc(var(--u) * 16); letter-spacing: .14em; white-space: nowrap; }
+    .sfh-mstrip .sfh-num { font-size: calc(var(--u) * 38); line-height: 1; }
+    .sfh-mstrip .sfh-mvs { font-size: calc(var(--u) * 34); }
+    .sfh-mthr { display: flex; align-items: center; gap: calc(var(--u) * 10); }
+    .sfh-mthr .sfh-track { width: calc(var(--u) * 80); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 6); background: rgba(186,230,253,.15); }
+    .sfh-mthr .sfh-track i { background: var(--sf-sky-300); transition: width .1s linear; }
+    .sfh-mthr.rev .sfh-track i { background: var(--sf-pickup); }
+    .sfh-mthr b { font-size: calc(var(--u) * 26); line-height: 1; }
+    .sfh-mph { font: 700 calc(var(--u) * 24)/1.2 var(--sf-f-mono); white-space: nowrap; text-transform: uppercase; }
+    .sfh-matt { position: relative; flex: none !important; width: calc(var(--u) * 56); height: calc(var(--u) * 56); border-radius: 50%; overflow: hidden; border: calc(var(--u) * 3) solid rgba(186,230,253,.45); }
+    .sfh-matt .sfh-att-sky { background: linear-gradient(180deg, #1f5f94 0 48%, #fef3c7 48% 52%, #4d3720 52%); }
+    .sfh-matt i { position: absolute; left: calc(var(--u) * 12); right: calc(var(--u) * 12); top: calc(var(--u) * 25); height: calc(var(--u) * 4); background: var(--sf-pickup); }
+    .sfh-mgap { flex: 1 1 0; }
+    .sfh-mdl { display: flex; flex: none; width: calc(var(--u) * 184); height: calc(var(--u) * 60); flex-direction: column; justify-content: center; gap: calc(var(--u) * 6); padding: 0 calc(var(--u) * 20); background: var(--sf-glass); border: calc(var(--u) * 1) solid var(--sf-glass-line); border-radius: calc(var(--u) * 16); }
+    .sfh.fly .sfh-mdl { height: calc(var(--u) * 76); }
+    .sfh-mdl > div { display: flex; justify-content: space-between; align-items: baseline; }
+    .sfh-mdl .sf-lbl { font-size: calc(var(--u) * 16); letter-spacing: .12em; }
+    .sfh-mdl b { font-size: calc(var(--u) * 32); line-height: 1; }
+    .sfh-mdl .sfh-track { height: calc(var(--u) * 6); border-radius: calc(var(--u) * 4); background: rgba(186,230,253,.15); }
+    .sfh-mdl .sfh-track i { background: var(--sf-cream); transition: width .25s linear; }
+    .sfh-mdl.late b { color: var(--sf-bad); }
+    .sfh-mdl.late .sfh-track i { background: var(--sf-bad); }
+    .sfh-pause { display: grid; place-items: center; position: absolute; top: calc(var(--u) * 16); right: calc(var(--u) * 24); width: calc(var(--u) * 88); height: calc(var(--u) * 88); padding: 0; margin: 0; border-radius: calc(var(--u) * 18); background: var(--sf-glass); border: calc(var(--u) * 2) solid rgba(186,230,253,.45); color: var(--sf-cream); pointer-events: auto; cursor: pointer; touch-action: manipulation; }
+    .sfh-pause svg { width: calc(var(--u) * 36); height: calc(var(--u) * 36); }
+    .sfh-pause:active { background: rgba(125,211,252,.3); border-color: var(--sf-sky-300); transform: scale(.94); }
+
+    .sfh-obj { top: calc(var(--u) * 96); max-width: calc(var(--u) * 960); height: calc(var(--u) * 52); gap: calc(var(--u) * 16); padding: 0 calc(var(--u) * 24) 0 calc(var(--u) * 8); border-radius: calc(var(--u) * 14); box-shadow: none; }
+    .sfh.fly .sfh-obj { top: calc(var(--u) * 108); height: calc(var(--u) * 48); max-width: calc(var(--u) * 880); }
+    .sfh-tag { font-size: calc(var(--u) * 18); letter-spacing: .14em; padding: calc(var(--u) * 6) calc(var(--u) * 12); border-radius: calc(var(--u) * 6); }
+    .sfh-tag:empty { width: calc(var(--u) * 12); }
+    .sfh-obj-t { font-size: calc(var(--u) * 26); }
+    .sfh-obj-d { font: 600 calc(var(--u) * 26)/1 var(--sf-f-hud); color: var(--sf-cream); }
+    .sfh-obj-d::before { content: '· '; }
+
+    .sfh-toasts { left: 50%; right: auto; transform: translateX(-50%); top: calc(var(--u) * 164); width: calc(var(--u) * 800); gap: calc(var(--u) * 10); align-items: center; }
+    .sfh.fly .sfh-toasts { top: calc(var(--u) * 176); }
+    .sfh-toast { gap: calc(var(--u) * 16); padding: calc(var(--u) * 12) calc(var(--u) * 24); border-radius: calc(var(--u) * 14); background: rgba(2,6,23,.75); font: 600 calc(var(--u) * 26)/1.3 var(--sf-f-hud); animation-name: sf-toast-d; }
+    .sfh-toast span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+    .sfh-toast i { width: calc(var(--u) * 12); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 4); }
+    .sfh-toast:nth-last-child(n+3) { display: none; }
+
+    .sfh-alert { top: calc(var(--u) * 184); }
+    .sfh-alert div { padding: calc(var(--u) * 12) calc(var(--u) * 32); border-width: calc(var(--u) * 4); border-radius: calc(var(--u) * 12); font-size: calc(var(--u) * 30); }
+    .sfh-alert.stall div { padding: calc(var(--u) * 12) calc(var(--u) * 44); font-size: calc(var(--u) * 40); }
+    .sfh-alert svg { width: calc(var(--u) * 30); height: calc(var(--u) * 28); }
+    .sfh-alert.stall svg { width: calc(var(--u) * 38); height: calc(var(--u) * 35); }
+
+    .sfh-mprompt { position: absolute; left: 0; right: 0; top: calc(var(--u) * 176); display: flex; justify-content: center; }
+    .sfh-mprompt div { display: flex; align-items: center; gap: calc(var(--u) * 16); padding: calc(var(--u) * 12) calc(var(--u) * 24); background: rgba(2,6,23,.75); border: calc(var(--u) * 1) solid rgba(87,182,255,.55); border-radius: calc(var(--u) * 14); font: 600 calc(var(--u) * 26)/1.3 var(--sf-f-hud); }
+    .sfh-mprompt i { width: calc(var(--u) * 12); height: calc(var(--u) * 12); border-radius: calc(var(--u) * 4); background: var(--sf-info); }
+
+  }
+</style>
+<div class="sfh sf-root" data-class-fly="flying">
+  <div class="sfh-career">
+    <div class="sf-glass sfh-res">
+      <div><svg class="sf-i" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" stroke="#2ee06a" stroke-width="1.6"/><path d="M9 4v10M11.2 6.6c-.4-.7-1.2-1-2.2-1-1.3 0-2.2.6-2.2 1.5 0 2.2 4.6 1.2 4.6 3.6 0 1-1 1.6-2.4 1.6-1.1 0-2-.4-2.4-1.1" stroke="#2ee06a" stroke-width="1.4"/></svg><dl><dt class="sf-lbl" data-text="bank"></dt><dd class="sfh-num sfh-bank" data-bind="bank"></dd></dl></div>
+      <i></i>
+      <div><svg class="sf-i" viewBox="0 0 18 18"><path d="M3 8l6-4 6 4M3 13l6-4 6 4" stroke="#57b6ff" stroke-width="1.8"/></svg><dl><dt class="sf-lbl" data-text="rank"></dt><dd class="sfh-rank" data-bind="rank"></dd></dl></div>
+      <i></i>
+      <div><svg class="sf-i" viewBox="0 0 18 18"><rect x="2.5" y="4.5" width="13" height="10" rx="1" stroke="#fef3c7" stroke-width="1.6"/><path d="M2.5 8h13M7 8v2.5h4V8" stroke="#fef3c7" stroke-width="1.4"/></svg><dl><dt class="sf-lbl" data-text="delivered_label"></dt><dd class="sfh-num" data-bind="deliveries"></dd></dl></div>
+    </div>
+    <div class="sf-glass sfh-stats">
+      <div class="sfh-loan">
+        <div class="sfh-row"><span class="sf-lbl" data-text="loan"></span><b><span class="sfh-loan-bank" data-bind="bank"></span> <span data-bind="loan_of"></span></b></div>
+        <div class="sfh-track"><i data-style-width="loan_pct"></i></div>
+      </div>
+      <div class="sfh-fleet"><span class="sf-lbl" data-text="fleet"></span><div class="sfh-pips"><span class="sfh-pips" data-each="pips"><template><i data-class-on="on"></i></template></span><b data-bind="fleet"></b></div></div>
+    </div>
+  </div>
+
+  <div class="sfh-m sfh-mtop">
+    <div class="sfh-mchips">
+      <div class="sfh-chip"><svg class="sf-i" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7.5" stroke="#2ee06a" stroke-width="1.8"/><path d="M9 4v10M11.2 6.6c-.4-.7-1.2-1-2.2-1-1.3 0-2.2.6-2.2 1.5 0 2.2 4.6 1.2 4.6 3.6 0 1-1 1.6-2.4 1.6-1.1 0-2-.4-2.4-1.1" stroke="#2ee06a" stroke-width="1.6"/></svg><b class="sfh-num sfh-bank" data-bind="bank"></b></div>
+      <div class="sfh-chip foot"><svg class="sf-i" viewBox="0 0 18 18"><path d="M3 8l6-4 6 4M3 13l6-4 6 4" stroke="#57b6ff" stroke-width="2"/></svg><b class="sfh-num" style="color:#57b6ff" data-bind="rank_level"></b></div>
+      <div class="sfh-chip"><svg class="sf-i" viewBox="0 0 18 18"><rect x="2.5" y="4.5" width="13" height="10" rx="1" stroke="#fef3c7" stroke-width="1.8"/><path d="M2.5 8h13" stroke="#fef3c7" stroke-width="1.6"/></svg><b class="sfh-num" data-bind="deliveries"></b></div>
+      <div class="sfh-chip foot sfh-mloan"><span class="sf-lbl" data-text="loan"></span><div class="sfh-track"><i data-style-width="loan_pct"></i></div><b class="sfh-num" data-bind="loan_pct"></b></div>
+      <div class="sfh-chip sfh-mfleet" data-each="pips"><template><i data-class-on="on"></i></template></div>
+    </div>
+    <div class="sfh-mstrip">
+      <div><span class="sf-lbl" data-text="ias_kmh"></span><b class="sfh-num" data-class-amber="ias_amber" data-class-red="ias_red" data-bind="ias"></b></div>
+      <div><span class="sf-lbl" data-text="alt_m"></span><b class="sfh-num" data-bind="alt"></b></div>
+      <div><span class="sf-lbl" data-text="vs_ms"></span><b class="sfh-num sfh-mvs" data-class-red="vs_red" data-class-green="vs_green" data-bind="vs_short"></b></div>
+      <div><span class="sf-lbl"><span data-text="thr"></span> <span data-class-amber="aoa_amber" data-class-red="aoa_red">· <span data-text="aoa"></span> <span data-bind="aoa"></span></span></span><div class="sfh-mthr" data-class-rev="thr_rev"><div class="sfh-track"><i data-style-width="thr_width"></i></div><b class="sfh-num" data-bind="thr_text"></b></div></div>
+      <div><span class="sf-lbl" data-text="phase"></span><b class="sfh-mph" data-class-red="phase_red" data-bind="phase"></b></div>
+      <div class="sfh-matt"><div class="sfh-att-sky" data-style-transform="att_small"></div><i></i></div>
+    </div>
+    <div class="sfh-mgap"></div>
+    <div class="sfh-mdl" data-show="dl_shown" data-class-late="dl_late"><div><span class="sf-lbl" data-text="due"></span><b class="sfh-num" data-bind="dl_label"></b></div><div class="sfh-track"><i data-style-width="dl_width"></i></div></div>
+  </div>
+  <button class="sfh-pause" data-action="pause" aria-label="pause"><svg class="sf-i" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14" stroke-width="3"/></svg></button>
+
+  <div class="sf-glass sfh-obj"><span class="sfh-tag" data-style-background="obj_color" data-bind="obj_tag"></span><span class="sfh-obj-t" data-bind="obj_text"></span><span class="sfh-obj-d" data-bind="obj_distance"></span></div>
+
+  <div class="sf-glass sfh-dl" data-show="dl_shown" data-class-late="dl_late">
+    <div class="sfh-row"><span class="sf-lbl" data-text="deadline"></span><b class="sfh-num" data-bind="dl_label"></b></div>
+    <div class="sfh-track"><i data-style-width="dl_width"></i></div>
+  </div>
+
+  <div class="sfh-alert" data-show="alert_shown" data-class-stall="alert_stall"><div><svg class="sf-i" viewBox="0 0 22 20"><path d="M11 1.5L21 18.5H1Z" stroke-width="2"/><path d="M11 7.5v5M11 15v.5" stroke-width="2"/></svg><span data-bind="alert_text"></span></div></div>
+
+  <div class="sfh-toasts" data-each="toasts">
+    <template><div class="sfh-toast" data-class-good="good" data-class-bad="bad"><i></i><span data-bind="text"></span></div></template>
+  </div>
+  <div class="sfh-m sfh-mprompt" data-show="landing_rollout"><div><i></i><span data-text="prompt_land"></span></div></div>
+
+  <div class="sf-glass sfh-ctrls foot">
+    <span class="sf-lbl" data-text="controls"></span>
+    <div><span data-text="control_walk"></span><span><b class="sf-key">W</b><b class="sf-key">A</b><b class="sf-key">S</b><b class="sf-key">D</b></span></div>
+    <div><span data-text="control_look"></span><span><b class="sf-key wide">Mouse</b></span></div>
+    <div><span data-text="control_jump"></span><span><b class="sf-key wide">Space</b></span></div>
+  </div>
+  <div class="sf-glass sfh-ctrls">
+    <span class="sf-lbl" data-text="controls"></span>
+    <div><span data-text="control_throttle"></span><span><b class="sf-key">W</b><b class="sf-key">S</b></span></div>
+    <div><span data-text="control_yaw"></span><span><b class="sf-key">A</b><b class="sf-key">D</b></span></div>
+    <div><span data-text="control_pitch"></span><span><b class="sf-key">I</b><b class="sf-key">K</b></span></div>
+    <div><span data-text="control_roll"></span><span><b class="sf-key">J</b><b class="sf-key">L</b></span></div>
+  </div>
+
+  <div class="sfh-prompts">
+    <div class="sf-glass sfh-prompt" data-show="prompt" data-class-plain="prompt_plain"><b class="sf-key">E</b><span data-bind="prompt"></span></div>
+    <div class="sf-glass sfh-prompt" data-show="office_prompt"><b class="sf-key">B</b><span data-text="prompt_office"></span></div>
+  </div>
+
+  <div class="sfh-inst">
+    <div class="sfh-thr" data-class-rev="thr_rev">
+      <span class="sf-lbl" data-text="thr"></span>
+      <div class="sfh-lever"><div class="sfh-lever-rev"></div><div class="sfh-lever-fill" data-style-height="thr_fill"></div><div class="sfh-lever-grip" data-style-bottom="thr_grip"></div></div>
+      <b class="sfh-num sfh-thr-v" data-bind="thr_text"></b>
+      <span class="sfh-aoa" data-class-amber="aoa_amber" data-class-red="aoa_red"><span data-text="aoa"></span> <span data-bind="aoa"></span></span>
+    </div>
+    <div class="sfh-cell ias"><span class="sf-lbl" data-text="airspeed"></span><b class="sfh-num sfh-big" data-class-amber="ias_amber" data-class-red="ias_red" data-bind="ias"></b><span class="sfh-unit" data-text="kmh_ias"></span></div>
+    <div class="sfh-att-c"><div class="sfh-att"><div class="sfh-att-sky" data-style-transform="att"></div><i class="sfh-att-ptr"></i><i class="sfh-att-wl"></i><i class="sfh-att-wr"></i><i class="sfh-att-dot"></i></div></div>
+    <div class="sfh-cell"><span class="sf-lbl" data-text="altitude"></span><div class="sfh-altrow"><b class="sfh-num sfh-big" data-bind="alt"></b><span class="sfh-unit" data-text="alt_m"></span></div><span class="sfh-vs" data-class-red="vs_red" data-class-green="vs_green" data-bind="vs"></span></div>
+    <div class="sfh-cell ph"><span class="sf-lbl" data-text="phase"></span><b class="sfh-ph" data-class-red="phase_red" data-bind="phase"></b><span class="sfh-ph-sub" data-bind="phase_hint"></span></div>
+  </div>
+</div>

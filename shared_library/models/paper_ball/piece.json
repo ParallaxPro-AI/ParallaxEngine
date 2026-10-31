@@ -1,0 +1,10 @@
+{
+  "id": "paper_ball",
+  "summary": "A scrunched-up ball of paper — a sheet of A4 balled in one hand: a faceted core of pressed folds with three t…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.paper_ball or place \"prefab\": \"paper_ball\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:paper_ball"]
+}

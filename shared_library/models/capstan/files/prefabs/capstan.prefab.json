@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/capstan"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.6, 1.062, 2.6],
+      "offset": [0, 0.531, 0]
+    }
+  }
+}

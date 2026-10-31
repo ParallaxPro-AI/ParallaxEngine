@@ -1,0 +1,1 @@
+{"extends": "bot_hero", "components": {"side": {"side": "blue"}, "map_icon": {"icon": "arrow", "color": "#5aa0ff", "size": 1.8, "rotate": true}}}

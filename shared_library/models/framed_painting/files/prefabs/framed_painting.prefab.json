@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/framed_painting"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.16, 1.115, 0.208],
+      "offset": [0, 0.5575, 0]
+    }
+  }
+}

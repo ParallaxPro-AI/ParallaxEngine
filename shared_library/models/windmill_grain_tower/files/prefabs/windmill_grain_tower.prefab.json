@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/windmill_grain_tower"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [19.1, 21.8429, 12.6219],
+      "offset": [0, 10.9198, 0.6309]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "framed_painting",
+  "summary": "A gallery oil painting in a carved gilt frame: a mitred, swept moulding (rounded back edge, flat crest, deep… options subject, lamp, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.framed_painting or place \"prefab\": \"framed_painting\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:framed_painting"]
+}

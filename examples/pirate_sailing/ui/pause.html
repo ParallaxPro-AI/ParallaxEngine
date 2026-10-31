@@ -1,0 +1,59 @@
+<!-- Ported from the template: Buccaneer Bay pause menu - the captain's log card with Resume / Main menu, a How to sail key chart and the voyage details. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+.bbp-shade{position:fixed;inset:0;display:grid;place-items:center;background:radial-gradient(ellipse 60% 60% at 50% 45%,rgba(9,40,44,.5),rgba(5,12,14,.82));font-family:var(--bb-ui);color:var(--bb-cream);}
+.bbp-card{width:calc(680 * var(--u));max-width:calc(100cqw - calc(64 * var(--u)));max-height:calc(100cqh - calc(64 * var(--u)));overflow:auto;pointer-events:auto;padding:calc(40 * var(--u)) calc(52 * var(--u)) calc(36 * var(--u));background:var(--bb-mahogany-deep);border:2px solid var(--bb-gold);border-radius:calc(6 * var(--u));outline:1px solid var(--bb-gold-soft);outline-offset:calc(-12 * var(--u));box-shadow:0 calc(30 * var(--u)) calc(80 * var(--u)) rgba(0,0,0,.55);animation:bbp-in .26s cubic-bezier(.2,.8,.2,1) both;}
+@keyframes bbp-in{from{opacity:0;transform:translateY(calc(14 * var(--u))) scale(.98);}to{opacity:1;transform:none;}}
+.bbp-head{text-align:center;}
+.bbp-eyebrow{font:400 calc(18 * var(--u)) var(--bb-sc);letter-spacing:.22em;color:var(--bb-muted);}
+.bbp-title{margin:calc(4 * var(--u)) 0 0;font:400 calc(96 * var(--u))/1 var(--bb-display);letter-spacing:.03em;color:var(--bb-gold);text-shadow:0 calc(4 * var(--u)) 0 #451a03,0 0 calc(30 * var(--u)) rgba(252,211,77,.2);}
+.bbp-buttons{display:flex;gap:calc(18 * var(--u));margin-top:calc(28 * var(--u));}
+.bbp-btn{flex:1;height:calc(72 * var(--u));border-radius:calc(4 * var(--u));cursor:pointer;pointer-events:auto;font:400 calc(28 * var(--u)) var(--bb-sc);letter-spacing:.06em;transition:background .14s,box-shadow .14s,transform .09s;}
+.bbp-btn.primary{background:var(--bb-teal);border:2px solid var(--bb-gold);color:var(--bb-cream-ink);box-shadow:0 calc(6 * var(--u)) 0 var(--bb-teal-deep),0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4);}
+.bbp-btn.primary:hover{background:var(--bb-teal-hi);box-shadow:0 calc(6 * var(--u)) 0 var(--bb-teal-deep),var(--bb-glow);}
+.bbp-btn.secondary{background:var(--bb-wood);border:2px solid var(--bb-brass);color:var(--bb-cream);box-shadow:0 calc(6 * var(--u)) 0 var(--bb-wood-deep),0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4);}
+.bbp-btn.secondary:hover{background:var(--bb-wood-hi);}
+.bbp-btn:active{transform:translateY(calc(4 * var(--u)));box-shadow:0 2px 0 var(--bb-wood-deep),var(--bb-glow);}
+.bbp-more{margin-top:calc(26 * var(--u));border-top:1px solid var(--bb-brass-line);}
+.bbp-more details{border-bottom:1px solid var(--bb-brass-line);}
+.bbp-more summary{list-style:none;min-height:calc(56 * var(--u));display:flex;align-items:center;justify-content:space-between;cursor:pointer;pointer-events:auto;font:400 calc(22 * var(--u)) var(--bb-sc);letter-spacing:.1em;color:var(--bb-gold-num);}
+.bbp-more summary::-webkit-details-marker{display:none;}
+.bbp-more summary::after{content:'';width:calc(10 * var(--u));height:calc(10 * var(--u));border-right:2px solid var(--bb-brass);border-bottom:2px solid var(--bb-brass);transform:rotate(45deg);margin-right:calc(6 * var(--u));transition:transform .18s;}
+.bbp-more details[open] summary::after{transform:rotate(-135deg);}
+.bbp-keys{display:grid;grid-template-columns:auto 1fr;gap:calc(8 * var(--u)) calc(16 * var(--u));padding:calc(4 * var(--u)) 0 calc(16 * var(--u));font-size:calc(16 * var(--u));color:var(--bb-cream);}
+.bbp-keys kbd{justify-self:end;font:600 calc(14 * var(--u)) var(--bb-ui);color:var(--bb-cream);padding:calc(3 * var(--u)) calc(9 * var(--u));border:1px solid var(--bb-brass);border-bottom-width:calc(3 * var(--u));border-radius:calc(4 * var(--u));background:var(--bb-wood);white-space:nowrap;}
+.bbp-keys span{color:var(--bb-muted);align-self:center;}
+.bbp-note{padding:0 0 calc(16 * var(--u));font:400 calc(18 * var(--u))/1.45 var(--bb-serif);color:var(--bb-muted);}
+.bbp-detail{padding:0 0 calc(8 * var(--u));font-size:calc(17 * var(--u));color:var(--bb-cream);}
+.bbp-detail+.bbp-detail{color:var(--bb-muted);font-size:calc(15 * var(--u));padding-bottom:calc(16 * var(--u));}
+.bbp-touch{display:none;}
+@media (pointer:coarse){
+.bbp-card{width:calc(1400 * var(--u));max-width:calc(100cqw - calc(48 * var(--u)));max-height:calc(100cqh - calc(48 * var(--u)));padding:calc(40 * var(--u)) calc(56 * var(--u));display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:calc(56 * var(--u));align-items:start;outline-offset:calc(-16 * var(--u));}
+.bbp-eyebrow{font-size:calc(26 * var(--u));}
+.bbp-title{font-size:calc(150 * var(--u));}
+.bbp-buttons{flex-direction:column;gap:calc(22 * var(--u));margin-top:calc(30 * var(--u));}
+.bbp-btn{height:calc(112 * var(--u));flex:none;font-size:calc(44 * var(--u));border-width:calc(3 * var(--u));}
+.bbp-more{margin-top:0;}
+.bbp-more summary{min-height:calc(96 * var(--u));font-size:calc(34 * var(--u));}
+.bbp-more summary::after{width:calc(16 * var(--u));height:calc(16 * var(--u));border-width:calc(3 * var(--u));}
+.bbp-keys{display:none;}
+.bbp-touch{display:grid;}
+.bbp-touch.bbp-keys{grid-template-columns:auto 1fr;gap:calc(14 * var(--u)) calc(22 * var(--u));font-size:calc(26 * var(--u));}
+.bbp-touch kbd{font-size:calc(22 * var(--u));padding:calc(6 * var(--u)) calc(14 * var(--u));border-width:2px;border-bottom-width:calc(4 * var(--u));}
+.bbp-note{font-size:calc(28 * var(--u));}
+.bbp-detail{font-size:calc(28 * var(--u));}
+.bbp-detail+.bbp-detail{font-size:calc(24 * var(--u));}
+}
+</style>
+<div class="bbp-shade"><div class="bbp-card">
+<div class="bbp-main"><div class="bbp-head"><div class="bbp-eyebrow">Captain Log · Hove To</div><h1 class="bbp-title" data-text="paused"></h1></div>
+<div class="bbp-buttons"><button class="bbp-btn primary" data-action="resume" data-text="resume"></button></div>
+<p class="bbp-note" data-text="pause_note"></p></div>
+<div class="bbp-more">
+<details><summary>How to sail</summary>
+<div class="bbp-keys"><kbd>W / S</kbd><span>Raise / lower sails</span><kbd>A / D</kbd><span>Steer</span><kbd>Left / right mouse</kbd><span>Fire port / starboard broadside</span><kbd>Z / X</kbd><span>Trim sails</span><kbd>Space</kbd><span>Drop / weigh anchor</span><kbd>Q</kbd><span>Take a contract</span><kbd>P</kbd><span>Pause</span></div>
+<div class="bbp-keys bbp-touch"><kbd>Stick ↑ / ↓</kbd><span>Raise / lower sails</span><kbd>Stick ← / →</kbd><span>Steer</span><kbd>Port Guns · Starboard</kbd><span>Hold to fire that broadside</span><kbd>← · →</kbd><span>Hold to trim the sails</span><kbd>⚓</kbd><span>Drop / weigh anchor</span><kbd>Contract</kbd><span>Take the next contract</span></div>
+<p class="bbp-note">Sails stay raised when released. Wind and trim add speed. Cannons assist nearby targets beside the ship.</p></details>
+<details><summary>Voyage details</summary><p class="bbp-detail" data-bind="voyage_details"></p><p class="bbp-detail" data-bind="sailing_details"></p></details>
+</div>
+</div></div>

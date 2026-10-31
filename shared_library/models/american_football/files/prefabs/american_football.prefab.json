@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/american_football"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.17, 0.1726, 0.2801],
+      "offset": [0, 0.0863, 0]
+    }
+  }
+}

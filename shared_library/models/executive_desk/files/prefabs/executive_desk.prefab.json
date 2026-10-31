@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/executive_desk"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.8, 0.7615, 0.9],
+      "offset": [0, 0.3807, 0]
+    }
+  }
+}

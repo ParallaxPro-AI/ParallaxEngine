@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/barrier_arm"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.8915, 1.26, 0.585],
+      "offset": [0.0008, 0.63, 0.0175]
+    }
+  }
+}

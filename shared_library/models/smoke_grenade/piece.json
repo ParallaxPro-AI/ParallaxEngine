@@ -1,0 +1,10 @@
+{
+  "id": "smoke_grenade",
+  "summary": "A cylindrical smoke grenade, 0.15 m: a rolled-seam sheet-steel canister with emission ports in the lid, a pai… joints lever, pin; options smoke_colour, body_finish; sockets socket_top, smoke, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.smoke_grenade or place \"prefab\": \"smoke_grenade\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:smoke_grenade"]
+}

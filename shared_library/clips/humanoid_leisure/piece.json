@@ -1,0 +1,8 @@
+{
+  "id": "humanoid_leisure",
+  "summary": "Humanoid seated and standing idles: sit down/rise, reading, sketching, talking, stretching, audience applause/laughter, playground hangs and swing.",
+  "version": "2026.10.23",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.seated_idle) or \"clip\": \"clips/seated_idle\" in an animation graph. They retarget onto any humanoid skeleton by bone name."
+  ]
+}

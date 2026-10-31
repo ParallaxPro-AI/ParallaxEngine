@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/flower_window_box"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.9575, 0.5637, 0.3367],
+      "offset": [0.0018, 0.2818, 0.0146]
+    }
+  }
+}

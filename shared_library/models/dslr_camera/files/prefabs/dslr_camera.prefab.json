@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/dslr_camera"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.136, 0.1083, 0.146],
+      "offset": [0, 0.0537, -0.0027]
+    }
+  }
+}

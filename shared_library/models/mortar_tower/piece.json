@@ -1,0 +1,10 @@
+{
+  "id": "mortar_tower",
+  "summary": "A tower-defense mortar emplacement on the set's common 2.4 m stone footing: a battered octagonal concrete rin… joints turret_yaw, barrel_pitch; options tier, banner; sockets socket_muzzle, socket_top, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.mortar_tower or place \"prefab\": \"mortar_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:mortar_tower"]
+}

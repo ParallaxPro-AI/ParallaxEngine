@@ -1,0 +1,11 @@
+{
+  "z": 3,
+  "components": {
+    "shape": { "kind": "rect", "size": [0.956, 0.956], "corner_radius": 0.096 },
+    "text_mesh": { "size": 0.494 }
+  },
+  "behaviors": {
+    "tile_face": {}
+  },
+  "pool": 20
+}

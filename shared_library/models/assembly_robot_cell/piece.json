@@ -1,0 +1,10 @@
+{
+  "id": "assembly_robot_cell",
+  "summary": "A fenced robotic assembly workcell, 3.6 x 3.2 m inside a 2.2 m machine-guard fence: yellow posts with black-f… joints access_door, turntable, j1, j2, j3, j4, …; options robot.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.assembly_robot_cell or place \"prefab\": \"assembly_robot_cell\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:assembly_robot_cell"]
+}

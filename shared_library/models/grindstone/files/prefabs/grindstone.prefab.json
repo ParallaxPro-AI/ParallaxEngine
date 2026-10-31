@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/grindstone"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.75, 1.0404, 0.98],
+      "offset": [0.06, 0.5198, 0]
+    }
+  }
+}

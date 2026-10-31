@@ -1,0 +1,10 @@
+{
+  "id": "molotov_cocktail",
+  "summary": "An improvised incendiary bottle (molotov cocktail), 0.27 m: a green glass spirits bottle half full of amber f… options state; sockets fire, grip_r, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.molotov_cocktail or place \"prefab\": \"molotov_cocktail\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:molotov_cocktail"]
+}

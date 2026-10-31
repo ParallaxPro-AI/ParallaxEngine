@@ -1,0 +1,10 @@
+{
+  "id": "food_mixer_cart",
+  "summary": "A stainless mobile kitchen cart holding a tilt-head stand mixer: three shelves (a stainless worktop, a middle… joints mid_shelf, castor_0, castor_1, castor_2, castor_3; sockets socket_worktop.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.food_mixer_cart or place \"prefab\": \"food_mixer_cart\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:food_mixer_cart"]
+}

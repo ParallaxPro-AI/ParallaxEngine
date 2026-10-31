@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/paladin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6382, 1.9176, 0.5588],
+      "offset": [0, 0.9588, -0.0505]
+    }
+  }
+}

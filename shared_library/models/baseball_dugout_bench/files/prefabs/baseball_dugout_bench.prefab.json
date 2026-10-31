@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baseball_dugout_bench"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [4.52, 1.36, 0.5],
+      "offset": [-0.02, 0.68, 0.02]
+    }
+  }
+}

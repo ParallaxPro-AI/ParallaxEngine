@@ -1,0 +1,10 @@
+{
+  "id": "market_well_square",
+  "summary": "A fantasy-medieval market-square well: the centrepiece of a town square. joints windlass, rope.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.market_well_square or place \"prefab\": \"market_well_square\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:market_well_square"]
+}

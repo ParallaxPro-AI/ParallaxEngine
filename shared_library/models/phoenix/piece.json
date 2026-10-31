@@ -1,0 +1,10 @@
+{
+  "id": "phoenix",
+  "summary": "A phoenix: a large fire bird with its wings spread, about 2 m from wingtip to wingtip and 1.5 m from beak to… joints head_turn, wing_flap_l, wing_flap_r, tail_fan; options plumage, wings, feathers, glow; sockets back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.phoenix or place \"prefab\": \"phoenix\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:phoenix"]
+}

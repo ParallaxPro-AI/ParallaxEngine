@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/space_station_module"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [30.7, 6.2766, 10.9015],
+      "offset": [0, 3.1383, 0.1688]
+    }
+  }
+}

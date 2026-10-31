@@ -1,0 +1,10 @@
+{
+  "id": "cubicle_partition",
+  "summary": "A modular office cubicle panel, 1.5 m wide and 1.4 m tall: a tackable fabric panel in an aluminium frame with… options fabric, topper, accessories.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cubicle_partition or place \"prefab\": \"cubicle_partition\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cubicle_partition"]
+}

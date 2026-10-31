@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/security_guard"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.7613, 1.812, 0.3237],
+      "offset": [0, 0.906, 0.0339]
+    }
+  }
+}

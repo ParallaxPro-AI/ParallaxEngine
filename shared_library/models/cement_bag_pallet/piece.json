@@ -1,0 +1,10 @@
+{
+  "id": "cement_bag_pallet",
+  "summary": "A pallet of 25 kg paper cement sacks: soft pillow-edged bags in a five-bag interlocking pattern (three across… options brand.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cement_bag_pallet or place \"prefab\": \"cement_bag_pallet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cement_bag_pallet"]
+}

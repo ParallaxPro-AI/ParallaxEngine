@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/android_humanoid"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.67, 1.702, 0.3109],
+      "offset": [0, 0.851, 0.0345]
+    }
+  }
+}

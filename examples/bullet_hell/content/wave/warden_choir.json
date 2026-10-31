@@ -1,0 +1,4 @@
+{
+  "number": 6, "name": "Warden Choir", "act": 2, "guardian": "petalwarden", "flight": "vee", "count": 5,
+  "speed": 0.70, "amp": 1.6, "freq": 0.80, "fire_rate": 2.2, "hp_mul": 1.0, "drop_chance": 0.50
+}

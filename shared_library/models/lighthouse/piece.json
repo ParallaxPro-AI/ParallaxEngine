@@ -1,0 +1,10 @@
+{
+  "id": "lighthouse",
+  "summary": "A ~24 m coastal lighthouse: a stone plinth, a tapered masonry tower with painted day-mark bands, small stagge… joints door, lamp; options bands_colour, pattern, lamp_colour; sockets socket_light, socket_top, gallery_point, door_point.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lighthouse or place \"prefab\": \"lighthouse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lighthouse"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "dungeon_doorway",
+  "summary": "A stone wall section with a round-arched doorway from the DUNGEON_KIT: the same 4 x 4 x 0.5 m coursed blockwo… joints door_leaf; options stone, door.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.dungeon_doorway or place \"prefab\": \"dungeon_doorway\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:dungeon_doorway"]
+}

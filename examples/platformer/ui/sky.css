@@ -1,0 +1,68 @@
+/* Sky Hopper paper-and-marigold kit: the --sh-* tokens, the --su unit and the shared .sh-*
+   card, buttons, eyebrow, key caps and scrim (ported from the template's hud/sky_kit). */
+@import "fonts.css";
+/* Old-engine desktop UI scale: authored px drew at min(view/1920x1080, 1); --u is one such px, measured against the game view (the host is a size container). */
+:root { container-type: size; --u: min(100cqw / 1920, 100cqh / 1080, 1px); }
+:root{
+--sh-paper:#fffcf0;--sh-paper-2:#f6efd8;--sh-paper-3:#efe5c6;--sh-paper-edge:#ddd0a8;
+--sh-ink:#163f43;--sh-ink-2:#214e53;--sh-sage:#488482;--sh-sage-2:#5a8176;--sh-line:rgba(22,63,67,.14);
+--sh-marigold:#f6be4f;--sh-marigold-hi:#fbd27a;--sh-marigold-edge:#c08532;--sh-marigold-ink:#8a5a14;
+--sh-gold:#e9ad38;--sh-gold-edge:#b9822a;--sh-heart:#e2715f;--sh-heart-edge:#b4503f;--sh-keepsake:#a493d6;--sh-keepsake-edge:#5c4d86;
+--sh-meadow:#d9ebc1;--sh-meadow-edge:#b5d08f;--sh-meadow-ink:#3f6a2e;
+--sh-crystal:#d9d0eb;--sh-crystal-edge:#b7aad6;--sh-crystal-ink:#5b4b86;
+--sh-frost:#d3e9f0;--sh-frost-edge:#a9d0dd;--sh-frost-ink:#2f6a80;
+--sh-ember:#efd0b6;--sh-ember-edge:#dcab84;--sh-ember-ink:#8f4a25;
+--sh-scrim:rgba(22,63,67,.46);--sh-flash:rgba(226,113,95,.55);--sh-notice:#163f43;--sh-notice-ink:#fffcf0;
+--sh-font-display:'Fredoka','Baloo 2',ui-rounded,system-ui,sans-serif;
+--sh-font-body:'Nunito',ui-rounded,system-ui,sans-serif;
+--sh-r-sm:calc(.875*var(--su));--sh-r-md:calc(1.125*var(--su));--sh-r-lg:calc(1.375*var(--su));--sh-r-xl:calc(1.625*var(--su));
+--sh-edge:calc(.25*var(--su));
+--sh-ease-spring:cubic-bezier(.3,.7,.4,1.4);--sh-ease-out:cubic-bezier(.2,.8,.2,1);
+--sh-dur-fast:140ms;--sh-dur-med:280ms;--sh-dur-slow:520ms;
+--su:max(11px,min(.8333cqw,1.4815cqh));
+--sh-fs-eyebrow:calc(1*var(--su));--sh-btn-h:calc(4*var(--su));--sh-fs-btn:calc(1.5*var(--su));
+--sh-safe-l:calc(2*var(--su));--sh-safe-r:calc(2*var(--su));--sh-safe-t:calc(2*var(--su));--sh-safe-b:calc(2*var(--su));
+--sh-shadow-card:0 calc(.25*var(--su)) 0 rgba(22,63,67,.08),0 calc(1.75*var(--su)) calc(3.5*var(--su)) calc(-1.25*var(--su)) rgba(10,30,32,.55);
+--sh-shadow-badge:0 calc(.2*var(--su)) 0 rgba(22,63,67,.10),0 calc(.75*var(--su)) calc(1.5*var(--su)) calc(-.75*var(--su)) rgba(10,30,32,.5);
+}
+@media (pointer:coarse),(max-height:500px){
+:root{
+--su:min(1.8957cqw,4.1026cqh);
+--sh-fs-eyebrow:calc(.66*var(--su));--sh-btn-h:max(44px,calc(2.875*var(--su)));--sh-fs-btn:calc(1.05*var(--su));
+--sh-safe-l:max(env(safe-area-inset-left),44px);--sh-safe-r:max(env(safe-area-inset-right),44px);
+--sh-safe-b:max(env(safe-area-inset-bottom),21px);--sh-safe-t:max(env(safe-area-inset-top),8px);
+}
+}
+.sh-root,.sh-root *,.sh-root *::before,.sh-root *::after{box-sizing:border-box}
+.sh-root{font-family:var(--sh-font-body);font-weight:600;color:var(--sh-ink);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;text-wrap:pretty}
+:where(.sh-root) :is(h1,h2,h3,p,dl,dt,dd){margin:0;padding:0;font-weight:inherit}
+:where(.sh-root) button{font:inherit;color:inherit;margin:0;touch-action:manipulation}
+:where(.sh-root) b{font-weight:inherit}
+.sh-root .sh-display{font-family:var(--sh-font-display);font-weight:600;letter-spacing:-.01em;color:var(--sh-ink);line-height:1}
+.sh-root .sh-eyebrow{font-family:var(--sh-font-body);font-weight:800;font-size:var(--sh-fs-eyebrow);letter-spacing:.14em;text-transform:uppercase;color:var(--sh-sage);line-height:1.2}
+.sh-root .sh-paper{background:var(--sh-paper);border-radius:var(--sh-r-xl);box-shadow:var(--sh-shadow-card)}
+.sh-root .sh-ico{width:1em;height:1em;flex:none;display:inline-block}
+.sh-root .sh-star polygon{fill:var(--sh-gold);stroke:var(--sh-gold-edge)}
+.sh-root .sh-star.off polygon{fill:var(--sh-paper-3);stroke:var(--sh-paper-edge)}
+.sh-root .sh-heart path{fill:var(--sh-heart);stroke:var(--sh-heart-edge)}
+.sh-root .sh-heart.off path{fill:none;stroke:var(--sh-paper-edge)}
+.sh-root .sh-btn{appearance:none;border:0;cursor:pointer;pointer-events:auto;display:inline-flex;align-items:center;justify-content:center;gap:.5em;height:var(--sh-btn-h);min-height:44px;padding:0 1.3em;border-radius:var(--sh-r-md);font-family:var(--sh-font-display);font-weight:600;font-size:var(--sh-fs-btn);line-height:1;white-space:nowrap;color:var(--sh-ink);background:var(--sh-paper);box-shadow:inset 0 0 0 2px var(--sh-paper-edge),0 var(--sh-edge) 0 var(--sh-paper-edge);transition:transform var(--sh-dur-fast) var(--sh-ease-spring),box-shadow var(--sh-dur-fast),background-color var(--sh-dur-fast);margin:0 0 var(--sh-edge)}
+.sh-root .sh-btn:hover{transform:translateY(-2px);box-shadow:inset 0 0 0 2px var(--sh-paper-edge),0 calc(var(--sh-edge) + 2px) 0 var(--sh-paper-edge)}
+.sh-root .sh-btn:active{transform:translateY(calc(var(--sh-edge) - 1px));box-shadow:inset 0 0 0 2px var(--sh-paper-edge),0 1px 0 var(--sh-paper-edge)}
+.sh-root .sh-btn--primary{background:var(--sh-marigold);box-shadow:inset 0 2px 0 rgba(255,255,255,.45),0 var(--sh-edge) 0 var(--sh-marigold-edge)}
+.sh-root .sh-btn--primary:hover{background:var(--sh-marigold-hi);box-shadow:inset 0 2px 0 rgba(255,255,255,.5),0 calc(var(--sh-edge) + 2px) 0 var(--sh-marigold-edge)}
+.sh-root .sh-btn--primary:active{box-shadow:inset 0 2px 0 rgba(255,255,255,.3),0 1px 0 var(--sh-marigold-edge)}
+.sh-root .sh-btn:focus-visible{outline:3px solid var(--sh-ink);outline-offset:4px}
+.sh-root .sh-btn .sh-arr{display:inline-block;transition:transform var(--sh-dur-med) var(--sh-ease-spring)}
+.sh-root .sh-btn:hover .sh-arr{transform:translateX(.22em)}
+.sh-root .sh-btn u{text-decoration:none;color:var(--sh-sage);border-bottom:2px dotted currentColor;padding-bottom:1px}
+.sh-root .sh-btn--lg{--sh-btn-h:calc(4.75*var(--su));--sh-fs-btn:calc(1.85*var(--su));padding:0 1.6em}
+.sh-root .sh-kbd{display:inline-flex;align-items:center;justify-content:center;min-width:1.9em;height:1.9em;padding:0 .5em;border-radius:.45em;background:var(--sh-paper);color:var(--sh-ink);font:800 .78em/1 var(--sh-font-body);box-shadow:inset 0 0 0 1.5px var(--sh-paper-edge),0 2px 0 var(--sh-paper-edge)}
+.sh-root .sh-kbd--pad{border-radius:50%;padding:0;background:var(--sh-ink-2);color:var(--sh-paper);box-shadow:0 2px 0 var(--sh-ink)}
+.sh-root .sh-scrim{position:fixed;inset:0;background:var(--sh-scrim);animation:sh-fade var(--sh-dur-med) ease-out both}
+@media (min-height:501px) and (not (pointer:coarse)){.sh-root .sh-touch{display:none!important}}
+@media (pointer:coarse),(max-height:500px){.sh-root .sh-desk{display:none!important}}
+@keyframes sh-fade{from{opacity:0}}
+@keyframes sh-pop-in{from{opacity:0;transform:translateY(calc(1*var(--su))) scale(.97)}}
+@keyframes sh-rise{from{opacity:0;transform:translateY(calc(1.5*var(--su))) scale(.96)}}
+@media (prefers-reduced-motion:reduce){.sh-root *,.sh-root *::before,.sh-root *::after{animation:none!important;transition:none!important}}

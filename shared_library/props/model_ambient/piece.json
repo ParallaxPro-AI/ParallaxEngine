@@ -1,0 +1,7 @@
+{
+  "id": "model_ambient",
+  "summary": "Makes a placed model feel alive from data: spin a fan or rotor, oscillate a joint (a bobbing hull, a breathing pump), or open a door or lid while something tagged comes near — all through the Model's own joints.",
+  "version": "2026.10.23",
+  "setup": ["Add { \"use\": \"model_ambient\", \"params\": { \"motions\": [{\"joint\": \"fan\", \"mode\": \"spin\", \"period\": 1.2}] } } to a prefab with a Model."],
+  "replaces": ["lib:models/model_ambient"]
+}

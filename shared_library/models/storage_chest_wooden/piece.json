@@ -1,0 +1,10 @@
+{
+  "id": "storage_chest_wooden",
+  "summary": "A survival-base wooden storage chest, 1.0 m wide x 0.62 m tall x 0.56 m deep (a large wood box sized for a ca… joints lid; sockets socket_inside.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.storage_chest_wooden or place \"prefab\": \"storage_chest_wooden\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:storage_chest_wooden"]
+}

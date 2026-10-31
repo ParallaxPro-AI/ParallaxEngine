@@ -1,0 +1,21 @@
+{
+  "components": {
+    "model": {
+      "model": "models/utility_pole",
+      "cast_shadows": true
+    },
+    "collider": {
+      "shape": "box",
+      "size": [
+        2.35,
+        9.778,
+        0.6
+      ],
+      "offset": [
+        0.0,
+        4.889,
+        0.0
+      ]
+    }
+  }
+}

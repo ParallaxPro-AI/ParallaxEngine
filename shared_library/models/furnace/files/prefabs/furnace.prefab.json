@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/furnace"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.94, 1.92, 0.99],
+      "offset": [0, 0.96, 0.05]
+    }
+  }
+}

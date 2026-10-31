@@ -1,0 +1,38 @@
+{
+  "extends": "foe",
+  "pool": 56,
+  "components": {
+    "model": {
+      "model": "models/cinder_spitter",
+      "options": {
+        "skin": "pale",
+        "hair": "black",
+        "headgear": "hooded",
+        "trim": "red"
+      },
+      "cast_shadows": true
+    },
+    "animator": {
+      "default_clip": "clips/walk_cycle"
+    },
+    "health_bar": {
+      "offset": [
+        0,
+        2.2,
+        0
+      ]
+    }
+  },
+  "behaviors": {
+    "swarm_chase": {
+      "standoff": 17
+    },
+    "cinder_spit": {
+      "shard": "cinder_shard",
+      "damage": 9,
+      "interval": 2.3,
+      "reach": 23,
+      "speed": 15
+    }
+  }
+}

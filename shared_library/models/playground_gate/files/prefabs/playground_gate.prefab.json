@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/playground_gate"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [5.4, 3.3, 0.85],
+      "offset": [0, 1.65, 0]
+    }
+  }
+}

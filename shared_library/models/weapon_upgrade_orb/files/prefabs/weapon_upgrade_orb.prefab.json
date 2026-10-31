@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/weapon_upgrade_orb"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.31, 0.5264, 0.26],
+      "offset": [0, 0.2632, 0]
+    }
+  }
+}

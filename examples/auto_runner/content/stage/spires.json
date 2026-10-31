@@ -1,0 +1,13 @@
+{
+  "name": "The Spires",
+  "subtitle": "needles of red stone",
+  "from_distance": 560,
+  "speed_cap": 17.5,
+  "speed_ramp": 0.55,
+  "gap_scale": 1.02,
+  "air_chance": 0.28,
+  "coin_chance": 0.66,
+  "sky": [0.92, 0.58, 0.4],
+  "ground": [0.515, 0.268, 0.153],
+  "weights": {"rock": 5, "cactus": 4, "boulder": 4, "spire": 5, "bramble": 3, "bird": 3, "swooper": 3}
+}

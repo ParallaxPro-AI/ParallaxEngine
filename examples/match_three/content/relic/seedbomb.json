@@ -1,0 +1,7 @@
+{
+  "name": "Seeded Charge",
+  "description": "Every stage starts with a BOMB gem already on the board.",
+  "short": "Each stage starts with a BOMB gem.",
+  "highlight": "BOMB gem",
+  "start_bombs": 1
+}

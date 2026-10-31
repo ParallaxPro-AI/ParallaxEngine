@@ -1,0 +1,10 @@
+{
+  "id": "wok_station",
+  "summary": "A two-hole commercial Chinese wok range: a stainless cabinet on legs with louvred air intakes, a wet deck wit… joints faucet_1, faucet_2, knee_lever_1, valve_1_1, valve_1_2, knee_lever_2, …; options woks; sockets wok_seat_1, wok_seat_2.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.wok_station or place \"prefab\": \"wok_station\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:wok_station"]
+}

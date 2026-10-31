@@ -1,0 +1,10 @@
+{
+  "id": "scope_sniper",
+  "summary": "A long-range telescopic rifle sight, 0.375 m: a matte-black 30 mm tube with a 67 mm objective bell and a coat… joints elevation, windage, parallax, zoom; sockets socket_mount, socket_eyepiece.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scope_sniper or place \"prefab\": \"scope_sniper\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scope_sniper"]
+}

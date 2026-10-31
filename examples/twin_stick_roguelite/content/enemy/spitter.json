@@ -1,0 +1,10 @@
+{
+  "name": "Spitter", "prefab": "spitter",
+  "hp": 9, "contact_damage": 1, "move_speed": 1.5,
+  "shot": "spit", "shot_cooldown": 2.2,
+  "tactics": [
+    { "within": 4.5, "move": "retreat", "attack": "shot" },
+    { "within": 15, "move": "strafe", "attack": "shot" },
+    { "move": "chase" }
+  ]
+}

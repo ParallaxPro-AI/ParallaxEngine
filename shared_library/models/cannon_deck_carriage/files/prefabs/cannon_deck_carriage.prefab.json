@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/cannon_deck_carriage"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.1408, 0.994, 2.599],
+      "offset": [-0.0001, 0.497, -0.0495]
+    }
+  }
+}

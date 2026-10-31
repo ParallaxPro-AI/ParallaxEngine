@@ -1,0 +1,1 @@
+{"duration":0.6,"seed":182,"gain":0.55,"layers":[{"wave":"saw","freq":380,"freq_end":130,"attack":0.03,"decay":0.5,"sustain":0,"gain":0.7,"detune_cents":18,"filter":{"type":"lowpass","freq":1600,"freq_end":380,"q":1.4}}]}

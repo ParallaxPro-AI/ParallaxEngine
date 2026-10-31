@@ -1,0 +1,5 @@
+{
+  "id": "ui_theme",
+  "summary": "One stylesheet the library's panels share: colour tokens, modal backdrop, cards, buttons, stat rows. Restyle every library panel by editing its tokens.",
+  "version": "2026.10.23"
+}

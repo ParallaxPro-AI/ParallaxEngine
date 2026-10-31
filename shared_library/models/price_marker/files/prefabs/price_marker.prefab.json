@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/price_marker"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.03, 0.912, 0.338],
+      "offset": [0, 0.456, -0.019]
+    }
+  }
+}

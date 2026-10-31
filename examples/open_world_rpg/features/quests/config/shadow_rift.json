@@ -1,0 +1,9 @@
+{
+  "duration": 360,
+  "death_penalty": 25,
+  "critical_at": 60,
+  "weather": "overcast",
+  "weather_blend": 8,
+  "storm_at": 60,
+  "storm": "overcast"
+}

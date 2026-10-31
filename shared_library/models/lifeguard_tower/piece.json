@@ -1,0 +1,10 @@
+{
+  "id": "lifeguard_tower",
+  "summary": "A beach lifeguard tower: a clapboard lookout hut with glazed windows on a WALKABLE plank deck 2.0 m up, carri… joints door, flag; options cabin_colour; sockets socket_lookout, socket_seat.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.lifeguard_tower or place \"prefab\": \"lifeguard_tower\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:lifeguard_tower"]
+}

@@ -1,0 +1,58 @@
+<!-- Ported from the template: Buccaneer Bay voyage's end - the captain's log card: victory or loss title, gold plundered count-up, the voyage ledger (legs, crew, refits, where she went down) and Play Again / Main Menu. -->
+<link rel="stylesheet" href="kit.css">
+<style>
+  .bbg-scrim { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: radial-gradient(ellipse 60% 60% at 50% 45%, rgba(9,40,44,.5), rgba(5,12,14,.86)); font-family: var(--bb-ui); color: var(--bb-cream); pointer-events: auto; }
+  .bbg-scrim.hidden { display: none; }
+  .bbg-card { width: calc(1040 * var(--u)); max-width: calc(100cqw - calc(64 * var(--u))); max-height: calc(100cqh - calc(48 * var(--u))); overflow: auto; padding: calc(44 * var(--u)) calc(64 * var(--u)) calc(44 * var(--u)); display: flex; flex-direction: column; align-items: center; text-align: center; background: var(--bb-mahogany-deep); border: 2px solid var(--bb-gold); border-radius: calc(6 * var(--u)); outline: 1px solid var(--bb-gold-soft); outline-offset: calc(-12 * var(--u)); box-shadow: 0 calc(30 * var(--u)) calc(80 * var(--u)) rgba(0,0,0,.55); animation: bbg-in .5s cubic-bezier(.2,.8,.2,1) both; }
+  @keyframes bbg-in { from { opacity: 0; transform: translateY(calc(22 * var(--u))) scale(.97); } to { opacity: 1; transform: none; } }
+  .bbg-eyebrow { font: 400 calc(18 * var(--u)) var(--bb-sc); letter-spacing: .22em; color: var(--bb-muted); }
+  .bbg-title { margin: calc(8 * var(--u)) 0 0; font: 400 calc(84 * var(--u))/1 var(--bb-display); letter-spacing: .02em; color: var(--bb-gold); text-shadow: 0 calc(4 * var(--u)) 0 #451a03, 0 0 calc(36 * var(--u)) rgba(252,211,77,.22); text-wrap: balance; animation: bbg-title .8s cubic-bezier(.16,1,.3,1) .1s both; }
+  .bbg-title.defeat { color: var(--bb-warn); text-shadow: 0 calc(4 * var(--u)) 0 #3c1208, 0 0 calc(36 * var(--u)) rgba(239,128,106,.25); }
+  @keyframes bbg-title { from { opacity: 0; transform: scale(1.12); filter: blur(calc(6 * var(--u))); } to { opacity: 1; transform: none; filter: none; } }
+  .bbg-rule { width: calc(220 * var(--u)); height: 2px; margin-top: calc(18 * var(--u)); background: linear-gradient(90deg, transparent, var(--bb-brass), transparent); }
+  .bbg-score { margin-top: calc(18 * var(--u)); display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .bbg-score span { font: 400 calc(20 * var(--u)) var(--bb-sc); letter-spacing: .16em; color: var(--bb-muted); }
+  .bbg-score b { font: 600 calc(72 * var(--u))/1.05 var(--bb-ui); color: var(--bb-gold-num); font-variant-numeric: tabular-nums; text-shadow: 0 0 calc(26 * var(--u)) rgba(240,196,115,.25); }
+  .bbg-stats { margin-top: calc(22 * var(--u)); width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(calc(150 * var(--u)), 1fr)); border-top: 1px solid var(--bb-brass-line); border-bottom: 1px solid var(--bb-brass-line); }
+  .bbg-stats.hidden { display: none; }
+  .bbg-stat { padding: calc(14 * var(--u)) calc(8 * var(--u)); display: flex; flex-direction: column; gap: calc(4 * var(--u)); animation: bbg-up .5s ease both; }
+  .bbg-stat + .bbg-stat { border-left: 1px solid rgba(138,106,42,.6); }
+  .bbg-stat span { font: 400 calc(16 * var(--u)) var(--bb-sc); letter-spacing: .12em; color: var(--bb-muted); }
+  .bbg-stat b { font: 600 calc(28 * var(--u))/1.2 var(--bb-ui); color: var(--bb-cream); font-variant-numeric: tabular-nums; }
+  .bbg-stat b.word { font: 400 calc(28 * var(--u))/1.2 var(--bb-serif); color: var(--bb-gold-num); }
+  @keyframes bbg-up { from { opacity: 0; transform: translateY(calc(10 * var(--u))); } to { opacity: 1; transform: none; } }
+  .bbg-buttons { margin-top: calc(30 * var(--u)); display: flex; gap: calc(22 * var(--u)); }
+  .bbg-btn { width: calc(300 * var(--u)); height: calc(76 * var(--u)); border-radius: calc(4 * var(--u)); cursor: pointer; pointer-events: auto; font: 400 calc(30 * var(--u)) var(--bb-sc); letter-spacing: .06em; transition: background .14s, box-shadow .14s, transform .09s; }
+  .bbg-btn.primary { background: var(--bb-teal); border: 2px solid var(--bb-gold); color: var(--bb-cream-ink); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-teal-deep), 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4); }
+  .bbg-btn.primary:hover { background: var(--bb-teal-hi); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-teal-deep), var(--bb-glow); }
+  .bbg-btn.secondary { background: var(--bb-wood); border: 2px solid var(--bb-brass); color: var(--bb-cream); box-shadow: 0 calc(6 * var(--u)) 0 var(--bb-wood-deep), 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,0,0,.4); }
+  .bbg-btn.secondary:hover { background: var(--bb-wood-hi); }
+  .bbg-btn:active { transform: translateY(calc(4 * var(--u))); box-shadow: 0 2px 0 var(--bb-wood-deep), var(--bb-glow); }
+  @media (pointer: coarse) {
+    .bbg-card { width: calc(1500 * var(--u)); max-width: calc(100cqw - calc(48 * var(--u))); padding: calc(32 * var(--u)) calc(56 * var(--u)); outline-offset: calc(-16 * var(--u)); }
+    .bbg-eyebrow { font-size: calc(26 * var(--u)); }
+    .bbg-title { font-size: calc(104 * var(--u)); }
+    .bbg-rule { margin-top: calc(12 * var(--u)); }
+    .bbg-score { margin-top: calc(10 * var(--u)); }
+    .bbg-score span { font-size: calc(26 * var(--u)); }
+    .bbg-score b { font-size: calc(80 * var(--u)); }
+    .bbg-stats { margin-top: calc(14 * var(--u)); grid-template-columns: repeat(auto-fit, minmax(calc(220 * var(--u)), 1fr)); }
+    .bbg-stat { padding: calc(12 * var(--u)) calc(8 * var(--u)); }
+    .bbg-stat span { font-size: calc(24 * var(--u)); }
+    .bbg-stat b, .bbg-stat b.word { font-size: calc(36 * var(--u)); }
+    .bbg-buttons { margin-top: calc(22 * var(--u)); width: 100%; gap: calc(24 * var(--u)); }
+    .bbg-btn { flex: 1; width: auto; height: calc(104 * var(--u)); font-size: calc(44 * var(--u)); border-width: calc(3 * var(--u)); }
+  }
+</style>
+<div class="bbg-scrim">
+  <div class="bbg-card" data-class-won="won">
+    <div class="bbg-eyebrow">Captain Log · Voyage's End</div>
+    <div class="bbg-title" data-bind="title"></div>
+    <div class="bbg-rule"></div>
+    <div class="bbg-score"><span>Gold plundered</span><b data-bind="purse"></b></div>
+    <div class="bbg-stats" data-each="stats"><template><div class="bbg-stat"><span data-bind="label"></span><b data-bind="value"></b></div></template></div>
+    <div class="bbg-buttons">
+      <button class="bbg-btn primary" data-action="sail_again" data-key="Enter" data-text="sail_again"></button>
+    </div>
+  </div>
+</div>

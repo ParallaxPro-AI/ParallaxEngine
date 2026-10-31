@@ -1,0 +1,10 @@
+{
+  "id": "kangaroo",
+  "summary": "An adult kangaroo (1.0 m to the ear tips in its low grazing stance, 2.0 m nose to tail tip) on the engine's q… options coat; sockets pouch, head_top, back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.kangaroo or place \"prefab\": \"kangaroo\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:kangaroo"]
+}

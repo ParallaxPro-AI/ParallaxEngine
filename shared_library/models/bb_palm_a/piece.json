@@ -1,0 +1,10 @@
+{
+  "id": "bb_palm_a",
+  "summary": "Curved tropical palm with seven tapered drooping fronds; sized to the original coastal planting.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_palm_a or place \"prefab\": \"bb_palm_a\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_palm_a"]
+}

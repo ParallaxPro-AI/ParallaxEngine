@@ -1,0 +1,10 @@
+{
+  "id": "door_boards",
+  "summary": "Timber nailed across a doorway or window opening: rough planks at hand-nailed angles over two vertical cleats… options coverage, finish.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.door_boards or place \"prefab\": \"door_boards\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:door_boards"]
+}

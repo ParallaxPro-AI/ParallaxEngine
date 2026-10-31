@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/meat_hook_chain"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1559, 1.2663, 0.14],
+      "offset": [0.008, 0.6334, 0]
+    }
+  }
+}

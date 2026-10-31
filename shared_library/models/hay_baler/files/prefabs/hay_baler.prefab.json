@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/hay_baler"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.04, 1.65, 3.02],
+      "offset": [0, 0.825, 0.1]
+    }
+  }
+}

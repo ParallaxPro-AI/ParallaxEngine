@@ -1,0 +1,10 @@
+{
+  "id": "log_single_cut",
+  "summary": "A single felled and bucked log lying on the ground: a 2 m length of trunk, ~0.56 m across at the flared butt…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.log_single_cut or place \"prefab\": \"log_single_cut\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:log_single_cut"]
+}

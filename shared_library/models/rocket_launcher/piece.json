@@ -1,0 +1,10 @@
+{
+  "id": "rocket_launcher",
+  "summary": "A shoulder-fired recoilless rocket launcher (RPG-style): a hollow olive launch tube with a wooden heat guard… joints sight, tube, warhead; sockets socket_muzzle, socket_sight, grip_r, grip_l, sight, muzzle.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "viewmodel"],
+  "setup": [
+    "Spawn it with Prefabs.rocket_launcher or place \"prefab\": \"rocket_launcher\" in a scene; Game(plugins=[...]) needs physics3d(), viewmodel()."
+  ],
+  "replaces": ["lib:rocket_launcher"]
+}

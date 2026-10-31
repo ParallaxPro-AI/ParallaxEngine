@@ -1,0 +1,8 @@
+{
+  "fifty_move_plies": 100,
+  "repetitions": 3,
+  "dead_positions_draw": true,
+  "node_budget": 220000,
+  "think_seconds": 0.75,
+  "slide_seconds": 0.16
+}

@@ -1,0 +1,10 @@
+{
+  "id": "filing_cabinet",
+  "summary": "A vertical office filing cabinet: a painted-steel carcass on a recessed plinth with four sliding file drawers… joints drawer_0, drawer_1, drawer_2, drawer_3; options drawers, finish; sockets socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.filing_cabinet or place \"prefab\": \"filing_cabinet\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:filing_cabinet"]
+}

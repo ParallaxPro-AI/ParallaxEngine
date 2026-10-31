@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/roman_legionary"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.6061, 2.024, 0.4869],
+      "offset": [0, 1.008, -0.0024]
+    }
+  }
+}

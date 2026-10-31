@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/lily_pad_set"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.024, 0.1052, 0.8882],
+      "offset": [-0.032, 0.0534, -0.0055]
+    }
+  }
+}

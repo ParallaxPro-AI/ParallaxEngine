@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/meat_slicer"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6015, 0.525, 0.538],
+      "offset": [-0.0007, 0.2625, 0.019]
+    }
+  }
+}

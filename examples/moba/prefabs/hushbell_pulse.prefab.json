@@ -1,0 +1,19 @@
+{
+ "components": {
+  "sight": {
+   "radius": 14
+  },
+  "true_sight": {},
+  "shape": {
+   "kind": "cylinder",
+   "size": [
+    28,
+    0.06,
+    28
+   ],
+   "color": "#8fd0ff30",
+   "emissive": "#4aa8ff",
+   "cast_shadows": false
+  }
+ }
+}

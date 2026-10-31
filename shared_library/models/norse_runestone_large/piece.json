@@ -1,0 +1,10 @@
+{
+  "id": "norse_runestone_large",
+  "summary": "A large Viking-age runestone, 2.46 m tall: a granite slab with a flat dressed face and rough back, carved wit… options paint.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.norse_runestone_large or place \"prefab\": \"norse_runestone_large\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:norse_runestone_large"]
+}

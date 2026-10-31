@@ -1,0 +1,18 @@
+{
+  "name": "Market Row",
+  "blurb": "Awnings, crates, the first siren.",
+  "tint": "#ff9a3c",
+  "end_distance": 500,
+  "speed_scale": 1.0,
+  "gap_scale": 1.0,
+  "hard_bias": 0,
+  "powerup_scale": 1.0,
+  "fog_color": "#bcc4d3",
+  "fog_near": 55,
+  "fog_far": 125,
+  "road": "road_market",
+  "buildings": ["building_market_0", "building_market_1"],
+  "encounters": ["van", "barrier_low", "rest", "cone", "barrier_high", "rest"],
+  "landmark": "landmark_market_stall",
+  "landmark_x": 6.6
+}

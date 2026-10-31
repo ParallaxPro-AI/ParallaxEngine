@@ -1,0 +1,10 @@
+{
+  "id": "shell_casing",
+  "summary": "A single spent rifle cartridge case lying on its side, as ejected from a gun: an empty bottlenecked brass cas…",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.shell_casing or place \"prefab\": \"shell_casing\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:shell_casing"]
+}

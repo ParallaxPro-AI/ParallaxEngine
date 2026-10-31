@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/airlock"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2, 2.43, 0.344],
+      "offset": [0, 1.215, 0.002]
+    }
+  }
+}

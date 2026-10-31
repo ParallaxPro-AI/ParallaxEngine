@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/plush_bear"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1603, 0.1904, 0.1293],
+      "offset": [0, 0.0948, 0.0046]
+    }
+  }
+}

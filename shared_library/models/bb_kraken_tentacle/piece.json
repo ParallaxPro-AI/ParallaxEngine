@@ -1,0 +1,10 @@
+{
+  "id": "bb_kraken_tentacle",
+  "summary": "Curled tapering sea-monster tentacle with seven readable suction cups.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.bb_kraken_tentacle or place \"prefab\": \"bb_kraken_tentacle\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:bb_kraken_tentacle"]
+}

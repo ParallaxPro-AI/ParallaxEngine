@@ -1,0 +1,10 @@
+{
+  "id": "spike_trap",
+  "summary": "A metal-housed spike trap: a square steel housing with a recessed bed of sharpened spikes that thrust up out… joints spikes; options mounting.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spike_trap or place \"prefab\": \"spike_trap\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spike_trap"]
+}

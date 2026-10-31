@@ -1,0 +1,10 @@
+{
+  "id": "scifi_stairs_metal",
+  "summary": "A straight open-riser steel stair flight for sci-fi interiors, the stair piece of the space-corridor kit: two… sockets socket_foot, socket_head.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scifi_stairs_metal or place \"prefab\": \"scifi_stairs_metal\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scifi_stairs_metal"]
+}

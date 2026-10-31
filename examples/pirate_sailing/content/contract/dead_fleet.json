@@ -1,0 +1,7 @@
+{
+  "number": 6,
+  "label": "Break 3 ships of the dead fleet",
+  "kind": "ghost",
+  "goal": 3,
+  "gold": 220
+}

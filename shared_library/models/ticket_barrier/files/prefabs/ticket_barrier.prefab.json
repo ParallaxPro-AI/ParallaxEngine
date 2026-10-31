@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ticket_barrier"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.16, 1.038, 1.314],
+      "offset": [0, 0.519, 0.007]
+    }
+  }
+}

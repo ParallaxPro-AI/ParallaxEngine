@@ -1,0 +1,10 @@
+{
+  "id": "drum_kit",
+  "summary": "A five-piece drum kit: bass drum with kick pedal, snare, mounted rack toms, floor toms, hi-hats on a pedal, a… joints hihat, crash, ride, kick_pedal, hihat_pedal; options kit_size; sockets socket_throne.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.drum_kit or place \"prefab\": \"drum_kit\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:drum_kit"]
+}

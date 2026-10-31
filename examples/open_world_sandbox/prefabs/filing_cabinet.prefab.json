@@ -1,0 +1,5 @@
+{
+  "components": {
+    "model": { "model": "models/filing_cabinet", "cast_shadows": true }
+  }
+}

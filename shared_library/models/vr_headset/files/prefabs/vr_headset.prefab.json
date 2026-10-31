@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/vr_headset"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.21, 0.1567, 0.2557],
+      "offset": [0, 0.0783, 0.0046]
+    }
+  }
+}

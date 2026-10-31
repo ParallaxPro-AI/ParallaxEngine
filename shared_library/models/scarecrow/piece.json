@@ -1,0 +1,10 @@
+{
+  "id": "scarecrow",
+  "summary": "A field scarecrow: a weathered timber post and crossbar on a mound of earth, a straw-stuffed check shirt rope… joints legs_swing, head_sway; options shirt_colour, trouser_colour, head, hat, crow; sockets perch_l, perch_r, sign_front.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.scarecrow or place \"prefab\": \"scarecrow\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:scarecrow"]
+}

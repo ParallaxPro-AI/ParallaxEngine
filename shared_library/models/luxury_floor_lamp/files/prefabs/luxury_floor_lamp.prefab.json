@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/luxury_floor_lamp"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.446, 1.705, 0.446],
+      "offset": [0, 0.8525, 0]
+    }
+  }
+}

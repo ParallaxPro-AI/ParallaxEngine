@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bagpipes"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.3411, 1.2178, 0.8639],
+      "offset": [0.0017, 0.6089, -0.0061]
+    }
+  }
+}

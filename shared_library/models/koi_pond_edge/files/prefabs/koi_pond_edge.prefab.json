@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/koi_pond_edge"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [3.0312, 0.534, 1.9589],
+      "offset": [0.2159, 0.267, -0.0217]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "id": "observatory_dome",
+  "summary": "A small astronomical observatory: a 4 m high sandstone drum building (plinth, rusticated base course, cornice… joints dome, shutter.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.observatory_dome or place \"prefab\": \"observatory_dome\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:observatory_dome"]
+}

@@ -1,0 +1,91 @@
+{
+  "ui": ["title_screen"],
+  "music": "https://r2.parallaxpro.ai/assets/audio_music/e0/a5/e0a582ddf306457f34f9300429ac7714151a6006856b01f640c687b0e9da1690.mp3",
+  "environment": {
+    "ambient": "#818892",
+    "sky": "atmosphere",
+    "time_of_day": 9,
+    "atmosphere": {"haze": 1.6},
+    "sun": {"color": "#fff8ea"},
+    "clouds": {"coverage": 0.5, "density": 0.8},
+    "post": {"exposure": 1.08, "contrast": 1.06, "saturation": 1.12, "tint": "#fff6ea", "vignette": 0.16, "bloom": 0.11, "god_rays": 0.22}
+  },
+  "terrain": {
+    "size": [700, 700],
+    "resolution": 256,
+    "base_height": -9,
+    "noise": [{"kind": "fbm", "amplitude": 2, "wavelength": 200, "octaves": 4, "seed": 21}],
+    "hills": [
+      {"center": [0, 0], "radius": 235, "height": 14, "feather": 41},
+      {"center": [210, 30], "radius": 150, "height": 14, "feather": 35},
+      {"center": [-180, -160], "radius": 135, "height": 14, "feather": 35},
+      {"center": [50, -225], "radius": 110, "height": 14, "feather": 30},
+      {"center": [-130, 185], "radius": 120, "height": 14, "feather": 30}
+    ],
+    "flats": [{"center": [0, 0], "radius": 180, "height": 5, "feather": 46}],
+    "layers": [
+      {
+        "name": "grass",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/cf/a4/cfa40bc9d9417d1852db8753a8d5917f110c40101179f63543c382e39bc05e4a.jpg",
+        "tile": 5,
+        "roughness": 0.95,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/03/dc/03dc0449bb5dcac7819b62ca7a272f6160118c13537a1b31b01fedf3e4ee597b.jpg"
+      },
+      {
+        "name": "sand",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/58/af/58af2e40100f7f405703a86d593af64379f822c4786850def23ecfc921450d54.jpg",
+        "tile": 8,
+        "roughness": 0.95,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/19/ca/19ca020fbffa44cb041d5f2e9cfeec25ab9d18a3a381c9f8d509339fb406bde9.jpg"
+      },
+      {
+        "name": "road",
+        "texture": "https://r2.parallaxpro.ai/assets/image_texture/40/54/4054ed6eb65cd063356ffb4a88706b7d7b78c5435051c48bf0ee64290f04bc8c.jpg",
+        "tile": 3,
+        "roughness": 0.85,
+        "normal": "https://r2.parallaxpro.ai/assets/image_texture/89/a0/89a07e01f7ca138b06711c729755b26ed0e588769c3568a7008ef420c9cba305.jpg"
+      }
+    ],
+    "default_layer": "grass",
+    "paint": [
+      {"center": [0, 0], "radius": 241, "layer": "sand", "feather": 18, "noise": 0.4},
+      {"center": [0, 0], "radius": 169, "layer": "grass", "feather": 18, "noise": 0.35},
+      {"center": [210, 30], "radius": 156, "layer": "sand", "feather": 18, "noise": 0.4},
+      {"center": [210, 30], "radius": 108, "layer": "grass", "feather": 18, "noise": 0.35},
+      {"center": [-180, -160], "radius": 141, "layer": "sand", "feather": 18, "noise": 0.4},
+      {"center": [-180, -160], "radius": 97, "layer": "grass", "feather": 18, "noise": 0.35},
+      {"center": [50, -225], "radius": 116, "layer": "sand", "feather": 18, "noise": 0.4},
+      {"center": [50, -225], "radius": 79, "layer": "grass", "feather": 18, "noise": 0.35},
+      {"center": [-130, 185], "radius": 126, "layer": "sand", "feather": 18, "noise": 0.4},
+      {"center": [-130, 185], "radius": 86, "layer": "grass", "feather": 18, "noise": 0.35},
+      {"center": [0, 0], "size": [230, 34], "layer": "road", "feather": 4, "noise": 0.05}
+    ]
+  },
+  "entities": [
+    {"prefab": "sun", "rotation": [38, 45, 0]},
+    {"prefab": "sun_fill"},
+    {"prefab": "ocean", "at": [0, -1, 0], "rotation": [0, 180, 0]},
+    {"prefab": "runway", "at": [0, 5.2, 0], "rotation": [0, 180, 0]},
+    {"prefab": "display_plane", "at": [-88, 5.7, 0], "rotation": [0, 90, 0]},
+    {"prefab": "title_camera", "at": [-92, 16.4, -17.2], "rotation": [10, 0, 0]},
+    {"prefab": "taxiway", "at": [0, 5.2, -30], "rotation": [0, 180, 0]},
+    {"prefab": "apron", "at": [-30, 5.2, -44], "rotation": [0, 180, 0]},
+    {"prefab": "hangar", "at": [-60, 5, -46], "rotation": [0, 180, 0]},
+    {"prefab": "hangar", "at": [10, 5, -46], "rotation": [0, 180, 0]},
+    {"prefab": "terminal", "at": [0, 5, 72], "rotation": [0, 180, 0]},
+    {"prefab": "control_tower", "at": [-96, 5, 46], "rotation": [0, 180, 0]},
+    {"prefab": "windsock", "at": [108, 5, -24], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [-152.02, 5, -187.02], "scale": [0.955, 1.095, 0.955], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [158.77, 5, 17.18], "scale": [1.134, 1.006, 1.134], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [22.76, 5, -243.69], "scale": [0.898, 1.221, 0.898], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [62.95, 5, -235.76], "scale": [1.05, 1.032, 1.05], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [-67.84, 5, -39.77], "scale": [0.88, 0.904, 0.88], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [22.96, 5, -215.64], "scale": [1.01, 1.102, 1.01], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [74.04, 5, 30.79], "scale": [0.918, 1.041, 0.918], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [224.91, 5, 92.33], "scale": [1.115, 1.08, 1.115], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [-109.69, 5, -25.06], "scale": [0.861, 1.017, 0.861], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [-162.33, 5, -154.37], "scale": [0.965, 1.003, 0.965], "rotation": [0, 180, 0]},
+    {"prefab": "palm", "at": [258.86, 5, 83.44], "scale": [0.899, 0.996, 0.899], "rotation": [0, 180, 0]},
+    {"prefab": "display_pilot", "at": [-92, 6.7, -5]}
+  ]
+}

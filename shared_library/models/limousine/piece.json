@@ -1,0 +1,10 @@
+{
+  "id": "limousine",
+  "summary": "A stretch limousine: the four-door saloon lengthened 1.75 m between the axles, with a long fixed privacy wind… joints door_fl, door_fr, door_rl, door_rr, wheel_f_l_roll, wheel_f_l_steer, …; options paint, trim_level; sockets eye_point, instrument_anchor, seat_driver, seat_pax_1, seat_pax_2, seat_pax_3, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d", "vehicles"],
+  "setup": [
+    "Spawn it with Prefabs.limousine or place \"prefab\": \"limousine\" in a scene; Game(plugins=[...]) needs physics3d(), vehicles()."
+  ],
+  "replaces": ["lib:limousine"]
+}

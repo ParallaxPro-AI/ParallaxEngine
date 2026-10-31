@@ -1,0 +1,10 @@
+{
+  "id": "spellbook",
+  "summary": "A thick leather-bound spellbook lying flat: rounded spine with raised bands, overhanging boards, a metal star… joints cover; options element, leather, fittings; sockets socket_page, socket_top, socket_grip.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.spellbook or place \"prefab\": \"spellbook\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:spellbook"]
+}

@@ -1,0 +1,12 @@
+{
+  "components": {
+    "shape": { "kind": "box", "size": [0.4, 0.5, 2.0], "color": "#95c4ff" },
+    "rigidbody": { "kind": "kinematic" },
+    "collider": { "shape": "box", "size": [0.4, 0.5, 2.0], "friction": 0, "bounce": 1 },
+    "smash": { "threshold": 0.2, "boost": 0.55 }
+  },
+  "tags": ["paddle"],
+  "behaviors": {
+    "player_paddle": { "speed": 12, "reach": 5.5, "charge_time": 0.7, "charge_slow": 0.55 }
+  }
+}

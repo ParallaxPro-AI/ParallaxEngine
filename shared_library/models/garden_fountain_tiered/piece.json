@@ -1,0 +1,10 @@
+{
+  "id": "garden_fountain_tiered",
+  "summary": "A two-tier cast-stone garden fountain: an octagonal sit-on basin with a moulded coping and plinth, a turned b… options stone, water; sockets seat_coping, socket_pool, socket_top.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garden_fountain_tiered or place \"prefab\": \"garden_fountain_tiered\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garden_fountain_tiered"]
+}

@@ -1,0 +1,10 @@
+{
+  "id": "blackjack_table",
+  "summary": "A casino blackjack table: a D-shaped veneered table with a padded leather rail round the players' arc, green… joints tray_lid; options felt, leather, seating; sockets seat_0, seat_1, seat_2, seat_3, seat_4, seat_5, ….",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.blackjack_table or place \"prefab\": \"blackjack_table\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:blackjack_table"]
+}

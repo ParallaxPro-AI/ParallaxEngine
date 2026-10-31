@@ -1,0 +1,17 @@
+{
+  "components": {
+    "model": {
+      "model": "models/viking_longship"
+    },
+    "rigidbody": {
+      "kind": "dynamic",
+      "mass": 9000,
+      "gravity_scale": 2
+    },
+    "collider": {
+      "shape": "box",
+      "size": [11.757, 11.61, 20.023],
+      "offset": [0, 5.805, 0.3674]
+    }
+  }
+}

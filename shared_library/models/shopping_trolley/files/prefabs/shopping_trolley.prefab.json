@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/shopping_trolley"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5415, 1.038, 0.888],
+      "offset": [0.0008, 0.519, -0.044]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "extends": "home_player",
+  "components": {
+    "model": {
+      "model": "https://r2.parallaxpro.ai/assets/model_character/c9/41/c94155401c9fab400437dc51cc33da1f24f7a043521f4495a91b9671ae9087e2.glb"
+    },
+    "footballer": {
+      "ai_speed": 6
+    }
+  }
+}

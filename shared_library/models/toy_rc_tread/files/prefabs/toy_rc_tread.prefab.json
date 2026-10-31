@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/toy_rc_tread"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.0465, 0.0351, 0.0708],
+      "offset": [0, 0.0175, 0]
+    }
+  }
+}

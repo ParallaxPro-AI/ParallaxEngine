@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/piano"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.4845, 1.0183, 1.6715],
+      "offset": [-0.0008, 0.5091, 0.0158]
+    }
+  }
+}

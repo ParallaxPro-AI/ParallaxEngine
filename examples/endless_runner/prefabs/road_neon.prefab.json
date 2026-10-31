@@ -1,0 +1,9 @@
+{
+  "components": {
+    "model": {
+      "model": "models/road_neon",
+      "cast_shadows": true
+    }
+  },
+  "pool": 6
+}

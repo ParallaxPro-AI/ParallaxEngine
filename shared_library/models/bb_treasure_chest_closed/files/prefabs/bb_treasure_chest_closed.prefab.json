@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/bb_treasure_chest_closed"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.35, 0.93, 0.89],
+      "offset": [0, 0.465, 0.02]
+    }
+  }
+}

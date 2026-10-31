@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/spike_trap"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.16, 0.4915, 1.16],
+      "offset": [0, 0.2442, 0]
+    }
+  }
+}

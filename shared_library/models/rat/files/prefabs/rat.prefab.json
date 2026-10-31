@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/rat"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.1135, 0.119, 0.4902],
+      "offset": [0, 0.0595, -0.0019]
+    }
+  }
+}

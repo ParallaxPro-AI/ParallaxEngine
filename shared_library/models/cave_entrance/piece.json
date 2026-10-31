@@ -1,0 +1,10 @@
+{
+  "id": "cave_entrance",
+  "summary": "A rocky cave mouth: a 10 m wide, 6 m high outcrop of faceted boulders piled into a hillside, pierced by an ir… options portal, rock; sockets mouth.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.cave_entrance or place \"prefab\": \"cave_entrance\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:cave_entrance"]
+}

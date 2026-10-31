@@ -1,0 +1,10 @@
+{
+  "id": "garment_torso_puffer_jacket",
+  "summary": "A quilted down puffer jacket: horizontal baffles stitched every 8 cm on the body and every 7 cm down the slee… options channel0, channel1; sockets grip_r, grip_l, holster_r, sling_back.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garment_torso_puffer_jacket or place \"prefab\": \"garment_torso_puffer_jacket\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garment_torso_puffer_jacket"]
+}

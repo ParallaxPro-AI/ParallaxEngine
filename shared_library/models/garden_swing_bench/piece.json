@@ -1,0 +1,10 @@
+{
+  "id": "garden_swing_bench",
+  "summary": "A powder-coated steel three-seater canopy swing: two splayed tube A-frames with ground runners joined by a to… joints canopy, swing; options fabric, frame_finish, cushions; sockets seat_l, seat_c, seat_r.",
+  "version": "2026.10.25",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.garden_swing_bench or place \"prefab\": \"garden_swing_bench\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:garden_swing_bench"]
+}

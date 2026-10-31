@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/statue"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.52, 2.95, 1.52],
+      "offset": [0, 1.475, 0]
+    }
+  }
+}

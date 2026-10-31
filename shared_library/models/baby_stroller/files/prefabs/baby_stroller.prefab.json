@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/baby_stroller"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.621, 1.143, 0.83],
+      "offset": [0, 0.5715, -0.025]
+    }
+  }
+}
