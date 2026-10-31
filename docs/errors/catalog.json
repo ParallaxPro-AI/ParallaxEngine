@@ -2694,14 +2694,14 @@
         "warning"
       ],
       "messages": [
-        "Every object in this 3D game is primitive shapes ({…}; {…}{…} are each assembled from several) and it uses no model"
+        "Every object in this 3D game is primitive shapes ({…}; {…}{…} are each assembled from several) and it uses no mesh model"
       ],
       "fixes": [
-        "The shared library has ~2,300 ready-made models: `pnpm parallax library search {…}` finds them, `pnpm parallax library add <piece> <game dir>` copies one in as a prefab (spawn Prefabs.<piece>, or \"prefab\": \"<piece>\" in a scene). Keep shapes for what is meant to be abstract (a paddle, a goal line). See docs/concepts/visuals.md."
+        "The shared library has ~2,300 ready-made models: `pnpm parallax library search {…}` finds them, `pnpm parallax library add <piece> <game dir>` copies one in as a prefab (spawn Prefabs.<piece>, or \"prefab\": \"<piece>\" in a scene). A model document whose parts are all shapes counts as shapes here; a library model draws meshes. Keep shapes for what is meant to be abstract (a paddle, a goal line). See docs/concepts/visuals.md."
       ],
       "notes": [
         {
-          "text": "the whole game is primitive shapes: no model anywhere, and several prefabs each",
+          "text": "the whole game is primitive shapes: no mesh model anywhere, and several prefabs each",
           "source": "packages/check/src/look_checks.ts"
         }
       ],
