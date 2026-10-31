@@ -8,7 +8,7 @@
  *   parallax serve <project> [--host H] [--port N] [--ticket-secret-env NAME --match ID]
  *   parallax serve-relay [--host H] [--port N]
  *   parallax test  <project> [args for @parallax/test]
- *   parallax screenshot <project> [--out FILE.png] [--seconds N] [--shots N] [--keys STEPS] …
+ *   parallax screenshot <project> [--out FILE.png] [--seconds N] [--shots N] [--keys STEPS] [--json] …
  *   parallax library list | search <words>... | add <piece>... <project> | test [<piece>...]
  *
  * Exit codes: 0 ok, 1 the project has errors (`new`: the folder is in use), 2 bad usage.
@@ -41,7 +41,7 @@ const USAGE = `Usage:
                  the signalling relay for browser-hosted matches (?net=host&signal=ws://…)
   parallax test  <project> [options for @parallax/test]
   parallax screenshot <project> [--out FILE.png] [--seconds N] [--shots N] [--every S]
-                 [--width W] [--height H] [--keys STEPS] [--seed N] [--timeout S] [--gl auto|gpu|software]
+                 [--width W] [--height H] [--keys STEPS] [--seed N] [--timeout S] [--gl auto|gpu|software] [--json]
                  run the game in headless Chrome and write PNGs; --keys "KeyW:2,Space,wait:1,click"
   parallax library list | search <words>... | add <piece>... <project> | test [<piece>...]
 `;

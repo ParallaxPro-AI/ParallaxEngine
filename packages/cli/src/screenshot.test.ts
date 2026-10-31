@@ -4,11 +4,15 @@
  * docs/cli.md for running it by hand.)
  */
 
-import { describe, expect, it } from 'vitest';
+import { mkdtempSync, rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { describe, expect, it, vi } from 'vitest';
 import { main } from './cli.js';
 import {
-  chromeArgs, collapse, findChrome, keyCode, keyEvent, parseKeys, screenshotArgs, shotPaths, TAP_SECONDS, timeline, useGpu,
+  chromeArgs, collapse, findChrome, keyCode, keyEvent, parseKeys, screenshotArgs, screenshotJson, shotPaths, TAP_SECONDS, timeline,
+  toolingFailure, useGpu,
 } from './screenshot.js';
+import type { ScreenshotResult } from './screenshot.js';
 
 describe('parallax screenshot arguments', () => {
   it('has defaults for everything but the project', () => {
@@ -25,6 +29,7 @@ describe('parallax screenshot arguments', () => {
       dir: 'game', out: 'a/b.png', seconds: 0.5, shots: 3, every: 2, width: 640, height: 480,
       keys: [{ kind: 'keys', codes: ['KeyW'], seconds: 2 }], seed: 7, timeout: 30, gl: 'software',
     });
+    expect(screenshotArgs(['game', '--json'])).toMatchObject({ dir: 'game', json: true });
   });
 
   it('refuses bad usage', () => {
@@ -145,5 +150,54 @@ describe('the page console', () => {
       { level: 'warning', text: 'PP2201  a warning\n  Fix: …' },
       { level: 'warning', text: 'PP2201  a warning\n  Fix: …' },
     ])).toEqual(['error: Uncaught boom\n  at x.py', 'warning: PP2201  a warning (×2)']);
+  });
+});
+
+describe('--json', () => {
+  it('reports the boot outcome, each shot with its moment of play, the console and the game\'s errors', () => {
+    const result: ScreenshotResult = {
+      files: ['/x/shot-1.png', '/x/shot-2.png'],
+      messages: [{ level: 'warning', text: 'PP2201  a warning' }, { level: 'error', text: 'Uncaught boom' }],
+      gameErrors: ['The game stopped\nPP1000 x'], errors: [{ title: 'The game stopped', diagnostics: [{ code: 'PP1000', message: 'x' }] }],
+      traceback: 'Traceback (most recent call last):\n  File "game/main.py", line 3',
+      boot: 'stopped', bootSeconds: 1.4,
+      shots: [{ path: '/x/shot-1.png', seconds: 2, frame: 120, held: ['KeyW'] }, { path: '/x/shot-2.png', seconds: 2.5, frame: 150, held: [] }],
+      failure: 'The game stopped with an error (the shot shows its error screen).',
+    };
+    const json = JSON.parse(JSON.stringify(screenshotJson(result))) as Record<string, unknown>;
+    expect(json).toEqual({
+      ok: false,
+      boot: { outcome: 'stopped', seconds: 1.4 },
+      failure: 'The game stopped with an error (the shot shows its error screen).',
+      shots: [{ path: '/x/shot-1.png', seconds: 2, frame: 120, held: ['KeyW'] }, { path: '/x/shot-2.png', seconds: 2.5, frame: 150, held: [] }],
+      console: { errors: 1, warnings: 1, messages: result.messages },
+      game: { errors: result.errors, traceback: result.traceback, text: result.gameErrors },
+    });
+  });
+
+  it('a clean run is ok, with no failure or traceback keys', () => {
+    const json = screenshotJson({ files: ['/x/s.png'], messages: [], gameErrors: [], errors: [], boot: 'running', bootSeconds: 0.8,
+      shots: [{ path: '/x/s.png', seconds: 2, held: [] }] });
+    expect(json).toEqual({ ok: true, boot: { outcome: 'running', seconds: 0.8 }, shots: [{ path: '/x/s.png', seconds: 2, held: [] }],
+      console: { errors: 0, warnings: 0, messages: [] }, game: { errors: [], text: [] } });
+  });
+
+  it('prints a report on stdout, exit 1, when the tooling cannot run (no Chrome launched: not a project)', async () => {
+    expect(screenshotJson(toolingFailure('no Chrome'))).toMatchObject({ ok: false, boot: { outcome: 'error' }, failure: 'no Chrome', shots: [] });
+    const dir = mkdtempSync(`${tmpdir()}/parallax-shot-json-`);
+    const out: string[] = [];
+    const stdout = vi.spyOn(process.stdout, 'write').mockImplementation((chunk) => { out.push(String(chunk)); return true; });
+    const stderr = vi.spyOn(process.stderr, 'write').mockImplementation(() => true);
+    try {
+      expect(await main(['screenshot', dir, '--json'])).toBe(1);
+    } finally {
+      stdout.mockRestore();
+      stderr.mockRestore();
+      rmSync(dir, { recursive: true, force: true });
+    }
+    const json = JSON.parse(out.join('')) as { ok: boolean; boot: { outcome: string }; failure: string };
+    expect(json.ok).toBe(false);
+    expect(json.boot.outcome).toBe('error');
+    expect(json.failure).toMatch(/is not a project/);
   });
 });
