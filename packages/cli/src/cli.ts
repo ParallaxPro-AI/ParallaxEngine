@@ -4,7 +4,7 @@
  *   parallax new   <dir> [--template NAME | --example NAME] [--name TITLE] | --list
  *   parallax build <project> [--out DIR] [--no-asset-files] [--bundle] [--json]
  *   parallax check <project> [--json] [--out DIR | --no-write] [--no-asset-files] [--no-compile]
- *   parallax edit  <project> [--port N] [--host H] [--no-open] [--out DIR] [--no-asset-files]
+ *   parallax edit  <project> [--port N] [--host H] [--no-open] [--out DIR] [--no-asset-files] [--library DIR]…
  *   parallax serve <project> [--host H] [--port N] [--ticket-secret-env NAME --match ID]
  *   parallax serve-relay [--host H] [--port N]
  *   parallax test  <project> [args for @parallax/test]
@@ -20,6 +20,7 @@ import { main as testMain } from '@parallax/test';
 import { buildProject, checkCommand } from './build.js';
 import type { BuildOptions } from './build.js';
 import { edit, summary } from './edit.js';
+import { libraryRoots } from './library.js';
 import { libraryMain } from './library_cli.js';
 import { relayMain, serveMain } from './serve_cli.js';
 import { screenshotMain } from './screenshot.js';
@@ -32,7 +33,7 @@ const USAGE = `Usage:
                  or from a copy of a complete example game (--list shows them)
   parallax build <project> [--out DIR] [--no-asset-files] [--bundle] [--json]
   parallax check <project> [--json] [--out DIR | --no-write] [--no-asset-files] [--no-compile]
-  parallax edit  <project> [--port N] [--host H] [--no-open] [--out DIR] [--no-asset-files]
+  parallax edit  <project> [--port N] [--host H] [--no-open] [--out DIR] [--no-asset-files] [--library DIR]...
                  the editor: scenes in a viewport, inspector, assets; Play runs the game in place
   parallax serve <project> [--host H] [--port N] [--seed N] [--drain-seconds N]
                  [--ticket-secret-env NAME --match ID]
@@ -44,6 +45,7 @@ const USAGE = `Usage:
                  [--width W] [--height H] [--keys STEPS] [--seed N] [--timeout S] [--gl auto|gpu|software]
                  run the game in headless Chrome and write PNGs; --keys "KeyW:2,Space,wait:1,click"
   parallax library list | search <words>... | add <piece>... <project> | test [<piece>...]
+                 [--library DIR]... extra library roots (also PARALLAX_LIBRARY_PATH, ':'-separated)
 `;
 
 interface Parsed {
@@ -55,10 +57,12 @@ interface Parsed {
   port?: number;
   host?: string;
   bundle: boolean;
+  /** `--library DIR` folders (repeatable). */
+  library: string[];
 }
 
 function parse(argv: readonly string[], allowed: readonly string[]): Parsed | string {
-  const out: Parsed = { json: false, open: true, assetFiles: true, bundle: false };
+  const out: Parsed = { json: false, open: true, assetFiles: true, bundle: false, library: [] };
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
     if (arg.startsWith('--') && !allowed.includes(arg)) return `Unknown option ${arg}`;
@@ -69,6 +73,7 @@ function parse(argv: readonly string[], allowed: readonly string[]): Parsed | st
     else if (arg === '--bundle') out.bundle = true;
     else if (arg === '--out') { const v = value(); if (v === undefined) return '--out needs a folder'; out.outDir = v; }
     else if (arg === '--host') { const v = value(); if (v === undefined) return '--host needs a value'; out.host = v; }
+    else if (arg === '--library') { const v = value(); if (v === undefined || v.startsWith('--')) return '--library needs a folder'; out.library.push(v); }
     else if (arg === '--port') {
       const v = Number(value());
       if (!Number.isInteger(v) || v < 0 || v > 65535) return '--port needs a port number';
@@ -117,10 +122,10 @@ export async function main(argv: readonly string[]): Promise<number> {
       return result.errors > 0 ? 1 : 0;
     }
     case 'edit': {
-      const p = parse(rest, ['--out', '--no-asset-files', '--port', '--host', '--no-open']);
+      const p = parse(rest, ['--out', '--no-asset-files', '--port', '--host', '--no-open', '--library']);
       if (typeof p === 'string') return usage(p);
       const session = await edit(p.project ?? process.cwd(), {
-        ...buildOptions(p), open: p.open,
+        ...buildOptions(p), open: p.open, libraryRoots: libraryRoots(p.library),
         ...(p.port !== undefined && { port: p.port }),
         ...(p.host !== undefined && { host: p.host }),
       });

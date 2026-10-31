@@ -20398,16 +20398,19 @@
       ],
       "listed_in": [],
       "severity": [
-        "error"
+        "warning"
       ],
       "messages": [
         "There is no library at {root}",
         "Two pieces are called \"{piece.id}\" ({twin.category}/ and {category.name}/)",
+        "Two pieces are called \"{piece.id}\": {dir} is skipped, {twin.dir} (an earlier library root) is used",
         "{piece.id} has no demo (demo/game/main.py and demo/tests/) — every piece proves itself with a playtest",
         "{piece.id}: files/{path} must be a JSON object of strings"
       ],
       "fixes": [
         "Add demo/: a small host game and tests/test_<piece>.py.",
+        "Fix the folder named by --library or PARALLAX_LIBRARY_PATH: a library root holds <category>/<piece>/piece.json.",
+        "Piece ids are global across library roots; rename the later one to use both.",
         "Piece ids are global; rename one.",
         "Run from a ParallaxEngine checkout: it has shared_library/ next to packages/.",
         "Write {\"key\": \"text\"}."

@@ -14,6 +14,12 @@
  * conflict). Every copy is recorded in `<project>/.parallax/library.json` with the sha256 of
  * each file as copied.
  *
+ * Roots: the library is `shared_library/` plus any extra roots, each laid out the same way
+ * (`<root>/<category>/<piece>/piece.json`): `--library DIR` (repeatable), then the folders in
+ * `PARALLAX_LIBRARY_PATH` (separated like PATH: ':', ';' on Windows). Ids are global: on a
+ * clash the earlier root wins (shared_library first) and the later piece is skipped with a
+ * warning, so an extra root adds pieces but never replaces one.
+ *
  * Codes: PP9590 bad manifest, PP9591 unknown piece, PP9592 dependency cycle, PP9593 not a
  * project, PP9594 conflict, PP9595 plugin missing from the game (warning), PP9596 bad record.
  *
@@ -27,7 +33,8 @@
 
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
-import { dirname, relative, resolve } from 'node:path';
+import { delimiter, dirname, relative, resolve } from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import { closestMatch, diagnostic } from '@parallax/runtime/core';
 import type { Diagnostic } from '@parallax/runtime/core';
@@ -36,6 +43,22 @@ import type { Diagnostic } from '@parallax/runtime/core';
 export const LIBRARY_DIR = fileURLToPath(new URL('../../../shared_library/', import.meta.url));
 
 export const RECORD_PATH = '.parallax/library.json';
+
+/**
+ * The library's roots, in precedence order: `shared_library/`, then `extra` (`--library DIR`
+ * flags), then `PARALLAX_LIBRARY_PATH`'s folders. Empty entries are skipped and each folder is
+ * listed once.
+ */
+export function libraryRoots(extra: readonly string[] = [], env: Readonly<Record<string, string | undefined>> = process.env): string[] {
+  const fromEnv = (env['PARALLAX_LIBRARY_PATH'] ?? '').split(delimiter);
+  const roots: string[] = [];
+  for (const dir of [LIBRARY_DIR, ...extra, ...fromEnv]) {
+    if (dir.trim() === '') continue;
+    const abs = resolve(dir);
+    if (!roots.some((r) => resolve(r) === abs)) roots.push(dir === LIBRARY_DIR ? dir : abs);
+  }
+  return roots;
+}
 
 export interface PieceManifest {
   readonly id: string;
@@ -57,6 +80,8 @@ export interface PieceManifest {
 export interface Piece extends PieceManifest {
   /** Folder of the piece, absolute. */
   readonly dir: string;
+  /** The library root the piece is in. */
+  readonly root: string;
   /** "ui", "gameplay", … — the folder the piece sits in. */
   readonly category: string;
   /** Project-relative paths of every file under `files/`, sorted. */
@@ -64,7 +89,10 @@ export interface Piece extends PieceManifest {
 }
 
 export interface Library {
+  /** The first root (shared_library/ unless roots were given): where the search index lives. */
   readonly root: string;
+  /** Every root, in precedence order (`libraryRoots`). */
+  readonly roots: readonly string[];
   readonly pieces: ReadonlyMap<string, Piece>;
   readonly diagnostics: readonly Diagnostic[];
 }
@@ -88,7 +116,7 @@ function strings(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((v) => typeof v === 'string');
 }
 
-function readManifest(dir: string, category: string, out: Diagnostic[]): Piece | undefined {
+function readManifest(dir: string, root: string, category: string, out: Diagnostic[]): Piece | undefined {
   const path = `${dir}/piece.json`;
   const where = relative(resolve(dir, '../..'), path);
   const bad = (message: string, fix: string): undefined => {
@@ -130,32 +158,50 @@ function readManifest(dir: string, category: string, out: Diagnostic[]): Piece |
     replaces: (m['replaces'] as string[] | undefined) ?? [],
     asset_files: (m['asset_files'] as boolean | undefined) ?? true,
     dir,
+    root,
     category,
     files,
   };
 }
 
-/** Every piece under `root` (`<root>/<category>/<piece>/piece.json`), with manifest problems. */
-export function loadLibrary(root: string = LIBRARY_DIR): Library {
+/**
+ * Every piece under the roots (`<root>/<category>/<piece>/piece.json`), with manifest
+ * problems. Default: `libraryRoots()` (shared_library/ and PARALLAX_LIBRARY_PATH); a piece
+ * in a later root with an earlier root's id is skipped (a warning).
+ */
+export function loadLibrary(roots: string | readonly string[] = libraryRoots()): Library {
+  const all = typeof roots === 'string' ? [roots] : [...roots];
+  const first = all[0] ?? LIBRARY_DIR;
   const out: Diagnostic[] = [];
   const pieces = new Map<string, Piece>();
-  if (!existsSync(root)) {
-    out.push(diagnostic('PP9590', `There is no library at ${root}`, { fix: 'Run from a ParallaxEngine checkout: it has shared_library/ next to packages/.' }));
-    return { root, pieces, diagnostics: out };
-  }
-  for (const category of readdirSync(root, { withFileTypes: true })) {
-    if (!category.isDirectory() || category.name.startsWith('_') || category.name.startsWith('.')) continue;
-    for (const entry of readdirSync(`${root}/${category.name}`, { withFileTypes: true })) {
-      const dir = `${root}/${category.name}/${entry.name}`;
-      if (!entry.isDirectory() || !existsSync(`${dir}/piece.json`)) continue;
-      const piece = readManifest(dir, category.name, out);
-      if (piece === undefined) continue;
-      const twin = pieces.get(piece.id);
-      if (twin !== undefined) {
-        out.push(diagnostic('PP9590', `Two pieces are called "${piece.id}" (${twin.category}/ and ${category.name}/)`, { fix: 'Piece ids are global; rename one.' }));
-        continue;
+  for (const [r, root] of all.entries()) {
+    if (!existsSync(root)) {
+      out.push(diagnostic('PP9590', `There is no library at ${root}`, {
+        fix: r === 0 ? 'Run from a ParallaxEngine checkout: it has shared_library/ next to packages/.'
+          : 'Fix the folder named by --library or PARALLAX_LIBRARY_PATH: a library root holds <category>/<piece>/piece.json.',
+      }));
+      continue;
+    }
+    for (const category of readdirSync(root, { withFileTypes: true })) {
+      if (!category.isDirectory() || category.name.startsWith('_') || category.name.startsWith('.')) continue;
+      for (const entry of readdirSync(`${root}/${category.name}`, { withFileTypes: true })) {
+        const dir = `${root}/${category.name}/${entry.name}`;
+        if (!entry.isDirectory() || !existsSync(`${dir}/piece.json`)) continue;
+        const piece = readManifest(dir, root, category.name, out);
+        if (piece === undefined) continue;
+        const twin = pieces.get(piece.id);
+        if (twin !== undefined && twin.root !== root) {
+          out.push(diagnostic('PP9590', `Two pieces are called "${piece.id}": ${dir} is skipped, ${twin.dir} (an earlier library root) is used`, {
+            severity: 'warning', fix: 'Piece ids are global across library roots; rename the later one to use both.',
+          }));
+          continue;
+        }
+        if (twin !== undefined) {
+          out.push(diagnostic('PP9590', `Two pieces are called "${piece.id}" (${twin.category}/ and ${category.name}/)`, { fix: 'Piece ids are global; rename one.' }));
+          continue;
+        }
+        pieces.set(piece.id, piece);
       }
-      pieces.set(piece.id, piece);
     }
   }
   for (const piece of pieces.values()) {
@@ -167,7 +213,7 @@ export function loadLibrary(root: string = LIBRARY_DIR): Library {
       }
     }
   }
-  return { root, pieces, diagnostics: out };
+  return { root: first, roots: all, pieces, diagnostics: out };
 }
 
 function hint(id: string, pieces: ReadonlyMap<string, Piece>): string {
@@ -359,7 +405,7 @@ export function planAdd(library: Library, projectDir: string, ids: readonly stri
       }
     }
     recorded[piece.id] = {
-      from: relative(resolve(library.root, '..'), piece.dir).split('\\').join('/'),
+      from: relative(resolve(piece.root, '..'), piece.dir).split('\\').join('/'),
       version: piece.version,
       sha: whole.digest('hex'),
       files,
