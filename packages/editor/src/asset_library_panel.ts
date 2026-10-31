@@ -51,6 +51,18 @@ export interface LibraryAddResult {
 
 // ── Pure logic (tested) ───────────────────────────────────────────────────────
 
+/**
+ * Whether a `build` the editor took in settles an add that answered `prefab`: the prefab
+ * document is in the project now (boot.ts takes the documents in, then rebuilds the runtime,
+ * then says `build`), the piece has no prefab, or the build failed (nothing more is coming;
+ * the dialog says so). Any other build is one that was already on its way when the add
+ * landed (a save's, a slow server's): placing then would put the prefab into a runtime whose
+ * asset list predates the piece's model (PP2063 in every frame).
+ */
+export function addSettled(prefab: string | null, prefabs: { has(id: string): boolean }, buildFailed: boolean): boolean {
+  return prefab === null || buildFailed || prefabs.has(prefab);
+}
+
 /** A piece id as words: `ac_condenser_unit` → `ac condenser unit`. */
 export function displayName(id: string): string {
   return id.replace(/[_-]+/g, ' ').trim();
@@ -171,8 +183,8 @@ export class AssetLibraryPanel {
   #sentinel: HTMLElement | undefined;
   /** Draws model cards' portraits as they scroll into view. */
   #observer: IntersectionObserver | undefined;
-  /** Pieces just added whose build hasn't been taken in yet: not placeable until it is. */
-  readonly #awaitingBuild = new Set<string>();
+  /** Pieces just added whose build hasn't been taken in yet (id → the add's prefab): not placeable until it is. */
+  readonly #awaitingBuild = new Map<string, string | null>();
   /** Redraws the open details dialog (after an add, a rebuild, a mode change). */
   #refreshDetails: (() => void) | undefined;
   #closeDetails: (() => void) | undefined;
@@ -191,7 +203,11 @@ export class AssetLibraryPanel {
     this.el = h('div.lib-panel', {}, h('div.lib-search', {}, field, this.#category), this.#content, this.#status);
     this.#empty(t('library.openTab'));
     editor.on((changes) => {
-      if (changes.has('build')) this.#awaitingBuild.clear();
+      if (changes.has('build')) {
+        const prefabs = editor.documents.project().prefabs;
+        const failed = editor.buildDiagnostics.some((d) => d.severity === 'error');
+        for (const [id, prefab] of [...this.#awaitingBuild]) if (addSettled(prefab, prefabs, failed)) this.#awaitingBuild.delete(id);
+      }
       if (changes.has('documents') || changes.has('mode') || changes.has('build')) {
         this.#refreshDetails?.();
         this.#syncPlaceable();
@@ -477,7 +493,7 @@ export class AssetLibraryPanel {
         if (result.added.length > 0) {
           // Placeable once the build the add causes is taken in (boot.ts rebuilds the runtime for a new model).
           added = true;
-          this.#awaitingBuild.add(piece.id);
+          this.#awaitingBuild.set(piece.id, result.prefab);
         }
         // A model piece goes straight into the scene: "Add" is one click.
         if (prefab !== null && editor.editing) placeWhenReady = true;
