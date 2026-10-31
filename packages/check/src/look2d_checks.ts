@@ -5,11 +5,13 @@
  * purpose — a number puzzle of colored tiles, a starter template — stays quiet:
  *
  *   PP2210  the whole game is plain colored shapes: no image anywhere (sprite, shape texture,
- *           tile image or assets/images file) in a game past the starter size
+ *           tile image or assets/images file)
  *   PP2211  a character (player, enemy, hero, ship…) drawn as a plain shape or an imageless
  *           sprite: a sprite with an image, or an SVG in assets/images
  *   PP2212  no effect anywhere — no ctx.vfx call, particles or .vfx.json file
  *   PP2213  no camera sets a background color, so the screen clears to the default
+ *
+ * The warnings skip games under 150 lines of code (the starter templates, test fixtures).
  *
  * Also an error: Python that plays a built-in `Effect.<name>` in a 2D game (PP2063, the same
  * mistake the checker reports for "effect/<name>" in data). The 2D renderer has no built-in
@@ -119,9 +121,9 @@ export function checkLook2d(ctx: CheckContext): void {
   const source = py.map((s) => s.text).join('\n');
 
   builtinEffects(ctx, py);
-  noBackground(ctx, source);
-  // A starter (a template's square in an arena) hasn't reached the point where art and effects matter.
+  // A starter (a template's square in an arena, a test fixture) hasn't reached the point where its look matters.
   if (codeLines(source) < STARTER_LINES) return;
+  noBackground(ctx, source);
   const prefabs = [...ctx.project.prefabs.values()].map((p) => ({ id: p.id, path: p.path, look: looks.prefab(p.id) }));
   const plainOnly = plainGame(ctx, prefabs, source);
   if (!plainOnly) characters(ctx, prefabs);
