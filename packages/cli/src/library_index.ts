@@ -13,10 +13,19 @@
  * pieces change re-embeds only those. `parallax library index` builds it up front. The model
  * is downloaded once (to `.cache/` in the checkout); with no model, search falls back to
  * keywords and says so.
+ *
+ * `PARALLAX_CACHE_DIR` moves what the CLI writes: the model downloads to
+ * `$PARALLAX_CACHE_DIR/transformers/` and the index is saved to
+ * `$PARALLAX_CACHE_DIR/library_index/`. Both are still read from the checkout when the cache
+ * lacks them, so a read-only checkout with a prebuilt index and model searches offline: a
+ * model found on disk is loaded with remote downloads off (`PARALLAX_OFFLINE=1` turns them off
+ * always), and an index that can't be saved is used from memory.
  */
 
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import process from 'node:process';
 import { fileURLToPath } from 'node:url';
 import type { FoundPiece, Library, Piece } from './library.js';
 import { listPieces, searchPieces } from './library.js';
@@ -25,6 +34,32 @@ import { listPieces, searchPieces } from './library.js';
 export const MODEL = 'Xenova/all-MiniLM-L6-v2';
 const CACHE_DIR = fileURLToPath(new URL('../../../.cache/transformers/', import.meta.url));
 const INDEX_DIR = '_index';
+
+type Env = Readonly<Record<string, string | undefined>>;
+
+/** `$PARALLAX_CACHE_DIR`, absolute, or undefined when unset. */
+function cacheRoot(env: Env): string | undefined {
+  const dir = env['PARALLAX_CACHE_DIR'];
+  return dir === undefined || dir.trim() === '' ? undefined : resolve(dir);
+}
+
+/** Where the model is looked for, first to last; the first is where it downloads. */
+export function modelDirs(env: Env = process.env): string[] {
+  const cache = cacheRoot(env);
+  return cache === undefined ? [CACHE_DIR] : [`${cache}/transformers/`, CACHE_DIR];
+}
+
+/** Where the index is read from, first to last (the first holding one is used); the first is where it is saved. */
+export function indexDirs(root: string, env: Env = process.env): string[] {
+  const cache = cacheRoot(env);
+  const own = `${root.replace(/\/$/, '')}/${INDEX_DIR}`;
+  return cache === undefined ? [own] : [`${cache}/library_index`, own];
+}
+
+/** The model's files under a cache folder (the layout transformers.js caches and loads from). */
+function hasModel(dir: string): boolean {
+  return ['config.json', 'tokenizer.json', 'onnx/model_quantized.onnx'].every((f) => existsSync(`${dir}/${MODEL}/${f}`));
+}
 
 /** Words a model's own data implies but its name may not say. */
 function tagsOf(model: Record<string, unknown>): string[] {
@@ -98,11 +133,22 @@ function hash(text: string): string {
 
 type Embed = (texts: string[]) => Promise<Float32Array[]>;
 
-/** The local model, loaded on first use; undefined when it can't be (offline before its first download). */
-export async function loadEmbedder(): Promise<Embed | undefined> {
+/**
+ * The local model, loaded on first use; undefined when it can't be (offline before its first
+ * download, or the package isn't installed). A model already on disk (`modelDirs`) is loaded
+ * from there with downloads off, so no network is touched.
+ */
+export async function loadEmbedder(env: Env = process.env): Promise<Embed | undefined> {
+  const dirs = modelDirs(env);
+  const found = dirs.find(hasModel);
+  const offline = found !== undefined || env['PARALLAX_OFFLINE'] === '1';
+  if (found === undefined && env['PARALLAX_OFFLINE'] === '1') return undefined;
   try {
     const transformers = await import('@huggingface/transformers');
-    transformers.env.cacheDir = CACHE_DIR;
+    transformers.env.cacheDir = found ?? dirs[0]!;
+    transformers.env.localModelPath = found ?? dirs[0]!;
+    transformers.env.allowLocalModels = true;
+    transformers.env.allowRemoteModels = !offline;
     const extract = await transformers.pipeline('feature-extraction', MODEL, { dtype: 'q8' });
     return async (texts) => {
       const out = await extract(texts, { pooling: 'mean', normalize: true });
@@ -126,10 +172,14 @@ export interface SearchIndex {
 }
 
 /**
- * Writes `<root>/_index/` for every piece, embedding only those whose text isn't already in
- * `previous` (all of them without one); returns the index and how many it embedded.
+ * Writes the index of every piece to `dir` (default: the first of `indexDirs`), embedding only
+ * those whose text isn't already in `previous` (all of them without one); returns the index,
+ * how many it embedded, and why it could not be saved (a read-only folder), if it couldn't —
+ * the index is still usable from memory.
  */
-export async function buildIndex(library: Library, embed: Embed, previous?: SearchIndex, batch = 64): Promise<{ index: SearchIndex; embedded: number }> {
+export async function buildIndex(
+  library: Library, embed: Embed, previous?: SearchIndex, batch = 64, dir: string = indexDirs(library.root)[0]!,
+): Promise<{ index: SearchIndex; embedded: number; unsaved?: string }> {
   const pieces = [...library.pieces.values()].sort((a, b) => a.id.localeCompare(b.id));
   const stamps = pieces.map(stampOf);
   const before = new Map<string, number>();
@@ -159,19 +209,31 @@ export async function buildIndex(library: Library, embed: Embed, previous?: Sear
     fresh.get(r)!.forEach((x, d) => { vectors[r * dims + d] = Math.max(-127, Math.min(127, Math.round(x * 127))); });
   });
   const index: SearchIndex = { model: MODEL, dims, ids: pieces.map((p) => p.id), texts: text, hashes, stamps, vectors };
-  mkdirSync(`${library.root}/${INDEX_DIR}`, { recursive: true });
-  writeFileSync(`${library.root}/${INDEX_DIR}/index.json`, `${JSON.stringify({ model: MODEL, dims, ids: index.ids, texts: text, hashes, stamps })}\n`);
-  writeFileSync(`${library.root}/${INDEX_DIR}/vectors.bin`, vectors);
+  try {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(`${dir}/index.json`, `${JSON.stringify({ model: MODEL, dims, ids: index.ids, texts: text, hashes, stamps })}\n`);
+    writeFileSync(`${dir}/vectors.bin`, vectors);
+  } catch (error) {
+    return { index, embedded: todo.length, unsaved: (error as Error).message };
+  }
   return { index, embedded: todo.length };
 }
 
-export function readIndex(root: string): SearchIndex | undefined {
-  const dir = `${root}/${INDEX_DIR}`;
-  if (!existsSync(`${dir}/index.json`) || !existsSync(`${dir}/vectors.bin`)) return undefined;
-  const meta = JSON.parse(readFileSync(`${dir}/index.json`, 'utf8')) as Omit<SearchIndex, 'vectors'>;
-  if (!Array.isArray(meta.stamps) || !Array.isArray(meta.texts)) return undefined; // an older index: rebuilt
-  const bytes = readFileSync(`${dir}/vectors.bin`);
-  return { ...meta, vectors: new Int8Array(bytes.buffer, bytes.byteOffset, bytes.byteLength) };
+/** The index of the first of `dirs` (default `indexDirs(root)`) that holds a readable one. */
+export function readIndex(root: string, dirs: readonly string[] = indexDirs(root)): SearchIndex | undefined {
+  for (const dir of dirs) {
+    if (!existsSync(`${dir}/index.json`) || !existsSync(`${dir}/vectors.bin`)) continue;
+    let meta: Omit<SearchIndex, 'vectors'>;
+    try {
+      meta = JSON.parse(readFileSync(`${dir}/index.json`, 'utf8')) as Omit<SearchIndex, 'vectors'>;
+    } catch {
+      continue;
+    }
+    if (!Array.isArray(meta.stamps) || !Array.isArray(meta.texts)) continue; // an older index: rebuilt
+    const bytes = readFileSync(`${dir}/vectors.bin`);
+    return { ...meta, vectors: new Int8Array(bytes.buffer, bytes.byteOffset, bytes.byteLength) };
+  }
+  return undefined;
 }
 
 /**

@@ -6,6 +6,8 @@ describe('parallax command line', () => {
     expect(await main(['launch'])).toBe(2);
     expect(await main(['build', '.', '--fast'])).toBe(2);
     expect(await main(['edit', '.', '--port', 'abc'])).toBe(2);
+    expect(await main(['edit', '.', '--library'])).toBe(2);
+    expect(await main(['build', '.', '--library', '/x'])).toBe(2);
     expect(await main(['dev', '.'])).toBe(2);
     expect(await main([])).toBe(2);
     expect(await main(['export'])).toBe(2);
