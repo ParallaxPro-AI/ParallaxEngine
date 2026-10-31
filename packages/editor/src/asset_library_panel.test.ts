@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { addPiece, categoriesOf, displayName, fetchLibrary, filterPieces, LIBRARY_ADD_URL, nearEnd, PAGE_SIZE, pageOf, statusText } from './asset_library_panel.js';
+import { addPiece, addSettled, categoriesOf, displayName, fetchLibrary, filterPieces, LIBRARY_ADD_URL, nearEnd, PAGE_SIZE, pageOf, statusText } from './asset_library_panel.js';
 import { buildLibraryModel, libraryModelUrl } from './asset_previews.js';
 import type { LibraryPiece } from './asset_library_panel.js';
 
@@ -116,5 +116,17 @@ describe('asset library thumbnails', () => {
     expect(model!.meshes.some((primitives) => primitives.length > 0)).toBe(true);
     expect(buildLibraryModel('broken', '{ not json')).toBeNull();
     expect(buildLibraryModel('wrong', '{"format": "something else"}')).toBeNull();
+  });
+});
+
+describe('placing a just-added piece', () => {
+  it('waits for the build that took the prefab in, not just the next build', () => {
+    // A build already on its way when the add landed (a save's) comes first: the prefab isn't a
+    // document yet, and the runtime's asset list predates the piece's model.
+    expect(addSettled('advertising_column', new Set(['camera']), false)).toBe(false);
+    expect(addSettled('advertising_column', new Set(['camera', 'advertising_column']), false)).toBe(true);
+    // A failed build settles it (the dialog says so); a piece without a prefab has nothing to place.
+    expect(addSettled('advertising_column', new Set(), true)).toBe(true);
+    expect(addSettled(null, new Set(), false)).toBe(true);
   });
 });

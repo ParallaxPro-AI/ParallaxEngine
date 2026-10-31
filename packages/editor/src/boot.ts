@@ -200,7 +200,16 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
   const ready = editor;
   // `build` once the event is taken in (the Asset Library places a just-added prefab then).
   const buildListeners = new Set<(event: BuildEvent) => void>();
-  onBuild((event) => void rebuilt(ready, event, (v) => { version = v; }, viewport.el).finally(() => {
+  // A model added while the game played (an Asset Library add) waits for Stop with the other
+  // outside documents (Editor.takeOutsideChanges); the runtime that lists the asset files is
+  // rebuilt once they are in, or placing the piece fails in every frame (PP2063).
+  const runtime = { stale: false };
+  ready.on((changes) => {
+    if (!runtime.stale || !changes.has('documents') || !ready.editing) return;
+    runtime.stale = false;
+    void reloadRuntime(ready, viewport.el).finally(() => ready.emit('build'));
+  });
+  onBuild((event) => void rebuilt(ready, event, (v) => { version = v; }, viewport.el, runtime).finally(() => {
     ready.emit('build');
     for (const listener of [...buildListeners]) {
       try {
@@ -268,7 +277,7 @@ function recover(editor: Editor, game: BrowserGame, title: string, diagnostics: 
   }, 0);
 }
 
-async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number) => void, stage: HTMLElement): Promise<void> {
+async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number) => void, stage: HTMLElement, runtime: { stale: boolean }): Promise<void> {
   const errors = event.diagnostics.filter((d) => d.severity === 'error');
   editor.buildDiagnostics = event.diagnostics;
   if (errors.length > 0) {
@@ -292,9 +301,17 @@ async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number
     editor.write('warning', `Changed on disk: ${plan.conflicts.join(', ')}, which you have unsaved edits to. Save to overwrite them, or reload the page to take them (unsaved edits are lost).`);
   }
   if (plan.reload.length > 0) editor.write('warning', `Changed on disk: ${plan.reload.join(', ')}. Reload the page to see them.`);
-  // New code, or a new asset document (a library model) the runtime's asset list lacks.
+  // New code, or a new asset document (a library model) the runtime's asset list lacks. While
+  // playing, the documents wait for Stop: the runtime is rebuilt once they are in (bootEditor).
+  if (!editor.editing && needsRuntime(event.changed)) runtime.stale = true;
   if (!needsCode(event.changed) && !(editor.editing && needsRuntime(event.changed))) return;
   setVersion(event.version);
+  if (editor.editing) runtime.stale = false;
+  await reloadRuntime(editor, stage);
+}
+
+/** A new runtime from the current build and documents (`EditorSession.reload`). */
+async function reloadRuntime(editor: Editor, stage: HTMLElement): Promise<void> {
   // The viewport shows the reload; the panels keep working.
   const loading = showEditorLoading(stage, { label: t('boot.reloadingCode'), compact: true, delayMs: 150 });
   try {
