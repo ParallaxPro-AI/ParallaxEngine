@@ -88,6 +88,30 @@ describe('look checks', () => {
     expect(brief(found)).toEqual(['PP2201 prefabs/tree.prefab.json', 'PP2205 prefabs/house.prefab.json']);
   });
 
+  it('a model document of shape parts only is shapes (PP2200, PP2201, PP2205); one with a mesh is a model', () => {
+    const doc = (parts: Record<string, unknown>[], meshes?: Record<string, unknown>): string => JSON.stringify({
+      format: 'parallax.model', version: 1, materials: { wood: { color: [0.5, 0.3, 0.2] } }, parts, ...(meshes !== undefined && { meshes }),
+    });
+    const house = doc([{ name: 'walls', shape: 'box', size: [6, 3, 5], material: 'wood' }, { name: 'roof', shape: 'cone', size: [7, 2, 6], material: 'wood' },
+      { name: 'door', shape: 'box', size: [1, 2, 0.1], material: 'wood' }]);
+    const tree = doc([{ name: 'trunk', shape: 'cylinder', size: [0.4, 2, 0.4], material: 'wood' }, { name: 'crown', shape: 'sphere', size: [2, 2, 2], material: 'wood' }]);
+    const shapeModels = {
+      'assets/models/house.model.json': house, 'assets/models/tree.model.json': tree,
+      'prefabs/house.prefab.json': prefab({ model: { model: 'models/house' } }),
+      'prefabs/tree.prefab.json': prefab({ model: { model: 'models/tree' } }),
+    };
+    const found = look(shapeModels);
+    expect(brief(found)).toEqual(['PP2200 prefabs/house.prefab.json', 'PP2201 prefabs/tree.prefab.json', 'PP2205 prefabs/house.prefab.json']);
+    expect(found.find((d) => d.code === 'PP2205')!.message).toContain('3 primitive shapes (box ×2, cone)');
+    // A code reference to a shape model is no model either.
+    expect(brief(look(shapeModels, (d) => ({ ...d, project_refs: [...d.project_refs, { ref: ['Assets', 'models', 'house'], path: 'game/main.py', line: 1, column: 1 }] }))))
+      .toContain('PP2200 prefabs/house.prefab.json');
+    // A mesh part (an exported or library model) is engine art: the house is a model, and the game has one.
+    const mesh = { positions: 'f32:AAAAAAAAAAAAAAAAAACAPwAAAAAAAAAAAAAAAAAAgD8AAAAA' };
+    const meshHouse = doc([{ name: 'body', mesh: 'body', material: 'wood' }], { body: mesh });
+    expect(brief(look({ ...shapeModels, 'assets/models/house.model.json': meshHouse }))).toEqual(['PP2201 prefabs/tree.prefab.json']);
+  });
+
   it('a tree with a model, or a name with "rock" inside a word, is no natural object', () => {
     expect(look({
       'prefabs/tree.prefab.json': prefab({ model: { model: 'models/tree_pine' } }, [shape('box', [1, 1, 1])]),
@@ -113,6 +137,13 @@ describe('look checks', () => {
     const found = look({ 'prefabs/race_track.prefab.json': prefab(shape('box', [10, 0.1, 40]), [shape('box', [0.5, 1, 40]), shape('box', [0.5, 1, 40])]) });
     expect(found.filter((d) => d.code === 'PP2206').map((d) => d.path)).toEqual(['prefabs/race_track.prefab.json']);
     expect(found.find((d) => d.code === 'PP2206')!.fix).toContain('"track": {}');
+  });
+
+  it('a road sign is no road; a voxel world\'s blocky trees and houses are its style', () => {
+    const roadside = prefab(shape('box', [0.1, 2, 0.1]), [shape('box', [1, 0.6, 0.05]), shape('box', [1, 0.6, 0.05])]);
+    expect(look({ 'prefabs/road_sign.prefab.json': roadside }).filter((d) => d.code === 'PP2206')).toEqual([]);
+    const voxel = arena([], undefined, { voxels: { y_range: [-8, 16] } });
+    expect(brief(look({ 'prefabs/tree.prefab.json': TREE, 'prefabs/house.prefab.json': HOUSE, [ARENA]: voxel }))).toEqual([]);
   });
 
   it('a 3D game with no effect anywhere (PP2203, at the Game declaration)', () => {
