@@ -140,7 +140,7 @@ Project data that is well formed but wrong: names, references, assets, panels (a
 | PP2190 | story | {entry.path} {pointer}: {message} |
 | PP2191 | story | "{verb}" is not a quest verb |
 | PP2192 | story | {…}: {message} |
-| PP2200 | core | Every object in this 3D game is primitive shapes ({…}; {…}{…} are each assembled from several) and it uses no model |
+| PP2200 | core | Every object in this 3D game is primitive shapes ({…}; {…}{…} are each assembled from several) and it uses no mesh model |
 | PP2201 | core | {thing.what} is a {word} built from primitive shapes ({…}) |
 | PP2202 | core | {thing.what} looks like {…}, drawn as a flat {…} with no water\_body |
 | PP2203 | core | This 3D game plays no visual effect: no ctx.vfx call, Particles emitter or effect file |

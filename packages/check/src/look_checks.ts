@@ -4,7 +4,7 @@
  * every rule needs a clear sign (a name, a count) so a deliberately abstract game — a
  * brick breaker of single boxes — stays quiet:
  *
- *   PP2200  the whole game is primitive shapes: no model anywhere, and several prefabs each
+ *   PP2200  the whole game is primitive shapes: no mesh model anywhere, and several prefabs each
  *           assembled from two or more shapes (the shared library has models)
  *   PP2201  a natural object (tree, rock, bush, flower, crop…) built from shapes: foliage
  *           layers or a library model
@@ -20,10 +20,15 @@
  *
  * An entity counts as "built from shapes" when it and its children draw only `shape`
  * components: a model, structure, track, sweep or water body anywhere in it is engine art.
- * Names are matched by word ("pine_tree", "rock_2"), never inside a word ("rocket").
+ * A model is engine art when it draws meshes (a library model, an exported document, a glTF
+ * file); a model document whose parts are all engine shapes is shapes, its parts counted
+ * like `shape` components.
+ * Names are matched by word ("pine_tree", "rock_2"), never inside a word ("rocket"). A game
+ * with a voxel world is blocky by design: its natural objects and buildings aren't reported.
  */
 
-import { resolvePrefab } from '@parallax/runtime/resource';
+import { isAssetUrl } from '@parallax/runtime/core';
+import { MODEL_DOCUMENT, resolvePrefab } from '@parallax/runtime/resource';
 import type { JsonObject, SceneDoc } from '@parallax/runtime/resource';
 import type { CheckContext } from './context.js';
 
@@ -74,6 +79,9 @@ const BUILDINGS = new Set(['house', 'home', 'building', 'cabin', 'cottage', 'bar
 
 const TRACKS = new Set(['track', 'racetrack', 'raceway', 'circuit', 'road', 'highway', 'coaster', 'rollercoaster']);
 
+/** Things beside a road, not the road: "road_sign", "track_barrier". */
+const ROADSIDE = new Set(['sign', 'signs', 'signpost', 'marker', 'lamp', 'light', 'streetlight', 'cone', 'bollard', 'barrier']);
+
 const GROUND = new Set(['ground', 'terrain', 'slope', 'hill', 'hills', 'mountain', 'land', 'landscape', 'island', 'valley', 'meadow', 'snowfield', 'piste']);
 
 /** Words of an id: "PineTree_2" → pine, tree. */
@@ -104,8 +112,48 @@ function scaleOf(scale: number | readonly number[] | undefined): [number, number
   return [1, 1, 1];
 }
 
-function add(look: Look, components: Readonly<Record<string, JsonObject>>, scale: [number, number, number]): void {
-  if (ART.some((c) => components[c] !== undefined)) look.art = true;
+/**
+ * The shape kinds of a model document drawn only with engine shapes, read from the project;
+ * undefined when the model is engine art: it draws a mesh, is a glTF file, is hosted, or is a
+ * file this run doesn't have or can't read (model_checks reports a broken one).
+ */
+function shapeModel(ctx: CheckContext, ref: string): string[] | undefined {
+  if (isAssetUrl(ref)) return undefined;
+  const path = ref.startsWith('assets/') ? (ctx.files.exists(ref) ? ref : undefined) : ctx.assets.get(ref.includes('/') ? ref : `models/${ref}`);
+  if (path === undefined) return undefined;
+  return shapeDocument(ctx, path);
+}
+
+/** A model file's shape kinds when it is a document of shape parts only; undefined otherwise (see shapeModel). */
+function shapeDocument(ctx: CheckContext, path: string): string[] | undefined {
+  if (!MODEL_DOCUMENT.test(path)) return undefined;
+  let doc: unknown;
+  try {
+    doc = JSON.parse(ctx.files.read(path));
+  } catch {
+    return undefined;
+  }
+  const parts = typeof doc === 'object' && doc !== null ? (doc as Record<string, unknown>)['parts'] : undefined;
+  if (!Array.isArray(parts)) return undefined;
+  const shapes: string[] = [];
+  for (const part of parts) {
+    if (typeof part !== 'object' || part === null) continue;
+    const { mesh, shape } = part as Record<string, unknown>;
+    if (mesh !== undefined) return undefined;
+    if (typeof shape === 'string' && SHAPES_3D.has(shape)) shapes.push(shape);
+  }
+  return shapes;
+}
+
+/** Shape kinds a model reference draws (see shapeModel); cached per reference. */
+type ShapeModels = (ref: string) => string[] | undefined;
+
+function add(look: Look, components: Readonly<Record<string, JsonObject>>, scale: [number, number, number], models: ShapeModels): void {
+  const model = components['model'];
+  const ref = model?.['model'];
+  const modelShapes = model !== undefined && typeof ref === 'string' ? models(ref) : undefined;
+  if (modelShapes !== undefined) look.shapes.push(...modelShapes);
+  if (ART.some((c) => components[c] !== undefined && (c !== 'model' || modelShapes === undefined))) look.art = true;
   if (components['particles'] !== undefined) look.particles = true;
   const shape = components['shape'];
   const kind = shape?.['kind'] ?? 'box';
@@ -127,6 +175,11 @@ function merged(base: Readonly<Record<string, JsonObject>>, over: Readonly<Recor
 class Looks {
   readonly #ctx: CheckContext;
   readonly #cache = new Map<string, Look>();
+  readonly #models = new Map<string, string[] | undefined>();
+  readonly models: ShapeModels = (ref) => {
+    if (!this.#models.has(ref)) this.#models.set(ref, shapeModel(this.#ctx, ref));
+    return this.#models.get(ref);
+  };
 
   constructor(ctx: CheckContext) {
     this.#ctx = ctx;
@@ -144,7 +197,7 @@ class Looks {
     } catch {
       return look;
     }
-    add(look, resolved.components, scaleOf(resolved.scale));
+    add(look, resolved.components, scaleOf(resolved.scale), this.models);
     for (const child of resolved.children) {
       const inner = child.prefab === undefined ? undefined : this.prefab(child.prefab, [...seen, id]);
       const childScale = scaleOf(child.scale);
@@ -153,7 +206,7 @@ class Looks {
         look.particles ||= inner.particles;
         if (child.components['shape'] === undefined) look.shapes.push(...inner.shapes);
       }
-      add(look, child.components, childScale);
+      add(look, child.components, childScale, this.models);
     }
     this.#cache.set(id, look);
     return look;
@@ -169,8 +222,12 @@ class Looks {
     } catch { /* an unknown prefab: data_checks reports it */ }
     // The root's shape and scale change; the children's parts are the prefab's.
     const look: Look = { shapes: [], art: base.art, particles: base.particles };
-    add(look, merged(ownComponents, components), scaleOf(scale));
-    const rootParts = ownComponents['shape'] === undefined ? 0 : 1;
+    const own = merged(ownComponents, components);
+    add(look, own, scaleOf(scale), this.models);
+    // The root's own parts: its shape, or its shape model's parts.
+    const rootModel = ownComponents['model']?.['model'];
+    const rootParts = (ownComponents['shape'] === undefined ? 0 : 1)
+      + (typeof rootModel === 'string' ? this.models(rootModel)?.length ?? 0 : 0);
     look.shapes.push(...base.shapes.slice(rootParts));
     return look;
   }
@@ -227,13 +284,15 @@ export function checkLook(ctx: CheckContext): void {
   const source = code(ctx);
   const scenes = [...ctx.project.scenes.values()];
 
-  primitivesOnly(ctx, things, source, scenes);
+  primitivesOnly(ctx, looks, things, source, scenes);
+  // A voxel world is blocky by design: its plants and buildings are boxes on purpose.
+  const voxels = scenes.some((s) => s.plugins['voxels'] !== undefined);
   for (const thing of things) {
     if (!builtFromShapes(thing.look)) continue;
     const name = words(thing.name);
-    nature(ctx, thing, name);
+    if (!voxels) nature(ctx, thing, name);
     water(ctx, thing, name);
-    building(ctx, thing, name);
+    if (!voxels) building(ctx, thing, name);
     track(ctx, thing, name);
   }
   noEffects(ctx, things, source);
@@ -268,11 +327,11 @@ function explosions(ctx: CheckContext, source: string): void {
   });
 }
 
-/** PP2200: no model anywhere, and the props are assembled from shapes. */
-function primitivesOnly(ctx: CheckContext, things: readonly Drawn[], source: string, scenes: readonly SceneDoc[]): void {
+/** PP2200: no model anywhere (a model document of shapes only is shapes), and the props are assembled from shapes. */
+function primitivesOnly(ctx: CheckContext, looks: Looks, things: readonly Drawn[], source: string, scenes: readonly SceneDoc[]): void {
   const models = things.some((t) => t.look.art)
-    || ctx.files.all().some((p) => p.startsWith('assets/models/'))
-    || ctx.decl.project_refs.some((r) => r.ref[0] === 'Assets' && r.ref[1] === 'models')
+    || ctx.files.all().some((p) => p.startsWith('assets/models/') && shapeDocument(ctx, p) === undefined)
+    || ctx.decl.project_refs.some((r) => r.ref[0] === 'Assets' && r.ref[1] === 'models' && (r.ref[2] === undefined || looks.models(`models/${r.ref[2]}`) === undefined))
     || scenes.some((s) => s.plugins['foliage'] !== undefined || s.plugins['voxels'] !== undefined)
     || /\b(?:Model|Structure|Track|Sweep)\(/.test(source);
   if (models) return;
@@ -281,10 +340,11 @@ function primitivesOnly(ctx: CheckContext, things: readonly Drawn[], source: str
   if (compound.length < 2 || total < 6) return;
   const first = compound[0]!;
   const names = compound.slice(0, 6).map((t) => t.name);
-  ctx.report('PP2200', `Every object in this 3D game is primitive shapes (${plural(total, 'shape')}; ${names.join(', ')}${compound.length > 6 ? ', …' : ''} are each assembled from several) and it uses no model`, {
+  ctx.report('PP2200', `Every object in this 3D game is primitive shapes (${plural(total, 'shape')}; ${names.join(', ')}${compound.length > 6 ? ', …' : ''} are each assembled from several) and it uses no mesh model`, {
     severity: 'warning', path: first.path,
     fix: `The shared library has ~2,300 ready-made models: \`pnpm parallax library search ${words(first.name)[0] ?? first.name}\` finds them, `
       + '`pnpm parallax library add <piece> <game dir>` copies one in as a prefab (spawn Prefabs.<piece>, or "prefab": "<piece>" in a scene). '
+      + 'A model document whose parts are all shapes counts as shapes here; a library model draws meshes. '
       + `Keep shapes for what is meant to be abstract (a paddle, a goal line). See docs/concepts/visuals.md.`,
   });
 }
@@ -330,7 +390,7 @@ function building(ctx: CheckContext, thing: Drawn, name: readonly string[]): voi
 /** PP2206: a road or track assembled from shapes. */
 function track(ctx: CheckContext, thing: Drawn, name: readonly string[]): void {
   const word = name.find((w) => TRACKS.has(w));
-  if (word === undefined || thing.look.shapes.length < 3) return;
+  if (word === undefined || name.some((w) => ROADSIDE.has(w)) || thing.look.shapes.length < 3) return;
   ctx.report('PP2206', `${thing.what} is a ${word} assembled from ${plural(thing.look.shapes.length, 'primitive shape')}`, {
     severity: 'warning', path: thing.path, ...(thing.pointer !== '' && { pointer: thing.pointer }),
     fix: 'Sweep it along a path with procgen(): "spline": {"points": [[x, y, z], ...], "closed": true} plus "track": {} (a race circuit: tarmac, kerbs, run-off, barriers, stands) '
