@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/unicorn"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6834, 2.201, 2.9621],
+      "offset": [0, 1.1005, 0.1277]
+    }
+  }
+}

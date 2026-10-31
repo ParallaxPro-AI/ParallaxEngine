@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/ankylosaur"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [2.4552, 1.7473, 6.06],
+      "offset": [0, 0.8729, -0.65]
+    }
+  }
+}

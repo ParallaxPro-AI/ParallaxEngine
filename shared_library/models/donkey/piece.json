@@ -1,0 +1,10 @@
+{
+  "id": "donkey",
+  "summary": "A standard grey-dun donkey (burro) on the engine's quadruped_20 rig, sized from a real standard donkey: ~1.1… options coat; sockets seat_driver, back, head_top, collar.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.donkey or place \"prefab\": \"donkey\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:donkey"]
+}

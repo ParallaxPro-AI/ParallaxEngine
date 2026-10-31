@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/donkey"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.5298, 1.6183, 1.9793],
+      "offset": [0, 0.8092, 0.244]
+    }
+  }
+}

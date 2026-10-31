@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/stone_furnace"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.3336, 1.45, 1.4314],
+      "offset": [-0.0687, 0.725, -0.0117]
+    }
+  }
+}

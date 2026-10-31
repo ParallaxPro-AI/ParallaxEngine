@@ -1,0 +1,10 @@
+{
+  "id": "elephant",
+  "summary": "An adult African bush elephant (2.9 m at the shoulder, ~4 m trunk-tip to tail) on the engine's quadruped_20 r… options hide, tusks; sockets seat_driver, back, head_top.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.elephant or place \"prefab\": \"elephant\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:elephant"]
+}

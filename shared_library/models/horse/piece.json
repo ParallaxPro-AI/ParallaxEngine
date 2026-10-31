@@ -1,0 +1,10 @@
+{
+  "id": "horse",
+  "summary": "A riding horse (about 15 hands, 1.55 m at the withers) on the engine's quadruped_20 rig, so the built-in quad… options coat, mane, legs, saddle_cloth, tack, blaze; sockets seat_driver, head_top, back, collar.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.horse or place \"prefab\": \"horse\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:horse"]
+}

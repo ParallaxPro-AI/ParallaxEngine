@@ -1,0 +1,10 @@
+{
+  "id": "unicorn",
+  "summary": "A unicorn: a fine-boned riding horse (about 1.55 m at the withers) with a single gilded spiral horn rising fo… options coat, mane, horn; sockets seat_driver, head_top, back, collar.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.unicorn or place \"prefab\": \"unicorn\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:unicorn"]
+}
