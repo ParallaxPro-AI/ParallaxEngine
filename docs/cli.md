@@ -57,6 +57,7 @@ project path is omitted. There is no export or publish command yet.
 | `screenshot` | `--seed N` | Set the simulation seed, for a repeatable run |
 | `screenshot` | `--timeout S` | How long the game may take to start; default 90 seconds |
 | `screenshot` | `--gl auto\|gpu\|software` | Draw with the GPU or SwiftShader (software WebGL); `auto` uses SwiftShader on Linux only |
+| `screenshot` | `--json` | Print a JSON report instead of text; see [Screenshots](#screenshots) |
 | `library search` | `--category NAME`, `--limit N` | Search one category; show up to N matches (default 10) |
 | `library search` | `--keyword` | Match words only, without the embedding model |
 | `library add` | `--dry-run` | Preview files and setup steps without writing |
@@ -99,6 +100,32 @@ game fails to build, start or keep running; the shot then shows the error screen
 It needs Google Chrome or Chromium: set `PARALLAX_CHROME` (or `CHROME_PATH`) to its
 executable if it is not in the usual place. Chrome and the server stop when the
 command ends.
+
+With `--json` it prints one JSON object on stdout instead (progress lines still go to
+stderr) and keeps the same exit codes:
+
+```json
+{
+  "ok": true,
+  "boot": { "outcome": "running", "seconds": 1.8 },
+  "shots": [{ "path": "/abs/build/screenshot.png", "seconds": 2.01, "frame": 121, "held": [] }],
+  "console": { "errors": 0, "warnings": 1, "messages": [{ "level": "warning", "text": "…" }] },
+  "game": { "errors": [], "text": [] }
+}
+```
+
+- `ok` is false exactly when the command exits 1; `failure` then says why.
+- `boot.outcome` is `running` (it started and kept running), `stopped` (it started,
+  then stopped with an error; the last shot shows the error screen), `build_failed`,
+  `timeout` (still loading after `--timeout`; `boot.stage` is the loading text),
+  `failed_to_start`, or `error` (the command itself could not run, such as no Chrome).
+  `boot.seconds` is the wall-clock time until the first frame.
+- Each shot has its absolute `path`, the `seconds` of play it shows, the game `frame`
+  and the keys `held` at that moment.
+- `console.messages` holds the page's console errors and warnings in order.
+- `game.errors` holds the errors the game reported, each with a `title` and its
+  `diagnostics`. `game.traceback` is the Python traceback from the error screen.
+  `game.text` gives the same information as readable text.
 
 ## Searching the library
 

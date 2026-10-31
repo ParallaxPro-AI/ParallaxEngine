@@ -34,8 +34,10 @@ import type { DevServer } from './dev_server.js';
 export const SCREENSHOT_USAGE = `Usage:
   parallax screenshot <project> [--out FILE.png] [--seconds N] [--shots N] [--every S]
                       [--width W] [--height H] [--keys STEPS] [--seed N] [--timeout S] [--gl auto|gpu|software]
+                      [--json]
                  run the game in headless Chrome and write PNGs once it has played N seconds;
-                 --keys "KeyW:2,Space,wait:1,click@640x360" holds/presses keys and clicks meanwhile
+                 --keys "KeyW:2,Space,wait:1,click@640x360" holds/presses keys and clicks meanwhile;
+                 --json prints a report (shots, boot outcome, console, game errors) instead of text
 `;
 
 export interface ScreenshotArgs {
@@ -58,6 +60,8 @@ export interface ScreenshotArgs {
    * any CI machine). `auto` (default): the GPU on macOS and Windows, SwiftShader on Linux.
    */
   readonly gl: 'auto' | 'gpu' | 'software';
+  /** Print a JSON report on stdout (`screenshotJson`) instead of text. */
+  readonly json?: boolean;
 }
 
 /** One `--keys` step: hold keys for a while, click (the middle of the game, or `at` in pixels), or wait. */
@@ -162,9 +166,11 @@ export function screenshotArgs(argv: readonly string[]): ScreenshotArgs | string
   const valued = ['--out', '--seconds', '--shots', '--every', '--width', '--height', '--keys', '--seed', '--timeout', '--gl'];
   const values: Record<string, string> = {};
   const positional: string[] = [];
+  let json = false;
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]!;
     if (!arg.startsWith('-')) { positional.push(arg); continue; }
+    if (arg === '--json') { json = true; continue; }
     if (!valued.includes(arg)) return `Unknown option ${arg}`;
     const value = argv[++i];
     if (value === undefined || value.startsWith('--')) return `${arg} needs a value`;
@@ -194,7 +200,7 @@ export function screenshotArgs(argv: readonly string[]): ScreenshotArgs | string
   return {
     dir: positional[0] ?? process.cwd(), seconds: seconds as number, shots: shots as number, every: every as number,
     width: width as number, height: height as number, keys, timeout: timeout as number, gl,
-    ...(out !== undefined && { out }), ...(!Number.isNaN(seed) && { seed: seed as number }),
+    ...(out !== undefined && { out }), ...(!Number.isNaN(seed) && { seed: seed as number }), ...(json && { json }),
   };
 }
 
@@ -383,13 +389,49 @@ function diagnosticText(d: unknown): string {
 
 const sleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
 
+/** One shot written: its file, and the moment of play it shows. */
+export interface ShotInfo {
+  readonly path: string;
+  /** Seconds of play (the game's clock) since the game started running. */
+  readonly seconds: number;
+  /** The game's frame number, when known. */
+  readonly frame?: number;
+  /** Keys held as it was taken (`KeyboardEvent.code` names). */
+  readonly held: readonly string[];
+}
+
+/**
+ * How the game's start went: `running` (it started; it may still have stopped later:
+ * `stopped`), `build_failed` (the project has build errors), `timeout` (it never finished
+ * loading), `failed_to_start` (an error while starting), or `error` (the tooling itself
+ * could not run: no Chrome, not a project).
+ */
+export type BootOutcome = 'running' | 'stopped' | 'build_failed' | 'timeout' | 'failed_to_start' | 'error';
+
+/** An error the game announced: the error screen's title and the diagnostics under it. */
+export interface GameError {
+  readonly title: string;
+  readonly diagnostics: readonly unknown[];
+}
+
 export interface ScreenshotResult {
   readonly files: readonly string[];
   readonly messages: readonly PageMessage[];
-  /** Errors the game announced (the overlay's titles and diagnostics). */
+  /** Errors the game announced (the overlay's titles and diagnostics), as text. */
   readonly gameErrors: readonly string[];
   /** Why there are no shots (the game never started), if so. */
   readonly failure?: string;
+  readonly boot: BootOutcome;
+  /** Wall-clock seconds from opening the page to the game's first frame (when it started). */
+  readonly bootSeconds?: number;
+  /** While stuck loading (`timeout`): the loading screen's text. */
+  readonly stage?: string;
+  /** The shots, in order, with the moment of play each shows. */
+  readonly shots: readonly ShotInfo[];
+  /** The same errors as `gameErrors`, as data: titles and diagnostics. */
+  readonly errors: readonly GameError[];
+  /** The error screen's Python traceback, when it showed one. */
+  readonly traceback?: string;
 }
 
 /**
@@ -425,7 +467,11 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
     const build = buildProject(projectDir, { outDir: `${scratch}/build` });
     const errors = build.diagnostics.filter((d) => d.severity === 'error');
     if (errors.length > 0) {
-      return { files: [], messages: [], gameErrors: errors.map(formatDiagnostic), failure: `The project has ${errors.length} build error${errors.length === 1 ? '' : 's'}; fix them (\`parallax check\` lists them).` };
+      return {
+        files: [], messages: [], gameErrors: errors.map(formatDiagnostic), boot: 'build_failed', shots: [],
+        errors: [{ title: 'Build errors', diagnostics: errors }],
+        failure: `The project has ${errors.length} build error${errors.length === 1 ? '' : 's'}; fix them (\`parallax check\` lists them).`,
+      };
     }
     const engine = await bundleEngine();
     server = await startDevServer({
@@ -482,6 +528,9 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
       ...s.errors.map((e) => [e.title, ...e.diagnostics.map(diagnosticText)].join('\n')),
       ...(s.traceback !== undefined ? [s.traceback.trim()] : []),
     ];
+    const reported = (s: GameState): Pick<ScreenshotResult, 'gameErrors' | 'errors' | 'traceback'> => ({
+      gameErrors: gameErrors(s), errors: s.errors, ...(s.traceback !== undefined && { traceback: s.traceback.trim() }),
+    });
 
     // 1. Until the game is running.
     const startedAt = Date.now();
@@ -489,15 +538,16 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
     while (state.state === 'loading') {
       if (Date.now() - startedAt > args.timeout * 1000) {
         return {
-          files: [], messages, gameErrors: gameErrors(state),
+          files: [], messages, ...reported(state), boot: 'timeout', shots: [], ...(state.stage !== undefined && { stage: state.stage }),
           failure: `The game did not start within ${args.timeout} s (stuck at: ${state.stage ?? 'the page loading'}). Raise --timeout for a large game.`,
         };
       }
       await sleep(100);
       state = await probe();
     }
-    if (state.state === 'failed') return { files: [], messages, gameErrors: gameErrors(state), failure: 'The game could not start.' };
+    if (state.state === 'failed') return { files: [], messages, ...reported(state), boot: 'failed_to_start', shots: [], failure: 'The game could not start.' };
     const running = Date.now();
+    const bootSeconds = Math.round((running - startedAt) / 100) / 10;
     log(`The game started after ${((running - startedAt) / 1000).toFixed(1)} s`);
 
     // 2. Keys and shots on the game's clock (its real seconds of play), which a slow
@@ -521,12 +571,17 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
       }
     };
     const written: string[] = [];
+    const shots: ShotInfo[] = [];
     const shoot = async (): Promise<void> => {
       const i = written.length;
       const shot = await page<{ data: string }>('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false });
       mkdirSync(dirname(files[i]!), { recursive: true });
       writeFileSync(files[i]!, Buffer.from(shot.data, 'base64'));
       written.push(files[i]!);
+      shots.push({
+        path: files[i]!, seconds: Math.round(((state.seconds ?? t0) - t0) * 1000) / 1000,
+        ...(state.frame !== undefined && { frame: state.frame }), held: [...held],
+      });
       const fps = state.seconds !== undefined && state.seconds > 0 && state.frame !== undefined ? ` ${(state.frame / state.seconds).toFixed(0)} fps,` : '';
       log(`Shot ${i + 1}/${files.length}: game frame ${state.frame ?? '?'} at ${((state.seconds ?? t0) - t0).toFixed(1)} s of play,${fps} held: ${held.size > 0 ? [...held].join('+') : 'nothing'}`);
     };
@@ -562,7 +617,10 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
       }
       if (next < actions.length) await sleep(20);
     }
-    return { files: written, messages, gameErrors: gameErrors(state), ...(failure !== undefined && { failure }) };
+    return {
+      files: written, messages, ...reported(state), boot: failure !== undefined ? 'stopped' : 'running', bootSeconds, shots,
+      ...(failure !== undefined && { failure }),
+    };
   } finally {
     process.off('SIGINT', onSignal);
     process.off('SIGTERM', onSignal);
@@ -589,6 +647,28 @@ export function collapse(messages: readonly PageMessage[]): string[] {
   return [...counts].map(([line, n]) => (n > 1 ? `${line} (×${n})` : line));
 }
 
+/**
+ * The `--json` report: `ok` (the exit code is 0), the boot outcome, each shot's file and
+ * moment of play, the page console (errors and warnings, in order), and what the game
+ * reported (error titles with their diagnostics, the Python traceback). Paths are absolute.
+ */
+export function screenshotJson(result: ScreenshotResult): Record<string, unknown> {
+  const count = (level: PageMessage['level']): number => result.messages.filter((m) => m.level === level).length;
+  return {
+    ok: result.failure === undefined,
+    boot: { outcome: result.boot, ...(result.bootSeconds !== undefined && { seconds: result.bootSeconds }), ...(result.stage !== undefined && { stage: result.stage }) },
+    ...(result.failure !== undefined && { failure: result.failure }),
+    shots: result.shots,
+    console: { errors: count('error'), warnings: count('warning'), messages: result.messages },
+    game: { errors: result.errors, ...(result.traceback !== undefined && { traceback: result.traceback }), text: result.gameErrors },
+  };
+}
+
+/** A tooling failure (no Chrome, not a project) as a `--json` report. */
+export function toolingFailure(message: string): ScreenshotResult {
+  return { files: [], messages: [], gameErrors: [], errors: [], shots: [], boot: 'error', failure: message };
+}
+
 export async function screenshotMain(argv: readonly string[]): Promise<number> {
   const args = screenshotArgs(argv);
   if (typeof args === 'string') {
@@ -600,7 +680,13 @@ export async function screenshotMain(argv: readonly string[]): Promise<number> {
     result = await screenshot(args, (line) => process.stderr.write(`${line}\n`));
   } catch (error) {
     process.stderr.write(`${(error as Error).message}\n`);
+    if (args.json === true) process.stdout.write(`${JSON.stringify(screenshotJson(toolingFailure((error as Error).message)), null, 2)}\n`);
     return 1;
+  }
+  if (args.json === true) {
+    process.stdout.write(`${JSON.stringify(screenshotJson(result), null, 2)}\n`);
+    if (result.failure !== undefined) process.stderr.write(`${result.failure}\n`);
+    return result.failure !== undefined ? 1 : 0;
   }
   const lines = collapse(result.messages);
   if (lines.length > 0) process.stdout.write(`Page console (${result.messages.filter((m) => m.level === 'error').length} errors, ${result.messages.filter((m) => m.level === 'warning').length} warnings):\n${lines.map((l) => `  ${l}`).join('\n')}\n`);
