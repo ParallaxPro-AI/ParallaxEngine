@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/elephant"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [1.78, 3.2886, 3.9132],
+      "offset": [0, 1.6443, 0.4616]
+    }
+  }
+}

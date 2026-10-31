@@ -1,0 +1,10 @@
+{
+  "id": "griffin",
+  "summary": "A griffin, about 2.4 m from hooked beak to tail tuft and 1.6 m to the crown: the head, neck, feathered breast… options head, feathers, flight, fur; sockets seat_driver, head_top, collar.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.griffin or place \"prefab\": \"griffin\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:griffin"]
+}

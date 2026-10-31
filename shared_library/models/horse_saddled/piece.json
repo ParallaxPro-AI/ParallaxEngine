@@ -1,0 +1,10 @@
+{
+  "id": "horse_saddled",
+  "summary": "A riding horse in full western trail tack, built on the library `horse` (15 hands, quadruped_20 rig, so the s… options coat, mane, legs, saddle_cloth, tack, blaze, …; sockets seat_driver, head_top, back, collar, saddle_horn, scabbard.",
+  "version": "2026.10.31",
+  "plugins": ["physics3d"],
+  "setup": [
+    "Spawn it with Prefabs.horse_saddled or place \"prefab\": \"horse_saddled\" in a scene; Game(plugins=[...]) needs physics3d()."
+  ],
+  "replaces": ["lib:horse_saddled"]
+}

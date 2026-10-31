@@ -1,0 +1,12 @@
+{
+  "components": {
+    "model": {
+      "model": "models/griffin"
+    },
+    "collider": {
+      "shape": "box",
+      "size": [0.6176, 1.699, 2.3277],
+      "offset": [0, 0.8505, -0.0758]
+    }
+  }
+}

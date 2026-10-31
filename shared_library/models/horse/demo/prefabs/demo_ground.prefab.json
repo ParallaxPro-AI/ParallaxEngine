@@ -1,0 +1,14 @@
+{
+  "components": {
+    "shape": {
+      "kind": "box",
+      "size": [60, 1, 60],
+      "offset": [0, -0.5, 0]
+    },
+    "collider": {
+      "shape": "box",
+      "size": [60, 1, 60],
+      "offset": [0, -0.5, 0]
+    }
+  }
+}
