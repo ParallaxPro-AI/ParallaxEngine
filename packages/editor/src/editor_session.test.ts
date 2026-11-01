@@ -17,6 +17,7 @@ const GAME_CAMERA: CameraPose = { position: new Vec3(0, 5, -10), rotation: Quat.
 class FakeSession {
   mode: 'edit' | 'playing' | 'paused' = 'edit';
   scene = 'main';
+  dimension: '2d' | '3d' = '3d';
   readonly startScene = 'main';
   dragging = false;
   cameraPose: CameraPose = GAME_CAMERA;
@@ -216,5 +217,23 @@ describe('the log once it is full', () => {
     expect(editor.logSince(seen).map((e) => e.text)).toEqual(['a real error']);
     // A reader far behind gets what the log still has, never more.
     expect(editor.logSince(0)).toHaveLength(500);
+  });
+});
+
+describe('a 2D scene restores a flat camera', () => {
+  it('drops a stored tilt (a 3D view under the same key) and keeps the 2D view\'s place and zoom', () => {
+    const store = storage();
+    const tilted = { position: new Vec3(3, 8, 10), rotation: new Quat(-0.29, 0.17, 0.05, 0.94), fov: 60, size: 9 };
+    new CameraMemory('shared', store).save('main', tilted);
+    const flat = new FakeSession();
+    flat.dimension = '2d';
+    new Editor(game, flat as unknown as EditorSession, 'Flat', { cameras: new CameraMemory('shared', store) });
+    expect(flat.cameraPose.rotation).toEqual(Quat.IDENTITY);
+    expect([flat.cameraPose.position.x, flat.cameraPose.position.y, flat.cameraPose.position.z]).toEqual([3, 8, 0]);
+    expect(flat.cameraPose.size).toBe(9);
+    // A 3D scene keeps the stored orbit as it was.
+    const orbit = new FakeSession();
+    new Editor(game, orbit as unknown as EditorSession, 'Orbit', { cameras: new CameraMemory('shared', store) });
+    expect(orbit.cameraPose.rotation).not.toEqual(Quat.IDENTITY);
   });
 });

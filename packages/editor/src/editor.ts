@@ -14,7 +14,7 @@ import type { EditorSession, GizmoMode, GizmoSpace } from './session/index.js';
 import { save } from './server_link.js';
 import { Autosave } from './autosave.js';
 import type { AutosaveOptions } from './autosave.js';
-import { CameraMemory, projectKey } from './camera_memory.js';
+import { CameraMemory, flatPose2d, projectKey } from './camera_memory.js';
 
 /**
  * What changed: panels redraw for the kinds they show. `saved`: a save wrote files (see
@@ -329,7 +329,9 @@ export class Editor {
   /** The remembered pose of the open scene, if it was viewed before (else the session's: the game camera). */
   #restoreCamera(): void {
     const pose = this.#cameras.load(this.session.scene);
-    if (pose !== undefined && this.editing) this.session.setCamera(pose);
+    if (pose === undefined || !this.editing) return;
+    // A 2D view never tilts (camera_memory.ts flatPose2d), whatever was stored.
+    this.session.setCamera(this.session.dimension === '2d' ? flatPose2d(pose) : pose);
   }
 
   // ── History ─────────────────────────────────────────────────────────────────
