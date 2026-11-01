@@ -62,6 +62,9 @@ const CAMERA_MEMORY_MS = 1_000;
 
 export type LogLevel = 'info' | 'warning' | 'error';
 
+/** How many entries `Editor.log` keeps. */
+export const LOG_LIMIT = 500;
+
 /**
  * Play another version of the project in this editor (`EditorHost.setPlaySource`): `enter`
  * swaps it into the documents and the runtime before Play, `leave` swaps the editor's own back
@@ -94,7 +97,9 @@ export class Editor {
   readonly game: BrowserGame;
   #title: string;
   readonly gizmo: GizmoSettings = { mode: 'translate', space: 'world', snap: false };
+  /** The newest entries, LOG_LIMIT at most (the oldest give way). */
   readonly log: LogEntry[] = [];
+  #logged = 0;
   /** The Scene tab's camera in the play world (the viewport's, not the game's: panels leave it out). */
   playCamera: EntityId | undefined;
   /** Build diagnostics of the code the session runs (the server's latest build). */
@@ -214,8 +219,23 @@ export class Editor {
 
   write(level: LogLevel, text: string, diagnostics: readonly Diagnostic[] = []): void {
     this.log.push({ level, text, diagnostics, time: new Date() });
-    if (this.log.length > 500) this.log.splice(0, this.log.length - 500);
+    this.#logged++;
+    if (this.log.length > LOG_LIMIT) this.log.splice(0, this.log.length - LOG_LIMIT);
     this.emit('log');
+  }
+
+  /**
+   * Every entry ever written, a running count: it keeps growing once `log` is full and drops
+   * its oldest (its length then stays at LOG_LIMIT), so a reader counts with this, not the length.
+   */
+  get logged(): number {
+    return this.#logged;
+  }
+
+  /** The entries written after the reader had seen `logged` of them (those still in `log`). */
+  logSince(logged: number): LogEntry[] {
+    const fresh = Math.min(Math.max(0, this.#logged - logged), this.log.length);
+    return this.log.slice(this.log.length - fresh);
   }
 
   /** Run an action; a failure goes to the console (with its diagnostics) and answers undefined. */

@@ -110,7 +110,7 @@ export class BottomPanels {
     });
     this.show('files');
     this.#renderFiles();
-    this.#shownLog = editor.log.length;
+    this.#shownLog = editor.logged;
   }
 
   show(id: BottomTab): void {
@@ -312,10 +312,9 @@ export class BottomPanels {
 
   /** Warnings and errors since the last look, as toasts (they stack; click one to dismiss it). */
   #renderLog(): void {
-    const log = this.#editor.log;
-    if (log.length < this.#shownLog) this.#shownLog = 0;
-    const fresh = log.slice(this.#shownLog).filter((e) => e.level !== 'info');
-    this.#shownLog = log.length;
+    // Counted by entries ever written: once the log is full its length stops growing.
+    const fresh = this.#editor.logSince(this.#shownLog).filter((e) => e.level !== 'info');
+    this.#shownLog = this.#editor.logged;
     for (const entry of fresh.slice(-3)) this.#showToast(entry);
   }
 
