@@ -33,6 +33,19 @@ describe('Play of the settled version (play_settled.ts)', () => {
     return { editor, texts, reloads, setBuild: (url: string) => { build = url; } };
   }
 
+  it('says what it loads: the last finished version on Play, back to the work in progress on Stop', async () => {
+    const { editor, setBuild } = fakeEditor({ 'scenes/main/scene.json': 'half' });
+    const labels: string[] = [];
+    const swap = settledPlay(editor, { base: 'https://x.test/p/play/' }, {
+      setBuild, ownBase: 'https://x.test/p/edit/', version: () => 1, stage: {} as HTMLElement,
+      loading: (label) => { labels.push(label); return { done: () => {} }; },
+      fetchTexts: async () => new Map([['scenes/main/scene.json', 'done']]),
+    });
+    await swap.enter();
+    await swap.leave();
+    expect(labels).toEqual(['Loading the last finished version…', 'Back to the work in progress…']);
+  });
+
   it('enter swaps the settled files and build in; leave brings the editor\'s own back on the newest build', async () => {
     const own = { 'scenes/main/scene.json': 'half', 'prefabs/new.prefab.json': 'wip' };
     const { editor, texts, reloads, setBuild } = fakeEditor(own);
