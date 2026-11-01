@@ -93,7 +93,7 @@ export function installShortcuts(editor: Editor, viewport: Viewport): () => void
     if (action === 'copy' && String(globalThis.getSelection?.() ?? '') !== '') return;
     event.preventDefault();
     switch (action) {
-      case 'play': editor.play(); break;
+      case 'play': if (editor.playingElsewhere) editor.stop(); else editor.play(); break;
       case 'stop': editor.stop(); break;
       case 'save': void editor.save(); break;
       case 'undo': editor.undo(); break;

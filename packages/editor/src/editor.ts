@@ -62,6 +62,15 @@ const CAMERA_MEMORY_MS = 1_000;
 
 export type LogLevel = 'info' | 'warning' | 'error';
 
+/**
+ * Play somewhere other than the edit world (`EditorHost.setPlayTarget`): `open` shows it and
+ * answers the function that closes it; `label` is what the console says when it opens.
+ */
+export interface PlayElsewhere {
+  readonly label: string;
+  open(): () => void;
+}
+
 export interface LogEntry {
   readonly level: LogLevel;
   readonly text: string;
@@ -93,6 +102,8 @@ export class Editor {
   readonly #listeners = new Set<(changes: ReadonlySet<Change>) => void>();
   readonly #cameras: CameraMemory;
   #saving = false;
+  #playElsewhere: PlayElsewhere | null = null;
+  #closeElsewhere: (() => void) | null = null;
   /** Files changed outside while the game played, for Stop to take in. */
   readonly #outside = new Map<string, string | null>();
 
@@ -301,12 +312,38 @@ export class Editor {
 
   // ── Play ────────────────────────────────────────────────────────────────────
 
+  /**
+   * Make Play open something else instead of running the edit world (a host's last finished
+   * version of the project while another tool is still writing it), or run it in place again
+   * (null). One already open stays open until Stop.
+   */
+  setPlayElsewhere(target: PlayElsewhere | null): void {
+    this.#playElsewhere = target;
+  }
+
+  /** Play opened something else (`setPlayElsewhere`); Stop closes it. */
+  get playingElsewhere(): boolean {
+    return this.#closeElsewhere !== null;
+  }
+
   play(): void {
+    if (this.#closeElsewhere !== null) return;
     if (this.session.mode === 'paused') {
       this.resume();
       return;
     }
     if (!this.editing) return;
+    if (this.#playElsewhere !== null) {
+      const target = this.#playElsewhere;
+      const close = this.run('Play', () => target.open());
+      if (close === undefined) return;
+      this.#closeElsewhere = close;
+      // The edit world waits behind it; its loop rests until Stop.
+      this.game.loop.stop();
+      this.write('info', target.label);
+      this.emit('mode');
+      return;
+    }
     this.rememberCamera();
     const scene = playStartScene(this.session.startScene, this.session.scene, this.documents.project().scenes);
     const ok = this.run('Play', () => { this.session.play({ scene }); return true; }, 'mode', 'world', 'selection');
@@ -332,6 +369,14 @@ export class Editor {
   }
 
   stop(): void {
+    if (this.#closeElsewhere !== null) {
+      const close = this.#closeElsewhere;
+      this.#closeElsewhere = null;
+      this.run('Stop', () => close());
+      this.game.loop.start();
+      this.emit('mode');
+      return;
+    }
     if (this.editing) return;
     const problems = this.run('Stop', () => this.session.stop(), 'mode', 'world', 'selection');
     if (problems !== undefined && problems.length > 0) this.write('warning', 'The edit world was rebuilt from the documents', problems);

@@ -508,6 +508,8 @@ a.toolbar-logo[href] { cursor: pointer; }
 
 .viewport { position: relative; z-index: var(--z-viewport); isolation: isolate; flex: 1; overflow: hidden; background: #000; }
 .viewport-game { position: absolute; inset: 0; }
+/* Play opened elsewhere (EditorHost.setPlayTarget): the page over the viewport, under the toasts. */
+.editor-play-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: calc(var(--z-viewport) + 1); background: #000; }
 .viewport-overlay { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
 /* While the game shows its error overlay, the camera controls step aside so the text can be selected and copied. */
 .viewport:has(.parallax-error-overlay) .viewport-overlay { pointer-events: none; }

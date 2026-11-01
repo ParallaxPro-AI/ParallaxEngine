@@ -184,7 +184,7 @@ export class Toolbar {
     }, '.toolbar-space');
     this.#panels = button('panels', () => this.#panelsAction?.(), '.toolbar-panels');
     this.#panels.hidden = true;
-    this.#play = button('play', () => { if (editor.editing) editor.play(); else editor.stop(); }, '.play-btn');
+    this.#play = button('play', () => { if (editor.editing && !editor.playingElsewhere) editor.play(); else editor.stop(); }, '.play-btn');
     this.#publish = h('button.toolbar-btn.publish-btn', { type: 'button', onclick: () => { if (!this.#publishBusy) this.#onPublish(); } });
     this.#gear = h('button.toolbar-btn', {
       type: 'button', onclick: (event: Event) => { event.stopPropagation(); this.#toggleSettings(); },
@@ -425,9 +425,11 @@ export class Toolbar {
     this.#space.classList.toggle('disabled', !editing);
     dress(this.#panels, 'panels', null, t('mobile.panels'));
 
-    dress(this.#play, editing ? 'play' : 'stop', t(editing ? 'toolbar.play' : 'toolbar.stop'), editing ? t('toolbar.playCtrlP') : `${t('toolbar.stop')} (Ctrl+P)`);
-    this.#play.classList.toggle('play-btn', editing);
-    this.#play.classList.toggle('stop-btn', !editing);
+    // Play opened elsewhere (Editor.setPlayElsewhere) shows Stop too.
+    const stopped = editing && !editor.playingElsewhere;
+    dress(this.#play, stopped ? 'play' : 'stop', t(stopped ? 'toolbar.play' : 'toolbar.stop'), stopped ? t('toolbar.playCtrlP') : `${t('toolbar.stop')} (Ctrl+P)`);
+    this.#play.classList.toggle('play-btn', stopped);
+    this.#play.classList.toggle('stop-btn', !stopped);
     document.body.dataset['mode'] = session.mode;
 
     const more = this.#moreItems;

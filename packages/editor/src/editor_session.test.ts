@@ -79,6 +79,49 @@ describe('playStartScene', () => {
   });
 });
 
+describe('Play elsewhere (EditorHost.setPlayTarget)', () => {
+  function withLoop(): { editor: Editor; session: FakeSession; loop: { running: boolean } } {
+    const loop = { running: true, stop() { this.running = false; }, start() { this.running = true; } };
+    const session = new FakeSession();
+    const looped = { ...game, loop } as unknown as BrowserGame;
+    const editor = new Editor(looped, session as unknown as EditorSession, 'Boxes', { cameras: new CameraMemory('boxes', storage()) });
+    return { editor, session, loop };
+  }
+
+  it('Play opens the target instead of the edit world; Stop closes it and the edit loop runs again', () => {
+    const { editor, session, loop } = withLoop();
+    let opened = 0;
+    let closed = 0;
+    editor.setPlayElsewhere({ label: 'Playing the last finished version', open: () => { opened++; return () => { closed++; }; } });
+    editor.play();
+    expect(opened).toBe(1);
+    expect(session.played).toEqual([]);
+    expect(session.mode).toBe('edit');
+    expect(editor.playingElsewhere).toBe(true);
+    expect(loop.running).toBe(false);
+    expect(editor.log.at(-1)!.text).toBe('Playing the last finished version');
+    editor.play(); // already open: nothing more
+    expect(opened).toBe(1);
+    editor.stop();
+    expect(closed).toBe(1);
+    expect(editor.playingElsewhere).toBe(false);
+    expect(loop.running).toBe(true);
+  });
+
+  it('clearing the target keeps an open one until Stop; the next Play runs in place', () => {
+    const { editor, session } = withLoop();
+    let closed = 0;
+    editor.setPlayElsewhere({ label: 'x', open: () => () => { closed++; } });
+    editor.play();
+    editor.setPlayElsewhere(null);
+    expect(editor.playingElsewhere).toBe(true);
+    editor.stop();
+    expect(closed).toBe(1);
+    editor.play();
+    expect(session.played).toEqual(['main']);
+  });
+});
+
 describe('scene selection', () => {
   it('the scene row selects the scene; any other select (an empty click, a deselect) clears it', () => {
     const { editor } = open(storage());

@@ -104,6 +104,14 @@ export interface EditorHostEvents {
 
 export type EditorHostEvent = keyof EditorHostEvents;
 
+/** Where Play goes instead of the edit world (`EditorHost.setPlayTarget`). */
+export interface PlayTarget {
+  /** The page to play: same origin, as the editor's own pages. */
+  readonly url: string;
+  /** What the console says when it opens (default "Playing the last finished version"). */
+  readonly label?: string;
+}
+
 export interface EditorHost {
   /** The API's version; additions keep it, a breaking change bumps it. */
   readonly apiVersion: 1;
@@ -157,6 +165,13 @@ export interface EditorHost {
    * over unsaved edits.
    */
   setReadOnly(locked: boolean, reason?: string, look?: Pick<Banner, 'tone' | 'element'>): void;
+  /**
+   * Point Play at another page: the last finished version of the project while another tool
+   * is still writing it, so Play never runs half-done work. Set: Play shows `target.url` in a
+   * frame over the viewport and the top bar shows Stop; Stop closes it. Null (the default):
+   * Play runs the game in place. A frame already open stays until Stop.
+   */
+  setPlayTarget(target: PlayTarget | null): void;
   /**
    * Show a banner of the host's own under the top bar (a connection problem, a notice), or
    * replace the one under `id`; null removes it. They stack under the read-only banner.
@@ -431,6 +446,23 @@ export function createEditorHost(parts: HostParts): EditorHost {
       const text = locked ? reason ?? t('editor.readOnly') : null;
       editor.setReadOnly(text);
       layout.setReadOnly(text, look);
+    },
+    setPlayTarget: (target) => {
+      if (target === null) {
+        editor.setPlayElsewhere(null);
+        return;
+      }
+      editor.setPlayElsewhere({
+        label: target.label ?? t('editor.playingFinished'),
+        open: () => {
+          const frame = h('iframe.editor-play-frame', {
+            src: target.url, title: t('toolbar.play'), allow: 'autoplay; fullscreen; gamepad; clipboard-write',
+          }) as HTMLIFrameElement;
+          layout.center.append(frame);
+          frame.addEventListener('load', () => { try { frame.contentWindow?.focus(); } catch { /* another origin */ } }, { once: true });
+          return () => frame.remove();
+        },
+      });
     },
     setBanner: (id, banner) => layout.setBanner(id, banner),
     on: (event, listener) => events.on(event, listener),
