@@ -382,8 +382,8 @@ Harness commands include `press`, `hold`, `move`, `click(Panel, "action")`,
 
 ## 2D games
 
-Start from `pnpm parallax new ../dodge --template arcade-2d` (or `blank-2d`, or a
-2D example with `--example`). The rest of this page applies, with these changes.
+Start from `pnpm parallax new ../dodge --template blank-2d` (or a 2D example
+with `--example`). The rest of this page applies, with these changes.
 See [2D games](concepts/visuals.md#2d-games) for depth.
 
 | | 3D | 2D |

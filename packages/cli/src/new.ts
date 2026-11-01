@@ -27,7 +27,6 @@ export const TEMPLATES_DIR = fileURLToPath(new URL('../templates/', import.meta.
 export const TEMPLATES: Readonly<Record<string, string>> = {
   'blank-2d': 'one 2D scene and a square you move with WASD/arrows/stick/touch, with playtests',
   'blank-3d': 'a 3D scene (camera, light, ground) and a box you move over the ground, with playtests',
-  'arcade-2d': 'dodge falling rocks: score HUD, game over card, Retry and a kept best score',
 };
 
 export const DEFAULT_TEMPLATE = 'blank-2d';

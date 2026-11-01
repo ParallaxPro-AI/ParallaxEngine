@@ -49,8 +49,7 @@ pnpm parallax edit ../my-game
 The editor opens in your browser. Click **Play** and move the square with WASD or
 the arrow keys. Stop the editor server with Ctrl+C in the terminal.
 
-`blank-3d` starts with a movable box, camera, and ground. `arcade-2d` adds falling
-rocks, scoring, a game-over panel, and retry. Choose one with `--template`, or
+`blank-3d` starts with a movable box, camera, and ground. Choose one with `--template`, or
 start from an [example game](examples.md).
 
 Edit Python and HTML/CSS in your text editor. The browser editor edits scenes
