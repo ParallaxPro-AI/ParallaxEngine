@@ -37,7 +37,7 @@ export interface PlayAnalytics {
 }
 
 export interface PlayBootOptions extends Pick<BrowserBootOptions,
-  'mount' | 'build' | 'project' | 'fileIndex' | 'seed' | 'renderer' | 'assetFiles' | 'panelFrame' | 'jobWorker' | 'saves' | 'net'
+  'mount' | 'build' | 'project' | 'fileIndex' | 'seed' | 'renderer' | 'assetFiles' | 'panelFrame' | 'jobWorker' | 'saves' | 'net' | 'storageKey'
   | 'payments' | 'splash' | 'branding' | 'iceServers'> {
   /** URL of the packed build's `bundles.json`; without it, the loose files at `project` + `fileIndex`. */
   readonly bundles?: string;
@@ -147,6 +147,7 @@ export async function bootPlay(options: PlayBootOptions): Promise<PlayGame | und
     ...(options.panelFrame !== undefined && { panelFrame: options.panelFrame }),
     ...(options.jobWorker !== undefined && { jobWorker: options.jobWorker }),
     ...(options.saves !== undefined && { saves: options.saves }),
+    ...(options.storageKey !== undefined && { storageKey: options.storageKey }),
     ...(options.net !== undefined && { net: options.net }),
     ...(options.payments !== undefined && { payments: options.payments }),
     ...(options.splash !== undefined && { splash: options.splash }),
