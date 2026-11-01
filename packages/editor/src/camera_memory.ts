@@ -104,3 +104,13 @@ export class CameraMemory {
     return this.#storage !== undefined;
   }
 }
+
+/**
+ * The pose a 2D scene's editor camera may take: a 2D view looks straight down the z axis and
+ * never tilts (its controls only pan and zoom), so a stored pose's rotation is dropped and only
+ * where it looks (x, y) and its zoom are kept. A tilted pose (one a 3D scene stored under the same
+ * key) would otherwise show the 2D scene slanted, with panning sliding along the tilted axes.
+ */
+export function flatPose2d(pose: CameraPose): CameraPose {
+  return { ...pose, position: new Vec3(pose.position.x, pose.position.y, 0), rotation: Quat.IDENTITY };
+}
