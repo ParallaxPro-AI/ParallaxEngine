@@ -50,6 +50,45 @@ export function reloadsPage(plan: OutsidePlan, state: { readonly dirty: boolean;
   return plan.reload.length > 0 && !state.dirty && state.editing && !state.preview;
 }
 
+/** What a preview's markup and asset changes become without a page reload (`planPreviewFiles`). */
+export interface PreviewFiles {
+  /** Asset files now served: listed in the documents, so a rebuilt runtime finds them. */
+  readonly listed: readonly string[];
+  /** Asset files no longer served. */
+  readonly unlisted: readonly string[];
+  /** Markup, styles and scripts the documents take as text (null: gone). */
+  readonly text: readonly string[];
+}
+
+/** Markup, styles and scripts: text the runtime reads from the documents (the loader's TEXT_FILE kinds). */
+const TEXT_ASSET = /\.(html|css|js)$/;
+
+/**
+ * A preview's `reload` paths (planOutsideChanges), taken in place instead: asset files go into
+ * the documents' listing (`served`: what the server serves now, so a missing one was removed),
+ * markup and styles as text. Tests are left alone (the game never reads them). The runtime is
+ * then rebuilt, which is what a page reload would have done, without reloading the page.
+ */
+export function planPreviewFiles(reload: readonly string[], served: ReadonlySet<string>): PreviewFiles {
+  const listed: string[] = [];
+  const unlisted: string[] = [];
+  const text: string[] = [];
+  for (const path of reload) {
+    if (path.startsWith('tests/')) continue;
+    if (TEXT_ASSET.test(path)) text.push(path);
+    else if (path.startsWith('assets/')) (served.has(path) ? listed : unlisted).push(path);
+  }
+  return { listed, unlisted, text };
+}
+
+/** Every path the server serves now (its project-files.json). */
+export async function fetchServedPaths(get: typeof fetch = fetch): Promise<Set<string>> {
+  const response = await get(serverUrl('project-files.json'), { cache: 'no-store' });
+  if (!response.ok) throw new Error(`Could not read the project's file list (HTTP ${response.status})`);
+  const body = await response.json() as { files?: unknown };
+  return new Set(Array.isArray(body.files) ? body.files.filter((f): f is string => typeof f === 'string') : []);
+}
+
 /**
  * Whether taking these changes needs the game's runtime rebuilt (a hot reload), besides the
  * documents: a model or other asset document under assets/. The runtime lists the project's

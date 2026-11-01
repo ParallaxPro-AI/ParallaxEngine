@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fetchProjectFiles, needsRuntime, planOutsideChanges, reloadsPage } from './outside_changes.js';
+import { fetchProjectFiles, needsRuntime, planOutsideChanges, planPreviewFiles, reloadsPage } from './outside_changes.js';
 import { t } from './i18n.js';
 import { currentSite, DEFAULT_SITE, setSite } from './site.js';
 
@@ -33,6 +33,14 @@ describe('files changed outside the editor', () => {
     expect(reloadsPage(plan, { dirty: true, editing: true, preview: false })).toBe(false);
     expect(reloadsPage(plan, { dirty: false, editing: false, preview: false })).toBe(false);
     expect(reloadsPage(planOutsideChanges(['scenes/main/scene.json'], new Set(), true), { dirty: false, editing: true, preview: false })).toBe(false);
+  });
+
+  it('takes a preview\'s files in place: served assets listed, gone ones unlisted, markup as text, tests left alone', () => {
+    const reload = ['assets/images/sky.png', 'assets/sfx/old.ogg', 'ui/hud.html', 'ui/theme.css', 'tests/expected.json'];
+    expect(planPreviewFiles(reload, new Set(['assets/images/sky.png', 'ui/hud.html']))).toEqual({
+      listed: ['assets/images/sky.png'], unlisted: ['assets/sfx/old.ogg'], text: ['ui/hud.html', 'ui/theme.css'],
+    });
+    expect(planPreviewFiles([], new Set())).toEqual({ listed: [], unlisted: [], text: [] });
   });
 
   it('reads the new text from the server (a removed file is null)', async () => {

@@ -164,6 +164,26 @@ export class ProjectDocuments implements ProjectFiles {
     for (const listener of this.#listeners) listener(changed);
   }
 
+  /**
+   * Asset files added or removed outside the editor that the documents list but don't hold as
+   * text (images, sounds, a model's binary): `list()` names them from now on, so a runtime
+   * rebuilt from these documents can find them. Listeners hear the paths.
+   */
+  listFiles(added: readonly string[], removed: readonly string[] = []): void {
+    const changed = [...added.filter((p) => !this.#paths.has(p)), ...removed.filter((p) => this.#paths.has(p))];
+    if (changed.length === 0) return;
+    for (const path of added) this.#paths.add(path);
+    for (const path of removed) {
+      this.#paths.delete(path);
+      this.#text.delete(path);
+      this.#json.delete(path);
+      this.#dirty.delete(path);
+    }
+    this.#project = undefined;
+    this.#version++;
+    for (const listener of this.#listeners) listener(changed);
+  }
+
   list(): string[] {
     return [...this.#paths].sort();
   }
