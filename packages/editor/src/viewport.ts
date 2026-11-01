@@ -723,7 +723,8 @@ export class Viewport {
     if (point === null) return true;
     if (typing(document.activeElement)) (document.activeElement as HTMLElement).blur();
     const session = editor.session;
-    if (editor.editing) {
+    // As the mouse: no handle to drag while read-only (the drag would move the entity, then fail to save).
+    if (editor.editing && editor.readOnly === null) {
       const handle = editor.run('Gizmo', () => session.handleAt(point.x, point.y, editor.gizmo.mode, editor.gizmo.space, GIZMO_PX * 1.4)) ?? null;
       if (handle !== null) {
         const began = editor.run('Drag', () => { session.beginDrag(editor.gizmo.mode, handle, editor.gizmo.space, point.x, point.y, GIZMO_PX); return true; });
