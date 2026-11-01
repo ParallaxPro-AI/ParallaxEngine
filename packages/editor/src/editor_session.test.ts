@@ -202,3 +202,19 @@ describe('Play of another version (EditorHost.setPlaySource)', () => {
     expect(editor.log.at(-1)).toMatchObject({ level: 'error', text: expect.stringContaining('no settled build') });
   });
 });
+
+describe('the log once it is full', () => {
+  it('still hands a reader the entries written since it last looked (toasts keep coming)', () => {
+    const { editor } = open(storage());
+    for (let i = 0; i < 600; i++) editor.write('info', `line ${i}`);
+    expect(editor.log).toHaveLength(500);
+    expect(editor.logged).toBe(600);
+    const seen = editor.logged;
+    expect(editor.logSince(seen)).toEqual([]);
+    editor.write('error', 'a real error');
+    expect(editor.log).toHaveLength(500);
+    expect(editor.logSince(seen).map((e) => e.text)).toEqual(['a real error']);
+    // A reader far behind gets what the log still has, never more.
+    expect(editor.logSince(0)).toHaveLength(500);
+  });
+});
