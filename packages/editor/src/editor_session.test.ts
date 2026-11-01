@@ -136,3 +136,15 @@ describe('save state', () => {
     expect(changes.some((c) => c.includes('saved'))).toBe(false);
   });
 });
+
+describe('files changed outside, from a preview of unfinished work', () => {
+  it('notes their problems as info; a settled change still warns', () => {
+    const session = new FakeSession() as FakeSession & { replaceFiles: () => readonly unknown[] };
+    session.replaceFiles = () => [{ severity: 'error', code: 'PP2001', message: 'half written' }];
+    const { editor } = open(storage(), session);
+    editor.takeOutsideChanges(new Map([['scenes/main/scene.json', '{']]), { preview: true });
+    expect(editor.log.at(-1)).toMatchObject({ level: 'info', text: expect.stringContaining('work in progress') });
+    editor.takeOutsideChanges(new Map([['scenes/main/scene.json', '{']]));
+    expect(editor.log.at(-1)).toMatchObject({ level: 'warning', text: expect.stringContaining('changed files have problems') });
+  });
+});

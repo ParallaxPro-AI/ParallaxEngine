@@ -3,7 +3,7 @@
  * hearing rebuilds (a changed .py file, or data changed outside the editor).
  *
  *   POST /__parallax__/save    {"files": [{"path", "text"}], "removed": [path]} → {"saved": [path]}
- *   GET  /__parallax__/events  server-sent events: "build" {version, diagnostics, changed}
+ *   GET  /__parallax__/events  server-sent events: "build" {version, diagnostics, changed, preview?}
  */
 
 import type { Diagnostic } from '@parallax/runtime/core';
@@ -20,6 +20,13 @@ export interface BuildEvent {
   readonly diagnostics: readonly Diagnostic[];
   /** Project files that changed on disk since the last build (the editor's own saves left out). */
   readonly changed: readonly string[];
+  /**
+   * A preview of work another tool is still writing (a host showing an assistant's project
+   * mid-edit). Its files can be half done, so its problems are expected: the editor notes
+   * them quietly instead of reporting errors, and never reloads the page for it. The next
+   * build without the flag is the settled one, reported as usual.
+   */
+  readonly preview?: boolean;
   /** A host's server may send fields of its own; they reach `EditorHost`'s `build` event as sent. */
   readonly [field: string]: unknown;
 }
@@ -58,6 +65,11 @@ export async function save(documents: ProjectDocuments, original?: (path: string
   const saved = body.saved ?? [];
   documents.markSaved(saved);
   return saved;
+}
+
+/** Whether a build is a preview of unfinished work (`BuildEvent.preview`). */
+export function isPreview(event: BuildEvent): boolean {
+  return event.preview === true;
 }
 
 /** Whether a build's changes need new code in the page (vs. data or markup only). */
