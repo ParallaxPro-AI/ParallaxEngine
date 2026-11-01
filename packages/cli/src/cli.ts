@@ -29,7 +29,7 @@ import { packSummary } from './pack.js';
 
 const USAGE = `Usage:
   parallax new   <dir> [--template NAME | --example NAME] [--name TITLE] | --list
-                 start a project from a template (blank-2d, blank-3d, arcade-2d)
+                 start a project from a template (blank-2d, blank-3d)
                  or from a copy of a complete example game (--list shows them)
   parallax build <project> [--out DIR] [--no-asset-files] [--bundle] [--json]
   parallax check <project> [--json] [--out DIR | --no-write] [--no-asset-files] [--no-compile]

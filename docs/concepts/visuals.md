@@ -595,7 +595,7 @@ See [assets](assets.md#sound-and-effects) and
 A game with `Game(mode="2d")` draws with a 2D renderer. The play plane is x/y
 in meters, with **y up**. `z` is only draw order (higher draws on top), and a
 rotation is an angle in degrees. Start from `pnpm parallax new <dir> --template
-blank-2d` or `arcade-2d`, or from a 2D example (`auto_runner`, `bullet_hell`,
+blank-2d`, or from a 2D example (`auto_runner`, `bullet_hell`,
 `maze_chase`, `match_three`, `chess` and others in [examples](../examples.md)).
 
 | The game needs | Engine feature | Where it goes | Example game |

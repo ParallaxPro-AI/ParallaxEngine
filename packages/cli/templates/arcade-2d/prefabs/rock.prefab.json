@@ -1,9 +1,0 @@
-{
-  "components": {
-    "shape": { "kind": "rect", "size": [0.8, 0.8], "color": "#e0685a" }
-  },
-  "tags": ["rock"],
-  "behaviors": {
-    "rock": {}
-  }
-}
