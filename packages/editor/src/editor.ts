@@ -62,6 +62,17 @@ const CAMERA_MEMORY_MS = 1_000;
 
 export type LogLevel = 'info' | 'warning' | 'error';
 
+/**
+ * Play another version of the project in this editor (`EditorHost.setPlaySource`): `enter`
+ * swaps it into the documents and the runtime before Play, `leave` swaps the editor's own back
+ * after Stop.
+ */
+export interface PlaySwap {
+  readonly label: string;
+  enter(): Promise<void>;
+  leave(): Promise<void>;
+}
+
 export interface LogEntry {
   readonly level: LogLevel;
   readonly text: string;
@@ -97,6 +108,11 @@ export class Editor {
   readonly #outside = new Map<string, string | null>();
   /** Every change waiting in #outside came from a preview (takeOutsideChanges): its problems are info. */
   #outsidePreview = true;
+  #playSwap: PlaySwap | null = null;
+  /** The swap a running Play entered (Stop leaves it). */
+  #swapped: PlaySwap | null = null;
+  /** A swap is loading (entering or leaving). */
+  #swapping = false;
 
   constructor(game: BrowserGame, session: EditorSession, title: string, options: { readonly cameras?: CameraMemory } = {}) {
     this.game = game;
@@ -170,7 +186,7 @@ export class Editor {
     if (files.size === 0) return;
     this.#outsidePreview = (this.#outside.size === 0 || this.#outsidePreview) && options.preview === true;
     for (const [path, text] of files) this.#outside.set(path, text);
-    if (this.editing) this.#applyOutside();
+    if (this.editing && !this.#swapping && this.#swapped === null) this.#applyOutside();
   }
 
   #applyOutside(): void {
@@ -308,20 +324,81 @@ export class Editor {
 
   // ── Play ────────────────────────────────────────────────────────────────────
 
+  /**
+   * Make Play run another version of the project in this editor (a host's last finished one
+   * while another tool is still writing the files), or the editor's own files again (null).
+   * Not while there are unsaved edits: Play runs those in place.
+   */
+  setPlaySwap(swap: PlaySwap | null): void {
+    this.#playSwap = swap;
+  }
+
+  /** The running Play is another version (`setPlaySwap`). */
+  get playingSwapped(): boolean {
+    return this.#swapped !== null;
+  }
+
+  /** A Play swap is loading. */
+  get swapping(): boolean {
+    return this.#swapping;
+  }
+
   play(): void {
     if (this.session.mode === 'paused') {
       this.resume();
       return;
     }
-    if (!this.editing) return;
+    if (!this.editing || this.#swapping) return;
+    if (this.#playSwap !== null && this.documents.dirty().length === 0) {
+      void this.#playSwapped(this.#playSwap);
+      return;
+    }
+    this.#playInPlace();
+  }
+
+  #playInPlace(): boolean {
     this.rememberCamera();
     const scene = playStartScene(this.session.startScene, this.session.scene, this.documents.project().scenes);
     const ok = this.run('Play', () => { this.session.play({ scene }); return true; }, 'mode', 'world', 'selection');
-    if (ok === true) {
-      this.write('info', scene === this.session.scene ? `Playing ${scene}` : `Playing from the start scene ${scene} (Stop returns to ${this.session.scene})`);
-      // Keys and pointer now belong to the game.
-      this.game.stage.stage.focus({ preventScroll: true });
+    if (ok !== true) return false;
+    this.write('info', scene === this.session.scene ? `Playing ${scene}` : `Playing from the start scene ${scene} (Stop returns to ${this.session.scene})`);
+    // Keys and pointer now belong to the game.
+    this.game.stage.stage.focus({ preventScroll: true });
+    return true;
+  }
+
+  async #playSwapped(swap: PlaySwap): Promise<void> {
+    this.rememberCamera();
+    this.#swapping = true;
+    this.emit('mode');
+    try {
+      await swap.enter();
+    } catch (error) {
+      this.#swapping = false;
+      this.fail('Play', error);
+      this.emit('mode', 'world', 'documents', 'selection');
+      this.#applyOutside();
+      return;
     }
+    this.#swapped = swap;
+    this.#swapping = false;
+    this.write('info', swap.label);
+    if (!this.#playInPlace()) this.#leaveSwap();
+  }
+
+  #leaveSwap(): void {
+    const swap = this.#swapped;
+    if (swap === null) return;
+    this.#swapped = null;
+    this.#swapping = true;
+    this.emit('mode');
+    // The editor's own files are the unfinished ones (why a host swaps at all): their problems
+    // are expected, as a preview build's are, so they are noted quietly.
+    void swap.leave().catch((error: unknown) => this.fail('Back to the work in progress', error, 'info')).finally(() => {
+      this.#swapping = false;
+      this.emit('mode', 'world', 'documents', 'selection');
+      this.#applyOutside();
+    });
   }
 
   pause(): void {
@@ -341,8 +418,14 @@ export class Editor {
   stop(): void {
     if (this.editing) return;
     const problems = this.run('Stop', () => this.session.stop(), 'mode', 'world', 'selection');
+    if (!this.editing) return;
+    // Back from another version: the editor's own files return, then what arrived meanwhile.
+    if (this.#swapped !== null) {
+      this.#leaveSwap();
+      return;
+    }
     if (problems !== undefined && problems.length > 0) this.write('warning', 'The edit world was rebuilt from the documents', problems);
-    if (this.editing) this.#applyOutside();
+    this.#applyOutside();
   }
 
   setTimeScale(scale: number): void {

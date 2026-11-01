@@ -36,6 +36,7 @@ import { PerformancePanel } from './performance_panel.js';
 import { showEditorLoading } from './loading_screen.js';
 import { serverUrl, setServerBase } from './paths.js';
 import { createEditorHost } from './host.js';
+import { settledPlay } from './play_settled.js';
 import type { EditorHost } from './host.js';
 import { comingSoonPublish } from './publish_dialog.js';
 import { syncProjectUrl } from './project_switcher.js';
@@ -172,7 +173,10 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
   }
 
   const documents = new ProjectDocuments(game.sources.files);
-  const session = new EditorSession({ runtime: game.runtime, documents, host: browserHost(game, () => buildUrl(version)) });
+  // Play of a host's settled version (play_settled.ts) points the rebuilds at its build, then
+  // at a fresh number of the editor's own; the next build heard goes back to `version`.
+  let settledBuild: string | null = null;
+  const session = new EditorSession({ runtime: game.runtime, documents, host: browserHost(game, () => settledBuild ?? buildUrl(version)) });
   editor = new Editor(game, session, options.title);
   editor.buildDiagnostics = options.diagnostics;
   const bottom = new BottomPanels(editor, { library: new AssetLibraryPanel(editor), performance: new PerformancePanel(editor) });
@@ -210,7 +214,10 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
     runtime.stale = false;
     void reloadRuntime(ready, viewport.el).finally(() => ready.emit('build'));
   });
-  onBuild((event) => void rebuilt(ready, event, (v) => { version = v; }, viewport.el, runtime).finally(() => {
+  onBuild((event) => void rebuilt(ready, event, (v) => {
+    version = v;
+    if (!ready.playingSwapped && !ready.swapping) settledBuild = null;
+  }, viewport.el, runtime).finally(() => {
     ready.emit('build');
     for (const listener of [...buildListeners]) {
       try {
@@ -230,6 +237,9 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
   const host = createEditorHost({
     editor, layout, toolbar, bottom, ...(camera !== undefined && { camera }), defaultPublish: () => comingSoonPublish(),
     onBuild: (listener) => { buildListeners.add(listener); return () => { buildListeners.delete(listener); }; },
+    playSource: (source) => ready.setPlaySwap(source === null ? null : settledPlay(ready, source, {
+      setBuild: (url) => { settledBuild = url; }, ownBase: serverUrl(''), version: () => version, stage: viewport.el,
+    })),
   });
   if (options.readOnly !== undefined) host.setReadOnly(true, options.readOnly);
   const page = globalThis as { parallaxEditor?: Editor; parallaxEditorHost?: EditorHost; parallaxEditorLayout?: EditorLayout };
@@ -292,7 +302,7 @@ async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number
   }
   // Files changed on disk: data documents in place; markup and assets need the page reloaded.
   const plan = planOutsideChanges(event.changed, new Set(editor.documents.dirty()), editor.readOnly !== null);
-  if (reloadsPage(plan, { dirty: editor.documents.dirty().length > 0, editing: editor.editing, preview })) {
+  if (reloadsPage(plan, { dirty: editor.documents.dirty().length > 0, editing: editor.editing && !editor.swapping, preview })) {
     location.reload();
     return;
   }
@@ -305,6 +315,11 @@ async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number
   }
   if (plan.conflicts.length > 0) {
     editor.write('warning', `Changed on disk: ${plan.conflicts.join(', ')}, which you have unsaved edits to. Save to overwrite them, or reload the page to take them (unsaved edits are lost).`);
+  }
+  // Another version is playing, or swapping in or out: its leave rebuilds on the newest build.
+  if (editor.playingSwapped || editor.swapping) {
+    setVersion(event.version);
+    return;
   }
   if (plan.reload.length > 0 && !preview) editor.write('warning', `Changed on disk: ${plan.reload.join(', ')}. Reload the page to see them.`);
   // New code, or a new asset document (a library model) the runtime's asset list lacks. While
