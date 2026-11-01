@@ -456,8 +456,11 @@ export async function bootBrowser(options: BrowserBootOptions): Promise<BrowserG
         if (next.entry === null) fail('PP9502', 'The build has no game/main.py', { fix: 'Create game/main.py with `game = Game(...)`, then rebuild.' });
         resetDeclarations();
         const nextEntry = await importBuild(url, next, () => {});
+        const files = rebuildOptions.files ?? options.dataFiles ?? served.files;
         const started = await startGame({
-          ...platform, entry: nextEntry, files: rebuildOptions.files ?? options.dataFiles ?? served.files,
+          // The asset files as these files list them now (an editor took in files added since boot).
+          ...platform, ...(rebuildOptions.files !== undefined && options.assetFiles !== false && { assets: rebuildOptions.files.list() }),
+          entry: nextEntry, files,
           ...(rebuildOptions.editing === true && { editing: true }),
         });
         started.warnings.forEach(warn);

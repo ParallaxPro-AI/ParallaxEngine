@@ -25,7 +25,7 @@ import type { EditorChrome } from './layout.js';
 import { setSite } from './site.js';
 import type { EditorSite } from './site.js';
 import { isPreview, needsCode, onBuild } from './server_link.js';
-import { fetchProjectFiles, needsRuntime, planOutsideChanges, reloadsPage } from './outside_changes.js';
+import { fetchProjectFiles, fetchServedPaths, needsRuntime, planOutsideChanges, planPreviewFiles, reloadsPage } from './outside_changes.js';
 import type { BuildEvent } from './server_link.js';
 import { installShortcuts } from './shortcuts.js';
 import { failedToolbar, Toolbar } from './toolbar.js';
@@ -318,6 +318,28 @@ async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number
   if (reloadsPage(plan, { dirty: editor.documents.dirty().length > 0, editing: editor.editing && !editor.swapping, preview })) {
     location.reload();
     return;
+  }
+  // A preview that adds asset files or markup: a page reload would show them, but a preview never
+  // reloads the page. So the files go into the documents (assets listed, markup as text) with its
+  // data, and the runtime is rebuilt once from all of it — never the data before the files it names
+  // (a prefab naming an image the runtime doesn't know stops the game every frame, PP2063).
+  if (preview && plan.reload.length > 0 && editor.editing && !editor.swapping && !editor.playingSwapped) {
+    try {
+      const files = planPreviewFiles(plan.reload, await fetchServedPaths());
+      if (files.listed.length + files.unlisted.length + files.text.length > 0) {
+        const texts = await fetchProjectFiles([...plan.documents, ...files.text]);
+        editor.documents.listFiles(files.listed, files.unlisted);
+        editor.documents.replaceFiles(texts);
+        editor.session.history.clear();
+        setVersion(event.version);
+        runtime.stale = false;
+        await reloadRuntime(editor, stage, true);
+        return;
+      }
+    } catch (error) {
+      editor.fail('Files changed outside', error, 'info');
+      return;
+    }
   }
   if (plan.documents.length > 0) {
     try {

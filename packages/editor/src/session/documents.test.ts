@@ -126,3 +126,20 @@ describe('EditHistory', () => {
     expect(h.entries).toEqual({ labels: ['Move', 'Tag'], applied: 2 });
   });
 });
+
+describe('ProjectDocuments.listFiles', () => {
+  it('lists asset files added outside (and drops removed ones) so a rebuilt runtime finds them; listeners hear only real changes', () => {
+    const d = docs();
+    const heard: string[][] = [];
+    d.onChange((paths) => heard.push([...paths]));
+    const before = d.version;
+    d.listFiles(['assets/images/sky.png', 'notes.txt'], ['prefabs/gone.prefab.json']);
+    expect(d.list()).toContain('assets/images/sky.png');
+    expect(heard).toEqual([['assets/images/sky.png']]);
+    expect(d.version).toBe(before + 1);
+    d.listFiles([], ['assets/images/sky.png']);
+    expect(d.list()).not.toContain('assets/images/sky.png');
+    d.listFiles(['notes.txt']);
+    expect(heard).toHaveLength(2);
+  });
+});
