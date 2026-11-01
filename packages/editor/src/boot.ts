@@ -37,6 +37,7 @@ import { showEditorLoading } from './loading_screen.js';
 import { serverUrl, setServerBase } from './paths.js';
 import { createEditorHost } from './host.js';
 import { settledPlay } from './play_settled.js';
+import { BuildUrls } from './build_urls.js';
 import type { EditorHost } from './host.js';
 import { comingSoonPublish } from './publish_dialog.js';
 import { syncProjectUrl } from './project_switcher.js';
@@ -176,7 +177,10 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
   // Play of a host's settled version (play_settled.ts) points the rebuilds at its build, then
   // at a fresh number of the editor's own; the next build heard goes back to `version`.
   let settledBuild: string | null = null;
-  const session = new EditorSession({ runtime: game.runtime, documents, host: browserHost(game, () => settledBuild ?? buildUrl(version)) });
+  // Never the same URL twice (build_urls.ts): the first boot's counts.
+  const builds = new BuildUrls(buildUrl);
+  builds.loaded(buildUrl(options.version));
+  const session = new EditorSession({ runtime: game.runtime, documents, host: browserHost(game, () => builds.next(settledBuild ?? buildUrl(version))) });
   editor = new Editor(game, session, options.title);
   editor.buildDiagnostics = options.diagnostics;
   const bottom = new BottomPanels(editor, { library: new AssetLibraryPanel(editor), performance: new PerformancePanel(editor) });
