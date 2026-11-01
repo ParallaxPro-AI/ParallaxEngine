@@ -43,6 +43,7 @@ import { comingSoonPublish } from './publish_dialog.js';
 import { syncProjectUrl } from './project_switcher.js';
 import { Viewport } from './viewport.js';
 import { setToastRoot, showToast, toastSaves } from './toast.js';
+import { CameraMemory } from './camera_memory.js';
 import { showUnsupportedBrowser } from './unsupported_browser.js';
 
 export interface EditorBootOptions {
@@ -60,6 +61,13 @@ export interface EditorBootOptions {
   readonly base?: string;
   /** 'viewport-only': the viewport alone, no top bar or panels (`EditorHost.setChrome`). Default 'full'. */
   readonly chrome?: EditorChrome;
+  /**
+   * The name this project's browser storage is kept under: the editor's remembered camera and
+   * the game's local saves (`BrowserBootOptions.storageKey`). Default the game's id (plus
+   * `?project=` under `parallax edit`); a host whose projects can share a game id passes its own
+   * project id.
+   */
+  readonly storageKey?: string;
   /** Start locked (`EditorHost.setReadOnly`): the indicator's text. */
   readonly readOnly?: string;
   /** The platform names the editor shows (site.ts): name, host, top bar logo. */
@@ -135,6 +143,7 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
     assetFiles: options.assetFiles,
     panelFrame: options.panelFrame,
     jobWorker: options.jobWorker,
+    ...(options.storageKey !== undefined && { storageKey: options.storageKey }),
     ...(options.branding !== undefined && { branding: options.branding }),
     onProgress: (event) => loading.progress(event.overall, STAGE_LABEL[event.stage] === undefined ? undefined : t(STAGE_LABEL[event.stage]!)),
     onError: (title, diagnostics) => {
@@ -181,7 +190,7 @@ export async function bootEditor(options: EditorBootOptions): Promise<Editor | u
   const builds = new BuildUrls(buildUrl);
   builds.loaded(buildUrl(options.version));
   const session = new EditorSession({ runtime: game.runtime, documents, host: browserHost(game, () => builds.next(settledBuild ?? buildUrl(version))) });
-  editor = new Editor(game, session, options.title);
+  editor = new Editor(game, session, options.title, options.storageKey === undefined ? {} : { cameras: new CameraMemory(options.storageKey) });
   editor.buildDiagnostics = options.diagnostics;
   const bottom = new BottomPanels(editor, { library: new AssetLibraryPanel(editor), performance: new PerformancePanel(editor) });
   const camera = 'cameraMode' in viewport ? viewport as unknown as CameraModeHost : undefined;

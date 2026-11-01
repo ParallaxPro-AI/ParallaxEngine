@@ -71,6 +71,13 @@ export interface BrowserBootOptions {
   readonly panelFrame?: string;
   /** URL of the engine's job worker (`job_worker.js`); absent: jobs run on the main thread. */
   readonly jobWorker?: string;
+  /**
+   * The name the game's browser storage is kept under (its local saves): default the game's
+   * `Game(id=...)`. A host whose projects can share a game id (copies keep the files, a scaffold
+   * may name every project alike) passes something unique and stable, such as its own project id,
+   * so one game never reads another's saves.
+   */
+  readonly storageKey?: string;
   /** Cloud saves: the remote (e.g. an `HttpSaveRemote`), and how conflicts are settled (default: newer wins). */
   readonly saves?: { readonly remote: SaveRemote; readonly resolve?: ConflictResolver; readonly syncSeconds?: number };
   /** Networking (`netFromUrl()` reads it from the page URL); absent or null: a local game. */
@@ -326,7 +333,7 @@ export async function bootBrowser(options: BrowserBootOptions): Promise<BrowserG
     if (game instanceof Game && game.mode === '3d') device = await probeGpu(device);
     console.info(`Parallax: ${device.tier} quality tier${device.reasons.length > 0 ? ` (${device.reasons.join('; ')})` : ''}`);
 
-    const store = new LocalStore(gameId, { onProblem: warn });
+    const store = new LocalStore(options.storageKey ?? gameId, { onProblem: warn });
     if (options.saves !== undefined) {
       cloud = new CloudStore({ local: store, remote: options.saves.remote, onProblem: warn, ...(options.saves.resolve && { resolve: options.saves.resolve }) });
       // Local first: a slow cloud doesn't hold the game; the merge it misses happens next start.
