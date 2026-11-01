@@ -95,6 +95,8 @@ export class Editor {
   #saving = false;
   /** Files changed outside while the game played, for Stop to take in. */
   readonly #outside = new Map<string, string | null>();
+  /** Every change waiting in #outside came from a preview (takeOutsideChanges): its problems are info. */
+  #outsidePreview = true;
 
   constructor(game: BrowserGame, session: EditorSession, title: string, options: { readonly cameras?: CameraMemory } = {}) {
     this.game = game;
@@ -161,10 +163,12 @@ export class Editor {
   /**
    * Data files changed outside the editor (path → new text, null: removed) go into the
    * documents and the edit world without reloading the page. While playing they wait for
-   * Stop. Unsaved edits to those paths give way to the files.
+   * Stop. Unsaved edits to those paths give way to the files. `preview`: they are unfinished
+   * work (`BuildEvent.preview`), so their problems are noted as info, not warnings.
    */
-  takeOutsideChanges(files: ReadonlyMap<string, string | null>): void {
+  takeOutsideChanges(files: ReadonlyMap<string, string | null>, options: { readonly preview?: boolean } = {}): void {
     if (files.size === 0) return;
+    this.#outsidePreview = (this.#outside.size === 0 || this.#outsidePreview) && options.preview === true;
     for (const [path, text] of files) this.#outside.set(path, text);
     if (this.editing) this.#applyOutside();
   }
@@ -175,7 +179,10 @@ export class Editor {
     this.#outside.clear();
     const errors = this.run('Files changed outside', () => this.session.replaceFiles(files));
     this.write('info', `Took the changes to ${[...files.keys()].join(', ')}`);
-    if (errors !== undefined && errors.length > 0) this.write('warning', 'The changed files have problems; the scene shows the last good state', errors);
+    if (errors !== undefined && errors.length > 0) {
+      if (this.#outsidePreview) this.write('info', 'The work in progress has problems for now; the scene shows the last good state', errors);
+      else this.write('warning', 'The changed files have problems; the scene shows the last good state', errors);
+    }
     this.emit('documents', 'world', 'selection');
   }
 
@@ -207,9 +214,9 @@ export class Editor {
     }
   }
 
-  fail(what: string, error: unknown): void {
+  fail(what: string, error: unknown, level: LogLevel = 'error'): void {
     const diagnostics = diagnosticsOf(error);
-    this.write('error', `${what}: ${diagnostics[0]?.message ?? (error as Error).message ?? String(error)}`, diagnostics);
+    this.write(level, `${what}: ${diagnostics[0]?.message ?? (error as Error).message ?? String(error)}`, diagnostics);
   }
 
   // ── Selection and entities ──────────────────────────────────────────────────

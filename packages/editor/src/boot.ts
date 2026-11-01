@@ -5,7 +5,8 @@
  *
  * Rebuilds from `parallax edit` (a .py file changed) hot-reload into the session; data
  * documents changed outside the editor go into the session in place (outside_changes.ts);
- * markup and assets changed outside reload the page when nothing is unsaved.
+ * markup and assets changed outside reload the page when nothing is unsaved. A host's preview
+ * of unfinished work (`BuildEvent.preview`) is taken in the same way, quietly, without reloads.
  */
 
 import { bootBrowser } from '@parallax/runtime/boot';
@@ -23,8 +24,8 @@ import { EditorLayout } from './layout.js';
 import type { EditorChrome } from './layout.js';
 import { setSite } from './site.js';
 import type { EditorSite } from './site.js';
-import { needsCode, onBuild } from './server_link.js';
-import { fetchProjectFiles, needsRuntime, planOutsideChanges } from './outside_changes.js';
+import { isPreview, needsCode, onBuild } from './server_link.js';
+import { fetchProjectFiles, needsRuntime, planOutsideChanges, reloadsPage } from './outside_changes.js';
 import type { BuildEvent } from './server_link.js';
 import { installShortcuts } from './shortcuts.js';
 import { failedToolbar, Toolbar } from './toolbar.js';
@@ -278,40 +279,45 @@ function recover(editor: Editor, game: BrowserGame, title: string, diagnostics: 
 }
 
 async function rebuilt(editor: Editor, event: BuildEvent, setVersion: (v: number) => void, stage: HTMLElement, runtime: { stale: boolean }): Promise<void> {
+  // A preview of unfinished work (BuildEvent.preview): its problems are expected, so they go to
+  // the log as info (no error toasts) and the page never reloads for it.
+  const preview = isPreview(event);
   const errors = event.diagnostics.filter((d) => d.severity === 'error');
   editor.buildDiagnostics = event.diagnostics;
   if (errors.length > 0) {
-    editor.write('error', `The build has ${errors.length} error${errors.length === 1 ? '' : 's'}; still running the last good build`, errors);
+    const count = `${errors.length} error${errors.length === 1 ? '' : 's'}`;
+    if (preview) editor.write('info', `The work in progress has ${count} for now; still showing the last good build`, errors);
+    else editor.write('error', `The build has ${count}; still running the last good build`, errors);
     return;
   }
   // Files changed on disk: data documents in place; markup and assets need the page reloaded.
   const plan = planOutsideChanges(event.changed, new Set(editor.documents.dirty()), editor.readOnly !== null);
-  if (plan.reload.length > 0 && editor.documents.dirty().length === 0 && editor.editing) {
+  if (reloadsPage(plan, { dirty: editor.documents.dirty().length > 0, editing: editor.editing, preview })) {
     location.reload();
     return;
   }
   if (plan.documents.length > 0) {
     try {
-      editor.takeOutsideChanges(await fetchProjectFiles(plan.documents));
+      editor.takeOutsideChanges(await fetchProjectFiles(plan.documents), { preview });
     } catch (error) {
-      editor.fail('Files changed outside', error);
+      editor.fail('Files changed outside', error, preview ? 'info' : 'error');
     }
   }
   if (plan.conflicts.length > 0) {
     editor.write('warning', `Changed on disk: ${plan.conflicts.join(', ')}, which you have unsaved edits to. Save to overwrite them, or reload the page to take them (unsaved edits are lost).`);
   }
-  if (plan.reload.length > 0) editor.write('warning', `Changed on disk: ${plan.reload.join(', ')}. Reload the page to see them.`);
+  if (plan.reload.length > 0 && !preview) editor.write('warning', `Changed on disk: ${plan.reload.join(', ')}. Reload the page to see them.`);
   // New code, or a new asset document (a library model) the runtime's asset list lacks. While
   // playing, the documents wait for Stop: the runtime is rebuilt once they are in (bootEditor).
   if (!editor.editing && needsRuntime(event.changed)) runtime.stale = true;
   if (!needsCode(event.changed) && !(editor.editing && needsRuntime(event.changed))) return;
   setVersion(event.version);
   if (editor.editing) runtime.stale = false;
-  await reloadRuntime(editor, stage);
+  await reloadRuntime(editor, stage, preview);
 }
 
 /** A new runtime from the current build and documents (`EditorSession.reload`). */
-async function reloadRuntime(editor: Editor, stage: HTMLElement): Promise<void> {
+async function reloadRuntime(editor: Editor, stage: HTMLElement, preview = false): Promise<void> {
   // The viewport shows the reload; the panels keep working.
   const loading = showEditorLoading(stage, { label: t('boot.reloadingCode'), compact: true, delayMs: 150 });
   try {
@@ -319,7 +325,7 @@ async function reloadRuntime(editor: Editor, stage: HTMLElement): Promise<void> 
     editor.write('info', result.restored || editor.editing ? 'Reloaded the game\'s code' : 'Reloaded the game\'s code; the scene restarted', result.diagnostics);
     editor.emit('world', 'selection', 'mode', 'documents');
   } catch (error) {
-    editor.fail('Hot reload', error);
+    editor.fail('Hot reload', error, preview ? 'info' : 'error');
   } finally {
     loading.done();
   }

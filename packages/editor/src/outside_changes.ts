@@ -42,6 +42,15 @@ export function planOutsideChanges(changed: readonly string[], dirty: ReadonlySe
 }
 
 /**
+ * Whether a build reloads the page now: markup or assets changed, nothing is unsaved and the
+ * edit world is up. Never for a preview (`BuildEvent.preview`): its files may still change,
+ * and the settled build after it lists them again, so the page reloads once, onto finished work.
+ */
+export function reloadsPage(plan: OutsidePlan, state: { readonly dirty: boolean; readonly editing: boolean; readonly preview: boolean }): boolean {
+  return plan.reload.length > 0 && !state.dirty && state.editing && !state.preview;
+}
+
+/**
  * Whether taking these changes needs the game's runtime rebuilt (a hot reload), besides the
  * documents: a model or other asset document under assets/. The runtime lists the project's
  * asset files once, when it is built, so a model added outside (an Asset Library add, a

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { fetchProjectFiles, needsRuntime, planOutsideChanges } from './outside_changes.js';
+import { fetchProjectFiles, needsRuntime, planOutsideChanges, reloadsPage } from './outside_changes.js';
 import { t } from './i18n.js';
 import { currentSite, DEFAULT_SITE, setSite } from './site.js';
 
@@ -24,6 +24,15 @@ describe('files changed outside the editor', () => {
     expect(needsRuntime(['scenes/main/scene.json', 'prefabs/a.prefab.json', 'ui/hud.html'])).toBe(false);
     // Binary assets reload the page instead (planOutsideChanges' `reload`).
     expect(needsRuntime(['assets/images/a.png'])).toBe(false);
+  });
+
+  it('reloads the page for markup and assets only on a settled build, never a preview of unfinished work', () => {
+    const plan = planOutsideChanges(['ui/hud.html', 'scenes/main/scene.json'], new Set(), true);
+    expect(reloadsPage(plan, { dirty: false, editing: true, preview: false })).toBe(true);
+    expect(reloadsPage(plan, { dirty: false, editing: true, preview: true })).toBe(false);
+    expect(reloadsPage(plan, { dirty: true, editing: true, preview: false })).toBe(false);
+    expect(reloadsPage(plan, { dirty: false, editing: false, preview: false })).toBe(false);
+    expect(reloadsPage(planOutsideChanges(['scenes/main/scene.json'], new Set(), true), { dirty: false, editing: true, preview: false })).toBe(false);
   });
 
   it('reads the new text from the server (a removed file is null)', async () => {
