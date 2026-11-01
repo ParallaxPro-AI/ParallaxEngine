@@ -48,8 +48,8 @@ export interface SettledIo {
   version(): number;
   /** The viewport, for the loading indicator. */
   readonly stage: HTMLElement;
-  /** The loading indicator while a version loads (tests pass their own). */
-  readonly loading?: () => { done(): void };
+  /** The loading indicator while a version loads, with what it says (tests pass their own). */
+  readonly loading?: (label: string) => { done(): void };
   /** The settled project's text documents (tests pass their own). */
   readonly fetchTexts?: (base: URL) => Promise<Map<string, string>>;
 }
@@ -73,8 +73,9 @@ export function settledPlay(editor: Editor, source: PlaySource, io: SettledIo): 
     editor.documents.replaceFiles(files);
     editor.session.history.clear();
   };
-  const reload = async (): Promise<void> => {
-    const loading = io.loading?.() ?? showEditorLoading(io.stage, { label: t('boot.reloadingCode'), compact: true, delayMs: 150 });
+  /** `label`: what the viewport says while it loads (Play: the finished version; Stop: back to the work in progress). */
+  const reload = async (label: string): Promise<void> => {
+    const loading = io.loading?.(label) ?? showEditorLoading(io.stage, { label, compact: true, delayMs: 150 });
     try {
       await editor.session.reload();
     } finally {
@@ -92,12 +93,12 @@ export function settledPlay(editor: Editor, source: PlaySource, io: SettledIo): 
       replace(swapFiles(own, settled));
       io.setBuild(new URL(`build/v${fresh()}/`, base).href);
       try {
-        await reload();
+        await reload(t('editor.loadingFinished'));
       } catch (error) {
         io.setBuild(own_());
         replace(swapFiles(settled, own));
         own = null;
-        await reload().catch(() => {});
+        await reload(t('editor.backToWork')).catch(() => {});
         throw error;
       }
       try { showToast(label, 'info'); } catch { /* no page */ }
@@ -110,7 +111,7 @@ export function settledPlay(editor: Editor, source: PlaySource, io: SettledIo): 
       do {
         version = io.version();
         io.setBuild(own_());
-        await reload();
+        await reload(t('editor.backToWork'));
       } while (version !== io.version());
     },
   };
