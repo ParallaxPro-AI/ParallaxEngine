@@ -24,6 +24,7 @@ import { h } from './dom.js';
 import type { Editor } from './editor.js';
 import type { Banner, EditorChrome, EditorLayout } from './layout.js';
 import type { BuildEvent } from './server_link.js';
+import type { PlaySource } from './play_settled.js';
 import { LANGUAGES, language, onLanguageChange, setLanguage, t } from './i18n.js';
 import type { CameraModeHost, SettingsEntry, Toolbar, ToolbarSlot } from './toolbar.js';
 import type { CameraMode } from './camera_controls.js';
@@ -157,6 +158,13 @@ export interface EditorHost {
    * over unsaved edits.
    */
   setReadOnly(locked: boolean, reason?: string, look?: Pick<Banner, 'tone' | 'element'>): void;
+  /**
+   * Make Play run another version of the project: the last finished one, while another tool
+   * is still writing the files the editor shows. Play swaps it into the editor's own runtime
+   * and plays it; Stop swaps the editor's files back. Null (the default): Play runs the
+   * editor's files. With unsaved edits Play runs those, in place.
+   */
+  setPlaySource(source: PlaySource | null): void;
   /**
    * Show a banner of the host's own under the top bar (a connection problem, a notice), or
    * replace the one under `id`; null removes it. They stack under the read-only banner.
@@ -294,6 +302,8 @@ export interface HostParts {
   readonly camera?: CameraModeHost;
   /** Hear the builds the editor has taken in (for the `build` event). Returns a remover. */
   readonly onBuild?: (listener: (event: BuildEvent) => void) => () => void;
+  /** Where Play goes (`setPlaySource`); without it the call is refused. */
+  readonly playSource?: (source: PlaySource | null) => void;
 }
 
 /** Built by `bootEditor`; a host gets it from `whenEditorReady`. */
@@ -431,6 +441,10 @@ export function createEditorHost(parts: HostParts): EditorHost {
       const text = locked ? reason ?? t('editor.readOnly') : null;
       editor.setReadOnly(text);
       layout.setReadOnly(text, look);
+    },
+    setPlaySource: (source) => {
+      if (parts.playSource === undefined) throw new Error('This editor cannot play another version');
+      parts.playSource(source);
     },
     setBanner: (id, banner) => layout.setBanner(id, banner),
     on: (event, listener) => events.on(event, listener),
