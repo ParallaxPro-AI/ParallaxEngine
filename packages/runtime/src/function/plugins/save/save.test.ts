@@ -4,10 +4,10 @@ import type { EntityId, KeyValueStore, ProjectFiles } from '../../../core/index.
 import { loadProject } from '../../../resource/index.js';
 import { Kernel, t } from '../../kernel/index.js';
 import type { BehaviorDef, GameDefinition, KernelPlugin, Schema } from '../../kernel/index.js';
-import { SAVE_SERVICE, STREAMING_SERVICE } from '../../services/index.js';
+import { PERSISTENCE_SERVICE, SAVE_SERVICE, STREAMING_SERVICE } from '../../services/index.js';
 import { streaming } from '../streaming/index.js';
 import type { MigrationStep, SaveDocument } from '../../services/index.js';
-import { memoryStore, migrateDocument, parseStored, persistence, PROFILE_KEY, save, SLOT_PREFIX, UNREADABLE_PROFILE_KEY, stringify } from './index.js';
+import { memoryStore, migrateDocument, parseStored, persistence, PROFILE_CHECK_SECONDS, PROFILE_KEY, save, SLOT_PREFIX, UNREADABLE_PROFILE_KEY, stringify } from './index.js';
 import type { SaveEngine } from './index.js';
 
 function files(contents: Record<string, unknown>): ProjectFiles {
@@ -109,6 +109,35 @@ describe('profile (persistence plugin)', () => {
     again.kernel.step(1 / 60);
     again.kernel.step(1 / 60);
     expect(writes).toEqual([]);
+  });
+
+  it('checks a profile that changes every frame at most every PROFILE_CHECK_SECONDS, and flushes on dispose', () => {
+    const store = memoryStore();
+    const writes: string[] = [];
+    const spy: KeyValueStore = { ...store, set: (k, v) => { writes.push(v); store.set(k, v); } };
+    const { kernel } = game({ store: spy });
+    for (let frame = 1; frame <= 60; frame++) {
+      kernel.resource('record')['best'] = frame;
+      kernel.step(1 / 60);
+    }
+    // A second of frames: the first frame's write, then one per half second.
+    expect(writes.length).toBeLessThanOrEqual(1 + Math.ceil(1 / PROFILE_CHECK_SECONDS));
+    expect(writes.length).toBeGreaterThanOrEqual(2);
+    kernel.resource('record')['best'] = 99;
+    kernel.dispose();
+    expect(parseStored(store.get(PROFILE_KEY)!, 'profile', '').resources).toEqual({ record: { best: 99 } });
+  });
+
+  it('writes a change at once when the platform flushes (page hidden or closed)', () => {
+    const store = memoryStore();
+    const { kernel } = game({ store });
+    kernel.step(1 / 60);
+    kernel.resource('record')['best'] = 42;
+    kernel.step(1 / 60);
+    // Within the check interval: not written yet.
+    expect(parseStored(store.get(PROFILE_KEY)!, 'profile', '').resources).not.toEqual({ record: { best: 42 } });
+    kernel.service(PERSISTENCE_SERVICE).flush();
+    expect(parseStored(store.get(PROFILE_KEY)!, 'profile', '').resources).toEqual({ record: { best: 42 } });
   });
 
   it('refuses a bad save_version', () => {

@@ -6,8 +6,12 @@
  *   - At install (before the first scene), every `keep="profile"` resource field (the
  *     built-in Settings included) is loaded from the store's `profile` document, migrated
  *     to the current save version first.
- *   - At the end of every frame (the kernel's `render` hook) the profile fields are written
- *     back when they changed since the last write.
+ *   - At the end of a frame (the kernel's `render` hook) the profile fields are written
+ *     back when they changed since the last write, checked at most every `checkEvery`
+ *     real seconds (a profile that changes every frame, an idle game's coins, would
+ *     otherwise be serialized and stored every frame), once more on dispose, and whenever
+ *     the platform asks (`PersistenceService.flush`: the browser does when the page is
+ *     hidden or closed).
  *
  * A device has one profile; per-player profiles on a server (`ctx.get(R, player=)`) belong
  * to the net plugin. Migrations see a profile as a SaveData whose `resources` are the
@@ -36,7 +40,12 @@ export interface PersistenceOptions {
   readonly migrations: () => readonly MigrationStep[];
   /** The platform's wall clock, Unix seconds (save slot times); none headless. */
   readonly wallClock?: () => number;
+  /** Real seconds between checks of the profile for changes (default PROFILE_CHECK_SECONDS). */
+  readonly checkEvery?: number;
 }
+
+/** How often (real seconds) the profile is compared with what was last written. */
+export const PROFILE_CHECK_SECONDS = 0.5;
 
 function checkVersion(version: unknown, where: string): number {
   if (typeof version !== 'number' || !Number.isInteger(version) || version < 1) {
@@ -163,6 +172,18 @@ export function persistence(options: PersistenceOptions): KernelPlugin {
     saveVersion,
     migrate: (save, where) => migrateDocument(save, saveVersion, options.migrations(), where),
     wallClock: () => (options.wallClock === undefined ? null : options.wallClock()),
+    flush: () => { if (installed !== undefined) writeProfile(installed); },
+  };
+
+  const checkEvery = options.checkEvery ?? PROFILE_CHECK_SECONDS;
+  // The first frame checks at once; later checks wait checkEvery real seconds.
+  let sinceCheck = Number.POSITIVE_INFINITY;
+
+  const writeProfile = (kernel: Kernel): void => {
+    const text = stringify(profileDocument(kernel));
+    if (text === written) return;
+    store.set(PROFILE_KEY, text);
+    written = text;
   };
 
   const profileDocument = (kernel: Kernel): SaveDocument => ({
@@ -196,12 +217,15 @@ export function persistence(options: PersistenceOptions): KernelPlugin {
       installed = kernel;
       kernel.provide(PERSISTENCE_SERVICE, service);
       loadProfile(kernel);
-      kernel.addHook('render', () => {
-        const text = stringify(profileDocument(kernel));
-        if (text === written) return;
-        store.set(PROFILE_KEY, text);
-        written = text;
+      kernel.addHook('render', (dt) => {
+        sinceCheck += dt;
+        if (sinceCheck < checkEvery) return;
+        sinceCheck = 0;
+        writeProfile(kernel);
       });
+    },
+    dispose(kernel) {
+      writeProfile(kernel);
     },
   };
 }

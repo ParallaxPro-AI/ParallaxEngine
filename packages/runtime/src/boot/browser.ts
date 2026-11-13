@@ -24,6 +24,7 @@ import { diagnostic, fail, formatDiagnostic } from '../core/index.js';
 import type { ConflictResolver, Diagnostic, ProjectFiles, SaveRemote } from '../core/index.js';
 import { connectPayments, connectScreens, connectVoice, Game, resetDeclarations } from '../api/index.js';
 import type { GameRuntime } from '../api/index.js';
+import { PERSISTENCE_SERVICE } from '../function/services/index.js';
 import {
   BootProgress, BrowserDisplay, BrowserInput, CanvasSurface2d, CloudStore, createBrowserSurface3d, createStage, DomScreenSurface,
   DomUiSurface, ErrorOverlay, formatTraceback, HostPagePayments, LocalStore, PerformanceClock, probeDevice, probeGpu, pythonTraceback,
@@ -178,10 +179,11 @@ async function fetchManifest(url: string): Promise<BuildManifest> {
  * The page's lifecycle around audio and saves. Browsers start an AudioContext suspended
  * until a gesture: resume on the first press, key or touch, and whenever the page is shown
  * again (iOS's `interrupted` state after a call included). A hidden page suspends audio
- * (a phone would otherwise keep loops playing in the background) and flushes cloud saves;
- * so does `pagehide` (closing the tab, or entering the back/forward cache).
+ * (a phone would otherwise keep loops playing in the background) and flushes the profile
+ * and cloud saves; so does `pagehide` (closing the tab, or entering the back/forward cache).
  */
-function watchLifecycle(audio: WebAudioOutput, display: BrowserDisplay, cloud: CloudStore | undefined, warn: (d: Diagnostic) => void): () => void {
+function watchLifecycle(audio: WebAudioOutput, display: BrowserDisplay, cloud: CloudStore | undefined, warn: (d: Diagnostic) => void,
+  flushProfile: () => void): () => void {
   const resume = (): void => {
     audio.resume().then(() => audio.retryMusic()).catch((error: unknown) => warn(diagnostic('PP9523', `Audio could not start: ${(error as Error).message}`, {
       severity: 'warning', fix: 'Click or press a key in the game to allow sound.',
@@ -189,11 +191,15 @@ function watchLifecycle(audio: WebAudioOutput, display: BrowserDisplay, cloud: C
   };
   const hide = (): void => {
     void audio.suspend().catch(() => {});
+    flushProfile();
     void cloud?.flush();
   };
   const gestures = ['pointerdown', 'keydown', 'touchend'] as const;
   for (const type of gestures) globalThis.addEventListener(type, resume);
-  const pagehide = (): void => { void cloud?.flush(); };
+  const pagehide = (): void => {
+    flushProfile();
+    void cloud?.flush();
+  };
   globalThis.addEventListener('pagehide', pagehide);
   const unwatch = display.onChange((change) => {
     if (change !== 'visibility') return;
@@ -292,6 +298,8 @@ export async function bootBrowser(options: BrowserBootOptions): Promise<BrowserG
   let sources: GameSources | undefined;
   let net: OpenedNet | undefined;
   let cloud: CloudStore | undefined;
+  // The running game's profile, written now (set once the game starts).
+  let flushProfile = (): void => {};
   try {
     const buildUrl = new URL(options.build, location.href);
     const manifest = await fetchManifest(new URL('manifest.json', buildUrl).href);
@@ -350,7 +358,7 @@ export async function bootBrowser(options: BrowserBootOptions): Promise<BrowserG
         severity: 'warning', path: file, fix: 'Check that the file exists under assets/ and is an ogg, mp3 or wav the browser can decode.',
       })),
     });
-    unhookLifecycle = watchLifecycle(audio, display, cloud, warn);
+    unhookLifecycle = watchLifecycle(audio, display, cloud, warn, () => flushProfile());
     const canvas = document.createElement('canvas');
     Object.assign(canvas.style, { width: '100%', height: '100%', display: 'block' });
     stage.surface.append(canvas);
@@ -400,6 +408,7 @@ export async function bootBrowser(options: BrowserBootOptions): Promise<BrowserG
       ...(options.editing === true && { editing: true }),
     });
     let current = runtime;
+    flushProfile = () => current.kernel.tryService(PERSISTENCE_SERVICE)?.flush();
     connectNiche(runtime, options, sources, fileUrl);
     sources.commit();
     cloud?.start();

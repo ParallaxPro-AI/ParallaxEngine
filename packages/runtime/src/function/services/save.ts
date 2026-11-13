@@ -83,6 +83,12 @@ export interface PersistenceService {
   migrate(save: SaveDocument, where: string): SaveDocument;
   /** The platform's wall clock in Unix seconds; null where there is none (headless runs). Shown on save slots only — never simulation. */
   wallClock(): number | null;
+  /**
+   * Write the profile now if it changed since the last write. Profile changes are otherwise
+   * written at most every PROFILE_CHECK_SECONDS; the browser calls this when the page is
+   * hidden or closed so the last changes aren't lost.
+   */
+  flush(): void;
 }
 
 export const PERSISTENCE_SERVICE: ServiceKey<PersistenceService> = serviceKey<PersistenceService>(

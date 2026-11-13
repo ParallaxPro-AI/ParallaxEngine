@@ -45,7 +45,7 @@ import { isObject, parseInfo, parseStored, stringify } from './stored.js';
 
 export { applyEntities, baseline, diffEntities, encodeEntity, encodeHeld, keyOf } from './entities.js';
 export type { EntityStates } from './entities.js';
-export { memoryStore, migrateDocument, persistence, PROFILE_KEY, UNREADABLE_PROFILE_KEY } from './persistence.js';
+export { memoryStore, migrateDocument, persistence, PROFILE_CHECK_SECONDS, PROFILE_KEY, UNREADABLE_PROFILE_KEY } from './persistence.js';
 export type { PersistenceOptions } from './persistence.js';
 export { parseInfo, parseStored, STORED_FORMAT, stringify } from './stored.js';
 
