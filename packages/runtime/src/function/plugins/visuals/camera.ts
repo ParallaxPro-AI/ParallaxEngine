@@ -537,7 +537,8 @@ export class Cameras {
       const rows = grid['rows'] as number;
       const cell = grid['cell_size'] as Vec2;
       const p = record.transform.worldPosition();
-      const width = cols * cell.x;
+      // A hex board's odd rows stick out half a cell.
+      const width = (cols + (grid['layout'] === 'hex' && rows > 1 ? 0.5 : 0)) * cell.x;
       const height = rows * cell.y;
       if (grid['origin'] === 'center') {
         return { min: new Vec2(p.x - width / 2, p.y - height / 2), max: new Vec2(p.x + width / 2, p.y + height / 2) };

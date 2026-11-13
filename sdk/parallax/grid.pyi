@@ -25,6 +25,11 @@ class Grid(EngineComponent):
     """down: row 0 is the top row, as text reads. Text rows read like a map: the first row
     is the top (+z on the ground; +y on an "xy" board), rows run toward -z (-y), and columns
     run along +x. up: row 0 is the bottom."""
+    layout: str = field("square", choices=["square", "hex"])
+    """square: square cells. hex: pointy-top hexagons in offset rows, every odd row shifted
+    half a cell along +x; `cell_size.x` is the distance between neighbouring centers in a
+    row and `cell_size.y` the distance between rows (x * 0.866 for regular hexagons).
+    `neighbors`, `path`, `distance`, `within` and grid movers then use the six hex neighbours."""
 
     def center(self, cell: Cell) -> Vec3:
         """Cell center as a world point: on an "xy" board its x, y are the plane's (`.xy()` for
@@ -33,7 +38,14 @@ class Grid(EngineComponent):
     def cell_at(self, point: Vec3 | Vec2) -> Cell | None:
         """The cell containing a world point (e.g. `ctx.input.pointer.world`), None if off-board."""
     def contains(self, cell: Cell) -> bool: ...
-    def neighbors(self, cell: Cell, *, diagonal: bool = False) -> list[Cell]: ...
+    def neighbors(self, cell: Cell, *, diagonal: bool = False) -> list[Cell]:
+        """Adjacent cells on the board: up, down, left, right (then diagonals); on a hex board
+        the six neighbours (left, right, the two above, the two below)."""
+    def distance(self, a: Cell, b: Cell, *, diagonal: bool = False) -> int:
+        """Steps between two cells: hex distance on a hex board; on a square board Manhattan,
+        or king's-move with `diagonal=True`."""
+    def within(self, cell: Cell, radius: int, *, diagonal: bool = False) -> list[Cell]:
+        """The board's cells at most `radius` steps from `cell` (itself included), row by row."""
     def cells(self) -> Iterator[Cell]: ...
     def at(self, cell: Cell, *, tagged: TagFilter = (), having: Sequence[type[Any]] = ()) -> list[Entity]:
         """Entities on this grid whose GridCell is `cell` (indexed), filtered by tags and
