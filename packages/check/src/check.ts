@@ -35,6 +35,7 @@ import { checkStory } from './story_checks.js';
 import { checkTerrain } from './terrain_checks.js';
 import { checkShapes2d } from './render2d_checks.js';
 import { checkEffects } from './vfx_checks.js';
+import { checkSynths } from './synth_checks.js';
 import { checkTilemaps } from './tilemap_checks.js';
 import { checkVoxels } from './voxel_checks.js';
 import { checkUi } from './ui_checks.js';
@@ -80,6 +81,7 @@ export function checkFiles(files: ProjectTree, declarations: Declarations, optio
   checkTilemaps(ctx);
   checkShapes2d(ctx);
   checkEffects(ctx);
+  checkSynths(ctx);
   checkVoxels(ctx);
   checkLook(ctx);
   checkLook2d(ctx);
