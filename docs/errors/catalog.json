@@ -5055,7 +5055,7 @@
       ],
       "messages": [
         "physics3d gravity must be a finite number, got {gravity}",
-        "teleport(rotation=) must be euler degrees (Vec3) in 3D, got {…}",
+        "teleport(rotation=) must be euler degrees (Vec3) or a yaw in 3D, got {…}",
         "{where} is a Vec2, but physics3d is 3D",
         "{where} must be a Vec3, got {…}",
         "{where} must be a finite number, got {…}",
@@ -5067,7 +5067,7 @@
       "fixes": [
         "Pass a Vec3: vec3(x, y, z) (for a stick, ctx.camera.main.relative(stick)).",
         "Pass a list, e.g. layers=[Layers.enemy].",
-        "Pass rotation=vec3(pitch, yaw, roll), e.g. vec3(0, 90, 0).",
+        "Pass rotation=vec3(pitch, yaw, roll), e.g. vec3(0, 90, 0), or a yaw: rotation=90.",
         "Pass rotation=vec3(pitch, yaw, roll).",
         "Pass vec3(x, y, z)."
       ],
