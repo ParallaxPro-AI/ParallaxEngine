@@ -115,6 +115,8 @@ export interface CoreVisualsOptions {
   readonly settings: () => LookSettings;
   /** The seat of the running behavior (`ctx.camera.main`). */
   readonly currentSeat: () => number;
+  /** The seat whose camera a seat looks through (a shared view: seat 0's). */
+  readonly viewSeat?: (seat: number) => number;
   /** The entity a seat controls (players / net plugins), for `"follow": "local_player"`. */
   readonly seatEntity?: (seat: number) => EntityId | null;
   readonly screen?: Screen;
@@ -127,6 +129,7 @@ export function coreVisuals(options: CoreVisualsOptions): VisualsPlugin {
     dimension: options.mode,
     look: lookFromInput(options.input, options.settings),
     currentSeat: options.currentSeat,
+    ...(options.viewSeat !== undefined && { viewSeat: options.viewSeat }),
     present: { handle: (inner) => new Handle(inner), clip: (name) => new ClipRef(name), rootMotion: presentRootMotion },
     ...(options.seatEntity !== undefined && { seatEntity: options.seatEntity }),
     ...(options.screen !== undefined && { screen: options.screen }),

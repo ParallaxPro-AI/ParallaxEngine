@@ -526,6 +526,23 @@ describe('ctx.camera', () => {
     expect(g.cameras.main).toBe(g.camera('a'));
   });
 
+  it('a seat that shares seat 0\'s view (viewSeat) reads the scene camera as main, for_player and use()', () => {
+    let seat = 2;
+    const g = game(two, { currentSeat: () => seat, viewSeat: () => 0 });
+    expect(g.cameras.main).toBe(g.camera('a'));
+    expect(g.cameras.for_player({ index: 2 })).toBe(g.camera('a'));
+    // use() from the sharing seat switches the one shared view.
+    g.cameras.use(g.id('b'));
+    seat = 0;
+    expect(g.cameras.main).toBe(g.camera('b'));
+  });
+
+  it('a seat with no camera of its own and no shared view still reports PP3720', () => {
+    const g = game(two, { currentSeat: () => 2 });
+    expect(code(() => g.cameras.main)).toBe('PP3720');
+    expect(code(() => g.cameras.for_player({ index: 2 }))).toBe('PP3720');
+  });
+
   it('tell renderers and audio which camera is active, and its shake', () => {
     const g = game(two);
     expect(g.plugin.rig.active()).toBe(g.id('a'));

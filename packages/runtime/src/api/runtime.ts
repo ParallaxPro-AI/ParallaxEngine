@@ -352,6 +352,7 @@ export class GameRuntime {
       input: ui.input.engine,
       settings: () => this.kernel.resource('settings') as unknown as LookSettings,
       currentSeat: () => this.#reader().seat,
+      viewSeat: (seat) => this.kernel.tryService(PLAYERS_SERVICE)?.viewOf?.(seat) ?? seat,
       seatEntity: (seat) => this.kernel.tryService(PLAYERS_SERVICE)?.entity(seat) ?? null,
       screen: { width: screen.width, height: screen.height },
     });

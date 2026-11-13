@@ -126,6 +126,11 @@ export class LocalPlayers implements PlayersService {
     return this.#seats;
   }
 
+  /** One shared view: every seat looks through seat 0's camera (the scene's). */
+  viewOf(seat: number): number {
+    return this.#options.splitScreen === 'none' ? 0 : seat;
+  }
+
   entity(seat: number): EntityId | null {
     const kernel = this.#kernel;
     if (kernel === undefined) return null;
