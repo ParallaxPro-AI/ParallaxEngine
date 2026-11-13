@@ -585,6 +585,7 @@ graph (states, blends and transitions in prefab data) gives full control;
 | Engine noise | `Synth.motor_car`, `motor_boat`, `motor_propeller` or `motor_rotor` in an `audio_source`; change its `pitch` with speed |
 | Ambience | `Synth.bed_air`, `bed_deep` and `bed_thicket` loops. Weather, wind and water sound by themselves (`ctx.audio.ambience`) |
 | Music | `"music": "music/theme"` in the scene, `ctx.audio.music(...)`, and layered stems with `MusicLayer` |
+| Music with no file | `assets/music/<name>.synth.json` with a `"song"`: a tempo, instruments and tracks of note steps ([`Synth`](../reference/parallax.md#synth)) |
 | Reverb | A `reverb_zone` component (`cave`, `hall`, `forest`, ...) |
 
 See [assets](assets.md#sound-and-effects) and

@@ -142,6 +142,19 @@ describe('synthesized sounds', () => {
     }
   });
 
+  it('a .synth.json song in music/ is a music track; a mistake in it fails at load with PP3513', () => {
+    const song = {
+      bpm: 120, bars: 2,
+      instruments: { bass: { wave: 'saw', decay: 0.2, sustain: 0.4 }, kick: { wave: 'sine', freq: 120, freq_end: 45, decay: 0.2, sustain: 0 } },
+      tracks: [{ instrument: 'bass', steps: 'C2 - . Eb2' }, { instrument: 'kick', steps: 'x . . .' }],
+    };
+    const g = setup({ extra: { 'assets/music/loop.synth.json': { song } } });
+    g.ctx.music('music/loop', 0);
+    g.steps();
+    expect(g.out.music).toBe('music/loop');
+    expect(() => setup({ extra: { 'assets/music/loop.synth.json': { song: { ...song, bpm: 5 } } } })).toThrow(/PP3513.*song\.bpm/);
+  });
+
   it('a bad spec fails at load with PP3513 and the file; unknown built-ins suggest the closest', () => {
     expect(() => setup({ extra: { 'assets/sfx/bad.synth.json': { duration: 0.2, layers: [{ wave: 'sqare' }] } } }))
       .toThrow(/PP3513.*assets\/sfx\/bad\.synth\.json.*sqare/);

@@ -2583,7 +2583,26 @@ class Synth:
                       "freq_end": None, "sweep": "exponential",
                       "q": 0.707, "gain_db": 0}}]}   # gain_db: peaking and shelf filters
 
-    Numbers other than detune_cents must be at least 0. (None above: leave the key out.)"""
+    Numbers other than detune_cents must be at least 0. (None above: leave the key out.)
+
+    Music as data: a `"song"` key (with "duration" and "layers" optional) sequences notes
+    over a tempo, up to 300 s and 20000 notes, and loops as `ctx.audio.music(...)`:
+
+        {"gain": 0.8, "song": {
+           "bpm": 100, "bars": 16,         # length: bars x beats_per_bar beats
+           "beats_per_bar": 4, "steps_per_beat": 4, "swing": 0,   # swing 0-0.5
+           "instruments": {                # a layer (no delay/length) or a list of layers
+             "bass": {"wave": "saw", "decay": 0.2, "sustain": 0.5, "release": 0.05,
+                      "filter": {"type": "lowpass", "freq": 800}},
+             "kick": [{"wave": "sine", "freq": 120, "freq_end": 40, "decay": 0.2}]},
+           "tracks": [                     # one token per step, | is a bar line
+             {"instrument": "bass", "steps": "C2 - . C2 | Eb2 . G2 .", "transpose": 0},
+             {"instrument": "kick", "steps": "x . . . x . . .", "at": 4, "repeat": 8,
+              "gain": 0.9}]}}
+
+    A token is a note (C4, F#3, Bb2), a chord (C4+E4+G4), x (a hit at the instrument's
+    own freq; a freq_end glides in proportion), - (hold one more step) or . (rest). A track
+    starts at bar `at` (default 0) and repeats to the song's end unless `repeat` is set."""
     ui_click: SoundRef
     ui_confirm: SoundRef
     ui_deny: SoundRef

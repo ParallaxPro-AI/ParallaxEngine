@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { biquad, renderSynth, synthProblems, synthStats } from './index.js';
+import { biquad, expandSong, noteFrequency, renderSynth, songSeconds, synthProblems, synthSeconds, synthStats } from './index.js';
 import type { SynthSpec } from './index.js';
 
 const METAL: SynthSpec = {
@@ -60,7 +60,7 @@ describe('synthProblems', () => {
       '"layers" must be a non-empty list (no layers is silence)',
     ]);
     expect(synthProblems({ duration: 30, layers: [{ wave: 'sqaure', fraq: 3, filter: { type: 'lowpass' } }], gian: 1 })).toEqual([
-      'unknown key "gian" (keys: duration, layers, gain, seed, normalize)',
+      'unknown key "gian" (keys: duration, layers, gain, seed, normalize, song)',
       '"duration" 30 is outside 0.005..20 seconds',
       'layers[0]: unknown key "fraq"',
       'layers[0].wave "sqaure" is not one of sine, square, saw, triangle, noise',
@@ -68,5 +68,88 @@ describe('synthProblems', () => {
     ]);
     expect(synthProblems(TONE)).toEqual([]);
     expect(synthProblems('loud')).toHaveLength(1);
+  });
+});
+
+describe('songs', () => {
+  const SONG: SynthSpec = {
+    duration: undefined as unknown as number, layers: [], gain: 0.8,
+    song: {
+      bpm: 120, bars: 2, steps_per_beat: 2,
+      instruments: {
+        bass: { wave: 'saw', attack: 0.01, decay: 0.2, sustain: 0.4, release: 0.05, filter: { type: 'lowpass', freq: 900 } },
+        kick: [{ wave: 'sine', freq: 120, freq_end: 45, decay: 0.2, sustain: 0 }, { wave: 'noise', decay: 0.01, sustain: 0, gain: 0.3 }],
+      },
+      tracks: [
+        { instrument: 'bass', steps: 'C2 - . Eb2 | G2 . C3+G3 .' },
+        { instrument: 'kick', steps: 'x . x .', gain: 0.9 },
+      ],
+    },
+  };
+  const { duration: _unused, ...spec } = SONG;
+  const written = spec as unknown as SynthSpec;
+
+  it('notes are A4 = 440 Hz equal temperament, with sharps, flats and transposition', () => {
+    expect(noteFrequency('A4')).toBeCloseTo(440, 6);
+    expect(noteFrequency('C4')).toBeCloseTo(261.626, 2);
+    expect(noteFrequency('F#3')).toBeCloseTo(184.997, 2);
+    expect(noteFrequency('Bb2')).toBeCloseTo(116.541, 2);
+    expect(noteFrequency('A3', 12)).toBeCloseTo(440, 6);
+    expect(noteFrequency('H2')).toBeUndefined();
+  });
+
+  it('expands steps into timed layers: held notes, chords split their gain, drums repeat to the end', () => {
+    expect(synthProblems(written)).toEqual([]);
+    expect(songSeconds(written.song!)).toBe(4);
+    expect(synthSeconds(written)).toBe(4);
+    const notes = expandSong(written.song!);
+    const bass = notes.filter((n) => n.wave === 'saw');
+    // 8 steps of 0.25 s, repeated twice over two bars: C2 (held 2), Eb2, G2, C3+G3 → 5 layers a pass.
+    expect(bass.length).toBe(10);
+    expect(bass[0]!.delay).toBe(0);
+    expect(bass[0]!.length).toBeCloseTo(0.5 + 0.05, 6);
+    expect(bass[0]!.freq).toBeCloseTo(noteFrequency('C2')!, 6);
+    expect(bass[1]!.delay).toBeCloseTo(0.75, 6);
+    const chord = bass.filter((n) => Math.abs(n.delay! - 1.5) < 1e-9);
+    expect(chord.map((n) => n.gain)).toEqual([0.5, 0.5]);
+    expect(bass[5]!.delay).toBeCloseTo(2, 6);
+    const kicks = notes.filter((n) => n.wave === 'sine');
+    expect(kicks.length).toBe(8);
+    expect(kicks[1]!.delay).toBeCloseTo(0.5, 6);
+    expect(kicks[0]!.freq_end).toBe(45);
+    expect(kicks[0]!.gain).toBeCloseTo(0.9, 6);
+  });
+
+  it('renders past the one-sound limits: longer than 20 s and far more than 24 layers', () => {
+    const long: SynthSpec = { layers: [], song: { bpm: 100, bars: 12, instruments: { hat: { wave: 'noise', decay: 0.03, sustain: 0 } }, tracks: [{ instrument: 'hat', steps: 'x x x x' }] } } as unknown as SynthSpec;
+    expect(synthProblems(long)).toEqual([]);
+    expect(expandSong(long.song!).length).toBe(12 * 16);
+    const pcm = renderSynth(long, 8000);
+    expect(pcm.length).toBe(Math.floor(28.8 * 8000));
+    expect(synthStats(pcm, 8000).peak).toBeCloseTo(0.9, 3);
+    const late = synthStats(pcm.subarray(Math.floor(27 * 8000), Math.floor(28 * 8000)), 8000);
+    expect(late.rms).toBeGreaterThan(0.01);
+  });
+
+  it('is deterministic and swing pushes the off-beats', () => {
+    expect(Array.from(renderSynth(written, 8000))).toEqual(Array.from(renderSynth(written, 8000)));
+    const swung = expandSong({ ...written.song!, swing: 0.25 }).filter((n) => n.wave === 'saw');
+    expect(swung[1]!.delay).toBeCloseTo(0.75 + 0.25 * 0.25, 6);
+  });
+
+  it('names each mistake in a song', () => {
+    const bad = { song: { bpm: 5, bars: 1.5, tempo: 1, instruments: { lead: { wave: 'sine', delay: 1 } }, tracks: [{ instrument: 'pad', steps: 'C4 Q9 x', at: -1 }] } };
+    expect(synthProblems(bad)).toEqual([
+      'song: unknown key "tempo" (keys: bpm, bars, beats_per_bar, steps_per_beat, swing, instruments, tracks)',
+      'song.bpm must be a tempo from 20 to 400',
+      'song.bars must be a whole number of bars, at least 1',
+      'song.instruments.lead: "delay" comes from the track\'s steps, not the instrument',
+      'song.tracks[0].instrument "pad" is not one of the song\'s instruments',
+      'song.tracks[0].steps: "Q9" is not a note (C4, F#3, Bb2), a chord (C4+E4), x, - or .',
+      'song.tracks[0].at must be at least 0',
+    ]);
+    expect(synthProblems({ song: { bpm: 60, bars: 100, instruments: { a: { wave: 'sine' } }, tracks: [{ instrument: 'a', steps: 'C4' }] } })).toEqual([
+      'song lasts 400.0 s; at most 300',
+    ]);
   });
 });
