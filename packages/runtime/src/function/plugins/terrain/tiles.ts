@@ -328,9 +328,13 @@ export class TilePyramid implements TerrainTiles {
     }
     let holes: Uint8Array | null = null;
     if (f.holes !== null) {
+      // A coarse tile can reach past the field's edge (its heights clamp there): its quads
+      // out there take the hole state of the field's edge, so cut-away ground stays cut.
+      const maxX = f.minX + f.width - 1e-6;
+      const maxZ = f.minZ + f.depth - 1e-6;
       for (let r = 0; r < TILE_QUADS; r++) {
         for (let c = 0; c < TILE_QUADS; c++) {
-          if (!f.holeAt(x + (c + 0.5) * cell, z + (r + 0.5) * cell)) continue;
+          if (!f.holeAt(clamp(x + (c + 0.5) * cell, f.minX, maxX), clamp(z + (r + 0.5) * cell, f.minZ, maxZ))) continue;
           holes ??= new Uint8Array(TILE_QUADS * TILE_QUADS);
           holes[r * TILE_QUADS + c] = 1;
         }
