@@ -685,7 +685,8 @@ class Entity:
     def base(self, kind: type[Any], field: str) -> float: ...
     def child(self, name: str) -> Entity:
         """A direct child by the name it has in the prefab's "children" (children only need
-        a "name" when code looks them up; names are unique per prefab). Raises PP3012 if absent."""
+        a "name" when code looks them up; names are unique per prefab), or one spawned under
+        it with `spawn(..., parent=this, name=...)`. Raises PP3012 if absent."""
     def attach(self, child: Entity, *, socket: str | None = None, keep_world: bool = False) -> None:
         """Parent `child` to this entity (optionally to a named bone/socket)."""
     def detach(self) -> None: ...

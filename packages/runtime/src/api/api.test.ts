@@ -157,6 +157,8 @@ describe('a small game', () => {
     expect(pair.children.map((c) => c.name)).toEqual(['left', 'right']);
     expect(pair.child('right').transform.position.x).toBe(1);
     expect(code(() => pair.child('middle'))).toBe('PP3012');
+    const spawned = r.ctx.world.spawn(new PrefabRef('crate'), kw({ parent: pair, name: 'extra' })) as Entity;
+    expect(pair.child('extra')).toEqual(spawned);
     expect(r.ctx.world.placement(new EntityRef('pair')).loaded).toBe(pair);
     expect(code(() => r.ctx.world.placed(new EntityRef('nobody')))).toBe('PP3011');
   });
