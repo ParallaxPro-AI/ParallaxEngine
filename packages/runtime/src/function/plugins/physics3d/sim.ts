@@ -109,8 +109,9 @@ interface Body {
   characterKey: string;
   rigidbodyFields: Fields | undefined;
   colliderFields: Fields | undefined;
-  rigidbodyKey: string;
-  colliderKey: string;
+  /** The values the body and collider were last built from (`rigidbodyKey`, `colliderKey`); compared with `sameKey`. */
+  rigidbodyKey: Key;
+  colliderKey: Key;
   locksKey: string;
   /** The transform values this body last agreed with; a different object means the game moved it. */
   position: Vec3;
@@ -179,15 +180,43 @@ function key(values: readonly unknown[]): string {
   return values.map((v) => (v instanceof Vec3 ? `${v.x},${v.y},${v.z}` : Array.isArray(v) ? v.join('|') : String(v))).join(';');
 }
 
-function rigidbodyKey(fields: Fields): string {
-  return key([fields['kind'], fields['mass'], fields['linear_damping'], fields['angular_damping'], fields['gravity_scale'],
-    fields['lock_rotation'], fields['lock_axes'], fields['lock_rotation_axes'], fields['continuous']]);
+/**
+ * The values a body or collider is built from. Every body is reconciled every step, so these
+ * are compared value by value (`sameKey`) rather than formatted into strings: with hundreds of
+ * bodies the formatting was a large share of the step.
+ */
+type Key = readonly unknown[];
+
+const NO_KEY: Key = [];
+
+/** Equal as `key()` would print them: vectors and quaternions by component, lists by element. */
+function sameValue(a: unknown, b: unknown): boolean {
+  if (a === b) return true;
+  if (a instanceof Vec3 && b instanceof Vec3) return a.x === b.x && a.y === b.y && a.z === b.z;
+  if (a instanceof Quat && b instanceof Quat) return a.x === b.x && a.y === b.y && a.z === b.z && a.w === b.w;
+  if (Array.isArray(a) && Array.isArray(b)) return a.length === b.length && a.every((v, i) => sameValue(v, b[i]));
+  return typeof a === 'object' && a !== null && typeof b === 'object' && b !== null && String(a) === String(b);
 }
 
-function colliderKey(fields: Fields, scale: Vec3, mass: unknown, model: unknown, offset: Quat): string {
-  return key([fields['shape'], fields['size'], fields['radius'], fields['height'], fields['offset'], fields['trigger'],
-    fields['layer'], fields['collides_with'], fields['friction'], fields['bounce'], fields['material'], scale, mass, model,
-    `${offset.x},${offset.y},${offset.z},${offset.w}`]);
+export function sameKey(a: Key, b: Key): boolean {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) if (!sameValue(a[i], b[i])) return false;
+  return true;
+}
+
+/** A list field as it is now (a copy, so a later change to the same list still shows). */
+function listNow(v: unknown): unknown {
+  return Array.isArray(v) ? [...v] : v;
+}
+
+function rigidbodyKey(fields: Fields): Key {
+  return [fields['kind'], fields['mass'], fields['linear_damping'], fields['angular_damping'], fields['gravity_scale'],
+    fields['lock_rotation'], listNow(fields['lock_axes']), listNow(fields['lock_rotation_axes']), fields['continuous']];
+}
+
+function colliderKey(fields: Fields, scale: Vec3, mass: unknown, model: unknown, offset: Quat): Key {
+  return [fields['shape'], fields['size'], fields['radius'], fields['height'], fields['offset'], fields['trigger'],
+    fields['layer'], listNow(fields['collides_with']), fields['friction'], fields['bounce'], fields['material'], scale, mass, model, offset];
 }
 
 function where(record: EntityRecord, component: string): string {
@@ -510,9 +539,10 @@ export class Physics3dSim {
     let massChanged = false;
     const locks = this.#locks.get(record.id);
     const locksKey = locks === undefined ? '' : JSON.stringify([...locks]);
-    if (rb !== body.rigidbodyFields || (rb !== undefined && rigidbodyKey(rb) !== body.rigidbodyKey) || locksKey !== body.locksKey) {
+    const rbKey = rb === undefined ? NO_KEY : rigidbodyKey(rb);
+    if (rb !== body.rigidbodyFields || (rb !== undefined && !sameKey(rbKey, body.rigidbodyKey)) || locksKey !== body.locksKey) {
       body.rigidbodyFields = rb;
-      body.rigidbodyKey = rb === undefined ? '' : rigidbodyKey(rb);
+      body.rigidbodyKey = rbKey;
       body.locksKey = locksKey;
       this.#applyRigidbody(body, rb, record);
       massChanged = true;
@@ -528,11 +558,11 @@ export class Physics3dSim {
     const model = col !== undefined && (col['shape'] === 'mesh' || col['shape'] === 'convex') ? modelPath(record) : undefined;
     const modelKey = model === undefined ? '' : `${model.path}@${model.offset.toString()}@${model.rotation.toString()}@${model.scale}`;
     const offset = this.offsetOf(record.id);
-    if (col !== body.colliderFields || body.colliderPending
-      || (col !== undefined && colliderKey(col, scale, mass, modelKey, offset) !== body.colliderKey)) {
+    const colKey = col === undefined ? NO_KEY : colliderKey(col, scale, mass, modelKey, offset);
+    if (col !== body.colliderFields || body.colliderPending || (col !== undefined && !sameKey(colKey, body.colliderKey))) {
       if (body.collider !== undefined) this.#removeCollider(body, 'collider');
       body.colliderFields = col;
-      body.colliderKey = col === undefined ? '' : colliderKey(col, scale, mass, modelKey, offset);
+      body.colliderKey = colKey;
       body.colliderPending = false;
       body.geometryBounds = undefined;
       if (col !== undefined) this.#attachCollider(body, col, scale, record);
@@ -1405,8 +1435,8 @@ export class Physics3dSim {
       characterKey: '',
       rigidbodyFields: undefined,
       colliderFields: undefined,
-      rigidbodyKey: '',
-      colliderKey: '',
+      rigidbodyKey: NO_KEY,
+      colliderKey: NO_KEY,
       locksKey: '',
       position: record.transform.position,
       rotation: record.transform.rotation,
