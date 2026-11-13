@@ -534,7 +534,10 @@ export class CanvasSurface2d implements RenderSurface2d {
         if (image === undefined) return;
         // Images are stored y-down; the world is y-up.
         this.#set(mul(mul(view, d.transform), [d.flipX ? -1 : 1, 0, 0, d.flipY ? 1 : -1, 0, 0]));
+        // Pixel art scales with hard pixels; everything else is smoothed.
+        if (d.filter === 'nearest') ctx.imageSmoothingEnabled = false;
         this.#image(image, d.image, d.tint, d.size[0], d.size[1]);
+        if (d.filter === 'nearest') ctx.imageSmoothingEnabled = true;
         return;
       }
       case 'text':

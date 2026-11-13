@@ -64,6 +64,8 @@ export const SPRITE_SCHEMA: Schema = {
   flip_y: t.bool({ default: false }),
   /** "additive": its colors add to what is under it (glows, lasers, magic); "normal" paints over. */
   blend: t.enum(['normal', 'additive'], { default: 'normal' }),
+  /** How the image scales: "linear" (default) smooths; "nearest" keeps hard pixels (pixel art). */
+  filter: t.enum(['linear', 'nearest'], { default: 'linear' }),
   /** Documented prefab data (SDK Sprite docstring): animation name → frames. */
   animations: { type: { kind: 'dict', of: SPRITE_ANIMATION }, default: {} },
   /** The playing animation (None: `image`). Set by `play()`; read-only by convention. */
@@ -293,6 +295,8 @@ export const TILEMAP_SCHEMA: Schema = {
   /** Collision layer of the tile colliders (physics2d layers). */
   layer: t.string({ default: 'default' }),
   friction: t.number({ default: 0.5, min: 0 }),
+  /** How tile images scale: "linear" (default) smooths; "nearest" keeps hard pixels (pixel art). */
+  filter: t.enum(['linear', 'nearest'], { default: 'linear' }),
 };
 
 /** Every visuals component id → its schema, in SDK order. */

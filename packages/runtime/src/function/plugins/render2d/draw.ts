@@ -7,11 +7,11 @@
  *               texture, points (polygon), thickness (ring), corner_radius (rect),
  *               stroke_width / stroke_color (any 2D kind)
  *   sprite      image, size, color (tint), offset, flip_x, flip_y, blend ("additive" adds
- *               its colors), animations, and the animation the visuals plugin's `play()`
- *               records (see `SPRITE_ANIMATION`)
+ *               its colors), filter ("nearest": hard pixels), animations, and the animation
+ *               the visuals plugin's `play()` records (see `SPRITE_ANIMATION`)
  *   text_mesh   text ([color=…] / [b] markup), size (line height), color
  *   world_bar   value 0..1, offset, color, bands, shown — drawn as rects over the entity
- *   tilemap     tile_size, rows, tiles {image, color} — one image (or rect) per cell, under the rest
+ *   tilemap     tile_size, rows, tiles {image, color}, filter — one image (or rect) per cell, under the rest
  *
  * Per entity the parts draw in that order (shape, sprite, text, bar), at the entity's
  * world z; entities with equal z draw in spawn order.
@@ -211,9 +211,10 @@ function spriteDraws(out: Draw2d[], sprite: Fields, at: Placed2d, entity: Entity
     out.push({ kind: 'rect', z: at.z, entity, transform: m, size, fill: multiply(tint, missingImageColor(refString(ref, `${where}.image`))), ...additive });
     return;
   }
+  const nearest = sprite['filter'] === 'nearest' && { filter: 'nearest' as const };
   out.push({
     kind: 'image', z: at.z, entity, transform: m, image, size, tint,
-    flipX: sprite['flip_x'] === true, flipY: sprite['flip_y'] === true, ...additive,
+    flipX: sprite['flip_x'] === true, flipY: sprite['flip_y'] === true, ...additive, ...nearest,
   });
 }
 
@@ -254,6 +255,7 @@ function tilemapDraws(out: Draw2d[], tilemap: Fields, at: Placed2d, entity: Enti
   const tiles = tilemap['tiles'] as Readonly<Record<string, Fields>>;
   const size: [number, number] = [grid.width, grid.height];
   const looks = new Map<string, { image: string | null; fill: Rgba }>();
+  const nearest = tilemap['filter'] === 'nearest' && { filter: 'nearest' as const };
   for (const cell of grid.cells) {
     let look = looks.get(cell.key);
     if (look === undefined) {
@@ -269,7 +271,7 @@ function tilemapDraws(out: Draw2d[], tilemap: Fields, at: Placed2d, entity: Enti
     const m = compose(at.m, [1, 0, 0, 1, x, y]);
     out.push(look.image === null
       ? { kind: 'rect', z: at.z, entity, transform: m, size, fill: look.fill }
-      : { kind: 'image', z: at.z, entity, transform: m, image: look.image, size, tint: look.fill, flipX: false, flipY: false });
+      : { kind: 'image', z: at.z, entity, transform: m, image: look.image, size, tint: look.fill, flipX: false, flipY: false, ...nearest });
   }
 }
 
