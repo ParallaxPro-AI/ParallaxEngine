@@ -184,6 +184,27 @@ describe('modal panels', () => {
     expect(r.kernel.time.frozen).toBe(false);
   });
 
+  it('a modal declared freeze=False mutes input but leaves time running (a title over a live scene)', () => {
+    const r = rig([panel('live_menu', { modal: true, freeze: false, toggleWith: PAUSE_KEY }), panel('pause', { modal: true })]);
+    r.step();
+    tap(r, PAUSE_KEY);
+    expect(r.engine.isOpen('live_menu')).toBe(true);
+    expect(r.engine.modalOpen()).toBe(true);
+    expect(r.kernel.time.frozen).toBe(false);
+    const at = r.kernel.time.now;
+    r.log.length = 0;
+    r.step(2);
+    expect(r.kernel.time.now).toBeGreaterThan(at);
+    expect(r.log).toContain('update');
+    // a freezing modal on top of it still freezes
+    r.engine.open('pause');
+    r.step();
+    expect(r.kernel.time.frozen).toBe(true);
+    r.engine.close('pause');
+    r.step();
+    expect(r.kernel.time.frozen).toBe(false);
+  });
+
   it('modals stack: the toggle key closes only its own panel, and only while it is on top', () => {
     const r = rig([
       panel('pause', { modal: true, toggleWith: PAUSE_KEY, actions: { settings: openP('settings'), resume: close } }),

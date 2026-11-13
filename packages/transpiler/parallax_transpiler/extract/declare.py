@@ -74,7 +74,7 @@ DECORATOR_KEYWORDS: dict[str, frozenset[str]] = {
     "event": frozenset({"target"}),
     "behavior": frozenset({"requires", "tick", "when"}),
     "system": frozenset({"scenes", "when", "after", "runs_while_frozen", "runs_on"}),
-    "ui": frozenset({"html", "modal", "layer", "scenes", "when", "delay", "toggle_with", "while_held", "cursor", "scale"}),
+    "ui": frozenset({"html", "modal", "freeze", "layer", "scenes", "when", "delay", "toggle_with", "while_held", "cursor", "scale"}),
 }
 FIELD_FUNCTIONS: dict[str, tuple[str, ...]] = {
     "field": ("default", "min", "max", "unit", "choices", "doc", "keep", "replicate", "modifiable"),

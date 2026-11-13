@@ -225,6 +225,7 @@ interface PanelOptions {
   readonly id: string;
   readonly html: string;
   readonly modal: boolean;
+  readonly freeze: boolean;
   readonly layer: PanelLayer;
   readonly scenes: unknown;
   readonly when: unknown;
@@ -253,10 +254,10 @@ function panelClass(value: unknown, where: string): Function {
 const LAYERS: readonly PanelLayer[] = ['hud', 'menu', 'overlay'];
 const SCALES: readonly UiPanelScale[] = ['viewport', 'design', 'none'];
 
-/** `@ui("hud", html="ui/hud.html", modal=False, layer="hud", scenes=(), when=None, delay=0, toggle_with=None, while_held=None, cursor=None, scale="viewport")`. */
+/** `@ui("hud", html="ui/hud.html", modal=False, freeze=True, layer="hud", scenes=(), when=None, delay=0, toggle_with=None, while_held=None, cursor=None, scale="viewport")`. */
 export function ui(...args: unknown[]): <T extends AnyClass>(cls: T) => T {
   const a = bindArgs('ui', args, {
-    positional: ['id'], keyword: ['html', 'modal', 'layer', 'scenes', 'when', 'delay', 'toggle_with', 'while_held', 'cursor', 'scale'], required: ['id', 'html'],
+    positional: ['id'], keyword: ['html', 'modal', 'freeze', 'layer', 'scenes', 'when', 'delay', 'toggle_with', 'while_held', 'cursor', 'scale'], required: ['id', 'html'],
   }).args;
   const id = a['id'];
   if (typeof id !== 'string' || !/^[a-z][a-z0-9_]*$/.test(id)) fail('PP4427', `@ui id ${JSON.stringify(id)} must be snake_case`);
@@ -273,7 +274,7 @@ export function ui(...args: unknown[]): <T extends AnyClass>(cls: T) => T {
   const delay = a['delay'] ?? 0;
   if (typeof delay !== 'number' && typeof delay !== 'function') fail('PP4427', `@ui("${id}") delay= takes seconds or a function of ctx`);
   const options: PanelOptions = {
-    id, html: a['html'], modal: truthy(a['modal'] ?? false), layer: layer as PanelLayer, scenes: a['scenes'] ?? [],
+    id, html: a['html'], modal: truthy(a['modal'] ?? false), freeze: truthy(a['freeze'] ?? true), layer: layer as PanelLayer, scenes: a['scenes'] ?? [],
     when: a['when'] ?? undefined, delay, toggleWith: a['toggle_with'] ?? undefined, whileHeld: a['while_held'] ?? undefined,
     cursor: cursorOf(a['cursor'], `@ui("${id}")`), scale: scale as UiPanelScale,
   };
@@ -580,6 +581,7 @@ export function panelDecl(cls: unknown, env: CoerceEnv): PanelDecl {
     id: options.id,
     html: options.html,
     modal: options.modal,
+    ...(!options.freeze && { freeze: false }),
     layer: options.layer,
     scenes: sceneScopes(options.scenes, `@ui("${options.id}")`),
     ...(when !== undefined && { when: (ctx: unknown) => truthy(when(ctx)) }),

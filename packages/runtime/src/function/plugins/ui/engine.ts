@@ -278,8 +278,13 @@ export class UiEngine {
     this.#applyModal();
   }
 
+  /** True while an open modal freezes time (every modal but those declared `freeze=False`). */
+  freezingModalOpen(): boolean {
+    return this.#open.some((p) => p.decl.modal && p.decl.freeze !== false);
+  }
+
   #applyModal(): void {
-    const modal = this.modalOpen();
+    const modal = this.freezingModalOpen();
     if (modal === this.#frozen) return;
     this.#frozen = modal;
     if (this.#freezeTime) this.#kernelOrFail().setFrozen(modal);
@@ -498,7 +503,7 @@ export class UiEngine {
     this.#requests = [];
     this.#labels.clear();
     // The kernel restored time.frozen with the world; follow it rather than re-apply.
-    this.#frozen = this.modalOpen();
+    this.#frozen = this.freezingModalOpen();
     this.#views = new Map();
     for (const p of this.#open) this.#views.set(p.decl, this.#view(p, kernel));
   }
