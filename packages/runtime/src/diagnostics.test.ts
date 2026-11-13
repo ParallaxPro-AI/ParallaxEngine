@@ -38,6 +38,8 @@ const SHARED: Readonly<Record<string, string>> = {
   PP3033: 'unknown ease',
   PP3247: 'the plugin is already installed in another kernel',
   PP3403: 'no such seat',
+  PP3615: 'a grid of row strings names a character with no entry (tilemap tiles, light grid levels)',
+  PP3616: "a grid's cell size or rows are malformed (tilemap, light grid)",
   PP3622: 'a voxel block definition (content/block) is malformed',
   PP3808: 'an effect file (.vfx.json, one schema in 2D and 3D) is malformed',
   PP3405: 'pointer.world needs a camera / renderer',

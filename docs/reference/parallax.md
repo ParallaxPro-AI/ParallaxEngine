@@ -45,7 +45,7 @@ Semantics worth knowing:
 
 ## Contents
 
-[`Keep`](#keep), [`Replicate`](#replicate), [`Vec2`](#vec2), [`Vec3`](#vec3), [`Quat`](#quat), [`Color`](#color), [`vec2()`](#vec2-1), [`vec3()`](#vec3-1), [`clamp()`](#clamp), [`lerp()`](#lerp), [`inverse_lerp()`](#inverse_lerp), [`remap()`](#remap), [`move_toward()`](#move_toward), [`approach()`](#approach), [`deg()`](#deg), [`rad()`](#rad), [`angle_between()`](#angle_between), [`angle_to()`](#angle_to), [`heading_to()`](#heading_to), [`rotate_toward()`](#rotate_toward), [`wrap_angle()`](#wrap_angle), [`noise2d()`](#noise2d), [`scatter()`](#scatter), [`Ease`](#ease), [`ease()`](#ease-1), [`field()`](#field), [`param()`](#param), [`state()`](#state), [`record()`](#record), [`Timer`](#timer), [`PrefabRef`](#prefabref), [`SceneRef`](#sceneref), [`AssetRef`](#assetref), [`SoundRef`](#soundref), [`MusicRef`](#musicref), [`ImageRef`](#imageref), [`ModelRef`](#modelref), [`EffectRef`](#effectref), [`Effect`](#effect), [`ClipRef`](#clipref), [`ContentRef`](#contentref), [`EntityRef`](#entityref), [`TextRef`](#textref), [`Localized`](#localized), [`WorldLayerRef`](#worldlayerref), [`component()`](#component), [`resource()`](#resource), [`config()`](#config), [`content()`](#content), [`event()`](#event), [`Tag`](#tag), [`tag()`](#tag-1), [`ContentList`](#contentlist), [`Transform`](#transform), [`Entity`](#entity), [`Query`](#query), [`TagFilter`](#tagfilter), [`Without`](#without), [`World`](#world), [`Placement`](#placement), [`WorldLayer`](#worldlayer), [`EngineComponent`](#enginecomponent), [`Sprite`](#sprite), [`Tile`](#tile), [`Tilemap`](#tilemap), [`Shape`](#shape), [`JointMotion`](#jointmotion), [`Model`](#model), [`Socket`](#socket), [`Animator`](#animator), [`RootMotion`](#rootmotion), [`Light`](#light), [`Particles`](#particles), [`TextMesh`](#textmesh), [`AudioSource`](#audiosource), [`AudioListener`](#audiolistener), [`ReverbZone`](#reverbzone), [`Marker`](#marker), [`WorldBar`](#worldbar), [`PlayerStart`](#playerstart), [`EnvironmentZone`](#environmentzone), [`Outline`](#outline), [`LodLevel`](#lodlevel), [`Lod`](#lod), [`StaticMesh`](#staticmesh), [`Decal`](#decal), [`RenderTexture`](#rendertexture), [`Monitor`](#monitor), [`Mirror`](#mirror), [`SurfaceFx`](#surfacefx), [`HeatHaze`](#heathaze), [`DepthOfField`](#depthoffield), [`FogOverlay`](#fogoverlay), [`ClipFinished`](#clipfinished), [`AnimationEvent`](#animationevent), [`Spawned`](#spawned), [`Destroyed`](#destroyed), [`Collided`](#collided), [`CollisionEnded`](#collisionended), [`TriggerEntered`](#triggerentered), [`TriggerExited`](#triggerexited), [`SceneLoaded`](#sceneloaded), [`Beat`](#beat), [`DayChanged`](#daychanged), [`PanelOpened`](#panelopened), [`PanelClosed`](#panelclosed), [`PanelAction`](#panelaction), [`TickRate`](#tickrate), [`Behavior`](#behavior), [`System`](#system), [`SceneScope`](#scenescope), [`behavior()`](#behavior-1), [`system()`](#system-1), [`on()`](#on), [`Task`](#task), [`Handle`](#handle), [`Time`](#time-1), [`Button`](#button), [`Axis1`](#axis1), [`Axis2`](#axis2), [`Binding`](#binding), [`Keys`](#keys), [`keys`](#keys-1), [`gamepad`](#gamepad), [`mouse`](#mouse), [`TouchZone`](#touchzone), [`touch`](#touch), [`TouchGroup`](#touchgroup), [`TouchSkin`](#touchskin), [`button()`](#button-1), [`axis1()`](#axis1-1), [`axis2()`](#axis2-1), [`ButtonGroup`](#buttongroup), [`button_group()`](#button_group), [`Actions`](#actions), [`Pointer`](#pointer), [`Input`](#input), [`ControlBinding`](#controlbinding), [`PanelCommand`](#panelcommand), [`close_panel()`](#close_panel), [`open_panel()`](#open_panel), [`reload_scene()`](#reload_scene), [`load_scene()`](#load_scene), [`action()`](#action), [`Panel`](#panel), [`ui()`](#ui-1), [`Cursor`](#cursor), [`PlayerPanel`](#playerpanel), [`SettingsPanel`](#settingspanel), [`FloatStyle`](#floatstyle), [`UiApi`](#uiapi), [`Camera`](#camera), [`CameraApi`](#cameraapi), [`ScenesApi`](#scenesapi), [`EnvironmentApi`](#environmentapi), [`AudioApi`](#audioapi), [`MusicLayer`](#musiclayer), [`Synth`](#synth), [`VfxApi`](#vfxapi), [`Photo`](#photo), [`DebugApi`](#debugapi), [`Settings`](#settings), [`Player`](#player), [`Context`](#context), [`Plugin`](#plugin), [`Feature`](#feature), [`Game`](#game), [`migration()`](#migration), [`SaveData`](#savedata)
+[`Keep`](#keep), [`Replicate`](#replicate), [`Vec2`](#vec2), [`Vec3`](#vec3), [`Quat`](#quat), [`Color`](#color), [`vec2()`](#vec2-1), [`vec3()`](#vec3-1), [`clamp()`](#clamp), [`lerp()`](#lerp), [`inverse_lerp()`](#inverse_lerp), [`remap()`](#remap), [`move_toward()`](#move_toward), [`approach()`](#approach), [`deg()`](#deg), [`rad()`](#rad), [`angle_between()`](#angle_between), [`angle_to()`](#angle_to), [`heading_to()`](#heading_to), [`rotate_toward()`](#rotate_toward), [`wrap_angle()`](#wrap_angle), [`noise2d()`](#noise2d), [`scatter()`](#scatter), [`Ease`](#ease), [`ease()`](#ease-1), [`field()`](#field), [`param()`](#param), [`state()`](#state), [`record()`](#record), [`Timer`](#timer), [`PrefabRef`](#prefabref), [`SceneRef`](#sceneref), [`AssetRef`](#assetref), [`SoundRef`](#soundref), [`MusicRef`](#musicref), [`ImageRef`](#imageref), [`ModelRef`](#modelref), [`EffectRef`](#effectref), [`Effect`](#effect), [`ClipRef`](#clipref), [`ContentRef`](#contentref), [`EntityRef`](#entityref), [`TextRef`](#textref), [`Localized`](#localized), [`WorldLayerRef`](#worldlayerref), [`component()`](#component), [`resource()`](#resource), [`config()`](#config), [`content()`](#content), [`event()`](#event), [`Tag`](#tag), [`tag()`](#tag-1), [`ContentList`](#contentlist), [`Transform`](#transform), [`Entity`](#entity), [`Query`](#query), [`TagFilter`](#tagfilter), [`Without`](#without), [`World`](#world), [`Placement`](#placement), [`WorldLayer`](#worldlayer), [`EngineComponent`](#enginecomponent), [`Sprite`](#sprite), [`Tile`](#tile), [`Tilemap`](#tilemap), [`LightGrid`](#lightgrid), [`Shape`](#shape), [`JointMotion`](#jointmotion), [`Model`](#model), [`Socket`](#socket), [`Animator`](#animator), [`RootMotion`](#rootmotion), [`Light`](#light), [`Particles`](#particles), [`TextMesh`](#textmesh), [`AudioSource`](#audiosource), [`AudioListener`](#audiolistener), [`ReverbZone`](#reverbzone), [`Marker`](#marker), [`WorldBar`](#worldbar), [`PlayerStart`](#playerstart), [`EnvironmentZone`](#environmentzone), [`Outline`](#outline), [`LodLevel`](#lodlevel), [`Lod`](#lod), [`StaticMesh`](#staticmesh), [`Decal`](#decal), [`RenderTexture`](#rendertexture), [`Monitor`](#monitor), [`Mirror`](#mirror), [`SurfaceFx`](#surfacefx), [`HeatHaze`](#heathaze), [`DepthOfField`](#depthoffield), [`FogOverlay`](#fogoverlay), [`ClipFinished`](#clipfinished), [`AnimationEvent`](#animationevent), [`Spawned`](#spawned), [`Destroyed`](#destroyed), [`Collided`](#collided), [`CollisionEnded`](#collisionended), [`TriggerEntered`](#triggerentered), [`TriggerExited`](#triggerexited), [`SceneLoaded`](#sceneloaded), [`Beat`](#beat), [`DayChanged`](#daychanged), [`PanelOpened`](#panelopened), [`PanelClosed`](#panelclosed), [`PanelAction`](#panelaction), [`TickRate`](#tickrate), [`Behavior`](#behavior), [`System`](#system), [`SceneScope`](#scenescope), [`behavior()`](#behavior-1), [`system()`](#system-1), [`on()`](#on), [`Task`](#task), [`Handle`](#handle), [`Time`](#time-1), [`Button`](#button), [`Axis1`](#axis1), [`Axis2`](#axis2), [`Binding`](#binding), [`Keys`](#keys), [`keys`](#keys-1), [`gamepad`](#gamepad), [`mouse`](#mouse), [`TouchZone`](#touchzone), [`touch`](#touch), [`TouchGroup`](#touchgroup), [`TouchSkin`](#touchskin), [`button()`](#button-1), [`axis1()`](#axis1-1), [`axis2()`](#axis2-1), [`ButtonGroup`](#buttongroup), [`button_group()`](#button_group), [`Actions`](#actions), [`Pointer`](#pointer), [`Input`](#input), [`ControlBinding`](#controlbinding), [`PanelCommand`](#panelcommand), [`close_panel()`](#close_panel), [`open_panel()`](#open_panel), [`reload_scene()`](#reload_scene), [`load_scene()`](#load_scene), [`action()`](#action), [`Panel`](#panel), [`ui()`](#ui-1), [`Cursor`](#cursor), [`PlayerPanel`](#playerpanel), [`SettingsPanel`](#settingspanel), [`FloatStyle`](#floatstyle), [`UiApi`](#uiapi), [`Camera`](#camera), [`CameraApi`](#cameraapi), [`ScenesApi`](#scenesapi), [`EnvironmentApi`](#environmentapi), [`AudioApi`](#audioapi), [`MusicLayer`](#musiclayer), [`Synth`](#synth), [`VfxApi`](#vfxapi), [`Photo`](#photo), [`DebugApi`](#debugapi), [`Settings`](#settings), [`Player`](#player), [`Context`](#context), [`Plugin`](#plugin), [`Feature`](#feature), [`Game`](#game), [`migration()`](#migration), [`SaveData`](#savedata)
 
 ### `Keep`
 
@@ -1435,6 +1435,40 @@ adjacent cells in a row, on `layer`); they are rebuilt when the fields change, s
 - `collide: bool = False`
 - `layer: str = 'default'`
 - `friction: float = 0.5`
+
+### `LightGrid`
+
+```python
+@component("light_grid")
+class LightGrid(EngineComponent)
+```
+
+2D light per cell, for tile worlds whose light the game works out itself (sunlight
+reaching down shafts, torchlight spreading through caves). `rows` are strings, top row
+first, like a `Tilemap`'s; each character names a `levels` color that is added to the
+scene's light map over its cell, blended smoothly between cell centers. " " and "." add
+no light. The entity's position plus `offset` is the grid's bottom-left corner (it is
+not rotated). Like a `Light`, a grid turns 2D lighting on: everything else drops to the
+environment's `ambient`.
+
+```text
+"light_grid": {"cell_size": [1, 1],
+               "levels": {"a": "#101018", "m": "#807060", "z": "#ffffff"},
+               "rows": ["zzzmma...", "zzmma...."]}
+```
+
+Cover the view with one grid that follows the camera and replace `rows` when the
+light changes; a grid is repainted only when its rows, levels or place change.
+
+**Fields**
+
+- `cell_size: Vec2 = ...`
+- `offset: Vec2 = ...`
+
+  The bottom-left corner relative to the entity (default (0, 0)).
+
+- `rows: list[str] = ...`
+- `levels: dict[str, Color] = ...`
 
 ### `Shape`
 

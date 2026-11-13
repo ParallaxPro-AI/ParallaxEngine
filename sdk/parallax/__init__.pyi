@@ -851,6 +851,28 @@ class Tilemap(EngineComponent):
     layer: str = "default"
     friction: float = 0.5
 
+@component("light_grid")
+class LightGrid(EngineComponent):
+    """2D light per cell, for tile worlds whose light the game works out itself (sunlight
+    reaching down shafts, torchlight spreading through caves). `rows` are strings, top row
+    first, like a `Tilemap`'s; each character names a `levels` color that is added to the
+    scene's light map over its cell, blended smoothly between cell centers. " " and "." add
+    no light. The entity's position plus `offset` is the grid's bottom-left corner (it is
+    not rotated). Like a `Light`, a grid turns 2D lighting on: everything else drops to the
+    environment's `ambient`.
+
+        "light_grid": {"cell_size": [1, 1],
+                       "levels": {"a": "#101018", "m": "#807060", "z": "#ffffff"},
+                       "rows": ["zzzmma...", "zzmma...."]}
+
+    Cover the view with one grid that follows the camera and replace `rows` when the
+    light changes; a grid is repainted only when its rows, levels or place change."""
+    cell_size: Vec2 = ...
+    offset: Vec2 = ...
+    """The bottom-left corner relative to the entity (default (0, 0))."""
+    rows: list[str] = ...
+    levels: dict[str, Color] = ...
+
 @component("shape")
 class Shape(EngineComponent):
     """A primitive mesh (3D) or vector shape (2D) — the quick way to build without assets.

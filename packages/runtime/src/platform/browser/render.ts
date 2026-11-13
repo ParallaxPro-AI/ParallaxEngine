@@ -11,7 +11,7 @@
  */
 
 import { diagnostic, fail, LIGHT_FALLOFF_STOPS, PARTICLE_STRIDE } from '../../core/index.js';
-import type { Affine2d, Diagnostic, Draw2d, Fog2d, Frame2d, Lighting2d, RenderSurface2d, Rgba, Ripple2d, Stroke2d, TextDraw } from '../../core/index.js';
+import type { Affine2d, Diagnostic, Draw2d, Fog2d, Frame2d, LightGrid2d, Lighting2d, RenderSurface2d, Rgba, Ripple2d, Stroke2d, TextDraw } from '../../core/index.js';
 
 /** Wedges a 2D spot's soft edge is drawn in, each side. */
 const SPOT_EDGE_STEPS = 6;
@@ -134,6 +134,8 @@ export class CanvasSurface2d implements RenderSurface2d {
   /** Fog of war's cell image and the key it was painted for. */
   #fogImage: CanvasLike | null = null;
   #fogKey = '';
+  /** Each light grid's cell image (by entity) and the key it was painted for. */
+  readonly #gridImages = new Map<number, { key: string; image: CanvasLike }>();
   /** Bloom's thresholded, blurred quarter-size copy of the viewport. */
   #glow: CanvasLike | null = null;
 
@@ -395,6 +397,7 @@ export class CanvasSurface2d implements RenderSurface2d {
     g.fillStyle = `rgb(${byte(ar)}, ${byte(ag)}, ${byte(ab)})`;
     g.fillRect(0, 0, w, h);
     g.globalCompositeOperation = 'lighter';
+    this.#lightGrids(g, lighting.grids ?? [], toScreen, vx, vy);
     for (const light of lighting.lights) {
       const sx = toScreen[0] * light.x + toScreen[2] * light.y + toScreen[4] - vx;
       const sy = toScreen[1] * light.x + toScreen[3] * light.y + toScreen[5] - vy;
@@ -447,6 +450,39 @@ export class CanvasSurface2d implements RenderSurface2d {
     ctx.globalCompositeOperation = 'multiply';
     ctx.drawImage(this.#lightMap as unknown as CanvasImageSource, vx, vy);
     ctx.globalCompositeOperation = 'source-over';
+  }
+
+  /**
+   * Light grids added into the light map: one pixel per cell, drawn smoothed over the grid's
+   * world rectangle (so light blends between cell centers). Images are repainted only when a
+   * grid's key changes.
+   */
+  #lightGrids(g: Context2d, grids: readonly LightGrid2d[], toScreen: Affine2d, vx: number, vy: number): void {
+    const live = new Set<number>();
+    for (const grid of grids) {
+      if (grid.cols === 0 || grid.rows === 0) continue;
+      live.add(grid.entity);
+      let painted = this.#gridImages.get(grid.entity);
+      if (painted === undefined || painted.key !== grid.key) {
+        const image = painted !== undefined && painted.image.width === grid.cols && painted.image.height === grid.rows
+          ? painted.image : this.#scratch(grid.cols, grid.rows);
+        const ig = image.getContext('2d')!;
+        const pixels = ig.createImageData(grid.cols, grid.rows);
+        pixels.data.set(grid.cells);
+        ig.putImageData(pixels, 0, 0);
+        painted = { key: grid.key, image };
+        this.#gridImages.set(grid.entity, painted);
+      }
+      g.save();
+      g.setTransform(toScreen[0], toScreen[1], toScreen[2], toScreen[3], toScreen[4] - vx, toScreen[5] - vy);
+      g.imageSmoothingEnabled = true;
+      // The image's top row is the grid's top edge; world +y is up, so flip it into place.
+      g.transform(1, 0, 0, -1, 0, 0);
+      g.drawImage(painted.image as unknown as CanvasImageSource, grid.minX, -(grid.minY + grid.rows * grid.cellHeight),
+        grid.cols * grid.cellWidth, grid.rows * grid.cellHeight);
+      g.restore();
+    }
+    for (const id of [...this.#gridImages.keys()]) if (!live.has(id)) this.#gridImages.delete(id);
   }
 
   /** Outline the current path (built in local meters, so the width is in meters too). */

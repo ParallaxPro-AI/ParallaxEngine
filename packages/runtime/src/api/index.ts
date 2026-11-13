@@ -44,7 +44,7 @@ export { AudioApi, AudioListener, Beat, MusicLayer, ReverbZone, Synth } from './
 export {
   AnimationEvent, Animator, AudioSource, Camera, CameraApi, ClipFinished, coreVisuals, Decal, DepthOfField, EnvironmentZone, FogOverlay, HeatHaze, Light, Lod, LodLevel,
   Marker, Mirror, Model, Monitor, Outline, Particles, PlayerStart, RenderTexture, RootMotion, Shape, Socket, Sprite, StaticMesh, SurfaceFx, TextMesh,
-  Tilemap, WorldBar,
+  Tilemap, LightGrid, WorldBar,
 } from './visuals.js';
 
 // Input and UI.

@@ -159,9 +159,9 @@ describe('visual components in the examples', () => {
     // `outline` is added at runtime too (`entity.add(Outline(...))` to highlight a target).
     // The render-scale components (lod, decal, mirror, monitor, …) are newer than the examples' data,
     // except `static_mesh`, `surface_fx` and `heat_haze` (racing's nitro), which the examples use.
-    // `tilemap`: no example uses one since the re-ports (physics2d/tilemap.test.ts covers it).
+    // `tilemap`: no example uses one since the re-ports (physics2d/tilemap.test.ts covers it); nor `light_grid` yet.
     const inExamples = ['static_mesh', 'surface_fx', 'heat_haze'];
-    const runtimeOnly = ['socket', 'outline', 'tilemap', ...Object.keys(RENDER_SCHEMAS).filter((id) => !inExamples.includes(id))];
+    const runtimeOnly = ['socket', 'outline', 'tilemap', 'light_grid', ...Object.keys(RENDER_SCHEMAS).filter((id) => !inExamples.includes(id))];
     expect([...decodedById.keys()].sort()).toEqual(Object.keys(VISUAL_SCHEMAS).filter((id) => !runtimeOnly.includes(id)).sort());
   });
 
