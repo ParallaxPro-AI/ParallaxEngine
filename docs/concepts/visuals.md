@@ -554,6 +554,7 @@ With `locks` above 0, it also needs `key_prefab` and `gate_prefab`.
 A rigged model without an animator stands in a T-pose (`check` warns with
 PP2130). Library characters use a shared humanoid rig. Add a clip set such as
 `humanoid_locomotion`, `humanoid_combat`, `humanoid_leisure`, `humanoid_sports`,
+`humanoid_gestures` (conversation gestures and mimes: wave, shrug, point, nod, bow),
 `humanoid_boardsports` (a rider's stance, carves, tuck and grab for snowboards,
 skateboards and surfboards) or `quadruped_basics`; clips retarget onto any matching
 rig. A rider stands on a board as its child, turned to face the toe edge. On a `Character`, an

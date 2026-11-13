@@ -1,0 +1,21 @@
+{
+  "entities": [
+    {
+      "prefab": "camera",
+      "at": [
+        0,
+        1.2,
+        -4
+      ]
+    },
+    {
+      "id": "puppet",
+      "prefab": "puppet",
+      "at": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

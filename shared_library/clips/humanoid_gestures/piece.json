@@ -1,0 +1,9 @@
+{
+  "id": "humanoid_gestures",
+  "summary": "Humanoid conversation gestures and mimes: wave, beckon, point, shrug, nod, head shake, facepalm, hands on head, frustrated stomp, explaining hands, plead, bow, thank-you, cheer, arms wide, stop palm; rummage in a bag and present the find, hold up a sheet, write on a pad; mime phone, drink, eat, camera, sleep, steering, tap the wrist, stomach ache, headache, sob, shiver, look around, impatient foot tap, scratch head, measure a height; with stomp/grab/click/hop/tap markers.",
+  "version": "2026.11.01",
+  "setup": [
+    "Play them from an Animator: animator.play(Assets.clips.explain) or animator.play_once(Assets.clips.shrug); \"clip\": \"clips/mime_phone\" in an animation graph. They retarget onto any humanoid skeleton by bone name.",
+    "point_forward points straight ahead; aim it at a real target with animator.reach(\"right_hand\", target) and animator.look_at(target). rummage fires \"grab\" when the hand leaves the bag: attach the found prop to the grip_r socket then, and hold it up with present."
+  ]
+}
