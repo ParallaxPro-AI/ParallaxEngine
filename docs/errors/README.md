@@ -60,7 +60,7 @@ Project data that is well formed but wrong: names, references, assets, panels (a
 
 | Code | Area | Message |
 |---|---|---|
-| PP2010 | core, editor | Config id "{id}" is already defined in {existing.path} |
+| PP2010 | core, editor | @resource("{id}") is already {…}'s {engine.module}.{engine.name} |
 | PP2011 | core | Placed id "{placement.id}" is already used in {first} |
 | PP2012 | core | Child name "{child.name}" is used twice in this prefab |
 | PP2015 | core | Feature "{module.feature}" imports feature "{target}" without requiring it |
@@ -671,7 +671,7 @@ Declarations and types: `@component` / `@resource` / field schemas, actions, net
 | PP4404 | input | {where} has no binding |
 | PP4405 | input | TouchSkin shape= must be one of {…}, got {…} |
 | PP4406 | input | {…} is not an Actions subclass |
-| PP4420 | ui | Two panels are named "{decl.id}" |
+| PP4420 | core, ui | Panel "{id}" is the id of an engine panel |
 | PP4421 | ui | {where} declares more than one of when=, toggle\_with= and while\_held= |
 | PP4422 | ui | {where}: delay must be 0 or more seconds, got {decl.delay} |
 | PP4423 | ui | close\_panel() on panel "{from.id}", which follows its when= condition |

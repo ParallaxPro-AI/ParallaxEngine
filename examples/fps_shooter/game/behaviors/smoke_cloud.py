@@ -3,7 +3,7 @@ from parallax import Behavior, behavior
 from game.components import SmokeCloud
 
 
-@behavior("smoke_cloud", requires=[SmokeCloud])
+@behavior("smoke_drift", requires=[SmokeCloud])
 class SmokeCloudLife(Behavior):
     """A smoke cloud stops blocking sight when it clears, and is removed."""
 

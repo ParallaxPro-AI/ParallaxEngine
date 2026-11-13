@@ -54,7 +54,7 @@ class Foe:
     master: Entity | None = field(None, doc="The boss that summoned it; it dies with them.")
 
 
-@component("projectile")
+@component("shot")
 class Projectile:
     velocity: Vec3 = field()
     damage: float = field()

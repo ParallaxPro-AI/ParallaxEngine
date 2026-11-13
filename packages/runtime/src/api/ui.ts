@@ -485,6 +485,11 @@ export function builtinPanels(...classes: Function[]): void {
   }
 }
 
+/** The ids of the engine's built-in panels registered so far (core's `BUILTIN_PANEL_IDS` lists them all). */
+export function builtinPanelIds(): string[] {
+  return builtIns.map((cls) => panelOptions(cls)!.id);
+}
+
 /** Every declared panel class: the engine's built-ins, then the game's. */
 export function registeredPanels(): Function[] {
   return [...builtIns, ...panels];
