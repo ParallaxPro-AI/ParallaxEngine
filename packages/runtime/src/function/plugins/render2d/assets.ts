@@ -48,6 +48,8 @@ export class AssetCatalog {
   /** handle (`images/ship`) → file path. */
   readonly #byHandle = new Map<string, string>();
   readonly #paths = new Set<string>();
+  /** `folder:reference` → the path `resolve` answered. */
+  readonly #resolved = new Map<string, string>();
   /** False when the asset files aren't available: missing files are not errors. */
   readonly checked: boolean;
   /** Whether hosted asset URLs can be fetched in this run (a browser); headless they draw as missing files. */
@@ -64,12 +66,23 @@ export class AssetCatalog {
     }
   }
 
-  /** The file a reference names, in `folder`; PP2063 when there is none. */
+  /**
+   * The file a reference names, in `folder`; PP2063 when there is none. Every sprite asks
+   * every frame, so an answer is remembered (only answers: a bad reference fails each time).
+   */
   resolve(ref: string, folder: AssetFolder, where: string): string {
+    const key = `${folder}:${ref}`;
+    const known = this.#resolved.get(key);
+    if (known !== undefined) return known;
+    const path = this.#resolve(ref, folder, where);
+    this.#resolved.set(key, path);
+    return path;
+  }
+
+  #resolve(ref: string, folder: AssetFolder, where: string): string {
     if (isAssetUrl(ref)) return remoteRef(ref, folder, where);
     requireHandleForm(ref, folder, where);
     const handle = ref;
-    const known = [...this.#byHandle.keys()].filter((h) => h.startsWith(`${folder}/`));
     if (!handle.startsWith(`${folder}/`)) {
       fail('PP2063', `${where} names "${ref}", which is not in assets/${folder}/`, {
         fix: `Refer to a file in assets/${folder}/, written "${folder}/<name>".`,
@@ -78,7 +91,7 @@ export class AssetCatalog {
     const path = this.#byHandle.get(handle);
     if (path === undefined && !this.checked) return handle;
     if (path === undefined) {
-      const guess = closestMatch(handle, known);
+      const guess = closestMatch(handle, [...this.#byHandle.keys()].filter((h) => h.startsWith(`${folder}/`)));
       fail('PP2063', `${where} names the asset "${ref}", but there is no such file under assets/${folder}/`, {
         fix: guess === undefined ? `Add the file to assets/${folder}/.` : `Did you mean "${guess}"?`,
       });

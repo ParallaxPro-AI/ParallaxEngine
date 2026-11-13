@@ -202,6 +202,14 @@ describe('AssetCatalog', () => {
     expect(catalog.resolve('vfx/boom', 'vfx', 'x')).toBe('assets/vfx/boom.vfx.json');
   });
 
+  it('answers a repeated reference the same way, and still fails a bad one every time', () => {
+    for (let i = 0; i < 3; i++) {
+      expect(catalog.resolve('images/ship', 'images', 'x')).toBe('assets/images/ship.png');
+      expect(code(() => catalog.resolve('images/shipp', 'images', 'x'))).toBe('PP2063');
+      expect(code(() => catalog.resolve('images/ship', 'vfx', 'x'))).toBe('PP2063');
+    }
+  });
+
   it('reports a missing or misplaced asset as PP2063 with a suggestion', () => {
     expect(code(() => catalog.resolve('images/shipp', 'images', 'sprite.image'))).toBe('PP2063');
     expect(() => catalog.resolve('images/shipp', 'images', 'sprite.image')).toThrow(/Did you mean "images\/ship"/);
