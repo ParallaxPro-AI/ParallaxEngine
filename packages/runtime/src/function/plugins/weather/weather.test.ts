@@ -15,6 +15,7 @@ import { AUDIO_SERVICE, ENVIRONMENT_SERVICE, WEATHER_SERVICE, WIND_SERVICE } fro
 import type { AudioService } from '../../services/index.js';
 import { environment } from '../environment/index.js';
 import { initPhysics3d, physics3d } from '../physics3d/index.js';
+import { terrain } from '../terrain/index.js';
 import { wind } from '../wind/index.js';
 import {
   FLICKERS, lerpParams, MIN_STRIKE_INTERVAL, readWeather, SPEED_OF_SOUND, thunderVolume, weather, WEATHER_EVENTS, WEATHER_PRESETS, WeatherDirector, weatherProblems,
@@ -173,6 +174,57 @@ describe('lightning', () => {
     g.run(100 / SPEED_OF_SOUND + 0.1);
     expect(g.log.map(([m]) => m)).toEqual(['struck', 'thunder']);
     expect(g.conditions().flash).toBeLessThan(0.02);
+  });
+});
+
+describe('lightning over a small terrain', () => {
+  it('strikes beyond the terrain edge land on its nearest edge instead of failing', () => {
+    const project = loadProject(files({
+      'scenes/main/scene.json': {
+        environment: { weather: { preset: 'storm', lightning: 60, lightning_radius: 1500 } },
+        terrain: { size: [60, 60], max_height: 4, seed: 2, layers: ['grass'] }, entities: [],
+      },
+    }));
+    expect(project.diagnostics).toEqual([]);
+    const struck: Vec3[] = [];
+    const listen = {
+      id: 'listen', scenes: [], handlers: [{ event: WEATHER_EVENTS.struck, method: 'struck' }],
+      create: () => ({ struck(_c: unknown, e: Fields) { struck.push(e['point'] as Vec3); } }),
+    };
+    const kernel = new Kernel({
+      project, game: { components: [], resources: [], events: [], behaviors: [], systems: [listen] },
+      plugins: [environment(), terrain(), weather()], context: {}, fixedStep: DT,
+    });
+    kernel.start('main');
+    for (let i = 0; i < Math.round(30 / DT); i++) kernel.step(DT);
+    expect(struck.length).toBeGreaterThan(5);
+    expect(struck.some((p) => Math.abs(p.x) > 30 || Math.abs(p.z) > 30)).toBe(true);
+  });
+
+  it('a strike past the edge stands at the edge height (PP3203 before)', () => {
+    const project = loadProject(files({
+      'scenes/main/scene.json': {
+        environment: { weather: { preset: 'storm', lightning_radius: 1500 } },
+        terrain: { size: [100, 100], base_height: 3, layers: ['grass'] }, entities: [],
+      },
+    }));
+    expect(project.diagnostics).toEqual([]);
+    const plugin = weather();
+    const kernel = new Kernel({
+      project, game: { components: [], resources: [], events: [], behaviors: [], systems: [] },
+      plugins: [environment(), terrain(), physics3d({ gravity: -9.8 }), plugin], context: {}, fixedStep: DT,
+    });
+    kernel.start('main');
+    let outside = 0;
+    for (let i = 0; i < 40; i++) {
+      const s = plugin.control().strike(undefined);
+      if (Math.abs(s.point.x) > 50 || Math.abs(s.point.z) > 50) {
+        outside++;
+        expect(s.point.y).toBeCloseTo(3, 3);
+      }
+    }
+    expect(outside).toBeGreaterThan(30);
+    for (let i = 0; i < 300; i++) kernel.step(DT);
   });
 });
 
