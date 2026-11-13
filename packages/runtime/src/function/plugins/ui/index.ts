@@ -51,6 +51,7 @@ export function ui(options: UiOptions = {}): UiPlugin {
     }],
     install(kernel) {
       engine.bind(kernel);
+      kernel.observeScenes({ loading: () => engine.sceneLoading() });
       kernel.addHook('ui', () => engine.frame());
       kernel.addHook('ui', () => engine.computeViews(), { last: true });
     },

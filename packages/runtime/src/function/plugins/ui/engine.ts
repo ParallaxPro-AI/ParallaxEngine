@@ -152,6 +152,8 @@ export class UiEngine {
   #kernel: Kernel | undefined;
   #open: OpenPanel[] = [];
   readonly #pending = new Map<PanelDecl, { elapsed: number; delay: number }>();
+  /** True between `sceneLoading` (old panels closed) and `sceneLoaded`. */
+  #closedForLoad = false;
   #clicks: Click[] = [];
   #views = new Map<PanelDecl, PanelView>();
   #requests: UiRequest[] = [];
@@ -286,15 +288,27 @@ export class UiEngine {
   }
 
   /**
-   * Scene loaded: every panel closes, the scene's `"ui"` list opens, and `when=` panels
+   * A scene starts loading (before its systems' `start`): the old scene's panels close.
+   * Closing here rather than at `sceneLoaded` keeps a panel a system opens in `start`
+   * (a conversation begun as the scene opens) open.
+   */
+  sceneLoading(): void {
+    for (const open of [...this.#open].reverse()) this.#close(open.decl);
+    this.#pending.clear();
+    this.#clicks = [];
+    this.#closedForLoad = true;
+  }
+
+  /**
+   * Scene loaded: every panel of the previous scene is closed (by `sceneLoading`, or here
+   * when nothing announced the load), the scene's `"ui"` list opens, and `when=` panels
    * follow their condition right away ("open exactly while the condition holds"), so a
    * title screen with `when=` is open when the scene starts, not a frame later.
    */
   sceneLoaded(): void {
     const kernel = this.#kernelOrFail();
-    for (const open of [...this.#open].reverse()) this.#close(open.decl);
-    this.#pending.clear();
-    this.#clicks = [];
+    if (!this.#closedForLoad) this.sceneLoading();
+    this.#closedForLoad = false;
     const scene = kernel.scene!;
     for (const id of scene.ui) {
       const decl = this.panel(id);

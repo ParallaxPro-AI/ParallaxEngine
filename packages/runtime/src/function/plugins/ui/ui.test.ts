@@ -136,6 +136,29 @@ describe('scenes', () => {
     expect(r.kernel.time.frozen).toBe(false);
   });
 
+  it('a panel a system opens in its start() stays open once the scene has loaded', () => {
+    const keys = new Keys();
+    const plugin = ui({ input: keys.link, panels: [panel('hud'), panel('title'), panel('talk', { modal: true })] });
+    const starter: SystemDef = { id: 'starter', scenes: [], handlers: [], create: () => ({ start: () => { plugin.engine.open('talk'); } }) };
+    const kernel = new Kernel({
+      project: loadProject(files(PROJECT)),
+      game: { components: [], events: [], behaviors: [], systems: [starter], resources: [] },
+      plugins: [plugin],
+      context: { name: 'ctx' },
+    });
+    kernel.start('level');
+    const driver = new UiDriver(plugin.engine);
+    expect(driver.openPanels().sort()).toEqual(['hud', 'talk']);
+    expect(kernel.time.frozen).toBe(true);
+    kernel.step(DT);
+    expect(driver.openPanels().sort()).toEqual(['hud', 'talk']);
+    plugin.engine.close('talk');
+    kernel.requestScene('title');
+    kernel.step(DT);
+    // the old scene's panels closed; the new scene's start opened its own again
+    expect(driver.openPanels().sort()).toEqual(['talk', 'title']);
+  });
+
   it('scenes= keeps a panel (and its toggle key) out of other scenes', () => {
     const r = rig([panel('pause', { modal: true, toggleWith: PAUSE_KEY, scenes: [{ tag: 'level' }] })], { scene: 'title' });
     tap(r, PAUSE_KEY);
