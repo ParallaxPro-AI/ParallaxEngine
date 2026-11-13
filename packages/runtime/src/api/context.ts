@@ -138,7 +138,11 @@ export class Context {
   /** A localized string in the player's language, with {named} args filled in. */
   text(key: unknown, ...args: unknown[]): string {
     const named = bindArgs('text', args, { restKeywords: true }).restKeywords;
-    if (!(key instanceof TextRef)) fail('PP3014', `text() takes a Text key or Localized text, got ${String(key)}`);
+    if (!(key instanceof TextRef)) {
+      fail('PP3014', `text() takes a Text key or Localized text, got ${String(key)}`, typeof key === 'string' && /^[A-Za-z_]\w*$/.test(key)
+        ? { fix: `Pass the generated key, not a string: ctx.text(Text.${key}) with \`from project import Text\`.` }
+        : { fix: 'Pass a Text key (`from project import Text`; ctx.text(Text.<key>)) or a Localized content field.' });
+    }
     return formatText(this.#rt.localize(key), named, key.key);
   }
 

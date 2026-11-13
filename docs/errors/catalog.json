@@ -4206,7 +4206,10 @@
         "text() takes a Text key or Localized text, got {…}"
       ],
       "fixes": [
-        "Pass {name}= to ctx.text()."
+        "Pass a Text key (`from project import Text`; ctx.text(Text.<key>)) or a Localized content field.",
+        "Pass the generated key, not a string: ctx.text(Text.{key}) with `from project import Text`.",
+        "Pass {name}= to ctx.text().",
+        "string"
       ],
       "notes": [],
       "sources": [
