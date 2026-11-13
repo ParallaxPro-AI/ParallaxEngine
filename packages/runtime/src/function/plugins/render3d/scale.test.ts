@@ -44,13 +44,14 @@ interface Run {
 
 async function run(
   data: { prefabs: Record<string, unknown>; entities: unknown[] },
-  options: { binary?: Record<string, Uint8Array>; components?: ComponentDef[]; plugins?: KernelPlugin[] } = {},
+  options: { binary?: Record<string, Uint8Array>; files?: Record<string, string>; components?: ComponentDef[]; plugins?: KernelPlugin[] } = {},
 ): Promise<Run> {
   const binary = options.binary ?? {};
   const project = files({
     ...Object.fromEntries(Object.entries(data.prefabs).map(([id, p]) => [`prefabs/${id}.prefab.json`, p])),
     'scenes/main/scene.json': { entities: data.entities },
     ...Object.fromEntries(Object.keys(binary).map((path) => [path, ''])),
+    ...(options.files ?? {}),
   });
   const loaded = loadProject(project);
   expect(loaded.diagnostics).toEqual([]);
@@ -439,6 +440,35 @@ describe('photos and portraits', () => {
     const w = m[3]! * c[0]! + m[7]! * c[1]! + m[11]! * c[2]! + m[15]!;
     expect((m[0]! * c[0]! + m[4]! * c[1]! + m[8]! * c[2]! + m[12]!) / w).toBeCloseTo(0, 4);
     expect(() => engine.photo({ width: 0, height: 10 })).toThrow(/PP3846/);
+  });
+});
+
+describe('portraits of model documents at rest', () => {
+  it('draw the default look: hidden parts stay hidden, options show their default choices', async () => {
+    const doc = {
+      format: 'parallax.model', version: 1,
+      materials: { paint: { color: '#ffffff' }, eye: { color: '#000000' } },
+      parts: [
+        { name: 'body', shape: 'box', size: [1, 1, 1], material: 'paint' },
+        { name: 'open', shape: 'box', position: [0, 0.6, 0], size: [0.2, 0.2, 0.2], material: 'eye' },
+        { name: 'shut', shape: 'box', position: [0, 0.6, 0], size: [0.3, 0.05, 0.2], material: 'eye', hidden: true },
+      ],
+      options: [
+        { name: 'paint', default: 'red', materials: ['paint'], choices: { red: { color: '#ff0000' }, blue: { color: '#0000ff' } } },
+        { name: 'face', default: 'awake', parts: ['open', 'shut'], choices: { awake: ['open'], asleep: ['shut'] } },
+      ],
+    };
+    const r = await run({
+      prefabs: { cam: CAMERA },
+      entities: [{ id: 'cam', prefab: 'cam', at: [0, 2, -5] }],
+    }, { binary: {}, files: { 'assets/models/doll.model.json': JSON.stringify(doc) } });
+    await r.engine.portrait({ model: 'models/doll' }, { width: 16, height: 16, yaw: 0, pitch: 0, background: null });
+    const studio = r.surface.captures[0]!.frame;
+    const drawn = studio.meshes.reduce((n, b) => n + b.count, 0);
+    expect(drawn).toBe(2);
+    const colors = studio.meshes.map((b) => b.material.baseColor.slice(0, 3).map((c) => Math.round(c * 100) / 100));
+    expect(colors).toContainEqual([1, 0, 0]);
+    expect(colors).not.toContainEqual([1, 1, 1]);
   });
 });
 
