@@ -19,7 +19,7 @@ import { standInCharacter, writeGlb } from '../models/testing.js';
 import { chooseLod, lodBands } from './lod.js';
 import { QUALITY_LADDER } from './quality.js';
 import { MorphedGeometry } from './morph.js';
-import { mergeGeometry } from './static_merge.js';
+import { mergeGeometry, StaticMerge } from './static_merge.js';
 import { render3d } from './index.js';
 import { compressedVariants } from './engine.js';
 import type { Render3dEngine } from './engine.js';
@@ -176,6 +176,69 @@ describe('static merging', () => {
     r.step();
     expect(merged()[0]!.geometry).not.toBe(first.geometry);
     expect(merged()[0]!.geometry.min[2]).toBeGreaterThan(first.geometry.min[2]);
+  });
+
+  it('keeps its own copy of each mesh\'s matrix (callers reuse a scratch matrix), and reuses an unchanged chunk', () => {
+    const tri = { id: 't', positions: new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]), normals: new Float32Array([0, 0, -1, 0, 0, -1, 0, 0, -1]), uvs: new Float32Array(6), indices: new Uint16Array([0, 1, 2]), joints: null, weights: null, colors: null, min: [0, 0, 0] as const, max: [1, 1, 0] as const };
+    const material = { id: 'm' } as unknown as Parameters<StaticMerge['add']>[1];
+    const merge = new StaticMerge();
+    const scratch = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 3, 0, 0, 1];
+    const frame = (): ReturnType<StaticMerge['close']> => {
+      scratch[12] = 3;
+      merge.add(tri, material, true, scratch, [1, 1, 1, 1], null);
+      scratch[12] = 7;
+      merge.add(tri, material, true, scratch, [1, 1, 1, 1], null);
+      scratch[12] = 99; // the caller's next use of its scratch matrix
+      return merge.close();
+    };
+    const first = frame();
+    expect(first).toHaveLength(1);
+    expect(first[0]!.geometry.min[0]).toBe(3);
+    expect(first[0]!.geometry.max[0]).toBe(8);
+    expect(merge.takeRebuilt()).toBe(1);
+    const second = frame();
+    expect(second[0]!.geometry).toBe(first[0]!.geometry);
+    expect(merge.takeRebuilt()).toBe(0);
+  });
+
+  it('rebuilds a chunk when one member changes or one goes, and not when a frame repeats', () => {
+    const tri = { id: 't', positions: new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]), normals: new Float32Array([0, 0, -1, 0, 0, -1, 0, 0, -1]), uvs: new Float32Array(6), indices: new Uint16Array([0, 1, 2]), joints: null, weights: null, colors: null, min: [0, 0, 0] as const, max: [1, 1, 0] as const };
+    const material = { id: 'm' } as unknown as Parameters<StaticMerge['add']>[1];
+    const merge = new StaticMerge();
+    const frame = (xs: readonly number[], tint: [number, number, number, number] = [1, 1, 1, 1]): ReturnType<StaticMerge['close']> => {
+      for (const x of xs) merge.add(tri, material, true, [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, x, 0, 0.1, 1], [...tint] as [number, number, number, number], null);
+      return merge.close();
+    };
+    const first = frame([1, 2, 3]);
+    expect(merge.takeRebuilt()).toBe(1);
+    // Fresh tint arrays and matrices with the same values: still the same chunk.
+    expect(frame([1, 2, 3])[0]!.geometry).toBe(first[0]!.geometry);
+    expect(merge.takeRebuilt()).toBe(0);
+    const moved = frame([1, 2, 3.5]);
+    expect(merge.takeRebuilt()).toBe(1);
+    expect(moved[0]!.geometry.max[0]).toBe(4.5);
+    const fewer = frame([1, 2]);
+    expect(merge.takeRebuilt()).toBe(1);
+    expect(fewer[0]!.geometry.max[0]).toBe(3);
+    frame([1, 2], [0.5, 1, 1, 1]);
+    expect(merge.takeRebuilt()).toBe(1);
+    frame([1, 2], [0.5, 1, 1, 1]);
+    expect(merge.takeRebuilt()).toBe(0);
+  });
+
+  it('keeps its own copy of each mesh\'s tint (callers reuse a scratch tint)', () => {
+    const tri = { id: 't', positions: new Float32Array([0, 0, 0, 1, 0, 0, 0, 1, 0]), normals: new Float32Array([0, 0, -1, 0, 0, -1, 0, 0, -1]), uvs: new Float32Array(6), indices: new Uint16Array([0, 1, 2]), joints: null, weights: null, colors: null, min: [0, 0, 0] as const, max: [1, 1, 0] as const };
+    const material = { id: 'm' } as unknown as Parameters<StaticMerge['add']>[1];
+    const merge = new StaticMerge();
+    const matrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 2, 0, 0, 1];
+    const tint: [number, number, number, number] = [1, 1, 1, 1];
+    merge.add(tri, material, true, matrix, tint, null);
+    merge.close();
+    expect(merge.takeRebuilt()).toBe(1);
+    tint[0] = 0.25; // the same array, recoloured
+    merge.add(tri, material, true, matrix, tint, null);
+    merge.close();
+    expect(merge.takeRebuilt()).toBe(1);
   });
 
   it('bakes each mesh into world space, tint into vertex colors, and keeps mirrored winding front-facing', () => {
