@@ -40,6 +40,7 @@ import type { VoxelChunkMesh, VoxelWorldView } from '../../services/index.js';
 import { AIR, BlockTable } from './blocks.js';
 import { Cell3 } from '../../../core/index.js';
 import { Landscape, SmoothLandscape } from './generate.js';
+import { FilledWorld } from './fills.js';
 import { chunkIsAir, meshChunk, neighbourhoodOf } from './mesh.js';
 import type { ChunkGeometry, ChunkNeighbourhood } from './mesh.js';
 import { brush, densityAtPoint, ISO, marchChunk, pack } from './smooth.js';
@@ -57,6 +58,8 @@ export type { ChunkGeometry, ChunkNeighbourhood, ChunkSource } from './mesh.js';
 export { brush, densityFromDistance, ISO, marchChunk, pack } from './smooth.js';
 export { SmoothLandscape } from './generate.js';
 export { readVoxelSpec } from './spec.js';
+export { FilledWorld } from './fills.js';
+export type { VoxelFill } from './fills.js';
 export type { LandscapeSpec, VoxelSceneSpec } from './spec.js';
 export type { RayHit } from './store.js';
 
@@ -145,8 +148,9 @@ class World implements VoxelWorldView {
     this.renderDistance = spec.renderDistance;
     this.saveEdits = plugin.saveEdits;
     this.mode = spec.mode;
-    const generator = spec.generator === undefined ? undefined
+    const landscape = spec.generator === undefined ? undefined
       : spec.mode === 'smooth' ? new SmoothLandscape(spec.generator, spec.yMin, spec.yMax) : new Landscape(spec.generator, spec.yMin, spec.yMax);
+    const generator = spec.fills.length === 0 ? landscape : new FilledWorld(landscape, spec.fills, spec.yMin, spec.yMax);
     this.store = new VoxelStore({
       size: plugin.chunkSize,
       yMin: spec.yMin,

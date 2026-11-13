@@ -18,7 +18,7 @@ brushes (and return how much of each block changed, in m³ — the loot); `get`/
 write single lattice points; `raycast` hits the smooth surface. The same generator makes
 them (plus `"caves"`), without trees, ruins or water; blocks with a prefab don't exist there.
 
-The scene block (keys: mode, y_range, render_distance, generator; any other is an error).
+The scene block (keys: mode, y_range, render_distance, generator, fills; any other is an error).
 Block names are `block` content ids; generated blocks may not have a prefab (PP3627: a
 block entity exists only for a block placed with `ctx.voxels.set`):
 
@@ -52,12 +52,20 @@ block entity exists only for a block placed with `ctx.voxels.set`):
                 "cross_y": null, "cross_radius": 3.5},   along x every spacing in z; cross_y adds ones along z
     "galleries": [{"from": [x, z], "to": [x, z], "width": 2, "height": 4, "slope": 0.5,
                    "lowest": y}]    a passage dug down from the surface at `from` toward `to`
-  }
+  },
+  "fills": [                        optional, blocks mode: authored boxes over the generated world
+    {"block": "bricks", "from": [-10, 0, -10], "to": [10, 4, 10]},
+    {"block": null, "from": [-9, 1, -9], "to": [9, 4, 9]}
+  ]                                 every cell from `from` to `to` (corners inclusive) becomes the
+                                    block (null: air), in list order; rooms, walls and arenas as data
 }
 ```
 
+Fills count as generated blocks, not edits: a save holds only the player's changes on top
+of them. A world with fills and no generator starts as air everywhere else.
+
 Smooth mode uses the same generator without trees, ruins, water, shore, slope surfaces /
-spires, tunnels or galleries (slopes still shape it), and at most 255 block types.
+spires, tunnels or galleries (slopes still shape it), and at most 255 block types (no fills).
 
 ## Contents
 
