@@ -105,6 +105,14 @@ describe('SDK modules are wired through boot, the transpiler, the plugin factori
     expect(mainApi(sdk('city'))).toBe('CityApi');
   });
 
+  it.each(modules)('parallax.%s exports a handle for every component it declares', async (module) => {
+    const declared = [...sdk(module).matchAll(/^@component\([^)]*\)\s*\nclass (\w+)/gm)].map((m) => m[1]!);
+    if (declared.length === 0) return;
+    const api = await load(`${SRC}/${ENGINE_MODULES[`parallax/${module}`]!}`) as Record<string, unknown>;
+    const missing = declared.filter((name) => api[name] === undefined);
+    expect(missing, `${ENGINE_MODULES[`parallax/${module}`]} lacks exports for components the SDK declares`).toEqual([]);
+  });
+
   it('every parallax.plugins factory is exported by api/plugins.ts', () => {
     const missing = [...factoryList.keys()].filter((name) => typeof (plugins as Record<string, unknown>)[name] !== 'function');
     expect(missing).toEqual([]);

@@ -9,8 +9,9 @@
 import { fail, Vec3 } from '../core/index.js';
 import type { FieldType, KernelPlugin, Schema } from '../function/kernel/index.js';
 import {
-  CARRY_RECORD, CHARACTER, CHARACTER_EVENTS, CHARACTER_SCHEMA, characters as charactersPlugin, PARACHUTE_RECORD, SEAT, SEAT_SCHEMA,
-  SKYDIVE_RECORD, STANCES_RECORD, SWIMMING_RECORD, TRAVERSAL_RECORD,
+  CARRY_RECORD, CHARACTER, CHARACTER_EVENTS, CHARACTER_SCHEMA, characters as charactersPlugin, GARMENT, GARMENT_SCHEMA,
+  PARACHUTE_RECORD, SEAT, SEAT_SCHEMA, SKYDIVE_RECORD, STANCES_RECORD, SWIMMING_RECORD, TRAVERSAL_RECORD, WARDROBE,
+  WARDROBE_SCHEMA,
 } from '../function/plugins/characters/index.js';
 import { record } from './declarations.js';
 import { eventHandle } from './events.js';
@@ -23,6 +24,10 @@ import { rt } from './types.js';
 export const Character = componentHandle({ id: CHARACTER, schema: CHARACTER_SCHEMA }, 'Character');
 /** `entity.get(Seat)`: a place a character sits (offset, facing, exits, occupant). */
 export const Seat = componentHandle({ id: SEAT, schema: SEAT_SCHEMA }, 'Seat');
+/** `entity.get(Garment)`: a skinned model worn on its parent's skeleton (slot, hides). */
+export const Garment = componentHandle({ id: GARMENT, schema: GARMENT_SCHEMA }, 'Garment');
+/** `entity.get(Wardrobe)`: what a character wears (outfit, tints) and wear / take_off / worn / slots. */
+export const Wardrobe = componentHandle({ id: WARDROBE, schema: WARDROBE_SCHEMA }, 'Wardrobe');
 
 function marker(type: FieldType, where: string, nested: unknown): unknown {
   switch (type.kind) {

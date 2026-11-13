@@ -47,6 +47,20 @@ function stored(value: unknown, where: string): string {
   return fail('PP3172', `${where} must be a prefab, got ${describe(value)}`, { fix: 'Pass a prefab reference: Prefabs.leather_jacket.' });
 }
 
+/** A dict field as a plain object: game code assigns its own dict (`w.outfit = {...}`). */
+function plain(value: unknown): Readonly<Record<string, unknown>> {
+  const toJSON = typeof value === 'object' && value !== null ? (value as { toJSON?: unknown }).toJSON : undefined;
+  const form = typeof toJSON === 'function' ? (toJSON as () => unknown).call(value) : value;
+  return typeof form === 'object' && form !== null ? form as Record<string, unknown> : {};
+}
+
+/** Slot -> prefab id, whether the outfit came from data (ids) or game code (Prefabs.x refs). */
+function outfitOf(value: unknown, body: string): Readonly<Record<string, string>> {
+  const out: Record<string, string> = {};
+  for (const [slot, prefab] of Object.entries(plain(value))) out[slot] = stored(prefab, `The outfit of ${body}, slot "${slot}"`);
+  return out;
+}
+
 function nameOf(record: EntityRecord): string {
   return `"${record.placedId ?? record.prefab ?? record.id}"`;
 }
@@ -83,8 +97,8 @@ export class Wardrobes {
   /** Make the body's children and hidden parts follow its wardrobe's data. */
   reconcile(body: EntityRecord, fields: Fields): void {
     const kernel = this.#kernel;
-    const outfit = fields['outfit'] as Readonly<Record<string, string>>;
-    const tints = fields['tints'] as Readonly<Record<string, Color>>;
+    const outfit = outfitOf(fields['outfit'], nameOf(body));
+    const tints = plain(fields['tints']) as Readonly<Record<string, Color>>;
     const worn = this.worn(body);
     for (const [slot, garment] of worn) {
       if (outfit[slot] !== garment.prefab) {
@@ -145,11 +159,11 @@ function methods(current: () => Wardrobes): object {
       if (slot === undefined) {
         fail('PP3172', `wear(): the prefab "${prefab}" names no slot`, { fix: 'Pass slot="torso", or give its garment component a "slot".' });
       }
-      this['outfit'] = { ...(this['outfit'] as Record<string, string>), [slot]: prefab };
+      this['outfit'] = { ...outfitOf(this['outfit'], 'this wardrobe'), [slot]: prefab };
       const tint = k['tint'];
       if (tint !== undefined && tint !== null) {
         if (!(tint instanceof Color)) fail('PP3172', `wear(tint=) must be a Color, got ${describe(tint)}`);
-        this['tints'] = { ...(this['tints'] as Record<string, Color>), [slot]: tint };
+        this['tints'] = { ...(plain(this['tints']) as Record<string, Color>), [slot]: tint };
       }
       const record = body(this);
       w.reconcile(record, this);
@@ -158,10 +172,10 @@ function methods(current: () => Wardrobes): object {
     take_off(this: Fields, ...args: unknown[]): boolean {
       const { positional: p, keywords: k } = splitKeywords(args, 'take_off', ['slot']);
       const slot = slotArg(p[0] ?? k['slot'], 'take_off() slot');
-      const outfit = { ...(this['outfit'] as Record<string, string>) };
+      const outfit = { ...outfitOf(this['outfit'], 'this wardrobe') };
       if (!(slot in outfit)) return false;
       delete outfit[slot];
-      const tints = { ...(this['tints'] as Record<string, Color>) };
+      const tints = { ...(plain(this['tints']) as Record<string, Color>) };
       delete tints[slot];
       this['outfit'] = outfit;
       this['tints'] = tints;
@@ -177,7 +191,7 @@ function methods(current: () => Wardrobes): object {
       return wrap(w.worn(record).get(slot)?.id);
     },
     slots(this: Fields): string[] {
-      return Object.keys(this['outfit'] as Record<string, string>).sort();
+      return Object.keys(outfitOf(this['outfit'], 'this wardrobe')).sort();
     },
   };
 }
