@@ -241,6 +241,7 @@ const NO_TOUCH = new Binding([]);
 export class touch {
   static readonly DRAG = touchBind({ id: 'drag', shape: 'drag', analog: true });
   static readonly TAP = touchBind({ id: 'tap', shape: 'tap', analog: false });
+  static readonly PRESS = touchBind({ id: 'press', shape: 'press', analog: false });
   static readonly LOOK = touchBind({ id: 'look', shape: 'look', analog: true });
   static readonly DOUBLE_TAP = touchBind({ id: 'double_tap', shape: 'double_tap', analog: false });
   static readonly LONG_PRESS = touchBind({ id: 'long_press', shape: 'long_press', analog: false });

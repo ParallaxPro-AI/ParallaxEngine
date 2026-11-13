@@ -27,6 +27,7 @@ describe('touch bindings', () => {
     expect(controlOf(touch.steer())).toEqual({ id: 'steer', shape: 'steer', analog: true });
     expect(controlOf(touch.stick_edge('left'))).toEqual({ id: 'joystick:left:edge', shape: 'stick_edge', analog: false, side: 'left' });
     expect([touch.DOUBLE_TAP, touch.LONG_PRESS, touch.PINCH, touch.SCROLL].map((b) => controlOf(b)['shape'])).toEqual(['double_tap', 'long_press', 'pinch', 'scroll']);
+    expect(controlOf(touch.PRESS)).toEqual({ id: 'press', shape: 'press', analog: false });
   });
 
   it('buttons take a zone, toggle or hold (seconds), and per-frame state functions', () => {

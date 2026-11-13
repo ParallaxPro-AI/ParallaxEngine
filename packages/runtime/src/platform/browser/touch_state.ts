@@ -14,6 +14,8 @@
  *   dpad        four-way (diagonals when both offsets are large): analog x/y in -1, 0, 1, and
  *               each direction as a digital control (`dpad:up`)
  *   area        a finger on the play area (not on a control) feeds the gestures:
+ *                 press       pressed the moment any finger lands, held while one stays
+ *                             (one-touch games: flap, jump, shoot on touch-down)
  *                 tap         released within TAP_MS, moved under TAP_PX
  *                 double_tap  a tap within DOUBLE_TAP_MS and DOUBLE_TAP_PX of the last one
  *                 long_press  held LONG_PRESS_MS without moving TAP_PX (pressed once, then held)
@@ -64,7 +66,7 @@ type Grab =
 type Area = Extract<Grab, { kind: 'area' }>;
 
 const DIRS = { up: [0, 1], down: [0, -1], left: [-1, 0], right: [1, 0] } as const;
-const AREA_SHAPES = new Set(['tap', 'swipe', 'drag', 'look', 'double_tap', 'long_press', 'pinch', 'scroll']);
+const AREA_SHAPES = new Set(['press', 'tap', 'swipe', 'drag', 'look', 'double_tap', 'long_press', 'pinch', 'scroll']);
 
 function sign(v: number): number {
   return v > 0 ? 1 : v < 0 ? -1 : 0;
@@ -177,6 +179,7 @@ export class TouchState {
       }
     }
     this.#grabs.set(f.id, grab);
+    this.#pressed.add('press');
     if (!grab.two) this.#pressed.add(look ? 'look' : 'drag');
   }
 
@@ -408,6 +411,9 @@ export class TouchState {
           break;
         case 'long_press':
           out.set(spec.id, { held: grabs.some((g) => g.kind === 'area' && g.long), pressed, x: 0, y: 0 });
+          break;
+        case 'press':
+          out.set(spec.id, { held: grabs.some((g) => g.kind === 'area'), pressed, x: 0, y: 0 });
           break;
         case 'tap':
         case 'double_tap':

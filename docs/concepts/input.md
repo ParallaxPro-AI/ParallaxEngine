@@ -59,6 +59,10 @@ such as `"fps"` or `"platformer"` fills in bindings left unspecified; explicit
 `touch=` wins, and `touch.NONE` opts an action out. Modal panels mute gameplay
 actions and hide these controls; see [UI](ui.md).
 
+Gestures on the play area read fingers that land off the controls. `touch.TAP`
+fires when a short touch lifts; `touch.PRESS` fires the moment any finger lands, so a
+one-touch game (flap, jump, fire) binds `touch=touch.PRESS` and answers on touch-down.
+
 ## Pointer, text and menus
 
 `ctx.input.pointer` exposes screen/world position, button state and the entity

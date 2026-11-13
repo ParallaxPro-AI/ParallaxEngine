@@ -1727,7 +1727,7 @@ class touch:
 
     Drawn: `joystick`, `button`, `dpad`, `stepper`, `pedals`, `steer`, and the slots of
     `hotbar` / `toggle_group` (for `button_group`). Gestures on the play area (fingers not
-    on a control): `TAP`, `DOUBLE_TAP`, `LONG_PRESS`, `swipe`, `DRAG`, `LOOK`, `PINCH`,
+    on a control): `PRESS`, `TAP`, `DOUBLE_TAP`, `LONG_PRESS`, `swipe`, `DRAG`, `LOOK`, `PINCH`,
     `SCROLL`. `stick_edge` reads a joystick pushed to its rim.
 
     `Actions.touch_preset` fills these in for every action declared without one; `NONE`
@@ -1798,6 +1798,9 @@ class touch:
     """Axis2: pixels a finger moved on the play area this frame (+y up)."""
     TAP: Binding
     """Button: a short touch on the play area (`ctx.input.pointer` is where)."""
+    PRESS: Binding
+    """Button: a finger landing anywhere on the play area, pressed at touch-down (not on
+    release, like TAP) and held while a finger stays: tap-to-flap and one-touch games."""
     LOOK: Binding
     """Axis2: as DRAG, for fingers that land on the right half (camera look)."""
     DOUBLE_TAP: Binding
