@@ -3,8 +3,9 @@ import { Color, ParallaxError, Quat, Vec2, Vec3 } from '../../../core/index.js';
 import type { EntityId, ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel, t } from '../../kernel/index.js';
-import type { ComponentDef, EventDef, Fields, GameDefinition, Handle, SystemDef } from '../../kernel/index.js';
-import { CAMERAS_SERVICE } from '../../services/index.js';
+import type { ComponentDef, EventDef, Fields, GameDefinition, Handle, KernelPlugin, SystemDef } from '../../kernel/index.js';
+import { CAMERAS_SERVICE, PHYSICS3D_SERVICE } from '../../services/index.js';
+import type { Physics3dService } from '../../services/index.js';
 import { CameraApi, readBands, textSpans, visuals } from './index.js';
 import type { Band, CameraView, TextSpan, VisualsOptions, VisualsPlugin } from './index.js';
 
@@ -65,7 +66,7 @@ interface Game {
 function game(
   data: { prefabs: Record<string, unknown>; entities: unknown[] },
   options: Partial<VisualsOptions> = {},
-  extra: { systems?: SystemDef[]; events?: EventDef[] } = {},
+  extra: { systems?: SystemDef[]; events?: EventDef[]; plugins?: KernelPlugin[] } = {},
 ): Game {
   const project = loadProject(files({
     ...Object.fromEntries(Object.entries(data.prefabs).map(([id, p]) => [`prefabs/${id}.prefab.json`, p])),
@@ -76,7 +77,7 @@ function game(
   const def: GameDefinition = {
     components: [COLLIDER_DEF, GRID_DEF], resources: [], events: extra.events ?? [], behaviors: [], systems: extra.systems ?? [],
   };
-  const kernel = new Kernel({ project, game: def, plugins: [plugin], context: {}, fixedStep: DT });
+  const kernel = new Kernel({ project, game: def, plugins: [...(extra.plugins ?? []), plugin], context: {}, fixedStep: DT });
   const cameras = plugin.namespace!.create(kernel) as CameraApi;
   kernel.start('main');
   const id = (placed: string): EntityId => [...kernel.world.live()].find((r) => r.placedId === placed)!.id;
@@ -359,6 +360,62 @@ describe('orbit and first-person rigs', () => {
     near(g.camera().__view__.position, new Vec3(2, 1.6, 2));
     near(forward(g.camera().__view__), Vec3.RIGHT);
     near(g.kernel.world.require(g.id('hero')).transform.rotation.rotate(Vec3.FORWARD), Vec3.RIGHT);
+  });
+
+  it('orbit with `collide` stops in front of a wall, then eases back out', () => {
+    // A wall plane at z = -2 behind the hero: a sphere swept from the pivot along -z hits it.
+    let wall = true;
+    const ignored: unknown[] = [];
+    const physics = {
+      shapecast: (shape: { radius: number }, origin: Vec3, _r: Quat, direction: Vec3, max: number, filter?: { ignore?: readonly unknown[] }) => {
+        ignored.push(...(filter?.ignore ?? []));
+        if (!wall || direction.z >= 0) return undefined;
+        const distance = (origin.z - (-2 + shape.radius)) / -direction.z;
+        return distance <= max ? { entity: undefined, point: origin.__add__(direction.__mul__(distance)), normal: Vec3.FORWARD, distance } : undefined;
+      },
+    } as unknown as Physics3dService;
+    const provider: KernelPlugin = { id: 'physics3d', install: (k) => k.provide(PHYSICS3D_SERVICE, physics) };
+    const g = game({
+      prefabs: { cam: { components: { camera: { rig: 'orbit', follow: 'hero', offset: [0, 1.6, -4.5], collide: 0.25 } } }, hero: { components: {} } },
+      entities: [{ id: 'hero', prefab: 'hero' }, { id: 'cam', prefab: 'cam' }],
+    }, { look: () => Vec2.ZERO }, { plugins: [provider] });
+    g.steps(1);
+    near(g.camera().__view__.position, new Vec3(0, 1.6, -1.75));
+    expect(ignored).toContain(g.id('hero'));
+    wall = false;
+    g.steps(1);
+    const z = g.camera().__view__.position.z;
+    expect(z).toBeLessThan(-1.75);
+    expect(z).toBeGreaterThan(-4.5);
+    g.steps(120);
+    near(g.camera().__view__.position, new Vec3(0, 1.6, -4.5), 2);
+    g.camera()['collide'] = 0;
+    wall = true;
+    g.steps(1);
+    near(g.camera().__view__.position, new Vec3(0, 1.6, -4.5));
+  });
+
+  it('orbit `collide_layers` sweeps only those layers (a crowd on another layer never pulls the view in)', () => {
+    const filters: Array<{ layers?: readonly string[] } | undefined> = [];
+    const physics = {
+      shapecast: (_s: unknown, _o: Vec3, _r: Quat, _d: Vec3, _m: number, filter?: { layers?: readonly string[] }) => {
+        filters.push(filter);
+        return undefined;
+      },
+    } as unknown as Physics3dService;
+    const provider: KernelPlugin = { id: 'physics3d', install: (k) => k.provide(PHYSICS3D_SERVICE, physics) };
+    const g = game({
+      prefabs: {
+        cam: { components: { camera: { rig: 'orbit', follow: 'hero', offset: [0, 1.6, -4.5], collide: 0.25, collide_layers: ['world'] } } },
+        hero: { components: {} },
+      },
+      entities: [{ id: 'hero', prefab: 'hero' }, { id: 'cam', prefab: 'cam' }],
+    }, { look: () => Vec2.ZERO }, { plugins: [provider] });
+    g.steps(1);
+    expect(filters.at(-1)?.layers).toEqual(['world']);
+    g.camera()['collide_layers'] = [];
+    g.steps(1);
+    expect(filters.at(-1)?.layers).toBeUndefined();
   });
 
   it('are refused in 2D', () => {

@@ -2330,6 +2330,14 @@ class Camera(EngineComponent):
     ahead). The lead holds while the target stands still; 0 (default): no lead."""
     look_ahead_smoothing: float = ...
     """Seconds: how slowly the lead swings round when the target turns (default 0.6)."""
+    collide: float = ...
+    """Orbit (3D, with physics3d): radius in meters of a sphere swept from the pivot out to
+    the camera, so walls, ceilings and the terrain between them pull the camera in front of
+    them (the follow targets are ignored). It pulls in at once and eases back out. 0
+    (default): the camera passes through walls. Third-person games indoors want ~0.25."""
+    collide_layers: list[str] = ...
+    """The collision layers (physics3d layer names) `collide` stops at; empty (default):
+    every layer. `["world"]` lets the view pass through crowds and props on other layers."""
     fit: tuple[Vec2, Vec2] | None = ...
     """(min corner, max corner) of a world rectangle kept fully visible at any aspect
     ratio (boards in portrait). Or `"fit": "grid"` in JSON to fit the scene's Grid

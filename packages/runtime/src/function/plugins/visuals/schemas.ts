@@ -242,6 +242,14 @@ export const CAMERA_SCHEMA: Schema = {
   look_ahead: t.number({ default: 0, min: 0 }),
   /** Seconds: the time constant of the lead swinging to a new direction. */
   look_ahead_smoothing: t.number({ default: 0.6, min: 0 }),
+  /**
+   * Orbit (3D, with physics3d): meters of radius of a sphere swept from the pivot out to
+   * the camera; solid geometry in between pulls the camera in front of it (walls, ceilings,
+   * the terrain). 0 (the default): the camera passes through walls.
+   */
+  collide: t.number({ default: 0, min: 0 }),
+  /** The collision layers `collide` stops at (physics3d layer names); empty: every layer. */
+  collide_layers: t.list({ kind: 'string' }, { default: [] }),
   fit: { type: { kind: 'json' }, default: null },
   fit_margin: t.number({ default: 0, min: 0 }),
   /** (width, height) in meters always visible: orthographic widens `size`, perspective widens `fov` at `focus_distance`. */
