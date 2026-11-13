@@ -31,8 +31,17 @@ class GameHarness
 **Methods**
 
 ```python
-async def start(*, scene: SceneRef | None = None, seed: int = 1, players: int = 1) -> None
+async def start(
+    *,
+    scene: SceneRef | None = None,
+    seed: int = 1,
+    players: int = 1,
+    wall_clock: float | None = None,
+) -> None
 ```
+
+`wall_clock=`: give the game a device clock (`ctx.time.wall_clock`) starting at
+these Unix seconds and running with game time; without it the clock is None.
 
 ```python
 async def press(action: Button, *, player: int = 0) -> None

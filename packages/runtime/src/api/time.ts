@@ -70,6 +70,8 @@ export class Time {
   get now(): number { return this.#rt.kernel.time.now; }
   get scene_time(): number { const t = this.#rt.kernel.time; return t.now - t.sceneStart; }
   get real_now(): number { return this.#rt.kernel.time.realNow; }
+  /** Unix seconds from the platform's clock (offline rewards, daily resets); None headless unless the host gives one. */
+  get wall_clock(): number | null { return this.#rt.wallClock(); }
   get frame(): number { return this.#rt.kernel.time.frame; }
   get frozen(): boolean { return this.#rt.kernel.time.frozen; }
   get scale(): number { return this.#rt.kernel.time.scale; }

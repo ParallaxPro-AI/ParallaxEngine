@@ -9414,6 +9414,7 @@
         "start(players=) takes an int of 1 or more, got {…}",
         "start(scene=) takes a scene handle (Scenes.<id>), got {…}",
         "start(seed=) takes an int, got {…}",
+        "start(wall_clock=) takes Unix seconds (a number), got {…}",
         "tap() takes a screen point (Vec2), got {…}",
         "tap_entity() takes an entity, got {…}",
         "tap_world() takes a Vec2 or Vec3, got {…}",

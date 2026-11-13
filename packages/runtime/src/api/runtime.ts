@@ -284,6 +284,7 @@ export class GameRuntime {
   #seed: number;
   #random: SeededRandom;
   #hitstopUntil: number | undefined;
+  readonly #wallClock: (() => number) | undefined;
   readonly #entities = new Map<EntityId, Entity>();
   readonly #componentInfo = new Map<string, SchemaInfo>();
   readonly #resourceInfo = new Map<string, SchemaInfo>();
@@ -308,6 +309,7 @@ export class GameRuntime {
     this.#seed = options.seed;
     this.#random = new SeededRandom(options.seed);
     setActiveRandom(this.#random);
+    this.#wallClock = options.wallClock;
     this.#print = options.print ?? ((text) => { this.printed.push(text); });
     setPrintSink(this.#print);
 
@@ -814,6 +816,13 @@ export class GameRuntime {
   /** Change scene at the end of this frame; the new load uses `seed` (or a fresh one). */
   requestScene(sceneId: string, request: SceneRequest, seed: number | null): void {
     this.kernel.requestScene(sceneId, { ...request, seed: seed ?? this.#random.int(0, 0x7fffffff) });
+  }
+
+  /** The platform's wall clock in Unix seconds (`ctx.time.wall_clock`); null when it has none. */
+  wallClock(): number | null {
+    if (this.#wallClock === undefined) return null;
+    const t = this.#wallClock();
+    return Number.isFinite(t) ? t : null;
   }
 
   hitstop(seconds: number): void {

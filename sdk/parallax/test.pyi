@@ -15,7 +15,10 @@ class GameHarness:
     ctx: Context
     """The game's context, read-write: set up state directly (start a quest, grant
     gold) or read anything a test needs. Writes happen between frames."""
-    async def start(self, *, scene: SceneRef | None = None, seed: int = 1, players: int = 1) -> None: ...
+    async def start(self, *, scene: SceneRef | None = None, seed: int = 1, players: int = 1,
+                    wall_clock: float | None = None) -> None:
+        """`wall_clock=`: give the game a device clock (`ctx.time.wall_clock`) starting at
+        these Unix seconds and running with game time; without it the clock is None."""
     async def press(self, action: Button, *, player: int = 0) -> None:
         """A click: down and up within one frame. That frame `pressed` and `released` are
         true and `held` is not — read `pressed` for actions a click should trigger."""
