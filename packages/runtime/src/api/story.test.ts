@@ -19,6 +19,7 @@ import {
 } from './index.js';
 import type { Context, GameRuntime } from './index.js';
 import { ContentRef } from './content.js';
+import { float as pyFloat, int as pyInt, str as pyStr } from './pyrt/builtins.js';
 import {
   DialogueEnded, DialoguePanel, DialogueRef, DialogueStarted, dialogue_command, fact, FactChanged,
   story as storyPlugin, QuestCompleted, QuestDef, QuestStarted, QuestStepCompleted, quest_verb, resetStory,
@@ -258,5 +259,11 @@ describe('parallax.story', () => {
     expect(code(() => fact('Bad.Key', 1))).toBe('PP4180');
     expect(code(() => quest_verb('talk'))).toBe('PP4182');
     expect(code(() => dialogue_command('set'))).toBe('PP4183');
+  });
+
+  it('a verb may declare a builtin type as its target (target=str, as game code passes it)', () => {
+    // Compiled `@quest_verb("is", target=str)` hands over Python's builtin `str` value, not an annotation marker.
+    expect(() => quest_verb('is_set', kw({ target: pyStr }))(() => true)).not.toThrow();
+    expect(() => quest_verb('at_least', kw({ target: pyInt, args: { more: pyFloat } }))(() => true)).not.toThrow();
   });
 });
