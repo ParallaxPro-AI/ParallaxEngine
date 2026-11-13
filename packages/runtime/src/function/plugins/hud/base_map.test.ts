@@ -10,8 +10,8 @@ import type { ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel, t } from '../../kernel/index.js';
 import type { KernelPlugin } from '../../kernel/index.js';
-import { CITY_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
-import type { CityMap, TerrainField } from '../../services/index.js';
+import { CITY_SERVICE, PROCGEN_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
+import type { CityMap, GeneratedMesh, TerrainField } from '../../services/index.js';
 import { BaseMapBuilder } from './base_map.js';
 
 function files(contents: Record<string, unknown>): ProjectFiles {
@@ -39,13 +39,14 @@ const FIELD = {
   surfaceAt: (x: number) => (x < 0 ? 'asphalt' : 'grass'),
 } as unknown as TerrainField;
 
-function start(city: CityMap | null, terrain: TerrainField | null = null): Kernel {
+function start(city: CityMap | null, terrain: TerrainField | null = null, generated: readonly GeneratedMesh[] = []): Kernel {
   const plugin: KernelPlugin = {
     id: 'stand_ins',
     components: [{ id: 'shape', schema: { kind: t.string({ default: 'box' }), size: t.vec3({ default: Vec3.ONE }), offset: t.vec3({ default: Vec3.ZERO }), color: t.color({ default: Color.WHITE }) } }],
     install(k) {
       if (city !== null) k.provide(CITY_SERVICE, { revision: 0, meshes: () => [], map: () => city });
       if (terrain !== null) k.provide(TERRAIN_SERVICE, { current: () => terrain } as never);
+      if (generated.length > 0) k.provide(PROCGEN_SERVICE, { revision: 1, meshes: () => generated, path: () => undefined, paths: () => [] });
     },
   };
   const project = loadProject(files({
@@ -96,5 +97,26 @@ describe('base map city layer', () => {
     // The road path as a street stroke (its width, and the on-screen minimum); the grass path draws nothing.
     expect(svg).toContain('<path d="M-40,0L40,0" fill="none" stroke="#6b7688" stroke-width="10"');
     expect(svg).not.toContain('M0,40L0,-40');
+  });
+
+  it('draws generated geometry from above: floors near the base as floor, wall tops as solid', () => {
+    // A 10 x 10 m floor at y = 2 (the mesh's base) and a 1 m wide wall whose top is 3 m above it,
+    // in world space; one side of the wall, facing west, is vertical and draws nothing.
+    const vertices = new Float32Array([
+      -5, 2, -5, 5, 2, -5, 5, 2, 5, -5, 2, 5, // floor
+      5, 5, -5, 6, 5, -5, 6, 5, 5, 5, 5, 5, // wall top
+      5, 2, -5, 5, 5, -5, 5, 5, 5, // wall side (vertical)
+    ]);
+    const indices = new Uint32Array([0, 2, 1, 0, 3, 2, 4, 6, 5, 4, 7, 6, 8, 9, 10]);
+    const world = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 2, 0, 1]);
+    const mesh = { key: 'dungeon:1', entity: null, version: 1, parts: [], world, collision: { vertices, indices }, collisionVersion: 1 } as GeneratedMesh;
+    const kernel = start(null, null, [mesh]);
+    const base = new BaseMapBuilder(kernel, '3d').build(kernel.world.query([]).map(([id]) => id))!;
+    const svg = svgOf(base.uri);
+    // The pad, two floor triangles and two solid ones; the vertical side is skipped.
+    expect(base.shapes).toBe(5);
+    expect(svg.match(/fill="rgba\(60, 68, 84, 1\)"/g)).toHaveLength(2);
+    expect(svg.match(/fill="rgba\(142, 151, 168, 1\)"/g)).toHaveLength(2);
+    expect(base.maxU).toBeGreaterThanOrEqual(6);
   });
 });
