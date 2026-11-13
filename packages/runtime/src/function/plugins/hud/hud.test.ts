@@ -172,6 +172,20 @@ describe('hud models', () => {
     expect(map.base_left).toMatch(/%$/);
   });
 
+  it('centers the map on a fixed point when it has one, and moves the player arrow instead', () => {
+    const r = rig(WORLD);
+    const player = r.kernel.world.get(r.id('player'))!;
+    expect([r.plugin.engine.minimap(0).player_x, r.plugin.engine.minimap(0).player_y]).toEqual(['50%', '50%']);
+    const map = player.components.get('minimap')!;
+    player.components.set('minimap', { ...map, center: new Vec3(-2, 0, 0) });
+    const fixed = r.plugin.engine.minimap(0);
+    // The player 2 m east of the center on a 10 m-radius map: x = 0.5 + 2/20.
+    expect([fixed.player_x, fixed.player_y]).toEqual(['60%', '50%']);
+    // The coin (3 east, 4 north of the player) is 5 east, 4 north of the center.
+    const star = fixed.icons.find((i) => i.icon === 'star')!;
+    expect([star.x, star.y]).toEqual(['75%', '30%']);
+  });
+
   it('turns the map with the viewer heading', () => {
     const r = rig(WORLD);
     r.kernel.world.get(r.id('player'))!.transform.rotation = Quat.from_euler(new Vec3(0, 90, 0));
@@ -181,6 +195,39 @@ describe('hud models', () => {
     const star = map.icons.find((i) => i.icon === 'star')!;
     expect(Number.parseFloat(star.x)).toBeLessThan(50);
     expect(Number.parseFloat(star.y)).toBeLessThan(50);
+  });
+
+  it('a fixed heading turns the map to it whatever the viewer faces (isometric views)', () => {
+    const r = rig(WORLD);
+    r.kernel.world.get(r.id('player'))!.components.get('minimap')!['heading'] = 45;
+    r.kernel.world.get(r.id('player'))!.transform.rotation = Quat.from_euler(new Vec3(0, 160, 0));
+    const map = r.plugin.engine.minimap(0);
+    expect(map.turn).toBe('rotate(-45deg)');
+    // Up is north-east: the coin (3 east, 4 north) lies almost straight up.
+    const star = map.icons.find((i) => i.icon === 'star')!;
+    expect(Math.abs(Number.parseFloat(star.x) - 50)).toBeLessThan(6);
+    expect(Number.parseFloat(star.y)).toBeLessThan(30);
+    // The arrow still shows where the viewer faces, relative to the map's up.
+    expect(map.player_turn).toBe('rotate(115deg)');
+  });
+
+  it("the player arrow points the viewer's heading: up on a player-up map, the heading north-up", () => {
+    const r = rig(WORLD);
+    const player = r.kernel.world.get(r.id('player'))!;
+    player.transform.rotation = Quat.from_euler(new Vec3(0, 90, 0));
+    expect(r.plugin.engine.minimap(0).player_turn).toBe('none');
+    player.components.get('minimap')!['rotate'] = false;
+    expect(r.plugin.engine.minimap(0).player_turn).toBe('rotate(90deg)');
+  });
+
+  it('a viewer outside a fixed-center map keeps its arrow on the rim, like an edge icon', () => {
+    const r = rig(WORLD);
+    const player = r.kernel.world.get(r.id('player'))!;
+    const map = player.components.get('minimap')!;
+    // 30 m west of the player on a 10 m-radius map: the player is far off its east side.
+    player.components.set('minimap', { ...map, center: new Vec3(-30, 0, 0) });
+    const fixed = r.plugin.engine.minimap(0);
+    expect([fixed.player_x, fixed.player_y]).toEqual(['96%', '50%']);
   });
 
   it('markers pin off-screen objectives to the edge with an arrow', () => {

@@ -86,8 +86,12 @@ export const HUD_SCHEMAS: Readonly<Record<string, Schema>> = {
   [MINIMAP]: {
     /** Meters from the map's center to its rim. Change it to zoom. */
     range: t.number({ default: 40, min: 1 }),
+    /** A fixed world point the map is centered on (a whole-arena map); None: the viewer. */
+    center: { type: optional({ kind: 'vec3' }), default: null },
     /** Turn the map with the viewer's heading (player-up); False: north-up. */
     rotate: t.bool({ default: true }),
+    /** A fixed heading in degrees that is "up" on the map (an isometric camera's yaw); over `rotate`. */
+    heading: { type: optional({ kind: 'number' }), default: null },
     shape: t.enum(['circle', 'square'], { default: 'circle' }),
     /** A route line (world points, e.g. from `ctx.nav.path`); empty: none. */
     route: t.list({ kind: 'vec3' }, { default: [] }),

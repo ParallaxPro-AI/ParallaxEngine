@@ -323,7 +323,7 @@ export class HudEngine {
     const a = this.#a11y();
     const empty: MinimapModel = {
       shown: false, round: true, base: null, base_left: '0%', base_top: '0%', base_width: '0%', base_height: '0%', turn: 'none',
-      player_turn: 'none', icons: [], has_route: false, route: '', range: 0, a11y: this.#a11yState(a),
+      player_turn: 'none', player_x: '50%', player_y: '50%', icons: [], has_route: false, route: '', range: 0, a11y: this.#a11yState(a),
     };
     const id = this.viewer(seat, MINIMAP);
     const record = id === null ? undefined : this.#record(id);
@@ -333,8 +333,11 @@ export class HudEngine {
     const range = map['range'] as number;
     const round = map['shape'] === 'circle';
     const heading = headingOf(this.dimension, record);
-    const turnDeg = map['rotate'] === true ? heading : 0;
-    const [vu, vv] = planeOf(this.dimension, record.transform.worldPosition());
+    const fixed = map['heading'] as number | null | undefined;
+    const turnDeg = typeof fixed === 'number' ? fixed : map['rotate'] === true ? heading : 0;
+    const [pu, pv] = planeOf(this.dimension, record.transform.worldPosition());
+    const center = map['center'] as Vec3 | null;
+    const [vu, vv] = center === null ? [pu, pv] : planeOf(this.dimension, center);
     const span = 2 * range;
     const cos = Math.cos((turnDeg * Math.PI) / 180);
     const sin = Math.sin((turnDeg * Math.PI) / 180);
@@ -382,6 +385,12 @@ export class HudEngine {
       const style = PING_STYLE[ping.kind];
       icons.push({ icon: `ping_${ping.kind}`, glyph: style.glyph, x: pct(x), y: pct(y), color: css(style.color), size: '120%', turn: 'none', label: this.#text(ping.label), edge: !within });
     }
+    // The viewer's arrow: the box center, or (a fixed `center`) wherever the viewer is, held
+    // to the rim like an edge icon when outside the map. It points the viewer's heading as
+    // seen on the turned map (straight up on a player-up map).
+    let [px, py] = box(pu, pv);
+    if (!inside(px, py)) [px, py] = rim(px, py);
+    const playerUp = typeof fixed !== 'number' && map['rotate'] === true;
     const base = this.baseMap();
     const route = (map['route'] as Vec3[]).map((p) => {
       const [u, v] = planeOf(this.dimension, p);
@@ -395,7 +404,8 @@ export class HudEngine {
       base_width: base === null ? '0%' : pct((base.maxU - base.minU) / span),
       base_height: base === null ? '0%' : pct((base.maxV - base.minV) / span),
       turn: turnDeg === 0 ? 'none' : `rotate(${Math.round(-turnDeg * 10) / 10}deg)`,
-      player_turn: turnDeg === 0 ? `rotate(${Math.round(heading)}deg)` : 'none',
+      player_turn: playerUp ? 'none' : `rotate(${Math.round(heading - turnDeg)}deg)`,
+      player_x: pct(px), player_y: pct(py),
       icons, has_route: route.length >= 2, route: route.join(' '), range, a11y: this.#a11yState(a),
     };
   }

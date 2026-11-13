@@ -48,6 +48,9 @@ export interface MinimapModel {
   /** The map layer's CSS transform (player-up rotation). */
   readonly turn: string;
   readonly player_turn: string;
+  /** Where the viewer's arrow sits in the box (50% unless the map has a fixed `center`). */
+  readonly player_x: string;
+  readonly player_y: string;
   readonly icons: readonly MapIconModel[];
   readonly has_route: boolean;
   /** SVG polyline points in the map layer's 0..100 box. */
