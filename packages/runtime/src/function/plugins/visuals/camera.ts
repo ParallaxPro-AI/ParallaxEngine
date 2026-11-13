@@ -29,7 +29,11 @@
  *                 (orthographic) until each is within `fit_margin` of the frame.
  *   orbit (3D)    around a pivot `offset.y` above the focus at the horizontal arm
  *                 (offset.x, offset.z), turned by the seat's look input; starts behind the
- *                 target at `pitch` (or level). `smoothing` applies to the pivot.
+ *                 target at `pitch` (or level). `smoothing` applies to the pivot. With
+ *                 `collide` (and physics3d), a sphere of that radius swept from the pivot
+ *                 out along the arm stops in front of solid geometry (the follow targets
+ *                 aside; only `collide_layers` when given): the camera pulls in at once and
+ *                 eases back out over BOOM_RELEASE.
  *   first_person  at the target's eye when it is a Character (else its position), plus
  *                 `offset` (turned with the view's yaw),
  *   (3D)          yaw/pitch from look input; the target's yaw follows the view.
@@ -53,7 +57,7 @@ import { RENDER_TEXTURE } from './render_schemas.js';
 import { CAMERA, CAMERA_RIGS, GRID } from './schemas.js';
 import type { CameraRig } from './schemas.js';
 import type { Json } from '../../../resource/index.js';
-import { CHARACTERS_SERVICE, RENDER_POSE_SERVICE } from '../../services/index.js';
+import { CHARACTERS_SERVICE, PHYSICS3D_SERVICE, RENDER_POSE_SERVICE } from '../../services/index.js';
 import type { Pose } from '../../services/index.js';
 import {
   axes, FAR, fitSize, lookRotation, NEAR, pixelRect, relative, requireViewport, screenRay, screenToWorld, viewCenter,
@@ -104,6 +108,8 @@ interface CameraState {
   view: CameraView | undefined;
   /** This frame's shake, in world meters (part of `view.position`). */
   shake: Vec3;
+  /** Orbit `collide`: the arm's length now (pulled in by geometry); null = full length. */
+  boom: number | null;
 }
 
 interface SavedCamera {
@@ -116,6 +122,7 @@ interface SavedCamera {
   readonly lead?: number[];
   readonly heading?: number[];
   readonly last?: number[] | null;
+  readonly boom?: number | null;
   readonly shakes: Array<[number, number, number]>;
   readonly kicks: Array<[number, number, number, number]>;
   readonly zoom: [string, number, number, number, number] | null;
@@ -145,6 +152,8 @@ function smoothstep(x: number): number {
 
 /** m/s of horizontal travel below which `look_ahead` keeps its last direction. */
 const LOOK_AHEAD_MIN_SPEED = 0.5;
+/** Seconds: the time constant of an orbit arm letting back out after `collide` pulled it in. */
+const BOOM_RELEASE = 0.25;
 
 function approach(current: Vec3 | null, target: Vec3, alpha: number): Vec3 {
   return current === null || alpha >= 1 ? target : current.lerp(target, alpha);
@@ -238,7 +247,7 @@ export class Cameras {
   }
 
   #freshState(): CameraState {
-    return { rig: undefined, yaw: 0, pitch: 0, position: null, focus: null, lead: Vec3.ZERO, heading: Vec3.ZERO, last: null, shakes: [], kicks: [], zoom: null, view: undefined, shake: Vec3.ZERO };
+    return { rig: undefined, yaw: 0, pitch: 0, position: null, focus: null, lead: Vec3.ZERO, heading: Vec3.ZERO, last: null, shakes: [], kicks: [], zoom: null, view: undefined, shake: Vec3.ZERO, boom: null };
   }
 
   #check(record: EntityRecord): void {
@@ -400,6 +409,7 @@ export class Cameras {
       state.lead = Vec3.ZERO;
       state.heading = Vec3.ZERO;
       state.last = null;
+      state.boom = null;
       state.yaw = yawOf(targets[0] === undefined ? record.transform.worldRotation() : this.#drawn(targets[0]).rotation);
       state.pitch = (fields['pitch'] as number | null) ?? 0;
     }
@@ -449,7 +459,10 @@ export class Cameras {
     const view = Quat.from_euler(new Vec3(-state.pitch, state.yaw, 0));
     if (rig === 'orbit') {
       state.focus = approach(state.focus, focus.__add__(new Vec3(0, offset.y, 0)), alpha(smoothing));
-      record.transform.setWorldPosition(state.focus.__add__(view.rotate(new Vec3(offset.x, 0, offset.z))));
+      const arm = view.rotate(new Vec3(offset.x, 0, offset.z));
+      const radius = nonNegative(fields['collide'], `${where}.collide`);
+      const layers = (fields['collide_layers'] as readonly string[] | undefined) ?? [];
+      record.transform.setWorldPosition(state.focus.__add__(this.#boom(state, arm, radius, layers, targets, dt)));
       this.#setWorldRotation(record, view);
       return;
     }
@@ -460,6 +473,27 @@ export class Cameras {
     this.#setWorldRotation(record, view);
     // First person turns the body itself (its transform, not the drawn pose).
     this.#setWorldRotation(this.#kernel().world.require(targets[0]!), yawOnly);
+  }
+
+  /**
+   * Orbit `collide`: the arm, shortened to stop a sphere of `radius` in front of the first
+   * solid hit swept out from the pivot (the targets ignored). It pulls in at once and lets
+   * out over BOOM_RELEASE seconds, so a passing pillar doesn't make the view pop.
+   */
+  #boom(state: CameraState, arm: Vec3, radius: number, layers: readonly string[], targets: readonly EntityId[], dt: number): Vec3 {
+    const length = arm.length();
+    const physics = radius > 0 && length > 1e-6 ? this.#kernel().tryService(PHYSICS3D_SERVICE) : undefined;
+    if (physics === undefined || state.focus === null) {
+      state.boom = null;
+      return arm;
+    }
+    const direction = arm.__truediv__(length);
+    const filter = layers.length > 0 ? { ignore: targets, layers } : { ignore: targets };
+    const hit = physics.shapecast({ kind: 'sphere', radius }, state.focus, Quat.IDENTITY, direction, length, filter);
+    const free = hit === undefined ? length : Math.max(0, Math.min(length, hit.distance));
+    const current = state.boom ?? length;
+    state.boom = free < current ? free : current + (free - current) * (dt > 0 ? 1 - Math.exp(-dt / BOOM_RELEASE) : 0);
+    return direction.__mul__(state.boom);
   }
 
   /** The follow rig's `look_ahead` lead this frame (zero when unset). */
@@ -812,6 +846,7 @@ export class Cameras {
         lead: xyz(s.lead),
         heading: xyz(s.heading),
         last: s.last === null ? null : xyz(s.last),
+        boom: s.boom,
         shakes: s.shakes.map((x) => [x.intensity, x.seconds, x.left]),
         kicks: s.kicks.map((k) => [k.pitch, k.yaw, k.recover, k.t]),
         zoom: s.zoom === null ? null : [s.zoom.field, s.zoom.from, s.zoom.to, s.zoom.seconds, s.zoom.t],
@@ -844,6 +879,7 @@ export class Cameras {
         },
         view: undefined,
         shake: Vec3.ZERO,
+        boom: s.boom ?? null,
       });
     }
     for (const [seat, id] of saved.used) this.#used.set(seat, id as EntityId);

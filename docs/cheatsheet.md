@@ -280,8 +280,9 @@ See [scenes and entities](concepts/world.md) and
 ```
 
 Rigs are `fixed`, `follow` (trails at `offset`; add `look_ahead` for
-side-scrollers), `orbit` and `first_person`. Camera pitch is positive looking
-up. Shake with `ctx.camera.main.shake(0.2, 0.3)`. Outdoors, replace the flat
+side-scrollers), `orbit` and `first_person`. With `physics3d()`, `"collide": 0.25`
+(a sphere radius in meters) keeps an orbit camera out of walls. Camera pitch is
+positive looking up. Shake with `ctx.camera.main.shake(0.2, 0.3)`. Outdoors, replace the flat
 ground with terrain, foliage and weather; see [visuals](concepts/visuals.md).
 
 ## UI panel
