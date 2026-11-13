@@ -10,6 +10,7 @@ import {
 } from '../function/plugins/physics2d/index.js';
 import type { MaterialSpec } from '../function/plugins/physics2d/index.js';
 import type { KernelPlugin } from '../function/kernel/index.js';
+import { initGiven } from './declarations.js';
 import { eventHandle } from './events.js';
 import { bindArgs } from './kwargs.js';
 
@@ -18,26 +19,31 @@ export type { Hit as RayHit, PhysicsNamespace as PhysicsApi } from '../function/
 /** `entity.get(Rigidbody)` returns the component itself, with its methods (velocity, impulse, …). */
 export class Rigidbody {
   static readonly __component_id__ = RIGIDBODY;
+  constructor(...args: unknown[]) { initGiven(this, 'Rigidbody', args); }
 }
 
 /** `entity.get(Collider)`: shape, size, layer, trigger, … */
 export class Collider {
   static readonly __component_id__ = COLLIDER;
+  constructor(...args: unknown[]) { initGiven(this, 'Collider', args); }
 }
 
 /** `entity.get(Joint)`: kind, anchors, limits, motor, break_force… and angle / position / distance / load / detach(). */
 export class Joint {
   static readonly __component_id__ = JOINT;
+  constructor(...args: unknown[]) { initGiven(this, 'Joint', args); }
 }
 
 /** `entity.get(ForceField)`: kind, strength, direction, radius, falloff, layers, enabled. */
 export class ForceField {
   static readonly __component_id__ = FORCE_FIELD;
+  constructor(...args: unknown[]) { initGiven(this, 'ForceField', args); }
 }
 
 /** `entity.get(Ragdoll)` (physics3d): mode, weight, go_limp / activate / recover. */
 export class Ragdoll {
   static readonly __component_id__ = 'ragdoll';
+  constructor(...args: unknown[]) { initGiven(this, 'Ragdoll', args); }
 }
 
 /** `@on(JointBroken)`: entity (the joint's), body, connected (Entity | None), force (N). */

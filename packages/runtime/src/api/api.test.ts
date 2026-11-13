@@ -338,6 +338,26 @@ describe('systems, config, content, text', () => {
     r.ctx.reset(RunR);
     expect({ ...(r.ctx.get(RunR) as object) }).toEqual({ level: 1, coins: 0, best: 0 });
   });
+
+  it('init applies fields set after construction too (r = Run(); r.level = 3), lists changed in place included', () => {
+    // Regression: only constructor arguments were applied, so these assignments were silently dropped.
+    class KitC {
+      static __annotations__ = { level: () => rt.int, coins: () => rt.int, items: () => rt.list(rt.str) };
+      static level = field(1);
+      static coins = field(0);
+      static items = field([]);
+    }
+    const KitR = resource('kit')(KitC);
+    const r = run({ 'scenes/main/scene.json': { entities: [] } }, [], 'main', 42);
+    (r.ctx.get(KitR) as { coins: number }).coins = 7;
+    const Kit_ = KitR as unknown as new (...a: unknown[]) => { level: number; items: string[] };
+    const kit = new Kit_();
+    kit.level = 3;
+    kit.items.push('sword');
+    r.ctx.scenes.reload(kw({ init: [kit] }));
+    steps(r, 1);
+    expect({ ...(r.ctx.get(KitR) as object) }).toEqual({ level: 3, coins: 7, items: ['sword'] });
+  });
 });
 
 describe('time, tasks, tweens', () => {

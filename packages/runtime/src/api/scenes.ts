@@ -6,7 +6,7 @@
 import { fail } from '../core/index.js';
 import type { DiagnosticCode } from '../core/index.js';
 import type { Fields, SceneRequest } from '../function/kernel/index.js';
-import { GIVEN } from './declarations.js';
+import { givenFields } from './declarations.js';
 import { bindArgs } from './kwargs.js';
 import { SceneRef, Tag } from './types.js';
 import type { GameRuntime } from './runtime.js';
@@ -76,14 +76,14 @@ export function newRunArg(a: Record<string, unknown>, where: string, code: Diagn
   return newRun;
 }
 
-/** `init=[Run(level=3)]` → resource id → the fields each instance was constructed with. */
+/** `init=[Run(level=3)]` → resource id → the fields each instance gives (constructed with or set since). */
 function initValues(value: unknown): Record<string, Fields> | undefined {
   if (value === undefined || value === null) return undefined;
   const init: Record<string, Fields> = {};
   for (const instance of value as Iterable<unknown>) {
     const id = (instance as { constructor?: { __resource_id__?: unknown } } | null)?.constructor?.__resource_id__;
     if (typeof id !== 'string') fail('PP3039', `init= takes resource instances (Run(level=3)), got ${String(instance)}`);
-    const given = (instance as Record<symbol, Set<string>>)[GIVEN] ?? new Set<string>();
+    const given = givenFields(instance as object);
     init[id] = Object.fromEntries([...given].map((name) => [name, (instance as Fields)[name]]));
   }
   return init;

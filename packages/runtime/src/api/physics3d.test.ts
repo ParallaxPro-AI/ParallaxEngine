@@ -11,9 +11,9 @@ import { HeadlessAudio } from '../platform/headless/audio.js';
 import { MemoryBinaryFiles, RecordingSurface3d } from '../platform/headless/render3d.js';
 import { loadProject } from '../resource/index.js';
 import { Character, characters, Jumped, Landed } from './characters.js';
-import { Behavior, behavior, Context, createRuntime, Entity, EntityRef, Game, kw, on, resetDeclarations, SceneRef, Vec3 } from './index.js';
+import { Behavior, behavior, Context, createRuntime, Entity, EntityRef, Game, kw, on, PrefabRef, resetDeclarations, SceneRef, Vec3 } from './index.js';
 import type { GameRuntime } from './index.js';
-import { Collider, Layers, layer, Rigidbody } from './physics.js';
+import { Collider, Joint, Layers, layer, Rigidbody } from './physics.js';
 import { initPhysics3d, physics3d } from './physics3d.js';
 import { Vehicle, VehicleEntered, VehicleExited, VehicleLanded, vehicles } from './vehicles.js';
 
@@ -121,5 +121,33 @@ describe('parallax.plugins.physics3d / characters / vehicles', () => {
     }
     expect(vehicle.speed).toBeGreaterThan(5);
     expect((car.get(Rigidbody) as unknown as { speed: number }).speed).toBeGreaterThan(5);
+  });
+
+  it('builds physics components from keywords: spawn(components=[Joint(...), Rigidbody(...)]) sets those fields', () => {
+    const r = run({
+      'prefabs/floor.prefab.json': { components: { collider: { shape: 'box', size: [100, 1, 100], offset: [0, -0.5, 0] } } },
+      'prefabs/crate.prefab.json': { components: { rigidbody: { mass: 5 }, collider: { shape: 'box', size: [1, 1, 1] } } },
+      'prefabs/pin.prefab.json': { components: {} },
+      'scenes/main/scene.json': { entities: [{ prefab: 'floor', id: 'floor' }, { prefab: 'crate', id: 'crate', at: [0, 3, 0] }] },
+    }, [physics3d()]);
+    const crate = r.ctx.world.placed(new EntityRef('crate'));
+    const world = r.ctx.world as unknown as { spawn(...a: unknown[]): Entity };
+    const pin = world.spawn(new PrefabRef('pin'), kw({ at: new Vec3(0, 3, 0), components: [
+      new Joint(kw({ kind: 'rope', body: crate, length: 0.5 })),
+    ] }));
+    const joint = pin.get(Joint) as unknown as { kind: string; body: unknown; length: number };
+    expect([joint.kind, joint.body, joint.length]).toEqual(['rope', crate, 0.5]);
+    for (let i = 0; i < 60; i++) r.step(STEP);
+    // The rope holds the crate up: it hangs, it doesn't fall to the floor.
+    expect(crate.transform.position.y).toBeGreaterThan(1.5);
+    crate.add(new Rigidbody(kw({ gravity_scale: 0 })));
+    expect((crate.get(Rigidbody) as unknown as { gravity_scale: number; mass: number }).gravity_scale).toBe(0);
+    expect((crate.get(Rigidbody) as unknown as { mass: number }).mass).toBe(5);
+    expect(() => new Joint(1)).toThrow(/PP3030/);
+    // A field set after construction is given too, as for resources: j = Joint(kind="rope"); j.length = 2.
+    const later = new Joint(kw({ kind: 'rope', body: crate })) as unknown as { length: number };
+    later.length = 2;
+    const pin2 = world.spawn(new PrefabRef('pin'), kw({ at: new Vec3(2, 3, 0), components: [later] }));
+    expect((pin2.get(Joint) as unknown as { length: number }).length).toBe(2);
   });
 });

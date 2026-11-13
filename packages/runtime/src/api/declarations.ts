@@ -81,6 +81,40 @@ export function contentPlugin(cls: AnyClass): string | undefined {
 
 /** Field names a data-class instance was constructed with (`spawn(components=)` overrides only these). */
 export const GIVEN = Symbol('parallax.given');
+/** Each field's value right after construction (lists shallow-copied), to tell which were set later. */
+export const INITIAL = Symbol('parallax.initial');
+
+function snapshot(value: unknown): unknown {
+  return Array.isArray(value) ? value.slice() : value;
+}
+
+function unchanged(before: unknown, now: unknown): boolean {
+  if (Array.isArray(before) && Array.isArray(now)) return before.length === now.length && before.every((v, i) => v === now[i]);
+  return before === now;
+}
+
+/** Record which fields an instance holds right after construction (see `givenFields`). */
+export function markInitial(target: object, names: readonly string[]): void {
+  const record = target as Record<string, unknown>;
+  Object.defineProperty(target, INITIAL, { value: Object.fromEntries(names.map((n) => [n, snapshot(record[n])])), enumerable: false });
+}
+
+/**
+ * The fields an instance gives: those passed to its constructor, plus any assigned (or, for
+ * a list, changed in place) after it — `r = Run(); r.level = 3` gives `level` as
+ * `Run(level=3)` does. `init=` and `components=` apply exactly these.
+ */
+export function givenFields(instance: object): Set<string> {
+  const record = instance as Record<string | symbol, unknown>;
+  const given = new Set<string>((record[GIVEN] as ReadonlySet<string> | undefined) ?? []);
+  const initial = record[INITIAL] as Record<string, unknown> | undefined;
+  if (initial !== undefined) {
+    for (const [name, before] of Object.entries(initial)) if (!given.has(name) && !unchanged(before, record[name])) given.add(name);
+    // A field the instance didn't hold at construction (a component handle sets only those passed).
+    for (const name of Object.keys(instance)) if (!(name in initial)) given.add(name);
+  }
+  return given;
+}
 
 function checkId(what: string, id: unknown): string {
   if (typeof id !== 'string' || !/^[a-z][a-z0-9_]*$/.test(id)) {
@@ -94,6 +128,19 @@ function checkClass<T>(what: string, cls: T): T {
   return cls;
 }
 
+/**
+ * Fill an engine component handle's instance from keyword arguments, `Joint(kind="spring",
+ * body=item)`: the fields given, for `spawn(components=[...])` and `entity.add(...)`, which
+ * check them against the running game's schema (2D and 3D schemas differ, so no fixed list
+ * here).
+ */
+export function initGiven(target: object, name: string, args: readonly unknown[]): void {
+  const { restKeywords } = bindArgs(name, args, { restKeywords: true });
+  Object.assign(target, restKeywords);
+  Object.defineProperty(target, GIVEN, { value: new Set(Object.keys(restKeywords)), enumerable: false });
+  markInitial(target, Object.keys(restKeywords));
+}
+
 /** Fill `target` from Python constructor arguments against `info`. */
 export function initFields(target: Record<string, unknown>, info: SchemaInfo, args: readonly unknown[], name: string): void {
   const names = info.fields.map((f) => f.name);
@@ -104,6 +151,7 @@ export function initFields(target: Record<string, unknown>, info: SchemaInfo, ar
     else fail('PP3030', `${name}() is missing the required field "${f.name}"`);
   }
   Object.defineProperty(target, GIVEN, { value: new Set(Object.keys(bound)), enumerable: false });
+  markInitial(target, names);
 }
 
 /** A subclass of `cls` constructed from Python arguments. */
