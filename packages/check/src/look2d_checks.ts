@@ -107,7 +107,7 @@ class Looks {
 
 /** Python sources of the game (not its playtests), by path. */
 function sources(ctx: CheckContext): { path: string; text: string }[] {
-  return ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/')).map((path) => ({ path, text: ctx.files.read(path) }));
+  return ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/') && !p.startsWith('tools/')).map((path) => ({ path, text: ctx.files.read(path) }));
 }
 
 function codeLines(text: string): number {

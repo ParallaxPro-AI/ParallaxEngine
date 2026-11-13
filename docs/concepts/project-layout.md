@@ -39,6 +39,7 @@ my_game/
   locale/en.json               Interface text
   assets/                      Images, models, audio, effects, clips
   tests/test_*.py              Playtests and rules tests
+  tools/*.py                   Offline authoring scripts (CPython; not part of the game)
 ```
 
 Python modules can be combined or split as needed. Subfolders may include
