@@ -12,7 +12,7 @@
  */
 
 import { EARTH_ATMOSPHERE, RIPPLE_FLOATS, WAVE_FLOATS } from '../../../core/index.js';
-import type { CoverMap3d, Fog3d, Frame3d, Nature3d, View3d, WaterBody3d } from '../../../core/index.js';
+import type { CoverMap3d, Fog3d, Frame3d, Nature3d, Sky3d, View3d, WaterBody3d } from '../../../core/index.js';
 import { skyLighting } from './ibl.js';
 import { floatsOf, linearRgb, luminance, offsetOf, slotFloats } from './layout.js';
 import type { UniformField } from './layout.js';
@@ -57,7 +57,7 @@ export const NATURE_FIELDS: readonly UniformField[] = [
   vec4('toSun'),
   /** Sun color (linear), sun disc radius (radians). */
   vec4('sunColor'),
-  /** Zenith (linear), model (0 gradient, 1 atmosphere). */
+  /** Zenith (linear), model (`SKY_MODELS`: 0 gradient, 1 atmosphere, 2 space). */
   vec4('zenith'),
   /** Horizon (linear), stars 0..1. */
   vec4('horizon'),
@@ -118,6 +118,8 @@ export const WATER_BLOCK_FLOATS = floatsOf(WATER_FIELDS);
 
 const KINDS: Readonly<Record<WaterBody3d['kind'], number>> = { ocean: 0, lake: 1, pool: 2, river: 3 };
 const QUALITY = { low: 0, medium: 1, high: 2 } as const;
+/** `zenith.w`: which sky the shaders draw. */
+export const SKY_MODELS: Readonly<Record<Sky3d['model'], number>> = { gradient: 0, atmosphere: 1, space: 2 };
 
 /** How the sky draws clouds (`Quality3d.volumetricClouds`): raymarched through the layer, or one flat noise layer on the dome. */
 export type CloudMode = 'volumetric' | 'flat';
@@ -255,7 +257,7 @@ export function planNature(frame: Frame3d, views: readonly View3d[], width: numb
         set('sunColor', ...linearRgb(env.sun.color), a.sunRadius);
       }
     }
-    set('zenith', ...zenith, sky !== null && sky.model === 'atmosphere' ? 1 : 0);
+    set('zenith', ...zenith, sky === null ? 0 : SKY_MODELS[sky.model]);
     set('horizon', ...horizon, sky?.stars ?? 0);
     set('fogColor', ...linearRgb(fog.color), fog.kind === 'none' ? 0 : fog.kind === 'exponential' ? 1 : 2);
     set('fogParams', fog.density, fog.near, fog.far, 0);

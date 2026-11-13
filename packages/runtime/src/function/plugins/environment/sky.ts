@@ -17,9 +17,11 @@ import { atmosphereLight, luminance } from './atmosphere.js';
 /**
  * The sky's base look by hour and mood of light. Grey, rainy and stormy skies are the
  * weather's ("weather": "overcast" | "rain" | "storm"), which greys whichever preset is
- * under it; WEATHER_SKY_NAMES are refused here with that fix.
+ * under it; WEATHER_SKY_NAMES are refused here with that fix. "space" is open space: no air
+ * and no horizon, a black sky of stars all round with a faint nebula and galactic band, and a
+ * hard white sun that does not set (its light falls the same way at every hour).
  */
-export const SKY_PRESETS = ['clear_day', 'atmosphere', 'sunset', 'dusk', 'night'] as const;
+export const SKY_PRESETS = ['clear_day', 'atmosphere', 'sunset', 'dusk', 'night', 'space'] as const;
 export type SkyPreset = (typeof SKY_PRESETS)[number];
 /** Former sky presets that are weather now. */
 export const WEATHER_SKY_NAMES = ['overcast', 'rain', 'storm'] as const;
@@ -41,6 +43,7 @@ const PALETTES: Readonly<Record<Exclude<SkyPreset, 'atmosphere'>, Palette>> = {
   sunset: p('#3b4a8a', '#ff9e5e', '#5a4a50', '#ffa060', 0.8),
   dusk: p('#2b2f5e', '#f08a5d', '#4a4058', '#ffb070', 0.6),
   night: p('#050812', '#1a2238', '#1c2030', '#8090c0', 0.15),
+  space: p('#010103', '#020206', '#2a3040', '#fffaf2', 1.3),
 };
 
 /** The weather's grey skies, light overcast to storm-dark (overcastPalette blends them). */

@@ -84,7 +84,7 @@ against this list before calling it finished:
 | A prop the library lacks | [Model documents](#authoring-a-model-the-library-lacks) | `assets/models/<name>.model.json` | `open_world_rpg` (`assets/models/`) |
 | Hills, valleys, roads, beaches | [Terrain](#terrain) | Scene `"terrain"`, `terrain()` | `open_world_rpg`, `racing`, `tank_battle` |
 | Forests, grass, bushes, scattered rocks | [Foliage](#foliage-and-nature-scatter) | Scene `"foliage"`, `foliage()` | `open_world_rpg`, `racing`, `moba` |
-| Blue sky, sunsets, night, clouds | [Sky and time of day](#sky-atmosphere-and-time-of-day) | Scene `"environment"` | `open_world_rpg`, `cargo_plane` |
+| Blue sky, sunsets, night, clouds, open space | [Sky and time of day](#sky-atmosphere-and-time-of-day) | Scene `"environment"` | `open_world_rpg`, `cargo_plane` |
 | Day and night cycle | [Sky and time of day](#sky-atmosphere-and-time-of-day) | `"day_length"` | `voxel_survival` |
 | Rain, snow, storms, fog, lightning | [Weather](#weather-and-wind) | `"environment": {"weather": ...}`, `weather()` | `pirate_sailing`, `racing`, `voxel_survival` |
 | Swaying trees, blowing debris, sails | [Wind](#weather-and-wind) | Scene `"wind"`, `wind()` | `racing`, `pirate_sailing` |
@@ -278,9 +278,11 @@ grade. It needs no plugin:
 }
 ```
 
-- **`sky`** is `clear_day`, `atmosphere`, `sunset`, `dusk` or `night`.
+- **`sky`** is `clear_day`, `atmosphere`, `sunset`, `dusk`, `night` or `space`.
   `atmosphere` is physically based: blue noon, red sunsets, starry nights and
-  hazy distant hills. Grey and stormy skies come from [weather](#weather-and-wind),
+  hazy distant hills. `space` is open space for space games: stars all round, a
+  faint nebula and galactic band, no horizon or haze, and a sun that never sets
+  (aim it with `"sun": {"direction": [x, y, z]}`). Grey and stormy skies come from [weather](#weather-and-wind),
   not from a sky preset.
 - **`time_of_day`** (hours) places the sun. **`day_length`** (real seconds per
   game day) runs a day and night cycle. `Light` components with `"when": "night"`

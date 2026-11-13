@@ -68,8 +68,11 @@ export interface Clouds3d {
 }
 
 export interface Sky3d {
-  /** atmosphere: drawn by scattering; gradient: the environment's zenith → horizon colors. */
-  readonly model: 'atmosphere' | 'gradient';
+  /**
+   * atmosphere: drawn by scattering; gradient: the environment's zenith → horizon colors;
+   * space: no air or horizon — stars all round, a faint nebula and galactic band, an unclipped sun.
+   */
+  readonly model: 'atmosphere' | 'gradient' | 'space';
   readonly zenith: Rgb;
   readonly horizon: Rgb;
   /** Unit direction toward the sun (it may be below the horizon). */
