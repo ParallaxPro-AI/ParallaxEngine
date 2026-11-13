@@ -73,7 +73,12 @@ export interface BrowserInputOptions {
   /** A text field focused while the game reads typed text, so phones show their keyboard. */
   readonly textInput?: HTMLInputElement;
   /** The on-screen touch controls: drawn from the engine's touch layout, read as `touch`. */
-  readonly touch?: { present(specs: InputOutput['touch'], skin?: InputOutput['touchSkin']): void; poll(): ReadonlyMap<string, TouchControlSnapshot> };
+  readonly touch?: {
+    present(specs: InputOutput['touch'], skin?: InputOutput['touchSkin']): void;
+    poll(): ReadonlyMap<string, TouchControlSnapshot>;
+    /** The screen takes touches (controls are drawn there). */
+    readonly touchScreen?: boolean;
+  };
   readonly host?: InputHost;
   /** Non-fatal device problems (an unmapped gamepad), each reported once. */
   readonly onProblem?: (d: Diagnostic) => void;
@@ -177,8 +182,10 @@ export class BrowserInput implements InputDevices {
         pressed: this.#pressed,
         wheel: this.#wheel,
         pressedOverUi: this.#pressedOverUi,
+        ...(this.#lastType === 'touch' && { touch: true }),
       },
       touch: this.#touch?.poll() ?? NO_TOUCH,
+      ...(this.#touch?.touchScreen === true && { touchScreen: true }),
       text: this.#typed,
     };
     this.#keysPressed = [];

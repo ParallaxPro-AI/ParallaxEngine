@@ -37,8 +37,11 @@ export class HeadlessInput implements InputDevices {
   #pressedButtons: MouseButton[] = [];
   #wheel = 0;
   #overUi = false;
+  #finger = false;
   #text = '';
   readonly #touch = new Map<string, Touch>();
+  /** Play as a touch screen (`InputSnapshot.touchScreen`). */
+  touchScreen = false;
   /** What the engine asked for at the last frame. */
   output: InputOutput | undefined;
 
@@ -110,17 +113,18 @@ export class HeadlessInput implements InputDevices {
     this.#dy += dy;
   }
 
-  pointerDown(button: MouseButton = 'left', options: { overUi?: boolean } = {}): void {
+  pointerDown(button: MouseButton = 'left', options: { overUi?: boolean; finger?: boolean } = {}): void {
     if (!this.#buttons.has(button)) this.#pressedButtons.push(button);
     this.#buttons.add(button);
     this.#overUi = options.overUi ?? false;
+    this.#finger = options.finger ?? false;
   }
 
   pointerUp(button: MouseButton = 'left'): void {
     this.#buttons.delete(button);
   }
 
-  click(button: MouseButton = 'left', options: { overUi?: boolean } = {}): void {
+  click(button: MouseButton = 'left', options: { overUi?: boolean; finger?: boolean } = {}): void {
     this.pointerDown(button, options);
     this.pointerUp(button);
   }
@@ -159,8 +163,10 @@ export class HeadlessInput implements InputDevices {
       pointer: {
         x: this.#x, y: this.#y, dx: this.#dx, dy: this.#dy,
         buttons: new Set(this.#buttons), pressed: this.#pressedButtons, wheel: this.#wheel, pressedOverUi: this.#overUi,
+        ...(this.#finger && { touch: true }),
       },
       touch,
+      ...(this.touchScreen && { touchScreen: true }),
       text: this.#text,
     };
     this.#keysPressed = [];

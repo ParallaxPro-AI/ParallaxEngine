@@ -605,6 +605,25 @@ describe('pointer', () => {
 // ── Device requests, touch layout, text ────────────────────────────────────────
 
 describe('devices', () => {
+  it('reads a touch screen as on touch before anything is used, then follows the last device used', () => {
+    const r = rig([actionSet('Play', { jump: button([keys('Space')]) })]);
+    r.step();
+    expect(r.engine.device()).toBe('keyboard');
+    r.devices.touchScreen = true;
+    r.step();
+    expect(r.engine.device()).toBe('touch');
+    r.devices.tapKey('Space');
+    r.step();
+    expect(r.engine.device()).toBe('keyboard');
+    // A finger tapping the screen (a menu, the world) is touch; a mouse click is not.
+    r.devices.click('left', { finger: true });
+    r.step();
+    expect(r.engine.device()).toBe('touch');
+    r.devices.click('left');
+    r.step();
+    expect(r.engine.device()).toBe('keyboard');
+  });
+
   it('locks the cursor for mouse-look while gameplay input is live, frees it when muted', () => {
     const look = axis2([{ kind: 'mouse_delta' }]);
     let muted = false;

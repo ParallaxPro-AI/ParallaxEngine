@@ -1990,7 +1990,9 @@ class Input:
         panel or system reads text — unless a live action set says `touch_keyboard = False`
         (the game draws its own keyboard)."""
     @property
-    def device(self) -> Literal["keyboard", "gamepad", "touch"]: ...
+    def device(self) -> Literal["keyboard", "gamepad", "touch"]:
+        """The device this seat used last (for prompts: "Press E" or "Tap"). On a touch screen
+        it is "touch" from the start, until keys, a gamepad or a mouse is used."""
     def rumble(self, strength: float, seconds: float) -> None:
         """Vibrate the current player's gamepad / phone."""
     def rumble_pattern(self, pattern: Sequence[tuple[float, float]]) -> None:

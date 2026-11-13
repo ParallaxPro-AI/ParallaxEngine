@@ -182,6 +182,11 @@ export class TouchControls {
   #drawn: Drawn | undefined;
   #skinKey = '';
 
+  /** Whether the screen takes touches (controls are drawn only then; a first touch turns it on). */
+  get touchScreen(): boolean {
+    return this.#touchScreen;
+  }
+
   constructor(options: TouchControlsOptions) {
     const host = options.host ?? defaultHost();
     this.#stage = options.stage;

@@ -3490,6 +3490,10 @@ is true for the whole frame, including the first fixed_update of that frame.
   (the game draws its own keyboard).
 
 - `device: Literal['keyboard', 'gamepad', 'touch']  # read-only`
+
+  The device this seat used last (for prompts: "Press E" or "Tap"). On a touch screen
+  it is "touch" from the start, until keys, a gamepad or a mouse is used.
+
 - `rebinding: str | None  # read-only`
 
   The slot waiting for its key, or None.
