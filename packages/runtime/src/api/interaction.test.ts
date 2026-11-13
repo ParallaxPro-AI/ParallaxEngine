@@ -15,7 +15,7 @@ import { loadProject } from '../resource/index.js';
 import { Actions, button, gamepad } from './input.js';
 import { Behavior, behavior, createRuntime, EntityRef, Game, kw, on, resetDeclarations, SceneRef } from './index.js';
 import type { Context, Entity, GameRuntime } from './index.js';
-import { Interacted, interaction, InteractPromptPanel, Interactor } from './interaction.js';
+import { Interactable, Interacted, interaction, InteractPromptPanel, Interactor } from './interaction.js';
 import { registeredPanels } from './ui.js';
 
 const STEP = 1 / 60;
@@ -32,7 +32,7 @@ function code(fn: () => unknown): string | undefined {
   return undefined;
 }
 
-function setup(chest: Record<string, unknown> = {}): { r: GameRuntime; input: HeadlessInput; heard: string[]; Controls: typeof Actions & { interact: unknown } } {
+function setup(chest: Record<string, unknown> = {}, behaviors: Record<string, unknown> = { chest: {} }): { r: GameRuntime; input: HeadlessInput; heard: string[]; Controls: typeof Actions & { interact: unknown } } {
   class Controls extends Actions {
     static interact = button(kw({ keyboard: 'KeyE', gamepad: gamepad.WEST }));
   }
@@ -46,7 +46,7 @@ function setup(chest: Record<string, unknown> = {}): { r: GameRuntime; input: He
   behavior('chest')(Chest);
   const projectFiles = files({
     'prefabs/player.prefab.json': { components: { interactor: {} } },
-    'prefabs/chest.prefab.json': { components: { interactable: { prompt: 'Open', ...chest } }, behaviors: { chest: {} } },
+    'prefabs/chest.prefab.json': { components: { interactable: { prompt: 'Open', ...chest } }, behaviors },
     'prefabs/cam.prefab.json': { components: { camera: { rig: 'fixed' } } },
     'scenes/main/scene.json': {
       entities: [
@@ -110,6 +110,23 @@ describe('parallax.interaction', () => {
     expect(heard).toEqual([]);
     for (let i = 0; i < 20; i++) r.step(STEP);
     expect(heard).toEqual(['chest by player']);
+  });
+
+  it('a behavior that removes its Interactable when used leaves the prompt hidden, not failing', () => {
+    class UsedUp extends Behavior {
+      declare entity: Entity;
+      used(_ctx: Context, _e: unknown) { this.entity.remove(Interactable); }
+    }
+    on(Interacted)(UsedUp.prototype.used);
+    behavior('used_up')(UsedUp);
+    const { r, input, heard } = setup({}, { chest: {}, used_up: {} });
+    r.step(STEP);
+    input.tapKey('KeyE');
+    r.step(STEP);
+    expect(heard).toEqual(['chest by player']);
+    expect((r.uiEngine.view('interact_prompt')?.states[0] as Record<string, unknown> | undefined)?.['shown'] ?? false).toBe(false);
+    r.step(STEP);
+    expect((r.ctx.world.placed(new EntityRef('player')).get(Interactor) as unknown as { focus: Entity | null }).focus).toBe(null);
   });
 
   it('interaction(action=) takes a button', () => {
