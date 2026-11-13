@@ -245,6 +245,24 @@ describe('colliders', () => {
       .toThrow(/PP3155.*circle.*2D/);
   });
 
+  it('a collider with no rigidbody under a moving parent follows the parent (a deck on a raft)', () => {
+    const g = world({
+      prefabs: { raft: { components: {}, children: [{ at: [1, 0, 0], components: { collider: { shape: 'box', size: [2, 0.2, 2] } } }] } },
+      entities: [{ prefab: 'raft', id: 'raft' }],
+    });
+    g.steps(1);
+    expect(g.physics.raycast(new Vec3(1, 10, 0), new Vec3(0, -1, 0))!.point.y).toBeCloseTo(0.1);
+    const raft = g.kernel.world.require(g.id('raft')).transform;
+    raft.position = new Vec3(10, 2, 0);
+    raft.rotation = Quat.from_euler(new Vec3(0, 90, 0));
+    g.steps(1);
+    expect(g.physics.raycast(new Vec3(1, 10, 0), new Vec3(0, -1, 0))).toBeNull();
+    // Turned a quarter about y, the child's +x offset now points along -z.
+    const hit = g.physics.raycast(new Vec3(10, 10, -1), new Vec3(0, -1, 0))!;
+    expect(hit).not.toBeNull();
+    expect(hit.point.y).toBeCloseTo(2.1);
+  });
+
   it('scales shapes with the entity and validates capsules', () => {
     const g = world({ prefabs: { b: { components: { collider: { shape: 'box' } } } }, entities: [{ prefab: 'b', id: 'b', scale: [2, 4, 2] }] });
     g.steps(1);
