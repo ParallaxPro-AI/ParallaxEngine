@@ -121,6 +121,14 @@ def hidden_by_brush(viewer: Vec3, target: Vec3) -> bool
 True when `target` is in a brush volume the `viewer` is not in (MOBA brush).
 
 ```python
+def tint(layer: str, tint: Color, *, seconds: float = 0) -> None
+```
+
+Blend a material layer's tint (which multiplies its color or texture) to `tint` over
+`seconds`: ground that greens as it heals, browns in a drought or scorches. White shows the
+layer untinted; a layer's starting tint is its `"tint"` in the scene.
+
+```python
 def crater(
     center: Vec3,
     radius: float,

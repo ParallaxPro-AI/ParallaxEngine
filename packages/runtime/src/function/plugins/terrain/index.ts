@@ -6,7 +6,8 @@
  *
  * State. The baked field is derived from the scene; what the game changes is the list of
  * deformation edits (craters, trenches, flattening, holes). A snapshot holds that list, and
- * restore rebakes the scene's field and replays it — same bits as before.
+ * restore rebakes the scene's field and replays it — same bits as before. Layer tints set at
+ * runtime (`tint`) are saved too, by layer name, at their final value.
  */
 
 import { fail } from '../../../core/index.js';
@@ -14,7 +15,7 @@ import type { Json } from '../../../resource/index.js';
 import type { Kernel, KernelPlugin } from '../../kernel/index.js';
 import type { SceneDoc } from '../../../resource/index.js';
 import { JOBS_SERVICE, TERRAIN_GRADING_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
-import type { TerrainEdit, TerrainGradePath, TerrainService } from '../../services/index.js';
+import type { Rgb3, TerrainEdit, TerrainGradePath, TerrainService } from '../../services/index.js';
 import { bakeTerrain, TERRAIN_BAKE } from './bake.js';
 import type { TerrainBake } from './bake.js';
 import { fieldOf } from './field.js';
@@ -23,6 +24,14 @@ import { readTerrainSpec } from './spec.js';
 import type { TerrainSpec } from './spec.js';
 import { TilePyramid } from './tiles.js';
 import { bakeSplatMap, TERRAIN_SPLAT_MAP } from './splat_map.js';
+
+/** A layer tint blending from `from` to `to` over `seconds` of game time from `start`. */
+interface TintBlend {
+  readonly from: Rgb3;
+  readonly to: Rgb3;
+  readonly start: number;
+  readonly seconds: number;
+}
 
 export { bakeTerrain, Bins, TERRAIN_BAKE, gridNormals, gridOf, HoleMask, Relief, Splat } from './bake.js';
 export type { TerrainBake } from './bake.js';
@@ -78,6 +87,8 @@ export function terrain(): KernelPlugin {
   let spec: TerrainSpec | undefined;
   let tiles: TilePyramid | null = null;
   let edits: TerrainEdit[] = [];
+  /** Layer tints changed at runtime (`tint`), by layer index: a blend on the game clock. */
+  let tints = new Map<number, TintBlend>();
   let version = 0;
   let installedOn: Kernel | undefined;
 
@@ -93,7 +104,31 @@ export function terrain(): KernelPlugin {
     spec = scene === undefined ? undefined : readTerrainSpec(scene, graded(scene));
     field = spec === undefined ? null : fieldOf(baked.get(scene!.id) ?? bakeTerrain(spec), scene!.id, ++version);
     edits = [];
+    tints = new Map();
     if (field !== null) for (const edit of replay) apply(edit);
+  };
+
+  const now = (): number => installedOn?.time.now ?? 0;
+
+  const tintAt = (layer: number, t: number): Rgb3 => {
+    const blend = tints.get(layer);
+    const authored = field?.layers[layer]?.tint ?? [1, 1, 1];
+    if (blend === undefined) return authored;
+    const k = blend.seconds <= 0 ? 1 : Math.min(1, Math.max(0, (t - blend.start) / blend.seconds));
+    if (k >= 1) return blend.to;
+    const e = k * k * (3 - 2 * k);
+    return [blend.from[0] + (blend.to[0] - blend.from[0]) * e, blend.from[1] + (blend.to[1] - blend.from[1]) * e, blend.from[2] + (blend.to[2] - blend.from[2]) * e];
+  };
+
+  const tint = (layer: number, to: Rgb3, seconds: number): void => {
+    if (field === null) {
+      fail('PP3204', `terrain tint: scene "${installedOn?.scene?.id ?? '?'}" has no terrain`, { fix: 'Add a "terrain" block to the scene, or only tint terrain in scenes that have one.' });
+    }
+    if (!(Number.isInteger(layer) && layer >= 0 && layer < field.layers.length)) fail('PP3206', `terrain tint: layer ${layer} must be a layer index below ${field.layers.length}`);
+    if (!(to.length === 3 && to.every((c) => Number.isFinite(c) && c >= 0))) fail('PP3202', `terrain tint: ${JSON.stringify(to)} must be 3 numbers of 0 or more`);
+    if (!(Number.isFinite(seconds) && seconds >= 0)) fail('PP3202', `terrain tint: seconds must be 0 or more, got ${seconds}`);
+    const t = now();
+    tints.set(layer, { from: tintAt(layer, t), to: [to[0], to[1], to[2]], start: t, seconds });
   };
 
   const apply = (edit: TerrainEdit): void => {
@@ -135,6 +170,8 @@ export function terrain(): KernelPlugin {
     },
     deform: apply,
     edits: () => edits,
+    tint,
+    tintAt,
     async prebake() {
       const kernel = installedOn;
       const runner = kernel?.tryService(JOBS_SERVICE);
@@ -156,7 +193,22 @@ export function terrain(): KernelPlugin {
       kernel.provide(TERRAIN_SERVICE, service);
       kernel.observeScenes({ loading: (scene) => build(scene, []) });
     },
-    snapshot: () => (edits.length === 0 ? null : ([...edits] as unknown as Json)),
-    restore: (kernel, state) => build(kernel.scene, state === null ? [] : (state as unknown as TerrainEdit[])),
+    snapshot: () => {
+      if (tints.size === 0) return edits.length === 0 ? null : ([...edits] as unknown as Json);
+      // With tints: {edits, tints: {layer name: final tint}} (the old form is the edit list alone).
+      const named: Record<string, Rgb3> = {};
+      for (const [layer, blend] of [...tints].sort((a, b) => a[0] - b[0])) named[field!.layers[layer]!.name] = blend.to;
+      return { edits: [...edits], tints: named } as unknown as Json;
+    },
+    restore: (kernel, state) => {
+      const full = state !== null && !Array.isArray(state) && typeof state === 'object';
+      const saved = full ? state as unknown as { edits: TerrainEdit[]; tints: Record<string, Rgb3> } : { edits: (state ?? []) as unknown as TerrainEdit[], tints: {} };
+      build(kernel.scene, saved.edits);
+      if (field === null) return;
+      for (const [name, to] of Object.entries(saved.tints)) {
+        const layer = field.layers.findIndex((l) => l.name === name);
+        if (layer >= 0) tints.set(layer, { from: to, to, start: -Infinity, seconds: 0 });
+      }
+    },
   };
 }

@@ -4,7 +4,7 @@
  * in the terrain plugin and its `terrain` service; this module binds Python arguments.
  */
 
-import { closestMatch, fail, Vec3 } from '../core/index.js';
+import { closestMatch, Color, fail, Vec3 } from '../core/index.js';
 import type { Kernel, KernelPlugin } from '../function/kernel/index.js';
 import { terrain as terrainPlugin } from '../function/plugins/terrain/index.js';
 import { TERRAIN_SERVICE } from '../function/services/index.js';
@@ -117,6 +117,16 @@ export class TerrainApi {
     const field = this.#field('hidden_by_brush');
     const hiding = field.brushAt(target.x, target.y, target.z);
     return hiding !== null && field.brushAt(viewer.x, viewer.y, viewer.z) !== hiding;
+  }
+
+  tint(...args: unknown[]): void {
+    const a = bindArgs('tint', args, { positional: ['layer', 'tint'], keyword: ['seconds'], required: ['layer', 'tint'] }).args;
+    const field = this.#field('tint');
+    const layer = this.#layer(field, a['layer'], 'tint() layer');
+    const color = a['tint'];
+    if (!(color instanceof Color)) fail('PP3202', `tint() tint must be a Color, got ${color === null || color === undefined ? 'None' : String(color)}`, { fix: 'Write Color(0.6, 0.6, 0.6) or Color.hex("#9a9a9a").' });
+    const seconds = optionalNumber(a['seconds'], 0, 'tint() seconds');
+    this.#kernel.service(TERRAIN_SERVICE).tint!(layer, [color.r, color.g, color.b], seconds);
   }
 
   crater(...args: unknown[]): void {
