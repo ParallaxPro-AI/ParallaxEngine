@@ -473,3 +473,34 @@ describe('snapshot and restore', () => {
     expect([g.pos('ball').y, g.body('ball').velocity.y]).toEqual(first);
   });
 });
+
+describe('scene reloads', () => {
+  it('a reloaded scene plays out exactly like its first load (a fresh Rapier world)', () => {
+    // A tumbling pile knocked over by a heavy ball: the solver's contact order decides where
+    // every box ends up, so a world whose handle slots were already used plays it differently.
+    const entities: unknown[] = [{ prefab: 'floor', at: [0, -0.5] }];
+    for (let i = 0; i < 12; i++) {
+      entities.push({ id: `box${i}`, prefab: 'box', at: [(i % 4) * 0.7 - 1 + (i % 3) * 0.05, 0.6 + Math.floor(i / 4) * 0.9], rotation: i * 7 });
+    }
+    entities.push({ id: 'ball', prefab: 'ball', at: [-6, 1.5] });
+    const g = game({
+      prefabs: {
+        floor: { components: { collider: { shape: 'box', size: [40, 1, 1] } } },
+        box: { components: { rigidbody: { kind: 'dynamic' }, collider: { shape: 'box', size: [0.8, 0.8, 1] } } },
+        ball: { components: { rigidbody: { kind: 'dynamic', mass: 4 }, collider: { shape: 'circle', radius: 0.4 } } },
+      },
+      entities,
+    });
+    const run = (): string => {
+      g.steps(1);
+      g.body('ball').impulse(new Vec2(60, 10));
+      g.steps(150);
+      return Array.from({ length: 12 }, (_, i) => g.pos(`box${i}`)).map((p) => `${p.x.toFixed(6)},${p.y.toFixed(6)}`).join(' ');
+    };
+    const first = run();
+    g.kernel.loadScene('main');
+    expect(run()).toEqual(first);
+    g.kernel.loadScene('main');
+    expect(run()).toEqual(first);
+  });
+});

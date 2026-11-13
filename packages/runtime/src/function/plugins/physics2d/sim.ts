@@ -337,6 +337,24 @@ export class Physics2dSim {
       this.#fieldEntities.delete(record.id);
       this.#driven.delete(record.id);
     }
+    if (this.#bodies.size === 0 && this.#tiles.size === 0) this.#freshWorld();
+  }
+
+  /**
+   * Nothing is left in the world (a scene was unloaded): start a new Rapier world. Rapier
+   * reuses freed handle slots, and the slots decide the order its solver visits contacts,
+   * so a world that already held a level would play the same level out differently. A
+   * fresh one makes a reloaded scene (a retry, a replay) behave exactly like its first load.
+   */
+  #freshWorld(): void {
+    this.world.free();
+    this.world = new (rapier().World)({ x: 0, y: this.gravity });
+    this.#events.clear();
+    this.#owners.clear();
+    this.#retired.clear();
+    this.#pairs.clear();
+    this.#pre.clear();
+    this.#nextOrder = 0;
   }
 
   setDriven(entity: EntityId, driven: boolean): void {
