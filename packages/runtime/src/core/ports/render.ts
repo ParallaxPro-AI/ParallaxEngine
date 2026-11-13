@@ -51,6 +51,8 @@ export interface ImageDraw extends Placed {
   readonly size: readonly [w: number, h: number];
   /** Multiplied into the image's pixels; [1, 1, 1, 1] draws it unchanged. */
   readonly tint: Rgba;
+  /** A hit flash: the tinted pixels mixed toward this RGB by its alpha (keeping the image's shape). Absent: none. */
+  readonly flash?: Rgba;
   readonly flipX: boolean;
   readonly flipY: boolean;
   /** "additive": its colors add to what is under it (a sprite's `blend`). Absent: "normal" (painted over). */

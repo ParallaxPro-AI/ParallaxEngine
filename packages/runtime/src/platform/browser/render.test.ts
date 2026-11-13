@@ -165,6 +165,24 @@ describe('CanvasSurface2d', () => {
     expect(named(calls, 'drawImage').every((c) => c[1] !== IMAGE)).toBe(true);
   });
 
+  it('paints a flash over the image in a scratch copy, reused across a fade in eighths', async () => {
+    const { s, scratches } = surface();
+    s.load('assets/images/gem.png');
+    await Promise.resolve();
+    const gem = (strength: number): Draw2d => ({
+      kind: 'image', z: 0, entity: 1, transform: [1, 0, 0, 1, 0, 0], image: 'assets/images/gem.png', size: [1, 1],
+      tint: [1, 1, 1, 1], flash: [1, 1, 1, strength], flipX: false, flipY: false,
+    });
+    s.draw(frame([gem(1)]));
+    expect(scratches).toHaveLength(1);
+    expect(scratches[0]).toContainEqual(['=globalCompositeOperation', 'source-over']);
+    expect(scratches[0]).toContainEqual(['=globalCompositeOperation', 'destination-in']);
+    // 0.52 and 0.48 both round to 4/8: one more copy, not two.
+    s.draw(frame([gem(0.52)]));
+    s.draw(frame([gem(0.48)]));
+    expect(scratches).toHaveLength(2);
+  });
+
   it('reports images that fail to load', async () => {
     const { s } = surface({ fail: true });
     s.load('assets/images/gone.png');

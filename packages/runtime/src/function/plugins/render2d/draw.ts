@@ -6,9 +6,9 @@
  *               width/height; a circle's diameter; a polygon's point scale), offset, color,
  *               texture, points (polygon), thickness (ring), corner_radius (rect),
  *               stroke_width / stroke_color (any 2D kind)
- *   sprite      image, size, color (tint), offset, flip_x, flip_y, blend ("additive" adds
- *               its colors), animations, and the animation the visuals plugin's `play()`
- *               records (see `SPRITE_ANIMATION`)
+ *   sprite      image, size, color (tint), flash (mixed toward), offset, flip_x, flip_y, blend
+ *               ("additive" adds its colors), animations, and the animation the visuals
+ *               plugin's `play()` records (see `SPRITE_ANIMATION`)
  *   text_mesh   text ([color=…] / [b] markup), size (line height), color
  *   world_bar   value 0..1, offset, color, bands, shown — drawn as rects over the entity
  *   tilemap     tile_size, rows, tiles {image, color} — one image (or rect) per cell, under the rest
@@ -211,9 +211,12 @@ function spriteDraws(out: Draw2d[], sprite: Fields, at: Placed2d, entity: Entity
     out.push({ kind: 'rect', z: at.z, entity, transform: m, size, fill: multiply(tint, missingImageColor(refString(ref, `${where}.image`))), ...additive });
     return;
   }
+  // Absent (an older snapshot) or transparent: no flash is carried.
+  const flash = sprite['flash'] === undefined ? null : rgba(sprite['flash'], `${where}.flash`);
   out.push({
     kind: 'image', z: at.z, entity, transform: m, image, size, tint,
     flipX: sprite['flip_x'] === true, flipY: sprite['flip_y'] === true, ...additive,
+    ...(flash !== null && flash[3] > 0 && { flash }),
   });
 }
 
