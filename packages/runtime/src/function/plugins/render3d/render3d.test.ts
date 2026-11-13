@@ -557,6 +557,43 @@ describe('render3d in a kernel', () => {
     expect(s.plugin.clipLength('walk')).toBe(1);
   });
 
+  it('draws a skinned model\'s meshes of one skin and material as one draw (and its other materials apart)', async () => {
+    const tri = (x: number): number[] => [x, 0, 0, x + 0.2, 0, 0, x, 1, 0];
+    const skinned = (x: number, material: number) => ({
+      positions: tri(x), joints: [0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0], weights: [1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0], indices: [0, 1, 2], material,
+    });
+    const identity = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+    const glb = writeGlb({
+      nodes: [
+        { name: 'shirt', mesh: 0, skin: 0 }, { name: 'sleeves', mesh: 1, skin: 0 }, { name: 'boots', mesh: 2, skin: 0 },
+        { name: 'root', children: [4] }, { name: 'upper', translation: [0, 0.5, 0] },
+      ],
+      meshes: [skinned(0, 0), skinned(1, 0), skinned(2, 1)],
+      materials: [{ pbrMetallicRoughness: { baseColorFactor: [1, 0, 0, 1] } }, { pbrMetallicRoughness: { baseColorFactor: [0, 0, 1, 1] } }],
+      skins: [{ joints: [3, 4], inverseBind: [...identity, ...identity] }],
+    });
+    const s = await scene({
+      prefabs: { cam: CAMERA, hero: { components: { model: { model: 'models/hero', cast_shadows: true } } } },
+      entities: [{ id: 'cam', prefab: 'cam', at: [0, 2, -10] }, { id: 'a', prefab: 'hero', at: [0, 0, 0] }, { id: 'b', prefab: 'hero', at: [4, 0, 0] }],
+    }, { 'assets/models/hero.glb': glb });
+    s.steps(2);
+    const frame = s.frame();
+    const mine = frame.skinned.filter((d) => d.entity === s.id('a'));
+    expect(mine).toHaveLength(2);
+    const [shirt, boots] = mine;
+    expect(shirt!.geometry.positions.length).toBe(6 * 3);
+    // The second mesh's triangle indexes its own vertices, after the first mesh's three.
+    const idx = [...shirt!.geometry.indices];
+    expect(idx.slice(3)).toEqual(idx.slice(0, 3).map((i) => i + 3));
+    expect(Math.abs(shirt!.geometry.positions[9]!)).toBe(1);
+    expect(boots!.geometry.positions.length).toBe(3 * 3);
+    expect(shirt!.castShadows).toBe(true);
+    // Both characters draw the same merged geometry, built once.
+    const theirs = frame.skinned.filter((d) => d.entity === s.id('b'));
+    expect(theirs[0]!.geometry).toBe(shirt!.geometry);
+    expect(s.frame().skinned.find((d) => d.entity === s.id('a'))!.geometry).toBe(shirt!.geometry);
+  });
+
   it('reports a missing clip, a 2D shape kind and a model that is not in the project', async () => {
     const s = await scene({
       prefabs: { cam: CAMERA, hero: { components: { model: { model: 'models/hero' }, animator: { default_clip: 'run' } } } },
