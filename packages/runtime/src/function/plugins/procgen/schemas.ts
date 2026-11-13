@@ -154,6 +154,7 @@ export const STRUCTURE_SCHEMA: Schema = {
   door_height: t.number({ default: 2.2 }),
   window_sill: t.number({ default: 0.9 }),
   window_height: t.number({ default: 1.2 }),
+  ground_floor: t.int({ default: 0, min: 0 }),
   roof: { type: record(ROOF_RECORD), default: instantiate(ROOF_RECORD, {}, 'structure.roof') },
   facade: { type: record(FACADE_RECORD), default: instantiate(FACADE_RECORD, {}, 'structure.facade') },
   door_prefab: optional({ kind: 'ref', to: 'prefab' }),
@@ -492,6 +493,10 @@ export function structureSpec(fields: Fields, where: Where, plans?: ReadonlyMap<
     if (bad !== undefined) fail('PP3651', `${where}: facade.${key}.levels has ${bad}, which is not a storey (0 to ${floors.length - 1})`, { fix: 'List storeys by index, the ground floor 0; None for the default.' });
     return [...list];
   };
+  const groundFloor = fields['ground_floor'] as number;
+  if (!(Number.isInteger(groundFloor) && groundFloor >= 0 && groundFloor < floors.length)) {
+    fail('PP3651', `${where}: ground_floor is ${groundFloor}, which is not a storey (0 to ${floors.length - 1})`, { fix: 'Name the storey at ground level by index (the bottom storey 0); the ones below it are basements.' });
+  }
   const f = fields['facade'] as Fields;
   const block = <T>(key: string, read: (b: Fields) => T): T | null => {
     const value = f[key] as Fields | null;
@@ -516,6 +521,7 @@ export function structureSpec(fields: Fields, where: Where, plans?: ReadonlyMap<
     doorHeight: positive('door_height'),
     windowSill: fields['window_sill'] as number,
     windowHeight: positive('window_height'),
+    ...(groundFloor > 0 && { groundFloor }),
     roof: {
       type: roof['kind'] as RoofType, pitch, overhang, access: roof['access'] as boolean,
       parapet: nonNegative('roof.parapet', roof['parapet']), coping: roof['coping'] as boolean,

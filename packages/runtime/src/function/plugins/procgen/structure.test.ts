@@ -381,6 +381,29 @@ describe('structure roofs and facades', () => {
     expect(balcony.max[0]).toBeCloseTo(4.5 + 1, 6);
   });
 
+  it('ground_floor puts the storeys below it underground: its street door opens onto the ground, the plinth wraps it', () => {
+    // A cellar with a flight up to the house above it, whose front door opens onto the street.
+    const cellar: StructureSpec = {
+      ...BASE, legend: {}, plinth: 0.4,
+      floors: [
+        { plan: ['#########', '#ccccccc#', '#c>>>>>c#', '#ccccccc#', '#########'], height: 3 },
+        { plan: ['#########', '#hhhhhhh#', '#hhhhhhh#', '#hhhhhhh#', '####+####'], height: 3 },
+      ],
+    };
+    expect(structureProblems(cellar).map((p) => p.message)).toContain('the door on floor 1 opens onto a 3 m drop');
+    const basement: StructureSpec = { ...cellar, groundFloor: 1 };
+    expect(structureProblems(basement)).toEqual([]);
+    // The plinth runs round the ground storey (from its slab's underside, y 3 - 0.2), not the cellar.
+    const plinth = buildStructure(basement).solid.get('plinth')!.build();
+    expect(plinth.min[1]).toBeCloseTo(2.8, 6);
+    expect(plinth.max[1]).toBeCloseTo(3.4, 6);
+    // From the field: a storey index the plan doesn't have is an error.
+    const fields = (ground: number): Fields => instantiate(STRUCTURE_SCHEMA, { floors: cellar.floors, ground_floor: ground }, 'structure');
+    expect(structureSpec(fields(1), 'house').groundFloor).toBe(1);
+    expect(structureSpec(fields(0), 'house').groundFloor).toBeUndefined();
+    expect(() => structureSpec(fields(2), 'house')).toThrow(/ground_floor is 2/);
+  });
+
   it('nav agents of radius 0.5 path from the street up both flights onto the roof', () => {
     const { kernel } = kernelWith([{ prefab: 'shophouse', at: [0, 0.05, 0] }], {}, [nav({ agentRadius: 0.5 })]);
     const n = kernel.service(NAV_SERVICE);
