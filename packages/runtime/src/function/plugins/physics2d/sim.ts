@@ -129,6 +129,21 @@ function key(values: readonly unknown[]): string {
   return values.map((v) => (v instanceof Vec3 ? `${v.x},${v.y},${v.z}` : Array.isArray(v) ? v.join('|') : String(v))).join(';');
 }
 
+/**
+ * What a tilemap's colliders are built from: its rows, which tile keys are solid, its
+ * grid and placement. Checked every step (rows may be edited in place), so it is plain
+ * string work: a tile's image or color never changes the colliders and is left out.
+ */
+function tilemapKey(tm: Fields, x: number, y: number, angle: number): string {
+  const tiles = (tm['tiles'] ?? {}) as Readonly<Record<string, Fields | undefined>>;
+  let open = '';
+  for (const k in tiles) if (tiles[k]?.['solid'] === false) open += k;
+  const size = tm['tile_size'] as { x: number; y: number } | undefined;
+  const offset = tm['offset'] as { x: number; y: number } | undefined;
+  const rows = (tm['rows'] ?? []) as readonly string[];
+  return `${rows.join('\n')}\u0000${open}\u0000${size?.x},${size?.y};${offset?.x},${offset?.y};${String(tm['layer'])};${String(tm['friction'])};${x},${y},${angle}`;
+}
+
 function rigidbodyKey(fields: Fields): string {
   return key([fields['kind'], fields['mass'], fields['linear_damping'], fields['angular_damping'], fields['gravity_scale'],
     fields['lock_rotation'], fields['lock_axes'], fields['lock_rotation_axes'], fields['continuous']]);
@@ -285,7 +300,7 @@ export class Physics2dSim {
     const existing = this.#tiles.get(record.id);
     const p = record.transform.worldPosition();
     const angle = worldAngle(record);
-    const key = tm === undefined || tm['collide'] !== true ? '' : JSON.stringify([tm['rows'], tm['tiles'], tm['tile_size'], tm['offset'], tm['layer'], tm['friction'], p.x, p.y, angle]);
+    const key = tm === undefined || tm['collide'] !== true ? '' : tilemapKey(tm, p.x, p.y, angle);
     if (existing !== undefined && existing.key === key) return;
     if (existing !== undefined) {
       for (const c of existing.colliders) this.#retire(c);

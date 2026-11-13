@@ -114,4 +114,23 @@ describe('tilemap colliders', () => {
     for (let i = 0; i < 60; i++) kernel.step(DT);
     expect(y(kernel, 'ball')).toBeLessThan(0);
   });
+
+  it('a tile made non-solid in place drops its colliders on the next step', () => {
+    const { kernel } = world(['GGGG']);
+    for (let i = 0; i < 120; i++) kernel.step(DT);
+    expect(y(kernel, 'ball')).toBeCloseTo(1.25, 1);
+    const ground = [...kernel.world.live()].find((r) => r.placedId === 'ground')!;
+    ((ground.components.get('tilemap') as Fields)['tiles'] as Record<string, Fields>)['G']!['solid'] = false;
+    for (let i = 0; i < 60; i++) kernel.step(DT);
+    expect(y(kernel, 'ball')).toBeLessThan(0);
+  });
+
+  it('a tile changing only its look keeps the colliders', () => {
+    const { kernel } = world(['GGGG']);
+    for (let i = 0; i < 120; i++) kernel.step(DT);
+    const ground = [...kernel.world.live()].find((r) => r.placedId === 'ground')!;
+    ((ground.components.get('tilemap') as Fields)['tiles'] as Record<string, Fields>)['G']!['color'] = Color.RED;
+    for (let i = 0; i < 60; i++) kernel.step(DT);
+    expect(y(kernel, 'ball')).toBeCloseTo(1.25, 1);
+  });
 });
