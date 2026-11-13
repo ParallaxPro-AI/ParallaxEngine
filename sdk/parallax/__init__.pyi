@@ -2485,6 +2485,17 @@ class AudioApi:
         `duck=True` (dialogue, announcer lines): the music dips while it plays.
         `quantize="beat"` / `"bar"` / n beats: start on the beat clock's next boundary
         (sample-accurate; PP3514 without a clock)."""
+    def speak(self, text: str, *, voice: str | None = None, pitch: float = 1, rate: float = 1,
+              volume: float = 1, interrupt: bool = True, group: str | None = None) -> None:
+        """Say a line aloud with the platform's text-to-speech (the browser's speech voices):
+        `ctx.audio.speak("Hello there.", voice="en-GB|male", pitch=0.7, rate=0.9)`.
+        `voice` is a hint: the first installed voice whose name or language contains it
+        ("|" separates fallbacks); `pitch` 0..2 and `rate` 0.1..4 (1 = the voice's own);
+        `interrupt=False` queues after the current line; `group` scales it like an audio.json
+        mix group (`set_group`). Not every player has voices: show the line as text too.
+        Playtests record it (no sound); the Settings master and sfx volumes apply."""
+    def stop_speaking(self) -> None:
+        """Cut the line being spoken and drop queued ones."""
     def music(self, track: MusicRef | None, *, fade: float = 1.0, volume: float = 1.0, layers: list[MusicLayer] = [],
               bpm: float | None = None, beats_per_bar: int = 4, offset: float = 0.0) -> None:
         """Override the scene's "music" until the next scene load (None fades out).

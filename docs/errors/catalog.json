@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 875,
+  "count": 876,
   "codes": [
     {
       "code": "PP1001",
@@ -9894,7 +9894,8 @@
       "messages": [
         "audio.ambience must be True or False, got {…}",
         "audio.impact_sounds must be True or False, got {…}",
-        "audio.play duck= must be True or False, got {…}"
+        "audio.play duck= must be True or False, got {…}",
+        "audio.speak interrupt= must be True or False, got {…}"
       ],
       "fixes": [],
       "notes": [],
@@ -10064,6 +10065,36 @@
         "packages/runtime/src/function/plugins/audio/engine.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3517"
+    },
+    {
+      "code": "PP3518",
+      "range": "PP3xxx",
+      "areas": [
+        "audio"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "audio.speak group= must be a str or None, got {…}",
+        "audio.speak voice= must be a str or None, got {…}",
+        "{where} text must be a str, got {…}",
+        "{where}: no sound in assets/audio.json is in group \"{group}\""
+      ],
+      "fixes": [
+        "A voice name or language hint: voice=\"en-GB\".",
+        "An assets/audio.json mix group: group=\"voice\".",
+        "Did you mean \"{guess}\"?",
+        "Give sounds a group in assets/audio.json: {\"sfx/line_1\": {\"group\": \"voice\"}}.",
+        "ctx.audio.speak(\"Hello there.\")"
+      ],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/api/audio.ts",
+        "packages/runtime/src/function/plugins/audio/engine.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3518"
     },
     {
       "code": "PP3551",

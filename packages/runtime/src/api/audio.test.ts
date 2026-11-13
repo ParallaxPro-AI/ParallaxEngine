@@ -101,6 +101,20 @@ describe('ctx.audio', () => {
   });
 });
 
+describe('ctx.audio.speak', () => {
+  it('binds the Python text and keywords and records the spoken line', () => {
+    const { runtime, out, audio } = run();
+    audio.speak('Hello there.', kw({ voice: 'en-GB', pitch: 0.7, rate: 0.9, interrupt: false }));
+    audio.stop_speaking();
+    runtime.step(1 / 60);
+    expect(out.speeches.map((s) => [s.text, s.voice, s.pitch, s.rate, s.interrupt])).toEqual([['Hello there.', 'en-GB', 0.7, 0.9, false]]);
+    expect(out.speechStops).toBe(1);
+    expect(() => audio.speak('x', kw({ voice: 3 }))).toThrow(/PP3518/);
+    expect(() => audio.speak('x', kw({ group: 3 }))).toThrow(/PP3518/);
+    expect(() => audio.speak('x', kw({ interrupt: 'yes' }))).toThrow(/PP3511/);
+  });
+});
+
 describe('ctx.audio: synth, layers, beat clock, voices, ambience', () => {
   it('Synth.<name> plays a built-in synthesized sound; quantize= lands it on the grid', () => {
     const { runtime, out, audio } = run();
