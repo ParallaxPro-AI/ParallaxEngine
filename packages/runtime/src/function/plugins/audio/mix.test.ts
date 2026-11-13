@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { Vec3 } from '../../../core/index.js';
 import type { AudioMix, EntityId, ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
-import { Kernel, t } from '../../kernel/index.js';
+import { Kernel, KERNEL_EVENTS, t } from '../../kernel/index.js';
 import type { ComponentDef, GameDefinition, KernelPlugin } from '../../kernel/index.js';
 import { PHYSICS3D_SERVICE } from '../../services/index.js';
 import type { Physics3dService } from '../../services/index.js';
@@ -167,7 +167,8 @@ describe('the audio plugin\'s mix', () => {
   });
 
   it('plays a material\'s impact sound at the contact, scaled by speed, limited per sound, unless turned off', () => {
-    const IMPACT = { id: 'impact', target: 'entity' };
+    // The kernel's shared definition, as physics2d and physics3d emit it.
+    const IMPACT = KERNEL_EVENTS.impact;
     const physics: KernelPlugin = { id: 'physics3d', events: [IMPACT] };
     const g = setup([{ prefab: 'camera', id: 'cam', at: [0, 0, 0] }], {}, [physics]);
     const hit = (speed: number, sound: string | null = 'sfx/roar') => g.kernel.emit(IMPACT, {
