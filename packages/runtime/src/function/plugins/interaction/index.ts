@@ -155,9 +155,10 @@ export class InteractionEngine {
     return undefined;
   }
 
-  /** The point a prompt sits at / a look aims at. */
+  /** The point a prompt sits at / a look aims at: `offset` in the target's own frame (it turns with it). */
   anchor(target: EntityRecord): Vec3 {
-    return target.transform.worldPosition().__add__(target.components.get(INTERACTABLE)!['offset'] as Vec3);
+    const offset = target.components.get(INTERACTABLE)!['offset'] as Vec3;
+    return target.transform.worldPosition().__add__(target.transform.worldRotation().rotate(offset));
   }
 
   /**
@@ -186,7 +187,12 @@ export class InteractionEngine {
     const distance = d.length();
     if (distance < 1e-6) return false;
     const hit = physics.raycast(from, d.__truediv__(distance), distance, { ignore });
-    return hit !== undefined && hit.entity !== target && hit.distance < distance - 0.05;
+    if (hit === undefined || hit.distance >= distance - 0.05) return false;
+    // The interactable's own parts (a child collider: a lid, a machine's casing) don't hide it.
+    for (let e = hit.entity === undefined ? undefined : this.kernel.world.get(hit.entity); e !== undefined; e = e.parent === null ? undefined : this.kernel.world.get(e.parent)) {
+      if (e.id === target) return false;
+    }
+    return true;
   }
 
   /** The interactable `who` would use now, or null. */
@@ -210,7 +216,9 @@ export class InteractionEngine {
       const it = target?.components.get(INTERACTABLE);
       if (target === undefined || it === undefined || it['enabled'] !== true) continue;
       const anchor = this.anchor(target);
-      const distance = this.#flat(target.transform.worldPosition().__sub__(position)).length();
+      // Look mode reaches for the point it aims at (a large interactable whose prompt point sits
+      // 4 m from its origin); proximity mode for the thing itself.
+      const distance = this.#flat((mode === 'look' ? anchor : target.transform.worldPosition()).__sub__(position)).length();
       if (distance > Math.min(reach, it['range'] as number)) continue;
       let score: number;
       if (mode === 'look') {
