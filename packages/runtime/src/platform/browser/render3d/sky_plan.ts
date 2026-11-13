@@ -12,7 +12,7 @@
  */
 
 import { EARTH_ATMOSPHERE, RIPPLE_FLOATS, WAVE_FLOATS } from '../../../core/index.js';
-import type { CoverMap3d, Fog3d, Frame3d, Nature3d, View3d, WaterBody3d } from '../../../core/index.js';
+import type { CoverMap3d, Fog3d, Frame3d, Geometry3d, Nature3d, View3d, WaterBody3d } from '../../../core/index.js';
 import { skyLighting } from './ibl.js';
 import { floatsOf, linearRgb, luminance, offsetOf, slotFloats } from './layout.js';
 import type { UniformField } from './layout.js';
@@ -139,11 +139,41 @@ export interface NaturePlan {
   readonly clouds: CloudMode;
 }
 
+/**
+ * A river's surface height over (x, z): the ribbon's (water_frame.ts riverRibbon: `across`
+ * vertices per course point) triangle under the point, interpolated; null when the point
+ * is off the ribbon.
+ */
+export function riverSurfaceAt(ribbon: Geometry3d, x: number, z: number): number | null {
+  const pos = ribbon.positions;
+  if (x < ribbon.min[0] || x > ribbon.max[0] || z < ribbon.min[2] || z > ribbon.max[2]) return null;
+  const idx = ribbon.indices;
+  for (let t = 0; t + 2 < idx.length; t += 3) {
+    const a = idx[t]! * 3; const b = idx[t + 1]! * 3; const c = idx[t + 2]! * 3;
+    const ax = pos[a]!; const az = pos[a + 2]!;
+    const v0x = pos[b]! - ax; const v0z = pos[b + 2]! - az;
+    const v1x = pos[c]! - ax; const v1z = pos[c + 2]! - az;
+    const v2x = x - ax; const v2z = z - az;
+    const den = v0x * v1z - v1x * v0z;
+    if (Math.abs(den) < 1e-12) continue;
+    const u = (v2x * v1z - v1x * v2z) / den;
+    const v = (v0x * v2z - v2x * v0z) / den;
+    if (u < -1e-6 || v < -1e-6 || u + v > 1 + 1e-6) continue;
+    return pos[a + 1]! + u * (pos[b + 1]! - pos[a + 1]!) + v * (pos[c + 1]! - pos[a + 1]!);
+  }
+  return null;
+}
+
 /** The water body the camera is under, and the surface above it (CPU Gerstner, the shader's formula). */
 function underwater(bodies: readonly WaterBody3d[], waves: Float32Array, time: number, p: readonly number[]): [number, number] {
   let best: [number, number] = [-1, 0];
   bodies.forEach((b, i) => {
-    if (b.kind === 'river') return;
+    if (b.kind === 'river') {
+      // A river: under its ribbon, above its bed (no waves: the ribbon is the surface).
+      const surface = b.ribbon === null ? null : riverSurfaceAt(b.ribbon, p[0]!, p[2]!);
+      if (surface !== null && p[1]! < surface && p[1]! > surface - b.depth && (best[0] < 0 || surface > best[1])) best = [i, surface];
+      return;
+    }
     const dx = p[0]! - b.center[0]; const dz = p[2]! - b.center[2];
     if (b.kind !== 'ocean') {
       const c = Math.cos(b.yaw); const s = Math.sin(b.yaw);
