@@ -541,11 +541,16 @@ export class HudEngine {
     const view = this.#views().get(seat);
     if (view === undefined) return { shown: false, markers: [], a11y: this.#a11yState(a) };
     const out: MarkerModel[] = [];
-    const add = (point: Vec3, icon: string, glyph: string, label: string, color: Color, ping: boolean): void => {
+    // Distances read from the entity the seat plays (as the compass does), not from the camera:
+    // a third-person or isometric camera hangs metres behind and above its player.
+    const viewerId = this.#options.seats(this.kernel).includes(seat) ? this.#seatEntity(seat) : null;
+    const from = viewerId === null ? undefined : this.#record(viewerId)?.transform.worldPosition();
+    const add = (point: Vec3, icon: string, glyph: string, label: string, color: Color, ping: boolean, ground?: Vec3): void => {
       const at = place(view, point);
+      const distance = from === undefined ? at.distance : from.distance_to(ground ?? point);
       out.push({
         x: pct(at.x), y: pct(at.y), on_screen: at.onScreen, turn: `rotate(${Math.round(at.angle)}deg)`, icon, glyph, label,
-        distance: formatDistance(at.distance, this.#options.units), color: css(color), ping,
+        distance: formatDistance(distance, this.#options.units), color: css(color), ping,
       });
     };
     for (const id of this.#ids(MARKER)) {
@@ -553,8 +558,9 @@ export class HudEngine {
       const m = record?.components.get(MARKER);
       if (record === undefined || m === undefined || m['shown'] !== true) continue;
       const icon = m['icon'] as string;
-      add(record.transform.worldPosition().__add__(new Vec3(0, this.dimension === '3d' ? 1.5 : 0.5, 0)), icon, ICON_GLYPHS[icon] ?? '◆',
-        this.#text((m['label'] as string | null) ?? ''), m['color'] as Color, false);
+      const where = record.transform.worldPosition();
+      add(where.__add__(new Vec3(0, this.dimension === '3d' ? 1.5 : 0.5, 0)), icon, ICON_GLYPHS[icon] ?? '◆',
+        this.#text((m['label'] as string | null) ?? ''), m['color'] as Color, false, where);
     }
     const now = this.kernel.time.realNow;
     this.#pings = this.#pings.filter((p) => p.until > now && (typeof p.at !== 'number' || this.kernel.world.isAlive(p.at)));
