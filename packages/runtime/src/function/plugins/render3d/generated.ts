@@ -7,6 +7,7 @@
  */
 
 import type { Material3d, MeshBatch, Texture3d } from '../../../core/index.js';
+import { emissiveOf } from '../../../resource/index.js';
 import type { GeneratedMaterial, GeneratedMesh } from '../../services/index.js';
 
 const WHITE = [1, 1, 1, 1] as const;
@@ -24,7 +25,7 @@ export class GeneratedDraws {
         metallic: m.metallic,
         roughness: m.roughness,
         metallicRoughnessTexture: null,
-        emissive: [0, 0, 0],
+        ...(m.emissive === undefined ? { emissive: [0, 0, 0] as [number, number, number] } : emissiveOf(m.emissive)),
         emissiveTexture: null,
         alphaMode: m.blend ? 'blend' : 'opaque',
         alphaCutoff: 0.5,

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { ParallaxError, SeededRandom, Vec3 } from '../../../core/index.js';
+import { Color, ParallaxError, SeededRandom, Vec3 } from '../../../core/index.js';
 import type { ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel } from '../../kernel/index.js';
@@ -404,6 +404,50 @@ describe('procgen plugin', () => {
     expect(path!.length).toBeGreaterThan(2 * Math.PI * 60 * 0.99);
     const hit = path!.nearest(160, 0, 0);
     expect(hit.offset).toBeLessThan(0.5);
+  });
+
+  it('gives sweep parts and structure materials an emissive glow (lit windows, glowing bridges)', () => {
+    const kernel = start({
+      'scenes/s/scene.json': {
+        mode: '3d',
+        entities: [
+          { id: 'bridge', prefab: 'empty', components: {
+            spline: { points: [[0, 0, 0], [0, 0, 20]] },
+            sweep: { parts: [{ profile: 'road', width: 3, emissive: '#ff9a20', emissive_strength: 2 }, { profile: 'kerb', offset: [2, 0] }] },
+          } },
+          { id: 'house', prefab: 'empty', at: [0, 0, 50], components: { structure: {
+            floors: [{ plan: ['#####', '=hhh#', '#hhh#', '##+##'] }],
+            materials: { glass: { color: '#ffd08a', emissive: '#ffb050', emissive_strength: 3 } },
+          } } },
+        ],
+      },
+    });
+    const meshes = kernel.service(PROCGEN_SERVICE).meshes();
+    const bridge = meshes.find((m) => m.key.startsWith('sweep'))!;
+    expect(bridge.parts[0]!.material.emissive![0]).toBeCloseTo(2, 5);
+    expect(bridge.parts[0]!.material.emissive![2]).toBeCloseTo(2 * 0x20 / 255, 2);
+    expect(bridge.parts[1]!.material.emissive).toBeUndefined();
+    expect(bridge.parts[0]!.material.id).not.toBe(bridge.parts[1]!.material.id);
+    const house = meshes.find((m) => m.key.startsWith('structure'))!;
+    const lit = house.parts.filter((p) => p.material.emissive !== undefined);
+    expect(lit.length).toBeGreaterThan(0);
+    expect(lit.every((p) => p.material.emissive![0] === 3)).toBe(true);
+    expect(house.parts.some((p) => p.material.emissive === undefined)).toBe(true);
+  });
+
+  it('a sweep part given an emissive color at run time rebuilds glowing; the others stay unlit by themselves', () => {
+    const kernel = start();
+    const sweep = kernel.world.query(['sweep'])[0]![1] as Fields;
+    const parts = sweep['parts'] as Fields[];
+    parts[2]!['emissive'] = Color.hex('#ff2299');
+    parts[2]!['emissive_strength'] = 3;
+    sweep['parts'] = [...parts];
+    const track = kernel.service(PROCGEN_SERVICE).meshes().find((m) => m.key.startsWith('sweep'))!;
+    expect(track.parts[0]!.material.emissive).toBeUndefined();
+    const glow = track.parts[3]!.material;
+    expect(glow.emissive![0]).toBeCloseTo(3, 3);
+    expect(glow.emissive![1]).toBeCloseTo(3 * 0x22 / 255, 3);
+    expect(glow.id).not.toBe(track.parts[0]!.material.id);
   });
 
   it('Spline methods answer in world space; edits rebuild', () => {

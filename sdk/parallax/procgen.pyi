@@ -111,6 +111,8 @@ class SweepPart:
     double_sided: bool = field(False)
     roughness: float = field(0.85, min=0, max=1)
     metallic: float = field(0, min=0, max=1)
+    emissive: Color = field(Color.hex("#000000"), doc="Light it gives off (glowing bridges, neon); black: none.")
+    emissive_strength: float = field(1, min=0, doc="Multiplies `emissive`; above 1 blooms.")
 
 @component("sweep")
 class Sweep(EngineComponent):
@@ -265,6 +267,8 @@ class ProcMaterial:
     tile: float = field(1, unit="m", doc="Meters per texture repeat.")
     roughness: float = field(0.85, min=0, max=1)
     metallic: float = field(0, min=0, max=1)
+    emissive: Color = field(Color.hex("#000000"), doc="Light it gives off (lit windows at night, neon); black: none.")
+    emissive_strength: float = field(1, min=0, doc="Multiplies `emissive`; above 1 blooms.")
 
 
 # ─────────────────────────────────────────────────────────────────────────────

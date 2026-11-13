@@ -43,6 +43,8 @@ export interface GeneratedMaterial {
   readonly normal?: string | null;
   readonly roughness: number;
   readonly metallic: number;
+  /** Linear emitted light (color × strength, may exceed 1 to bloom); absent: none. */
+  readonly emissive?: readonly [number, number, number];
   /** Blended (drawn after opaque geometry, far to near) when the color's alpha or vertex alphas are below 1. */
   readonly blend: boolean;
   /** Draw both faces (open profiles seen from below, overlays). */
