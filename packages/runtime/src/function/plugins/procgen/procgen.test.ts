@@ -423,6 +423,21 @@ describe('procgen plugin', () => {
     try { spline['sample']!('far'); } catch (e) { expect((e as ParallaxError).diagnostic.code).toBe('PP3643'); }
   });
 
+  it('a path is sampled into world space once, until the spline or its entity moves', () => {
+    const kernel = start();
+    const [id] = kernel.world.query(['spline'])[0]! as [never, Fields];
+    const service = kernel.service(PROCGEN_SERVICE);
+    const first = service.path(id)!;
+    // Asking again (every frame, many times a frame) reuses the samples.
+    expect(service.path(id)).toBe(first);
+    const x0 = first.at(0).point[0];
+    const record = kernel.world.get(id)!;
+    record.transform.position = record.transform.position.__add__(new Vec3(10, 0, 0));
+    const moved = service.path(id)!;
+    expect(moved).not.toBe(first);
+    expect(moved.at(0).point[0]).toBeCloseTo(x0 + 10, 6);
+  });
+
   it('spawns pieces once, as children with generated_piece; snapshots keep them single', () => {
     const kernel = start();
     kernel.step(1 / 60);
