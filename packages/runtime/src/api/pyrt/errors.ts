@@ -37,9 +37,22 @@ export class BaseException extends Error {
 }
 
 // Error's `message`/`name` follow Python's str() and class name (stack traces read them).
+// In Python they are ordinary attribute names, so an exception subclass may assign them
+// (`self.message = message`): that gives the instance its own plain attribute.
+function ownAttribute(this: BaseException, key: string, value: unknown): void {
+  Object.defineProperty(this, key, { value, writable: true, enumerable: true, configurable: true });
+}
 Object.defineProperties(BaseException.prototype, {
-  message: { get(this: BaseException) { return str(this); }, configurable: true },
-  name: { get(this: BaseException) { return this.constructor.name; }, configurable: true },
+  message: {
+    get(this: BaseException) { return str(this); },
+    set(this: BaseException, value: unknown) { ownAttribute.call(this, 'message', value); },
+    configurable: true,
+  },
+  name: {
+    get(this: BaseException) { return this.constructor.name; },
+    set(this: BaseException, value: unknown) { ownAttribute.call(this, 'name', value); },
+    configurable: true,
+  },
 });
 
 export class Exception extends BaseException {}
