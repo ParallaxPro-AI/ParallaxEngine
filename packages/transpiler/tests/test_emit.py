@@ -69,6 +69,25 @@ class Imports(unittest.TestCase):
         self.assertEqual(codes("from parallax import plugins\np = plugins.story()"), [])
         self.assertEqual(codes("from parallax.combat import DamageHit, StatusEffects"), [])
 
+    def test_names_an_sdk_module_does_not_declare_are_pp6012(self) -> None:
+        # The generated project module's names, imported from parallax by mistake: the fix names `project`.
+        result = compile_module("from parallax import Assets, Behavior\n", "game/logic.py", INDEX)
+        self.assertEqual([d.code for d in result.diagnostics], ["PP6012"])
+        self.assertIn("from project import Assets", result.diagnostics[0].format())
+        self.assertEqual(codes("from parallax import Prefabs"), ["PP6012"])
+        # A misspelling suggests the declared name.
+        result = compile_module("from parallax.physics import Rigidbdy\n", "game/logic.py", INDEX)
+        self.assertEqual([d.code for d in result.diagnostics], ["PP6012"])
+        self.assertIn("Rigidbody", result.diagnostics[0].format())
+        # A name another SDK module declares points at that module.
+        result = compile_module("from parallax import Rigidbody\n", "game/logic.py", INDEX)
+        self.assertEqual([d.code for d in result.diagnostics], ["PP6012"])
+        self.assertIn("from parallax.physics import Rigidbody", result.diagnostics[0].format())
+        # Declared names, submodules and the project module are untouched.
+        self.assertEqual(codes("from parallax import Behavior, Vec3, Synth, Effect, physics\nfrom project import Assets"), [])
+        self.assertEqual(codes("from parallax.characters import Character, Landed"), [])
+        self.assertEqual(codes("from parallax.story import DialoguePanel, fact"), [])
+
     def test_function_level_imports_bind_locally(self) -> None:
         out = js("""
             def f():

@@ -16,6 +16,7 @@ it; `*xs` spreads. A compiled `def` binds its arguments with CPython's rules
 """
 
 import ast
+import difflib
 import json
 from contextlib import contextmanager
 from dataclasses import dataclass, field
@@ -24,7 +25,8 @@ from typing import Iterator
 from parallax_transpiler import names as N
 from parallax_transpiler.diagnostics import Diagnostic
 from parallax_transpiler.project import (
-    SDK_PACKAGES, SDK_RENAMED, SDK_SUBMODULES, ProjectIndex, absolute_module, relative_specifier, sdk_specifier,
+    PROJECT_NAMES, SDK_NAMES, SDK_PACKAGES, SDK_RENAMED, SDK_SUBMODULES, ProjectIndex, absolute_module, relative_specifier,
+    sdk_home, sdk_specifier,
 )
 from parallax_transpiler.scopes import Scope, ScopeTable
 from parallax_transpiler.source_map import line_mark
@@ -399,6 +401,7 @@ class ModuleEmitter:
             for alias in node.names:
                 local = alias.asname or alias.name
                 self.check_renamed(node, module, alias.name)
+                self.check_exported(node, module, alias.name)
                 if module == "parallax" and alias.name in SDK_SUBMODULES:
                     if at_module_top:
                         self.sdk_modules[local] = f"parallax.{alias.name}"
@@ -967,6 +970,23 @@ class ModuleEmitter:
         if new is not None:
             raise self.error(node, "PP6012", f"'{module}.{name}' was renamed: it is now {new}",
                              f"Use {new}.")
+
+    def check_exported(self, node: ast.AST, module: str, name: str) -> None:
+        """PP6012 when an SDK module doesn't export `name` (its stub doesn't declare it)."""
+        names = SDK_NAMES.get(module)
+        if names is None or name in names or (module == "parallax" and name in SDK_SUBMODULES):
+            return
+        if name in PROJECT_NAMES:
+            raise self.error(node, "PP6012", f"'{name}' is not in '{module}': each game's 'project' module generates it",
+                             f"from project import {name}")
+        home = sdk_home(name)
+        if home is not None:
+            raise self.error(node, "PP6012", f"'{module}' has no name '{name}': it is in '{home}'",
+                             f"from {home} import {name}")
+        close = difflib.get_close_matches(name, sorted(names), n=3)
+        hint = f" Did you mean {', '.join(close)}?" if close else ""
+        raise self.error(node, "PP6012", f"'{module}' has no name '{name}'",
+                         f"Import a name the SDK declares for {module}.{hint}")
 
     def stdlib_member(self, node: ast.Attribute) -> str:
         module = self.stdlib_aliases[node.value.id]  # type: ignore[attr-defined]

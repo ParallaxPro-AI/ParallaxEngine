@@ -22,6 +22,49 @@ SDK_SUBMODULES = frozenset(p.stem for p in SDK_DIR.glob("*.pyi") if p.stem != "_
 if not SDK_SUBMODULES:
     raise RuntimeError(f"No SDK stubs found in {SDK_DIR}: the transpiler resolves parallax.* modules from them")
 
+
+def _declared_names(stub: Path) -> frozenset[str]:
+    """Every name a stub binds at its top level: classes, functions, assignments and imports."""
+    names: set[str] = set()
+    for stmt in ast.parse(stub.read_text(encoding="utf-8")).body:
+        if isinstance(stmt, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            names.add(stmt.name)
+        elif isinstance(stmt, ast.Assign):
+            for target in stmt.targets:
+                names.update(n.id for n in ast.walk(target) if isinstance(n, ast.Name))
+        elif isinstance(stmt, (ast.AnnAssign, ast.AugAssign)) and isinstance(stmt.target, ast.Name):
+            names.add(stmt.target.id)
+        elif isinstance(stmt, ast.ImportFrom):
+            names.update(alias.asname or alias.name for alias in stmt.names)
+        elif isinstance(stmt, ast.Import):
+            names.update((alias.asname or alias.name).split(".")[0] for alias in stmt.names)
+        elif isinstance(stmt, ast.If):
+            for inner in stmt.body + stmt.orelse:
+                if isinstance(inner, (ast.ClassDef, ast.FunctionDef)):
+                    names.add(inner.name)
+    return frozenset(names)
+
+
+# What each SDK module exports (`parallax` is `__init__.pyi`): importing any other name is a
+# PP6012 at check time instead of a missing export when the game first runs in a browser.
+SDK_NAMES: dict[str, frozenset[str]] = {
+    ("parallax" if p.stem == "__init__" else f"parallax.{p.stem}"): _declared_names(p) for p in SDK_DIR.glob("*.pyi")
+}
+
+
+def sdk_home(name: str) -> str | None:
+    """The SDK module that declares `name` (`parallax` first), for a hint when it was imported from another."""
+    if name in SDK_NAMES.get("parallax", frozenset()):
+        return "parallax"
+    for module in sorted(SDK_NAMES):
+        if name in SDK_NAMES[module]:
+            return module
+    return None
+
+
+# The generated `project` module's names: imported from an SDK module by mistake, the fix names `project`.
+PROJECT_NAMES = frozenset({"Prefabs", "Scenes", "Placed", "Assets", "Content", "Text", "Dialogue", "WorldLayers"})
+
 # SDK names that were renamed or moved: (module, old name) → the new spelling, so an old
 # import or `module.old` is a PP6012 naming its replacement instead of an unknown name.
 SDK_RENAMED: dict[tuple[str, str], str] = {

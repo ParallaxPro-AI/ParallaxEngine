@@ -707,7 +707,7 @@ Parallax Python: syntax, unsupported constructs and sandbox rules (the transpile
 | PP6004 | transpiler | {func.id}() needs a literal attribute name |
 | PP6010 | transpiler | Name '{name}' is not defined |
 | PP6011 | transpiler | '{name}' is not available in Parallax Python |
-| PP6012 | transpiler | '{module}.{alias.name}' is not available in Parallax Python |
+| PP6012 | transpiler | '{module}' has no name '{name}' |
 | PP6013 | transpiler | 'from \_\_future\_\_ import' is not supported in Parallax Python |
 | PP6020 | transpiler | 'async for' is not supported in Parallax Python |
 | PP6021 | transpiler | 'await' outside an async def body is not supported in Parallax Python |
