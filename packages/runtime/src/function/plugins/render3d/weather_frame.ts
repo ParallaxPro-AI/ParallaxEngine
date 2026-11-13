@@ -13,7 +13,8 @@
  * The cover map is the first surface a ray straight down meets (physics3d), per meter
  * around the camera. It is re-cast a slice per frame, round and round (the whole map every
  * 16 frames, so a roof that appears is soon dry underneath), and starts over when the camera
- * strays from its center.
+ * strays from its center. In dry weather (nothing falling, nothing wet or snowed on) it is
+ * not cast at all: nothing would use it, and its rays are most of a clear frame's weather cost.
  * Without physics3d the terrain's height is used; with neither, nothing is covered.
  */
 
@@ -47,9 +48,25 @@ function fract(n: number): number {
 }
 
 /** Three values in [0, 1) from a drop's index (and a salt). */
-function hash3(i: number, salt: number): [number, number, number] {
+export function hash3(i: number, salt: number): [number, number, number] {
   const h = hashNumbers(i, salt);
   return [fract(h / 4294967296), fract(hashNumbers(h, 1) / 4294967296), fract(hashNumbers(h, 2) / 4294967296)];
+}
+
+/** Each salt's drops' `hash3` values, three per drop, computed once (they never change). */
+const DROP_HASHES = new Map<number, Float64Array>();
+
+/** `hash3(i, salt)` for drops 0 .. count - 1, packed: drop i's values at 3i, 3i + 1, 3i + 2. */
+export function dropHashes(salt: number, count: number): Float64Array {
+  const known = DROP_HASHES.get(salt);
+  if (known !== undefined && known.length >= count * 3) return known;
+  const table = new Float64Array(count * 3);
+  for (let i = 0; i < count; i++) {
+    const [a, b, c] = hash3(i, salt);
+    table[i * 3] = a; table[i * 3 + 1] = b; table[i * 3 + 2] = c;
+  }
+  DROP_HASHES.set(salt, table);
+  return table;
 }
 
 /** `base + ((value - base) mod span)`: a coordinate wrapped into [base, base + span). */
@@ -138,7 +155,8 @@ export class WeatherVisuals {
     if (service === undefined || view === undefined) return { frame: null, billboards: [], lines: [] };
     const w = service.conditions();
     const [cx, cy, cz] = view.position;
-    const cover = this.cover.update(kernel, cx, cy, cz);
+    const dry = w.rain <= 0 && w.snow <= 0 && w.hail <= 0 && w.wetness <= 0 && w.snowCover <= 0;
+    const cover = dry ? null : this.cover.update(kernel, cx, cy, cz);
     const billboards: BillboardBatch[] = [];
     const t = kernel.time.now;
     const light = lightness(ambient, Math.min(1, w.flash));
@@ -191,8 +209,10 @@ export class WeatherVisuals {
     const angle = (Math.atan2(vr, -vu) * 180) / Math.PI;
     const color = kind.color.map((c) => c * light);
     let n = 0;
+    // A drop's hashes depend on its index alone: looked up, not re-hashed every frame.
+    const hashes = dropHashes(kind.salt, kind.count);
     for (let i = 0; i < kind.count; i++) {
-      const [h1, h2, h3] = hash3(i, kind.salt);
+      const h1 = hashes[i * 3]!; const h2 = hashes[i * 3 + 1]!; const h3 = hashes[i * 3 + 2]!;
       const flutter = kind.flutter * Math.sin(t * 1.7 + h3 * 40);
       const x = wrap(h1 * FALL_BOX + vx * t + flutter, baseX, FALL_BOX);
       const z = wrap(h3 * FALL_BOX + vz * t + flutter * 0.6, baseZ, FALL_BOX);

@@ -19,9 +19,9 @@ import { weather } from '../weather/index.js';
 import { fromResolved } from './environment.js';
 import { QUALITY_LADDER } from './quality.js';
 import { NatureDraws } from './sky_frame.js';
-import { bolt, coverAt, FALL_BOX } from './weather_frame.js';
+import { bolt, coverAt, dropHashes, FALL_BOX, hash3 } from './weather_frame.js';
 import { riverRibbon } from './water_frame.js';
-import { ENVIRONMENT_SERVICE } from '../../services/index.js';
+import { ENVIRONMENT_SERVICE, PHYSICS3D_SERVICE } from '../../services/index.js';
 
 beforeAll(async () => {
   await initPhysics3d();
@@ -157,6 +157,19 @@ describe('weather in a frame', () => {
     expect(g.kernel.service(WEATHER_SERVICE).conditions().wetness).toBeGreaterThan(0.5);
   });
 
+  it('clear, dry weather casts no cover map (nothing falls or gets wet to use it)', () => {
+    const g = scene({ weather: 'clear' }, [{ prefab: 'ground' }, { prefab: 'roof', at: [0, 4, 0] }], { ground: GROUND, roof: ROOF });
+    g.kernel.step(1 / 30);
+    const physics = g.kernel.service(PHYSICS3D_SERVICE);
+    const raycast = physics.raycast.bind(physics);
+    let rays = 0;
+    physics.raycast = (...args: Parameters<typeof raycast>) => { rays++; return raycast(...args); };
+    const out = g.build(view(0, 2, 0));
+    expect(out.frame!.weather!.cover).toBeNull();
+    expect(out.frame!.weather!.wetness).toBe(0);
+    expect(rays).toBe(0);
+  });
+
   it('a strike is drawn as a bolt from the cloud base to the point, then fades', () => {
     const strike = { time: 1, point: new Vec3(10, 0, 5), cloud: 900, strength: 1, seed: 42 };
     const lines = bolt(strike, 1.05);
@@ -167,5 +180,16 @@ describe('weather in a frame', () => {
     expect([trunk[trunk.length - 3], trunk[trunk.length - 2], trunk[trunk.length - 1]]).toEqual([10, 0, 5]);
     expect(bolt(strike, 1.05)[2]!.points).toEqual(lines[2]!.points);
     expect(bolt(strike, 2)).toEqual([]);
+  });
+});
+
+describe('precipitation drop hashes', () => {
+  it('looks up the same three values hash3 gives each drop, and grows for more drops', () => {
+    const few = dropHashes(77, 10);
+    for (const i of [0, 3, 9]) expect([few[i * 3], few[i * 3 + 1], few[i * 3 + 2]]).toEqual(hash3(i, 77));
+    const more = dropHashes(77, 500);
+    expect(more.length).toBeGreaterThanOrEqual(1500);
+    expect([more[499 * 3], more[499 * 3 + 1], more[499 * 3 + 2]]).toEqual(hash3(499, 77));
+    expect(dropHashes(77, 20)).toBe(more);
   });
 });
