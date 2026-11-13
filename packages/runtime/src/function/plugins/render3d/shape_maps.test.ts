@@ -1,4 +1,4 @@
-/** Shape tiling and normal maps (`uv_scale`, `normal_map`, `normal_strength`) and `Model.rotation_offset`, drawn. */
+/** Shape tiling, normal and glow maps (`uv_scale`, `normal_map`, `normal_strength`, `emissive_map`) and `Model.rotation_offset`, drawn. */
 
 import { describe, expect, it } from 'vitest';
 import { MESH_INSTANCE_STRIDE, ParallaxError, Quat, Vec3 } from '../../../core/index.js';
@@ -68,6 +68,21 @@ describe('Shape tiling and normal maps', () => {
     const plain = frame.meshes.find((m) => m.geometry.id === 'shape:sphere')!.material;
     expect(plain.uvScale).toBeUndefined();
     expect(plain.normalTexture ?? null).toBeNull();
+  });
+
+  it('binds the glow map as an sRGB emissive texture, tiled with the shape', async () => {
+    const frame = await frameOf({
+      cam: CAMERA,
+      grid: { components: { shape: { kind: 'plane', size: [10, 1, 10], emissive: '#00ffff', emissive_map: 'images/planks', uv_scale: [5, 5] } } },
+      dark: { components: { shape: { kind: 'sphere', emissive: '#00ffff' } } },
+    }, [{ id: 'cam', prefab: 'cam', at: [0, 2, -10] }, { prefab: 'grid' }, { prefab: 'dark', at: [3, 0, 0] }], {}, IMAGES);
+    const grid = frame.meshes.find((m) => m.geometry.id === 'shape:plane')!.material;
+    expect(grid.emissiveTexture?.source).toEqual({ kind: 'file', path: 'assets/images/planks.png' });
+    expect(grid.emissiveTexture?.colorSpace).toBe('srgb');
+    expect(grid.uvScale).toEqual([5, 5]);
+    expect(grid.baseColorTexture).toBeNull();
+    const dark = frame.meshes.find((m) => m.geometry.id === 'shape:sphere')!.material;
+    expect(dark.emissiveTexture).toBeNull();
   });
 
   it('rejects non-positive tiling', async () => {
