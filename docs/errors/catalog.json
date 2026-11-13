@@ -4403,11 +4403,15 @@
         "Cell {what} must be an integer, got {…}",
         "Cell3 {axis} must be an integer, got {…}",
         "Cell3 {op} needs another Cell3, got {…}",
-        "look_rotation() takes Vec3 forward and up"
+        "Quat.from_euler() takes one Vec3 of degrees, got {got}",
+        "look_rotation() takes Vec3 forward and up",
+        "slerp() takes a Quat and a finite number t"
       ],
       "fixes": [
         "Block positions are whole numbers: use ctx.voxels.cell_at(point), or floor() each coordinate.",
         "Cells are whole (col, row) pairs: round first, e.g. Cell(round(x), round(y)).",
+        "Pass the target rotation and how far to turn (0..1): a.slerp(b, 0.5).",
+        "Pass vec3(pitch, yaw, roll): Quat.from_euler(vec3(0, yaw, 0)).",
         "Pass vec3(x, y, z) values."
       ],
       "notes": [],

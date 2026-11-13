@@ -93,6 +93,15 @@ describe('wrapAngle', () => {
   });
 });
 
+describe('Quat.from_euler', () => {
+  it('takes one Vec3 of degrees; three numbers are an error, not a NaN rotation', () => {
+    expect(Quat.from_euler(new Vec3(0, 90, 0)).rotate(Vec3.FORWARD).is_close(Vec3.RIGHT, 1e-9)).toBe(true);
+    const fromEuler = Quat.from_euler as unknown as (...a: unknown[]) => Quat;
+    expect(() => fromEuler(0, 90, 0)).toThrow(/PP3022[\s\S]*3 arguments/);
+    expect(() => fromEuler(90)).toThrow(/PP3022[\s\S]*got 90/);
+  });
+});
+
 describe('Quat.look_rotation', () => {
   it('turns +z to forward with +y up, matches from_euler, and handles looking straight up', () => {
     const q = Quat.look_rotation(new Vec3(1, 0, 0));
@@ -113,6 +122,33 @@ describe('Quat.look_rotation', () => {
     expect(Vec2.from_angle(0, kw({ length: 3 })).x).toBeCloseTo(3);
     expect(new Vec3(1, 2.5, 3).__repr__()).toBe('Vec3(1, 2.5, 3)');
     expect(Quat.IDENTITY.__repr__()).toBe('Quat(0, 0, 0, 1)');
+  });
+});
+
+describe('Quat.slerp', () => {
+  it('exists at runtime as the SDK declares, and turns part of the way, the short way round', () => {
+    const a = Quat.IDENTITY;
+    const b = Quat.from_euler(new Vec3(0, 90, 0));
+    expect(a.slerp(b, 0).is_close(a)).toBe(true);
+    expect(a.slerp(b, 1).is_close(b)).toBe(true);
+    expect(a.slerp(b, 0.5).is_close(Quat.from_euler(new Vec3(0, 45, 0)))).toBe(true);
+    // The same rotation written as -q still turns the short way.
+    const negB = new Quat(-b.x, -b.y, -b.z, -b.w);
+    expect(a.slerp(negB, 0.5).is_close(Quat.from_euler(new Vec3(0, 45, 0)))).toBe(true);
+    // Nearly equal rotations blend without dividing by ~0.
+    const near = Quat.from_euler(new Vec3(0, 0.01, 0));
+    expect(a.slerp(near, 0.5).is_close(Quat.from_euler(new Vec3(0, 0.005, 0)), 1e-9)).toBe(true);
+    expect(a.slerp(b, kw({ t: 0.5 })).is_close(Quat.from_euler(new Vec3(0, 45, 0)))).toBe(true);
+    expect(() => a.slerp(b)).toThrow();
+    expect(() => a.slerp(b, NaN)).toThrow(/PP3022/);
+  });
+
+  it('goes the short way across 0 degrees of yaw', () => {
+    const a = Quat.from_euler(new Vec3(0, 10, 0));
+    const b = Quat.from_euler(new Vec3(0, 350, 0));
+    // Halfway from 10 to -10 degrees of yaw is 0, not 180.
+    expect(a.slerp(b, 0.5).is_close(Quat.IDENTITY, 1e-9)).toBe(true);
+    expect(a.slerp(a, 0.3).is_close(a)).toBe(true);
   });
 });
 
