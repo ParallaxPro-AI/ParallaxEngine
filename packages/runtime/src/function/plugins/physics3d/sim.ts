@@ -48,6 +48,8 @@ import { JOINT, Joints3d } from './joints.js';
 import type { JointBody, JointHost, SavedJoint } from './joints.js';
 import type { LayerTable } from './layers.js';
 import { IMPACT } from './materials.js';
+import { applyMuscles, MUSCLE } from './muscles.js';
+import type { MuscleHost } from './muscles.js';
 import type { MaterialTable } from './materials.js';
 import { Ragdolls } from './ragdoll.js';
 import type { RagdollHost, SavedRagdoll } from './ragdoll.js';
@@ -242,6 +244,8 @@ export class Physics3dSim {
   readonly #pre = new Map<EntityId, PreStep>();
   /** Entities with a force_field component. */
   readonly #fieldEntities = new Set<EntityId>();
+  /** Entities with a muscle component. */
+  readonly #muscleEntities = new Set<EntityId>();
   /** Bodies whose pose replication owns: kinematic-follow, never integrated or pulled. */
   readonly #driven = new Set<EntityId>();
   /** Contact-force watches: entity → owner → threshold (N). */
@@ -305,6 +309,7 @@ export class Physics3dSim {
     this.poses.begin(this.#moving());
     for (const body of this.#bodies.values()) this.#push(body, dt);
     applyFields(this.#fieldHost(), this.#fieldEntities);
+    if (this.#muscleEntities.size > 0) applyMuscles(this.#muscleHost(), this.#muscleEntities, dt);
     this.#joints.drive(dt);
     this.#ragdolls.drive();
     this.#capturePreStep();
@@ -360,6 +365,8 @@ export class Physics3dSim {
   #trackField(record: EntityRecord): void {
     if (record.components.has(FORCE_FIELD)) this.#fieldEntities.add(record.id);
     else this.#fieldEntities.delete(record.id);
+    if (record.components.has(MUSCLE)) this.#muscleEntities.add(record.id);
+    else this.#muscleEntities.delete(record.id);
   }
 
   removed(records: readonly EntityRecord[]): void {
@@ -375,6 +382,7 @@ export class Physics3dSim {
       this.#offsets.delete(record.id);
       this.#watches.delete(record.id);
       this.#fieldEntities.delete(record.id);
+      this.#muscleEntities.delete(record.id);
       this.#ragdolls.remove(record.id);
       this.#driven.delete(record.id);
     }
@@ -452,6 +460,7 @@ export class Physics3dSim {
       this.#watches.set(w.entity as EntityId, owners);
     }
     this.#fieldEntities.clear();
+    this.#muscleEntities.clear();
     for (const l of saved.locks) {
       if (!alive(l.entity)) continue;
       const owners = this.#locks.get(l.entity as EntityId) ?? new Map<string, AxisLocks>();
@@ -1159,6 +1168,19 @@ export class Physics3dSim {
         return this.poses.velocity(entity, this.#kernel.time.fixedStep);
       },
       where,
+    };
+  }
+
+  #muscleHost(): MuscleHost {
+    return {
+      kernel: this.#kernel,
+      bodyOf: (entity) => {
+        const body = this.#bodies.get(entity);
+        if (body === undefined || this.#mounts.has(entity) || this.#ragdolls.simulated(entity)) return undefined;
+        return { body: body.body, dynamic: body.kind === 'dynamic' };
+      },
+      offsetOf: (entity) => this.offsetOf(entity),
+      markForced: (entity) => this.markForced(entity),
     };
   }
 
