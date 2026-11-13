@@ -26,7 +26,7 @@ Facts, quests and layers are run-level: `new_run=True` (New Game) resets them.
 
 ## Contents
 
-[`Fact`](#fact), [`fact()`](#fact-1), [`Facts`](#facts), [`QuestBranch`](#questbranch), [`QuestStep`](#queststep), [`QuestDef`](#questdef), [`QuestState`](#queststate), [`DialogueRef`](#dialogueref), [`DialogueStarted`](#dialoguestarted), [`DialogueEnded`](#dialogueended), [`QuestStarted`](#queststarted), [`QuestStepCompleted`](#queststepcompleted), [`QuestCompleted`](#questcompleted), [`FactChanged`](#factchanged), [`StoryApi`](#storyapi), [`DialoguePanel`](#dialoguepanel), [`VerbFn`](#verbfn), [`quest_verb()`](#quest_verb), [`dialogue_command()`](#dialogue_command)
+[`Fact`](#fact), [`fact()`](#fact-1), [`Facts`](#facts), [`QuestBranch`](#questbranch), [`QuestStep`](#queststep), [`QuestDef`](#questdef), [`QuestState`](#queststate), [`DialogueRef`](#dialogueref), [`DialogueStarted`](#dialoguestarted), [`DialogueEnded`](#dialogueended), [`DialogueLine`](#dialogueline), [`QuestStarted`](#queststarted), [`QuestStepCompleted`](#queststepcompleted), [`QuestCompleted`](#questcompleted), [`FactChanged`](#factchanged), [`StoryApi`](#storyapi), [`DialoguePanel`](#dialoguepanel), [`VerbFn`](#verbfn), [`quest_verb()`](#quest_verb), [`dialogue_command()`](#dialogue_command)
 
 ### `Fact`
 
@@ -193,6 +193,24 @@ class DialogueEnded
 **Fields**
 
 - `dialogue: DialogueRef`
+
+### `DialogueLine`
+
+```python
+@event("dialogue_line")
+class DialogueLine
+```
+
+A line of a conversation as it is shown (once per line; a restored save doesn't repeat
+it): drive a speaker's voice, a talking animation or a conversation log from it.
+`text` is in the player's language; `tags` are the line's `#tags` without the `#`.
+
+**Fields**
+
+- `dialogue: DialogueRef`
+- `speaker: str | None`
+- `text: str`
+- `tags: list[str]`
 
 ### `QuestStarted`
 

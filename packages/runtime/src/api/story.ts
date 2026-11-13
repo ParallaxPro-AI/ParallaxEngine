@@ -208,6 +208,7 @@ function questId(value: unknown, where: string): string {
 
 export const DialogueStarted = eventHandle(STORY_EVENTS.dialogueStarted, 'DialogueStarted');
 export const DialogueEnded = eventHandle(STORY_EVENTS.dialogueEnded, 'DialogueEnded');
+export const DialogueLine = eventHandle(STORY_EVENTS.dialogueLine, 'DialogueLine');
 export const QuestStarted = eventHandle(STORY_EVENTS.questStarted, 'QuestStarted');
 export const QuestStepCompleted = eventHandle(STORY_EVENTS.questStepCompleted, 'QuestStepCompleted');
 export const QuestCompleted = eventHandle(STORY_EVENTS.questCompleted, 'QuestCompleted');

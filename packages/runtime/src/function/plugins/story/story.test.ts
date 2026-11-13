@@ -196,6 +196,20 @@ describe('dialogue', () => {
     expect(s.events.find(([k]) => k === 'dialogue')![1]).toEqual({ dialogue: 'dialogue:elder' });
   });
 
+  it('emits dialogue_line once per shown line, localized, with its tags', () => {
+    const s = setup();
+    s.engine.say('elder', 'start', s.id('elder'));
+    s.press();
+    s.engine.choose(0);
+    s.press();
+    s.steps(1);
+    const lines = s.events.filter(([k]) => k === 'dialogue,speaker,text,tags').map(([, e]) => e);
+    expect(lines).toEqual([
+      { dialogue: 'dialogue:elder', speaker: 'Elder', text: 'Bienvenue, Ana.', tags: [] },
+      { dialogue: 'dialogue:elder', speaker: 'Elder', text: 'Off you go.', tags: ['voice:elder_bye'] },
+    ]);
+  });
+
   it("doesn't advance on the press that started the conversation", () => {
     const s = setup();
     s.kernel.addHook('input', () => { if (!s.engine.inDialogue) s.engine.say('elder', 'start', null); });

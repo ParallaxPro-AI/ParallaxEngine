@@ -91,6 +91,16 @@ class DialogueStarted:
 class DialogueEnded:
     dialogue: DialogueRef
 
+@event("dialogue_line")
+class DialogueLine:
+    """A line of a conversation as it is shown (once per line; a restored save doesn't repeat
+    it): drive a speaker's voice, a talking animation or a conversation log from it.
+    `text` is in the player's language; `tags` are the line's `#tags` without the `#`."""
+    dialogue: DialogueRef
+    speaker: str | None
+    text: str
+    tags: list[str]
+
 @event("quest_started")
 class QuestStarted:
     quest: ContentRef[QuestDef]

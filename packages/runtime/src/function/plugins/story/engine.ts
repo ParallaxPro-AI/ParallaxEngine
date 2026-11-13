@@ -35,6 +35,7 @@ import type { DialogueDoc, FactValue } from './yarn.js';
 export const STORY_EVENTS = {
   dialogueStarted: { id: 'dialogue_started' },
   dialogueEnded: { id: 'dialogue_ended' },
+  dialogueLine: { id: 'dialogue_line' },
   questStarted: { id: 'quest_started' },
   questStepCompleted: { id: 'quest_step_completed' },
   questCompleted: { id: 'quest_completed' },
@@ -535,7 +536,17 @@ export class StoryEngine implements StoryService {
 
   #after(pending: Pending): void {
     if (pending.kind === 'end') this.#end(true);
-    else if (pending.kind === 'line') this.#voice(pending.line);
+    else if (pending.kind === 'line') {
+      this.#voice(pending.line);
+      this.#announce(pending.line);
+    }
+  }
+
+  /** `DialogueLine` as each line is shown (once; restores don't repeat it): voices, logs, subtitles. */
+  #announce(line: ShownLine): void {
+    const id = this.#conversation!.runner.doc.id;
+    const { speaker, text } = this.#localized(line);
+    this.#kernel.emit(STORY_EVENTS.dialogueLine, { dialogue: this.#host.dialogueRef(id), speaker, text, tags: [...line.tags] });
   }
 
   /** A line tagged `#voice:<sound>` plays that sound as it is shown (once; restores don't replay it). */
