@@ -9,7 +9,8 @@ import { tmpdir } from 'node:os';
 import { describe, expect, it, vi } from 'vitest';
 import { main } from './cli.js';
 import {
-  chromeArgs, collapse, findChrome, keyCode, keyEvent, parseKeys, screenshotArgs, screenshotJson, shotPaths, TAP_SECONDS, timeline,
+  chromeArgs, collapse, DRAG_MOVES, DRAG_SECONDS, findChrome, keyCode, keyEvent, parseKeys, screenshotArgs, screenshotJson, shotPaths,
+  TAP_SECONDS, timeline,
   toolingFailure, useGpu,
 } from './screenshot.js';
 import type { ScreenshotResult } from './screenshot.js';
@@ -86,6 +87,14 @@ describe('--keys', () => {
     expect(parseKeys('KeyW:x')).toMatch(/needs a number of seconds/);
     expect(parseKeys('KeyW:1:2')).toMatch(/bad step/);
     expect(parseKeys('click@middle')).toMatch(/click@640x360/);
+    expect(parseKeys('drag@10x20')).toMatch(/drag@300x600-640x300/);
+  });
+
+  it('drags the held mouse from one pixel to another', () => {
+    expect(parseKeys('drag@300x600-640x300, drag@1x2-3x4:1')).toEqual([
+      { kind: 'drag', seconds: DRAG_SECONDS, from: { x: 300, y: 600 }, to: { x: 640, y: 300 } },
+      { kind: 'drag', seconds: 1, from: { x: 1, y: 2 }, to: { x: 3, y: 4 } },
+    ]);
   });
 });
 
@@ -102,6 +111,18 @@ describe('the schedule', () => {
       { at: 4.1, kind: 'down', code: 'Space' },
       { at: 4.1 + TAP_SECONDS, kind: 'up', code: 'Space' },
     ]);
+  });
+
+  it('presses, moves along the line and releases for a drag', () => {
+    const keys = parseKeys('drag@0x100-100x0:1,wait:1') as Exclude<ReturnType<typeof parseKeys>, string>;
+    const plan = timeline({ keys, seconds: 3, shots: 1, every: 1 });
+    expect(plan[0]).toEqual({ at: 0, kind: 'press', point: { x: 0, y: 100 } });
+    const moves = plan.filter((a) => a.kind === 'move');
+    expect(moves).toHaveLength(DRAG_MOVES);
+    expect(moves[DRAG_MOVES - 1]).toEqual({ at: 0.9, kind: 'move', point: { x: 100, y: 0 } });
+    expect(moves.every((m, i) => i === 0 || m.at > moves[i - 1]!.at)).toBe(true);
+    expect(plan.at(-2)).toEqual({ at: 1, kind: 'release', point: { x: 100, y: 0 } });
+    expect(plan.at(-1)).toEqual({ at: 3, kind: 'shot' });
   });
 
   it('presses a key due with a shot before the shot', () => {
