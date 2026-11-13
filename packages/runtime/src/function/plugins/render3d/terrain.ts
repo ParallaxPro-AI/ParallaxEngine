@@ -79,20 +79,32 @@ export function tileGeometry(tile: TerrainTile, id: string): Geometry3d {
   const size = TILE_QUADS * tile.cell;
   return {
     id, positions, normals: tile.normals, uvs, indices, joints: null, weights: null, colors: tile.weights,
-    min: [tile.x, Math.min(tile.minHeight, morphMin(tile)), tile.z], max: [tile.x + size, Math.max(tile.maxHeight, morphMax(tile)), tile.z + size],
+    min: [tile.x, tileHeightBounds(tile).minHeight, tile.z], max: [tile.x + size, tileHeightBounds(tile).maxHeight, tile.z + size],
   };
 }
 
-function morphMin(tile: TerrainTile): number {
-  let lo = Infinity;
-  for (const h of tile.morph) if (h < lo) lo = h;
-  return lo;
+/** Height range of a tile and of its geomorph targets, scanned once per (immutable) tile. */
+export interface TileHeightBounds {
+  readonly minHeight: number;
+  readonly maxHeight: number;
 }
 
-function morphMax(tile: TerrainTile): number {
-  let hi = -Infinity;
-  for (const h of tile.morph) if (h > hi) hi = h;
-  return hi;
+const HEIGHT_BOUNDS = new WeakMap<TerrainTile, TileHeightBounds>();
+
+/** The tile's height bounds including where its vertices morph to; tile selection asks for
+ *  these for every visited tile every frame, so the morph scan is memoized per tile. */
+export function tileHeightBounds(tile: TerrainTile): TileHeightBounds {
+  const known = HEIGHT_BOUNDS.get(tile);
+  if (known !== undefined) return known;
+  let lo = tile.minHeight;
+  let hi = tile.maxHeight;
+  for (const h of tile.morph) {
+    if (h < lo) lo = h;
+    if (h > hi) hi = h;
+  }
+  const bounds = { minHeight: lo, maxHeight: hi };
+  HEIGHT_BOUNDS.set(tile, bounds);
+  return bounds;
 }
 
 export function terrainMaterials(field: TerrainField, texture: (path: string) => Texture3d): TerrainMaterial3d[] {
@@ -150,7 +162,7 @@ export class TerrainDraws {
       minHeight: field.minHeight,
       maxHeight: field.maxHeight,
       get: (level, ix, iz) => tiles.get(level, ix, iz),
-      bounds: (tile) => ({ minHeight: Math.min(tile.minHeight, morphMin(tile)), maxHeight: Math.max(tile.maxHeight, morphMax(tile)) }),
+      bounds: tileHeightBounds,
     }, {
       cameras: views.map((v) => v.position),
       frusta: views.map((v) => frustumPlanes(v.viewProjection)),
