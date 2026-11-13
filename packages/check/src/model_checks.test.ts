@@ -166,6 +166,21 @@ describe('how a model looks in play', () => {
     // A box doesn't roll.
     expect(looks(run(() => {}, {}, ball(0.5)))).toEqual([]);
   });
+
+  it('parts under a hidden group (an unworn hat) don\'t move a rolling body\'s centre', () => {
+    const head = {
+      ...KART, meshes: {}, joints: [], sockets: [], options: [], parts: [
+        { name: 'skull', shape: 'sphere', size: [1, 1, 1], material: 'body' },
+        { name: 'hat', hidden: true },
+        { name: 'tall_hat', parent: 'hat', shape: 'cylinder', size: [0.4, 1.4, 0.4], position: [0, 1.2, 0], material: 'body' },
+      ],
+    };
+    const rolling = (p: Record<string, any>) => { p['components']['collider'] = { shape: 'sphere', radius: 0.5 }; };
+    expect(looks(run(rolling, {}, head))).toEqual([]);
+    // Shown, the hat does count.
+    const worn = { ...head, parts: head.parts.map((part) => (part.name === 'hat' ? { name: 'hat' } : part)) };
+    expect(looks(run(rolling, {}, worn))).toEqual(['PP2131 prefabs/car_surge.prefab.json /components/model']);
+  });
 });
 
 describe('hosted assets (https://r2.parallaxpro.ai/assets/...)', () => {
