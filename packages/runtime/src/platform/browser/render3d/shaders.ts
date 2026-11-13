@@ -608,6 +608,10 @@ struct VertexOut {
   @location(5) local: vec3<f32>,
 };
 
+fn vertexColorLinear(c: vec3<f32>) -> vec3<f32> {
+  return select(pow((c + vec3<f32>(0.055)) / 1.055, vec3<f32>(2.4)), c / 12.92, c <= vec3<f32>(0.04045));
+}
+
 @vertex fn vs(v: VertexIn) -> VertexOut {
   let model = mat4x4<f32>(v.m0, v.m1, v.m2, v.m3);
   let normalMatrix = mat3x3<f32>(v.n0.xyz, v.n1.xyz, v.n2.xyz);
@@ -623,7 +627,8 @@ ${skinned ? `  let skin = skinMatrix(u32(v.n0.w), v.joints, v.weights);
   out.world = world.xyz;
   out.normal = normalMatrix * n;
   out.uv = v.uv;
-  out.color = v.color * v.tint;
+  // Vertex colours are sRGB (Geometry3d.colors); shading is linear, like the tint.
+  out.color = vec4<f32>(vertexColorLinear(v.color.rgb), v.color.a) * v.tint;
   out.fade = v.n1.w;
   out.local = local.xyz * ${WGSL_INSTANCE_SCALE};
   return out;
@@ -1287,6 +1292,9 @@ out vec2 vUv;
 out vec4 vColor;
 flat out float vFade;
 out vec3 vLocal;
+vec3 vertexColorLinear(vec3 c) {
+  return mix(c / 12.92, pow((c + 0.055) / 1.055, vec3(2.4)), step(vec3(0.04045), c));
+}
 void main() {
   mat4 model = mat4(m0, m1, m2, m3);
   mat3 normalMatrix = mat3(n0.xyz, n1.xyz, n2.xyz);
@@ -1300,7 +1308,8 @@ ${skinned ? `  mat4 skin = skinMatrix(int(n0.w));
   vWorld = world.xyz;
   vNormal = normalMatrix * n;
   vUv = uv;
-  vColor = color * tint;
+  // Vertex colours are sRGB (Geometry3d.colors); shading is linear, like the tint.
+  vColor = vec4(vertexColorLinear(color.rgb), color.a) * tint;
   vFade = n1.w;
   vLocal = local.xyz * ${GLSL_INSTANCE_SCALE};
   gl_Position = viewProjection * world;

@@ -415,6 +415,12 @@ describe('foliage drawing parts', () => {
     expect(ramp.tip[1]!).toBeGreaterThan(0.5);
     expect(ramp.tip[0]! / ramp.tip[1]!).toBeGreaterThan(0.5);
     expect(ramp.root[1]!).toBeLessThan(ramp.tip[1]! * 0.4);
+    // Vertex colors are stored sRGB (the mesh shader linearizes them): a root vertex, linearized,
+    // is the linear root color times one brightness for all three channels.
+    const linear = (v: number): number => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+    const k = [0, 1, 2].map((i) => linear(c[i]!) / ramp.root[i]!);
+    expect(k[1]!).toBeCloseTo(k[0]!, 4);
+    expect(k[2]!).toBeCloseTo(k[0]!, 4);
     expect(patchGeometry(64, 1)).toBe(near);
     expect(patchGeometry(64, 2).positions).not.toEqual(near.positions);
     const g = new FrameGovernor();

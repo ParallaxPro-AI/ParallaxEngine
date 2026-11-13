@@ -187,7 +187,8 @@ describe('static merging', () => {
     expect([...g.indices]).toEqual([0, 1, 2, 3, 5, 4]);
     // Mirroring x leaves a -z normal pointing -z (inverse-transpose of diag(-1, 1, 1)), not flipped inward.
     expect(Array.from(g.normals.subarray(9, 12), (v) => v + 0)).toEqual([0, 0, -1]);
-    expect(g.colors![12]).toBeCloseTo(0.214, 3);
+    // White tinted sRGB 0.5 is stored as sRGB 0.5 (linear 0.214 once the mesh shader linearizes it).
+    expect(g.colors![12]).toBeCloseTo(0.5, 5);
     expect(g.min).toEqual([5, 0, 0]);
     expect(g.max).toEqual([10, 1, 0]);
   });

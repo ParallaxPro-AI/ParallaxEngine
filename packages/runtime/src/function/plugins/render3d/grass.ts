@@ -128,13 +128,14 @@ export function patchGeometry(blades: number, pattern = 0, far = false, color: R
     const tint = clump.tint * (0.9 + 0.2 * r(8));
     // Normal: up, tipped away from the tuft's center and a little toward the blade's face.
     const n = normalize([out[0] * 0.35 + face[0] * 0.15, 0.85, out[2] * 0.35 + face[2] * 0.15]);
-    // The blade's own linear color (the material is white): dark root → light yellow-green
+    // The blade's own color (the material is white): dark root → light yellow-green
     // tip (bladeRamp), dry blades straw-tipped, times the tuft's and blade's tint.
     const color = (t: number): number[] => {
       const u = Math.pow(t, 0.7);
       const tip = dry ? ramp.dry : ramp.tip;
       const k = tint * (0.8 + 0.2 * t);
-      return [0, 1, 2].map((i) => Math.min(1, k * (ramp.root[i]! + (tip[i]! - ramp.root[i]!) * u)));
+      // Computed in linear light; stored sRGB, as every vertex color is (the mesh shader linearizes).
+      return [0, 1, 2].map((i) => toSrgb(Math.min(1, k * (ramp.root[i]! + (tip[i]! - ramp.root[i]!) * u))));
     };
     const at = (t: number, side: number): number[] => {
       const w = width * (1 - Math.pow(t, 0.9) * 0.85) * side;
@@ -168,6 +169,8 @@ export function patchGeometry(blades: number, pattern = 0, far = false, color: R
 
 /** sRGB → linear. */
 const toLinear = (c: number): number => (c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4);
+/** Linear → sRGB. */
+const toSrgb = (c: number): number => (c <= 0.0031308 ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055);
 
 /** The default blade color (the foliage plugin's grass LOOKS color). */
 const DEFAULT_GRASS: Rgb = [0.33, 0.52, 0.2];
