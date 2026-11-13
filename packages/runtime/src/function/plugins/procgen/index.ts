@@ -39,8 +39,9 @@ import { collisionOf, MeshBuilder } from './mesh.js';
 import type { Surface, V3 } from './mesh.js';
 import {
   checkLayer, DUNGEON, dungeonSpec, materialOf, PIECE, PROCGEN_SCHEMAS, profileOf, readKits, readProfiles,
-  rgba, SPLINE, splineSpec, STRUCTURE, STRUCTURE_MATERIALS, structureSpec, SWEEP, TRACK, trackSpec,
+  rgba, SPLINE, splineSpec, STRUCTURE, STRUCTURE_MATERIALS, structureSpec, SWEEP, TRACK, trackSpec, CROWD, crowdSpec,
 } from './schemas.js';
+import { buildCrowd } from './crowd.js';
 import type { MaterialSpec } from './schemas.js';
 import { centerline, nearestOn, sampleAt } from './spline.js';
 import type { Centerline, Sample } from './spline.js';
@@ -66,6 +67,8 @@ export type { DungeonLayout, DungeonSpec } from './dungeon.js';
 export { dressRoom } from './dressing.js';
 export { barrierOffset, buildTrack, curvature, findCorners, racingOffsets, trackProblem } from './track.js';
 export type { TrackCorner, TrackGeometry, TrackPart, TrackSpec } from './track.js';
+export { buildCrowd, crowdProblem } from './crowd.js';
+export type { CrowdGeometry, CrowdSpec } from './crowd.js';
 export { TRACK_DEFAULTS, trackGradePaths } from './track_grade.js';
 export type { TrackGradePath } from './track_grade.js';
 export type { PropKit, PropPlacement } from './dressing.js';
@@ -75,7 +78,7 @@ export {
   DUNGEON, DUNGEON_SCHEMA, dungeonSpec, MATERIAL_RECORD, PIECE, PIECE_SCHEMA, PROCGEN_SCHEMAS,
   PROFILE_KIND, PROP_KIT_KIND, readKits, readProfiles, ROOM_LEGEND_RECORD, SPLINE, SPLINE_SCHEMA, splineSpec, STRUCTURE,
   STRUCTURE_FLOOR_RECORD, STRUCTURE_SCHEMA, structureSpec, SWEEP, SWEEP_PART_RECORD, SWEEP_SCHEMA, checkLayer, profileOf,
-  TRACK, TRACK_SCHEMA, trackSpec,
+  TRACK, TRACK_SCHEMA, trackSpec, CROWD, CROWD_SCHEMA, crowdSpec,
 } from './schemas.js';
 
 // ── Game-facing values (sdk PathPoint, PathHit, GeneratedRoom, GeneratedDoor) ─────
@@ -466,6 +469,14 @@ export function procgen(): ProcgenPlugin {
       }
       return { key, version, parts, line, track };
     }
+    if (component === CROWD) {
+      const crowd = buildCrowd(crowdSpec(fields, where));
+      for (const part of crowd.parts) {
+        add(part.name, part.surface, { ...part.material, color: [...part.material.color] as [number, number, number, number] },
+          { collide: part.collide, shadows: part.shadows });
+      }
+      return { key, version, parts };
+    }
     if (component === SPLINE) return { key, version, parts, line: lineOf(record) };
     const materials = fields['materials'] as Record<string, Fields>;
     const colors = (fields['colors'] ?? {}) as Record<string, unknown>;
@@ -509,7 +520,7 @@ export function procgen(): ProcgenPlugin {
     return { key, version, parts, dungeon: layout };
   };
 
-  const SOURCES = [SWEEP, TRACK, STRUCTURE, DUNGEON] as const;
+  const SOURCES = [SWEEP, TRACK, STRUCTURE, DUNGEON, CROWD] as const;
   const GENERATORS = [...SOURCES, SPLINE] as const;
   const isGenerator = (record: EntityRecord): boolean => GENERATORS.some((c) => record.components.has(c));
 
@@ -555,7 +566,7 @@ export function procgen(): ProcgenPlugin {
       return cached;
     }
     // Staggered by entity, so a scene of generators doesn't compare them all on one frame.
-    const cacheable = component === STRUCTURE || component === DUNGEON;
+    const cacheable = component === STRUCTURE || component === DUNGEON || component === CROWD;
     const content = `${component}|${key}`;
     let made = cacheable ? BUILD_CACHE.get(content) as Omit<Built, 'watch'> | undefined : undefined;
     if (made === undefined) {
@@ -1008,6 +1019,7 @@ export function procgen(): ProcgenPlugin {
     { id: STRUCTURE, schema: PROCGEN_SCHEMAS[STRUCTURE]!, methods: structureMethods },
     { id: DUNGEON, schema: PROCGEN_SCHEMAS[DUNGEON]!, methods: dungeonMethods },
     { id: PIECE, schema: PROCGEN_SCHEMAS[PIECE]! },
+    { id: CROWD, schema: PROCGEN_SCHEMAS[CROWD]! },
   ];
 
   return {

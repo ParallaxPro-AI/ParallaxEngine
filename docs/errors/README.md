@@ -11,7 +11,7 @@ PP2041  Unknown prefab "brik"
   Docs: https://parallaxpro.ai/docs/engine/errors/PP2041
 ```
 
-This index lists all 875 codes the engine's sources raise, grouped by range. The
+This index lists all 876 codes the engine's sources raise, grouped by range. The
 machine-readable form is [`catalog.json`](catalog.json): for each code, its range, the area that
 raises it, the message and fix texts found at its raise sites (interpolated values are written
 `{name}`), notes, and the source files. Search the sources for a code to find every place that
@@ -24,7 +24,7 @@ Regenerate after adding or changing a code: `python3 tools/gen_error_catalog.py`
 |---|---|---|
 | [PP1xxx](#pp1xxx) | data files that don't parse or don't have the right shape (resource loader) | 16 |
 | [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 124 |
-| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 420 |
+| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 421 |
 | [PP4xxx](#pp4xxx) | declarations and types: `@component` / `@resource` / field schemas, actions, net declarations | 65 |
 | [PP5xxx](#pp5xxx) | values and conversions in core | 3 |
 | [PP6xxx](#pp6xxx) | Parallax Python: syntax, unsupported constructs and sandbox rules (the transpiler) | 17 |
@@ -493,6 +493,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3651 | procgen | {where}: facade.{key}.levels has {bad}, which is not a storey (0 to {…}) |
 | PP3652 | procgen | {where}: material key "{key}" is not one a Structure reads |
 | PP3653 | procgen | {planPath} line {p.line}, column {p.column}: {p.message}{…} |
+| PP3657 | procgen | {where}: {problem} |
 | PP3660 | procgen | {where}: locks need key\_prefab and gate\_prefab |
 | PP3661 | procgen | content/prop\_kit/{entry.id}.json: {message} |
 | PP3662 | procgen | Dungeon (seed {spec.seed}): no layout fits after 16 attempts |

@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 875,
+  "count": 876,
   "codes": [
     {
       "code": "PP1001",
@@ -11412,6 +11412,28 @@
         "packages/runtime/src/function/plugins/procgen/schemas.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3653"
+    },
+    {
+      "code": "PP3657",
+      "range": "PP3xxx",
+      "areas": [
+        "procgen"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "{where}: {problem}"
+      ],
+      "fixes": [
+        "See sdk/parallax/procgen.pyi Crowd for each field's meaning and range."
+      ],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/function/plugins/procgen/schemas.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3657"
     },
     {
       "code": "PP3660",

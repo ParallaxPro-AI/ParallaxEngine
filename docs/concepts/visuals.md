@@ -538,6 +538,22 @@ the whole circuit, including its stands, inside the terrain's `size`.
 points in world coordinates. AI and lap logic call
 `entity.get(Spline).nearest(p)`, `progress(p)` and `Track.racing_line()`.
 
+### Crowds and stands
+
+A `crowd` fills a straight run with rows of seeded spectators, on stepped stands
+or on a modelled stand's own seats (`"stands": false`). Use it for stadium
+terraces, grandstands and sidelines; a race track's stands are its `crowd` block.
+
+```json
+{"prefab": "stand", "at": [0, 0, 40], "rotation": [0, 180, 0],
+ "components": {"crowd": {"length": 100, "rows": 12, "row_gap": 0.8, "row_rise": 0.4,
+                          "colors": ["#c8102e", "#f2ece0"], "arms_up": 0.3, "scarves": 0.4}}}
+```
+
+Spectators face the entity's +z. With `groups` above 1, each entity builds one
+seeded share of the crowd, so a game can bob each share separately when a goal
+goes in.
+
 ### Dungeons
 
 A `dungeon` component builds a seeded dungeon: rooms, corridors, locked
@@ -817,7 +833,7 @@ Example games are under `examples/`; copy from the one listed.
 | Wind | One wind field for foliage, cloth, sails and projectiles | Sailing, outdoor scenes | `wind()`, scene `"wind"`, `ctx.wind` ([ref](../reference/parallax.wind.md)) | `pirate_sailing`, `racing` |
 | Water | Oceans, lakes, pools and rivers, buoyancy, currents and swimming | Coasts, boats, pools | `water()`, `WaterBody`, `Buoyancy`, `ctx.water` ([ref](../reference/parallax.water.md)) | `pirate_sailing`, `cargo_plane` |
 | Environment | Sky presets, physical atmosphere, sun, fog, clouds, skybox, day cycle and post-processing | Every 3D scene | Scene `"environment"`, `ctx.environment` (core) | `cargo_plane`, `racing` |
-| Procgen | Structures from floor plans, splines and sweeps, race tracks, dungeons and prop kits | Buildings, roads, circuits, coasters, dungeons | `procgen()`, `Structure`, `Spline`, `Sweep`, `Track`, `Dungeon` ([ref](../reference/parallax.procgen.md)) | `fps_shooter`, `open_world_rpg`, `racing`, `coop_cooking` |
+| Procgen | Structures from floor plans, splines and sweeps, race tracks, crowds on stands, dungeons and prop kits | Buildings, roads, circuits, coasters, stadium stands, dungeons | `procgen()`, `Structure`, `Spline`, `Sweep`, `Track`, `Crowd`, `Dungeon` ([ref](../reference/parallax.procgen.md)) | `fps_shooter`, `open_world_rpg`, `racing`, `coop_cooking` |
 | City | Streets, districts, buildings, parks, landmarks, traffic and pedestrians from one block | Urban open worlds, driving games | `city()`, scene `"city"`, `ctx.city` ([ref](../reference/parallax.city.md)) | `open_world_sandbox` |
 | Voxels | Block worlds and smooth dig-anywhere terrain, saved as edits | Minecraft-style building and mining | `voxels()`, `content/block/*.json`, `ctx.voxels` ([ref](../reference/parallax.voxels.md)) | `voxel_survival` |
 | Soft bodies | Cloth (flags, capes, sails) and jelly bodies | Anything that should flutter or wobble | `softbody()`, `Cloth`, `SoftBody` ([ref](../reference/parallax.softbody.md)) | `pirate_sailing`, `racing` |
