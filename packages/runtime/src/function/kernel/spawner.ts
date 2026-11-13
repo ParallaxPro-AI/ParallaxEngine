@@ -6,7 +6,7 @@
 
 import { fail, Quat, Vec3 } from '../../core/index.js';
 import type { EntityId } from '../../core/index.js';
-import { resolvePrefab } from '../../resource/index.js';
+import { notedKeys, resolvePrefab } from '../../resource/index.js';
 import type { InstanceFields, InstanceGrid, JsonObject, Project } from '../../resource/index.js';
 import type { Registry } from './registry.js';
 import { copy, instantiate, instantiateValues, instantiateWith } from './schema.js';
@@ -84,6 +84,9 @@ export function gridPositions(grid: InstanceGrid): number[][] {
 function mergeComponentData(base: Readonly<Record<string, JsonObject>>, over: Readonly<Record<string, JsonObject>> = {}): Record<string, JsonObject> {
   const merged: Record<string, JsonObject> = { ...base };
   for (const [id, fields] of Object.entries(over)) merged[id] = { ...base[id], ...fields };
+  // A component the instance wrote as `null` ("collider": null on a placement or a prefab
+  // child) removes the prefab's, as `null` does in an "extends" (merge.ts).
+  for (const id of notedKeys(over) ?? []) if (!(id in over)) delete merged[id];
   return merged;
 }
 

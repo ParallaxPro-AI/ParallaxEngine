@@ -83,6 +83,24 @@ describe('instantiation', () => {
     expect(k.world.query(['health'], { without: ['cracked'] })).toHaveLength(1);
   });
 
+  it('removes a prefab component that a placement or a prefab child writes as null', () => {
+    const k = kernel({
+      'prefabs/sword.prefab.json': { components: { health: { max: 3 } } },
+      'prefabs/knight.prefab.json': { children: [
+        { name: 'held', prefab: 'sword', components: { health: null } },
+        { name: 'spare', prefab: 'sword' },
+      ] },
+      'scenes/main/scene.json': { entities: [
+        { prefab: 'knight', id: 'k' },
+        { prefab: 'sword', id: 'bare', components: { health: null } },
+      ] },
+    }, game({ components: [{ id: 'health', schema: HEALTH }] }));
+    const byName = (name: string) => [...k.world.live()].find((r) => r.childName === name || r.placedId === name)!;
+    expect(byName('held').components.has('health')).toBe(false);
+    expect(byName('spare').components.has('health')).toBe(true);
+    expect(byName('bare').components.has('health')).toBe(false);
+  });
+
   it('takes 2D draw order from the prefab z and expands placement grids', () => {
     const k = kernel({
       'prefabs/coin.prefab.json': { z: 2 },
