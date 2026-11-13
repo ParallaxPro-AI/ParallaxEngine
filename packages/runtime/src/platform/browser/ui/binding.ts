@@ -193,6 +193,8 @@ export class PanelBinding {
   readonly #options: BinderOptions;
   readonly #root = new Scope(undefined, 0);
   readonly #sites = new WeakMap<DomElement, Site>();
+  /** Elements `data-show` / `data-hide` currently hide: a shortcut inside one doesn't fire. */
+  readonly #hidden = new WeakSet<DomNode>();
   #frame: BindFrame | undefined;
   /** Top-level nodes built into the parent. */
   readonly nodes: DomNode[] = [];
@@ -224,10 +226,12 @@ export class PanelBinding {
     return undefined;
   }
 
-  /** The action whose `data-key` is `code` (first enabled match), if any. */
+  /** The action whose `data-key` is `code` (first enabled, shown match), if any. A button
+   *  hidden by `data-show` / `data-hide` (itself or an ancestor) can't be pressed, so its
+   *  shortcut stays quiet and the next match gets the key. */
   shortcut(code: string): PanelTarget | undefined {
     for (const site of this.#root.allSites()) {
-      if (site.key !== code) continue;
+      if (site.key !== code || this.#isHidden(site.element)) continue;
       const sent = this.#send(site);
       if (sent !== undefined) return sent;
     }
@@ -237,6 +241,13 @@ export class PanelBinding {
   /** Whether `element` is an action of this panel (for focus navigation). */
   isAction(element: unknown): boolean {
     return this.#sites.has(element as DomElement);
+  }
+
+  #isHidden(element: DomElement): boolean {
+    for (let node: DomNode | null = element; node !== null; node = node.parentNode) {
+      if (this.#hidden.has(node)) return true;
+    }
+    return false;
   }
 
   #send(site: Site): PanelTarget | undefined {
@@ -363,6 +374,8 @@ export class PanelBinding {
       const visible = cached<boolean>((v) => {
         if (v) element.style.removeProperty('display');
         else element.style.setProperty('display', 'none', 'important');
+        if (v) this.#hidden.delete(element);
+        else this.#hidden.add(element);
       });
       updates.push((frame, data) => visible(
         (show === undefined || frame.values.truthy(resolvePath(data, show))) && (hide === undefined || !frame.values.truthy(resolvePath(data, hide))),

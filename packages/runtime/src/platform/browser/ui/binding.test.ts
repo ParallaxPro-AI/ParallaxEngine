@@ -235,6 +235,27 @@ describe('PanelBinding', () => {
     expect(binding.target([button])).toBeUndefined();
   });
 
+  it('a shortcut on a button data-show hides (or inside a hidden parent) does not fire; the shown one gets the key', () => {
+    const { binding, frame } = mount(
+      '<button data-action="resume" data-key="Enter" data-show="saved"></button>'
+      + '<div data-hide="saved"><button data-action="fresh" data-key="Enter"></button></div>');
+    frame({ saved: false });
+    expect(binding.shortcut('Enter')).toEqual({ action: 'fresh', data: {} });
+    frame({ saved: true });
+    expect(binding.shortcut('Enter')).toEqual({ action: 'resume', data: {} });
+  });
+
+  it('data-each copies inside a hidden part keep their Digit{index1} keys quiet until it shows', () => {
+    const { binding, frame } = mount(
+      '<div data-show="first"><div data-each="left"><template><button data-action="pick_left" data-key="Digit{index1}"></button></template></div></div>'
+      + '<div data-hide="first"><div data-each="right"><template><button data-action="pick_right" data-key="Digit{index1}"></button></template></div></div>',
+    );
+    frame({ first: true, left: [{ id: 'a' }], right: [{ id: 'b' }] });
+    expect(binding.shortcut('Digit1')).toEqual({ action: 'pick_left', data: { id: 'a' } });
+    frame({ first: false, left: [{ id: 'a' }], right: [{ id: 'b' }] });
+    expect(binding.shortcut('Digit1')).toEqual({ action: 'pick_right', data: { id: 'b' } });
+  });
+
   it('data-key "Digit{index1}" numbers data-each copies from 1', () => {
     const { binding, frame } = mount('<div data-each="cards"><template><button data-action="pick" data-key="Digit{index1}"></button></template></div>');
     frame({ cards: [{ perk: 'a' }, { perk: 'b' }] });
