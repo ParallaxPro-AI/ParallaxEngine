@@ -343,11 +343,18 @@ off and a Character doesn't move it; renderers draw the driven bones.
 **Methods**
 
 ```python
-def go_limp(impulse: Vec3 | None = None, *, at: Vec3 | None = None) -> None
+def go_limp(
+    impulse: Vec3 | None = None,
+    *,
+    at: Vec3 | None = None,
+    velocity: Vec3 | None = None,
+) -> None
 ```
 
 Full ragdoll; `impulse` (N·s) hits the part nearest `at` (else the pelvis).
-The entity follows the pelvis.
+`velocity` (m/s) starts every part moving at it — a launch (knockback, an
+explosion, a throw) — instead of the motion the entity had. The entity follows
+the pelvis.
 
 ```python
 def activate(strength: float | None = None) -> None

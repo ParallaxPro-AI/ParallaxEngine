@@ -191,9 +191,12 @@ class Ragdoll(EngineComponent):
     @property
     def weight(self) -> float:
         """1: the physics pose is drawn; 0: the animation (blending between while recovering)."""
-    def go_limp(self, impulse: Vec3 | None = None, *, at: Vec3 | None = None) -> None:
+    def go_limp(self, impulse: Vec3 | None = None, *, at: Vec3 | None = None,
+                velocity: Vec3 | None = None) -> None:
         """Full ragdoll; `impulse` (N·s) hits the part nearest `at` (else the pelvis).
-        The entity follows the pelvis."""
+        `velocity` (m/s) starts every part moving at it — a launch (knockback, an
+        explosion, a throw) — instead of the motion the entity had. The entity follows
+        the pelvis."""
     def activate(self, strength: float | None = None) -> None:
         """Active ragdoll: the pelvis follows the entity, every joint servos to the animated
         pose — hits make it react and it pulls back."""
