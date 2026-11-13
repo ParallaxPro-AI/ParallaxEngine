@@ -9,6 +9,7 @@ from game.actions import Controls
 from game.components import Away, Ball, BoxScore, Edge, Flight, Meter
 from game.content import CourtRules
 from game.events import BucketIncoming, BucketScored, ShotClockExpired, ShotReleased, Zone
+from game.lib.babble import Babbled
 from game.lib.barks import BarkSaid
 from game.ladder import pick
 from game.resources import Match, Phase, Result, Run
@@ -118,15 +119,18 @@ async def test_loss_ends_run(game):
     assert game.get(Run).result is Result.RUNNING
 
 
-@playtest("your bucket gets a cheer from your running mate")
+@playtest("your bucket gets a cheer from your running mate, said aloud")
 async def test_mate_cheers(game):
     await tip_off(game)
     shooter = you(game.ctx)
     game.ctx.emit(BucketScored(shooter=shooter, points=2, assist=None, contested=False))
     await game.advance(frames=2)
     said = game.emitted(BarkSaid)
-    assert said and said[-1].speaker == game.world.placed(Placed.mate)
+    mate = game.world.placed(Placed.mate)
+    assert said and said[-1].speaker == mate
     assert said[-1].trigger == "cheer"
+    await game.advance(seconds=0.3)
+    assert any(syllable.speaker == mate for syllable in game.emitted(Babbled))
 
 
 @playtest("the scoreboard shows game 1 of 5 and a live clock, and the possession plate who has the ball")

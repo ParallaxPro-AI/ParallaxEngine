@@ -866,6 +866,6 @@ Example games are under `examples/`; copy from the one listed.
 `pnpm parallax library add <id> <project>` also copies these code pieces:
 `time_trial` (run timer with medals), `ghost_racer` (race your best run),
 `map_screen` (corner minimap and full map), `radial_menu` (hold-to-open wheel),
-`save_slots` (save and load menu), `barks` (NPC one-liners), `model_variety` and
-`model_ambient`.
+`save_slots` (save and load menu), `barks` (NPC one-liners), `babble` (speech-like
+gibberish voices for any line of text), `model_variety` and `model_ambient`.
 

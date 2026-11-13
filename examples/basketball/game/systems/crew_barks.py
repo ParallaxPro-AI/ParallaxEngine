@@ -1,5 +1,6 @@
 """The crews talk: your mate and tonight's rivals call short lines on real game moments
-(library piece `barks` shows and paces them; the lines are content/bark/*.json)."""
+(library piece `barks` shows and paces them; the lines are content/bark/*.json), and say
+them aloud in gibberish (library piece `babble`)."""
 
 import random
 
@@ -8,7 +9,8 @@ from parallax import Entity, System, Tag, field, on, resource, system
 from game.components import Ball, Bot, Home, You
 from game.content import CourtRules
 from game.events import BallStolen, BucketScored, ShotMissed
-from game.lib.barks import BarkRequested
+from game.lib.babble import speak
+from game.lib.barks import BarkRequested, BarkSaid
 from game.resources import playing
 from game.rules import nearest_opponent_distance, team_of
 
@@ -43,6 +45,10 @@ class CrewBarks(System):
         bark(ctx, voice_of(ctx, team, event.shooter), "cheer")
         if team is not Home:
             bark(ctx, voice_of(ctx, Home), "shake_off", chance=0.6)
+
+    @on(BarkSaid)
+    def voiced(self, ctx, event):
+        speak(ctx, event.speaker, event.text, mood="excited")
 
     @on(BallStolen)
     def stolen(self, ctx, event):
