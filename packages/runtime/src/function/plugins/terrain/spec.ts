@@ -18,6 +18,7 @@
  *   rules: [{layer, slope: [from°, full°], height: [low, high], feather, strength}]
  *   paint: [{layer, <shape>, feather, noise, strength}]                         in order
  *   paths: [{paint, points, width, feather, closed, strength, flatten}]        in order
+ *     (flatten: true | {feather, offset, heights: one per point, or the smoothed ground})
  *   brush: [{id, <shape>, height, tags}]             tall grass that hides
  *
  * A <shape> is `"center": [x, z]` with `"radius"` (a circle) or `"size": [w, d]` and an
@@ -75,8 +76,12 @@ export interface Path {
   readonly width: number;
   readonly feather: number;
   readonly strength: number;
-  /** Grade the ground to the path: eased over `feather` meters beyond the edge, `offset` meters above the smoothed profile. */
-  readonly flatten: { readonly feather: number; readonly offset: number } | null;
+  /**
+   * Grade the ground to the path: eased over `feather` meters beyond the edge, `offset` meters above
+   * the smoothed profile — or, with `heights` (one per point), above those set heights (a railway's
+   * embankments and cuttings).
+   */
+  readonly flatten: { readonly feather: number; readonly offset: number; readonly heights?: readonly number[] } | null;
 }
 
 export interface Brush {
@@ -442,8 +447,16 @@ export function readTerrainSpec(scene: SceneDoc, graded: readonly TerrainGradePa
     if (f === true) flatten = { feather: 4, offset: 0 };
     else if (f !== undefined && f !== false) {
       const fo = r.object(f, `${at}/flatten`, 'flatten');
-      r.keys(fo, `${at}/flatten`, ['feather', 'offset']);
+      r.keys(fo, `${at}/flatten`, ['feather', 'offset', 'heights']);
       flatten = { feather: r.number(fo['feather'], `${at}/flatten/feather`, 4, nonNegative), offset: r.number(fo['offset'], `${at}/flatten/offset`, 0) };
+      if (fo['heights'] !== undefined) {
+        const heights = r.list(fo['heights'], `${at}/flatten/heights`, '"heights": [h, h, …] (one per point)')
+          .map((h, k) => r.number(h, `${at}/flatten/heights/${k}`, 0));
+        if (heights.length !== points.length) {
+          r.fail(`${at}/flatten/heights`, `heights has ${heights.length} entries for ${points.length} points`, 'Give one height per point.');
+        }
+        flatten = { ...flatten, heights };
+      }
     }
     const layer = obj['paint'] === undefined ? null : layerIndex(obj['paint'], `${at}/paint`);
     if (layer === null && flatten === null) r.fail(at, 'a path needs a "paint" layer or "flatten" to grade', 'Add "paint": "road", or "flatten": true.');

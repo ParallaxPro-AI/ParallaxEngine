@@ -123,6 +123,15 @@ function nearest(path: SplinePath, x: number, z: number): { distance: number; in
   return { distance: Math.sqrt(best), index };
 }
 
+/** Heights at a path's polyline samples (SPLINE_SAMPLES per gap, as catmullRomPolyline), plus `offset`. */
+function catmullRomProfile(heights: readonly number[], closed: boolean, offset: number): Float64Array {
+  const pairs = heights.map((h): readonly [number, number] => [h, 0]);
+  const line = catmullRomPolyline(pairs, closed);
+  const profile = new Float64Array(line.length / 2);
+  for (let i = 0; i < profile.length; i++) profile[i] = line[i * 2]! + offset;
+  return profile;
+}
+
 interface FlattenPath extends SplinePath {
   /** Smoothed ground height (+ offset) at each polyline sample. */
   readonly profile: Float64Array;
@@ -148,6 +157,12 @@ export class Relief {
       const half = path.width / 2;
       const base = splinePath(spec, path.points, path.closed, half, path.flatten.feather);
       const samples = base.line.length / 2;
+      const heights = path.flatten.heights;
+      if (heights !== undefined) {
+        // Set heights: the same Catmull-Rom through the points' heights as the polyline through their x/z.
+        this.#paths.push({ ...base, profile: catmullRomProfile(heights, path.closed, path.flatten.offset) });
+        continue;
+      }
       const raw = new Float64Array(samples);
       for (let i = 0; i < samples; i++) raw[i] = this.#beforePaths(base.line[i * 2]!, base.line[i * 2 + 1]!);
       // Two box passes over a control-point gap each way: a road's profile, not the noise's.
