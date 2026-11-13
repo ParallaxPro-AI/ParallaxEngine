@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 875,
+  "count": 874,
   "codes": [
     {
       "code": "PP1001",
@@ -12608,6 +12608,8 @@
         "{where}.fill is {fill}; it must be 0 to 1",
         "{where}.levels[{i}].model must be a model reference or None, got {…}",
         "{where}.offset must be a Vec3, got {…}",
+        "{where}.points must be a list of Vec2, got {…}",
+        "{where}.points[{i}] must be a Vec2, got {…}",
         "{where}.rotation_offset must be a Vec3 (degrees), got {…}",
         "{where}.scale must be a number above 0, got {…}",
         "{where}.size is ({sx}, {sy}, {sz}); sizes can't be negative",
@@ -12624,6 +12626,7 @@
         "Pass Color.WHITE, Color(1, 0.2, 0.2) or Color.hex(\"#ff4040\").",
         "Pass a non-zero direction, or leave it out.",
         "Pass at=self.entity or at=vec3(x, y, z).",
+        "Pass vec2(x, y): x across, y forward (+z).",
         "Pass vec3(x, y, z).",
         "Use 1 for the model's own size, 2 for twice it, 0.5 for half.",
         "Use Color(r, g, b) or Color.hex(\"#rrggbb\").",
@@ -12880,28 +12883,6 @@
         "packages/runtime/src/function/plugins/render3d/view.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3811"
-    },
-    {
-      "code": "PP3812",
-      "range": "PP3xxx",
-      "areas": [
-        "visuals"
-      ],
-      "listed_in": [],
-      "severity": [
-        "error"
-      ],
-      "messages": [
-        "{where} kind \"{kind}\" can't be drawn in 3D: a polygon's points are 2D"
-      ],
-      "fixes": [
-        "Use box, sphere, capsule, cylinder, cone, plane, circle, rect or ring (circle and rect lie flat on the ground), or a model."
-      ],
-      "notes": [],
-      "sources": [
-        "packages/runtime/src/function/plugins/render3d/draw.ts"
-      ],
-      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3812"
     },
     {
       "code": "PP3813",

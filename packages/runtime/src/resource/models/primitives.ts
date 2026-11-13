@@ -243,6 +243,81 @@ export function ring(width: number, depth: number, thickness: number, flat: bool
   return b.build(`shape:ring:${width}:${depth}:${thickness}:${flat ? 'flat' : 'torus'}`);
 }
 
+/**
+ * A flat polygon at y = 0 facing +y: point (x, y) lies at (x, 0, y), so a 2D outline's +y
+ * points along +z (forward). Triangulated as a fan from the first point, which suits convex
+ * outlines and any outline every point of which the first one sees (a sight fan from its
+ * apex, a range sector). UVs map the outline's bounding square, u along x and v down z.
+ * Rewrite one in place with `rewritePolygon` when its points move but their count doesn't.
+ */
+export class PolygonGeometry implements Geometry3d {
+  readonly id: string;
+  readonly positions: Float32Array;
+  readonly normals: Float32Array;
+  readonly uvs: Float32Array;
+  readonly indices: Uint16Array | Uint32Array;
+  readonly joints = null;
+  readonly weights = null;
+  readonly colors = null;
+  min: [number, number, number] = [0, 0, 0];
+  max: [number, number, number] = [0, 0, 0];
+  version = 0;
+
+  constructor(id: string, points: readonly (readonly [number, number])[]) {
+    const n = points.length;
+    this.id = id;
+    this.positions = new Float32Array(n * 3);
+    this.normals = new Float32Array(n * 3);
+    for (let i = 0; i < n; i++) this.normals[i * 3 + 1] = 1;
+    this.uvs = new Float32Array(n * 2);
+    const tris = Math.max(0, n - 2);
+    this.indices = n > 65535 ? new Uint32Array(tris * 3) : new Uint16Array(tris * 3);
+    this.rewrite(points);
+    this.version = 0;
+  }
+
+  /**
+   * New point positions (the same count): positions, uvs, bounds and winding are redone and
+   * `version` grows. Returns false when a triangle's winding flipped: a drawing surface
+   * refreshes only positions and normals in place, so the caller should build a new one.
+   */
+  rewrite(points: readonly (readonly [number, number])[]): boolean {
+    const n = points.length;
+    if (n * 3 !== this.positions.length) throw new Error(`polygon has ${this.positions.length / 3} points, not ${n}`);
+    let x0 = Infinity; let x1 = -Infinity; let z0 = Infinity; let z1 = -Infinity;
+    for (let i = 0; i < n; i++) {
+      const [x, z] = points[i]!;
+      this.positions[i * 3] = x;
+      this.positions[i * 3 + 1] = 0;
+      this.positions[i * 3 + 2] = z;
+      x0 = Math.min(x0, x); x1 = Math.max(x1, x); z0 = Math.min(z0, z); z1 = Math.max(z1, z);
+    }
+    const w = x1 - x0 || 1;
+    const d = z1 - z0 || 1;
+    for (let i = 0; i < n; i++) {
+      this.uvs[i * 2] = (points[i]![0] - x0) / w;
+      this.uvs[i * 2 + 1] = (z1 - points[i]![1]) / d;
+    }
+    // Fan from point 0, each triangle wound so its face points up: cross(b - a, c - a).y >= 0.
+    let same = true;
+    for (let t = 0; t < n - 2; t++) {
+      const [ax, az] = points[0]!;
+      const [bx, bz] = points[t + 1]!;
+      const [cx, cz] = points[t + 2]!;
+      const up = (bz - az) * (cx - ax) - (bx - ax) * (cz - az);
+      const b = up >= 0 ? t + 1 : t + 2;
+      if (this.indices[t * 3 + 1] !== b) same = false;
+      this.indices[t * 3] = 0;
+      this.indices[t * 3 + 1] = b;
+      this.indices[t * 3 + 2] = up >= 0 ? t + 2 : t + 1;
+    }
+    this.min = [x0, 0, z0];
+    this.max = [x1, 0, z1];
+    this.version++;
+    return same;
+  }
+}
+
 export type UnitShape = 'box' | 'sphere' | 'cylinder' | 'cone' | 'plane' | 'circle';
 
 const UNIT: Record<UnitShape, () => Geometry3d> = { box, sphere, cylinder, cone, plane, circle: disc };
