@@ -130,6 +130,21 @@ export function folderOf(path: string): string {
   return slash < 0 ? '' : path.slice(0, slash + 1);
 }
 
+const FEATURE_FILE = /^features\/[^/]+\//;
+
+/**
+ * The project file a panel's `html=` names, resolved as `parallax check` resolves it: a
+ * panel declared in `features/<f>/` writes its path relative to that folder
+ * (`html="ui/board.html"` is `features/<f>/ui/board.html`), else from the project root.
+ * The runtime doesn't know which module declared a panel, so a path missing at the root is
+ * the one feature's file of that name; none (or several) leaves it undefined.
+ */
+export function panelMarkupPath(html: string, files: readonly string[]): string | undefined {
+  if (files.includes(html)) return html;
+  const local = files.filter((f) => FEATURE_FILE.test(f) && f.replace(FEATURE_FILE, '') === html);
+  return local.length === 1 ? local[0] : undefined;
+}
+
 /**
  * A relative reference from a file in `folder` as a project path, or undefined when it is
  * not one: a scheme (`https:`, `javascript:`), protocol-relative, rooted, or above the

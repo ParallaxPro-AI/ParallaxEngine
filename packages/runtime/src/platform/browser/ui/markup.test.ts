@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { scopeCss } from './css.js';
-import { expandTemplates, parseMarkup, projectPath, sanitizePanel, urlResolver } from './markup.js';
+import { expandTemplates, panelMarkupPath, parseMarkup, projectPath, sanitizePanel, urlResolver } from './markup.js';
 import type { MarkupNode } from './markup.js';
 
 const url = (p: string): string => `/project/${p}`;
@@ -90,5 +90,20 @@ describe('hosted assets in panels', () => {
     const files = { read: () => undefined, url };
     expect(scopeCss(`.a { background: url("${PNG}") }`, 'ui/', files)).toContain(`url("${PNG}")`);
     expect(scopeCss('.a { background: url("https://example.com/a.png") }', 'ui/', files)).not.toContain('example.com');
+  });
+});
+
+describe('panelMarkupPath', () => {
+  const files = ['ui/hud.html', 'features/missions/ui/board.html', 'features/shop/ui/counter.html', 'features/a/ui/twin.html', 'features/b/ui/twin.html'];
+
+  it('names the root file, else the one feature file of that name (how check resolves a feature panel)', () => {
+    expect(panelMarkupPath('ui/hud.html', files)).toBe('ui/hud.html');
+    expect(panelMarkupPath('ui/board.html', files)).toBe('features/missions/ui/board.html');
+    expect(panelMarkupPath('ui/counter.html', files)).toBe('features/shop/ui/counter.html');
+  });
+
+  it('is undefined when there is no such file, or two features both have one', () => {
+    expect(panelMarkupPath('ui/missing.html', files)).toBeUndefined();
+    expect(panelMarkupPath('ui/twin.html', files)).toBeUndefined();
   });
 });
