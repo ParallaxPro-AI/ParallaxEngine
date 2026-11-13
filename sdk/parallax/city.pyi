@@ -8,7 +8,8 @@ and pedestrians. The same block builds the same city everywhere (deterministic f
       "downtown": [0, 0], "ground": 0, "drive": "right",
       "roads": {"block": [92, 74], "major_every": 4, "major_lanes": 2, "minor_lanes": 1,
                 "sidewalk": 3.5, "curviness": 0.12, "merge": 0.08, "angle": 0},
-      "buildings": {"density": 0.9, "height": [10, 170], "falloff": 1.5, "interiors": 0.12},
+      "buildings": {"density": 0.9, "height": [10, 170], "falloff": 1.5, "interiors": 0.12,
+                    "walls": ["#e8b796", "#9fc7d6"], "roofs": ["#a8473a"]},
       "districts": [{"name": "harbor", "kind": "industrial", "at": [-450, 300], "radius": 200}],
       "parks": 0.06,
       "exclude": [{"center": [-70, 100], "size": [100, 120]}, {"center": [300, -200], "radius": 60}],
@@ -52,6 +53,8 @@ Buildings: towers with setbacks, podium towers, curtain walls, storefront blocks
 awnings, brick and stucco apartments, gabled houses, warehouses with roll-up doors and
 sawtooth roofs, rooftop plant and water tanks. `interiors` of them have an open door and a
 furnished ground-floor room (`props.interior` prefabs). Lit windows glow at night.
+`walls` ("#rrggbb" colors) repaints shop, apartment and house walls from your own
+palette (pastels, ochres, whitewash); `roofs` the pitched roofs.
 
 Props are your prefabs (copy them with `parallax library add <piece>`), spawned as entities
 within `props.radius` of the player and cameras and removed beyond it; without a

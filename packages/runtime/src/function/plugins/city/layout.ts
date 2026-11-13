@@ -333,6 +333,11 @@ const HOUSE_ROOFS: readonly Rgb[] = [[0.36, 0.2, 0.17], [0.3, 0.3, 0.33], [0.46,
 const INDUSTRIAL: readonly Rgb[] = [[0.6, 0.62, 0.6], [0.5, 0.53, 0.56], [0.7, 0.66, 0.58], [0.46, 0.41, 0.37], [0.55, 0.6, 0.66]];
 const WINDOW_DARK: Rgb = [0.18, 0.22, 0.26];
 
+/** One color of a palette (the built-in one, or the block's `buildings.walls` / `roofs`). */
+function pick(rng: Rng, palette: readonly Rgb[]): Rgb {
+  return palette[rng.int(0, palette.length - 1)]!;
+}
+
 // ── The generator ───────────────────────────────────────────────────────────────
 
 const PARKING = 2.3;
@@ -984,7 +989,7 @@ function massBuilding(spec: CitySpec, cell: Cell, lot: Lot, index: number, id: n
       height = Math.min(Math.max(hTop * 0.4, 9), 46, Math.max(7.5, envelope * rng.range(0.55, 1.25)));
       archetype = 'block';
       facade = rng.chance(0.75) ? 'storefront' : 'punched';
-      wall = COMMERCIAL[rng.int(0, COMMERCIAL.length - 1)]!;
+      wall = pick(rng, spec.buildings.walls ?? COMMERCIAL);
       trim = rng.chance(0.5) ? [0.86, 0.84, 0.78] : [Math.max(0, wall[0] - 0.15), Math.max(0, wall[1] - 0.15), Math.max(0, wall[2] - 0.15)];
       groundFloor = facade === 'storefront' ? rng.range(4, 4.8) : fh;
       tiers = [{ inset: 0, y0: 0, y1: height }];
@@ -994,7 +999,7 @@ function massBuilding(spec: CitySpec, cell: Cell, lot: Lot, index: number, id: n
       height = Math.min(24, Math.max(7, envelope * rng.range(0.5, 1.1)));
       archetype = 'block';
       facade = 'punched';
-      wall = RESIDENTIAL[rng.int(0, RESIDENTIAL.length - 1)]!;
+      wall = pick(rng, spec.buildings.walls ?? RESIDENTIAL);
       trim = [0.9, 0.89, 0.85];
       window = [rng.range(0.38, 0.55), rng.range(0.5, 0.62)];
       tiers = [{ inset: 0, y0: 0, y1: height }];
@@ -1005,9 +1010,9 @@ function massBuilding(spec: CitySpec, cell: Cell, lot: Lot, index: number, id: n
       height = rng.chance(0.55) ? fh * 2 : fh;
       archetype = 'house';
       facade = 'house';
-      wall = HOUSES[rng.int(0, HOUSES.length - 1)]!;
+      wall = pick(rng, spec.buildings.walls ?? HOUSES);
       trim = [0.95, 0.95, 0.93];
-      roofColor = HOUSE_ROOFS[rng.int(0, HOUSE_ROOFS.length - 1)]!;
+      roofColor = pick(rng, spec.buildings.roofs ?? HOUSE_ROOFS);
       roof = 'gable';
       bay = rng.range(2.8, 3.6);
       window = [0.42, 0.5];
