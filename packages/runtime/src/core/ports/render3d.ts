@@ -142,7 +142,7 @@ export interface Material3d {
    * [1, 1]. Shapes set it from `Shape.uv_scale`.
    */
   readonly uvScale?: readonly [u: number, v: number];
-  /** Stylized effects drawn over the shading (rim light, hit flash, dissolve, hologram, scrolling, triplanar). Absent: none. */
+  /** Stylized effects drawn over the shading (rim light, hit flash, dissolve, hologram, scrolling, triplanar, ripple). Absent: none. */
   readonly effects?: MaterialEffects3d;
   /**
    * Vertex wind (grass blades, leaves): vertices sway with the instance's wind lean, by
@@ -191,18 +191,27 @@ export interface MaterialEffects3d {
    * Rocks, cliffs and generated meshes with stretched or no uvs.
    */
   readonly triplanar: number;
+  /**
+   * Ripple: the surface rises and falls along its normal by up to `ripple` meters, in
+   * travelling waves `rippleScale` meters long whose crests move at `rippleSpeed` m/s
+   * (a breathing membrane, a heaving deck, a jelly). Moves the vertices, so it shows on
+   * meshes dense enough to bend; lighting follows the slope on any mesh. 0: still.
+   */
+  readonly ripple: number;
+  readonly rippleScale: number;
+  readonly rippleSpeed: number;
 }
 
 /** No surface effects (every amount 0). */
 export const NO_EFFECTS: MaterialEffects3d = {
   rim: 0, rimColor: [1, 1, 1], rimPower: 3, flash: 0, flashColor: [1, 1, 1], dissolve: 0, dissolveScale: 4, dissolveEdge: 0.06,
   dissolveColor: [1, 0.55, 0.15], dissolveGlow: 3, hologram: 0, hologramColor: [0.4, 0.85, 1], hologramLines: 40, hologramFlicker: 0.3,
-  scroll: [0, 0], triplanar: 0,
+  scroll: [0, 0], triplanar: 0, ripple: 0, rippleScale: 2, rippleSpeed: 0.5,
 };
 
 /** Whether a material's effects change how it is drawn at all. */
 export function hasEffects(e: MaterialEffects3d | undefined): e is MaterialEffects3d {
-  return e !== undefined && (e.rim > 0 || e.flash > 0 || e.dissolve > 0 || e.hologram > 0 || e.scroll[0] !== 0 || e.scroll[1] !== 0 || e.triplanar > 0);
+  return e !== undefined && (e.rim > 0 || e.flash > 0 || e.dissolve > 0 || e.hologram > 0 || e.scroll[0] !== 0 || e.scroll[1] !== 0 || e.triplanar > 0 || e.ripple > 0);
 }
 
 /**

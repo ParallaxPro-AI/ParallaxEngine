@@ -150,7 +150,7 @@ export const MATERIAL_FIELDS: readonly UniformField[] = [
   vec4('fxHolo'),
   /** Scroll u, v (repeats per second), triplanar meters per repeat (0: off), seconds of game time. */
   vec4('fxUv'),
-  /** Hologram scanlines per meter, unused × 3. */
+  /** Hologram scanlines per meter; ripple height (m, 0: off), wavelength (m) and crest speed (m/s). */
   vec4('fxLines'),
 ];
 
@@ -322,7 +322,9 @@ export function packEffects(e: MaterialEffects3d | undefined, out: Float32Array,
   out[o + 22] = Math.max(0, e.triplanar);
   out[o + 23] = time % 3600;
   out[o + 24] = Math.max(0, e.hologramLines);
-  out[o + 25] = 0; out[o + 26] = 0; out[o + 27] = 0;
+  out[o + 25] = Math.max(0, e.ripple);
+  out[o + 26] = Math.max(0.01, e.rippleScale);
+  out[o + 27] = e.rippleSpeed;
 }
 
 const fract = (x: number): number => x - Math.floor(x);

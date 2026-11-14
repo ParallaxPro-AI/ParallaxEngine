@@ -24,7 +24,7 @@ import {
   TERRAIN_FIELDS, DATA_ROW, wgslStruct,
 } from './layout.js';
 import { glslTerrain as glslTerrainPass, wgslTerrain as wgslTerrainPass } from './terrain_shaders.js';
-import { GLSL_INSTANCE_SCALE, GLSL_MATERIAL_FX, WGSL_INSTANCE_SCALE, WGSL_MATERIAL_FX } from './material_fx_shaders.js';
+import { GLSL_INSTANCE_SCALE, GLSL_MATERIAL_FX, GLSL_SURFACE_RIPPLE, WGSL_INSTANCE_SCALE, WGSL_MATERIAL_FX, WGSL_SURFACE_RIPPLE } from './material_fx_shaders.js';
 
 /** The scene passes both backends draw. */
 /** The drawn sun's angular radius (radians, ~0.9°): wider than the real 0.27° so it reads as a disc on screen, as the old renderer's did. */
@@ -576,7 +576,7 @@ function wgslMesh(skinned: boolean, mrt: boolean): string {
   return `${WGSL_FRAME}${WGSL_COMMON}${WGSL_SHADOWS}${WGSL_LIGHTING}${skinned ? WGSL_SKIN : ''}${wgslOutputs(mrt)}
 ${wgslStruct('Material', MATERIAL_FIELDS)}
 @group(1) @binding(0) var<uniform> material: Material;
-${WGSL_FOLIAGE_SWAY}
+${WGSL_FOLIAGE_SWAY}${WGSL_SURFACE_RIPPLE}
 @group(1) @binding(1) var baseTexture: texture_2d<f32>;
 @group(1) @binding(2) var baseSampler: sampler;
 @group(1) @binding(3) var surfaceTexture: texture_2d<f32>;
@@ -618,10 +618,17 @@ ${skinned ? `  let skin = skinMatrix(u32(v.n0.w), v.joints, v.weights);
   n = (skin * vec4<f32>(n, 0.0)).xyz;` : ''}
   var world = model * local;
   world = vec4<f32>(world.xyz + foliageSway(model, local.xyz, world.xyz), 1.0);
+  var wn = normalMatrix * n;
+  let ripple = fxRipple(world.xyz);
+  if (ripple.w != 0.0 || any(ripple.xyz != vec3<f32>(0.0))) {
+    let un = normalize(wn);
+    world = vec4<f32>(world.xyz + un * ripple.w, 1.0);
+    wn = un - (ripple.xyz - un * dot(ripple.xyz, un));
+  }
   var out: VertexOut;
   out.clip = frame.viewProjection * world;
   out.world = world.xyz;
-  out.normal = normalMatrix * n;
+  out.normal = wn;
   out.uv = v.uv;
   out.color = v.color * v.tint;
   out.fade = v.n1.w;
@@ -1275,7 +1282,7 @@ ${mrt ? '  fragSurface = vec4(0.0, 0.0, 1.0, 0.0);' : ''}
 
 function glslMesh(skinned: boolean, mrt: boolean): GlslProgram {
   return {
-    vertex: `${GLSL_HEADER}${GLSL_FRAME}${glslBlock('Material', MATERIAL_FIELDS)}${GLSL_FOLIAGE_SWAY}
+    vertex: `${GLSL_HEADER}${GLSL_FRAME}${glslBlock('Material', MATERIAL_FIELDS)}${GLSL_FOLIAGE_SWAY}${GLSL_SURFACE_RIPPLE}
 layout(location = ${L.position}) in vec3 position;
 layout(location = ${L.normal}) in vec3 normal;
 layout(location = ${L.uv}) in vec2 uv;
@@ -1297,8 +1304,15 @@ ${skinned ? `  mat4 skin = skinMatrix(int(n0.w));
   n = (skin * vec4(n, 0.0)).xyz;` : ''}
   vec4 world = model * local;
   world.xyz += foliageSway(model, local.xyz, world.xyz);
+  vec3 wn = normalMatrix * n;
+  vec4 ripple = fxRipple(world.xyz);
+  if (ripple != vec4(0.0)) {
+    vec3 un = normalize(wn);
+    world.xyz += un * ripple.w;
+    wn = un - (ripple.xyz - un * dot(ripple.xyz, un));
+  }
   vWorld = world.xyz;
-  vNormal = normalMatrix * n;
+  vNormal = wn;
   vUv = uv;
   vColor = color * tint;
   vFade = n1.w;

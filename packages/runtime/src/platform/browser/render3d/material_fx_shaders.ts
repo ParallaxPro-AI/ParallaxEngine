@@ -149,6 +149,51 @@ vec4 fxShade(vec3 c, float alpha, vec3 n, vec3 v, vec3 world, float cut) {
 }
 `;
 
+/**
+ * Ripple (vertex stage): the surface rises and falls along its normal by a sum of
+ * travelling waves over world space. `fxLines.y` is the peak height in meters (0: off),
+ * `fxLines.z` the main wavelength in meters, `fxLines.w` how fast the crests travel (m/s);
+ * time is `fxUv.w`. `fxRipple(world, n)` returns the world gradient of the height (xyz) and
+ * the height (w); the vertex moves `n * w` and its normal tilts against the gradient, so a
+ * dense mesh undulates and a coarse one at least shades as if it did. Shadows are cast
+ * from the still surface.
+ */
+export const WGSL_SURFACE_RIPPLE = `
+fn fxRippleWave(p: vec3<f32>, d: vec3<f32>, f: f32, a: f32, s: f32) -> vec4<f32> {
+  let k = 6.2831853 * f / max(material.fxLines.z, 0.01);
+  let phase = dot(p, d) * k - k * material.fxLines.w * s * material.fxUv.w;
+  return vec4<f32>(d * (k * a * cos(phase)), a * sin(phase));
+}
+
+fn fxRipple(world: vec3<f32>) -> vec4<f32> {
+  let amp = material.fxLines.y;
+  if (amp <= 0.0) { return vec4<f32>(0.0); }
+  var r = fxRippleWave(world, vec3<f32>(0.79, 0.15, 0.59), 1.0, 0.42, 1.0);
+  r += fxRippleWave(world, vec3<f32>(-0.45, 0.3, 0.84), 1.73, 0.24, 1.37);
+  r += fxRippleWave(world, vec3<f32>(0.92, -0.2, -0.34), 2.9, 0.12, -1.9);
+  r += fxRippleWave(world, vec3<f32>(0.2, 0.1, -0.97), 0.43, 0.22, 0.5);
+  return r * amp;
+}
+`;
+
+export const GLSL_SURFACE_RIPPLE = `
+vec4 fxRippleWave(vec3 p, vec3 d, float f, float a, float s) {
+  float k = 6.2831853 * f / max(fxLines.z, 0.01);
+  float phase = dot(p, d) * k - k * fxLines.w * s * fxUv.w;
+  return vec4(d * (k * a * cos(phase)), a * sin(phase));
+}
+
+vec4 fxRipple(vec3 world) {
+  float amp = fxLines.y;
+  if (amp <= 0.0) return vec4(0.0);
+  vec4 r = fxRippleWave(world, vec3(0.79, 0.15, 0.59), 1.0, 0.42, 1.0);
+  r += fxRippleWave(world, vec3(-0.45, 0.3, 0.84), 1.73, 0.24, 1.37);
+  r += fxRippleWave(world, vec3(0.92, -0.2, -0.34), 2.9, 0.12, -1.9);
+  r += fxRippleWave(world, vec3(0.2, 0.1, -0.97), 0.43, 0.22, 0.5);
+  return r * amp;
+}
+`;
+
 /** The instance's axis scales (meters per model unit along each axis), for `local` positions. WGSL/GLSL expression over m0..m2. */
 export const WGSL_INSTANCE_SCALE = 'vec3<f32>(length(v.m0.xyz), length(v.m1.xyz), length(v.m2.xyz))';
 export const GLSL_INSTANCE_SCALE = 'vec3(length(m0.xyz), length(m1.xyz), length(m2.xyz))';

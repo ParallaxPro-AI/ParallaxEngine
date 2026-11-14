@@ -73,6 +73,18 @@ describe('surface effects', () => {
     expect(frame.time).toBeCloseTo(r.kernel.time.now, 9);
   });
 
+  it('ripple rides on the material with its wavelength and crest speed', async () => {
+    const r = await run(
+      { cam: CAMERA, flesh: { components: { shape: { kind: 'plane', size: [4, 1, 4] }, surface_fx: { ripple: 0.08, ripple_scale: 1.5, ripple_speed: -0.3 } } } },
+      [{ id: 'cam', prefab: 'cam', at: [0, 1, -5] }, { id: 'f', prefab: 'flesh', at: [0, 0, 0] }],
+    );
+    const e = materialOf(r.frame(), r.id('f')).effects!;
+    expect(e.ripple).toBeCloseTo(0.08, 6);
+    expect(e.rippleScale).toBe(1.5);
+    expect(e.rippleSpeed).toBeCloseTo(-0.3, 6);
+    expect(hasEffects({ ...NO_EFFECTS, ripple: 0.01 })).toBe(true);
+  });
+
   it('no effects on: the plain material, untouched', async () => {
     const r = await run(
       { cam: CAMERA, plain: { components: { shape: BOX, surface_fx: {} } } },
@@ -180,6 +192,18 @@ describe('surface effects on the GPU side', () => {
     // Colors go in linear.
     const edge = offsetOf(MATERIAL_FIELDS, 'fxEdge');
     expect(out[edge + 1]).toBeCloseTo(srgbToLinear(0.55) * 3, 5);
+  });
+
+  it('packs the ripple height, wavelength and speed after the hologram lines', () => {
+    const out = new Float32Array(MATERIAL_SLOT);
+    packMaterial(withEffects(plain, { ...NO_EFFECTS, ripple: 0.12, rippleScale: 2.5, rippleSpeed: -0.4 }), out, 0, 3);
+    const lines = offsetOf(MATERIAL_FIELDS, 'fxLines');
+    expect(out[lines + 1]).toBeCloseTo(0.12, 6);
+    expect(out[lines + 2]).toBeCloseTo(2.5, 6);
+    expect(out[lines + 3]).toBeCloseTo(-0.4, 6);
+    // The effects flag is on (the fragment stage's gate), and time rides along for the waves.
+    expect(out[offsetOf(MATERIAL_FIELDS, 'fxDissolve') + 3]).toBe(1);
+    expect(out[offsetOf(MATERIAL_FIELDS, 'fxUv') + 3]).toBe(3);
   });
 
   it('an effect material binds its base material\'s textures (animated values never add bindings)', () => {

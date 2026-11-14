@@ -13,7 +13,7 @@
  *   mirror         a planar mirror: the entity's flat Shape (or Model) reflects the scene
  *   fog_overlay    on a camera: one team's fog of war over the ground in its view
  *   surface_fx     stylized effects on the entity's Shape or Model materials: rim light,
- *                  hit flash, dissolve, hologram, uv scrolling, triplanar mapping
+ *                  hit flash, dissolve, hologram, uv scrolling, triplanar mapping, ripple
  *   heat_haze      the image around the entity shimmers (hot air) or a shockwave ring bends it
  *   depth_of_field on a camera: what is nearer or farther than `focus_distance` blurs (3D;
  *                  cinematic focus tracks pull it)
@@ -132,6 +132,12 @@ export const SURFACE_FX_SCHEMA: Schema = {
   scroll: t.vec2({ default: new Vec2(0, 0) }),
   /** Project the base texture along the world axes every this many meters (0: the mesh's uvs). */
   triplanar: t.number({ default: 0, min: 0 }),
+  /** Meters the surface rises and falls along its normal in travelling waves (0: still): breathing flesh, heaving decks, jelly. */
+  ripple: t.number({ default: 0, min: 0, max: 4 }),
+  /** The ripple's main wavelength in meters. */
+  ripple_scale: t.number({ default: 2, min: 0.05 }),
+  /** How fast the ripple's crests travel, m/s (negative: the other way). */
+  ripple_speed: t.number({ default: 0.5 }),
   /** The last `flash()`: color, peak strength 0..1, seconds it fades over, and when (game time; None: never). */
   flash_color: t.color({ default: Color.WHITE }),
   flash_strength: t.number({ default: 0.8, min: 0, max: 1 }),
