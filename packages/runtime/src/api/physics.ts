@@ -35,6 +35,11 @@ export class ForceField {
   static readonly __component_id__ = FORCE_FIELD;
 }
 
+/** `entity.get(Muscle)` (physics3d): target, relative_to, stiffness, damping, strength, max_torque, axes, enabled. */
+export class Muscle {
+  static readonly __component_id__ = 'muscle';
+}
+
 /** `entity.get(Ragdoll)` (physics3d): mode, weight, go_limp / activate / recover. */
 export class Ragdoll {
   static readonly __component_id__ = 'ragdoll';

@@ -172,6 +172,43 @@ class ForceField(EngineComponent):
     enabled: bool = ...
 
 
+@component("muscle")
+class Muscle(EngineComponent):
+    """physics3d only. Turns its dynamic body toward `target` by torque each physics step:
+    the building block of active ragdolls made of entities. A torso with a world muscle
+    (`axes="tilt"`) balances upright; a head, arm or leg with a muscle `relative_to` the
+    torso swings to its pose (the torso takes the opposite torque) and is knocked about by
+    hits, then pulls back. `strength=0` goes limp.
+
+    Muscles and `Ragdoll` complement each other: a `Ragdoll` lays generated parts over one
+    entity's skinned skeleton (`activate()` makes them follow its animation), while muscles
+    drive a puppet you build yourself from separate entities joined by `Joint`s.
+
+    A critically damped spring (natural frequency `stiffness`, damping ratio `damping`),
+    scaled by the body's inertia and solved implicitly, so it is stable at any stiffness:
+
+        {"rigidbody": {"mass": 8}, "collider": {"shape": "capsule", "radius": 0.35, "height": 1},
+         "muscle": {"axes": "tilt", "stiffness": 9, "damping": 0.6}}
+
+        arm.get(Muscle).target = vec3(-90, 0, 0)     # punch: the arm swings forward"""
+    target: Vec3 = ...
+    """Euler degrees: the entity's goal rotation, in world space or in `relative_to`'s frame."""
+    relative_to: Entity | None = ...
+    """The entity the target is measured from (it takes the opposite torque); None: the world."""
+    stiffness: float = ...
+    """Natural frequency (1/s): higher gets there sooner. Default 10."""
+    damping: float = ...
+    """Damping ratio: 1 arrives without overshoot, below 1 wobbles. Default 1."""
+    strength: float = ...
+    """Scales the torque: 1 full, 0 limp."""
+    max_torque: float | None = ...
+    """N·m the muscle can give; None: as much as it takes."""
+    axes: Literal["all", "tilt", "yaw"] = ...
+    """all: the whole rotation · tilt: only where the body's up points (free to turn about
+    it: balance) · yaw: only the heading about the frame's up (free to tip)."""
+    enabled: bool = ...
+
+
 @component("ragdoll")
 class Ragdoll(EngineComponent):
     """physics3d only. A body-part ragdoll laid over the entity's skinned skeleton (or the

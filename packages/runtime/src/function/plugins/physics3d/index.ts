@@ -10,9 +10,10 @@
  * shape), and gives each chunk of the scene's block world (voxels service) a fixed
  * trimesh collider.
  *
- * It also owns joints, force fields, surface materials, ragdolls, contact-force watches and
- * shape casts, and provides render interpolation (`render_pose`) and ragdoll bone poses
- * (`ragdoll_pose`) to the renderers (function/services/poses.ts).
+ * It also owns joints, force fields, muscles (active-ragdoll torques), surface materials,
+ * ragdolls, contact-force watches and shape casts, and provides render interpolation
+ * (`render_pose`) and ragdoll bone poses (`ragdoll_pose`) to the renderers
+ * (function/services/poses.ts).
  *
  * Boot contract: `await initPhysics3d()` before building a kernel with this plugin. One
  * `physics3d(...)` value serves one kernel (its component methods are bound to it).
@@ -39,6 +40,7 @@ export { colliderSchema, RIGIDBODY_SCHEMA } from './components.js';
 export { FORCE_FIELD } from './fields.js';
 export { JOINT, JOINT_BROKEN } from './joints.js';
 export { IMPACT } from './materials.js';
+export { MUSCLE } from './muscles.js';
 export type { MaterialSpec } from './materials.js';
 export { normalizeBone, RAGDOLL } from './ragdoll.js';
 export type { Hit, Physics3dNamespace } from './namespace.js';

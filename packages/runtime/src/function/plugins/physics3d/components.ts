@@ -14,6 +14,7 @@ import { JOINT, JOINT_SCHEMA } from './joints.js';
 import { DEFAULT_LAYER } from './layers.js';
 import type { LayerTable } from './layers.js';
 import { MATERIAL_FIELD } from './materials.js';
+import { MUSCLE, MUSCLE_SCHEMA } from './muscles.js';
 import { RAGDOLL, RAGDOLL_SCHEMA } from './ragdoll.js';
 import { COLLIDER, RIGIDBODY, SHAPES_3D } from './sim.js';
 import type { Physics3dSim } from './sim.js';
@@ -166,6 +167,7 @@ export function physicsComponents(layers: LayerTable, sim: Sim, kernel: () => Ke
     { id: COLLIDER, schema: colliderSchema(layers), methods: withEntity(kernel, {}) },
     { id: JOINT, schema: JOINT_SCHEMA, methods: withEntity(kernel, jointMethods(sim)) },
     { id: FORCE_FIELD, schema: FORCE_FIELD_SCHEMA, methods: withEntity(kernel, {}) },
+    { id: MUSCLE, schema: MUSCLE_SCHEMA, methods: withEntity(kernel, {}) },
     { id: RAGDOLL, schema: RAGDOLL_SCHEMA, methods: withEntity(kernel, ragdollMethods(sim)) },
   ];
 }
