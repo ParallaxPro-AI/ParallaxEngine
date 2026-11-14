@@ -7,7 +7,9 @@
  * Merging is cached: a chunk's geometry is rebuilt only when its members change (an entity
  * added or removed, a mesh swapped, or a member moved — static means rarely, not never),
  * so on ordinary frames the same `Geometry3d` objects are handed over and the surface keeps
- * their GPU buffers. Left out of merging (drawn as usual): blended surfaces (they sort per
+ * their GPU buffers. An unchanged mesh also keeps last frame's member record (its matrix copy),
+ * so a still level allocates nothing per mesh and a chunk is known unchanged without a
+ * second pass over its members. Left out of merging (drawn as usual): blended surfaces (they sort per
  * instance), skinned and morphed meshes, the viewmodel layer, level-of-detail entities and
  * outlined entities. A merged draw has no per-entity picking (`entities` is [null]).
  */
@@ -56,7 +58,12 @@ interface Member {
 interface Group {
   readonly material: Material3d;
   readonly castShadows: boolean;
+  readonly chunk: number;
   readonly members: Member[];
+  /** Last frame's members of this chunk, matched in order as this frame's arrive. */
+  readonly previous: readonly Member[] | null;
+  /** A member differs from last frame's (or there is no last frame): the chunk is rebuilt. */
+  changed: boolean;
 }
 
 interface Merged {
@@ -71,6 +78,8 @@ export class StaticMerge implements BatchSink {
   /** Where meshes that can't be merged go (blended, morphed): the frame's ordinary batches. */
   fallback: BatchSink | null = null;
   #groups = new Map<string, Group>();
+  /** This frame's groups by material, then by packed chunk cell (a fast path to `#groups`). */
+  #frameIndex = new Map<Material3d, Map<number, Group>>();
   /** Last frame's merged geometry by group key. */
   #merged = new Map<string, Merged>();
   #rebuilt = 0;
@@ -90,10 +99,36 @@ export class StaticMerge implements BatchSink {
     const cx = Math.floor(matrix[12]! / this.chunk);
     const cy = Math.floor(matrix[13]! / this.chunk);
     const cz = Math.floor(matrix[14]! / this.chunk);
-    const key = `${this.chunk}|${cx},${cy},${cz}|${material.id}|${castShadows}`;
-    let group = this.#groups.get(key);
-    if (group === undefined) this.#groups.set(key, (group = { material, castShadows, members: [] }));
-    group.members.push({ geometry, matrix: Float32Array.from({ length: 16 }, (_, i) => matrix[i]!), tint });
+    // This frame's group by number first (no string per mesh); the string key, which
+    // matches groups across frames, is made once per group.
+    const near = Math.abs(cx) < 1024 && Math.abs(cy) < 1024 && Math.abs(cz) < 1024;
+    const cell = near ? (((cx + 1024) * 2048 + (cy + 1024)) * 2048 + (cz + 1024)) * 2 + (castShadows ? 1 : 0) : -1;
+    let cells = this.#frameIndex.get(material);
+    if (cells === undefined) this.#frameIndex.set(material, (cells = new Map()));
+    let group = near ? cells.get(cell) : undefined;
+    if (group === undefined || group.chunk !== this.chunk) {
+      const key = `${this.chunk}|${cx},${cy},${cz}|${material.id}|${castShadows}`;
+      group = this.#groups.get(key);
+      if (group === undefined) {
+        const previous = this.#merged.get(key)?.members ?? null;
+        group = { material, castShadows, chunk: this.chunk, members: [], previous, changed: previous === null };
+        this.#groups.set(key, group);
+      }
+      cells.set(cell, group);
+    }
+    // The same mesh where it was last frame keeps its member: nothing is allocated.
+    const before = group.previous?.[group.members.length];
+    if (before !== undefined && before.geometry === geometry && sameTint(before.tint, tint) && sameMatrix(before.matrix, matrix)) {
+      group.members.push(before);
+      return;
+    }
+    group.changed = true;
+    // Copied (callers hand over a scratch matrix), with a plain loop: this runs for every
+    // changed static mesh, and `Float32Array.from` with a map callback is far slower.
+    const copy = new Float32Array(16);
+    for (let i = 0; i < 16; i++) copy[i] = matrix[i]!;
+    // The tint too: a caller reusing one tint array would otherwise change a stored member.
+    group.members.push({ geometry, matrix: copy, tint: [tint[0], tint[1], tint[2], tint[3]] });
   }
 
   /** This frame's merged batches (one instance each); unchanged chunks reuse last frame's geometry. */
@@ -102,7 +137,8 @@ export class StaticMerge implements BatchSink {
     const next = new Map<string, Merged>();
     for (const [key, group] of this.#groups) {
       const before = this.#merged.get(key);
-      const merged = before !== undefined && sameMembers(before.members, group.members) ? before : this.#build(key, group.members);
+      const same = before !== undefined && !group.changed && before.members.length === group.members.length;
+      const merged = same ? before : this.#build(key, group.members);
       next.set(key, merged);
       out.push({
         geometry: merged.geometry, material: group.material, count: 1, instances: IDENTITY_INSTANCE, entities: [null], castShadows: group.castShadows,
@@ -110,6 +146,7 @@ export class StaticMerge implements BatchSink {
     }
     this.#merged = next;
     this.#groups = new Map();
+    this.#frameIndex = new Map();
     return out;
   }
 
@@ -127,14 +164,13 @@ function toLinear(c: number): number {
 /** One instance record: the identity matrix, white tint. */
 const IDENTITY_INSTANCE = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
 
-function sameMembers(a: readonly Member[], b: readonly Member[]): boolean {
-  if (a.length !== b.length) return false;
-  for (let i = 0; i < a.length; i++) {
-    const x = a[i]!;
-    const y = b[i]!;
-    if (x.geometry !== y.geometry || x.tint.some((c, k) => c !== y.tint[k])) return false;
-    for (let k = 0; k < 16; k++) if (x.matrix[k] !== y.matrix[k]) return false;
-  }
+function sameTint(a: Rgba, b: Rgba): boolean {
+  return a === b || (a[0] === b[0] && a[1] === b[1] && a[2] === b[2] && a[3] === b[3]);
+}
+
+function sameMatrix(a: Float32Array, b: ArrayLike<number>): boolean {
+  // Compared as float32, as the copy was stored.
+  for (let k = 0; k < 16; k++) if (a[k] !== Math.fround(b[k]!)) return false;
   return true;
 }
 
