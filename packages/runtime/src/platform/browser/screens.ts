@@ -17,7 +17,7 @@ import { PanelBinding } from './ui/binding.js';
 import { BUILTIN_PANELS, DEFAULT_PANEL_CSS } from './ui/builtins.js';
 import { inlineStyle, scopeCss } from './ui/css.js';
 import type { DomDocument, DomParent } from './ui/dom.js';
-import { expandTemplates, folderOf, parseMarkup, projectPath, sanitizePanel, urlResolver } from './ui/markup.js';
+import { expandTemplates, folderOf, panelMarkupPath, parseMarkup, projectPath, sanitizePanel, urlResolver } from './ui/markup.js';
 import { paintDom } from './screens_paint.js';
 import { VIEW_CONTAINER_STYLE } from './ui/viewport.js';
 import type { MarkupNode } from './ui/markup.js';
@@ -64,9 +64,10 @@ export class DomScreenSurface implements ScreenSurface {
     const has = (path: string): boolean => this.#files.list().includes(path);
     const read = (path: string): string | undefined => (has(path) ? this.#files.read(path) : undefined);
     const builtin = BUILTIN_PANELS[html];
-    const source = builtin ?? read(html);
+    const file = builtin !== undefined ? html : panelMarkupPath(html, this.#files.list()) ?? html;
+    const source = builtin ?? read(file);
     if (source === undefined) fail('PP2072', `Panel markup "${html}" does not exist`, { path: html, fix: `Create ${html}, or fix the @ui html= path.` });
-    const folder = builtin !== undefined ? '' : folderOf(html);
+    const folder = builtin !== undefined ? '' : folderOf(file);
     const expanded = expandTemplates(parseMarkup(source), read, (missing) => {
       fail('PP2072', `Template file "${missing}" does not exist`, { path: html, fix: `Create ${missing} (a project path), or fix <template src>.` });
     });

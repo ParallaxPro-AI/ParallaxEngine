@@ -48,7 +48,7 @@ import { registerPanelFonts, renameFontFamilies, renameNodeFonts, scopePanelFont
 import { frameDocument, PanelFrame, scriptCode } from './frame_host.js';
 import type { FrameFiles } from './frame_host.js';
 import { expandIcons } from './icons.js';
-import { expandTemplates, folderOf, parseMarkup, projectPath, sanitizePanel, urlResolver } from './markup.js';
+import { expandTemplates, folderOf, panelMarkupPath, parseMarkup, projectPath, sanitizePanel, urlResolver } from './markup.js';
 import type { MarkupNode, PanelScript } from './markup.js';
 import { QUIET_FOCUS, VISIBLE_FOCUS } from './dom.js';
 import type { DomDocument, DomParent } from './dom.js';
@@ -341,16 +341,18 @@ export class DomUiSurface implements UiSurface {
     const has = (path: string): boolean => this.#files.list().includes(path);
     const read = (path: string): string | undefined => (has(path) ? this.#files.read(path) : undefined);
     let source: string;
+    // A feature's panel names its markup from its own folder (features/<f>/ui/x.html).
+    const file = builtin !== undefined ? html : panelMarkupPath(html, this.#files.list()) ?? html;
     if (builtin !== undefined) {
       source = builtin;
     } else {
-      const text = read(html);
+      const text = read(file);
       if (text === undefined) {
         fail('PP2072', `Panel markup "${html}" does not exist`, { path: html, fix: `Create ${html}, or fix the @ui html= path.` });
       }
       source = text;
     }
-    const folder = builtin !== undefined ? '' : folderOf(html);
+    const folder = builtin !== undefined ? '' : folderOf(file);
     const expanded = expandTemplates(parseMarkup(source), read, (missing) => {
       fail('PP2072', `Template file "${missing}" does not exist`, { path: html, fix: `Create ${missing} (a project path), or fix <template src>.` });
     });
