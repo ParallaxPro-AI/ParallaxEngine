@@ -20,13 +20,13 @@ export interface VfxDrawGl {
 
 export class VfxWebGl2 {
   readonly #gl: GL;
-  readonly #link: (key: string, source: { vertex: string; fragment: string }) => WebGLProgram;
+  readonly #link: (key: string, source: () => { vertex: string; fragment: string }) => WebGLProgram;
   readonly #instances: WebGLBuffer;
   readonly #ribbons: WebGLBuffer;
   readonly #vao: WebGLVertexArrayObject;
   #uploaded: VfxPlan | null = null;
 
-  constructor(gl: GL, link: (key: string, source: { vertex: string; fragment: string }) => WebGLProgram) {
+  constructor(gl: GL, link: (key: string, source: () => { vertex: string; fragment: string }) => WebGLProgram) {
     this.#gl = gl;
     this.#link = link;
     this.#instances = gl.createBuffer()!;
@@ -57,7 +57,7 @@ export class VfxWebGl2 {
       else gl.blendFuncSeparate(gl.ONE, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
       const items = plan.particles.filter((p) => p.blend === blend);
       if (items.length > 0) {
-        gl.useProgram(this.#link(`vfx-particles|${blend}`, glslParticles(additive)));
+        gl.useProgram(this.#link(`vfx-particles|${blend}`, () => glslParticles(additive)));
         for (const item of items) {
           gl.activeTexture(gl.TEXTURE0 + GLSL_UNITS.image);
           gl.bindTexture(gl.TEXTURE_2D, d.image(item.texture));
@@ -67,7 +67,7 @@ export class VfxWebGl2 {
       }
       const range = plan.ribbons[blend];
       if (range.count > 0) {
-        gl.useProgram(this.#link(`vfx-ribbons|${blend}`, glslRibbons(additive)));
+        gl.useProgram(this.#link(`vfx-ribbons|${blend}`, () => glslRibbons(additive)));
         this.#records(this.#ribbons, RIBBON_VERTEX_FLOATS, 4, 0, 0);
         gl.drawArrays(gl.TRIANGLES, range.first, range.count);
       }

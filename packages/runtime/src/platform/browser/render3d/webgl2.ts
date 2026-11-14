@@ -74,6 +74,8 @@ const BLOCK = { Frame: 0, Material: 1, Terrain: 1, Outline: 1, Impostor: 1, Shad
  * new texture on a sampled unit would replace what a draw reads there.
  */
 const SETUP_UNIT = Math.max(...Object.values(GLSL_UNITS)) + 1;
+/** The per-instance attributes of a mesh draw (model matrix, normal matrix, tint), four floats each. */
+const INSTANCE_LOCATIONS = [L.model0, L.model1, L.model2, L.model3, L.normal0, L.normal1, L.normal2, L.tint] as const;
 
 interface Targets {
   readonly width: number;
@@ -224,7 +226,7 @@ export class WebGl2Backend implements Backend3d {
       const ubo = gl.createBuffer()!;
       gl.bindBuffer(gl.UNIFORM_BUFFER, ubo);
       gl.bufferData(gl.UNIFORM_BUFFER, packBake(source, true), gl.STATIC_DRAW);
-      gl.useProgram(this.#link('impostor-bake', glslBake()));
+      gl.useProgram(this.#link('impostor-bake', glslBake));
       gl.enable(gl.SCISSOR_TEST);
       const fs = source.frameSize;
       for (let f = 0; f < source.frames * source.frames; f++) {
@@ -308,7 +310,7 @@ export class WebGl2Backend implements Backend3d {
     gl.disable(gl.BLEND);
     gl.disable(gl.CULL_FACE);
     gl.viewport(0, 0, o.width, o.height);
-    const program = this.#link('hiz', GLSL_HIZ);
+    const program = this.#link('hiz', () => GLSL_HIZ);
     gl.useProgram(program);
     gl.uniform4f(gl.getUniformLocation(program, 'reduceParams'), o.block, Math.floor(o.viewport.x), Math.floor(o.viewport.y), o.height);
     this.#bind(GLSL_UNITS.depthTexture, depth);
@@ -456,7 +458,7 @@ export class WebGl2Backend implements Backend3d {
     gl.disable(gl.BLEND);
     gl.disable(gl.CULL_FACE);
     gl.viewport(0, 0, width, height);
-    const program = this.#link('target-copy', TARGET_COPY);
+    const program = this.#link('target-copy', () => TARGET_COPY);
     gl.useProgram(program);
     gl.uniform1i(gl.getUniformLocation(program, 'sourceHeight'), height);
     this.#bind(GLSL_UNITS.sourceTexture, source);
@@ -541,10 +543,12 @@ export class WebGl2Backend implements Backend3d {
     return { vao, index, count: indices.length };
   }
 
-  #link(key: string, source: { vertex: string; fragment: string }): WebGLProgram {
+  /** The program for `key`, compiled and linked the first time; `source` is only built then. */
+  #link(key: string, source: () => { vertex: string; fragment: string }): WebGLProgram {
     const known = this.#programs.get(key);
     if (known !== undefined) return known;
     const gl = this.#gl;
+    const { vertex, fragment } = source();
     const compile = (type: number, text: string): WebGLShader => {
       const shader = gl.createShader(type)!;
       gl.shaderSource(shader, text);
@@ -557,8 +561,8 @@ export class WebGl2Backend implements Backend3d {
       return shader;
     };
     const program = gl.createProgram()!;
-    gl.attachShader(program, compile(gl.VERTEX_SHADER, source.vertex));
-    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, source.fragment));
+    gl.attachShader(program, compile(gl.VERTEX_SHADER, vertex));
+    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragment));
     gl.linkProgram(program);
     if (gl.getProgramParameter(program, gl.LINK_STATUS) !== true) {
       fail('PP9806', `The ${key} program did not link: ${gl.getProgramInfoLog(program) ?? ''}`, { fix: 'This is an engine bug; report it with the browser and GPU.' });
@@ -577,11 +581,11 @@ export class WebGl2Backend implements Backend3d {
   }
 
   #scene(pass: ScenePass, variant: SceneVariant): WebGLProgram {
-    return this.#link(`${pass}|${variant.skinned === true}|${variant.mrt === true}|${variant.overlay === true}`, glsl(pass, variant));
+    return this.#link(`${pass}|${variant.skinned === true}|${variant.mrt === true}|${variant.overlay === true}`, () => glsl(pass, variant));
   }
 
   #post(pass: PostPass, variant: PostVariant): WebGLProgram {
-    return this.#link(`post|${pass}|${JSON.stringify(variant)}`, glslPost(pass, variant));
+    return this.#link(`post|${pass}|${JSON.stringify(variant)}`, () => glslPost(pass, variant));
   }
 
   // ── Targets ──────────────────────────────────────────────────────────────────
@@ -816,15 +820,28 @@ export class WebGl2Backend implements Backend3d {
     gl.bindTexture(target, texture);
   }
 
-  #pointInstances(firstInstance: number): void {
+  /**
+   * Each mesh VAO's per-instance attributes, by the first instance they point at. Enabling an
+   * attribute and its divisor are VAO state, so they are set once per VAO; the pointer moves only
+   * when a draw starts at another instance (the instance buffer is re-filled in place each frame).
+   */
+  readonly #instanced = new WeakMap<WebGLVertexArrayObject, number>();
+
+  #pointInstances(vao: WebGLVertexArrayObject, firstInstance: number): void {
+    const pointed = this.#instanced.get(vao);
+    if (pointed === firstInstance) return;
     const gl = this.#gl;
     gl.bindBuffer(gl.ARRAY_BUFFER, this.#instances);
-    const locations = [L.model0, L.model1, L.model2, L.model3, L.normal0, L.normal1, L.normal2, L.tint];
-    locations.forEach((location, i) => {
-      gl.enableVertexAttribArray(location);
+    const locations = INSTANCE_LOCATIONS;
+    for (let i = 0; i < locations.length; i++) {
+      const location = locations[i]!;
+      if (pointed === undefined) {
+        gl.enableVertexAttribArray(location);
+        gl.vertexAttribDivisor(location, 1);
+      }
       gl.vertexAttribPointer(location, 4, gl.FLOAT, false, MESH_INSTANCE_FLOATS * 4, firstInstance * MESH_INSTANCE_FLOATS * 4 + i * 16);
-      gl.vertexAttribDivisor(location, 1);
-    });
+    }
+    this.#instanced.set(vao, firstInstance);
   }
 
   #pointRecords(buffer: WebGLBuffer, floats: number, count: number, first: number, divisor: number): void {
@@ -920,12 +937,12 @@ export class WebGl2Backend implements Backend3d {
       if (wire) {
         const e = this.#edges.get(geometry);
         gl.bindVertexArray(e.vao);
-        this.#pointInstances(instance);
+        this.#pointInstances(e.vao, instance);
         gl.drawElementsInstanced(gl.LINES, e.count, gl.UNSIGNED_INT, 0, count);
       } else {
         const g = this.#geometry.get(geometry);
         gl.bindVertexArray(g.vao);
-        this.#pointInstances(instance);
+        this.#pointInstances(g.vao, instance);
         gl.drawElementsInstanced(gl.TRIANGLES, g.indexCount, g.indexType, 0, count);
       }
     };
@@ -1055,7 +1072,7 @@ export class WebGl2Backend implements Backend3d {
         const far = impostorFrame?.views[plan.views.indexOf(vp)] ?? [];
         if (far.length > 0 && !wire) {
           state(true, true, 'none', false);
-          gl.useProgram(this.#link(`impostor|${mrt}`, glslImpostor(mrt)));
+          gl.useProgram(this.#link(`impostor|${mrt}`, () => glslImpostor(mrt)));
           for (const item of far) {
             const atlas = this.#atlases3d.get(item.source.id)!;
             atlas.used = this.#frameCount;
@@ -1137,7 +1154,7 @@ export class WebGl2Backend implements Backend3d {
         enterView(vp, t.height);
         state(false, false, 'alpha', true);
         gl.cullFace(vp.mirrored ? gl.BACK : gl.FRONT);
-        gl.useProgram(this.#link('decals', glslDecal()));
+        gl.useProgram(this.#link('decals', glslDecal));
         this.#bind(U.depthTexture, t.depth);
         this.#bind(U.decalImages, images.texture, gl.TEXTURE_2D_ARRAY);
         this.#pointRecords(this.#decals, DECAL_FLOATS, 10, range.first, 1);

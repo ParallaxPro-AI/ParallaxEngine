@@ -1,4 +1,15 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+
+// The scene and post shader generators, wrapped to count calls (they still run): a backend
+// builds a program's source only when it first links that program, not every frame.
+vi.mock('./shaders.js', async (load) => {
+  const real = await load<typeof import('./shaders.js')>();
+  return { ...real, glsl: vi.fn(real.glsl) };
+});
+vi.mock('./post_shaders.js', async (load) => {
+  const real = await load<typeof import('./post_shaders.js')>();
+  return { ...real, glslPost: vi.fn(real.glslPost) };
+});
 import { colorVisionMatrix, colorVisionFilterValues, MESH_INSTANCE_STRIDE, ParallaxError, PLAIN_POST } from '../../../core/index.js';
 import type { Frame3d, Geometry3d, Light3d, Material3d, Quality3d, Text3d, Texture3d, View3d } from '../../../core/index.js';
 import { compose, invert, multiply, perspective, viewMatrix } from '../../../resource/index.js';
@@ -744,6 +755,40 @@ describe('backends execute a plan (recorded, no GPU)', () => {
     const mips = environmentMips(QUALITY_LADDER.high.environmentSize);
     expect(first - count(calls, 'drawArrays')).toBe(6 + 6 * mips);
     expect(programs).toBeGreaterThan(15);
+  });
+
+  it('WebGL2: a cached program is not regenerated (no shader source built per frame)', () => {
+    const { gl } = fakeGl();
+    const backend = new WebGl2Backend(gl);
+    const p = plan(frame());
+    const texture = backend.createTexture({ width: 4, height: 4 }, BRICKS);
+    backend.render(p, () => texture);
+    const scene = vi.mocked(glsl).mock.calls.length;
+    const post = vi.mocked(glslPost).mock.calls.length;
+    expect(scene).toBeGreaterThan(0);
+    expect(post).toBeGreaterThan(0);
+    backend.render(p, () => texture);
+    backend.render(p, () => texture);
+    expect(vi.mocked(glsl).mock.calls.length).toBe(scene);
+    expect(vi.mocked(glslPost).mock.calls.length).toBe(post);
+  });
+
+  it('WebGL2: a mesh VAO enables its instance attributes once and re-points them only when they move', () => {
+    const { gl, calls } = fakeGl();
+    const backend = new WebGl2Backend(gl);
+    const p = plan(frame());
+    const texture = backend.createTexture({ width: 4, height: 4 }, BRICKS);
+    backend.render(p, () => texture);
+    const firstEnables = count(calls, 'enableVertexAttribArray');
+    const firstDivisors = count(calls, 'vertexAttribDivisor');
+    const firstPointers = count(calls, 'vertexAttribPointer');
+    calls.length = 0;
+    backend.render(p, () => texture);
+    // The same plan again: the same draws, but no mesh VAO sets up its 8 instance attributes anew.
+    expect(count(calls, 'drawElementsInstanced')).toBe(meshDraws(p));
+    expect(firstDivisors - count(calls, 'vertexAttribDivisor')).toBeGreaterThanOrEqual(8);
+    expect(firstEnables - count(calls, 'enableVertexAttribArray')).toBeGreaterThanOrEqual(8);
+    expect(count(calls, 'vertexAttribPointer')).toBeLessThan(firstPointers);
   });
 
   it('WebGL2: refuses a device whose uniform alignment doesn\'t divide 256', () => {
