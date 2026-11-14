@@ -478,6 +478,33 @@ describe('tiles', () => {
     expect(tiles.get(0, 13, 16)).not.toBeNull();
   });
 
+  it('streamed tiles show layers painted at run time (a trench painting a road)', () => {
+    const block: JsonObject = { size: [1200, 1200], max_height: 4, seed: 2, layers: ['grass', 'road'] };
+    const kernel = kernelWith(block);
+    const service = kernel.service(TERRAIN_SERVICE);
+    const tiles = service.tiles()!;
+    let before: TerrainTile | null = null;
+    for (let i = 0; i < 4 && before === null; i++) {
+      kernel.step(1 / 60);
+      before = tiles.get(0, 10, 16);
+    }
+    expect(before!.palette).not.toContain(1);
+    const midZ = before!.z + (TILE_QUADS / 2) * before!.cell;
+    service.deform({ kind: 'trench', x: before!.x - 5, z: midZ, x2: before!.x + 200, z2: midZ, width: 6, depth: 0, feather: 1, layer: 1 });
+    expect((service.current() as Field).painted).toBe(true);
+    let after: TerrainTile | null = null;
+    for (let i = 0; i < 8 && (after === null || after === before); i++) {
+      kernel.step(1 / 60);
+      after = tiles.get(0, 10, 16);
+    }
+    expect(after).not.toBe(before);
+    expect(after!.palette).toContain(1);
+    const V = TILE_QUADS + 1;
+    const mid = (TILE_QUADS / 2) * V + 3;
+    const slot = after!.palette.indexOf(1);
+    expect(after!.weights[mid * 4 + slot]).toBeGreaterThan(0.95);
+  });
+
   it('with a job runner, streamed tiles bake in the terrain.tile job', async () => {
     const calls: string[] = [];
     const runner = {

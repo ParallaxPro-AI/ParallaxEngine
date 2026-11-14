@@ -312,7 +312,17 @@ export class TilePyramid implements TerrainTiles {
     for (let r = 0; r < V; r++) for (let c = 0; c < V; c++) heights[r * V + c] = ring[(r + 1) * R + c + 1]!;
     const normals = new Float32Array(V * V * 3);
     tileNormals((c, r) => ring[(r + 1) * R + c + 1]!, cell, normals);
-    return this.#finish(level, ix, iz, x, z, cell, heights, normals, output.splat);
+    let splat = output.splat;
+    if (f.painted) {
+      // Layers painted at run time (craters, trenches) over the authored splat.
+      const layers = f.layers.length;
+      splat = splat.slice();
+      for (let r = 0; r < V; r++) {
+        const pz = clamp(z + r * cell, f.minZ, maxZ);
+        for (let c = 0; c < V; c++) f.paintOver(clamp(x + c * cell, f.minX, maxX), pz, splat, (r * V + c) * layers);
+      }
+    }
+    return this.#finish(level, ix, iz, x, z, cell, heights, normals, splat);
   }
 
   #finish(

@@ -53,6 +53,8 @@ export class Field implements TerrainField {
   #splat: Splat | undefined;
   #splatMap: SplatMap | null = null;
   #splatRevision = 0;
+  /** Craters and trenches that painted a layer, in the order they were applied. */
+  readonly #paints: TerrainEdit[] = [];
   readonly #chunkColumns: number;
 
   constructor(bake: TerrainBake, scene: string, version: number) {
@@ -359,8 +361,35 @@ export class Field implements TerrainField {
     }
     gridNormals(this.heights, this.columns, this.rows, this.cellX, this.cellZ, this.normals,
       Math.max(0, span.c0 - 1), Math.max(0, span.r0 - 1), Math.min(this.columns - 1, span.c1 + 1), Math.min(this.rows - 1, span.r1 + 1));
-    if (paint !== null) this.#paintMap(edit, paint, x0 - reach, z0 - reach, x1 + reach, z1 + reach);
+    if (paint !== null) {
+      this.#paints.push(edit);
+      this.#paintMap(edit, paint, x0 - reach, z0 - reach, x1 + reach, z1 + reach);
+    }
     this.#touch(span);
+  }
+
+  /** Whether any edit so far painted a layer. */
+  get painted(): boolean {
+    return this.#paints.length > 0;
+  }
+
+  /**
+   * Paint the edits made so far over layer weights sampled at (x, z) — `out[offset ..
+   * offset + layers.length)` — exactly as `apply` paints the field's grid, but at any point:
+   * streamed tiles (finer than the field) evaluate the authored splat at their own vertices
+   * and need the painted layers too, or a painted road or plaza never shows up close by.
+   */
+  paintOver(x: number, z: number, out: Float32Array, offset: number): void {
+    const layers = this.layers.length;
+    for (const edit of this.#paints) {
+      if (edit.kind !== 'crater' && edit.kind !== 'trench') continue;
+      if (edit.layer === null) continue;
+      const cover = editCover(edit, x, z);
+      if (cover <= 0) continue;
+      const keep = 1 - cover;
+      for (let l = 0; l < layers; l++) out[offset + l] = out[offset + l]! * keep;
+      out[offset + edit.layer] = out[offset + edit.layer]! + cover;
+    }
   }
 
   /** The splat map (splat_map.ts) once attached, or null. */
