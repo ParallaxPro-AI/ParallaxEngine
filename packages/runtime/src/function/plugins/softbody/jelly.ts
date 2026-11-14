@@ -8,6 +8,10 @@
  *   shape   every particle is pulled toward where the best-fit rigid motion of the rest
  *           shape puts it (shape matching), a share `shape_stiffness` of the way per
  *           fixed step: 0 is a water balloon, 1 a rigid body; jelly lives around 0.02–0.2
+ *   anchor  (only with `anchor` > 0) every particle is also pulled toward where the
+ *           entity's own transform puts the rest shape, a share `anchor` of the way per
+ *           fixed step: the entity leads (a parent, a bone socket, code) and the surface
+ *           trails, overshoots and wobbles around it (a slime riding a character, a soft belly)
  *
  * The best-fit rotation is extracted from the moment matrix A = Σ (x − c) qᵀ with the
  * iterative method of Müller et al. 2016 ("A Robust Method to Extract the Rotational Part
@@ -305,13 +309,36 @@ export class SoftSim {
     }
   }
 
-  step(fields: Fields, dt: number, gravity: number, obstacles: Obstacles | null): void {
+  /** Pull every free particle a share `stiffness` of the way to the rest shape placed at `goal` (position, rotation). */
+  #anchorShape(stiffness: number, goal: { position: Vec3; rotation: Quat }): void {
+    const R = rotationMatrix(goal.rotation.x, goal.rotation.y, goal.rotation.z, goal.rotation.w);
+    const { x: px, y: py, z: pz } = goal.position;
+    const { x, w } = this.p;
+    const r = this.rest;
+    for (let i = 0; i < this.p.count; i++) {
+      if (w[i] === 0) continue;
+      const lx = r[i * 3]!;
+      const ly = r[i * 3 + 1]!;
+      const lz = r[i * 3 + 2]!;
+      x[i * 3] = x[i * 3]! + (px + R[0]! * lx + R[3]! * ly + R[6]! * lz - x[i * 3]!) * stiffness;
+      x[i * 3 + 1] = x[i * 3 + 1]! + (py + R[1]! * lx + R[4]! * ly + R[7]! * lz - x[i * 3 + 1]!) * stiffness;
+      x[i * 3 + 2] = x[i * 3 + 2]! + (pz + R[2]! * lx + R[5]! * ly + R[8]! * lz - x[i * 3 + 2]!) * stiffness;
+    }
+  }
+
+  /**
+   * One fixed step. `goal` is the entity's world placement, which an anchored body
+   * (`anchor` > 0) is pulled toward; a free body ignores it.
+   */
+  step(fields: Fields, dt: number, gravity: number, obstacles: Obstacles | null, goal: { position: Vec3; rotation: Quat } | null = null): void {
     const substeps = fields['substeps'] as number;
     const h = dt / substeps;
     const p = this.p;
     this.edges.compliance = compliance(fields['stiffness'] as number);
     // Shape matching per substep, so the response doesn't depend on the substep count.
     const shape = 1 - Math.pow(1 - Math.min(1, Math.max(0, fields['shape_stiffness'] as number)), 1 / substeps);
+    const anchorShare = Math.min(1, Math.max(0, (fields['anchor'] as number | undefined) ?? 0));
+    const anchor = goal === null || anchorShare <= 0 ? 0 : 1 - Math.pow(1 - anchorShare, 1 / substeps);
     const target = this.restVolume * (fields['pressure'] as number);
     const margin = fields['thickness'] as number;
     const friction = fields['friction'] as number;
@@ -322,6 +349,7 @@ export class SoftSim {
       solveDistances(p, this.edges, h);
       this.#solveVolume(target);
       this.#matchShape(shape);
+      if (anchor > 0) this.#anchorShape(anchor, goal!);
       if (obstacles !== null) for (let i = 0; i < p.count; i++) collideParticle(p.x, p.prev, i, obstacles, margin, friction);
       updateVelocities(p, h);
     }

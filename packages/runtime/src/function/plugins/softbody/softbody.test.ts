@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { kw, ParallaxError, Vec3 } from '../../../core/index.js';
+import { kw, ParallaxError, Quat, Vec3 } from '../../../core/index.js';
 import type { EntityId, ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel, t } from '../../kernel/index.js';
@@ -36,6 +36,7 @@ const PREFABS = {
   ball: { components: { collider: { shape: 'sphere', radius: 0.5 } } },
   floor: { components: { collider: { shape: 'box', size: [20, 1, 20], offset: [0, -0.5, 0] } } },
   jelly: { components: { soft_body: { shape: 'sphere', size: [1, 1, 1], detail: 2, mass: 2 } } },
+  head: { components: { soft_body: { shape: 'sphere', size: [0.6, 0.6, 0.6], detail: 2, anchor: 0.03, gravity_scale: 0, shape_stiffness: 0.03, collide: false } } },
   jelly_box: { components: { soft_body: { shape: 'box', size: [1, 0.6, 1], detail: 1 } } },
   both: { components: { cloth: {}, soft_body: {} } },
 };
@@ -258,6 +259,72 @@ describe('soft bodies', () => {
     w.kernel.restore(snap);
     w.steps(40);
     expect(Array.from((w.plugin.simOf(w.id('j')) as SoftSim).p.x)).toEqual(after);
+  });
+});
+
+describe('anchored soft bodies', () => {
+  /** Largest distance of a particle from where the entity's transform puts its rest point. */
+  const offAnchor = (w: World, sim: SoftSim, placed: string): number => {
+    const t = w.kernel.world.get(w.id(placed))!.transform;
+    const at = t.worldPosition();
+    const q = t.worldRotation();
+    let m = 0;
+    for (let i = 0; i < sim.p.count; i++) {
+      const goal = q.rotate(new Vec3(sim.rest[i * 3]!, sim.rest[i * 3 + 1]!, sim.rest[i * 3 + 2]!)).__add__(at);
+      m = Math.max(m, Math.hypot(sim.p.x[i * 3]! - goal.x, sim.p.x[i * 3 + 1]! - goal.y, sim.p.x[i * 3 + 2]! - goal.z));
+    }
+    return m;
+  };
+
+  it('stays on its entity instead of the entity following it', () => {
+    const w = make([{ prefab: 'head', id: 'h', at: [0, 1.6, 0] }]);
+    w.steps(60);
+    const sim = w.plugin.simOf(w.id('h')) as SoftSim;
+    expect(offAnchor(w, sim, 'h')).toBeLessThan(1e-3);
+    expect(w.kernel.world.get(w.id('h'))!.transform.worldPosition().y).toBe(1.6);
+  });
+
+  it('trails and wobbles after its entity moves, then settles on it', () => {
+    const w = make([{ prefab: 'head', id: 'h', at: [0, 1.6, 0] }]);
+    w.steps(10);
+    const sim = w.plugin.simOf(w.id('h')) as SoftSim;
+    const t = w.kernel.world.get(w.id('h'))!.transform;
+    t.position = new Vec3(0.3, 1.6, 0);
+    w.steps(1);
+    const handle = w.kernel.world.get(w.id('h'))!.components.get('soft_body') as Fields & { center: Vec3 };
+    expect(handle.center.x).toBe(sim.center[0]);
+    expect(sim.center[0]!).toBeGreaterThan(0.01);
+    expect(sim.center[0]!).toBeLessThan(0.29);
+    // It overshoots the new spot (a wobble), then comes to rest on it.
+    let peak = 0;
+    for (let i = 0; i < 40; i++) { w.steps(1); peak = Math.max(peak, sim.center[0]!); }
+    expect(peak).toBeGreaterThan(0.3);
+    w.steps(240);
+    expect(offAnchor(w, sim, 'h')).toBeLessThan(2e-3);
+    expect(t.worldPosition().x).toBeCloseTo(0.3, 9);
+  });
+
+  it('a push dents one side and it ripples back to its rest shape on the entity', () => {
+    const w = make([{ prefab: 'head', id: 'h', at: [0, 1.6, 0] }]);
+    w.steps(5);
+    const sim = w.plugin.simOf(w.id('h')) as SoftSim;
+    const fields = w.kernel.world.get(w.id('h'))!.components.get('soft_body') as Fields & { push(...a: unknown[]): void };
+    fields.push(new Vec3(-6, 0, 0), kw({ at: new Vec3(0.3, 1.6, 0), radius: 0.25 }));
+    w.steps(3);
+    expect(offAnchor(w, sim, 'h')).toBeGreaterThan(0.02);
+    expect(sim.volume() / sim.restVolume).toBeCloseTo(1, 1);
+    w.steps(300);
+    expect(offAnchor(w, sim, 'h')).toBeLessThan(2e-3);
+  });
+
+  it('turns with its entity', () => {
+    const w = make([{ prefab: 'head', id: 'h', at: [0, 1.6, 0] }]);
+    w.steps(5);
+    const sim = w.plugin.simOf(w.id('h')) as SoftSim;
+    const t = w.kernel.world.get(w.id('h'))!.transform;
+    t.rotation = Quat.from_euler(new Vec3(0, 90, 0));
+    w.steps(480);
+    expect(offAnchor(w, sim, 'h')).toBeLessThan(2e-3);
   });
 });
 

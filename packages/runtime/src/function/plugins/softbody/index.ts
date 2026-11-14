@@ -67,6 +67,7 @@ export const SOFT_BODY_SCHEMA: Schema = {
   mass: t.number({ default: 1, min: 0.001 }),
   stiffness: t.number({ default: 0.5, min: 0, max: 1 }),
   shape_stiffness: t.number({ default: 0.05, min: 0, max: 1 }),
+  anchor: t.number({ default: 0, min: 0, max: 1 }),
   pressure: t.number({ default: 1, min: 0.1, max: 4 }),
   damping: t.number({ default: 0.5, min: 0 }),
   gravity_scale: t.number({ default: 1 }),
@@ -222,9 +223,12 @@ export function softbody(): SoftbodyPlugin {
       const fields = record.components.get(SOFT_BODY)!;
       const sim = body.sim as SoftSim;
       const obstacles = fields['collide'] === true ? obstaclesFor(kernel, id, sim.bounds(), 0.5) : null;
-      sim.step(fields, dt, g * (fields['gravity_scale'] as number), obstacles);
+      const anchored = (fields['anchor'] as number) > 0;
+      const goal = anchored ? { position: record.transform.worldPosition(), rotation: record.transform.worldRotation() } : null;
+      sim.step(fields, dt, g * (fields['gravity_scale'] as number), obstacles, goal);
       write(body.geometry, sim);
-      follow(record, sim);
+      // An anchored body trails its entity; a free one leads it.
+      if (!anchored) follow(record, sim);
     }
   };
 
@@ -347,6 +351,11 @@ export function softbody(): SoftbodyPlugin {
     /** Mean particle velocity, m/s. */
     get velocity(): Vec3 {
       return (bodyOf(this as unknown as Fields, 'soft', 'SoftBody.velocity').sim as SoftSim).velocity();
+    },
+    /** Particles' centroid, world meters: where the body is (an anchored body trails its entity). */
+    get center(): Vec3 {
+      const sim = bodyOf(this as unknown as Fields, 'soft', 'SoftBody.center').sim as SoftSim;
+      return new Vec3(sim.center[0]!, sim.center[1]!, sim.center[2]!);
     },
     /** Enclosed volume over rest volume (1: undeformed; below 1 while squashed past what pressure holds). */
     get volume_ratio(): number {
