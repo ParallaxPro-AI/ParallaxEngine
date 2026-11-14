@@ -75,6 +75,7 @@ const POOL_WATER: KernelPlugin = {
   id: 'water',
   install: (kernel) => kernel.provide(WATER_SERVICE, {
     sample: (p: Vec3): WaterSample | undefined => (p.x > -20 && p.x < 20 && p.z > 5 && p.z < 40 && p.y < 0.5 ? { surface: 0, flow: Vec3.ZERO } : undefined),
+    ceiling: () => 0,
   }),
 };
 

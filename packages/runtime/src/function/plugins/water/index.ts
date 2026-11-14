@@ -225,6 +225,14 @@ class WaterState implements WaterSource, WaterWorld, WaterControl, WaterSync {
     return found === undefined ? undefined : { surface: found.surface, flow: found.body.flowAt(point.x, point.z) };
   }
 
+  ceiling(): number {
+    this.#refresh();
+    const scale = this.#windScale();
+    let ceiling = Number.NEGATIVE_INFINITY;
+    for (const { body } of this.#all()) ceiling = Math.max(ceiling, body.ceiling(scale));
+    return ceiling;
+  }
+
   // ── WATER_WORLD_SERVICE ─────────────────────────────────────────────────────
 
   bodies(): readonly WaterBodyInfo[] {
@@ -315,9 +323,23 @@ class WaterState implements WaterSource, WaterWorld, WaterControl, WaterSync {
       return found === undefined ? undefined : { surface: found.surface, flow: found.body.flowAt(p.x, p.z), density: found.body.density };
     };
     const wakeTick = Math.floor(now / WAKE_INTERVAL) !== Math.floor((now - dt) / WAKE_INTERVAL);
+    // No wave reaches above this: a body wholly higher is dry, without sampling its cells.
+    const ceiling = this.ceiling();
     for (const id of this.#floating) {
       const record = this.#kernel.world.get(id);
       if (record === undefined || !record.alive) continue;
+      const box = physics.bounds(id);
+      const pose = physics.body(id);
+      if (box !== undefined && pose !== undefined) {
+        // The lowest point of the collider's box as it is turned now.
+        const q = pose.rotation;
+        const h = box.halfExtents;
+        const drop = Math.abs(q.rotate(Vec3.RIGHT).y) * h.x + Math.abs(q.rotate(Vec3.UP).y) * h.y + Math.abs(q.rotate(Vec3.FORWARD).y) * h.z;
+        if (pose.position.y + q.rotate(box.center).y - drop > ceiling) {
+          record.components.get(BUOYANCY)!['submerged'] = 0;
+          continue;
+        }
+      }
       // A body the network drives (a net client's replica: its Rigidbody says dynamic, its body is
       // kinematic) floats on its server, which sends its pose and the splashes and wakes it makes.
       if (record.components.get(RIGIDBODY)?.['kind'] === 'dynamic' && physics.body(id)?.kind === 'kinematic') continue;

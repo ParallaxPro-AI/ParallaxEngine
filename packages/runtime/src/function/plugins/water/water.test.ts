@@ -5,7 +5,7 @@
  */
 
 import { beforeAll, describe, expect, it } from 'vitest';
-import { Vec3 } from '../../../core/index.js';
+import { Quat, Vec3 } from '../../../core/index.js';
 import type { EntityId, ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel } from '../../kernel/index.js';
@@ -14,7 +14,7 @@ import { AUDIO_SERVICE, WATER_SERVICE, WATER_WORLD_SERVICE } from '../../service
 import { characters } from '../characters/index.js';
 import { terrain } from '../terrain/index.js';
 import { initPhysics3d, physics3d } from '../physics3d/index.js';
-import { buildWaves, displace, openSea, riverCourse, riverSpot, water, WATER_EVENTS, waveHeight, waveNormal, windWaveScale } from './index.js';
+import { Body, buildWaves, displace, openSea, riverCourse, riverSpot, water, WATER_EVENTS, waveHeight, waveNormal, windWaveScale } from './index.js';
 import type { WaterPlugin } from './index.js';
 
 const DT = 1 / 60;
@@ -235,6 +235,31 @@ describe('buoyancy', () => {
       expect(g.fields('box', 'buoyancy')['submerged']).toBeCloseTo(draft, 1);
       expect(g.kernel.service(WATER_WORLD_SERVICE).submerged(g.id('box'))).toBeCloseTo(draft, 1);
     }
+  });
+
+  it('skips bodies above every crest (no wave reaches the ceiling) and floats them once the water rises to them', () => {
+    const sea = { components: { water_body: { kind: 'ocean', waves: 'rough' } } };
+    const shelf = { components: { collider: { shape: 'box', size: [4, 0.2, 4] } } };
+    const g = game({ sea, shelf, box: box(300) }, [
+      { prefab: 'sea', id: 'sea', at: [0, 0, 0] }, { prefab: 'shelf', at: [0, 6, 0] }, { prefab: 'box', id: 'box', at: [0, 6.7, 0] },
+    ]);
+    // The ceiling bounds the surface everywhere, at any time.
+    const body = new Body(null, 'sea', new Vec3(0, 0, 0), Quat.IDENTITY, g.fields('sea', 'water_body'));
+    const ceiling = body.ceiling(1);
+    expect(ceiling).toBeGreaterThan(0.8);
+    for (let i = 0; i < 200; i++) {
+      expect(body.surfaceAt(i * 3.7 - 300, i * 1.3 - 100, i * 0.37, 1)).toBeLessThanOrEqual(ceiling + 1e-6);
+    }
+    g.run(120);
+    expect(g.fields('box', 'buoyancy')['submerged']).toBe(0);
+    expect(g.pos('box').y).toBeCloseTo(6.6, 1);
+    expect(g.kernel.service(WATER_SERVICE).ceiling()).toBeCloseTo(ceiling, 6);
+    // A flood: the sea rises over the shelf and the box floats off it.
+    g.kernel.world.require(g.id('sea')).transform.setWorldPosition(new Vec3(0, 9, 0));
+    g.run(600);
+    expect(g.kernel.service(WATER_SERVICE).ceiling()).toBeCloseTo(ceiling + 9, 6);
+    expect(g.fields('box', 'buoyancy')['submerged']).toBeGreaterThan(0.1);
+    expect(g.pos('box').y).toBeGreaterThan(7.5);
   });
 
   it('sinks a body denser than water', () => {

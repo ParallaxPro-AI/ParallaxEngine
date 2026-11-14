@@ -888,7 +888,9 @@ export class Characters {
     const swim = rec<Swimming>(fields, 'swim');
     if (swim !== null) {
       const feet = record.transform.worldPosition();
-      const water = this.#kernel.service(WATER_SERVICE).sample(feet);
+      const source = this.#kernel.service(WATER_SERVICE);
+      // Feet above every crest are dry: skip sampling the waves.
+      const water = feet.y > source.ceiling() ? undefined : source.sample(feet);
       const depth = water === undefined ? 0 : water.surface - feet.y;
       const swimming = s.motion === 'swim' ? depth >= swim.exit_depth && !(s.grounded && depth < swim.enter_depth) : depth >= swim.enter_depth;
       if (swimming && water !== undefined) {
