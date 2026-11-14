@@ -57,6 +57,7 @@ PLUGINS_OF_MODULE: dict[str, list[str]] = {
     "parallax.voice": ["voice"],
     "parallax.chat": ["chat"],
     "parallax.payments": ["payments"],
+    "parallax.conveyors": ["conveyors"],
 }
 
 # Classes more than one plugin provides (the runtime registers one shared definition).

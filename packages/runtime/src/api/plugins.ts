@@ -35,3 +35,4 @@ export { screens } from './screens.js';
 export { voice } from './voice.js';
 export { chat } from './chat.js';
 export { payments } from './payments.js';
+export { conveyors } from './conveyors.js';

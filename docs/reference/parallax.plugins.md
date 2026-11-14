@@ -11,7 +11,7 @@ Core (always present): rendering, UI, audio, camera, input, environment, VFX, de
 
 ## Contents
 
-[`physics2d()`](#physics2d), [`physics3d()`](#physics3d), [`destruction()`](#destruction), [`combat()`](#combat), [`characters()`](#characters), [`viewmodel()`](#viewmodel), [`vehicles()`](#vehicles), [`nav()`](#nav), [`grid()`](#grid), [`story()`](#story), [`save()`](#save), [`terrain()`](#terrain), [`foliage()`](#foliage), [`wind()`](#wind), [`voxels()`](#voxels), [`procgen()`](#procgen), [`city()`](#city), [`local_players()`](#local_players), [`net()`](#net), [`hud()`](#hud), [`interaction()`](#interaction), [`ai()`](#ai), [`economy()`](#economy), [`spawning()`](#spawning), [`cinematics()`](#cinematics), [`water()`](#water), [`weather()`](#weather), [`softbody()`](#softbody), [`screens()`](#screens), [`voice()`](#voice), [`chat()`](#chat), [`payments()`](#payments)
+[`physics2d()`](#physics2d), [`physics3d()`](#physics3d), [`destruction()`](#destruction), [`combat()`](#combat), [`characters()`](#characters), [`viewmodel()`](#viewmodel), [`vehicles()`](#vehicles), [`nav()`](#nav), [`grid()`](#grid), [`story()`](#story), [`save()`](#save), [`terrain()`](#terrain), [`foliage()`](#foliage), [`wind()`](#wind), [`voxels()`](#voxels), [`procgen()`](#procgen), [`city()`](#city), [`local_players()`](#local_players), [`net()`](#net), [`hud()`](#hud), [`interaction()`](#interaction), [`ai()`](#ai), [`economy()`](#economy), [`spawning()`](#spawning), [`cinematics()`](#cinematics), [`water()`](#water), [`weather()`](#weather), [`softbody()`](#softbody), [`screens()`](#screens), [`voice()`](#voice), [`chat()`](#chat), [`payments()`](#payments), [`conveyors()`](#conveyors)
 
 ### `physics2d()`
 
@@ -374,3 +374,12 @@ def payments() -> Plugin
 
 In-game purchases through the host page or app (parallax.payments); products are
 content/product/\*.json.
+
+### `conveyors()`
+
+```python
+def conveyors() -> Plugin
+```
+
+Conveyor lanes and the thousands of items riding them, simulated and drawn
+instanced by the engine (parallax.conveyors, `ctx.conveyors`).

@@ -18,7 +18,7 @@ import type {
 import type { Json } from '../../../resource/index.js';
 import type { EntityRecord, Fields, Handle, Kernel } from '../../kernel/index.js';
 import {
-  AUDIO_SERVICE, CAMERAS_SERVICE, CITY_SERVICE, DEFORMABLE_MESH_SOURCES, ENVIRONMENT_SERVICE, FOLIAGE_SERVICE, MODEL_POSE_SERVICE, PROCGEN_SERVICE, RENDER_POSE_SERVICE, SCREENS_SERVICE,
+  AUDIO_SERVICE, CAMERAS_SERVICE, CITY_SERVICE, CONVEYOR_SERVICE, DEFORMABLE_MESH_SOURCES, ENVIRONMENT_SERVICE, FOLIAGE_SERVICE, MODEL_POSE_SERVICE, PROCGEN_SERVICE, RENDER_POSE_SERVICE, SCREENS_SERVICE,
   TERRAIN_SERVICE, VOXELS_SERVICE, WIND_SERVICE, lightShare,
 } from '../../services/index.js';
 import type { ModelPoseSource } from '../../services/index.js';
@@ -43,6 +43,7 @@ import { Impostors } from './impostor.js';
 import { chooseLod, LOD, lodBands } from './lod.js';
 import type { LodBands } from './lod.js';
 import { ModelDraws } from './model_draw.js';
+import { ConveyorDraws } from './conveyor_draw.js';
 import { StaticMerge, StaticRoots } from './static_merge.js';
 import { RenderTargets, surfaceSwap } from './render_targets.js';
 import { effectsHideShadow, effectsOf, effectsSwap, HEAT_HAZE, hazesOf, SURFACE_FX } from './surface_fx.js';
@@ -169,6 +170,7 @@ export class Render3dEngine {
   readonly #materials = new Materials();
   /** Model entities drawn (`model_draw.ts`): looks, palettes, morphs. */
   readonly #modelDraws = new ModelDraws();
+  readonly #conveyorDraws = new ConveyorDraws();
   /** First-person view layers (`layers.ts`). */
   readonly #layers: ViewLayers;
   /** Procgen meshes and surface overlays (`generated.ts`). */
@@ -622,6 +624,9 @@ export class Render3dEngine {
         if (drawn !== null) decals.push(drawn);
       }
     }
+    // Items riding conveyor lanes (conveyor_draw.ts), instanced with the entities' meshes.
+    const conveyor = kernel.tryService(CONVEYOR_SERVICE);
+    if (conveyor !== undefined) this.#conveyorDraws.draw(conveyor, models, batches, kernel.time.alpha);
     // Effects: particles (alpha far to near, then additive), their lights, hazes, sounds and camera shakes.
     const particles = this.#particleBatches(this.#particles.draws(views[0]?.position ?? null), hidden);
     for (const light of this.#particles.lights()) {

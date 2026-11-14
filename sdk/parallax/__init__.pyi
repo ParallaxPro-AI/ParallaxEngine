@@ -98,6 +98,7 @@ import parallax.cinematics
 import parallax.economy
 import parallax.spawning
 import parallax.payments
+import parallax.conveyors
 from parallax.values import Cell
 
 T = TypeVar("T")
@@ -2780,6 +2781,7 @@ class Context:
     voice: parallax.voice.VoiceApi           # voice()
     chat: parallax.chat.ChatApi              # chat()
     payments: parallax.payments.PaymentsApi  # payments()
+    conveyors: parallax.conveyors.ConveyorsApi  # conveyors()
 
     @property
     def players(self) -> list[Player]:

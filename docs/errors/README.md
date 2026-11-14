@@ -11,7 +11,7 @@ PP2041  Unknown prefab "brik"
   Docs: https://parallaxpro.ai/docs/engine/errors/PP2041
 ```
 
-This index lists all 875 codes the engine's sources raise, grouped by range. The
+This index lists all 877 codes the engine's sources raise, grouped by range. The
 machine-readable form is [`catalog.json`](catalog.json): for each code, its range, the area that
 raises it, the message and fix texts found at its raise sites (interpolated values are written
 `{name}`), notes, and the source files. Search the sources for a code to find every place that
@@ -24,7 +24,7 @@ Regenerate after adding or changing a code: `python3 tools/gen_error_catalog.py`
 |---|---|---|
 | [PP1xxx](#pp1xxx) | data files that don't parse or don't have the right shape (resource loader) | 16 |
 | [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 124 |
-| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 420 |
+| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 422 |
 | [PP4xxx](#pp4xxx) | declarations and types: `@component` / `@resource` / field schemas, actions, net declarations | 65 |
 | [PP5xxx](#pp5xxx) | values and conversions in core | 3 |
 | [PP6xxx](#pp6xxx) | Parallax Python: syntax, unsupported constructs and sandbox rules (the transpiler) | 17 |
@@ -313,7 +313,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3244 | nav | ctx.nav agent= must be an Entity with a NavAgent |
 | PP3245 | nav | {where} must be an Entity |
 | PP3246 | nav | A NavAgent can't follow its own entity |
-| PP3247 | ai, city, nav, screens, water, weather | This ai plugin is already installed in another kernel |
+| PP3247 | ai, city, conveyors, nav, screens, water, weather | This ai plugin is already installed in another kernel |
 | PP3248 | nav | The NavAgent on "{name}" drives a {…} Rigidbody, which physics moves |
 | PP3249 | nav | This nav bake is for agents of radius {data.radius}, not {radius} |
 | PP3250 | ai | {where}: blackboard key must be a name like "target" or "patrol.index", got {…} |
@@ -584,6 +584,8 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3903 | combat | {at} needs a component and a field name |
 | PP3904 | ui | The DialoguePanel shows conversations of the story plugin, which this game doesn't have |
 | PP3905 | combat | revive(health={value}) must bring the entity above 0 |
+| PP3910 | conveyors |  |
+| PP3911 | conveyors | conveyors.lane() point {i} must be a Vec3, got {…} |
 | PP3950 | save | This persistence plugin is already installed in another kernel |
 | PP3951 | save | @migration decorates a function \`def name(save: SaveData) -&gt; None\` |
 | PP3952 | save | {where} is at save version {version}, and no migration starts there (the game is at {saveVersion}) |
