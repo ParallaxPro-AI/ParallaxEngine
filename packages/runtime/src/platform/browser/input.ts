@@ -62,6 +62,8 @@ export interface InputHost {
   readonly navigator: {
     getGamepads?(): readonly (Gamepad | null)[];
     vibrate?(pattern: number | number[]): boolean;
+    /** Whether the page has had a user gesture; the phone may only vibrate after one. */
+    readonly userActivation?: { readonly hasBeenActive: boolean };
   };
 }
 
@@ -492,7 +494,14 @@ export class BrowserInput implements InputDevices {
       if (p === null || (pad !== null && slot !== pad)) return;
       p.vibrationActuator?.playEffect('dual-rumble', effect).catch((error: unknown) => this.#rumbleFailed(p.id, error));
     });
-    if (pad === null) this.#host.navigator.vibrate?.(Math.round(seconds * 1000));
+    if (pad === null) this.#vibrate(Math.round(seconds * 1000));
+  }
+
+  /** The phone's Vibration API, skipped before the first user gesture (the browser refuses it then, with a console error). */
+  #vibrate(pattern: number | number[]): void {
+    const navigator = this.#host.navigator;
+    if (navigator.userActivation?.hasBeenActive === false) return;
+    navigator.vibrate?.(pattern);
   }
 
   /**
@@ -509,7 +518,7 @@ export class BrowserInput implements InputDevices {
       }
       at += seconds;
     }
-    if (pad === null) this.#host.navigator.vibrate?.(vibrationPattern(pattern));
+    if (pad === null) this.#vibrate(vibrationPattern(pattern));
   }
 
   #rumbleGamepads(pad: number | null, strength: number, seconds: number): void {
