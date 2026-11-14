@@ -455,7 +455,7 @@ component on a camera blurs by distance. The values above come from
 | Selection outline or x-ray | `outline` | Targets, interactables, teammates |
 | Heat shimmer and shockwaves | `heat_haze` (`pulse()`) | Fires, exhausts, explosions (`racing`) |
 | Projected images | `decal` | Scorch marks, blood, road paint, posters |
-| Glowing material | `emissive` and `emissive_strength` on a shape or model material | Lava, neon, engines |
+| Glowing material | `emissive` and `emissive_strength` on a shape or model material; a shape's `emissive_map` image glows only where it is bright | Lava, neon, engines, glowing grids and windows |
 | Cloth | `cloth` (`plugins.softbody()`) | Flags, capes, banners, sails (`racing`, `horde_survival`) |
 | Camera shake and recoil | `ctx.camera.main.shake()`, `kick()` | Impacts, shots |
 | Hit-stop and slow motion | `ctx.time.hitstop()`, `ctx.time.ramp()` | Heavy hits, finishers |

@@ -1497,6 +1497,12 @@ Shape(kind="rect", size=Vec3(2, 1, 1), corner_radius=0.2, stroke_width=0.05)
 
   How strongly `normal_map` bends the surface (default 1; 0 flattens it).
 
+- `emissive_map: ImageRef | None = ...`
+
+  3D: an image multiplied by `emissive` (and `emissive_strength`), tiled like `texture`:
+  only its bright texels glow, so a black image with white lines over a dark `color`
+  draws a neon grid, lit windows or glowing runes in one shape.
+
 - `cast_shadows: bool = ...`
 - `points: list[Vec2] = ...`
 

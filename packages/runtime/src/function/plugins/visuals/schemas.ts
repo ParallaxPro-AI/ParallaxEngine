@@ -82,6 +82,8 @@ export const SHAPE_SCHEMA: Schema = {
   emissive: t.color({ default: Color.BLACK }),
   /** Multiplies `emissive` (linear light, no upper bound): above 1 glows past white and blooms. */
   emissive_strength: t.number({ default: 1, min: 0 }),
+  /** 3D: an image multiplied by `emissive` (glowing patterns: neon grids, lit windows, runes), tiled by `uv_scale`. */
+  emissive_map: { type: optional(ref('asset/images')), default: null },
   /** Material defaults shared with model documents (resource/models/format.ts MATERIAL_DEFAULTS). */
   metallic: t.number({ default: 0, min: 0, max: 1 }),
   roughness: t.number({ default: 0.8, min: 0, max: 1 }),

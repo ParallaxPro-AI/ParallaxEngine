@@ -6,7 +6,7 @@
  *               flat on x/z facing up; ring: a torus `thickness` thick, or a flat annulus
  *               `thickness` wide when size.y is 0), size (full extents; flat kinds use x and z),
  *               offset, color, emissive (× emissive_strength), metallic, roughness, texture, uv_scale (repeats),
- *               normal_map + normal_strength, cast_shadows
+ *               normal_map + normal_strength, emissive_map, cast_shadows
  *   model       drawn by `model_draw.ts` (posed by the models plugin)
  *   light       kind, color, intensity, range, angle (full cone, degrees), shadows
  *   text_mesh   text spans (`text_mesh.__spans__`), size (line height), color, face_camera
@@ -121,11 +121,12 @@ export class Placements {
 
 // ── Materials ────────────────────────────────────────────────────────────────
 
-/** A shape material's tiling and normal map (`Shape.uv_scale`, `normal_map`, `normal_strength`). */
+/** A shape material's tiling, normal map and glow map (`Shape.uv_scale`, `normal_map`, `normal_strength`, `emissive_map`). */
 export interface ShapeMaps {
   readonly uvScale: readonly [number, number];
   readonly normal: Texture3d | null;
   readonly normalScale: number;
+  readonly emissive?: Texture3d | null;
 }
 
 const PLAIN_MAPS: ShapeMaps = { uvScale: [1, 1], normal: null, normalScale: 1 };
@@ -142,7 +143,8 @@ export class Materials {
     const key = `shape|${metallic}|${roughness}|${emissive[0]},${emissive[1]},${emissive[2]}|${texture?.id ?? ''}|${blend}`
       + (emissiveStrength === 1 ? '' : `|e${emissiveStrength}`)
       + (tiled ? `|uv${maps.uvScale[0]},${maps.uvScale[1]}` : '')
-      + (maps.normal === null ? '' : `|n${maps.normal.id}*${maps.normalScale}`);
+      + (maps.normal === null ? '' : `|n${maps.normal.id}*${maps.normalScale}`)
+      + (maps.emissive == null ? '' : `|g${maps.emissive.id}`);
     let material = this.#byKey.get(key);
     if (material === undefined) {
       material = {
@@ -156,7 +158,7 @@ export class Materials {
         roughness,
         metallicRoughnessTexture: null,
         emissive: [emissive[0], emissive[1], emissive[2]],
-        emissiveTexture: null,
+        emissiveTexture: maps.emissive ?? null,
         alphaMode: blend ? 'blend' : 'opaque',
         alphaCutoff: 0.5,
         doubleSided: false,
@@ -336,7 +338,7 @@ export function shapeDraw(
   batches.add(geometry, material, material.alphaMode !== 'blend' && shape['cast_shadows'] === true, multiply(at.m, local), color, record.id, style);
 }
 
-/** A shape's tiling and normal map; absent fields (an older snapshot) read as none. */
+/** A shape's tiling, normal map and glow map; absent fields (an older snapshot) read as none. */
 function shapeMaps(shape: Fields, where: string, texture: (ref: unknown, where: string, data?: boolean) => Texture3d | null): ShapeMaps {
   const scale = shape['uv_scale'];
   let uvScale: readonly [number, number] = [1, 1];
@@ -350,7 +352,10 @@ function shapeMaps(shape: Fields, where: string, texture: (ref: unknown, where: 
   const ref = shape['normal_map'];
   const normal = ref === null || ref === undefined ? null : texture(ref, `${where}.normal_map`, true);
   const strength = shape['normal_strength'] === undefined ? 1 : finite(shape['normal_strength'], `${where}.normal_strength`);
-  return uvScale[0] === 1 && uvScale[1] === 1 && normal === null ? PLAIN_MAPS : { uvScale, normal, normalScale: strength };
+  const glowRef = shape['emissive_map'];
+  const emissive = glowRef === null || glowRef === undefined ? null : texture(glowRef, `${where}.emissive_map`);
+  return uvScale[0] === 1 && uvScale[1] === 1 && normal === null && emissive === null
+    ? PLAIN_MAPS : { uvScale, normal, normalScale: strength, emissive };
 }
 
 // ── Lights ───────────────────────────────────────────────────────────────────
