@@ -174,7 +174,7 @@ describe('fetchProjectFiles', () => {
 });
 
 describe('BrowserInput', () => {
-  function setup(pads: (Gamepad | null)[] = [], screenScale?: () => number) {
+  function setup(pads: (Gamepad | null)[] = [], screenScale?: () => number, activated?: boolean) {
     const doc = new FakeDocument();
     const window = new EventTarget();
     const stage = doc.createElement('div');
@@ -188,7 +188,10 @@ describe('BrowserInput', () => {
     const host: InputHost = {
       window,
       document: doc as unknown as InputHost['document'],
-      navigator: { getGamepads: () => pads, vibrate: (ms) => { vibrations.push(ms); return true; } },
+      navigator: {
+        getGamepads: () => pads, vibrate: (ms) => { vibrations.push(ms); return true; },
+        ...(activated !== undefined && { userActivation: { hasBeenActive: activated } }),
+      },
     };
     const input = new BrowserInput({
       stage: stage as unknown as HTMLElement, ui: ui as unknown as Element, textInput: text as unknown as HTMLInputElement,
@@ -379,6 +382,16 @@ describe('BrowserInput', () => {
     await new Promise((resolve) => setTimeout(resolve, 40));
     expect(effects).toHaveLength(2);
     expect(effects[1]).toEqual({ duration: 10, strongMagnitude: 0.5, weakMagnitude: 0.5 });
+  });
+
+  it('the phone only vibrates once the page has had a user gesture', () => {
+    const rumble = { cursor: 'free', textEntry: false, rumble: [{ pad: null, strength: 0.5, seconds: 0.2 }], touch: [] } as const;
+    const before = setup([], undefined, false);
+    before.input.present(rumble);
+    expect(before.vibrations).toEqual([]);
+    const after = setup([], undefined, true);
+    after.input.present(rumble);
+    expect(after.vibrations).toEqual([200]);
   });
 
   it('rumbles pads and the phone, and focuses the text field while the game reads text', () => {
