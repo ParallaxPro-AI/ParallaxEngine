@@ -32,11 +32,11 @@ from parallax.economy import ItemDef
 @component("interactable")
 class Interactable(EngineComponent):
     prompt: str = field("Interact", doc='The verb after the key ("Open", "Talk"), or a locale key: shown in the player\'s language when locale/<lang>.json has it.')
-    range: float = field(2.5, min=0, unit="m", doc="Horizontal reach from the interactor.")
+    range: float = field(2.5, min=0, unit="m", doc="Horizontal reach from the interactor (a look-mode interactor reaches for the `offset` point it aims at).")
     hold: float = field(0, min=0, unit="s", doc="Seconds to hold the action; 0: a press.")
     enabled: bool = field(True)
     once: bool = field(False, doc="Disable itself after the first use.")
-    offset: Vec3 = field(Vec3(0, 1, 0), doc="Where the prompt sits and what a look-mode interactor aims at.")
+    offset: Vec3 = field(Vec3(0, 1, 0), doc="Where the prompt sits and what a look-mode interactor aims at, in the entity's own frame (it turns with the entity).")
 
 @component("interactor")
 class Interactor(EngineComponent):
