@@ -23,8 +23,18 @@ ctx.world.attach(cape, hero, socket="spine_upper")
 The wind (plugins.wind()) pushes cloth by its relative velocity across each triangle.
 
 A SoftBody's entity follows the body: its position is the particles' centroid and its
-rotation their best-fit rotation, so children ride along (eyes on a slime). Changing a
-field that decides the particles (size, resolution, shape, mass) rebuilds it at rest.
+rotation their best-fit rotation, so children ride along (eyes on a slime). With
+`anchor` above 0 it is the other way round: the entity leads (a parent, a bone socket,
+code moving it) and the surface trails, overshoots and wobbles around it — a slime riding
+a character, a soft belly, a pudding on a moving tray:
+
+```text
+blob = ctx.world.spawn(Prefabs.blob)       # {"soft_body": {"anchor": 0.25, "gravity_scale": 0}}
+ctx.world.attach(blob, player, socket="head")
+blob.get(SoftBody).push(vec3(4, 0, 0), at=hit_point, radius=0.2)   # a hit ripples it
+```
+
+Changing a field that decides the particles (size, resolution, shape, mass) rebuilds it at rest.
 Gravity is physics3d's (`physics3d(gravity=)`) times `gravity_scale`.
 
 ## Contents
@@ -92,6 +102,7 @@ class SoftBody(EngineComponent)
 - `mass: float = field(1, min=0.001, unit='kg')`
 - `stiffness: float = field(0.5, min=0, max=1, doc="Surface edges' resistance to stretching.")`
 - `shape_stiffness: float = field(0.05, min=0, max=1, doc='Pull back to the rest shape per step: 0 water balloon, 1 rigid.')`
+- `anchor: float = field(0, min=0, max=1, doc="Pull toward the rest shape at the entity's own transform per step: 0 free (the entity follows the body); above 0 the entity leads and the body wobbles after it.")`
 - `pressure: float = field(1, min=0.1, max=4, doc='Volume kept, times the rest volume (above 1 inflates).')`
 - `damping: float = field(0.5, min=0)`
 - `gravity_scale: float = field(1)`
@@ -105,6 +116,11 @@ class SoftBody(EngineComponent)
 - `velocity: Vec3  # read-only`
 
   Mean particle velocity, m/s.
+
+- `center: Vec3  # read-only`
+
+  The particles' centroid, world meters: where the body is. An anchored body trails
+  its entity, so things that should wobble with it (a hat on a wobbling blob) follow this.
 
 - `volume_ratio: float  # read-only`
 
