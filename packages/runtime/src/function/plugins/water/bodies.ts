@@ -15,7 +15,7 @@
  * the sea), a point is in the one with the highest surface whose bed is below it.
  */
 
-import { closestMatch, fail, readFootprint, Vec3 } from '../../../core/index.js';
+import { closestMatch, fail, readFootprint, Vec3, WAVE_FLOATS } from '../../../core/index.js';
 import type { Color, EntityId, Footprint, Quat } from '../../../core/index.js';
 import { t } from '../../kernel/index.js';
 import type { Schema } from '../../kernel/index.js';
@@ -364,6 +364,17 @@ export class Body {
   /** Still-water level at (x, z): the entity's height, or the river course's there. */
   levelAt(x: number, z: number): number {
     return this.course === null ? this.level : riverSpot(this.course, x, z).y;
+  }
+
+  /** No wave of this body ever reaches above this height (its highest still level plus the
+   *  sum of its wave amplitudes): anything entirely above it is dry. */
+  ceiling(windScale: number): number {
+    const waves = this.waves(windScale);
+    let amplitude = 0;
+    for (let o = 0; o < waves.length; o += WAVE_FLOATS) amplitude += Math.abs(waves[o + 4]!);
+    let level = this.level;
+    if (this.course !== null) for (const y of this.course.ys) level = Math.max(level, y);
+    return level + amplitude;
   }
 
   /** Surface height at (x, z) and time t, waves included (assumes `covers`). */

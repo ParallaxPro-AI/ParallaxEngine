@@ -25,6 +25,11 @@ export interface WaterSource {
    * over, or under a volume's floor). Deterministic for a given game time.
    */
   sample(point: Vec3): WaterSample | undefined;
+  /**
+   * World y no surface reaches now (every body's highest still level plus its waves'
+   * amplitudes): a point above it is dry, without sampling the waves. -Infinity: no water.
+   */
+  ceiling(): number;
 }
 
 export const WATER_SERVICE: ServiceKey<WaterSource> = serviceKey<WaterSource>(
