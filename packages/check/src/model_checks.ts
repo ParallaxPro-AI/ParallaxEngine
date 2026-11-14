@@ -36,6 +36,18 @@ function numbersAt(value: unknown, length: number): number[] | undefined {
   return Array.isArray(value) && value.length === length && value.every((n) => typeof n === 'number') ? value as number[] : undefined;
 }
 
+/** A part draws nothing at rest when it, or any part above it, is hidden (a hidden part hides everything under it). */
+function hiddenAtRest(doc: ModelDocument, index: number): boolean {
+  let part = doc.parts[index];
+  if (part === undefined) return true;
+  for (let guard = 0; part !== undefined && guard <= doc.parts.length; guard++) {
+    if (part.hidden) return true;
+    const parent: ModelDocument['parts'][number]['parent'] = part.parent;
+    part = parent !== null && parent.kind === 'part' ? doc.parts[parent.index] : undefined;
+  }
+  return false;
+}
+
 /** The centre and size of a model document's rest-pose bounds (shown parts only), in model space. */
 function restBounds(doc: ModelDocument): { readonly centre: [number, number, number]; readonly size: number } | undefined {
   const asset = buildCodeModel(doc);
@@ -46,8 +58,7 @@ function restBounds(doc: ModelDocument): { readonly centre: [number, number, num
   asset.nodes.forEach((node, n) => {
     if (node.mesh === null) return;
     // A drawn node hangs from its part's node (code_model.ts); skinned meshes are in model space.
-    const part = doc.parts[node.parent - bones];
-    if (part === undefined || part.hidden) return;
+    if (hiddenAtRest(doc, node.parent - bones)) return;
     const matrix = node.skin === null ? worlds.subarray(n * 16, n * 16 + 16) : undefined;
     for (const primitive of asset.meshes[node.mesh]!) {
       const at = primitive.geometry.positions;
