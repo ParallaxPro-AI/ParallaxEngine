@@ -38,7 +38,7 @@ interface Joint extends Fields {
 interface Ragdoll extends Fields {
   readonly mode: string | null;
   readonly weight: number;
-  go_limp(impulse?: Vec3, options?: { at?: Vec3 }): void;
+  go_limp(impulse?: Vec3, options?: { at?: Vec3; velocity?: Vec3 }): void;
   activate(strength?: number): void;
   recover(blend?: number): void;
 }
@@ -625,6 +625,23 @@ describe('ragdolls', () => {
     g.steps(16);
     expect(ragdoll.mode).toBe(null);
     expect(g.kernel.service(RAGDOLL_POSE_SERVICE).pose(g.id('g'))).toBe(undefined);
+  });
+
+  it('goes limp flying at a given velocity: every part starts with it, whatever the entity was doing', () => {
+    const make = (): World3d => world({ prefabs: { floor: FLOOR, guard: GUARD }, entities: [{ prefab: 'floor' }, { prefab: 'guard', id: 'g', at: [0, 0, 0] }] });
+    const g = make();
+    const ragdoll = g.get<Ragdoll>('g', 'ragdoll');
+    ragdoll.go_limp(undefined, { velocity: new Vec3(12, 6, 0) });
+    expect(ragdoll.mode).toBe('limp');
+    g.steps(6);
+    // A tenth of a second in, the body has flown about 1.2 m along x (the entity follows the pelvis).
+    expect(g.pos('g').x).toBeGreaterThan(0.9);
+    expect(g.pos('g').x).toBeLessThan(1.5);
+    // Without a velocity it only slumps where it stood.
+    const h = make();
+    h.get<Ragdoll>('g', 'ragdoll').go_limp();
+    h.steps(6);
+    expect(Math.abs(h.pos('g').x)).toBeLessThan(0.2);
   });
 
   it('lays its profile over the model\'s skeleton when render3d provides one', () => {

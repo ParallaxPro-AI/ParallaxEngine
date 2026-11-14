@@ -8,9 +8,10 @@
  * runs), the profile's own proportions scaled to `height`. Parts are internal Rapier
  * bodies, not entities: they exist only while the ragdoll is on.
  *
- *   limp        `go_limp(impulse, at)`: every part dynamic, joints with limits, nothing
- *               driving them. The entity follows the pelvis (position and rotation), so
- *               cameras and queries follow the body; its own colliders are off.
+ *   limp        `go_limp(impulse, at, velocity)`: every part dynamic, joints with limits,
+ *               nothing driving them; `velocity` starts every part at it (a launch). The
+ *               entity follows the pelvis (position and rotation), so cameras and queries
+ *               follow the body; its own colliders are off.
  *   active      `activate(strength)`: the pelvis follows the entity (kinematic), which
  *               keeps moving as its game moves it; every other part is dynamic and its
  *               joint's motors servo it to the animated pose (critically damped, stiffer
@@ -313,10 +314,12 @@ export class Ragdolls implements RagdollPoseSource {
     return rig.blendTime === 0 ? 0 : rig.blendLeft / rig.blendTime;
   }
 
-  limp(entity: EntityId, impulse: Vec3 | undefined, at: Vec3 | undefined): void {
+  limp(entity: EntityId, impulse: Vec3 | undefined, at: Vec3 | undefined, velocity?: Vec3): void {
     const rig = this.#ensure(entity, 'limp');
     rig.mode = 'limp';
     this.#power(rig, false);
+    // A launch: the whole body flies off at this velocity, whatever the entity was doing.
+    if (velocity !== undefined) for (const p of rig.parts) p.body.setLinvel(velocity, true);
     if (impulse === undefined) return;
     let part = rig.parts[0]!;
     if (at !== undefined) {

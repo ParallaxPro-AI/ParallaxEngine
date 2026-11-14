@@ -140,12 +140,14 @@ function ragdollMethods(sim: Sim): object {
       return sim().ragdolls.weight(componentEntity(this as unknown as Fields));
     },
     go_limp(this: Fields, ...args: unknown[]): void {
-      const { positional: p, keywords: k } = splitKeywords(args, 'go_limp', ['impulse', 'at']);
+      const { positional: p, keywords: k } = splitKeywords(args, 'go_limp', ['impulse', 'at', 'velocity']);
       const impulse = arg(p, k, 0, 'impulse');
       const at = arg(p, k, 1, 'at');
+      const velocity = k['velocity'];
       sim().ragdolls.limp(componentEntity(this),
         impulse === undefined || impulse === null ? undefined : vec3(impulse, 'go_limp impulse'),
-        at === undefined || at === null ? undefined : vec3(at, 'go_limp(at=)'));
+        at === undefined || at === null ? undefined : vec3(at, 'go_limp(at=)'),
+        velocity === undefined || velocity === null ? undefined : vec3(velocity, 'go_limp(velocity=)'));
     },
     activate(this: Fields, ...args: unknown[]): void {
       const { positional: p, keywords: k } = splitKeywords(args, 'activate', ['strength']);
