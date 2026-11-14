@@ -225,15 +225,20 @@ export function riverSpot(course: Course, x: number, z: number): RiverSpot {
     const ex = course.xs[i + 1]! - ax; const ez = course.zs[i + 1]! - az;
     const len2 = ex * ex + ez * ez;
     if (len2 === 0) continue;
-    const u = Math.min(1, Math.max(0, ((x - ax) * ex + (z - az) * ez) / len2));
+    const raw = ((x - ax) * ex + (z - az) * ez) / len2;
+    const u = Math.min(1, Math.max(0, raw));
     const px = ax + ex * u; const pz = az + ez * u;
     const d2 = (x - px) * (x - px) + (z - pz) * (z - pz);
     if (d2 < best) {
       best = d2;
       const len = Math.sqrt(len2);
       const dirX = ex / len; const dirZ = ez / len;
-      // Right of downstream (y-up, left-handed: +z forward, +x right): (dirZ, -dirX).
-      const across = (x - px) * dirZ - (z - pz) * dirX;
+      // Right of downstream (y-up, left-handed: +z forward, +x right): (dirZ, -dirX). The
+      // river ends square where its course does (as its ribbon is drawn): a point past the
+      // source or the mouth is off it, not on its center line.
+      const past = (i === 0 && raw < 0) || (i + 2 === course.xs.length && raw > 1);
+      const side = (x - px) * dirZ - (z - pz) * dirX;
+      const across = past ? Infinity : (side < 0 ? -1 : 1) * Math.sqrt(d2);
       spot = {
         across, along: course.along[i]! + len * u, y: course.ys[i]! + (course.ys[i + 1]! - course.ys[i]!) * u, dirX, dirZ,
       };
