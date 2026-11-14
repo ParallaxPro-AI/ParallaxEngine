@@ -639,6 +639,27 @@ except TypeError as e:
     print("TypeError", e)
 ''')
 
+case("dataclass_name_field", r'''
+from dataclasses import dataclass
+
+@dataclass
+class Named:
+    name: str
+    length: int
+    theme: str = "dark"
+
+@dataclass
+class Defaulted:
+    name: str = "anon"
+    size: int = 1
+
+print(Named("a", 2), Named("b", 3, "light").theme, Defaulted(), Defaulted("z").name)
+try:
+    Named()
+except TypeError as e:
+    print("TypeError", e)
+''')
+
 case("stdlib_math_collections", r'''
 import math
 from collections import Counter, deque
