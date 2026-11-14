@@ -80,7 +80,8 @@ Choose one opening rule for each panel:
 
 `scenes=` limits a panel and its toggle action to matching scenes. `modal=True`
 mutes gameplay input while open; it also freezes simulation time in games without
-the net plugin. Online matches keep simulating. In mouse-look games the default
+the net plugin. Online matches keep simulating. `freeze=False` keeps a modal from freezing
+time, for a title menu over a live scene. In mouse-look games the default
 modal cursor is virtual, so the pointer can remain locked while the menu is usable.
 
 Scene loads close existing panels and open those listed by the new scene. Use

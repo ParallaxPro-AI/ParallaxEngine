@@ -434,7 +434,7 @@ class _Builder:
                      fix=f"@ui(\"{info.id}\", html=\"ui/{info.id}.html\")")
         else:
             entry["html"] = html_value
-        for key, allowed in (("modal", (True, False)), ("layer", LAYERS), ("scale", PANEL_SCALES)):
+        for key, allowed in (("modal", (True, False)), ("freeze", (True, False)), ("layer", LAYERS), ("scale", PANEL_SCALES)):
             if key in info.keywords:
                 try:
                     value = _const(info.keywords[key])

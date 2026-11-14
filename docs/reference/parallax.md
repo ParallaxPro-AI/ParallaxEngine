@@ -3774,6 +3774,7 @@ def ui(
     *,
     html: str,
     modal: bool = False,
+    freeze: bool = True,
     layer: Literal['hud', 'menu', 'overlay'] = 'hud',
     scenes: SceneScope = (),
     when: Callable[[Context], bool] | None = None,
@@ -3803,6 +3804,8 @@ modal=True: while any modal is open, gameplay actions are muted and the cursor i
 free; without the net plugin, simulation time also freezes. Modals stack; a
 `toggle_with` key closes only its own panel when it's on top. Modals close on scene
 load. `close_panel()` on a `when=` panel is a check error (it follows its condition).
+freeze=False: a modal that mutes gameplay input and frees the cursor but leaves the world
+running behind it (a title menu over a live scene, a conversation in a busy street).
 Subclass `PlayerPanel` for one instance per seat.
 
 In a mouse-look game the pointer stays locked under a modal and the engine draws a

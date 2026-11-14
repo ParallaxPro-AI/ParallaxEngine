@@ -64,6 +64,8 @@ export interface PanelDecl {
   readonly id: string;
   readonly html: string;
   readonly modal: boolean;
+  /** A modal with `freeze: false` mutes input but leaves simulation time running; absent: true. */
+  readonly freeze?: boolean;
   readonly layer: PanelLayer;
   /** Empty: every scene. */
   readonly scenes: readonly SceneScope[];
