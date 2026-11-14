@@ -39,13 +39,17 @@ const DATA = {
 };
 
 function start(gamePlugins: unknown[], store?: KeyValueStore): GameRuntime {
+  return startWith(gamePlugins, DATA, store);
+}
+
+function startWith(gamePlugins: unknown[], data: Record<string, unknown>, store?: KeyValueStore): GameRuntime {
   const game = new Game(kw({
     id: 'kitchen', title: 'Kitchen', sdk: '1.0', mode: '3d', start_scene: new SceneRef('kitchen'), plugins: gamePlugins,
   }));
-  const project = loadProject(files(DATA));
+  const project = loadProject(files(data));
   expect(project.diagnostics).toEqual([]);
   const runtime = createRuntime(game, project, {
-    seed: 1, devices: new HeadlessInput(), audio: new HeadlessAudio(), assets: null, files: files(DATA),
+    seed: 1, devices: new HeadlessInput(), audio: new HeadlessAudio(), assets: null, files: files(data),
     surface3d: new RecordingSurface3d(), binary: new MemoryBinaryFiles({}), ...(store !== undefined && { store }),
   });
   runtime.start();
@@ -89,6 +93,23 @@ describe('players', () => {
     runtime.kernel.destroy(runtime.unwrap(entities[1]!)!);
     runtime.step(1 / 60);
     expect(players[1]!.entity).toBeNull();
+  });
+
+  it('local_players without split screen: every seat looks through the scene\'s one camera', () => {
+    const runtime = startWith([twoSeats()], {
+      ...DATA,
+      'prefabs/cam.prefab.json': { components: { camera: {} } },
+      'scenes/kitchen/scene.json': { entities: [
+        { prefab: 'cam', id: 'cam', at: [0, 10, -10] },
+        { prefab: 'start', at: [6, 0, 0], components: { player_start: { seat: 1 } } },
+        { prefab: 'start', at: [-6, 0, 0], components: { player_start: { seat: 0 } } },
+      ] },
+    });
+    const players = runtime.ctx.players;
+    const camera = (runtime.ctx as unknown as { camera: { for_player(p: unknown): unknown } }).camera;
+    const shared = camera.for_player(players[0]);
+    // seat 1 has no camera of its own: it shares seat 0's instead of failing (PP3720)
+    expect(camera.for_player(players[1])).toBe(shared);
   });
 });
 

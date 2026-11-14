@@ -44,6 +44,11 @@ export interface PlayersService {
   seats(): readonly PlayerSeat[];
   /** The entity a seat controls now (`Player.entity`), or null. */
   entity(seat: number): EntityId | null;
+  /**
+   * The seat whose camera this seat looks through: its own, or seat 0's when every seat
+   * shares one view (local_players with split_screen="none"). Absent: its own.
+   */
+  viewOf?(seat: number): number;
 }
 
 export const PLAYERS_SERVICE: ServiceKey<PlayersService> = serviceKey<PlayersService>(

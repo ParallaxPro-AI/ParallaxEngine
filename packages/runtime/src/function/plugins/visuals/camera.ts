@@ -70,6 +70,8 @@ export interface CameraOptions {
   readonly look?: LookSource;
   readonly seatEntity?: (seat: number) => EntityId | null;
   readonly currentSeat?: () => number;
+  /** The seat whose camera a seat looks through (a shared view maps every seat to 0). */
+  readonly viewSeat?: (seat: number) => number;
   readonly capture?: (view: CameraView) => unknown;
   readonly presentHandle?: (handle: Handle) => unknown;
 }
@@ -690,6 +692,7 @@ export class Cameras {
 
   /** The active camera's entity for a seat (default: the reading behavior's seat). */
   main(seat = this.#options.currentSeat?.() ?? 0): EntityId {
+    seat = this.#options.viewSeat?.(seat) ?? seat;
     const active = this.#activeBySeat(this.#cameraRecords());
     const id = active.get(seat);
     if (id === undefined) {
@@ -705,7 +708,8 @@ export class Cameras {
     if (!record.components.has(CAMERA)) {
       fail('PP3721', 'camera.use() takes an entity with a Camera', { fix: 'Pass the camera entity (camera.entity).' });
     }
-    this.#used.set(this.#options.currentSeat?.() ?? 0, id);
+    const seat = this.#options.currentSeat?.() ?? 0;
+    this.#used.set(this.#options.viewSeat?.(seat) ?? seat, id);
     this.#resolveAll(0, false);
   }
 

@@ -97,6 +97,8 @@ export interface VisualsOptions {
   readonly seatEntity?: (seat: number) => EntityId | null;
   /** The seat `ctx.camera.main` serves now (the running behavior's); default 0. */
   readonly currentSeat?: () => number;
+  /** The seat whose camera a seat looks through (players service `viewOf`); default its own. */
+  readonly viewSeat?: (seat: number) => number;
   /** Renders a view to an image (`Camera.capture`), supplied by the renderer. */
   readonly capture?: (view: CameraView) => unknown;
   /** Engine values as game code sees them (the api's `Handle` and `ClipRef`). */
@@ -163,6 +165,7 @@ export function visuals(options: VisualsOptions): VisualsPlugin {
     ...(options.look !== undefined && { look: options.look }),
     ...(options.seatEntity !== undefined && { seatEntity: options.seatEntity }),
     ...(options.currentSeat !== undefined && { currentSeat: options.currentSeat }),
+    ...(options.viewSeat !== undefined && { viewSeat: options.viewSeat }),
     ...(options.capture !== undefined && { capture: options.capture }),
     ...(options.present?.handle !== undefined && { presentHandle: options.present.handle }),
   });
