@@ -14,6 +14,9 @@
  * identity.
  *
  * Collision is null for every deformable mesh: the solvers collide on their own.
+ *
+ * Textures. A part's `material.texture` is the component's image handle ("images/flag",
+ * or a hosted URL) as the game wrote it, not a file path; the renderer resolves it.
  */
 
 import { serviceKey } from '../kernel/index.js';

@@ -666,7 +666,8 @@ export class Render3dEngine {
     meshes.push(...this.#voxels.draws(blockWorld, (ref) => this.#imageTexture(this.#authoredImage(ref, 'A block texture'), 'repeat', 'nearest')));
     // Deformable meshes (cloth, soft bodies) as generated meshes; in-world UI screens.
     const deformable = DEFORMABLE_MESH_SOURCES.flatMap((key) => kernel.tryService(key)?.meshes() ?? []);
-    if (deformable.length > 0) meshes.push(...this.#generated.draws(deformable, (path) => this.#imageTexture(path, 'repeat')));
+    // Their textures are fields as written (`"images/flag"`), resolved like terrain and block textures.
+    if (deformable.length > 0) meshes.push(...this.#generated.draws(deformable, (ref) => this.#imageTexture(this.#authoredImage(ref, 'A cloth or soft body texture'), 'repeat')));
     meshes.push(...(kernel.tryService(SCREENS_SERVICE)?.draws() ?? []));
 
     this.#beams = this.#beams.filter((b) => b.until >= now);
