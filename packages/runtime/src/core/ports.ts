@@ -112,6 +112,7 @@ export interface InputSnapshot {
  * Gestures on the play area (fingers not on a control):
  *
  *   swipe       a flick: analog (a unit x/y on its frame) or one direction
+ *   press       a finger lands on the play area (pressed at touch-down, held until it lifts)
  *   tap         a short touch (pressed on release)
  *   double_tap  two taps close together (pressed on the second)
  *   long_press  a touch held still (pressed once, held until the finger lifts)
@@ -123,7 +124,7 @@ export interface InputSnapshot {
  */
 export type TouchShape =
   | 'joystick' | 'button' | 'dpad' | 'stepper' | 'steer'
-  | 'swipe' | 'tap' | 'double_tap' | 'long_press' | 'drag' | 'look' | 'pinch' | 'scroll' | 'stick_edge';
+  | 'swipe' | 'press' | 'tap' | 'double_tap' | 'long_press' | 'drag' | 'look' | 'pinch' | 'scroll' | 'stick_edge';
 
 /**
  * Where a button sits. Unset: the action cluster (its first button becomes the primary).

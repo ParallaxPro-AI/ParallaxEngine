@@ -158,6 +158,24 @@ describe('TouchState: the previous overlay\'s controls', () => {
     expect(s.poll().get('steer')).toMatchObject({ held: true, x: 0.5, y: 0 });
   });
 
+  it('press fires at touch-down for every finger and holds while one stays (tap waits for release)', () => {
+    const s = new TouchState();
+    s.setLayout([spec({ id: 'press', shape: 'press' }), spec({ id: 'tap', shape: 'tap' })]);
+    expect(s.readsArea).toBe(true);
+    s.areaDown(f(1, 100, 100, 0), 800);
+    let p = s.poll(10);
+    expect(p.get('press')).toMatchObject({ held: true, pressed: true });
+    expect(p.get('tap')!.pressed).toBe(false);
+    expect(s.poll(20).get('press')).toMatchObject({ held: true, pressed: false });
+    s.areaDown(f(2, 600, 120, 30), 800); // a second thumb lands while the first is down
+    expect(s.poll(40).get('press')).toMatchObject({ held: true, pressed: true });
+    s.up(f(1, 100, 100, 60));
+    s.up(f(2, 600, 120, 70));
+    p = s.poll(80);
+    expect(p.get('press')).toMatchObject({ held: false, pressed: false });
+    expect(p.get('tap')!.pressed).toBe(true);
+  });
+
   it('double tap, long press (timed at poll), and two-finger pinch / scroll in wheel notches', () => {
     const s = new TouchState();
     s.setLayout([
