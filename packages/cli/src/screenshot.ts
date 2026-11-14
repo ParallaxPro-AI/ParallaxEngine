@@ -14,7 +14,8 @@
  *
  * Keys (`--keys`) are a sequence of steps, run one after another from the moment the game
  * is running, while the shots are taken on their own schedule (`--seconds`, then every
- * `--every` seconds): `"KeyW:2,Space,wait:0.5,ArrowLeft+KeyW:1,click,click@640x400"`.
+ * `--every` seconds): `"KeyW:2,Space,wait:0.5,ArrowLeft+KeyW:1,click,click@640x400"`; `drag@AxB-CxD`
+ * presses at one pixel, moves the held mouse to another and lets go there (dragging a card).
  * Both count seconds of play on the game's own clock (`time.realNow`), not the wall clock,
  * so a machine drawing slowly (SwiftShader) still shows what N seconds of play look like.
  */
@@ -36,7 +37,8 @@ export const SCREENSHOT_USAGE = `Usage:
                       [--width W] [--height H] [--keys STEPS] [--seed N] [--timeout S] [--gl auto|gpu|software]
                       [--json]
                  run the game in headless Chrome and write PNGs once it has played N seconds;
-                 --keys "KeyW:2,Space,wait:1,click@640x360" holds/presses keys and clicks meanwhile;
+                 --keys "KeyW:2,Space,wait:1,click@640x360" holds/presses keys and clicks meanwhile
+                 (drag@300x600-640x300 holds the mouse down from one pixel to another);
                  --json prints a report (shots, boot outcome, console, game errors) instead of text
 `;
 
@@ -68,7 +70,16 @@ export interface ScreenshotArgs {
 export type KeyStep =
   | { readonly kind: 'keys'; readonly codes: readonly string[]; readonly seconds: number }
   | { readonly kind: 'click'; readonly seconds: number; readonly at?: { readonly x: number; readonly y: number } }
+  | {
+    readonly kind: 'drag'; readonly seconds: number;
+    readonly from: { readonly x: number; readonly y: number }; readonly to: { readonly x: number; readonly y: number };
+  }
   | { readonly kind: 'wait'; readonly seconds: number };
+
+/** How long a drag without `:seconds` takes from press to release. */
+export const DRAG_SECONDS = 0.5;
+/** Mouse moves sent along a drag, evenly spaced in time and space. */
+export const DRAG_MOVES = 10;
 
 /** How long a key without `:seconds` is held: a tap the game sees for a few frames. */
 export const TAP_SECONDS = 0.1;
@@ -125,6 +136,13 @@ export function parseKeys(text: string): KeyStep[] | string {
       const at = /^click@(\d+)x(\d+)$/.exec(lower);
       if (lower !== 'click' && at === null) return `--keys: "${raw}" clicks at pixels: click@640x360`;
       steps.push({ kind: 'click', seconds: seconds ?? TAP_SECONDS, ...(at !== null && { at: { x: Number(at[1]), y: Number(at[2]) } }) });
+    } else if (lower.startsWith('drag')) {
+      const d = /^drag@(\d+)x(\d+)-(\d+)x(\d+)$/.exec(lower);
+      if (d === null) return `--keys: "${raw}" drags between pixels: drag@300x600-640x300`;
+      steps.push({
+        kind: 'drag', seconds: seconds ?? DRAG_SECONDS,
+        from: { x: Number(d[1]), y: Number(d[2]) }, to: { x: Number(d[3]), y: Number(d[4]) },
+      });
     } else {
       const codes: string[] = [];
       for (const part of name!.split('+').map((s) => s.trim())) {
@@ -142,6 +160,7 @@ export function parseKeys(text: string): KeyStep[] | string {
 export type Action =
   | { readonly at: number; readonly kind: 'down' | 'up'; readonly code: string }
   | { readonly at: number; readonly kind: 'press' | 'release'; readonly point?: { readonly x: number; readonly y: number } }
+  | { readonly at: number; readonly kind: 'move'; readonly point: { readonly x: number; readonly y: number } }
   | { readonly at: number; readonly kind: 'shot' };
 
 /** The `--keys` steps (one after another from 0) and the shots, by seconds of play, in order. */
@@ -154,6 +173,14 @@ export function timeline(args: Pick<ScreenshotArgs, 'keys' | 'seconds' | 'shots'
       for (const code of [...step.codes].reverse()) out.push({ at: t + step.seconds, kind: 'up', code });
     } else if (step.kind === 'click') {
       out.push({ at: t, kind: 'press', ...(step.at !== undefined && { point: step.at }) }, { at: t + step.seconds, kind: 'release', ...(step.at !== undefined && { point: step.at }) });
+    } else if (step.kind === 'drag') {
+      out.push({ at: t, kind: 'press', point: step.from });
+      for (let i = 1; i <= DRAG_MOVES; i++) {
+        const k = i / DRAG_MOVES;
+        const point = { x: Math.round(step.from.x + (step.to.x - step.from.x) * k), y: Math.round(step.from.y + (step.to.y - step.from.y) * k) };
+        out.push({ at: t + step.seconds * k * 0.9, kind: 'move', point });
+      }
+      out.push({ at: t + step.seconds, kind: 'release', point: step.to });
     }
     t += step.seconds;
   }
@@ -568,6 +595,9 @@ export async function screenshot(args: ScreenshotArgs, log: (line: string) => vo
         const at = { ...(a.point ?? center), button: 'left', clickCount: 1 };
         if (a.kind === 'press') await page('Input.dispatchMouseEvent', { type: 'mouseMoved', ...at, button: 'none' });
         await page('Input.dispatchMouseEvent', { type: a.kind === 'press' ? 'mousePressed' : 'mouseReleased', ...at });
+      } else if (a.kind === 'move') {
+        // Between a drag's press and release the left button stays down.
+        await page('Input.dispatchMouseEvent', { type: 'mouseMoved', ...a.point, button: 'left', buttons: 1 });
       }
     };
     const written: string[] = [];

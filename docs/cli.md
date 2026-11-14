@@ -92,7 +92,9 @@ still shows the same moment of the game, only later.
 `--keys` is a comma-separated list of steps run in order: `KeyW:2` holds a key for
 2 seconds, `Space` taps it (0.1 seconds), `ShiftLeft+KeyW:1` holds several,
 `wait:1` waits, and `click` or `click@XxY` (for example `click@640x400`) clicks the middle of
-the page or that pixel. Keys are `KeyboardEvent.code` names; `w`, `1`, `space`, `up`,
+the page or that pixel. `drag@AxB-CxD` presses the mouse at one pixel, moves it held down to
+another and releases it there (`drag@640x650-900x300:0.8` drags a card onto a target over 0.8
+seconds; the default is 0.5). Keys are `KeyboardEvent.code` names; `w`, `1`, `space`, `up`,
 `shift` and `esc` work too. Keys keep running between shots.
 
 The command prints each PNG's path, the page's console errors and warnings, and any
