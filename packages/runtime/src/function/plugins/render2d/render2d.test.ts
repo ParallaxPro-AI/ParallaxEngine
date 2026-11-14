@@ -17,6 +17,7 @@ import { ENVIRONMENT_SERVICE } from '../../services/index.js';
 import type { EnvironmentService, ResolvedEnvironment } from '../../services/index.js';
 import { AssetCatalog } from './assets.js';
 import { parseEffect } from './effects.js';
+import { TILEMAP_SCHEMA } from '../visuals/schemas.js';
 import { BAR_SIZE, DEFAULT_AMBIENT_2D, lightAt, PARTICLES, parseMarkup, render2d, TRAIL_SECONDS } from './index.js';
 import type { Render2dPlugin } from './index.js';
 
@@ -41,6 +42,7 @@ const STAND_INS: readonly ComponentDef[] = [
       flip_x: t.bool({ default: false }),
       flip_y: t.bool({ default: false }),
       blend: t.enum(['normal', 'additive'], { default: 'normal' }),
+      filter: t.enum(['linear', 'nearest'], { default: 'linear' }),
       animations: t.json({ default: {} }),
       animation: { type: opt({ kind: 'string' }), default: null },
       animation_started: t.number({ default: 0 }),
@@ -100,6 +102,9 @@ const STAND_INS: readonly ComponentDef[] = [
       kind: t.enum(['point', 'spot', 'directional'], { default: 'point' }), color: t.color({ default: Color.WHITE }),
       intensity: t.number({ default: 1 }), range: t.number({ default: 10 }), angle: t.number({ default: 45 }), shadows: t.bool({ default: false }),
     },
+  },
+  {
+    id: 'tilemap', schema: TILEMAP_SCHEMA,
   },
   {
     id: 'grid', schema: {
@@ -390,6 +395,21 @@ describe('render2d frames', () => {
     expect(rect).toMatchObject({ kind: 'rect', blend: 'additive' });
     expect(plain).toMatchObject({ kind: 'image' });
     expect('blend' in plain!).toBe(false);
+  });
+
+  it('carries a pixel-art "nearest" filter on sprite and tile images, and nothing when smoothed', () => {
+    const pixels = {
+      'prefabs/pixel.prefab.json': { z: 3, components: { sprite: { image: 'images/hero', filter: 'nearest' } } },
+      'prefabs/level.prefab.json': { z: 1, components: { tilemap: { filter: 'nearest', rows: ['ab'], tiles: { a: { image: 'images/run_0', color: '#ffffff' }, b: { color: '#00ff00' } } } } },
+    };
+    const { kernel, surface } = started([{ prefab: 'camera' }, { prefab: 'level' }, { prefab: 'pixel' }, { prefab: 'hero' }], pixels);
+    kernel.step(1 / 60);
+    const [tile, plainTile, sprite, smooth] = surface.last!.commands;
+    expect(tile).toMatchObject({ kind: 'image', image: 'assets/images/run_0.png', filter: 'nearest' });
+    expect(plainTile).toMatchObject({ kind: 'rect' });
+    expect(sprite).toMatchObject({ kind: 'image', image: 'assets/images/hero.png', filter: 'nearest' });
+    expect(smooth).toMatchObject({ kind: 'image' });
+    expect('filter' in smooth!).toBe(false);
   });
 
   it('hides invisible entities and their children', () => {

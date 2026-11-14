@@ -632,8 +632,10 @@ Give a character more than a flat silhouette: an outline (`stroke`), an eye, a
 lighter top edge or a shadow underneath. Keep the art in one style across the
 game: the same outline width, the same palette and the same light direction.
 
-The 2D renderer always smooths images, so very small pixel-art images look soft
-when scaled up. Draw pixel art at its final size or use SVG `<rect>`s.
+The 2D renderer smooths images as it scales them, so very small pixel-art images
+look soft when shown large. For pixel art, set `"filter": "nearest"` on the
+`sprite` (or on the `tilemap`, for its tiles) to keep hard square pixels: draw a
+16×16 PNG and show it at any size.
 
 ### Sprites and animation
 

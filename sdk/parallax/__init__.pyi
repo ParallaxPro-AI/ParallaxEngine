@@ -815,6 +815,9 @@ class Sprite(EngineComponent):
     """How it combines with what is under it: "normal" (default) paints over; "additive"
     adds its colors, so overlaps glow toward white and black pixels vanish (glows, lasers,
     muzzle flashes, magic)."""
+    filter: Literal["linear", "nearest"] = ...
+    """How the image scales: "linear" (default) smooths it; "nearest" keeps hard square
+    pixels, for pixel art drawn small and shown large."""
     def play(self, animation: str, *, restart: bool = False) -> None:
         """Animation names are checked against this prefab's `animations`."""
     @property
@@ -850,6 +853,9 @@ class Tilemap(EngineComponent):
     collide: bool = False
     layer: str = "default"
     friction: float = 0.5
+    filter: Literal["linear", "nearest"] = "linear"
+    """How tile images scale: "linear" (default) smooths them; "nearest" keeps hard square
+    pixels, for pixel-art tiles."""
 
 @component("shape")
 class Shape(EngineComponent):

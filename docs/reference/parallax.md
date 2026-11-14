@@ -1375,6 +1375,11 @@ top-level `"z": 2`; there is no second ordering knob.
   adds its colors, so overlaps glow toward white and black pixels vanish (glows, lasers,
   muzzle flashes, magic).
 
+- `filter: Literal['linear', 'nearest'] = ...`
+
+  How the image scales: "linear" (default) smooths it; "nearest" keeps hard square
+  pixels, for pixel art drawn small and shown large.
+
 - `animation: str | None  # read-only`
 
 **Methods**
@@ -1435,6 +1440,10 @@ adjacent cells in a row, on `layer`); they are rebuilt when the fields change, s
 - `collide: bool = False`
 - `layer: str = 'default'`
 - `friction: float = 0.5`
+- `filter: Literal['linear', 'nearest'] = 'linear'`
+
+  How tile images scale: "linear" (default) smooths them; "nearest" keeps hard square
+  pixels, for pixel-art tiles.
 
 ### `Shape`
 

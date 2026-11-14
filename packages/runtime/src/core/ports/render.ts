@@ -55,6 +55,8 @@ export interface ImageDraw extends Placed {
   readonly flipY: boolean;
   /** "additive": its colors add to what is under it (a sprite's `blend`). Absent: "normal" (painted over). */
   readonly blend?: 'normal' | 'additive';
+  /** "nearest": scaled without smoothing, hard pixels (a sprite's or tilemap's `filter`). Absent: smoothed. */
+  readonly filter?: 'nearest';
 }
 
 /** An outline centered on a shape's edge. */

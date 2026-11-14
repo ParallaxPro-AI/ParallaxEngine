@@ -197,6 +197,18 @@ describe('CanvasSurface2d', () => {
     expect(ops.slice(ops.indexOf('lighter'))).toEqual(['lighter', 'drawImage', 'source-over', 'fillRect']);
   });
 
+  it('draws a "nearest" image without smoothing, then smooths again', async () => {
+    const { s, calls } = surface();
+    const pixel: Draw2d = { kind: 'image', z: 0, entity: 1, transform: [1, 0, 0, 1, 0, 0], image: 'a.png', size: [1, 1], tint: [1, 1, 1, 1], flipX: false, flipY: false, filter: 'nearest' };
+    const smooth: Draw2d = { ...pixel, entity: 2, filter: undefined };
+    s.load('a.png');
+    await Promise.resolve();
+    await Promise.resolve();
+    s.draw(frame([pixel, smooth]));
+    const ops = calls.filter((c) => c[0] === '=imageSmoothingEnabled' || c[0] === 'drawImage').map((c) => c[0] === 'drawImage' ? c[0] : c[1]);
+    expect(ops).toEqual([false, 'drawImage', true, 'drawImage']);
+  });
+
   it('draws particles and lines', () => {
     const { s, calls } = surface();
     s.draw(frame([
