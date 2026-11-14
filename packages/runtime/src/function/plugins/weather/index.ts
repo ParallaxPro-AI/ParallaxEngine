@@ -165,7 +165,12 @@ class WeatherState implements WeatherService, WeatherControl, DirectorWorld, Dir
     const hit = physics?.raycast(new Vec3(x, top, z), new Vec3(0, -1, 0), 6000);
     if (hit !== undefined) return hit.point.y;
     const terrain = this.#kernel.tryService(TERRAIN_SERVICE)?.current();
-    return terrain === null || terrain === undefined ? 0 : terrain.heightAt(x, z);
+    if (terrain === null || terrain === undefined) return 0;
+    // A strike past the terrain's edge (lightning_radius reaches beyond a small map) lands
+    // on the ground at the nearest edge rather than asking outside the heightfield (PP3203).
+    const cx = Math.min(Math.max(x, terrain.minX), terrain.minX + terrain.width);
+    const cz = Math.min(Math.max(z, terrain.minZ), terrain.minZ + terrain.depth);
+    return terrain.heightAt(cx, cz);
   }
 
   struck(strike: LightningStrike): void {
