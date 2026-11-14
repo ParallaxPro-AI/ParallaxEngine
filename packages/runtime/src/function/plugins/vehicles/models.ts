@@ -14,6 +14,13 @@
  *             throttle; lift cancels gravity in proportion to (airspeed / stall speed)²;
  *             the flight path follows the nose as lift builds; pitch/roll/yaw rates with
  *             control authority growing to full at stall speed. It rolls on its Collider.
+ *   helicopter arcade rotorcraft: the rotor holds it in a hover while someone flies it;
+ *             `throttle` is the collective (climb / descend at up to `acceleration` /
+ *             HELI_VERTICAL_DAMPING m/s), `pitch` and `roll` tilt the disc up to
+ *             HELI_MAX_TILT degrees (the tilted lift moves it, with drag settling at
+ *             max_speed), and `yaw` turns it at `turn_rate`. With the stick centered it
+ *             levels and flares to a hover; nobody flying it, it sits on its skids (its
+ *             Collider).
  *
  * Numbers that aren't Vehicle fields are named constants below.
  */
@@ -349,6 +356,51 @@ export function stepPlane(service: Physics3dService, entity: EntityId, v: Vehicl
     steerRates(service, entity, w, target, dt);
   }
   return { ...contact, stall };
+}
+
+// ── Helicopter ─────────────────────────────────────────────────────────────────
+
+/** Largest disc tilt from pitch/roll input (deg), and how fast the attitude follows the stick (1/s). */
+export const HELI_MAX_TILT = 24;
+export const HELI_ATTITUDE_RESPONSE = 3;
+/** Vertical speed damping (1/s): with the collective centered the helicopter holds its altitude. */
+export const HELI_VERTICAL_DAMPING = 1.4;
+/** Extra horizontal drag (1/s) with the stick centered: an arcade flare that brings it to a hover. */
+export const HELI_HOVER_BRAKE = 0.6;
+
+export function stepHelicopter(
+  service: Physics3dService, entity: EntityId, v: VehicleFields, body: BodyState, input: FlyInput, rotorOn: boolean, dt: number,
+): StepResult {
+  const contact = onGround(service, entity);
+  if (!rotorOn) return contact;
+  const { forward, right, up } = axes(body.rotation);
+  const g = Math.abs(service.gravity);
+  const collective = clamp(input.throttle, -1, 1);
+  // Sitting on the skids with the collective down: the rotor idles and the stick does nothing.
+  const resting = contact.grounded && collective <= 0.05;
+  let vel = body.velocity;
+  // Lift: gravity cancelled, the collective climbs or sinks, damped to a steady rate.
+  const climb = resting ? 0 : g + v.acceleration * collective - HELI_VERTICAL_DAMPING * vel.y;
+  // The tilted disc pushes along its flattened up axis; drag settles at max_speed at full tilt.
+  const lean = up.flat();
+  const stick = Math.max(Math.abs(clamp(input.pitch, -1, 1)), Math.abs(clamp(input.roll, -1, 1)));
+  const drag = (g * Math.tan((HELI_MAX_TILT * Math.PI) / 180)) / Math.max(v.max_speed, 1) + HELI_HOVER_BRAKE * (1 - stick);
+  const flat = vel.flat();
+  const push = resting ? Vec3.ZERO : lean.__mul__(g / Math.max(up.y, 0.3)).__sub__(flat.__mul__(drag));
+  vel = vel.__add__(new Vec3(push.x * dt, climb * dt, push.z * dt));
+  service.setVelocity(entity, vel);
+  // Attitude: pitch and roll angles chase the stick; yaw turns about the world's up.
+  const pitchNow = deg(Math.asin(clamp(forward.y, -1, 1)));
+  const rollNow = deg(Math.asin(clamp(-right.y, -1, 1)));
+  const pitchTarget = resting ? 0 : clamp(input.pitch, -1, 1) * HELI_MAX_TILT;
+  const rollTarget = resting ? 0 : clamp(input.roll, -1, 1) * HELI_MAX_TILT;
+  const k = HELI_ATTITUDE_RESPONSE;
+  const yawRate = resting ? 0 : clamp(input.yaw, -1, 1) * v.turn_rate;
+  const target = right.__mul__(-k * (pitchTarget - pitchNow))
+    .__add__(forward.__mul__(-k * (rollTarget - rollNow)))
+    .__add__(Vec3.UP.__mul__(yawRate));
+  steerRates(service, entity, body.angularVelocity, target, dt);
+  return contact;
 }
 
 /** Sideways slide angle in degrees (positive: sliding right), 0 below 1 m/s. */

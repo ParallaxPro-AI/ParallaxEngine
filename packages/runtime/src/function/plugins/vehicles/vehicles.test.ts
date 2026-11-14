@@ -285,6 +285,53 @@ describe('aircraft', () => {
   });
 });
 
+describe('helicopter', () => {
+  const HELI = { components: {
+    rigidbody: { kind: 'dynamic', mass: 1400 },
+    collider: { shape: 'box', size: [3, 2.6, 9], offset: [0, 1.3, 0], friction: 0.6 },
+    vehicle: { kind: 'helicopter', max_speed: 40, acceleration: 8, turn_rate: 70 },
+  }, behaviors: { watch: {} } };
+
+  it('sits on its skids unflown, climbs on the collective, holds a hover, tilts forward to fly and yaws', () => {
+    const g = game({ road: ROAD, heli: HELI }, [{ prefab: 'road' }, { prefab: 'heli', id: 'h', at: [0, 0.2, 0] }]);
+    g.run(90);
+    const h = g.vehicle('h');
+    expect(h.grounded).toBe(true);
+    expect(g.pos('h').y).toBeLessThan(0.3);
+    expect(() => h.drive({ throttle: 1 })).toThrow(/PP7310/);
+    // Flown with the collective centered on the ground: it stays put.
+    g.run(60, () => h.fly({ throttle: 0 }));
+    expect(g.pos('h').y).toBeLessThan(0.3);
+    g.run(4 * 60, () => h.fly({ throttle: 1 }));
+    const high = g.pos('h').y;
+    expect(high).toBeGreaterThan(12);
+    expect(h.airborne).toBe(true);
+    // Collective centered: the climb dies away and it hangs there.
+    g.run(3 * 60, () => h.fly({ throttle: 0 }));
+    const settled = g.pos('h').y;
+    g.run(2 * 60, () => h.fly({ throttle: 0 }));
+    expect(Math.abs(g.pos('h').y - settled)).toBeLessThan(0.5);
+    // Nose down: it flies forward (+z) and keeps its height, toward max_speed.
+    g.run(8 * 60, () => h.fly({ pitch: -1 }));
+    expect(g.pos('h').z).toBeGreaterThan(60);
+    expect(h.speed).toBeGreaterThan(20);
+    expect(h.speed).toBeLessThan(42);
+    expect(Math.abs(g.pos('h').y - settled)).toBeLessThan(6);
+    // Stick centered: it levels out and slows.
+    g.run(6 * 60, () => h.fly({}));
+    expect(Math.abs(h.speed)).toBeLessThan(8);
+    const r = g.kernel.world.require(g.id('h')).transform.rotation.to_euler();
+    expect(Math.abs(r.x) + Math.abs(r.z)).toBeLessThan(3);
+    const yaw = g.yaw('h');
+    g.run(60, () => h.fly({ yaw: 1 }));
+    expect(Math.abs(((g.yaw('h') - yaw + 540) % 360) - 180)).toBeGreaterThan(40);
+    // Nobody at the controls: the rotor stops and it comes down.
+    g.run(6 * 60);
+    expect(h.grounded).toBe(true);
+    expect(g.pos('h').y).toBeLessThan(0.5);
+  });
+});
+
 describe('seats', () => {
   const PILOT = { components: { character: { acceleration: 1000 } } };
 

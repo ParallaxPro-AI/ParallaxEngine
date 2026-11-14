@@ -39,7 +39,7 @@ Regenerate after changing a stub: `python3 tools/gen_api_docs.py`.
 | [`parallax.story`](parallax.story.md) | Story plugin (`plugins.story()`, `ctx.story`): facts, quests and dialogue. |
 | [`parallax.terrain`](parallax.terrain.md) | Terrain plugin: heightfield ground declared on the scene (`"terrain": {...}` in scene.json). |
 | [`parallax.values`](parallax.values.md) | Pure value types. |
-| [`parallax.vehicles`](parallax.vehicles.md) | Vehicles plugin: cars, tracked vehicles, boats and arcade planes on Rapier. |
+| [`parallax.vehicles`](parallax.vehicles.md) | Vehicles plugin: cars, tracked vehicles, boats, arcade planes and helicopters on Rapier. |
 | [`parallax.viewmodel`](parallax.viewmodel.md) | First-person viewmodel (`plugins.viewmodel()`): arms and a held item drawn over the world with their own field of view and near plane (they never clip into walls), moved by procedural layers instead of baked clips, because what they do answers what the player does this frame: |
 | [`parallax.voice`](parallax.voice.md) | Proximity voice chat (plugins.voice()), for net games: every player hears the others from where their avatars stand — full within `near` meters, fading to silence at `far`, panned to the side they're on — over WebRTC audio (Opus, echo cancellation and noise suppression by the browser). |
 | [`parallax.voxels`](parallax.voxels.md) | Voxels plugin: block worlds. |

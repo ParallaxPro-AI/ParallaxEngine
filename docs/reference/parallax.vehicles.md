@@ -4,7 +4,7 @@
 
 `from parallax.vehicles import ...` · source: `sdk/parallax/vehicles.pyi`
 
-Vehicles plugin: cars, tracked vehicles, boats and arcade planes on Rapier.
+Vehicles plugin: cars, tracked vehicles, boats, arcade planes and helicopters on Rapier.
 
 A `Vehicle` alone is a complete arcade vehicle. Optional components on the same entity
 deepen it, each only when present:
@@ -38,6 +38,13 @@ has entered it (`VehicleEntered`). A rider without a Character (an AI driver ent
 mounted on the seat by the vehicle. `vehicles()` registers `Seat` too, so a game with
 vehicles and no characters still has seats.
 
+A helicopter (`"kind": "helicopter"`) is flown with `fly()`: `throttle` is the collective
+(0 holds the altitude, +1 climbs, -1 sinks), `pitch` and `roll` tilt the rotor disc up to
+24° and it flies the way it leans (topping out at `max_speed`), `yaw` turns it at
+`turn_rate`. With the stick centered it levels and slows to a hover; with the collective
+down on the ground it sits. Nobody flying it, the rotor stops and it comes down on its
+Collider.
+
 ```text
 "components": {"vehicle": {"kind": "car", "max_speed": 55},
                "drivetrain": {"gears": [3.2, 2.0, 1.4, 1.0, 0.8], "peak_torque": 380},
@@ -60,13 +67,13 @@ class Vehicle(EngineComponent)
 
 **Fields**
 
-- `kind: Literal['car', 'plane', 'boat', 'tracked'] = field('car')`
+- `kind: Literal['car', 'plane', 'boat', 'tracked', 'helicopter'] = field('car')`
 - `max_speed: float = field(30, min=0, unit='m/s', modifiable=True, doc='With a drivetrain: a governor on top of what the engine gives.')`
 - `reverse_speed: float = field(8, min=0, unit='m/s')`
 - `acceleration: float = field(10, min=0, unit='m/s²', modifiable=True, doc='Unused by cars with a drivetrain (the engine decides).')`
 - `braking: float = field(20, min=0, unit='m/s²', modifiable=True)`
 - `steering: float = field(35, min=0, unit='deg')`
-- `turn_rate: float = field(60, min=0, unit='deg/s', doc='Tracked: in-place turn speed. Boats: yaw rate.')`
+- `turn_rate: float = field(60, min=0, unit='deg/s', doc='Tracked: in-place turn speed. Boats and helicopters: yaw rate.')`
 - `grip: float = field(1, min=0, modifiable=True, doc='Lateral grip; lower = more drift.')`
 - `fuel: float = field(-1, min=-1, unit='L', doc='-1 = no fuel model.')`
 - `fuel_capacity: float = field(-1, min=-1, unit='L')`
@@ -129,7 +136,10 @@ def fly(
 ```
 
 `brake` = wheel brakes on the ground. pitch &gt; 0 noses up, roll &gt; 0 rolls right,
-yaw &gt; 0 turns right. Planes only.
+yaw &gt; 0 turns right. Planes and helicopters only. A helicopter hovers while flown:
+`throttle` is its collective (climb above 0, sink below), pitch and roll tilt the
+rotor disc (nose down flies forward, up to max_speed), yaw turns it at `turn_rate`;
+centered, it levels and slows to a hover. Unflown, its rotor stops and it lands.
 
 ```python
 def enter(driver: Entity, *, seat: int = 0) -> bool

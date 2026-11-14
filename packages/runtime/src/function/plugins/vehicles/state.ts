@@ -27,7 +27,7 @@ import { freshDrivetrain, stepDrivetrain } from './drivetrain.js';
 import type { DrivetrainFields, DrivetrainState } from './drivetrain.js';
 import { chooseExit, groundedExits } from './exits.js';
 import {
-  axes, boatBite, headingOf, slipAngle, stallSpeed, stepBoat, stepPlane, stepSimple, stepWheeled, wheelLayout,
+  axes, boatBite, headingOf, slipAngle, stallSpeed, stepBoat, stepHelicopter, stepPlane, stepSimple, stepWheeled, wheelLayout,
 } from './models.js';
 import type { DriveInput, FlyInput, StepResult, VehicleFields, WheelTuning } from './models.js';
 import { presentEffects, presentRig, VEHICLE_EFFECTS, VEHICLE_RIG } from './rig.js';
@@ -65,7 +65,7 @@ export const LANDING_AIRTIME = 0.3;
 export const DRIFT_SPEED = 5;
 export const DRIFT_ANGLE = 10;
 
-const AIRCRAFT = new Set(['plane']);
+const AIRCRAFT = new Set(['plane', 'helicopter']);
 const WHEELED = new Set(['car', 'tracked']);
 
 interface Controls {
@@ -584,6 +584,7 @@ export class Vehicles {
     let result: StepResult;
     let roll = 0;
     let steerAngle = 0;
+    let rotor = -1;
     let revs = Math.min(1, Math.abs(this.speed(record.id)) / Math.max(v.max_speed, 1));
     const parked = occupied || live !== undefined ? 0 : 1;
     if (AIRCRAFT.has(kind)) {
@@ -591,9 +592,17 @@ export class Vehicles {
         throttle, pitch: 0, roll: 0, yaw: 0, flaps: 0, airbrake: false, brake: parked,
         ...(live?.fly !== undefined && { ...live.fly, throttle }),
       };
-      const r = stepPlane(service, record.id, v, body, input, dt);
-      s.stall = r.stall;
-      result = r;
+      if (kind === 'helicopter') {
+        // The rotor turns while someone flies it (live controls) and the engine runs: it
+        // then spins and sounds near full whatever the collective (a hover is hard work).
+        const rotorOn = live !== undefined && engineOn;
+        result = stepHelicopter(service, record.id, v, body, input, rotorOn, dt);
+        rotor = rotorOn ? Math.max(0.75, Math.abs(throttle)) : 0;
+      } else {
+        const r = stepPlane(service, record.id, v, body, input, dt);
+        s.stall = r.stall;
+        result = r;
+      }
     } else {
       const input: DriveInput = {
         throttle, steer: 0, brake: parked, handbrake: false,
@@ -639,7 +648,7 @@ export class Vehicles {
     s.ground = result.ground;
     s.verticalSpeed = after.velocity.y;
     this.#present(record, {
-      engineOn, throttle, revs, skidding: s.skids.some(Boolean), slip: s.slip,
+      engineOn: rotor < 0 ? engineOn : rotor > 0, throttle: rotor < 0 ? throttle : rotor, revs: rotor < 0 ? revs : rotor, skidding: s.skids.some(Boolean), slip: s.slip,
       damaged: damage !== undefined && damage.parts.some((p) => p.role === 'engine' && fraction(damage, p) < 0.5),
       steerAngle, roll, dt,
       inputs: {

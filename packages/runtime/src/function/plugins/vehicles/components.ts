@@ -14,7 +14,7 @@ import { CONTROL_INPUTS, VEHICLE_EFFECTS, VEHICLE_RIG } from './rig.js';
 import { DRIVETRAIN, VEHICLE, VEHICLE_DAMAGE } from './state.js';
 import type { Vehicles } from './state.js';
 
-export const VEHICLE_KINDS = ['car', 'plane', 'boat', 'tracked'] as const;
+export const VEHICLE_KINDS = ['car', 'plane', 'boat', 'tracked', 'helicopter'] as const;
 
 const optional = (of: FieldType, extra: object = {}): Schema[string] => ({ type: { kind: 'optional', of }, default: null, ...extra });
 const strings = (): Schema[string] => t.list({ kind: 'string' }, { default: [] });
