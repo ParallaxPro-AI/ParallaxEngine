@@ -7,6 +7,7 @@ import type { BehaviorDef, EventDef, Fields, GameDefinition, KernelPlugin, Logic
 import { FOLIAGE_SERVICE, MODEL_GEOMETRY_SERVICE, PHYSICS3D_SERVICE, PROCGEN_SERVICE, TERRAIN_SERVICE, VOXELS_SERVICE } from '../../services/index.js';
 import type { FoliageLayer, GeneratedMesh, Physics3dService, TerrainField, VoxelChunkMesh, VoxelWorldView } from '../../services/index.js';
 import { initPhysics3d, PHYSICS_EVENTS, physics3d, terrainMesh } from './index.js';
+import { sameKey } from './sim.js';
 import { rapier } from './rapier.js';
 import type { Physics3dNamespace, Physics3dOptions } from './index.js';
 
@@ -613,6 +614,30 @@ describe('dispose', () => {
       worldFree.mockRestore();
       queueFree.mockRestore();
     }
+  });
+});
+
+describe('reconciling bodies with their components', () => {
+  it('compares build keys by value: equal vectors, quaternions and lists match, any change does not', () => {
+    expect(sameKey(['box', new Vec3(1, 2, 3), ['a', 'b'], Quat.IDENTITY], ['box', new Vec3(1, 2, 3), ['a', 'b'], new Quat(0, 0, 0, 1)])).toBe(true);
+    expect(sameKey(['box', new Vec3(1, 2, 3)], ['box', new Vec3(1, 2, 3.0001)])).toBe(false);
+    expect(sameKey([['a']], [['a', 'b']])).toBe(false);
+    expect(sameKey([0.5], [0.5, 1])).toBe(false);
+  });
+
+  it('rebuilds a collider whose size or radius changes, and leaves an unchanged one alone', () => {
+    const g = world({ prefabs: { ball: BALL, floor: FLOOR }, entities: [{ prefab: 'floor', id: 'floor' }, { prefab: 'ball', id: 'ball', at: [0, 3, 0] }] });
+    g.steps(180);
+    expect(g.pos('ball').y).toBeCloseTo(0.5, 2);
+    const collider = g.kernel.world.require(g.id('ball')).components.get('collider')!;
+    collider['radius'] = 1;
+    g.steps(120);
+    // The bigger ball now rests on its new radius: the change was seen and the collider rebuilt.
+    expect(g.pos('ball').y).toBeCloseTo(1, 2);
+    collider['radius'] = 1;
+    g.steps(60);
+    expect(g.pos('ball').y).toBeCloseTo(1, 2);
+    expect(g.body('ball').speed).toBeLessThan(0.01);
   });
 });
 
