@@ -186,10 +186,10 @@ describe('a failing project', async () => {
     expect(codes('test_sync')).toEqual(['PP3450']);
   });
 
-  it('a test module importing an engine module that does not exist yet is PP9501', () => {
+  it('a test module importing a name an engine module does not export is PP6012', () => {
     const r = results['tests/test_missing.py']!;
     expect([r.kind, r.status]).toEqual(['module', 'error']);
-    expect(r.diagnostics.map((d) => [d.code, d.path])).toEqual([['PP9501', 'tests/test_missing.py']]);
+    expect(r.diagnostics.map((d) => [d.code, d.path])).toEqual([['PP6012', 'tests/test_missing.py']]);
   });
 });
 

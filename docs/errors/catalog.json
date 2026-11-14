@@ -16297,13 +16297,19 @@
         "error"
       ],
       "messages": [
+        "'{module}' has no name '{name}'",
+        "'{module}' has no name '{name}': it is in '{home}'",
         "'{module}.{alias.name}' is not available in Parallax Python",
         "'{module}.{name}' was renamed: it is now {new}",
-        "'{module}.{node.attr}' is not available in Parallax Python"
+        "'{module}.{node.attr}' is not available in Parallax Python",
+        "'{name}' is not in '{module}': each game's 'project' module generates it"
       ],
       "fixes": [
         "Available from {module}: {available}.",
-        "Use {new}."
+        "Import a name the SDK declares for {module}.{hint}",
+        "Use {new}.",
+        "from project import {name}",
+        "from {home} import {name}"
       ],
       "notes": [],
       "sources": [
