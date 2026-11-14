@@ -371,6 +371,15 @@ function isMutableDefault(v: unknown): boolean {
   return isList(v) || v instanceof PyDict || v instanceof PySet;
 }
 
+/** Whether the class body gave `name` a value. A JS class's own built-in `name` and
+ *  `length` (read-only, not enumerable) are not defaults: `name: str` is a plain field. */
+function classBodyDefines(cls: Any, name: string): boolean {
+  if (!Object.hasOwn(cls, name)) return false;
+  if (name !== 'name' && name !== 'length') return true;
+  const d = Object.getOwnPropertyDescriptor(cls, name);
+  return d === undefined || d.writable === true || d.enumerable === true || d.get !== undefined;
+}
+
 const DATACLASS = sig('dataclass', ['cls'], 0, [null], ['init', 'repr', 'eq', 'order', 'unsafe_hash', 'frozen'],
   [true, true, true, false, false, false], null, null, false);
 
@@ -388,7 +397,7 @@ function process(cls: Any, options: { init: boolean; repr: boolean; eq: boolean;
     let def: unknown = NO_DEFAULT;
     let factory: unknown = NO_DEFAULT;
     let flags = { init: true, repr: true, compare: true };
-    if (Object.hasOwn(cls, name)) {
+    if (classBodyDefines(cls, name)) {
       const value = cls[name];
       if (value instanceof DataclassField) {
         def = value.default;
