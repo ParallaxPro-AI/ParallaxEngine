@@ -7,7 +7,8 @@
  *
  * "Assets are assumed to exist" (examples/README.md): models, effects and images the
  * data names are stand-ins — every model is `standInCharacter` with every clip name the
- * example's data mentions, every effect a small emitter, every image an empty file.
+ * example's data mentions, every effect a small emitter, every image (shape textures and
+ * scene skyboxes) an empty file.
  * Hosted models (`https://r2…/assets/….glb`, most examples' since the parity pass) load
  * nothing headless, like a missing file (models plugin `remoteAssets`, off outside the
  * browser): a stand-in can't stand for them (the data names their real materials and the
@@ -92,7 +93,14 @@ function exampleFiles(name: string): ExampleFiles {
   };
   for (const [path, content] of [...text]) {
     if (!path.endsWith('.prefab.json') && !path.endsWith('scene.json')) continue;
-    const doc = JSON.parse(content) as { components?: Components; children?: { components?: Components }[]; entities?: { components?: Components }[] };
+    const doc = JSON.parse(content) as {
+      components?: Components; children?: { components?: Components }[]; entities?: { components?: Components }[];
+      environment?: { skybox?: string | { texture?: string } };
+    };
+    // A scene's own skybox image is assumed too (an empty stand-in, like a shape's texture).
+    const sky = doc.environment?.skybox;
+    const skyImage = typeof sky === 'string' ? sky : sky?.texture;
+    if (typeof skyImage === 'string') text.set(assumed(skyImage, 'images'), '');
     visit(doc.components);
     for (const child of [...(doc.children ?? []), ...(doc.entities ?? [])]) visit(child.components);
   }
@@ -165,6 +173,25 @@ function shown(kernel: Kernel, record: EntityRecord): boolean {
   return true;
 }
 
+/**
+ * Past its `lod.cull` distance from every view (at any quality: low halves it), a model is
+ * meant to draw nothing: distance culling in a big open world, not a missing draw.
+ */
+function lodCulled(record: EntityRecord, views: Frame3d['views']): boolean {
+  const cull = record.components.get('lod')?.['cull'];
+  if (typeof cull !== 'number' || views.length === 0) return false;
+  const p = record.transform.worldPosition();
+  return views.every((v) => Math.hypot(p.x - v.position[0], p.y - v.position[1], p.z - v.position[2]) > cull * 0.5);
+}
+
+/** Under a `static_mesh` (itself or an ancestor): its meshes go into the static chunks. */
+function isStatic(kernel: Kernel, record: EntityRecord): boolean {
+  for (let r: EntityRecord | undefined = record; r !== undefined; r = r.parent === null ? undefined : kernel.world.get(r.parent)) {
+    if (r.components.has('static_mesh')) return true;
+  }
+  return false;
+}
+
 function finite(values: ArrayLike<number>): boolean {
   for (let i = 0; i < values.length; i++) if (!Number.isFinite(values[i])) return false;
   return true;
@@ -207,13 +234,16 @@ describe('3D examples', () => {
     }
 
     const drawn = new Set<number | null>([...frame.meshes.flatMap((m) => m.entities), ...frame.skinned.map((s) => s.entity)]);
+    // Static scenery (`static_mesh`) is drawn merged into chunks, which name no entity.
+    const merged = frame.meshes.some((m) => m.geometry.id.startsWith('static:'));
+    const seen = (record: EntityRecord): boolean => drawn.has(record.id) || (merged && isStatic(kernel, record));
     for (const record of live) {
       if (!shown(kernel, record)) continue;
       const shape = record.components.get('shape');
       const size = shape?.['size'] as Vec3 | undefined;
-      if (shape !== undefined && size !== undefined && size.x > 0 && size.z > 0) expect(drawn.has(record.id)).toBe(true);
+      if (shape !== undefined && size !== undefined && size.x > 0 && size.z > 0) expect(seen(record)).toBe(true);
       const model = record.components.get('model')?.['model'];
-      if (model !== undefined && !(typeof model === 'string' && isAssetUrl(model))) expect(drawn.has(record.id)).toBe(true);
+      if (model !== undefined && !(typeof model === 'string' && isAssetUrl(model)) && !lodCulled(record, frame.views)) expect(seen(record)).toBe(true);
     }
     for (const batch of frame.meshes) expect(finite(batch.instances)).toBe(true);
     for (const draw of frame.skinned) expect(finite(draw.palette)).toBe(true);
