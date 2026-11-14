@@ -5,7 +5,10 @@
  * function of a particle's position and age (no draws).
  *
  * Within a frame, live particles move first (those that die may play their effect's
- * `on_death`), then new ones are emitted at age 0 at the emitter's current position.
+ * `on_death`), then new ones are emitted at age 0 at the emitter's current position. A
+ * continuous emitter spreads a frame's new particles along the path it moved since the
+ * last frame, so one on a fast-moving entity leaves an unbroken trail instead of beads,
+ * and emits along its entity's own `direction` (turned with the entity) when it has one.
  * Particles outlive their emitter: when an emitting entity is torn down, what it already
  * emitted finishes its life.
  *
@@ -42,6 +45,8 @@ export interface EmitterSource {
   readonly position: Point;
   readonly emitting: boolean;
   readonly rateScale: number;
+  /** Unit world axis replacing the effect's direction (`Particles.direction` turned with its entity); absent or null: the effect's own. */
+  readonly axis?: Point | null;
 }
 
 /** One emitter's particles, ready to draw (`PARTICLE3D_STRIDE` numbers each). */
@@ -96,12 +101,15 @@ class Emitter {
   /** × the effect's burst and rate (`play(count=)`); 1 = as authored. */
   readonly amount: number;
   readonly scale: number;
-  readonly axis: Point;
+  /** The emission axis: the effect's direction, a one-shot's `direction`, or a continuous emitter's entity-turned one. */
+  axis: Point;
   position: [number, number, number];
   /** One-shots: seconds since emission began (negative during a delay). Continuous: seconds emitting. */
   elapsed = 0;
   carry = 0;
   wasEmitting = false;
+  /** Continuous: how fast (m/s) the emitter moved last frame, to tell a jump from motion. */
+  pace = 0;
   pendingBurst: boolean;
   orphaned = false;
   particles: number[] = [];
@@ -128,6 +136,15 @@ class Emitter {
   get count(): number {
     return this.particles.length / P;
   }
+}
+
+/**
+ * Whether a continuous emitter's move this frame is a jump (teleport, respawn) rather than
+ * motion, so no trail is drawn across it: farther than 4 × (the faster of its particles' top
+ * speed and its own speed last frame, + 1 m/s) × dt.
+ */
+export function jumped(moved: number, dt: number, particleSpeed: number, pace: number): boolean {
+  return moved > 4 * (Math.max(particleSpeed, pace) + 1) * dt;
 }
 
 function pick(random: SeededRandom, range: Range): number {
@@ -487,7 +504,14 @@ export class ParticleSystem3d {
   }
 
   #emitContinuous(e: Emitter, dt: number, src: EmitterSource): void {
+    // Where it was last frame: this frame's particles are spread along the way from there,
+    // unless the emitter jumped (a teleport or respawn) rather than moved.
+    const from: Point = e.position;
     e.position = [src.position[0], src.position[1], src.position[2]];
+    const moved = Math.hypot(e.position[0] - from[0], e.position[1] - from[1], e.position[2] - from[2]);
+    const trail = e.wasEmitting && !jumped(moved, dt, e.def.speed.hi * e.scale, e.pace);
+    e.pace = dt > 0 ? moved / dt : 0;
+    if (src.axis !== undefined && src.axis !== null) e.axis = src.axis;
     if (!Number.isFinite(src.rateScale) || src.rateScale < 0) {
       fail('PP3809', `particles.rate_scale is ${src.rateScale}; it must be 0 or more`, { fix: 'Set rate_scale to a number ≥ 0.' });
     }
@@ -496,7 +520,7 @@ export class ParticleSystem3d {
       this.#events.push({ def: e.def, position: e.position, scale: e.scale, entity: e.entity });
     }
     if (src.emitting) {
-      this.#spawn(e, this.#owed(e, e.def.rate * src.rateScale, dt));
+      this.#spawn(e, this.#owed(e, e.def.rate * src.rateScale, dt), trail ? from : null);
       e.elapsed += dt;
     } else {
       e.carry = 0;
@@ -511,7 +535,8 @@ export class ParticleSystem3d {
     return whole;
   }
 
-  #spawn(e: Emitter, count: number): void {
+  /** `from`: spread the particles evenly along the way from there to the emitter, the last at the emitter. */
+  #spawn(e: Emitter, count: number, from: Point | null = null): void {
     if (count <= 0) return;
     const def = e.def;
     const r = this.#random;
@@ -544,8 +569,12 @@ export class ParticleSystem3d {
       const pa = r.next() * Math.PI * 2;
       const pr = Math.sqrt(1 - pz * pz);
       const size0 = pick(r, def.size) * s;
+      const f = from === null ? 1 : (i + 1) / count;
+      const ox = from === null ? e.position[0] : from[0] + (e.position[0] - from[0]) * f;
+      const oy = from === null ? e.position[1] : from[1] + (e.position[1] - from[1]) * f;
+      const oz = from === null ? e.position[2] : from[2] + (e.position[2] - from[2]) * f;
       e.particles.push(
-        e.position[0] + Math.cos(pa) * pr * at, e.position[1] + Math.sin(pa) * pr * at, e.position[2] + pz * at,
+        ox + Math.cos(pa) * pr * at, oy + Math.sin(pa) * pr * at, oz + pz * at,
         dx * speed, dy * speed, dz * speed,
         0, pick(r, def.lifetime),
         size0, def.sizeEnd === null ? size0 : def.sizeEnd * s,

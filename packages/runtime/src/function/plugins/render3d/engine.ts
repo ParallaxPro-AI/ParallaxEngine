@@ -865,6 +865,7 @@ export class Render3dEngine {
       position: [m[12]!, m[13]!, m[14]!],
       emitting: particles['emitting'] === true,
       rateScale: particles['rate_scale'] as number,
+      axis: localAxis(m, particles['direction']),
     };
   }
 
@@ -918,6 +919,19 @@ function lodModel(models: ModelPoseSource, record: EntityRecord, bands: LodBands
   if (ref === null && band <= bands.models.length) return undefined;
   if (ref === null) return models.posed(record.id)?.asset;
   return models.get(models.resolve(ref, `${where} model`));
+}
+
+/**
+ * `Particles.direction` (the entity's own space) turned into a unit world axis by the
+ * entity's world matrix (column-major; its scale divided out), or null without one.
+ */
+export function localAxis(m: ArrayLike<number>, direction: unknown): [number, number, number] | null {
+  if (!(direction instanceof Vec3)) return null;
+  const x = m[0]! * direction.x + m[4]! * direction.y + m[8]! * direction.z;
+  const y = m[1]! * direction.x + m[5]! * direction.y + m[9]! * direction.z;
+  const z = m[2]! * direction.x + m[6]! * direction.y + m[10]! * direction.z;
+  const length = Math.hypot(x, y, z);
+  return length > 1e-9 ? [x / length, y / length, z / length] : null;
 }
 
 /** A model's model → world matrix: its entity's placement, then `Model.offset` and `rotation_offset`. */
