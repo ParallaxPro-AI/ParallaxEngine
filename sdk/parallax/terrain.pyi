@@ -14,6 +14,8 @@ The block (every key but `size` and `layers` optional; footprints are `"center":
       "hills": [{<footprint>, "height": 12, "feather": 20}],   full inside, eased out over feather
       "flats": [{<footprint>, "height": 2, "feather": 4, "mode": "set" | "carve" | "fill"}],
       "holes": [<footprint>],           ground cut away (tunnel mouths, pits)
+      "land": [<footprint>],            the only ground: everything outside them is cut away
+                                        (floating sky islands, mesas over a void)
       "water_level": 0,
       "layers": ["grass", {"name": "road", "texture": "images/road",
                  "normal": "images/road_normal", "tile": 4,

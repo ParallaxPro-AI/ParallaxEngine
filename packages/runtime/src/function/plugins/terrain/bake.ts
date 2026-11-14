@@ -276,22 +276,32 @@ export class Splat {
   }
 }
 
-/** Which footprints cut the ground away. */
+/** Which footprints cut the ground away: the holes, and everywhere outside the `land` (when any is given). */
 export class HoleMask {
   readonly #spec: TerrainSpec;
   readonly #bins: Bins;
+  readonly #landBins: Bins;
 
   constructor(spec: TerrainSpec) {
     this.#spec = spec;
     this.#bins = new Bins(-spec.width / 2, -spec.depth / 2, spec.width, spec.depth, binCell(spec));
     spec.holes.forEach((hole, i) => this.#bins.add(footprintBounds(hole, 0), i));
+    this.#landBins = new Bins(-spec.width / 2, -spec.depth / 2, spec.width, spec.depth, binCell(spec));
+    spec.land.forEach((land, i) => this.#landBins.add(footprintBounds(land, 0), i));
   }
 
   get any(): boolean {
-    return this.#spec.holes.length > 0;
+    return this.#spec.holes.length > 0 || this.#spec.land.length > 0;
   }
 
   at(x: number, z: number): boolean {
+    if (this.#spec.land.length > 0) {
+      let inside = false;
+      for (const i of this.#landBins.at(x, z)) {
+        if (sdFootprint(this.#spec.land[i]!, x, z) <= 0) { inside = true; break; }
+      }
+      if (!inside) return true;
+    }
     for (const i of this.#bins.at(x, z)) if (sdFootprint(this.#spec.holes[i]!, x, z) <= 0) return true;
     return false;
   }

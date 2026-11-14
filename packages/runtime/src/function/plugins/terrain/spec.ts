@@ -9,6 +9,8 @@
  *                                                    `feather` meters inward from the edge
  *   flats: [{<shape>, height, feather, mode}]        ground eased to a height (set / carve / fill)
  *   holes: [<shape>]                                 ground cut away
+ *   land: [<shape>]                                  the only ground there is: every quad
+ *                                                    outside them is cut away (sky islands, mesas)
  *   water_level
  *   layers: ["grass", {name, texture, normal, tile, tint, color, roughness, detail,
  *             pattern, variation, relief}]                                     at most 8
@@ -96,6 +98,8 @@ export interface TerrainSpec {
   readonly hills: readonly Hill[];
   readonly flats: readonly Flat[];
   readonly holes: readonly Footprint[];
+  /** When not empty, the ground exists only inside these footprints (the rest is holes). */
+  readonly land: readonly Footprint[];
   readonly waterLevel: number | null;
   readonly layers: readonly TerrainLayer[];
   readonly defaultLayer: number;
@@ -110,7 +114,7 @@ export const DEFAULT_MAX_QUADS = 512;
 export const MAX_RESOLUTION = 1024;
 
 const KEYS = [
-  'size', 'resolution', 'base_height', 'max_height', 'seed', 'noise', 'hills', 'flats', 'holes', 'water_level',
+  'size', 'resolution', 'base_height', 'max_height', 'seed', 'noise', 'hills', 'flats', 'holes', 'land', 'water_level',
   'layers', 'default_layer', 'rules', 'paint', 'paths', 'brush',
 ] as const;
 const SHAPE_KEYS = ['center', 'radius', 'size', 'rotation', 'points'] as const;
@@ -387,6 +391,13 @@ export function readTerrainSpec(scene: SceneDoc, graded: readonly TerrainGradePa
     return readShape(r, obj, at);
   });
 
+  const land = r.list(block['land'], '/land', '"land": [{"center": [x, z], "radius": 40}]').map((value, i) => {
+    const at = `/land/${i}`;
+    const obj = r.object(value, at, 'a land footprint');
+    r.keys(obj, at, SHAPE_KEYS);
+    return readShape(r, obj, at);
+  });
+
   let defaultLayer = 0;
   if (block['default_layer'] !== undefined) defaultLayer = layerIndex(block['default_layer'], '/default_layer');
 
@@ -474,7 +485,7 @@ export function readTerrainSpec(scene: SceneDoc, graded: readonly TerrainGradePa
   return {
     width, depth, resolution,
     baseHeight: r.number(block['base_height'], '/base_height', 0),
-    noise, hills, flats, holes,
+    noise, hills, flats, holes, land,
     waterLevel: block['water_level'] === undefined ? null : r.number(block['water_level'], '/water_level', 0),
     layers, defaultLayer, rules, paint, paths, brush,
   };

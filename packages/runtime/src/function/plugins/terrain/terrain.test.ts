@@ -267,6 +267,26 @@ describe('holes and brush', () => {
     expect(field({ size: [4, 4], layers: ['a'] }).holes).toBeNull();
   });
 
+  it('land footprints keep only the ground inside them (sky islands); holes still cut them', () => {
+    const f = field({
+      size: [80, 80], layers: ['a'],
+      land: [{ center: [-20, 0], radius: 8 }, { center: [20, 10], size: [10, 6] }],
+      holes: [{ center: [-20, 0], radius: 1.5 }],
+    });
+    expect(f.holeAt(-20, 6)).toBe(false);
+    expect(f.holeAt(20.5, 10.5)).toBe(false);
+    expect(f.holeAt(0.5, 0.5)).toBe(true);
+    expect(f.holeAt(-20, 9.5)).toBe(true);
+    expect(f.holeAt(-20, 0)).toBe(true);
+    const kept = (f.holes!.length) - [...f.holes!].reduce((a, b) => a + b, 0);
+    expect(kept).toBeGreaterThan(180);
+    expect(kept).toBeLessThan(280);
+  });
+
+  it('a land footprint is checked like a hole', () => {
+    expect(() => field({ size: [10, 10], layers: ['a'], land: [{ center: [0, 0] }] })).toThrow(ParallaxError);
+  });
+
   it('brush volumes hide what stands in them below their top', () => {
     const f = field({ size: [40, 40], base_height: 1, layers: ['a'], brush: [{ id: 'west', center: [-10, 0], radius: 4, height: 2 }] });
     expect(f.brushAt(-10, 2.5, 1)?.id).toBe('west');
@@ -461,6 +481,19 @@ describe('tiles', () => {
     const rebuilt = tiles.get(1, 0, 0)!;
     expect(rebuilt).not.toBe(tile);
     expect(rebuilt.heights[5 * V + 5]!).toBeLessThan(tile.heights[5 * V + 5]! - 1.5);
+  });
+
+  it('a coarse tile reaching past the field edge keeps cut-away ground cut there', () => {
+    const kernel = kernelWith({ size: [200, 120], layers: ['a'], land: [{ center: [0, 0], radius: 20 }] });
+    const tiles = kernel.service(TERRAIN_SERVICE).tiles()!;
+    const top = tiles.levels - 1;
+    const tile = tiles.get(top, 0, 0)!;
+    // The top tile is square, so it spans past the 120 m side: those quads must be holes.
+    expect(TILE_QUADS * tile.cell).toBeGreaterThan(120);
+    const r = TILE_QUADS - 1;
+    expect(tile.z + (r + 0.5) * tile.cell).toBeGreaterThan(60);
+    expect(tile.holes).not.toBeNull();
+    for (let c = 0; c < TILE_QUADS; c++) expect(tile.holes![r * TILE_QUADS + c]).toBe(1);
   });
 
   it('streamed tiles bake the relief at their own resolution (inline without a job runner, budgeted)', () => {
