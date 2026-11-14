@@ -42,10 +42,14 @@ export function checkTilemaps(ctx: CheckContext): void {
       if (c !== undefined) check(ctx, c, { path: prefab.path, pointer: pointerTo(pointerTo(pointerTo('/children', i), 'components'), 'tilemap') });
     });
   }
+  // A placement is judged with its prefab's tilemap fields under its own: a scene that
+  // only writes `rows` uses the prefab's `tiles`.
   for (const scene of ctx.project.scenes.values()) {
-    scene.entities.forEach((placement, i) => {
-      const own = (placement as { components?: Record<string, JsonObject> }).components?.['tilemap'];
-      if (own !== undefined) check(ctx, own, { path: scene.path, pointer: `/entities/${i}/components/tilemap` });
-    });
+    for (const placement of scene.entities) {
+      const own = placement.components['tilemap'];
+      if (own === undefined) continue;
+      const base = ctx.project.prefabs.get(placement.prefab)?.components['tilemap'] ?? {};
+      check(ctx, { ...base, ...own }, { path: placement.origin.path, pointer: pointerTo(pointerTo(placement.origin.pointer ?? '', 'components'), 'tilemap') });
+    }
   }
 }
