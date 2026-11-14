@@ -20,7 +20,7 @@ import { rt, schemaOf, SceneRef, Tag } from './types.js';
 import type { AnyClass } from './types.js';
 import {
   action, close_panel, FloatStyle, interfacePlugins, load_scene, open_panel, Panel, PanelCommand, reload_scene, resetPanels,
-  SettingsPanel, ui, UiApi,
+  panelDecl, SettingsPanel, ui, UiApi,
 } from './ui.js';
 
 const DT = 1 / 60;
@@ -350,6 +350,10 @@ describe('panel actions', () => {
     expect(code(() => ui('x', kw({ html: 'x.html', toggle_with: 'KeyP' })))).toBe('PP4427');
     expect(code(() => ui('x', kw({ html: 'x.html', scale: 'fit' })))).toBe('PP4427');
     expect(() => ui('x', kw({ html: 'x.html', scale: 'design' }))).not.toThrow();
+  });
+
+  it('the built-in settings menu is laid out 1:1, so a portrait phone does not shrink it unreadably', () => {
+    expect(panelDecl(SettingsPanel, {} as never).scale).toBe('none');
   });
 });
 

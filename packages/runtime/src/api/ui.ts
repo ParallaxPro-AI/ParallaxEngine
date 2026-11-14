@@ -469,7 +469,9 @@ export class DialoguePanel extends Panel {
   }
 }
 
-ui('settings', kw({ html: 'builtin:settings.html', modal: true, layer: 'menu' }))(SettingsPanel);
+// The settings card sizes itself (max 640 px, scrolling): laid out 1:1 it stays readable on a
+// portrait phone, where the default "viewport" scale would shrink it to under half size.
+ui('settings', kw({ html: 'builtin:settings.html', modal: true, layer: 'menu', scale: 'none' }))(SettingsPanel);
 ui('dialogue', kw({ html: 'builtin:dialogue.html', modal: true, layer: 'overlay' }))(DialoguePanel);
 builtIns = panels;
 panels = [];
