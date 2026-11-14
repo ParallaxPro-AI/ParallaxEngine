@@ -178,6 +178,51 @@ describe('the 3D particle system', () => {
     expect(ps.draws().map((d) => [...d.data])).toEqual(later);
   });
 
+  it('vortex: particles whirl counter-clockwise about the vertical line through the emitter, pulled toward it', () => {
+    const { ps, step } = system({
+      'assets/vfx/whirl.vfx.json': { burst: 1, lifetime: 10, speed: 0, vortex: { spin: 90 } },
+      'assets/vfx/plain.vfx.json': { burst: 1, lifetime: 10, speed: 0 },
+    });
+    const pos = (ref: string): number[] => { const d = ps.draws().find((x) => x.def.path.includes(ref))!; return [d.data[0]!, d.data[1]!, d.data[2]!]; };
+    ps.play('vfx/whirl', at(5, 1, 0), 'test');
+    ps.play('vfx/plain', at(5, 1, 0), 'test');
+    // A one-shot whirls about where it was played: a particle there stays on the line.
+    step(60);
+    expect(pos('whirl')).toEqual([5, 1, 0]);
+    const { ps: ps2 } = system({ 'assets/vfx/whirl.vfx.json': { burst: 1, lifetime: 10, speed: 0, radius: 0, vortex: { spin: 90 } } });
+    // A continuous emitter at the origin; its particle starts there, then the emitter moves away.
+    let where: [number, number, number] = [0, 0, 0];
+    const src = (): EmitterSource => ({ position: where, emitting: true, rateScale: 0 });
+    ps2.attach(1 as EntityId, 'vfx/whirl', 'test');
+    ps2.step(DT, src);
+    where = [0, 0, -2];
+    // A step moves particles about where the emitter was, then follows it; after that, one
+    // second at 90°/s turns the particle from 2 m along +z of the line to 2 m along +x.
+    for (let i = 0; i < 61; i++) ps2.step(DT, src);
+    const d = ps2.draws()[0]!;
+    expect(d.data[0]).toBeCloseTo(2, 1);
+    expect(d.data[2]).toBeCloseTo(-2, 1);
+    // Pull draws a particle in toward the line.
+    const { ps: ps3 } = system({ 'assets/vfx/drain.vfx.json': { burst: 1, lifetime: 10, speed: 0, vortex: { spin: 0, pull: 2 } } });
+    let at3: [number, number, number] = [0, 0, 0];
+    const src3 = (): EmitterSource => ({ position: at3, emitting: true, rateScale: 0 });
+    ps3.attach(2 as EntityId, 'vfx/drain', 'test');
+    ps3.step(DT, src3);
+    at3 = [10, 0, 0];
+    for (let i = 0; i < 60; i++) ps3.step(DT, src3);
+    const x = ps3.draws()[0]!.data[0]!;
+    expect(x).toBeGreaterThan(0.5);
+    expect(x).toBeLessThan(10);
+    expect(pos('plain')).toEqual([5, 1, 0]);
+  });
+
+  it('vortex: rejects a bad block', () => {
+    expect(code(() => parse({ burst: 1, vortex: { spin: 'fast' } }))).toBe('PP3808');
+    expect(code(() => parse({ burst: 1, vortex: { twist: 3 } }))).toBe('PP3808');
+    expect(parse({ burst: 1, vortex: { pull: 1 } }).vortex).toEqual({ spin: 90, pull: 1 });
+    expect(parse({ burst: 1 }).vortex).toBeNull();
+  });
+
   it('lights: a one-shot flash fades out over its seconds; a continuous emitter glows while it emits', () => {
     const { ps, step } = system({
       'assets/vfx/flash.vfx.json': { burst: 1, lifetime: 5, light: { color: '#ff8000', intensity: 10, range: 4, seconds: 0.5 } },

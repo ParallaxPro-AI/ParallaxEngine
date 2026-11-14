@@ -935,13 +935,13 @@ export const VFX_KEYS = [
   'burst', 'rate', 'duration', 'lifetime', 'speed', 'direction', 'spread', 'radius', 'gravity', 'drag', 'size',
   'size_end', 'color', 'color_end', 'spin', 'shape', 'image', 'max', 'blend', 'haze', 'extends',
   'flipbook', 'frames', 'facing', 'stretch', 'soft', 'lit', 'intensity', 'angle', 'fade_in', 'turbulence', 'delay',
-  'light', 'sound', 'shake', 'children', 'on_death',
+  'light', 'sound', 'shake', 'children', 'on_death', 'vortex',
 ] as const;
 
 /** `.vfx.json` keys only a 3D game draws (a 2D game accepts and ignores them). */
 export const VFX_3D_ONLY_KEYS = [
   'flipbook', 'frames', 'facing', 'stretch', 'soft', 'lit', 'intensity', 'angle', 'fade_in', 'turbulence', 'delay',
-  'light', 'sound', 'shake', 'children', 'on_death',
+  'light', 'sound', 'shake', 'children', 'on_death', 'vortex',
 ] as const;
 
 /** `.vfx.json` "blend": "alpha" paints over, "additive" adds up and glows where particles overlap. */

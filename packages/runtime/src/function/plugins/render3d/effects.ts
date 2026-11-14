@@ -20,7 +20,11 @@
  *             velocity-facing particle streaks over), soft (meters of fade into the scene),
  *             lit (shaded by the sun and ambient), intensity (color × this: above 1
  *             blooms), angle (start rotation, degrees), fade_in (fraction of life)
- *   motion    turbulence (m/s² of smooth swirl), delay (seconds before a one-shot starts)
+ *   motion    turbulence (m/s² of smooth swirl), delay (seconds before a one-shot starts),
+ *             vortex { spin, pull } (particles whirl around the vertical line through the
+ *             emitter — `spin` degrees per second, counter-clockwise seen from above,
+ *             negative clockwise — and are drawn toward it at `pull` m/s², negative flings
+ *             them out: tornadoes, dust devils, whirlpools, portals)
  *   with it   light { color, intensity, range, seconds, flicker } (a flash fading over
  *             `seconds`; 0: steady while a continuous emitter emits), sound (a one-shot's
  *             sound, a continuous emitter's loop), shake { intensity, seconds, radius }
@@ -81,6 +85,14 @@ export interface EffectChild {
   readonly offset: readonly [number, number, number];
 }
 
+/** Whirling about the vertical line through the emitter (`"vortex"`). */
+export interface EffectVortex {
+  /** Degrees per second, counter-clockwise seen from above. */
+  readonly spin: number;
+  /** m/s² toward the line (negative: away). */
+  readonly pull: number;
+}
+
 export interface EffectDeath {
   readonly ref: string | null;
   readonly def: EffectDef | null;
@@ -122,6 +134,7 @@ export interface EffectDef {
   readonly angle: Range;
   readonly fadeIn: number;
   readonly turbulence: number;
+  readonly vortex: EffectVortex | null;
   readonly delay: number;
   readonly light: EffectLight | null;
   /** As written (`sfx/boom`), for the audio service. */
@@ -333,6 +346,7 @@ function parseDoc(path: string, raw: Doc, assets: AssetCatalog, seen: readonly s
   const shakeDoc = object(path, d, 'shake', ['intensity', 'seconds', 'radius']);
   const hazeDoc = object(path, d, 'haze', ['radius', 'strength', 'ring', 'seconds']);
   const deathDoc = object(path, d, 'on_death', ['effect', 'chance']);
+  const vortexDoc = object(path, d, 'vortex', ['spin', 'pull']);
   if (deathDoc !== null && deathDoc['effect'] === undefined) bad(path, '"on_death" needs an "effect"');
   const where = `${path}#`;
 
@@ -368,6 +382,10 @@ function parseDoc(path: string, raw: Doc, assets: AssetCatalog, seen: readonly s
     angle: range(path, d, 'angle', 0),
     fadeIn: number(path, d, 'fade_in', 0, 0, 1),
     turbulence: number(path, d, 'turbulence', 0, 0),
+    vortex: vortexDoc === null ? null : {
+      spin: number(path, vortexDoc, 'spin', 90),
+      pull: number(path, vortexDoc, 'pull', 0),
+    },
     delay: number(path, d, 'delay', 0, 0),
     light: lightDoc === null ? null : {
       color: color(path, lightDoc, 'color', null) ?? color(path, d, 'color', '#ffffff')!,
@@ -417,7 +435,7 @@ function unavailableEffect(path: string): EffectDef {
     path, burst: 0, rate: 0, duration: 0, lifetime: { lo: 1, hi: 1 }, speed: zero, direction: 90, spread: 360, radius: 0,
     gravity: [0, 0], drag: 0, size: zero, sizeEnd: null, color: [1, 1, 1, 1], colorEnd: null, spin: zero, shape: 'circle',
     image: null, max: 1, blend: 'alpha', flipbook: null, frames: [1, 1], facing: 'camera', stretch: 0, soft: 0, lit: false,
-    intensity: 1, angle: zero, fadeIn: 0, turbulence: 0, delay: 0, light: null, sound: null, shake: null, haze: null,
+    intensity: 1, angle: zero, fadeIn: 0, turbulence: 0, vortex: null, delay: 0, light: null, sound: null, shake: null, haze: null,
     children: [], onDeath: null,
   };
 }

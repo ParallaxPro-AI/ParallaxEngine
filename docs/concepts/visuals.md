@@ -420,7 +420,10 @@ turns smoke into spray:
 ```
 
 A `.vfx.json` can also set `"blend": "additive"`, a `"flipbook"`, `"light"`,
-`"sound"`, `"shake"`, `"haze"` and child effects. Nearly every example has an
+`"sound"`, `"shake"`, `"haze"` and child effects. `"vortex": {"spin": 120, "pull": 2}`
+whirls particles about the vertical line through the emitter (degrees per second,
+counter-clockwise seen from above) and draws them toward it: tornado funnels, dust
+devils, whirlpools and portals. The line follows a moving emitter. Nearly every example has an
 `assets/vfx/` folder to copy from. `fps_shooter` and `tank_battle` have
 explosions and muzzle flashes, and `racing` has tire smoke and verge dust. See
 [assets](assets.md#sound-and-effects), [`VfxApi`](../reference/parallax.md#vfxapi) and
