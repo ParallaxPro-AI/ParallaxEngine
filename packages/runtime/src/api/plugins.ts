@@ -31,6 +31,7 @@ export { weather } from './weather.js';
 export { procgen } from './procgen.js';
 export { city } from './city.js';
 export { softbody } from './softbody.js';
+export { matter } from './matter.js';
 export { screens } from './screens.js';
 export { voice } from './voice.js';
 export { chat } from './chat.js';

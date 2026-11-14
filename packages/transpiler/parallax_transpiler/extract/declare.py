@@ -53,6 +53,7 @@ PLUGINS_OF_MODULE: dict[str, list[str]] = {
     "parallax.spawning": ["spawning"],
     "parallax.cinematics": ["cinematics"],
     "parallax.softbody": ["softbody"],
+    "parallax.matter": ["matter"],
     "parallax.screens": ["screens"],
     "parallax.voice": ["voice"],
     "parallax.chat": ["chat"],

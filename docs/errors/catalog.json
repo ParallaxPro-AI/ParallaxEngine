@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 875,
+  "count": 878,
   "codes": [
     {
       "code": "PP1001",
@@ -3848,6 +3848,7 @@
       "areas": [
         "core",
         "grid",
+        "matter",
         "render2d",
         "softbody",
         "visuals"
@@ -3876,6 +3877,7 @@
         "packages/runtime/src/core/entity_ids.ts",
         "packages/runtime/src/function/kernel/world.ts",
         "packages/runtime/src/function/plugins/grid/state.ts",
+        "packages/runtime/src/function/plugins/matter/index.ts",
         "packages/runtime/src/function/plugins/models/animation_clips.ts",
         "packages/runtime/src/function/plugins/models/index.ts",
         "packages/runtime/src/function/plugins/models/poser.ts",
@@ -6937,6 +6939,7 @@
       "areas": [
         "ai",
         "city",
+        "matter",
         "nav",
         "screens",
         "water",
@@ -6949,6 +6952,7 @@
       "messages": [
         "This ai plugin is already installed in another kernel",
         "This city plugin is already installed in another kernel",
+        "This matter plugin is already installed in another kernel",
         "This nav plugin is already installed in another kernel",
         "This screens plugin is already installed in another kernel",
         "This water plugin is already installed in another kernel",
@@ -6957,6 +6961,7 @@
       "fixes": [
         "Call ai() once per game.",
         "Call city() once per game.",
+        "Call matter() once per game.",
         "Call nav() once per game.",
         "Call screens() once per game.",
         "Call water() once per kernel.",
@@ -6966,6 +6971,7 @@
       "sources": [
         "packages/runtime/src/function/plugins/ai/index.ts",
         "packages/runtime/src/function/plugins/city/index.ts",
+        "packages/runtime/src/function/plugins/matter/index.ts",
         "packages/runtime/src/function/plugins/nav/index.ts",
         "packages/runtime/src/function/plugins/screens/index.ts",
         "packages/runtime/src/function/plugins/water/index.ts",
@@ -9651,6 +9657,77 @@
         "packages/runtime/src/function/plugins/chat/index.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3473"
+    },
+    {
+      "code": "PP3491",
+      "range": "PP3xxx",
+      "areas": [
+        "matter"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "Sliceable.slice() normal must not be zero",
+        "{where} must be a Color, got {…}",
+        "{where} must be a finite Vec3, got {…}",
+        "{where} must be a number{…}, got {…}"
+      ],
+      "fixes": [
+        "Pass Color.hex(\"#6b3a1e\") or Color(r, g, b).",
+        "Pass the cut plane's normal, e.g. the blade's side direction.",
+        "Pass vec3(x, y, z)."
+      ],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/function/plugins/matter/index.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3491"
+    },
+    {
+      "code": "PP3492",
+      "range": "PP3xxx",
+      "areas": [
+        "matter"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "Sliceable.slice(): entity {…} was not spawned from a prefab, so the cut-off piece has nothing to copy"
+      ],
+      "fixes": [
+        "Spawn sliceable things from a prefab (ctx.world.spawn(Prefabs.wax_block)) or place them from one in the scene."
+      ],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/function/plugins/matter/index.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3492"
+    },
+    {
+      "code": "PP3493",
+      "range": "PP3xxx",
+      "areas": [
+        "matter"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "Liquid.pour_into(): the other entity has no Liquid"
+      ],
+      "fixes": [
+        "Pour into an entity whose prefab has a \"liquid\" component (a beaker, a tank, a crucible)."
+      ],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/function/plugins/matter/index.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3493"
     },
     {
       "code": "PP3500",
@@ -18888,6 +18965,7 @@
       "code": "PP9240",
       "range": "PP9xxx",
       "areas": [
+        "matter",
         "nav",
         "water"
       ],
@@ -18897,11 +18975,13 @@
       ],
       "messages": [
         "The water plugin is used before its kernel was built",
+        "matter is used before its kernel was built",
         "nav is used before its kernel was built"
       ],
       "fixes": [],
       "notes": [],
       "sources": [
+        "packages/runtime/src/function/plugins/matter/index.ts",
         "packages/runtime/src/function/plugins/nav/index.ts",
         "packages/runtime/src/function/plugins/water/index.ts"
       ],

@@ -140,6 +140,12 @@ def softbody() -> Plugin:
     """Cloth and soft bodies (parallax.softbody): capes, flags, curtains, jelly, slime.
     List it after physics3d (it reads its gravity and colliders)."""
 
+def matter(*, ambient: float = 21, time_scale: float = 1) -> Plugin:
+    """Stuff that cuts, heats, melts, boils and pours (parallax.matter): Sliceable soft
+    solids, Thermal bodies, HeatSources and Liquids in containers. List it after physics3d.
+    ambient    -- air temperature, °C
+    time_scale -- heat runs this many times faster than the clock (accelerated process time); motion never does"""
+
 def screens() -> Plugin:
     """@ui panels on in-world screens (parallax.screens)."""
 

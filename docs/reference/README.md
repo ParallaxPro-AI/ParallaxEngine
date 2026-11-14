@@ -27,6 +27,7 @@ Regenerate after changing a stub: `python3 tools/gen_api_docs.py`.
 | [`parallax.grid`](parallax.grid.md) | Grid plugin: boards, tile maps and anything laid out in cells. |
 | [`parallax.hud`](parallax.hud.md) | HUD kit (plugins.hud()): minimap, compass, crosshair, nameplates and world health bars, objective markers and pings, stat bars, ability bar, combo counter, key hints, awareness meters and damage arcs, and screen juice (hurt flash, low-health vignette, hit-stop, shake, eased slow motion). |
 | [`parallax.interaction`](parallax.interaction.md) | Interaction (plugins.interaction(action=Controls.interact)): "[E] Open" prompts. |
+| [`parallax.matter`](parallax.matter.md) | Stuff that cuts, heats, melts, boils and pours (plugins.matter()): soft solids you can slice with real cut faces, heat with real heat transfer, and liquids that fill containers, boil, swirl when stirred and spill when tipped. |
 | [`parallax.nav`](parallax.nav.md) | Navigation plugin: pathfinding agents over walkable surfaces on several levels (3D scenes). |
 | [`parallax.net`](parallax.net.md) | Net plugin: server-authoritative online multiplayer. |
 | [`parallax.payments`](parallax.payments.md) | In-game purchases (plugins.payments()), sold by the page or app hosting the game — the game never shows a pay button of its own or sees a card. |
