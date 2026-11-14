@@ -203,6 +203,40 @@ describe('standing and walking', () => {
     expect(g.pos('b').z).toBe(21); // teleport still sets it
   });
 
+  it('walks off a thin kinematic floor it was placed just above (a lift car), however long it stood there', () => {
+    const car = { components: { rigidbody: { kind: 'kinematic' }, collider: { shape: 'box', size: [1.88, 0.18, 1.44], offset: [0, 0.09, -0.02] } } };
+    const hero = { components: { character: { radius: 0.33, height: 1.75, step_height: 0.25, acceleration: 55 } } };
+    const g = game({ car, hero }, [{ prefab: 'car', id: 'car', at: [-6, 0, 6], rotation: 180 }, { prefab: 'hero', id: 'hero', at: [-6, 0.2, 6.15] }]);
+    g.run(160);
+    const c = g.character('hero');
+    expect(c.grounded).toBe(true);
+    const z0 = g.pos('hero').z;
+    g.run(30, () => c.move(new Vec3(0, 0, -1)));
+    expect(z0 - g.pos('hero').z).toBeGreaterThan(1);
+  });
+
+  it('walks off the edge or corner of a crate it was set down on, kinematic or static, turned or not', () => {
+    for (const kind of ['kinematic', 'static']) {
+      for (const yaw of [0, 10]) {
+        for (const dir of [new Vec3(-1, 0, 0), new Vec3(0, 0, -1), new Vec3(0.7, 0, 0.7)]) {
+          const crate = { components: { ...(kind === 'kinematic' ? { rigidbody: { kind: 'kinematic' } } : {}), collider: { shape: 'box', size: [0.74, 0.75, 0.74], offset: [0, 0.375, 0] } } };
+          const hero = { components: { character: { radius: 0.28, height: 1.72, step_height: 0.3, acceleration: 45, walk_speed: 2.7 } } };
+          // The crate is carried over and set down by code; the hero stands on it a while.
+          const g = game({ floor: FLOOR, crate, hero }, [{ prefab: 'floor' }, { prefab: 'crate', id: 'crate', at: [3, 0, 2], rotation: [0, yaw, 0] },
+            { prefab: 'hero', id: 'hero', at: [0, 3, 0] }]);
+          g.run(5);
+          g.kernel.world.require(g.id('crate')).transform.setWorldPosition(new Vec3(0, 0, 0));
+          g.run(90);
+          const c = g.character('hero');
+          expect(g.pos('hero').y).toBeGreaterThan(0.7);
+          g.run(40, () => c.move(dir));
+          const p = g.pos('hero');
+          expect({ kind, yaw, dir: [dir.x, dir.z], off: Math.hypot(p.x, p.z) > 0.8, down: p.y < 0.3 }).toEqual({ kind, yaw, dir: [dir.x, dir.z], off: true, down: true });
+        }
+      }
+    }
+  });
+
   it('rides a moving kinematic platform', () => {
     const platform = { components: { rigidbody: { kind: 'kinematic' }, collider: { shape: 'box', size: [4, 0.5, 4], offset: [0, -0.25, 0] } } };
     const g = game({ platform, hero: HERO }, [{ prefab: 'platform', id: 'p', at: [0, 5, 0] }, { prefab: 'hero', id: 'hero', at: [0, 5.1, 0] }]);

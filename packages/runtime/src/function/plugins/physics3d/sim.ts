@@ -72,6 +72,8 @@ export const SHAPES_3D = ['box', 'sphere', 'capsule', 'cylinder', 'mesh', 'conve
 
 /** Gap Rapier's character controller keeps between the capsule and what it touches (m). */
 export const CHARACTER_SKIN = 0.02;
+/** How far outside the skin a character on a kinematic floor starts each move (m). */
+const SKIN_CLEARANCE = 5e-4;
 
 /** Per-body motion Rapier holds and components don't, plus service state (for snapshots). */
 export interface SavedPhysics3d {
@@ -177,6 +179,13 @@ const ZERO_XYZ: XYZ = { x: 0, y: 0, z: 0 };
 
 function key(values: readonly unknown[]): string {
   return values.map((v) => (v instanceof Vec3 ? `${v.x},${v.y},${v.z}` : Array.isArray(v) ? v.join('|') : String(v))).join(';');
+}
+
+/** A body neither moving nor turning (m/s and rad/s below a hair). */
+function isStill(body: RAPIER.RigidBody): boolean {
+  const v = body.linvel();
+  const w = body.angvel();
+  return Math.abs(v.x) + Math.abs(v.y) + Math.abs(v.z) < 1e-6 && Math.abs(w.x) + Math.abs(w.y) + Math.abs(w.z) < 1e-6;
 }
 
 function rigidbodyKey(fields: Fields): string {
@@ -776,7 +785,24 @@ export class Physics3dSim {
     // The game may have moved the character through its transform (or a teleport):
     // start the move from there.
     const t = record.transform;
-    const at = t.worldPosition();
+    const predicate = this.#predicate(NO_FILTER, entity);
+    let at = t.worldPosition();
+    // Standing on a kinematic body at rest (a parked lift car, a platform between moves, a
+    // crate set down), Rapier's controller comes to rest a hair inside its skin; every later
+    // shape cast then starts in contact with the floor and all horizontal movement is
+    // refused. Start each move from just outside the skin instead. The capsule itself is
+    // cast down (not a ray from its centre), so it holds on a floor's edge and corners too.
+    // (A moving platform carries the character as before.)
+    const colliderAt = collider.translation();
+    const bodyAt = body.body.translation();
+    const castFrom = { x: at.x + colliderAt.x - bodyAt.x, y: at.y + colliderAt.y - bodyAt.y, z: at.z + colliderAt.z - bodyAt.z };
+    const under = this.world.castShape(castFrom, collider.rotation(), { x: 0, y: -1, z: 0 }, collider.shape, 0,
+      CHARACTER_SKIN * 2, false, R.QueryFilterFlags.EXCLUDE_SENSORS, collider.collisionGroups(), collider, body.body, predicate);
+    const floorBody = under?.collider.parent() ?? null;
+    if (under !== null && Math.abs(under.normal1.y) > 0.5 && floorBody !== null && floorBody.isKinematic() && isStill(floorBody)) {
+      const gap = under.time_of_impact;
+      if (gap < CHARACTER_SKIN + SKIN_CLEARANCE) at = at.with_y(at.y + CHARACTER_SKIN + SKIN_CLEARANCE - gap);
+    }
     const current = body.body.translation();
     if (Math.abs(current.x - at.x) + Math.abs(current.y - at.y) + Math.abs(current.z - at.z) > 1e-9) {
       body.body.setTranslation(at, true);
@@ -784,7 +810,6 @@ export class Physics3dSim {
       this.world.propagateModifiedBodyPositionsToColliders();
     }
 
-    const predicate = this.#predicate(NO_FILTER, entity);
     controller.computeColliderMovement(collider, delta, R.QueryFilterFlags.EXCLUDE_SENSORS, collider.collisionGroups(), predicate);
     const m = controller.computedMovement();
     let grounded = controller.computedGrounded();
