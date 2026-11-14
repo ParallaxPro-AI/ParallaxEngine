@@ -23,7 +23,7 @@ import { windVisuals } from './wind_streaks.js';
 import { writeGlb } from '../models/testing.js';
 import { frustumPlanes, NO_MORPH, selectTiles } from './terrain_cdlod.js';
 import type { TileSource } from './terrain_cdlod.js';
-import { tileGeometry } from './terrain.js';
+import { tileGeometry, tileHeightBounds } from './terrain.js';
 import { perspective, viewMatrix, multiply } from '../../../resource/index.js';
 
 const DT = 1 / 60;
@@ -227,6 +227,21 @@ describe('tile geometry', () => {
     expect([...g.indices.slice(0, 6)]).toEqual([1, V + 2, 2, 1, V + 1, V + 2]);
     expect(g.uvs[0]).toBe(0.5);
     expect(g.max[1]).toBe(0.5);
+  });
+
+  it('height bounds cover the morph targets and are scanned once per tile', () => {
+    const V = TILE_QUADS + 1;
+    const morph = new Float32Array(V * V).fill(1);
+    morph[7] = -2;
+    morph[9] = 6;
+    const tile = {
+      level: 0, ix: 0, iz: 0, x: 0, z: 0, cell: 1, heights: new Float32Array(V * V), morph, normals: new Float32Array(V * V * 3),
+      palette: [0], weights: new Float32Array(V * V * 4), dropped: false, holes: null, minHeight: 0, maxHeight: 3, revision: 0,
+    };
+    const bounds = tileHeightBounds(tile);
+    expect(bounds).toEqual({ minHeight: -2, maxHeight: 6 });
+    morph[9] = 40; // tiles are immutable: a later call answers from the first scan
+    expect(tileHeightBounds(tile)).toBe(bounds);
   });
 });
 
