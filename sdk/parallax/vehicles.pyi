@@ -53,6 +53,7 @@ class Vehicle(EngineComponent):
     steering: float = field(35, min=0, unit="deg")
     turn_rate: float = field(60, min=0, unit="deg/s", doc="Tracked: in-place turn speed. Boats: yaw rate.")
     grip: float = field(1, min=0, modifiable=True, doc="Lateral grip; lower = more drift.")
+    ground_clearance: float = field(0.05, min=0, unit="m", doc="Cars and tracked: how high the bottom of the Collider's box rides above the ground at rest; the wheels reach down to it. Off-road vehicles raise it (with the box's bottom) so bumps and kerbs pass under the chassis.")
     fuel: float = field(-1, min=-1, unit="L", doc="-1 = no fuel model.")
     fuel_capacity: float = field(-1, min=-1, unit="L")
     fuel_burn: float = field(0, min=0, unit="L/s", doc="At full throttle; scales with throttle.")

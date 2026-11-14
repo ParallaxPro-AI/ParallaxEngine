@@ -101,6 +101,22 @@ describe('cars', () => {
     expect(Math.abs(r.x) + Math.abs(r.z)).toBeLessThan(0.5);
   });
 
+  it('ground_clearance rides the box that high on its wheels, so a kerb-high bump passes under it', () => {
+    // An off-road chassis: the box starts 0.4 m above the entity's origin (the wheels' bottoms).
+    const offroad = { ...CAR, components: { ...CAR.components,
+      collider: { shape: 'box', size: [1.6, 1.1, 2.25], offset: [0, 0.95, 0], friction: 0.4, bounce: 0.1 },
+      vehicle: { ...CAR.components.vehicle, ground_clearance: 0.4 } } };
+    const bump = { components: { collider: { shape: 'box', size: [4, 0.25, 0.4], offset: [0, 0.125, 0] } } };
+    const g = game({ road: ROAD, car: offroad, bump }, [
+      { prefab: 'road' }, { prefab: 'car', id: 'car', at: [0, 0.6, 0] }, { prefab: 'bump', at: [0, 0, 6] },
+    ]);
+    g.run(180);
+    expect(g.pos('car').y).toBeGreaterThan(-0.08);
+    expect(g.pos('car').y).toBeLessThan(0.08);
+    g.run(240, () => g.vehicle('car').drive({ throttle: 1 }));
+    expect(g.pos('car').z).toBeGreaterThan(14);
+  });
+
   it('drives forward (+z) under throttle at `acceleration` up to max_speed, then brakes to a stop', () => {
     const g = game({ road: ROAD, car: CAR }, [{ prefab: 'road' }, { prefab: 'car', id: 'car', at: [0, 0.2, 0] }]);
     g.run(60);

@@ -28,6 +28,7 @@ export const VEHICLE_SCHEMA: Schema = {
   steering: t.number({ default: 35, min: 0 }),
   turn_rate: t.number({ default: 60, min: 0 }),
   grip: t.number({ default: 1, min: 0, modifiable: true }),
+  ground_clearance: t.number({ default: 0.05, min: 0 }),
   fuel: t.number({ default: -1, min: -1 }),
   fuel_capacity: t.number({ default: -1, min: -1 }),
   fuel_burn: t.number({ default: 0, min: 0 }),
