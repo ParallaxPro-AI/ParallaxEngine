@@ -28,6 +28,10 @@ class EscapesAreRejected(unittest.TestCase):
         self.assertEqual(codes('f = open("x")'), ["PP6002"])
         self.assertEqual(codes('m = __import__("os")'), ["PP6002"])
 
+    def test_host_builtins_are_rejected_inside_class_bodies(self) -> None:
+        self.assertEqual(codes("class A:\n    x: int = open('f')"), ["PP6002"])
+        self.assertEqual(codes("class A:\n    def f(self):\n        return eval('1')"), ["PP6002"])
+
     def test_imports_outside_the_allowlist_are_rejected(self) -> None:
         self.assertEqual(codes("import os"), ["PP6001"])
         self.assertEqual(codes("from subprocess import run"), ["PP6001"])
@@ -40,6 +44,17 @@ class EscapesAreRejected(unittest.TestCase):
 
 
 class OrdinaryGameCodeIsAccepted(unittest.TestCase):
+    def test_class_attributes_may_share_a_host_builtin_name(self) -> None:
+        # A resource field named `open` is `gate.open`, not the builtin open().
+        source = "\n".join([
+            "from parallax import field, resource",
+            "@resource('gate')",
+            "class Gate:",
+            "    open: bool = field(False)",
+            "    exec = 3",
+        ])
+        self.assertEqual(codes(source), [])
+
     def test_sdk_stdlib_and_local_imports(self) -> None:
         source = "\n".join([
             "import math",

@@ -96,6 +96,22 @@ class _SafetyChecker(ast.NodeVisitor):
         if node.level == 0 and node.module is not None:
             self._check_module(node, node.module)
 
+    def visit_ClassDef(self, node: ast.ClassDef) -> None:
+        # A name declared in a class body is an attribute (`open: bool = field(False)` on a
+        # resource is `res.open`), not the host builtin of that name: check only its
+        # annotation and value.
+        for expr in [*node.bases, *node.keywords, *node.decorator_list]:
+            self.visit(expr)
+        for stmt in node.body:
+            if isinstance(stmt, ast.AnnAssign) and isinstance(stmt.target, ast.Name):
+                self.visit(stmt.annotation)
+                if stmt.value is not None:
+                    self.visit(stmt.value)
+            elif isinstance(stmt, ast.Assign) and all(isinstance(t, ast.Name) for t in stmt.targets):
+                self.visit(stmt.value)
+            else:
+                self.visit(stmt)
+
     def visit_Name(self, node: ast.Name) -> None:
         if node.id in FORBIDDEN_NAMES:
             self._report(node, "PP6002", f"'{node.id}' is not available in game code",
