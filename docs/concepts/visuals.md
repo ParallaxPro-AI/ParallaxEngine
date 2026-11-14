@@ -455,12 +455,42 @@ component on a camera blurs by distance. The values above come from
 | Selection outline or x-ray | `outline` | Targets, interactables, teammates |
 | Heat shimmer and shockwaves | `heat_haze` (`pulse()`) | Fires, exhausts, explosions (`racing`) |
 | Projected images | `decal` | Scorch marks, blood, road paint, posters |
+| Paintable dirt, rust, moss, foam, paint | `surface_mask` (`SurfaceMask.clean()`, `paint()`, `coverage()`) | Cleaning and restoring, graffiti, painting, wear |
 | Glowing material | `emissive` and `emissive_strength` on a shape or model material | Lava, neon, engines |
 | Cloth | `cloth` (`plugins.softbody()`) | Flags, capes, banners, sails (`racing`, `horde_survival`) |
 | Camera shake and recoil | `ctx.camera.main.shake()`, `kick()` | Impacts, shots |
 | Hit-stop and slow motion | `ctx.time.hitstop()`, `ctx.time.ramp()` | Heavy hits, finishers |
 
 All of these are in the [core reference](../reference/parallax.md#surfacefx).
+
+A `surface_mask` lays up to four layers over an entity's Model or Shape, each with its own
+color, roughness and metalness, and lets code erase or add them where a ray hits. The layers
+live in a volume of cells around the entity, so any model works without texture
+coordinates. This moss and grime on a statue comes off under a brush and reads back as a meter:
+
+```json
+{"components": {
+  "model": {"model": "models/statue"},
+  "collider": {"shape": "mesh"},
+  "surface_mask": {"resolution": 96, "layers": [
+    {"name": "grime", "color": "#7b6a55", "roughness": 0.85},
+    {"name": "moss", "color": "#4f6b2e", "roughness": 0.97, "coverage": 0.75, "pattern": 1.6, "up": 0.6}
+  ]}
+}}
+```
+
+```python
+origin, direction = ctx.camera.main.ray(ctx.input.pointer.screen)
+hit = ctx.physics.raycast(origin, direction, 20)
+if hit is not None and hit.entity is not None and hit.entity.has(SurfaceMask):
+    mask = hit.entity.get(SurfaceMask)
+    mask.clean(hit.point, 0.15, "moss", strength=3 * dt)
+    clean = 1 - mask.coverage(["moss", "grime"])
+```
+
+A layer with `"coverage": 0` starts empty for `paint()` (foam, soap, graffiti). `clean`
+reaches a layer only where the layers above it are gone unless `exposed=False`, and a mask
+can be limited to one Model `material`.
 
 ## Buildings, tracks and generated geometry
 

@@ -17,6 +17,8 @@
  *   heat_haze      the image around the entity shimmers (hot air) or a shockwave ring bends it
  *   depth_of_field on a camera: what is nearer or farther than `focus_distance` blurs (3D;
  *                  cinematic focus tracks pull it)
+ *   surface_mask   paintable layers (dirt, rust, moss, foam) on the entity's surface, erased
+ *                  and painted at world points from game code (surface_mask.ts)
  */
 
 import { Color, Vec2, Vec3 } from '../../../core/index.js';
@@ -33,6 +35,7 @@ export const FOG_OVERLAY = 'fog_overlay';
 export const SURFACE_FX = 'surface_fx';
 export const HEAT_HAZE = 'heat_haze';
 export const DEPTH_OF_FIELD = 'depth_of_field';
+export const SURFACE_MASK = 'surface_mask';
 
 const optional = (of: FieldType): FieldType => ({ kind: 'optional', of });
 
@@ -168,6 +171,45 @@ export const DEPTH_OF_FIELD_SCHEMA: Schema = {
   max_blur: t.number({ default: 6, min: 0, max: 64 }),
 };
 
+/** One paintable layer of a surface mask (sdk `MaskLayer`). */
+export const MASK_LAYER_RECORD: Schema = {
+  name: t.string({ default: '' }),
+  /** How the layer looks where it lies: its color and the roughness and metalness it gives the surface. */
+  color: t.color({ default: new Color(0.35, 0.27, 0.18) }),
+  roughness: t.number({ default: 0.9, min: 0, max: 1 }),
+  metallic: t.number({ default: 0, min: 0, max: 1 }),
+  /** 0..1 of the surface it covers at the start (1: all of it; 0: none until painted). */
+  coverage: t.number({ default: 1, min: 0, max: 1 }),
+  /** Blotches per meter: of its starting coverage, its tone and its broken-up edge. */
+  pattern: t.number({ default: 4, min: 0.01 }),
+  /** 0..1: how far noise eats into the layer's edge (0: a smooth fade). */
+  breakup: t.number({ default: 0.5, min: 0, max: 1 }),
+  /** -1..1: more of the starting coverage low down on the entity (mud splashes), or high up. */
+  below: t.number({ default: 0, min: -1, max: 1 }),
+  /** -1..1: more of it on faces that look up (dust, moss, droppings), or down. */
+  up: t.number({ default: 0, min: -1, max: 1 }),
+};
+
+/**
+ * A volume of paintable layers on the entity's surface. The amounts are run-time state
+ * kept outside these fields (surface_mask.ts): the fields say how it starts and looks.
+ */
+export const SURFACE_MASK_SCHEMA: Schema = {
+  /** Bottom to top: later layers lie over earlier ones (at most 4). */
+  layers: t.list({ kind: 'record', fields: MASK_LAYER_RECORD }, { default: [] }),
+  /** Cells along the volume's longest side (detail of the mask). */
+  resolution: t.int({ default: 64, min: 2, max: 256 }),
+  /** The box the volume covers, in the entity's own space (zero: the Model's bounds, else the Shape's or collider's). */
+  size: t.vec3({ default: Vec3.ZERO }),
+  offset: t.vec3({ default: Vec3.ZERO }),
+  /** The Model material the layers draw on (None: every material, or the Shape). */
+  material: { type: optional({ kind: 'string' }), default: null },
+  /** Varies the starting blotches. */
+  seed: t.int({ default: 1 }),
+  /** Count surfaces sealed inside the model (the inside of a closed box) in coverage too; by default only the outside does. */
+  inside: t.bool({ default: false }),
+};
+
 export const RENDER_SCHEMAS: Readonly<Record<string, Schema>> = {
   [LOD]: LOD_SCHEMA,
   [STATIC_MESH]: STATIC_MESH_SCHEMA,
@@ -179,4 +221,5 @@ export const RENDER_SCHEMAS: Readonly<Record<string, Schema>> = {
   [SURFACE_FX]: SURFACE_FX_SCHEMA,
   [HEAT_HAZE]: HEAT_HAZE_SCHEMA,
   [DEPTH_OF_FIELD]: DEPTH_OF_FIELD_SCHEMA,
+  [SURFACE_MASK]: SURFACE_MASK_SCHEMA,
 };

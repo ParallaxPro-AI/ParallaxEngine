@@ -12575,7 +12575,9 @@
         "error"
       ],
       "messages": [
+        "A surface_mask volume of {this.nx}×{this.ny}×{this.nz} cells is too large to draw",
         "flash(color=) must be a Color",
+        "paint() needs the layer to paint",
         "vfx.lightning branches is {branches}; it must be a whole number 0–16",
         "vfx.lightning needs two finite 3D points",
         "vfx.lightning seconds is {seconds}; it must be above 0",
@@ -12599,6 +12601,7 @@
         "{what} needs at least two finite 3D points",
         "{what} seconds is {seconds}; it can't be negative",
         "{what} width is {width}; it must be above 0",
+        "{where} is {value}; it must be {min} to {max}",
         "{where} is {value}; it must be {…}",
         "{where} must be a Color or None, got {…}",
         "{where} must be a Color, got {…}",
@@ -12606,8 +12609,12 @@
         "{where} must be a finite number, got {…}",
         "{where} must be a number, got {…}",
         "{where}.fill is {fill}; it must be 0 to 1",
+        "{where}.layers has two layers named \"{name}\"",
+        "{where}.layers has {layers.length} layers; a surface_mask holds at most {MASK_LAYERS}",
         "{where}.levels[{i}].model must be a model reference or None, got {…}",
+        "{where}.material is \"{only}\", but the model draws nothing with that material",
         "{where}.offset must be a Vec3, got {…}",
+        "{where}.resolution is {resolution}; it must be 2 to {MAX_MASK_RESOLUTION}",
         "{where}.rotation_offset must be a Vec3 (degrees), got {…}",
         "{where}.scale must be a number above 0, got {…}",
         "{where}.size is ({sx}, {sy}, {sz}); sizes can't be negative",
@@ -12616,20 +12623,31 @@
         "{where}.uv_scale must be a Vec2, got {…}",
         "{where}.width is {width}; it must be 0 to 16 pixels",
         "{where}.{key} must be a dict, got {…}",
+        "{where}: the entity has no Model, Shape or box collider to lay the mask on",
+        "{where}: the surface_mask has no layer {…}",
         "{…} socket.name must be a string"
       ],
       "fixes": [
+        "Give every layer its own name.",
+        "Give the surface_mask a size (meters, in the entity's own space), or a Model or Shape.",
+        "Its layers are {…}.",
+        "Lower its resolution.",
+        "Merge layers that look alike, or put a second mask on a child entity.",
+        "Name one of its materials: {…}.",
         "Pass Assets.vfx.<name> (a file in assets/vfx/) or a built-in, Effect.<name>.",
         "Pass Color(r, g, b) or Color.hex(\"#rrggbb\").",
         "Pass Color.WHITE, Color(1, 0.2, 0.2) or Color.hex(\"#ff4040\").",
         "Pass a non-zero direction, or leave it out.",
+        "Pass a world point, such as hit.point.",
         "Pass at=self.entity or at=vec3(x, y, z).",
         "Pass vec3(x, y, z).",
         "Use 1 for the model's own size, 2 for twice it, 0.5 for half.",
+        "Use 32 to 128: cells along the longest side.",
         "Use Color(r, g, b) or Color.hex(\"#rrggbb\").",
         "Use Vec2(1, 1) for no tiling, Vec2(4, 4) to repeat the texture four times each way.",
         "Use Vec2(u_repeats, v_repeats), e.g. Vec2(4, 4).",
-        "e.g. count=12 for a small pop, count=80 for a big one."
+        "e.g. count=12 for a small pop, count=80 for a big one.",
+        "paint(hit.point, 0.2, \"foam\")"
       ],
       "notes": [],
       "sources": [
@@ -12640,6 +12658,7 @@
         "packages/runtime/src/function/plugins/render3d/engine.ts",
         "packages/runtime/src/function/plugins/render3d/lod.ts",
         "packages/runtime/src/function/plugins/visuals/surface_fx.ts",
+        "packages/runtime/src/function/plugins/visuals/surface_mask.ts",
         "packages/runtime/src/resource/models/code_model_pose.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3800"

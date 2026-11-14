@@ -38,7 +38,7 @@ import type { EntityId, Vec3 } from '../../../core/index.js';
 import { componentEntity } from '../../kernel/index.js';
 import type { ComponentDef, Fields, Handle, Kernel, KernelPlugin, SystemDef } from '../../kernel/index.js';
 import type { Json } from '../../../resource/index.js';
-import { CAMERAS_SERVICE } from '../../services/index.js';
+import { CAMERAS_SERVICE, SURFACE_MASKS_SERVICE } from '../../services/index.js';
 import { Sprites } from './animation.js';
 import { ANIMATION_EVENT, Animators, CLIP_FINISHED } from './animation_player.js';
 import type { SavedAnimator } from './animation_player.js';
@@ -47,8 +47,9 @@ import type { LookSource, SavedCameras } from './camera.js';
 import { Bars, readBands, textSpans, Zones } from './derived.js';
 import type { SavedZone } from './derived.js';
 import { modelMethods } from './model.js';
-import { HEAT_HAZE, SURFACE_FX } from './render_schemas.js';
+import { HEAT_HAZE, SURFACE_FX, SURFACE_MASK } from './render_schemas.js';
 import { heatHazeMethods, surfaceFxMethods } from './surface_fx.js';
+import { maskOf, surfaceMaskMethods } from './surface_mask.js';
 import { CameraApi } from './namespace.js';
 import {
   ANIMATOR, CAMERA, ENVIRONMENT_ZONE, MODEL, SPRITE, TEXT_MESH, VISUAL_SCHEMAS, WORLD_BAR,
@@ -65,6 +66,9 @@ export {
   MONITOR_SCHEMA, RENDER_SCHEMAS, RENDER_TEXTURE, RENDER_TEXTURE_SCHEMA, STATIC_MESH, STATIC_MESH_SCHEMA, SURFACE_FX, SURFACE_FX_SCHEMA,
 } from './render_schemas.js';
 export { dissolveNow } from './surface_fx.js';
+export { MASK_LAYER_RECORD, SURFACE_MASK, SURFACE_MASK_SCHEMA } from './render_schemas.js';
+export { builtMask, MASK_LAYERS, MaskState, maskOf } from './surface_mask.js';
+export type { MaskLayerSpec } from './surface_mask.js';
 export { spriteFrame } from './animation.js';
 export { ANIMATION_EVENT, CLIP_FINISHED } from './animation_player.js';
 export type { AnimatorPlayback, PlaybackGoal, PlaybackIk, PlaybackLayer, PlaybackLimb, PlaybackSample } from './animation_player.js';
@@ -182,6 +186,7 @@ export function visuals(options: VisualsOptions): VisualsPlugin {
     [CAMERA]: cameras.methods(),
     [SURFACE_FX]: surfaceFxMethods(kernel),
     [HEAT_HAZE]: heatHazeMethods(kernel),
+    [SURFACE_MASK]: surfaceMaskMethods(kernel),
     [TEXT_MESH]: {
       get __spans__() {
         return textSpans((this as unknown as Fields)['text'] as string);
@@ -238,6 +243,7 @@ export function visuals(options: VisualsOptions): VisualsPlugin {
       }
       installed = k;
       k.provide(CAMERAS_SERVICE, { active: (seat) => cameras.activeEntity(seat), live: () => cameras.live() });
+      k.provide(SURFACE_MASKS_SERVICE, { mask: (record, fields) => maskOf(k, record, fields) });
       k.observeScenes({ loading: () => cameras.sceneLoading() });
       k.observeEntities({
         added: (records) => {

@@ -76,7 +76,12 @@ export type TextureSource =
    * What an offscreen view (`Frame3d.offscreen`) drew this frame or earlier: a camera feed
    * or a mirror. Sampled like any image (display colors); black until first drawn.
    */
-  | { readonly kind: 'target'; readonly target: string };
+  | { readonly kind: 'target'; readonly target: string }
+  /**
+   * Raw RGBA8 texels made at run time (a surface mask's layers): `width` × `height`, rows
+   * from the top. A surface uploads them again whenever `version` moves.
+   */
+  | { readonly kind: 'pixels'; readonly width: number; readonly height: number; readonly data: Uint8Array; readonly version: number };
 
 export type Wrap = 'repeat' | 'clamp' | 'mirror';
 
@@ -149,6 +154,42 @@ export interface Material3d {
    * `amount`, weighted by (local y ÷ `height`)². Absent: none. (Render3d foliage and grass.)
    */
   readonly wind?: { readonly amount: number; readonly height: number };
+  /** Paintable layers (dirt, rust, moss, foam) over the shading, from a surface mask volume. Absent: none. */
+  readonly paint?: MaterialPaint3d;
+}
+
+/** Most layers a surface mask holds (one per channel of its texture). */
+export const MAX_PAINT_LAYERS = 4;
+
+/** One paintable layer as drawn: where its mask channel covers the surface, these replace the material's. */
+export interface PaintLayer3d {
+  /** sRGB. */
+  readonly color: Rgb;
+  readonly roughness: number;
+  readonly metallic: number;
+  /** Noise blotches per meter that vary the layer's tone and break up its edge. */
+  readonly pattern: number;
+  /** 0..1: how far that noise eats into the layer's edge (0: a smooth falloff). */
+  readonly breakup: number;
+}
+
+/**
+ * A surface mask (the visuals plugin's `surface_mask`) on a material: a volume of cubic
+ * cells around the entity, each holding up to four layer amounts 0..1 in one RGBA8 texel.
+ * The cells are stored as `grid[2]` slices of `grid[0]` × `grid[1]` texels, laid out
+ * `tiles` slices per row in `texture`. A fragment finds its cell through `worldToVolume`
+ * (world point → 0..1 across the volume on each axis) and blends the layers over its
+ * shading, first to last (later layers lie on top).
+ */
+export interface MaterialPaint3d {
+  readonly texture: Texture3d;
+  readonly grid: readonly [x: number, y: number, z: number];
+  readonly tiles: number;
+  /** Meters per cell (cells are cubes). */
+  readonly cell: number;
+  /** Column-major 4×4: world → volume coordinates (0..1 inside the volume). */
+  readonly worldToVolume: Float32Array;
+  readonly layers: readonly PaintLayer3d[];
 }
 
 /**

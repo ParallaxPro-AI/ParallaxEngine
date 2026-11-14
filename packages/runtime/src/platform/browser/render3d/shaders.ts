@@ -25,6 +25,7 @@ import {
 } from './layout.js';
 import { glslTerrain as glslTerrainPass, wgslTerrain as wgslTerrainPass } from './terrain_shaders.js';
 import { GLSL_INSTANCE_SCALE, GLSL_MATERIAL_FX, WGSL_INSTANCE_SCALE, WGSL_MATERIAL_FX } from './material_fx_shaders.js';
+import { GLSL_PAINT, WGSL_PAINT } from './paint_shaders.js';
 
 /** The scene passes both backends draw. */
 /** The drawn sun's angular radius (radians, ~0.9°): wider than the real 0.27° so it reads as a disc on screen, as the old renderer's did. */
@@ -53,7 +54,7 @@ export interface SceneVariant {
  */
 export const GLSL_UNITS = {
   sunAtlas: 0, localAtlas: 1, paletteTexture: 2, lightData: 3, clusterGrid: 4, clusterItems: 5, envCube: 6,
-  baseTexture: 7, surfaceTexture: 8, emissiveTexture: 9, normalTexture: 10, occlusionTexture: 11,
+  baseTexture: 7, surfaceTexture: 8, emissiveTexture: 9, normalTexture: 10, occlusionTexture: 11, paintTexture: 12,
   terrainAlbedo: 7, terrainNormal: 8, splatMap: 9, detail0: 11, detail1: 12, detail2: 13, detail3: 14, image: 7,
   hdrTexture: 7, aoTexture: 8, ssrTexture: 9, gbufTexture: 10, depthTexture: 11, bloomTexture: 12, maskTexture: 13,
   sourceTexture: 14, skyCube: 15, albedoAtlas: 8, normalAtlas: 9, decalImages: 12, fogTexture: 12, skyImage: 13,
@@ -587,7 +588,10 @@ ${WGSL_FOLIAGE_SWAY}
 @group(1) @binding(8) var normalSampler: sampler;
 @group(1) @binding(9) var occlusionTexture: texture_2d<f32>;
 @group(1) @binding(10) var occlusionSampler: sampler;
+@group(1) @binding(11) var paintTexture: texture_2d<f32>;
+@group(1) @binding(12) var paintSampler: sampler;
 ${WGSL_MATERIAL_FX}
+${WGSL_PAINT}
 
 struct VertexIn {
   @location(${L.position}) position: vec3<f32>,
@@ -659,22 +663,32 @@ ${mrt ? '    out.surface = vec4<f32>(0.0, 0.0, 1.0, 0.0);' : ''}
   if (material.maps.z > 0.5) {
     n = perturb(n, dpx, dpy, duvx, duvy, vec3<f32>(mapped.xy * material.maps.x, mapped.z));
   }
-  let metallic = material.surface.x * surface.b;
-  let roughness = clamp(material.surface.y * surface.g, 0.04, 1.0);
+  var metallic = material.surface.x * surface.b;
+  var roughness = clamp(material.surface.y * surface.g, 0.04, 1.0);
+  var albedo = base.rgb;
+  var transmission = material.coat.z;
+  var covered = 0.0;
+  if (material.paintGrid.x > 0.5) {
+    let painted = paintShade(in.world, albedo, metallic, roughness, transmission);
+    albedo = painted.albedo;
+    metallic = painted.metallic;
+    roughness = painted.roughness;
+    transmission = painted.transmission;
+    covered = painted.covered;
+  }
   let occlusion = mix(1.0, occlusionMap, material.maps.y * material.maps.w);
   let v = normalize(frame.cameraPosition.xyz - in.world);
   var layers = noLayers(n);
-  layers.coat = material.coat.x;
+  layers.coat = material.coat.x * (1.0 - covered);
   layers.coatRoughness = clamp(material.coat.y, 0.04, 1.0);
   layers.scatter = material.coat.w;
   layers.scatterColor = material.scatter.rgb;
   if (material.scatter.w != 0.0) {
     layers.specular = anisotropic(n, v, dpx, dpy, duvx, duvy, material.scatter.w, material.grain.x, roughness);
   }
-  let transmission = material.coat.z;
-  var lit = vec4<f32>(base.rgb, 0.0);
+  var lit = vec4<f32>(albedo, 0.0);
   if (material.surface.w < 0.5) {
-    lit = lighting(in.world, n, base.rgb * (1.0 - transmission), metallic, roughness, occlusion, in.clip.xy, layers);
+    lit = lighting(in.world, n, albedo * (1.0 - transmission), metallic, roughness, occlusion, in.clip.xy, layers);
   }
   var alpha = select(lit.a, base.a, material.surface.z > 1.5);
   if (transmission > 0.0) {
@@ -682,7 +696,7 @@ ${mrt ? '    out.surface = vec4<f32>(0.0, 0.0, 1.0, 0.0);' : ''}
   }
   let shaded = fxShade(lit.rgb + emissive, alpha, n, v, in.world, cut);
   out.color = vec4<f32>(applyFog(shaded.rgb, in.world), shaded.a);
-${mrt ? '  out.surface = vec4<f32>(octEncode(n), roughness, select(luminance(mix(vec3<f32>(0.04), base.rgb, metallic)), 0.0, material.surface.w > 0.5));' : ''}
+${mrt ? '  out.surface = vec4<f32>(octEncode(n), roughness, select(luminance(mix(vec3<f32>(0.04), albedo, metallic)), 0.0, material.surface.w > 0.5));' : ''}
   return out;
 }
 `;
@@ -1313,7 +1327,9 @@ uniform sampler2D surfaceTexture;
 uniform sampler2D emissiveTexture;
 uniform sampler2D normalTexture;
 uniform sampler2D occlusionTexture;
+uniform sampler2D paintTexture;
 ${GLSL_MATERIAL_FX}
+${GLSL_PAINT}
 in vec3 vWorld;
 in vec3 vNormal;
 in vec2 vUv;
@@ -1351,20 +1367,23 @@ ${mrt ? '    fragSurface = vec4(0.0, 0.0, 1.0, 0.0);' : ''}
   }
   float metallic = surface.x * surfaceMap.b;
   float roughness = clamp(surface.y * surfaceMap.g, 0.04, 1.0);
+  vec3 albedo = base.rgb;
+  float transmission = coat.z;
+  float covered = 0.0;
+  if (paintGrid.x > 0.5) paintShade(vWorld, albedo, metallic, roughness, transmission, covered);
   float occlusion = mix(1.0, occlusionMap, maps.y * maps.w);
   vec3 v = normalize(cameraPosition.xyz - vWorld);
   Layers layers = noLayers(n);
-  layers.coat = coat.x;
+  layers.coat = coat.x * (1.0 - covered);
   layers.coatRoughness = clamp(coat.y, 0.04, 1.0);
   layers.scatter = coat.w;
   layers.scatterColor = scatter.rgb;
   if (scatter.w != 0.0) {
     layers.specular = anisotropic(n, v, dpx, dpy, duvx, duvy, scatter.w, grain.x, roughness);
   }
-  float transmission = coat.z;
-  vec4 lit = vec4(base.rgb, 0.0);
+  vec4 lit = vec4(albedo, 0.0);
   if (surface.w < 0.5) {
-    lit = lighting(vWorld, n, base.rgb * (1.0 - transmission), metallic, roughness, occlusion, ${GLSL_PIXEL}, layers);
+    lit = lighting(vWorld, n, albedo * (1.0 - transmission), metallic, roughness, occlusion, ${GLSL_PIXEL}, layers);
   }
   float alpha = surface.z > 1.5 ? base.a : lit.a;
   if (transmission > 0.0) {
@@ -1372,7 +1391,7 @@ ${mrt ? '    fragSurface = vec4(0.0, 0.0, 1.0, 0.0);' : ''}
   }
   vec4 shaded = fxShade(lit.rgb + glow, alpha, n, v, vWorld, cut);
   fragColor = vec4(applyFog(shaded.rgb, vWorld), shaded.a);
-${mrt ? '  fragSurface = vec4(octEncode(n), roughness, surface.w > 0.5 ? 0.0 : luminance(mix(vec3(0.04), base.rgb, metallic)));' : ''}
+${mrt ? '  fragSurface = vec4(octEncode(n), roughness, surface.w > 0.5 ? 0.0 : luminance(mix(vec3(0.04), albedo, metallic)));' : ''}
 }
 `,
   };

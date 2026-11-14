@@ -169,8 +169,8 @@ export class Materials {
 
   /** One object per material id (a swapped look built each frame keeps its identity). */
   keep(material: Material3d): Material3d {
-    // Effect materials (surface_fx.ts) carry this frame's numbers: never an older copy.
-    if (material.effects !== undefined) return material;
+    // Effect and paint materials (surface_fx.ts, surface_mask.ts) carry this frame's numbers: never an older copy.
+    if (material.effects !== undefined || material.paint !== undefined) return material;
     const known = this.#byKey.get(material.id);
     if (known !== undefined) return known;
     this.#byKey.set(material.id, material);

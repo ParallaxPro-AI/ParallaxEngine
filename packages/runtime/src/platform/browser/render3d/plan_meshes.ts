@@ -82,7 +82,7 @@ interface Source {
 /** Every texture a material samples. */
 export function materialTextures(m: Material3d): Texture3d[] {
   const out: Texture3d[] = [];
-  for (const t of [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture ?? null, m.occlusionTexture ?? null]) {
+  for (const t of [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture ?? null, m.occlusionTexture ?? null, m.paint?.texture ?? null]) {
     if (t !== null) out.push(t);
   }
   return out;

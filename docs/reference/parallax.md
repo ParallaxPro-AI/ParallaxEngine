@@ -45,7 +45,7 @@ Semantics worth knowing:
 
 ## Contents
 
-[`Keep`](#keep), [`Replicate`](#replicate), [`Vec2`](#vec2), [`Vec3`](#vec3), [`Quat`](#quat), [`Color`](#color), [`vec2()`](#vec2-1), [`vec3()`](#vec3-1), [`clamp()`](#clamp), [`lerp()`](#lerp), [`inverse_lerp()`](#inverse_lerp), [`remap()`](#remap), [`move_toward()`](#move_toward), [`approach()`](#approach), [`deg()`](#deg), [`rad()`](#rad), [`angle_between()`](#angle_between), [`angle_to()`](#angle_to), [`heading_to()`](#heading_to), [`rotate_toward()`](#rotate_toward), [`wrap_angle()`](#wrap_angle), [`noise2d()`](#noise2d), [`scatter()`](#scatter), [`Ease`](#ease), [`ease()`](#ease-1), [`field()`](#field), [`param()`](#param), [`state()`](#state), [`record()`](#record), [`Timer`](#timer), [`PrefabRef`](#prefabref), [`SceneRef`](#sceneref), [`AssetRef`](#assetref), [`SoundRef`](#soundref), [`MusicRef`](#musicref), [`ImageRef`](#imageref), [`ModelRef`](#modelref), [`EffectRef`](#effectref), [`Effect`](#effect), [`ClipRef`](#clipref), [`ContentRef`](#contentref), [`EntityRef`](#entityref), [`TextRef`](#textref), [`Localized`](#localized), [`WorldLayerRef`](#worldlayerref), [`component()`](#component), [`resource()`](#resource), [`config()`](#config), [`content()`](#content), [`event()`](#event), [`Tag`](#tag), [`tag()`](#tag-1), [`ContentList`](#contentlist), [`Transform`](#transform), [`Entity`](#entity), [`Query`](#query), [`TagFilter`](#tagfilter), [`Without`](#without), [`World`](#world), [`Placement`](#placement), [`WorldLayer`](#worldlayer), [`EngineComponent`](#enginecomponent), [`Sprite`](#sprite), [`Tile`](#tile), [`Tilemap`](#tilemap), [`Shape`](#shape), [`JointMotion`](#jointmotion), [`Model`](#model), [`Socket`](#socket), [`Animator`](#animator), [`RootMotion`](#rootmotion), [`Light`](#light), [`Particles`](#particles), [`TextMesh`](#textmesh), [`AudioSource`](#audiosource), [`AudioListener`](#audiolistener), [`ReverbZone`](#reverbzone), [`Marker`](#marker), [`WorldBar`](#worldbar), [`PlayerStart`](#playerstart), [`EnvironmentZone`](#environmentzone), [`Outline`](#outline), [`LodLevel`](#lodlevel), [`Lod`](#lod), [`StaticMesh`](#staticmesh), [`Decal`](#decal), [`RenderTexture`](#rendertexture), [`Monitor`](#monitor), [`Mirror`](#mirror), [`SurfaceFx`](#surfacefx), [`HeatHaze`](#heathaze), [`DepthOfField`](#depthoffield), [`FogOverlay`](#fogoverlay), [`ClipFinished`](#clipfinished), [`AnimationEvent`](#animationevent), [`Spawned`](#spawned), [`Destroyed`](#destroyed), [`Collided`](#collided), [`CollisionEnded`](#collisionended), [`TriggerEntered`](#triggerentered), [`TriggerExited`](#triggerexited), [`SceneLoaded`](#sceneloaded), [`Beat`](#beat), [`DayChanged`](#daychanged), [`PanelOpened`](#panelopened), [`PanelClosed`](#panelclosed), [`PanelAction`](#panelaction), [`TickRate`](#tickrate), [`Behavior`](#behavior), [`System`](#system), [`SceneScope`](#scenescope), [`behavior()`](#behavior-1), [`system()`](#system-1), [`on()`](#on), [`Task`](#task), [`Handle`](#handle), [`Time`](#time-1), [`Button`](#button), [`Axis1`](#axis1), [`Axis2`](#axis2), [`Binding`](#binding), [`Keys`](#keys), [`keys`](#keys-1), [`gamepad`](#gamepad), [`mouse`](#mouse), [`TouchZone`](#touchzone), [`touch`](#touch), [`TouchGroup`](#touchgroup), [`TouchSkin`](#touchskin), [`button()`](#button-1), [`axis1()`](#axis1-1), [`axis2()`](#axis2-1), [`ButtonGroup`](#buttongroup), [`button_group()`](#button_group), [`Actions`](#actions), [`Pointer`](#pointer), [`Input`](#input), [`ControlBinding`](#controlbinding), [`PanelCommand`](#panelcommand), [`close_panel()`](#close_panel), [`open_panel()`](#open_panel), [`reload_scene()`](#reload_scene), [`load_scene()`](#load_scene), [`action()`](#action), [`Panel`](#panel), [`ui()`](#ui-1), [`Cursor`](#cursor), [`PlayerPanel`](#playerpanel), [`SettingsPanel`](#settingspanel), [`FloatStyle`](#floatstyle), [`UiApi`](#uiapi), [`Camera`](#camera), [`CameraApi`](#cameraapi), [`ScenesApi`](#scenesapi), [`EnvironmentApi`](#environmentapi), [`AudioApi`](#audioapi), [`MusicLayer`](#musiclayer), [`Synth`](#synth), [`VfxApi`](#vfxapi), [`Photo`](#photo), [`DebugApi`](#debugapi), [`Settings`](#settings), [`Player`](#player), [`Context`](#context), [`Plugin`](#plugin), [`Feature`](#feature), [`Game`](#game), [`migration()`](#migration), [`SaveData`](#savedata)
+[`Keep`](#keep), [`Replicate`](#replicate), [`Vec2`](#vec2), [`Vec3`](#vec3), [`Quat`](#quat), [`Color`](#color), [`vec2()`](#vec2-1), [`vec3()`](#vec3-1), [`clamp()`](#clamp), [`lerp()`](#lerp), [`inverse_lerp()`](#inverse_lerp), [`remap()`](#remap), [`move_toward()`](#move_toward), [`approach()`](#approach), [`deg()`](#deg), [`rad()`](#rad), [`angle_between()`](#angle_between), [`angle_to()`](#angle_to), [`heading_to()`](#heading_to), [`rotate_toward()`](#rotate_toward), [`wrap_angle()`](#wrap_angle), [`noise2d()`](#noise2d), [`scatter()`](#scatter), [`Ease`](#ease), [`ease()`](#ease-1), [`field()`](#field), [`param()`](#param), [`state()`](#state), [`record()`](#record), [`Timer`](#timer), [`PrefabRef`](#prefabref), [`SceneRef`](#sceneref), [`AssetRef`](#assetref), [`SoundRef`](#soundref), [`MusicRef`](#musicref), [`ImageRef`](#imageref), [`ModelRef`](#modelref), [`EffectRef`](#effectref), [`Effect`](#effect), [`ClipRef`](#clipref), [`ContentRef`](#contentref), [`EntityRef`](#entityref), [`TextRef`](#textref), [`Localized`](#localized), [`WorldLayerRef`](#worldlayerref), [`component()`](#component), [`resource()`](#resource), [`config()`](#config), [`content()`](#content), [`event()`](#event), [`Tag`](#tag), [`tag()`](#tag-1), [`ContentList`](#contentlist), [`Transform`](#transform), [`Entity`](#entity), [`Query`](#query), [`TagFilter`](#tagfilter), [`Without`](#without), [`World`](#world), [`Placement`](#placement), [`WorldLayer`](#worldlayer), [`EngineComponent`](#enginecomponent), [`Sprite`](#sprite), [`Tile`](#tile), [`Tilemap`](#tilemap), [`Shape`](#shape), [`JointMotion`](#jointmotion), [`Model`](#model), [`Socket`](#socket), [`Animator`](#animator), [`RootMotion`](#rootmotion), [`Light`](#light), [`Particles`](#particles), [`TextMesh`](#textmesh), [`AudioSource`](#audiosource), [`AudioListener`](#audiolistener), [`ReverbZone`](#reverbzone), [`Marker`](#marker), [`WorldBar`](#worldbar), [`PlayerStart`](#playerstart), [`EnvironmentZone`](#environmentzone), [`Outline`](#outline), [`LodLevel`](#lodlevel), [`Lod`](#lod), [`StaticMesh`](#staticmesh), [`Decal`](#decal), [`RenderTexture`](#rendertexture), [`Monitor`](#monitor), [`Mirror`](#mirror), [`SurfaceFx`](#surfacefx), [`MaskLayer`](#masklayer), [`SurfaceMask`](#surfacemask), [`HeatHaze`](#heathaze), [`DepthOfField`](#depthoffield), [`FogOverlay`](#fogoverlay), [`ClipFinished`](#clipfinished), [`AnimationEvent`](#animationevent), [`Spawned`](#spawned), [`Destroyed`](#destroyed), [`Collided`](#collided), [`CollisionEnded`](#collisionended), [`TriggerEntered`](#triggerentered), [`TriggerExited`](#triggerexited), [`SceneLoaded`](#sceneloaded), [`Beat`](#beat), [`DayChanged`](#daychanged), [`PanelOpened`](#panelopened), [`PanelClosed`](#panelclosed), [`PanelAction`](#panelaction), [`TickRate`](#tickrate), [`Behavior`](#behavior), [`System`](#system), [`SceneScope`](#scenescope), [`behavior()`](#behavior-1), [`system()`](#system-1), [`on()`](#on), [`Task`](#task), [`Handle`](#handle), [`Time`](#time-1), [`Button`](#button), [`Axis1`](#axis1), [`Axis2`](#axis2), [`Binding`](#binding), [`Keys`](#keys), [`keys`](#keys-1), [`gamepad`](#gamepad), [`mouse`](#mouse), [`TouchZone`](#touchzone), [`touch`](#touch), [`TouchGroup`](#touchgroup), [`TouchSkin`](#touchskin), [`button()`](#button-1), [`axis1()`](#axis1-1), [`axis2()`](#axis2-1), [`ButtonGroup`](#buttongroup), [`button_group()`](#button_group), [`Actions`](#actions), [`Pointer`](#pointer), [`Input`](#input), [`ControlBinding`](#controlbinding), [`PanelCommand`](#panelcommand), [`close_panel()`](#close_panel), [`open_panel()`](#open_panel), [`reload_scene()`](#reload_scene), [`load_scene()`](#load_scene), [`action()`](#action), [`Panel`](#panel), [`ui()`](#ui-1), [`Cursor`](#cursor), [`PlayerPanel`](#playerpanel), [`SettingsPanel`](#settingspanel), [`FloatStyle`](#floatstyle), [`UiApi`](#uiapi), [`Camera`](#camera), [`CameraApi`](#cameraapi), [`ScenesApi`](#scenesapi), [`EnvironmentApi`](#environmentapi), [`AudioApi`](#audioapi), [`MusicLayer`](#musiclayer), [`Synth`](#synth), [`VfxApi`](#vfxapi), [`Photo`](#photo), [`DebugApi`](#debugapi), [`Settings`](#settings), [`Player`](#player), [`Context`](#context), [`Plugin`](#plugin), [`Feature`](#feature), [`Game`](#game), [`migration()`](#migration), [`SaveData`](#savedata)
 
 ### `Keep`
 
@@ -2391,6 +2391,158 @@ def dissolve_to(amount: float, seconds: float = 1.0) -> None
 ```
 
 Move `dissolve` to `amount` (0 whole, 1 gone) over `seconds`, from where it is now.
+
+### `MaskLayer`
+
+```python
+@record
+class MaskLayer
+```
+
+One paintable layer of a SurfaceMask: how it looks where it lies, and how much of
+the surface it covers at the start. `MaskLayer(name="mud", color=Color.hex("#5b4630"),
+roughness=0.95, coverage=0.8, below=0.6)`.
+
+**Fields**
+
+- `name: str = ''`
+- `color: Color = ...`
+- `roughness: float = 0.9`
+- `metallic: float = 0`
+- `coverage: float = 1`
+
+  0..1 of the surface covered at the start (1: all of it; 0: none until painted).
+
+- `pattern: float = 4`
+
+  Blotches per meter: of the starting coverage, the layer's tone and its broken-up edge.
+
+- `breakup: float = 0.5`
+
+  0..1: how far noise eats into the layer's edge (0: a smooth fade).
+
+- `below: float = 0`
+
+  -1..1: more of the starting coverage low down on the entity (mud splashes), or high up.
+
+- `up: float = 0`
+
+  -1..1: more of it on faces that look up (dust, moss, droppings), or down.
+
+### `SurfaceMask`
+
+```python
+@component("surface_mask")
+class SurfaceMask(EngineComponent)
+```
+
+Paintable layers — dirt, rust, moss, soot, foam, paint — lying on the entity's Model or
+Shape (3D), that game code erases and paints at world points and reads back as coverage
+(cleaning, restoring, graffiti, painting). Layers draw bottom to top (at most 4), each
+replacing the surface's color, roughness and metalness where it lies (on glass it also
+stops the light passing through), with noise-broken edges.
+
+The layers live in a volume of `resolution` cubic cells along its longest side, around
+the entity in its own space: it needs no texture coordinates and follows the entity as
+it moves. A brush is a sphere in world meters that changes every cell inside it, so it
+cleans whatever surface passes through it (both faces of a thin blade). Coverage
+averages over the cells the outer surface passes through, found from the Model's
+triangles (or the Shape's or collider's box in a run without model files). The amounts are run-time
+state: a respawn or scene load starts the mask afresh from its layers.
+
+`hit = ctx.physics.raycast(*ctx.camera.main.ray(ctx.input.pointer.screen))`, then
+`mask.clean(hit.point, 0.15, "mud", strength=3 * dt)`; `1 - mask.coverage(["mud", "grime"])`
+is how clean it is.
+
+**Fields**
+
+- `layers: list[MaskLayer] = ...`
+- `resolution: int = ...`
+
+  Cells along the volume's longest side (2..256).
+
+- `size: Vec3 = ...`
+
+  The box the volume covers in the entity's own space (zero: the Model's bounds, else
+  the Shape's or collider's), centered on `offset`.
+
+- `offset: Vec3 = ...`
+- `material: str | None = ...`
+
+  The Model material the layers draw on (None: every material, or the Shape).
+
+- `seed: int = ...`
+- `inside: bool = ...`
+
+  Count surfaces sealed inside the model (the inside of a closed box) in coverage too.
+  False (default): only the surface reachable from the air around it.
+
+- `ready: bool  # read-only`
+
+  False while the entity's model is still loading (strokes do nothing yet).
+
+- `cells: int  # read-only`
+
+  How many cells the surface passes through.
+
+**Methods**
+
+```python
+def clean(
+    point: Vec3,
+    radius: float,
+    layer: str | None = None,
+    *,
+    strength: float = 1.0,
+    hardness: float = 0.5,
+    exposed: bool = True,
+) -> float
+```
+
+Erase a layer (None: every layer, top first) within `radius` meters of a world
+point: by `strength` at the middle (out to `radius × hardness`), fading to nothing at
+the edge. With `exposed`, a layer is reached only where the layers above it are gone
+(rust under oil, haze under rust). Returns the share 0..1 of the surface it cleaned
+(drive spray, debris and sound from it).
+
+```python
+def paint(
+    point: Vec3,
+    radius: float,
+    layer: str,
+    *,
+    strength: float = 1.0,
+    hardness: float = 0.5,
+) -> float
+```
+
+Add to a layer around a world point (foam, soap, paint, graffiti); returns the share
+of the surface painted.
+
+```python
+def coverage(layer: str | Sequence[str] | None = None) -> float
+```
+
+0..1 of the surface the layer covers (a list: the most of those layers at each
+point; None: any layer). 1 while the mask's model is still loading.
+
+```python
+def amount_at(point: Vec3, layer: str | None = None) -> float
+```
+
+A layer's amount 0..1 at a world point (None: the most of any layer).
+
+```python
+def fill(layer: str | None = None, amount: float = 1.0) -> None
+```
+
+One amount everywhere (None: every layer).
+
+```python
+def reset(layer: str | None = None) -> None
+```
+
+Back to the layers' starting coverage.
 
 ### `HeatHaze`
 

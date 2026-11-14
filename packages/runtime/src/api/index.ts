@@ -43,8 +43,8 @@ export { AudioApi, AudioListener, Beat, MusicLayer, ReverbZone, Synth } from './
 // Engine components (visuals plugin).
 export {
   AnimationEvent, Animator, AudioSource, Camera, CameraApi, ClipFinished, coreVisuals, Decal, DepthOfField, EnvironmentZone, FogOverlay, HeatHaze, Light, Lod, LodLevel,
-  Marker, Mirror, Model, Monitor, Outline, Particles, PlayerStart, RenderTexture, RootMotion, Shape, Socket, Sprite, StaticMesh, SurfaceFx, TextMesh,
-  Tilemap, WorldBar,
+  MaskLayer, Marker, Mirror, Model, Monitor, Outline, Particles, PlayerStart, RenderTexture, RootMotion, Shape, Socket, Sprite, StaticMesh, SurfaceFx,
+  SurfaceMask, TextMesh, Tilemap, WorldBar,
 } from './visuals.js';
 
 // Input and UI.

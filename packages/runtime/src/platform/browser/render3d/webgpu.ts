@@ -255,7 +255,7 @@ export class WebGpuBackend implements Backend3d {
         entries: [uniform(0, CASTER_FIELDS, true, STAGE.VERTEX), { binding: 1, visibility: STAGE.VERTEX, buffer: { type: 'read-only-storage' } }],
       }),
       material: device.createBindGroupLayout({
-        entries: [uniform(0, MATERIAL_FIELDS, true), tex(1), samp(2), tex(3), samp(4), tex(5), samp(6), tex(7), samp(8), tex(9), samp(10)],
+        entries: [uniform(0, MATERIAL_FIELDS, true), tex(1), samp(2), tex(3), samp(4), tex(5), samp(6), tex(7), samp(8), tex(9), samp(10), tex(11), samp(12)],
       }),
       terrain: device.createBindGroupLayout({ entries: [uniform(0, TERRAIN_FIELDS), tex(1, 'float', '2d-array'), tex(2, 'float', '2d-array'), tex(3), tex(4), tex(5), tex(6), samp(7), tex(8)] }),
       image: device.createBindGroupLayout({ entries: [tex(0), samp(1)] }),
@@ -1040,7 +1040,7 @@ export class WebGpuBackend implements Backend3d {
     };
     const materialGroup = (item: MeshItem): unknown => {
       const m = item.material;
-      const maps = [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture, m.occlusionTexture].map(handle);
+      const maps = [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture, m.occlusionTexture, m.paint?.texture].map(handle);
       // A material keeps its id while a texture behind it is replaced (a screen repaints into a
       // new texture), so the group is rebuilt whenever any of its handles changed.
       const key = `material|${bindingId(m)}`;

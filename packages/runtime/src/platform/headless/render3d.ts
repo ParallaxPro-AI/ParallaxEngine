@@ -15,7 +15,7 @@ export interface RecordingSurface3dOptions {
 export function frameTextures(frame: Frame3d): Texture3d[] {
   const out = new Set<Texture3d>();
   const material = (m: Material3d): void => {
-    for (const t of [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture ?? null, m.occlusionTexture ?? null]) {
+    for (const t of [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture ?? null, m.occlusionTexture ?? null, m.paint?.texture ?? null]) {
       if (t !== null) out.add(t);
     }
   };

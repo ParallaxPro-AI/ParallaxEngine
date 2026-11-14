@@ -157,8 +157,8 @@ describe('surface effects on the GPU side', () => {
   };
   const fxAt = offsetOf(MATERIAL_FIELDS, 'fxRim');
 
-  it('the material block fits one 256-byte slot', () => {
-    expect(MATERIAL_SLOT).toBe(64);
+  it('the material block fits two 256-byte slots (effects and surface-mask layers included)', () => {
+    expect(MATERIAL_SLOT).toBe(128);
   });
 
   it('packs nothing for a plain material, and the effect fields for one with effects', () => {
