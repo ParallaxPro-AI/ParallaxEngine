@@ -2255,8 +2255,8 @@ class FloatStyle:
         rise: float = 40,
         seconds: float = 1,
     ) -> None:
-        """size: CSS pixels (6..200); font: a CSS font-family the page loads; color: the fill
-        (None: white); outline: a stroke of `outline_width` pixels behind the glyphs.
+        """size: CSS pixels (6..200); font: a CSS font-family list, which may name a family
+        declared with @font-face in `ui/feedback.html`; color: the fill (None: white); outline: a stroke of `outline_width` pixels behind the glyphs.
         The size curve: it starts at `pop` × size (1.6 = a punchy hit), settles to 1× within the
         first fifth of its life, and ends at `end_scale` × (0.5 shrinks away). It rises `rise`
         pixels (negative sinks) over `seconds`, fading out."""
