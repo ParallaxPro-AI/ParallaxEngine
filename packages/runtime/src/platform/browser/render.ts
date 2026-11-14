@@ -4,7 +4,9 @@
  *
  * Images decode asynchronously (`load`); a command whose image hasn't decoded yet is
  * skipped for that frame, and a failed load is reported through `takeProblems` (the
- * renderer raises it). Tinted images are tinted once into an offscreen canvas and cached.
+ * renderer raises it). A sprite whose image changes to one still decoding keeps showing
+ * its previous image until the new one is ready, so a swap never blinks. Tinted images
+ * are tinted once into an offscreen canvas and cached.
  *
  * The canvas's backing size is the surface size: boot sizes it (CSS size × devicePixelRatio)
  * and keeps it in step with the page.
@@ -12,6 +14,9 @@
 
 import { diagnostic, fail, LIGHT_FALLOFF_STOPS, PARTICLE_STRIDE } from '../../core/index.js';
 import type { Affine2d, Diagnostic, Draw2d, Fog2d, Frame2d, Lighting2d, RenderSurface2d, Rgba, Ripple2d, Stroke2d, TextDraw } from '../../core/index.js';
+
+/** `#showing`'s mark for an entity that draws several images (a tilemap): no stand-in for it. */
+const SEVERAL = '';
 
 /** Wedges a 2D spot's soft edge is drawn in, each side. */
 const SPOT_EDGE_STEPS = 6;
@@ -127,6 +132,9 @@ export class CanvasSurface2d implements RenderSurface2d {
   readonly #font: string;
   readonly #images = new Map<string, Slot>();
   readonly #tinted = new Map<string, DecodedImage>();
+  /** The image each entity drew last frame, and this frame's so far (SEVERAL for more than one). */
+  #shown = new Map<number, string>();
+  #showing = new Map<number, string>();
   #problems: Diagnostic[] = [];
   #lightMap: CanvasLike | null = null;
   /** The viewport as drawn, which shockwave ripples bend. */
@@ -210,6 +218,7 @@ export class CanvasSurface2d implements RenderSurface2d {
       [k, 0, 0, -k, vx + vw / 2, vy + vh / 2],
       mul([c, s, -s, c, 0, 0], [1, 0, 0, 1, -view.center[0], -view.center[1]]),
     );
+    this.#showing = new Map();
     for (const command of frame.commands) {
       // An additive sprite adds its colors to what is under it (glows, lasers, magic).
       const additive = (command.kind === 'image' || command.kind === 'rect') && command.blend === 'additive';
@@ -217,6 +226,7 @@ export class CanvasSurface2d implements RenderSurface2d {
       this.#command(toScreen, command);
       if (additive) this.#ctx.globalCompositeOperation = 'source-over';
     }
+    this.#shown = this.#showing;
     if (frame.lighting !== null) this.#light(frame.lighting, toScreen, k, view.angle, vx, vy, vw, vh);
     const post = frame.post ?? null;
     // Bloom glows from the lit scene, under the fog of war (unexplored ground doesn't glow through).
@@ -530,11 +540,22 @@ export class CanvasSurface2d implements RenderSurface2d {
         return;
       }
       case 'image': {
-        const image = this.#ready(d.image);
+        let path = d.image;
+        let image = this.#ready(path);
+        if (image === undefined && d.entity !== null) {
+          // Still decoding: keep showing what this sprite showed before, if anything.
+          const before = this.#shown.get(d.entity);
+          const slot = before === undefined || before === SEVERAL ? undefined : this.#images.get(before);
+          if (slot?.state === 'ready') {
+            image = slot.image;
+            path = before!;
+          }
+        }
         if (image === undefined) return;
+        if (d.entity !== null) this.#showing.set(d.entity, this.#showing.has(d.entity) ? SEVERAL : path);
         // Images are stored y-down; the world is y-up.
         this.#set(mul(mul(view, d.transform), [d.flipX ? -1 : 1, 0, 0, d.flipY ? 1 : -1, 0, 0]));
-        this.#image(image, d.image, d.tint, d.size[0], d.size[1]);
+        this.#image(image, path, d.tint, d.size[0], d.size[1]);
         return;
       }
       case 'text':

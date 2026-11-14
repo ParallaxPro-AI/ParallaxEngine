@@ -149,6 +149,25 @@ describe('CanvasSurface2d', () => {
     expect(calls).toContainEqual(['=globalAlpha', 0.5]);
   });
 
+  it("keeps showing a sprite's previous image while its new one decodes", async () => {
+    const { s, calls } = surface();
+    const sprite = (image: string, entity: number): Draw2d => ({
+      kind: 'image', z: 0, entity, transform: [1, 0, 0, 1, 0, 0], image, size: [1, 1],
+      tint: [1, 1, 1, 1], flipX: false, flipY: false,
+    });
+    s.load('assets/images/idle.png');
+    await Promise.resolve();
+    s.draw(frame([sprite('assets/images/idle.png', 1)]));
+    expect(named(calls, 'drawImage')).toHaveLength(1);
+    // Entity 1 swaps to an image not decoded yet: it keeps its old one; entity 2 has none to keep.
+    s.draw(frame([sprite('assets/images/happy.png', 1), sprite('assets/images/other.png', 2)]));
+    expect(s.ready('assets/images/happy.png')).toBe(false);
+    expect(named(calls, 'drawImage')).toHaveLength(2);
+    await Promise.resolve();
+    s.draw(frame([sprite('assets/images/happy.png', 1)]));
+    expect(named(calls, 'drawImage')).toHaveLength(3);
+  });
+
   it('tints an image once into a scratch canvas and reuses it', async () => {
     const { s, calls, scratches } = surface();
     s.load('assets/images/gem.png');
