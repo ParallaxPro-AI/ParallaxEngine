@@ -2,8 +2,10 @@
  * The minimap's base map, derived from the scene rather than authored: every static thing
  * with a footprint (a Shape, or a non-trigger Collider) on an entity that doesn't move by
  * itself, the terrain's heightfield, and whatever placements say about themselves with
- * `MapFeature` (roads, water, a race path joined in `order`, or `hidden`), and the scene's
- * generated city when the city plugin is present (blocks, parks, buildings, streets drawn
+ * `MapFeature` (roads, water, a race path joined in `order`, or `hidden`), the procgen
+ * plugin's generated geometry (a Dungeon's or Structure's collision seen from above: its
+ * upward faces near the mesh's base as floor, higher ones — wall and roof tops — as solid),
+ * and the scene's generated city when the city plugin is present (blocks, parks, buildings, streets drawn
  * as a street map: avenues brighter and wider than side streets). The result is
  * one SVG image (a data URI) in world units, drawn once per scene and moved under the
  * map's window each frame — so a frame costs a few numbers, not a redraw.
@@ -19,8 +21,8 @@
 import { Color, Vec3 } from '../../../core/index.js';
 import type { EntityId } from '../../../core/index.js';
 import type { EntityRecord, Kernel } from '../../kernel/index.js';
-import { CITY_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
-import type { CityMap, CityMapPoint, TerrainField } from '../../services/index.js';
+import { CITY_SERVICE, PROCGEN_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
+import type { CityMap, CityMapPoint, GeneratedMesh, TerrainField } from '../../services/index.js';
 import { css } from './project.js';
 import { COLLIDER, MAP_FEATURE, MAP_ICON, MOVERS, SHAPE } from './schemas.js';
 import type { MapFeatureKind } from './schemas.js';
@@ -145,6 +147,8 @@ export class BaseMapBuilder {
       if (print !== undefined) footprints.push(print);
     }
     path.sort((a, b) => a.order - b.order);
+    const procgen = this.#dimension === '3d' ? this.#kernel.tryService(PROCGEN_SERVICE) ?? null : null;
+    if (procgen !== null) for (const mesh of procgen.meshes()) generatedFootprints(mesh, footprints);
     const terrain = this.#dimension === '3d' ? this.#kernel.tryService(TERRAIN_SERVICE)?.current() ?? null : null;
     const city = this.#dimension === '3d' ? this.#kernel.tryService(CITY_SERVICE)?.map() ?? null : null;
 
@@ -358,4 +362,33 @@ function cityLayer(city: CityMap): string {
 export function headingOf(dimension: '2d' | '3d', record: EntityRecord): number {
   const f = record.transform.worldRotation().rotate(dimension === '3d' ? Vec3.FORWARD : Vec3.RIGHT);
   return dimension === '3d' ? (Math.atan2(f.x, f.z) * 180) / Math.PI : (Math.atan2(f.x, f.y) * 180) / Math.PI;
+}
+
+/**
+ * A generated mesh seen from above: each upward-facing collision triangle within FLAT of the
+ * mesh's base (its entity's height) is floor, each higher one (a wall's or roof's top) solid.
+ * Dungeons and Structures merge their tiles into a few large boxes, so this stays a few
+ * hundred triangles.
+ */
+function generatedFootprints(mesh: GeneratedMesh, out: Footprint[]): void {
+  const collision = mesh.collision;
+  if (collision === null) return;
+  const { vertices: p, indices } = collision;
+  const base = mesh.world[13]!;
+  for (let i = 0; i + 2 < indices.length; i += 3) {
+    const a = indices[i]! * 3;
+    const b = indices[i + 1]! * 3;
+    const c = indices[i + 2]! * 3;
+    const ux = p[b]! - p[a]!, uy = p[b + 1]! - p[a + 1]!, uz = p[b + 2]! - p[a + 2]!;
+    const vx = p[c]! - p[a]!, vy = p[c + 1]! - p[a + 1]!, vz = p[c + 2]! - p[a + 2]!;
+    const nx = uy * vz - uz * vy;
+    const ny = uz * vx - ux * vz;
+    const nz = ux * vy - uy * vx;
+    const length = Math.hypot(nx, ny, nz);
+    // Upward faces only (either winding): floors and the tops of walls and roofs.
+    if (length === 0 || Math.abs(ny) / length < 0.7) continue;
+    const height = (p[a + 1]! + p[b + 1]! + p[c + 1]!) / 3 - base;
+    const kind: Kind = height <= FLAT ? 'floor' : 'solid';
+    out.push({ kind, color: KIND_COLORS[kind], polygon: [[p[a]!, p[a + 2]!], [p[b]!, p[b + 2]!], [p[c]!, p[c + 2]!]] });
+  }
 }

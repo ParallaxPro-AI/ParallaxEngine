@@ -17,7 +17,7 @@
 import { Color, easing, fail, Vec3 } from '../../../core/index.js';
 import type { EntityId } from '../../../core/index.js';
 import type { EntityRecord, Fields, Handle, Kernel } from '../../kernel/index.js';
-import { CITY_SERVICE, engineText, PERCEPTION_SERVICE, PLAYERS_SERVICE } from '../../services/index.js';
+import { CITY_SERVICE, engineText, PERCEPTION_SERVICE, PLAYERS_SERVICE, PROCGEN_SERVICE } from '../../services/index.js';
 import type { Json, JsonObject } from '../../../resource/index.js';
 import { BaseMapBuilder, headingOf, planeOf } from './base_map.js';
 import type { BaseMap } from './base_map.js';
@@ -157,6 +157,8 @@ export class HudEngine {
   /** Entities that can change the base map. */
   readonly #static = new Set<EntityId>();
   #base: BaseMap | null = null;
+  /** The procgen revision the base map drew (-1: no procgen plugin). */
+  #baseProcgen = -1;
   #baseDirty = true;
   #pings: Ping[] = [];
   readonly #feedback = new Map<number, SeatFeedback>();
@@ -312,9 +314,12 @@ export class HudEngine {
   baseMap(): BaseMap | null {
     // The city plan is generated on first use and replaced on a rebuild: redraw on change.
     const city = this.dimension === '3d' ? this.kernel.tryService(CITY_SERVICE)?.map() ?? null : null;
-    if (this.#baseDirty || (this.#base?.city ?? null) !== city) {
+    // Generated geometry (dungeons, structures) builds after the scene loads: redraw on a rebuild.
+    const procgen = this.dimension === '3d' ? this.kernel.tryService(PROCGEN_SERVICE)?.revision ?? -1 : -1;
+    if (this.#baseDirty || (this.#base?.city ?? null) !== city || procgen !== this.#baseProcgen) {
       this.#base = new BaseMapBuilder(this.kernel, this.dimension).build(this.#static);
       this.#baseDirty = false;
+      this.#baseProcgen = procgen;
     }
     return this.#base;
   }
