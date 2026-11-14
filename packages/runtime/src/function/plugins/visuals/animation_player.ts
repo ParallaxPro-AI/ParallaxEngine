@@ -68,6 +68,14 @@ export interface PlaybackMorph {
   readonly weight: number;
 }
 
+/** A bone pose override (`pose_bone`): the bone turned by `rotation` from its bind pose, by `weight`. */
+export interface PlaybackBone {
+  readonly name: string;
+  /** x, y, z, w: the turn from the bone's bind pose, in model axes (an authored clip key's meaning). */
+  readonly rotation: readonly [number, number, number, number];
+  readonly weight: number;
+}
+
 export interface PlaybackLimb {
   readonly bones: readonly [string, string, string];
   readonly pole: readonly [number, number, number];
@@ -92,6 +100,8 @@ export interface AnimatorPlayback {
   readonly layers: readonly PlaybackLayer[];
   /** Morph target overrides over the clips' weights, in the order they were set. */
   readonly morphs: readonly PlaybackMorph[];
+  /** Bone pose overrides over the layers (before IK), in the order they were set. */
+  readonly bones: readonly PlaybackBone[];
   readonly rootMotion: RootMotionMode;
   readonly rootBone: string | null;
   readonly ik: PlaybackIk;
@@ -155,6 +165,8 @@ interface AnimatorRun {
   look: Goal | null;
   /** Morph target overrides by target name (`set_morph`). */
   morphs?: Record<string, MorphRun>;
+  /** Bone pose overrides by bone name (`pose_bone`). */
+  bones?: Record<string, { rotation: [number, number, number, number]; weight: number }>;
 }
 
 export interface SavedAnimator { readonly id: number; readonly run: AnimatorRun }
@@ -612,8 +624,9 @@ export class Animators {
       };
     }
     const morphs = Object.entries(run.morphs ?? {}).map(([name, m]) => ({ name, value: m.value, weight: m.weight }));
+    const bones = Object.entries(run.bones ?? {}).map(([name, b]) => ({ name, rotation: b.rotation, weight: b.weight }));
     return {
-      layers, morphs, rootMotion: fields['root_motion'] as RootMotionMode, rootBone: fields['root_bone'] as string | null,
+      layers, morphs, bones, rootMotion: fields['root_motion'] as RootMotionMode, rootBone: fields['root_bone'] as string | null,
       ik: { reach, look, feet },
     };
   }
@@ -768,6 +781,31 @@ export class Animators {
         const weight = known?.weight ?? (fade > 0 ? 0 : 1);
         morphs[name] = { value: v, weight, target: 1, rate: fade > 0 ? (1 - weight) / fade : 0 };
         if (fade === 0) morphs[name]!.weight = 1;
+      },
+      /**
+       * pose_bone(bone, rotation, *, weight=1): hold a bone turned from its bind pose over
+       * whatever the layers play (before IK): Euler degrees (`Quat.from_euler`) or a Quat,
+       * meaning what an authored clip key means. None hands the bone back to the layers.
+       */
+      pose_bone(this: Fields, ...args: unknown[]): void {
+        const a = bind('pose_bone', args, ['bone', 'rotation'], ['weight'], ['bone']);
+        const bone = a['bone'];
+        if (typeof bone !== 'string' || bone === '') fail('PP3700', `pose_bone(): the bone must be a bone name, got ${describe(bone)}`);
+        const { run } = animators.#run(this);
+        const bones = (run.bones ??= {});
+        const rotation = a['rotation'];
+        if (rotation === null || rotation === undefined) {
+          delete bones[bone];
+          return;
+        }
+        const weight = finite(a['weight'] ?? 1, 'pose_bone weight');
+        if (weight < 0 || weight > 1) fail('PP3700', `pose_bone weight is ${weight}; it must be from 0 to 1`);
+        let q: Quat;
+        if (rotation instanceof Quat) q = rotation;
+        else if (rotation instanceof Vec3) q = Quat.from_euler(rotation);
+        else return fail('PP3700', `pose_bone() rotation must be a Vec3 (Euler degrees), a Quat or None, got ${describe(rotation)}`);
+        if (![q.x, q.y, q.z, q.w].every(Number.isFinite)) fail('PP3700', 'pose_bone() rotation must be finite');
+        bones[bone] = { rotation: [q.x, q.y, q.z, q.w], weight };
       },
       reach(this: Fields, ...args: unknown[]): void {
         const a = bind('reach', args, ['limb', 'target'], ['weight', 'rotation'], ['limb']);

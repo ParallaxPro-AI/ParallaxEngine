@@ -1929,6 +1929,17 @@ def look_at(target: Vec3 | Entity | None, *, weight: float = 1) -> None
 Turn the "look" bones (default the head) toward a point or entity; None stops.
 
 ```python
+def pose_bone(bone: str, rotation: Vec3 | Quat | None, *, weight: float = 1) -> None
+```
+
+Hold a bone turned from its bind pose over whatever the layers play (before IK and
+ragdolls), until None hands it back: Euler degrees as an authored clip key's pose
+(`LeftArm` `Vec3(0, 0, 90)` is the arm down at the side, `Vec3(0, 0, -90)` straight
+up) or a Quat, blended over the layers by `weight` (0-1). Overrides on a chain compose
+like a clip's keys. Procedural posing: limbs dragged by the player, poses mixed
+from sliders. A ragdoll that goes limp starts from the held pose.
+
+```python
 def take_root_motion() -> RootMotion
 ```
 

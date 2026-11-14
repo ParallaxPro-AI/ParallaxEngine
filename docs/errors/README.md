@@ -496,7 +496,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3660 | procgen | {where}: locks need key\_prefab and gate\_prefab |
 | PP3661 | procgen | content/prop\_kit/{entry.id}.json: {message} |
 | PP3662 | procgen | Dungeon (seed {spec.seed}): no layout fits after 16 attempts |
-| PP3700 | visuals | reach() rotation must be a Quat, True (the target entity's rotation) or None, got {…} |
+| PP3700 | visuals | pose\_bone weight is {weight}; it must be from 0 to 1 |
 | PP3710 | visuals | {where} \[{…}\] is not inside the screen |
 | PP3711 | visuals | {where} must be (min corner, max corner) or "grid", got {…} |
 | PP3712 | visuals | {where} must be (low, high) degrees with low ≤ high, got {…} |

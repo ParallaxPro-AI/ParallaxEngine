@@ -193,6 +193,7 @@ interface AnimatorApi extends Fields {
   set_layer_weight(...a: unknown[]): void;
   reach(...a: unknown[]): void;
   look_at(...a: unknown[]): void;
+  pose_bone(...a: unknown[]): void;
   take_root_motion(...a: unknown[]): { offset: Vec3; turn: number };
 }
 
@@ -438,6 +439,28 @@ describe('animators in a kernel', () => {
     expect(a.__playback__.ik.feet!.weight).toBe(0);
     a.reach('right_hand', null);
     expect(a.__playback__.ik.reach).toEqual([]);
+  });
+
+  it('pose_bone holds a bone over the layers until released', () => {
+    const w = world(LOCOMOTION);
+    const a = w.animator();
+    expect(a.__playback__.bones).toEqual([]);
+    a.pose_bone('LeftArm', new Vec3(0, 0, -90));
+    a.pose_bone('LeftForeArm', Quat.from_euler(new Vec3(0, 0, 45)), { weight: 0.5 });
+    const bones = a.__playback__.bones;
+    expect(bones.map((b) => [b.name, b.weight])).toEqual([['LeftArm', 1], ['LeftForeArm', 0.5]]);
+    const up = Quat.from_euler(new Vec3(0, 0, -90));
+    bones[0]!.rotation.forEach((v, i) => expect(v).toBeCloseTo([up.x, up.y, up.z, up.w][i]!));
+    // Held across steps (and saved with the animator), until None hands it back.
+    w.steps(3);
+    const saved = w.kernel.snapshot();
+    a.pose_bone('LeftArm', null);
+    expect(a.__playback__.bones.map((b) => b.name)).toEqual(['LeftForeArm']);
+    w.kernel.restore(saved);
+    expect(w.animator().__playback__.bones.map((b) => b.name)).toEqual(['LeftArm', 'LeftForeArm']);
+    expect(code(() => a.pose_bone('LeftArm', 'up'))).toBe('PP3700');
+    expect(code(() => a.pose_bone('LeftArm', new Vec3(0, 0, 1), { weight: 2 }))).toBe('PP3700');
+    expect(code(() => a.pose_bone('', new Vec3(0, 0, 1)))).toBe('PP3700');
   });
 
   it('snapshot and restore mid-blend replay exactly', () => {

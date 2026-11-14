@@ -9,7 +9,9 @@
  *      by the layer's weight;
  *   2. root motion: when the animator moves the entity by its root bone, the bone's own
  *      horizontal travel and heading are taken out of the pose (they are the entity's now);
- *   3. IK: foot planting (the hips drop and each leg reaches the ground under its foot,
+ *   3. bone overrides (`Animator.pose_bone`): a bone held turned from its bind pose, as an
+ *      authored clip key turns it, blended over the layers by its weight;
+ *   4. IK: foot planting (the hips drop and each leg reaches the ground under its foot,
  *      found by a physics3d raycast), reach goals (two-bone limbs) and look-at.
  *
  * Bone names match exactly, then by `canonicalBone`. A name the model doesn't have is
@@ -61,11 +63,16 @@ interface LimbView { readonly bones: readonly [string, string, string]; readonly
 /** A `set_morph` override: the target named `name` driven toward `value` by `weight` (0..1, eased by its fade). */
 interface MorphView { readonly name: string; readonly value: number; readonly weight: number }
 
+/** A `pose_bone` override: the bone turned by `rotation` (x, y, z, w; model axes) from its bind pose, by `weight`. */
+interface BoneView { readonly name: string; readonly rotation: readonly [number, number, number, number]; readonly weight: number }
+
 /** What render3d reads of the visuals plugin's `AnimatorPlayback` (structurally; plugins never import each other). */
 export interface PlaybackView {
   readonly layers: readonly LayerView[];
   /** Morph target overrides (`Animator.set_morph`), over what the layers' clips give. Absent: none. */
   readonly morphs?: readonly MorphView[];
+  /** Bone pose overrides (`Animator.pose_bone`), over the layers and under IK. Absent: none. */
+  readonly bones?: readonly BoneView[];
   readonly rootMotion: 'off' | 'transform' | 'character';
   readonly rootBone: string | null;
   readonly ik: {
@@ -130,6 +137,7 @@ export class Poses {
     }
     const pose = this.pose(model, playback, `${where} animator`);
     if (playback.rootMotion !== 'off') this.#lockRoot(model, pose, playback.rootBone, `${where} animator`);
+    if ((playback.bones?.length ?? 0) > 0) this.overrideBones(model, pose, playback.bones!, `${where} animator`);
     const ragdoll = this.#kernel.tryService(RAGDOLL_POSE_SERVICE)?.pose(entity);
     // A limp ragdoll's bones are all physics: IK goals would only fight them.
     if (ragdoll === undefined || ragdoll.weight < 1) this.#ik(model, pose, playback, `${where} animator`, toWorld, entity);
@@ -172,6 +180,26 @@ export class Poses {
       else mixPose(pose, blended, strength, mask);
     }
     return pose;
+  }
+
+  /**
+   * Bone overrides onto a layered pose (local transforms): each bone's local rotation becomes
+   * the one an authored clip key of `rotation` gives it — its bind rotation turned by
+   * `rotation` in model axes, measured from its parent at bind (parent⁻¹ · rotation · bind) —
+   * slerped from what the layers gave by the override's weight. Overrides on a chain (an
+   * arm and its forearm) compose like a clip's keys: each turn is relative to the parent's.
+   */
+  overrideBones(model: ModelAsset, pose: Float32Array, bones: readonly BoneView[], where: string): void {
+    const bind = this.#bindOf(model);
+    for (const b of bones) {
+      if (b.weight <= 0) continue;
+      const node = this.#bone(model, b.name, `${where} pose_bone`);
+      const parent = model.nodes[node]!.parent;
+      const above: Q = parent === -1 ? [0, 0, 0, 1] : bind[parent]!;
+      const turn: Q = [b.rotation[0], b.rotation[1], b.rotation[2], b.rotation[3]];
+      const local = qmul(qinv(above), qmul(turn, bind[node]!));
+      setRotation(pose, node, b.weight >= 1 ? local : qslerp(getRotation(pose, node), local, b.weight));
+    }
   }
 
   /**

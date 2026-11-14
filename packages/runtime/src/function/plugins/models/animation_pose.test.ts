@@ -269,6 +269,61 @@ describe('layers', () => {
   });
 });
 
+// ── Bone overrides (pose_bone) ─────────────────────────────────────────────
+
+describe('bone overrides', () => {
+  const lib = library(CLIPS);
+  const poses = new Poses(lib, NO_KERNEL);
+  const turned = qeuler(0, 90, 0);
+  const inChest = (v: V3): V3 => qrotate(qinv(turned), v);
+  // A rig whose chest frame is rolled (as exporters write): an override must mean the same as on the plain rig.
+  const rolled = rig('rolled', [
+    ['mixamorig:Hips', null, [0, 1, 0]],
+    ['mixamorig:Spine', 'mixamorig:Hips', [0, 0.1, 0]],
+    ['mixamorig:Spine2', 'mixamorig:Spine', [0, 0.25, 0], turned],
+    ['mixamorig:LeftArm', 'mixamorig:Spine2', inChest([-0.18, 0.15, 0]), qinv(turned)],
+    ['mixamorig:LeftForeArm', 'mixamorig:LeftArm', [-0.28, 0, 0]],
+    ['mixamorig:LeftHand', 'mixamorig:LeftForeArm', [-0.25, 0, 0]],
+  ]);
+  const animator = (bones: PlaybackView['bones'], layers: PlaybackView['layers'] = []): Fields => ({
+    __playback__: { layers, bones, rootMotion: 'off', rootBone: null, ik: NO_IK },
+  }) as unknown as Fields;
+  const at = (model: ModelAsset, worlds: Float32Array, bone: string): V3 => nodePosition(worlds, findBone(model, bone));
+  const dir = (a: V3, b: V3): V3 => {
+    const d: V3 = [b[0] - a[0], b[1] - a[1], b[2] - a[2]];
+    const n = Math.hypot(d[0], d[1], d[2]);
+    return [d[0] / n, d[1] / n, d[2] / n];
+  };
+  const q = (x: number, y: number, z: number): [number, number, number, number] => { const r = qeuler(x, y, z); return [r[0], r[1], r[2], r[3]]; };
+
+  it('turns a bone as an authored clip key does, on any rig', () => {
+    const { clip } = readClipFile('assets/clips/flex.clip.json', JSON.stringify({ rig: 'humanoid', duration: 1, keys: [{ time: 0, pose: { LeftArm: [0, 0, 0], LeftForeArm: [0, 0, -90] } }] }));
+    for (const model of [HUMANOID, rolled]) {
+      const keyed = restPose(model);
+      sampleRetargeted(model, HUMANOID, clip!.clip, 0, keyed);
+      const worlds = poses.of(model, animator([{ name: 'LeftArm', rotation: q(0, 0, 0), weight: 1 }, { name: 'LeftForeArm', rotation: q(0, 0, -90), weight: 1 }]), 'test', identity(), 1 as EntityId);
+      const want = nodeMatrices(model, keyed);
+      close(at(model, worlds, 'LeftHand'), at(model, want, 'LeftHand'));
+      // Upper arm out to the side, forearm straight up ("flex").
+      close(dir(at(model, worlds, 'LeftForeArm'), at(model, worlds, 'LeftHand')), [0, 1, 0]);
+    }
+  });
+
+  it('holds over what the layers play, blends by weight, and leaves other bones to the layers', () => {
+    const walk = layer('base', [['clips/walk', 0.25, 1]]);
+    const plain = poses.of(HUMANOID, animator([], [walk]), 'test', identity(), 1 as EntityId);
+    const held = poses.of(HUMANOID, animator([{ name: 'LeftArm', rotation: q(0, 0, -90), weight: 1 }], [walk]), 'test', identity(), 1 as EntityId);
+    // Arm straight up despite the walk's swing; the legs still walk.
+    close(dir(at(HUMANOID, held, 'LeftArm'), at(HUMANOID, held, 'LeftForeArm')), [0, 1, 0]);
+    close(at(HUMANOID, held, 'LeftFoot'), at(HUMANOID, plain, 'LeftFoot'));
+    const half = poses.of(HUMANOID, animator([{ name: 'LeftArm', rotation: q(0, 0, -90), weight: 0.5 }], [walk]), 'test', identity(), 1 as EntityId);
+    const d = dir(at(HUMANOID, half, 'LeftArm'), at(HUMANOID, half, 'LeftForeArm'));
+    // Halfway between the walk's arm (80° down) and straight up: about 5° below horizontal.
+    expect(Math.abs(d[0])).toBeGreaterThan(0.95);
+    expect(code(() => poses.of(HUMANOID, animator([{ name: 'Tail', rotation: q(0, 0, 0), weight: 1 }]), 'test', identity(), 1 as EntityId))).toBe('PP3780');
+  });
+});
+
 // ── IK ────────────────────────────────────────────────────────────────────────
 
 describe('ik', () => {
