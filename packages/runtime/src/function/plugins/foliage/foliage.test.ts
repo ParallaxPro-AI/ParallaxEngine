@@ -4,6 +4,7 @@ import type { JsonObject, Project, SceneDoc } from '../../../resource/index.js';
 import { Kernel } from '../../kernel/index.js';
 import type { GameDefinition, KernelPlugin } from '../../kernel/index.js';
 import { CELL_SIZE, FOLIAGE_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
+import { memoryStore, persistence, save } from '../save/index.js';
 import { terrain } from '../terrain/index.js';
 import { defaultSpecies, foliage, readFoliageSpec } from './index.js';
 
@@ -202,5 +203,31 @@ describe('removal and queries', () => {
     const layer = kernel.service(FOLIAGE_SERVICE).layers()[0]!;
     expect(layer.y[tree.index]).toBeCloseTo(kernel.service(TERRAIN_SERVICE).current()!.heightAt(tree.x, tree.z), 4);
     expect(layer.y[tree.index]).toBeLessThan(tree.y - 1);
+  });
+
+  it('slot saves keep removed instances (regression: only kernel snapshots did)', () => {
+    const store = memoryStore();
+    const start = () => {
+      const slots = save({ seed: () => 1 });
+      const kernel = kernelWith(
+        [scene({ terrain: TERRAIN, foliage: { layers: [TREES] } })],
+        [persistence({ store, saveVersion: 1, migrations: () => [] }), slots, terrain(), foliage()],
+      );
+      kernel.step(1 / 60);
+      return { kernel, slots: slots.engine, service: kernel.service(FOLIAGE_SERVICE) };
+    };
+    const first = start();
+    const felled = first.service.near(30, 40, 30).slice(0, 3);
+    expect(felled).toHaveLength(3);
+    for (const tree of felled) first.service.remove(tree.layer, tree.index);
+    first.slots.save('a');
+
+    const second = start();
+    expect(second.service.layers()[0]!.alive.every((a) => a === 1)).toBe(true);
+    expect(second.slots.load('a')).toBe(true);
+    second.kernel.step(1 / 60);
+    const alive = second.service.layers()[0]!.alive;
+    expect(felled.map((t) => alive[t.index])).toEqual([0, 0, 0]);
+    expect(alive.reduce((n, a) => n + a, 0)).toBe(alive.length - 3);
   });
 });

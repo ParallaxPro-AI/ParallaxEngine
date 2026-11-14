@@ -6,13 +6,14 @@
  * Scatter runs on first use after a scene loads (so the terrain it reads is built, whatever
  * the plugin order), deterministically from the scene. When the terrain changes under it
  * (a crater), instances are set back onto the ground. State: the removed instances (felled
- * trees, picked mushrooms), saved by layer id and index.
+ * trees, picked mushrooms), saved by layer id and index, in snapshots and (with the save
+ * plugin) in slot saves, for the scene they were removed in.
  */
 
 import { closestMatch, fail } from '../../../core/index.js';
 import type { Json } from '../../../resource/index.js';
 import type { Kernel, KernelPlugin } from '../../kernel/index.js';
-import { CELL_SIZE, FOLIAGE_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
+import { CELL_SIZE, FOLIAGE_SERVICE, SAVE_SERVICE, TERRAIN_SERVICE } from '../../services/index.js';
 import type { FoliageHit, FoliageLayer, FoliageService, GrassLayer, TerrainField } from '../../services/index.js';
 import { cellBounds, scatter, suitability } from './scatter.js';
 import type { Resolved } from './scatter.js';
@@ -165,6 +166,19 @@ export function foliage(): KernelPlugin {
     },
   };
 
+  const removedJson = (): Json => {
+    if (removed.size === 0) return null;
+    const out: Record<string, number[]> = {};
+    for (const [id, set] of [...removed].sort((a, b) => a[0].localeCompare(b[0]))) out[id] = [...set].sort((a, b) => a - b);
+    return out as unknown as Json;
+  };
+  const setRemoved = (state: Json | undefined): void => {
+    removed = new Map(Object.entries((state ?? {}) as Record<string, number[]>).map(([id, list]) => [id, new Set(list)]));
+    built = null;
+    revision++;
+  };
+  let sectionRegistered = false;
+
   return {
     id: 'foliage',
     install(kernel) {
@@ -173,21 +187,25 @@ export function foliage(): KernelPlugin {
       kernel.provide(FOLIAGE_SERVICE, service);
       kernel.observeScenes({
         loading: () => {
+          // Slot saves keep the felled instances of the scene they were felled in. The save
+          // service may install after this plugin: register at first use.
+          if (!sectionRegistered) {
+            sectionRegistered = true;
+            kernel.tryService(SAVE_SERVICE)?.register({
+              key: 'foliage',
+              save: () => ({ scene: kernel.scene?.id ?? null, removed: removedJson() }),
+              load: (data) => {
+                const saved = (data ?? null) as { scene?: Json; removed?: Json } | null;
+                setRemoved(saved !== null && saved.scene === kernel.scene?.id ? saved.removed : undefined);
+              },
+            });
+          }
           built = null;
           removed = new Map();
         },
       });
     },
-    snapshot: () => {
-      if (removed.size === 0) return null;
-      const out: Record<string, number[]> = {};
-      for (const [id, set] of [...removed].sort((a, b) => a[0].localeCompare(b[0]))) out[id] = [...set].sort((a, b) => a - b);
-      return out as unknown as Json;
-    },
-    restore: (_kernel, state) => {
-      removed = new Map(Object.entries((state ?? {}) as Record<string, number[]>).map(([id, list]) => [id, new Set(list)]));
-      built = null;
-      revision++;
-    },
+    snapshot: removedJson,
+    restore: (_kernel, state) => setRemoved(state),
   };
 }
