@@ -64,6 +64,9 @@ export function effectsOf(record: EntityRecord, fx: Fields, now: number): Materi
     hologramFlicker: finite(fx['hologram_flicker'], `${where}.hologram_flicker`),
     scroll: [finite(scroll.x, `${where}.scroll.x`), finite(scroll.y, `${where}.scroll.y`)],
     triplanar: finite(fx['triplanar'], `${where}.triplanar`),
+    ripple: finite(fx['ripple'], `${where}.ripple`),
+    rippleScale: finite(fx['ripple_scale'], `${where}.ripple_scale`),
+    rippleSpeed: finite(fx['ripple_speed'], `${where}.ripple_speed`),
   };
   return hasEffects(effects) ? effects : null;
 }
@@ -78,7 +81,7 @@ function effectsKey(e: MaterialEffects3d): string {
   const n = (x: number): string => (Math.round(x * 1000) / 1000).toString();
   return [
     e.rim, ...e.rimColor, e.rimPower, e.flash, ...e.flashColor, e.dissolve, e.dissolveScale, e.dissolveEdge, ...e.dissolveColor, e.dissolveGlow,
-    e.hologram, ...e.hologramColor, e.hologramLines, e.hologramFlicker, ...e.scroll, e.triplanar,
+    e.hologram, ...e.hologramColor, e.hologramLines, e.hologramFlicker, ...e.scroll, e.triplanar, e.ripple, e.rippleScale, e.rippleSpeed,
   ].map(n).join(',');
 }
 

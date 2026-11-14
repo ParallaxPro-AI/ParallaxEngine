@@ -2336,6 +2336,10 @@ hologram   0..1 of a see-through projection in `hologram_color`: fresnel edge,
 scroll     texture repeats per second along u, v (conveyors, lava, waterfalls, screens)
 triplanar  the base texture projected along the world axes every this many meters
            instead of the mesh's uvs (rocks, cliffs, stretched generated meshes)
+ripple     the surface rises and falls along its normal by up to this many meters in
+           travelling waves `ripple_scale` meters long moving at `ripple_speed` m/s
+           (breathing flesh, a heaving deck, jelly); bends meshes dense enough to bend
+           and shades the slope on any mesh; shadows stay with the still surface
 flash()    a hit flash: the surface pops to `flash_color` and fades over `flash_seconds`
 ```
 
@@ -2363,6 +2367,9 @@ no shadow while the dissolve is above 0.
 - `hologram_flicker: float = ...`
 - `scroll: Vec2 = ...`
 - `triplanar: float = ...`
+- `ripple: float = ...`
+- `ripple_scale: float = ...`
+- `ripple_speed: float = ...`
 - `flash_color: Color = ...`
 - `flash_strength: float = ...`
 - `flash_seconds: float = ...`

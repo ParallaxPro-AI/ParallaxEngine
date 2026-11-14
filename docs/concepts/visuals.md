@@ -452,6 +452,7 @@ component on a camera blurs by distance. The values above come from
 | Effect | Component or call | Use for |
 |---|---|---|
 | Hit flash, dissolve, rim glow, hologram, scrolling texture | `surface_fx` (`SurfaceFx.flash()`, `dissolve_to()`) | Damage feedback, deaths and spawns, pickups, conveyors (`horde_survival`) |
+| Travelling-wave ripple over a surface | `surface_fx` (`ripple`, `ripple_scale`, `ripple_speed`) | Breathing creatures, heaving decks, jelly |
 | Selection outline or x-ray | `outline` | Targets, interactables, teammates |
 | Heat shimmer and shockwaves | `heat_haze` (`pulse()`) | Fires, exhausts, explosions (`racing`) |
 | Projected images | `decal` | Scorch marks, blood, road paint, posters |
