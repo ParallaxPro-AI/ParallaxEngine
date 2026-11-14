@@ -214,6 +214,8 @@ const TYPES = [
   { index: 1, id: 'stone', texture: 'images/stone', hardness: 1, solid: true, transparent: false, light: 0, prefab: null, prefabRenders: false },
   { index: 2, id: 'dirt', texture: null, hardness: 1, solid: true, transparent: false, light: 0, prefab: null, prefabRenders: false },
   { index: 3, id: 'water', texture: null, hardness: 1, solid: false, transparent: true, light: 0, prefab: null, prefabRenders: false },
+  { index: 4, id: 'lava', texture: 'images/lava', hardness: 1, solid: true, transparent: false, light: 2, prefab: null, prefabRenders: false },
+  { index: 5, id: 'neon', texture: null, hardness: 1, solid: true, transparent: false, light: 1.5, prefab: null, prefabRenders: false },
 ];
 
 function voxelMeshes(meshes: readonly MeshBatch[]): MeshBatch[] {
@@ -262,6 +264,8 @@ describe('voxel chunks drawn by render3d', () => {
     expect(water.castShadows).toBe(false);
     expect(dirt.geometry.indices).toHaveLength(12);
     expect(stone.material.doubleSided).toBe(false);
+    expect(stone.material.emissive).toEqual([0, 0, 0]);
+    expect(stone.material.emissiveTexture).toBeNull();
     // The side face: v runs down the block (top edge v = -4 ≡ 0), u along +x as seen from -z.
     const side = dirt.geometry;
     const uvAt = (g: Geometry3d, x: number, y: number, z: number): number[] => {
@@ -289,6 +293,30 @@ describe('voxel chunks drawn by render3d', () => {
     worldVersion = 2;
     kernel.step(DT);
     expect(voxelMeshes(surface3d.last!.meshes)[0]!.geometry).not.toBe(before);
+  });
+
+  it('blocks with light glow: textured ones through their texture, untextured ones in their color', async () => {
+    const chunks: VoxelChunkMesh[] = [chunk(0, 1, surface([TOP(0, 0, 4, 4), TOP(1, 0, 4, 5)]))];
+    const view = (): VoxelWorldView => ({
+      version: 1, scene: 'main', chunkSize: 16, yMin: 0, yMax: 16, renderDistance: 4, saveEdits: false, mode: 'blocks',
+      blocks: () => TYPES, blockAt: () => 0, isSolid: () => false, densityAt: () => 0, active: () => chunks, exportEdits: () => ({}), loadEdits: () => {},
+    });
+    const provider: KernelPlugin = { id: 'voxels', install: (k) => k.provide(VOXELS_SERVICE, { current: () => view() }) };
+    const project = files({ 'scenes/main/scene.json': { entities: [] }, 'assets/images/lava.png': '' });
+    const surface3d = new RecordingSurface3d();
+    const kernel = new Kernel({
+      project: loadProject(project), game: NO_GAME,
+      plugins: [visuals({ dimension: '3d' }), models({ files: project, binary: new MemoryBinaryFiles({}) }), render3d({ surface: surface3d, files: project }), provider],
+      context: {}, fixedStep: DT,
+    });
+    kernel.start('main');
+    kernel.step(DT);
+    const [lava, neon] = voxelMeshes(surface3d.last!.meshes) as [MeshBatch, MeshBatch];
+    expect(lava.material.emissive).toEqual([2, 2, 2]);
+    expect(lava.material.emissiveTexture!.source).toEqual({ kind: 'file', path: 'assets/images/lava.png' });
+    const [r, g, b] = blockColor('neon');
+    expect(neon.material.emissive).toEqual([r * 1.5, g * 1.5, b * 1.5]);
+    expect(neon.material.emissiveTexture).toBeNull();
   });
 
   it('the voxels plugin\'s real world: front faces face their normals, and physics3d stands a ball on the grass', async () => {

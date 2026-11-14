@@ -19,6 +19,11 @@
  * facing up (normal y > 0.5, averaged over the triangle: smooth worlds' slopes too) with
  * the top texture, those facing down with the bottom one, the rest with `texture`.
  *
+ * Glow. A block type with `light` above 0 is drawn emissive: its texture (or fallback color)
+ * times `light` glows on top of the lit surface, so a light of 1 shows the art at full
+ * brightness in the dark and values above 1 bloom (lava, lamps, neon, screens). It lights
+ * nothing around it; put a point light near it for that.
+ *
  * Colors. The SDK's BlockDef has no color field, so an untextured block type is drawn in
  * a fallback color derived from its content id alone (`blockColor`): stable across runs,
  * machines and the order blocks are declared in. A transparent untextured block is drawn
@@ -126,6 +131,8 @@ export class VoxelDraws {
     if (material === undefined) {
       const [r, g, b] = blockColor(type.id);
       const color: Rgba = path !== null ? [1, 1, 1, 1] : [r, g, b, blend ? UNTEXTURED_TRANSPARENT_ALPHA : 1];
+      const glow = Math.max(0, type.light);
+      const emissive: [number, number, number] = glow === 0 ? [0, 0, 0] : path !== null ? [glow, glow, glow] : [r * glow, g * glow, b * glow];
       material = {
         id: key,
         baseColor: color,
@@ -133,8 +140,8 @@ export class VoxelDraws {
         metallic: 0,
         roughness: 0.9,
         metallicRoughnessTexture: null,
-        emissive: [0, 0, 0],
-        emissiveTexture: null,
+        emissive,
+        emissiveTexture: glow === 0 || path === null ? null : texture(path),
         alphaMode: blend ? 'blend' : 'opaque',
         alphaCutoff: 0.5,
         doubleSided: false,

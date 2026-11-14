@@ -104,7 +104,7 @@ Built-in kind; extend by subclassing with the same kind id (e.g. to type `drops`
 - `hardness: float = field(1, doc='Relative toughness; break time = hardness / tool power.')`
 - `solid: bool = field(True)`
 - `transparent: bool = field(False)`
-- `light: float = field(0)`
+- `light: float = field(0, doc='Glow: above 0 the block is drawn emissive (its texture or color times this; above 1 blooms). It lights nothing around it.')`
 - `prefab: PrefabRef | None = field(None)`
 - `prefab_renders: bool = field(False, doc='The prefab draws the block (no voxel face).')`
 
