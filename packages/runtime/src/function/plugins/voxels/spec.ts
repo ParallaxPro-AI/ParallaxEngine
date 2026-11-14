@@ -80,11 +80,23 @@
  *
  * Generated blocks may not name a prefab (PP3627): a block entity exists only for a block
  * placed with `ctx.voxels.set`.
+ *
+ * Authored boxes (blocks mode; with or without a generator), laid over the generated world
+ * in list order (fills.ts), a later one winning where they overlap:
+ *
+ *   "fills": [{"block": "bricks", "from": [-10, 0, -10], "to": [10, 4, 10]},
+ *             {"block": null, "from": [-9, 1, -9], "to": [9, 4, 9]}]
+ *                                     every cell from `from` to `to` (whole numbers, corners
+ *                                     inclusive, in any order) becomes `block`, or air for null;
+ *                                     cells outside y_range are ignored. Rooms, walls, floors and
+ *                                     arenas as data: they count as generated, so saves hold only
+ *                                     the player's edits on top. Like the generator, no prefab blocks
  */
 
 import { closestMatch, fail } from '../../../core/index.js';
 import type { Json, JsonObject, SceneDoc } from '../../../resource/index.js';
 import type { BlockTable } from './blocks.js';
+import type { VoxelFill } from './fills.js';
 
 export interface Stratum {
   readonly block: number;
@@ -201,9 +213,14 @@ export interface VoxelSceneSpec {
   readonly yMax: number;
   readonly renderDistance: number;
   readonly generator: LandscapeSpec | undefined;
+  /** Authored boxes over the generated world, in order (blocks mode). */
+  readonly fills: readonly VoxelFill[];
 }
 
-const KEYS = ['mode', 'y_range', 'render_distance', 'generator'] as const;
+const KEYS = ['mode', 'y_range', 'render_distance', 'generator', 'fills'] as const;
+const FILL_KEYS = ['block', 'from', 'to'] as const;
+/** Most cells one fill may cover: keeps a typo (an extra digit) from stalling chunk generation. */
+const MAX_FILL_CELLS = 64_000_000;
 const LANDSCAPE_KEYS = [
   'type', 'seed', 'noise', 'base_height', 'shore_height', 'amplitude', 'frequency', 'octaves', 'strata', 'bottom', 'sea_level', 'water', 'shore',
   'ores', 'trees', 'ruins', 'caves', 'slopes', 'tunnels', 'galleries',
@@ -531,5 +548,30 @@ export function readVoxelSpec(scene: SceneDoc, blocks: BlockTable): VoxelSceneSp
     }
   }
   const generator = block['generator'] === undefined ? undefined : readLandscape(r, r.object(block['generator'], '/generator', 'generator'), smooth);
-  return { mode: smooth ? 'smooth' : 'blocks', yMin, yMax, renderDistance, generator };
+  if (smooth && block['fills'] !== undefined) {
+    r.fail('/fills', '"fills" places blocks, which a smooth world doesn\'t have', 'Remove "fills", or use "mode": "blocks".');
+  }
+  const fills = r.list(block['fills'], '/fills').map((value, i) => readFill(r, value, `/fills/${i}`));
+  return { mode: smooth ? 'smooth' : 'blocks', yMin, yMax, renderDistance, generator, fills };
+}
+
+function readFill(r: SpecReader, value: Json, at: string): VoxelFill {
+  const obj = r.object(value, at, 'a fill');
+  r.keys(obj, at, FILL_KEYS);
+  if (!('block' in obj)) r.fail(`${at}/block`, 'a fill needs "block"', 'Add "block": "<block id>", or null to carve air.');
+  const cell = (key: 'from' | 'to'): [number, number, number] => {
+    const v = obj[key];
+    if (!Array.isArray(v) || v.length !== 3 || !v.every((n) => Number.isInteger(n))) {
+      return r.fail(`${at}/${key}`, `${key} must be [x, y, z] in whole blocks`, `Write "${key}": [x, y, z], e.g. [0, 0, 0].`);
+    }
+    return [v[0] as number, v[1] as number, v[2] as number];
+  };
+  const a = cell('from');
+  const b = cell('to');
+  const min: [number, number, number] = [Math.min(a[0], b[0]), Math.min(a[1], b[1]), Math.min(a[2], b[2])];
+  const max: [number, number, number] = [Math.max(a[0], b[0]), Math.max(a[1], b[1]), Math.max(a[2], b[2])];
+  if ((max[0] - min[0] + 1) * (max[1] - min[1] + 1) * (max[2] - min[2] + 1) > MAX_FILL_CELLS) {
+    r.fail(at, `a fill may cover at most ${MAX_FILL_CELLS} cells`, 'Check "from" and "to", or split the box.');
+  }
+  return { block: obj['block'] === null ? 0 : r.block(obj['block'], `${at}/block`), min, max };
 }
