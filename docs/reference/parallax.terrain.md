@@ -34,6 +34,9 @@ The block (every key but `size` and `layers` optional; footprints are `"center":
   "paint": [{"layer": "sand", <footprint>, "feather": 3, "noise": 0.4, "strength": 1}],
   "paths": [{"paint": "road", "points": [[x, z], ...], "width": 8, "feather": 1.5,
              "closed": false, "flatten": true | {"feather": 6, "offset": 0.1}}],
+                                `flatten.heights` (one per point) grades to set heights
+                                instead of the smoothed ground: a railway's or road's
+                                embankments and cuttings
                                     `paint`: the layer it paints (a path needs `paint`
                                     or `flatten`; "layer" there is an error naming it)
   "brush": [{"id": "mid_brush", <footprint>, "height": 1.6, "tags": ["lane"]}]

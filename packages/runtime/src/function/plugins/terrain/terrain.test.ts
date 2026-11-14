@@ -214,6 +214,21 @@ describe('relief', () => {
     expect(crossSlope).toBeLessThan(0.15);
     expect(graded.at(0, 60)).toBe(natural.at(0, 60));
   });
+
+  it('a path with set heights grades embankments and cuttings to them', () => {
+    const block: JsonObject = {
+      size: [200, 200], noise: [{ amplitude: 30, wavelength: 60 }], layers: ['grass'],
+      paths: [{ points: [[-90, 0], [0, 0], [90, 0]], width: 8, flatten: { feather: 6, offset: -0.5, heights: [10, 14, 18] } }],
+    };
+    const graded = new Relief(spec(block));
+    // On the centerline the ground follows the heights (less the offset), whatever the noise below.
+    expect(graded.at(-90, 0)).toBeCloseTo(9.5, 6);
+    expect(graded.at(0, 0)).toBeCloseTo(13.5, 6);
+    expect(graded.at(45, 0)).toBeCloseTo(15.5, 6);
+    expect(graded.at(-45, 3)).toBeCloseTo(11.5, 6);
+    expect(() => spec({ ...block, paths: [{ points: [[0, 0], [9, 9]], width: 4, flatten: { heights: [1] } }] }))
+      .toThrow(/one height per point/);
+  });
 });
 
 describe('splat', () => {
