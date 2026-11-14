@@ -310,7 +310,7 @@ export interface ComponentChoice {
 
 const CATEGORY_NAMES: Readonly<Record<string, string>> = {
   visuals: 'Rendering', render3d: 'Rendering', render2d: 'Rendering', models: 'Rendering',
-  physics3d: 'Physics', physics2d: 'Physics', softbody: 'Physics', destruction: 'Physics',
+  physics3d: 'Physics', physics2d: 'Physics', softbody: 'Physics', matter: 'Physics', destruction: 'Physics',
   audio: 'Audio', voice: 'Audio', vehicles: 'Vehicles', characters: 'Characters', ai: 'AI', nav: 'Navigation',
   combat: 'Gameplay', interaction: 'Gameplay', economy: 'Gameplay', spawning: 'Gameplay', story: 'Gameplay', grid: 'Gameplay',
   net: 'Multiplayer', ui: 'UI', hud: 'UI', screens: 'UI',

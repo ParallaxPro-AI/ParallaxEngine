@@ -11,7 +11,7 @@ Core (always present): rendering, UI, audio, camera, input, environment, VFX, de
 
 ## Contents
 
-[`physics2d()`](#physics2d), [`physics3d()`](#physics3d), [`destruction()`](#destruction), [`combat()`](#combat), [`characters()`](#characters), [`viewmodel()`](#viewmodel), [`vehicles()`](#vehicles), [`nav()`](#nav), [`grid()`](#grid), [`story()`](#story), [`save()`](#save), [`terrain()`](#terrain), [`foliage()`](#foliage), [`wind()`](#wind), [`voxels()`](#voxels), [`procgen()`](#procgen), [`city()`](#city), [`local_players()`](#local_players), [`net()`](#net), [`hud()`](#hud), [`interaction()`](#interaction), [`ai()`](#ai), [`economy()`](#economy), [`spawning()`](#spawning), [`cinematics()`](#cinematics), [`water()`](#water), [`weather()`](#weather), [`softbody()`](#softbody), [`screens()`](#screens), [`voice()`](#voice), [`chat()`](#chat), [`payments()`](#payments)
+[`physics2d()`](#physics2d), [`physics3d()`](#physics3d), [`destruction()`](#destruction), [`combat()`](#combat), [`characters()`](#characters), [`viewmodel()`](#viewmodel), [`vehicles()`](#vehicles), [`nav()`](#nav), [`grid()`](#grid), [`story()`](#story), [`save()`](#save), [`terrain()`](#terrain), [`foliage()`](#foliage), [`wind()`](#wind), [`voxels()`](#voxels), [`procgen()`](#procgen), [`city()`](#city), [`local_players()`](#local_players), [`net()`](#net), [`hud()`](#hud), [`interaction()`](#interaction), [`ai()`](#ai), [`economy()`](#economy), [`spawning()`](#spawning), [`cinematics()`](#cinematics), [`water()`](#water), [`weather()`](#weather), [`softbody()`](#softbody), [`matter()`](#matter), [`screens()`](#screens), [`voice()`](#voice), [`chat()`](#chat), [`payments()`](#payments)
 
 ### `physics2d()`
 
@@ -318,6 +318,20 @@ def softbody() -> Plugin
 
 Cloth and soft bodies (parallax.softbody): capes, flags, curtains, jelly, slime.
 List it after physics3d (it reads its gravity and colliders).
+
+### `matter()`
+
+```python
+def matter(*, ambient: float = 21, time_scale: float = 1) -> Plugin
+```
+
+Stuff that cuts, heats, melts, boils and pours (parallax.matter): Sliceable soft
+solids, Thermal bodies, HeatSources and Liquids in containers. List it after physics3d.
+
+```text
+ambient    -- air temperature, °C
+time_scale -- heat runs this many times faster than the clock (accelerated process time); motion never does
+```
 
 ### `screens()`
 

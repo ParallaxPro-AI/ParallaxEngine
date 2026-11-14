@@ -41,6 +41,7 @@ export const ENGINE_MODULES: Readonly<Record<string, string>> = {
   'parallax/spawning': 'api/spawning.ts',
   'parallax/cinematics': 'api/cinematics.ts',
   'parallax/softbody': 'api/softbody.ts',
+  'parallax/matter': 'api/matter.ts',
   'parallax/screens': 'api/screens.ts',
   'parallax/voice': 'api/voice.ts',
   'parallax/chat': 'api/chat.ts',

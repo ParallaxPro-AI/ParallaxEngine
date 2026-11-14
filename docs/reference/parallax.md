@@ -4903,6 +4903,7 @@ Stable for the whole game; safe to use from tasks and closures across frames.
 - `voice: parallax.voice.VoiceApi`
 - `chat: parallax.chat.ChatApi`
 - `payments: parallax.payments.PaymentsApi`
+- `matter: parallax.matter.MatterApi`
 - `players: list[Player]  # read-only`
 
   Seats in play (one in single-player).

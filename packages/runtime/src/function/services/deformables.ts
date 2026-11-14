@@ -31,5 +31,13 @@ export const SOFTBODY_MESHES: ServiceKey<DeformableMeshSource> = serviceKey<Defo
   'softbody_meshes', 'Add softbody() to Game(plugins=[...]): it simulates Cloth and SoftBody components.',
 );
 
+/**
+ * Sliceable solids (their entity's frame, drawn at its interpolated pose) and liquid
+ * surfaces (world space), from the matter plugin.
+ */
+export const MATTER_MESHES: ServiceKey<DeformableMeshSource> = serviceKey<DeformableMeshSource>(
+  'matter_meshes', 'Add matter() to Game(plugins=[...]): it simulates Sliceable, Thermal, HeatSource and Liquid components.',
+);
+
 /** Every deformable mesh source, in drawing order (a renderer draws whichever are provided). */
-export const DEFORMABLE_MESH_SOURCES: readonly ServiceKey<DeformableMeshSource>[] = [SOFTBODY_MESHES];
+export const DEFORMABLE_MESH_SOURCES: readonly ServiceKey<DeformableMeshSource>[] = [SOFTBODY_MESHES, MATTER_MESHES];

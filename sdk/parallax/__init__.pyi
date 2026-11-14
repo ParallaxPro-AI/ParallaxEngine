@@ -95,6 +95,7 @@ import parallax.city
 import parallax.voice
 import parallax.chat
 import parallax.cinematics
+import parallax.matter
 import parallax.economy
 import parallax.spawning
 import parallax.payments
@@ -2780,6 +2781,7 @@ class Context:
     voice: parallax.voice.VoiceApi           # voice()
     chat: parallax.chat.ChatApi              # chat()
     payments: parallax.payments.PaymentsApi  # payments()
+    matter: parallax.matter.MatterApi        # matter()
 
     @property
     def players(self) -> list[Player]:

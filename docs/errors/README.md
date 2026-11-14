@@ -11,7 +11,7 @@ PP2041  Unknown prefab "brik"
   Docs: https://parallaxpro.ai/docs/engine/errors/PP2041
 ```
 
-This index lists all 875 codes the engine's sources raise, grouped by range. The
+This index lists all 878 codes the engine's sources raise, grouped by range. The
 machine-readable form is [`catalog.json`](catalog.json): for each code, its range, the area that
 raises it, the message and fix texts found at its raise sites (interpolated values are written
 `{name}`), notes, and the source files. Search the sources for a code to find every place that
@@ -24,7 +24,7 @@ Regenerate after adding or changing a code: `python3 tools/gen_error_catalog.py`
 |---|---|---|
 | [PP1xxx](#pp1xxx) | data files that don't parse or don't have the right shape (resource loader) | 16 |
 | [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 124 |
-| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 420 |
+| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 423 |
 | [PP4xxx](#pp4xxx) | declarations and types: `@component` / `@resource` / field schemas, actions, net declarations | 65 |
 | [PP5xxx](#pp5xxx) | values and conversions in core | 3 |
 | [PP6xxx](#pp6xxx) | Parallax Python: syntax, unsupported constructs and sandbox rules (the transpiler) | 17 |
@@ -192,7 +192,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | Code | Area | Message |
 |---|---|---|
 | PP3001 | combat, core | This entity has no "{componentId}" component |
-| PP3002 | core, grid, render2d, softbody, visuals | A socket ("{socket}") was asked of an entity that no longer exists |
+| PP3002 | core, grid, matter, render2d, softbody, visuals | A socket ("{socket}") was asked of an entity that no longer exists |
 | PP3003 | core, grid | {where}: {name} is not a component |
 | PP3004 | ai, combat, core, grid, screens, test, visuals | Screen.click() action must be a str, got {…} |
 | PP3005 | core | Transform.scale modifiers are not available yet |
@@ -313,7 +313,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3244 | nav | ctx.nav agent= must be an Entity with a NavAgent |
 | PP3245 | nav | {where} must be an Entity |
 | PP3246 | nav | A NavAgent can't follow its own entity |
-| PP3247 | ai, city, nav, screens, water, weather | This ai plugin is already installed in another kernel |
+| PP3247 | ai, city, matter, nav, screens, water, weather | This ai plugin is already installed in another kernel |
 | PP3248 | nav | The NavAgent on "{name}" drives a {…} Rigidbody, which physics moves |
 | PP3249 | nav | This nav bake is for agents of radius {data.radius}, not {radius} |
 | PP3250 | ai | {where}: blackboard key must be a name like "target" or "patrol.index", got {…} |
@@ -422,6 +422,9 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3471 | chat | chat.send(): this machine has no local player to speak as |
 | PP3472 | chat | chat filter returned {…} |
 | PP3473 | chat | chat.send() text must be a str, got {…} |
+| PP3491 | matter | Sliceable.slice() normal must not be zero |
+| PP3492 | matter | Sliceable.slice(): entity {…} was not spawned from a prefab, so the cut-off piece has nothing to copy |
+| PP3493 | matter | Liquid.pour\_into(): the other entity has no Liquid |
 | PP3500 | audio | {where} needs {wanted}, got None |
 | PP3501 | audio | MusicLayer volume must be a number &gt;= 0, got {…} |
 | PP3502 | audio | {where} at= must be a Vec3, a Vec2 or an Entity |
@@ -829,7 +832,7 @@ Engine-internal and platform failures: boot, jobs, bundles, net transport.
 | PP9220 | environment | snapshot: a running fog change has no starting colour |
 | PP9221 | environment | environment\_zone on entity {id} has no \_\_weight\_\_ |
 | PP9222 | environment | The environment is used before its kernel was built |
-| PP9240 | nav, water | The water plugin is used before its kernel was built |
+| PP9240 | matter, nav, water | The water plugin is used before its kernel was built |
 | PP9250 | ai, weather | The weather plugin is used before its kernel was built |
 | PP9270 | ai | assignSlots: {units.length} units for {slots.length} slots |
 | PP9300 | core | {label}.\_\_annotations\_\_.{name} is not a thunk |
