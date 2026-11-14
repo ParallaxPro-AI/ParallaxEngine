@@ -168,6 +168,9 @@ export interface StructureSpec {
   /** Base course height on the ground storey's exterior walls (m); 0 or absent: none. */
   readonly plinth?: number;
   readonly facade?: StructureFacade;
+  /** The storey at ground level (0 or absent: the bottom one). Storeys below it are basements:
+   * its doors open onto the ground, and the plinth and "upper storeys" defaults count from it. */
+  readonly groundFloor?: number;
   /** Where the storeys were drawn: a plan file, and the file line of each floor's rows. */
   readonly source?: { readonly path: string; readonly rows: readonly (readonly number[])[] };
 }
@@ -364,7 +367,7 @@ function flights(g: FloorGrid, f: number, problems: StructureProblem[] | null): 
 const stepCount = (rise: number): number => Math.max(2, Math.round(rise / STAIR_RISE));
 
 /** Meters from floor f down to the ground. */
-const floorsBelow = (spec: StructureSpec, f: number): number => Math.round(spec.floors.slice(0, f).reduce((h, fl) => h + fl.height, 0) * 10) / 10;
+const floorsBelow = (spec: StructureSpec, f: number): number => Math.round(spec.floors.slice(spec.groundFloor ?? 0, f).reduce((h, fl) => h + fl.height, 0) * 10) / 10;
 
 /** Whether top-floor flights climb onto the roof. */
 const roofAccess = (spec: StructureSpec): boolean => spec.roof.access === true && spec.roof.type === 'flat';
@@ -375,6 +378,7 @@ const flightRise = (spec: StructureSpec, f: number): number => spec.floors[f]!.h
 /** Every problem in a spec's plans (empty when it builds). */
 export function structureProblems(spec: StructureSpec): StructureProblem[] {
   const out: StructureProblem[] = [];
+  const ground = spec.groundFloor ?? 0;
   if (spec.floors.length === 0) out.push({ floor: 0, row: 0, column: 0, message: 'has no floors', fix: 'Add "floors": [{"plan": ["#####", "#a..#", ...]}].' });
   const cols = Math.max(0, ...spec.floors.map((f) => Math.max(0, ...f.plan.map((r) => r.length))));
   const rows = Math.max(0, ...spec.floors.map((f) => f.plan.length));
@@ -414,10 +418,10 @@ export function structureProblems(spec: StructureSpec): StructureProblem[] {
             const a = g.kind(ar, ac);
             const b = g.kind(br, bc);
             const balconied = spec.facade?.balconies !== null && spec.facade?.balconies !== undefined && spec.facade.balconies.on !== 'windows'
-              && (spec.facade.balconies.levels === null ? f > 0 : spec.facade.balconies.levels.includes(f));
+              && (spec.facade.balconies.levels === null ? f > ground : spec.facade.balconies.levels.includes(f));
             if (a === 'void' && b === 'void') {
               out.push({ floor: f, row: text(r), column: c, message: `the ${kind} opens onto nothing on either side`, fix: 'Put it in a wall between a room and the outside (or two rooms).' });
-            } else if (!(wallLike(a) || a === 'stair') && !(wallLike(b) || b === 'stair') && f > 0 && (a === 'void' || b === 'void') && !balconied) {
+            } else if (!(wallLike(a) || a === 'stair') && !(wallLike(b) || b === 'stair') && f > ground && (a === 'void' || b === 'void') && !balconied) {
               out.push({ floor: f, row: text(r), column: c, message: `the ${kind} on floor ${f} opens onto a ${floorsBelow(spec, f)} m drop`, fix: 'Give the building balconies on doors (facade.balconies with on="doors"), or make it a window (=).' });
             } else if (solidWall(a) || solidWall(b)) {
               out.push({ floor: f, row: text(r), column: c, message: `the ${kind} opens into a wall`, fix: 'Leave a room cell (or the outside) on both sides of the opening, across the wall.' });
@@ -537,6 +541,7 @@ export function rectangles(rows: number, cols: number, on: (r: number, c: number
 
 /** Build a valid spec (check `structureProblems` first). */
 export function buildStructure(spec: StructureSpec): StructureGeometry {
+  const ground = spec.groundFloor ?? 0;
   const cols = Math.max(...spec.floors.map((f) => Math.max(0, ...f.plan.map((r) => r.length))));
   const rows = Math.max(...spec.floors.map((f) => f.plan.length));
   const s = spec.cell;
@@ -596,7 +601,7 @@ export function buildStructure(spec: StructureSpec): StructureGeometry {
     const well = wells[f]!;
     /** Void, or off the plan: what an exterior face looks at. */
     const open = (r: number, c: number): boolean => g.kind(r, c) === 'void';
-    const onLevel = (levels: readonly number[] | null, upperOnly = false): boolean => (levels === null ? !upperOnly || f > 0 : levels.includes(f));
+    const onLevel = (levels: readonly number[] | null, upperOnly = false): boolean => (levels === null ? !upperOnly || f > ground : levels.includes(f));
 
     // Rooms: 4-connected groups of one character.
     const roomOf = new Map<string, string>();
@@ -693,7 +698,7 @@ export function buildStructure(spec: StructureSpec): StructureGeometry {
 
     // Plinth: a strip proud of every exterior face of the ground storey, from the slab's
     // underside up; doors and arches break it; a run reaching an outer corner turns it.
-    if (f === 0 && plinth > 0) {
+    if (f === ground && plinth > 0) {
       const lo = y - spec.slab;
       const hi = y + plinth;
       const p = PLINTH_PROUD;

@@ -11343,6 +11343,7 @@
       ],
       "messages": [
         "{where}: facade.{key}.levels has {bad}, which is not a storey (0 to {…})",
+        "{where}: ground_floor is {groundFloor}, which is not a storey (0 to {…})",
         "{where}: has both a plan file (\"{planPath}\") and inline floors",
         "{where}: legend \"{ch}\" height must be above 0, got {height}",
         "{where}: legend key \"{ch}\" must be one character",
@@ -11357,6 +11358,7 @@
         "Keep one: \"plan\" names a .plan file; \"floors\" draws the storeys inline.",
         "Legend keys are the plan characters they style: {\"legend\": {\"k\": {\"name\": \"kitchen\"}}}.",
         "List storeys by index, the ground floor 0; None for the default.",
+        "Name the storey at ground level by index (the bottom storey 0); the ones below it are basements.",
         "Set {key} in meters (0: none).",
         "Set {key} in meters."
       ],

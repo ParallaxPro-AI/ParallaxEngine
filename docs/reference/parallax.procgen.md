@@ -796,6 +796,7 @@ rebuilt on a scene reload or hot reload.
 - `door_height: float = field(2.2, unit='m')`
 - `window_sill: float = field(0.9, unit='m')`
 - `window_height: float = field(1.2, unit='m')`
+- `ground_floor: int = field(0, min=0, doc="The storey at ground level; the ones below it are basements (its doors open onto the ground; the plinth and the facade's upper-storey defaults count from it). Place the entity that many storeys below ground.")`
 - `roof: Roof = field(Roof())`
 - `facade: Facade = field(Facade())`
 - `door_prefab: PrefabRef | None = field(None)`
