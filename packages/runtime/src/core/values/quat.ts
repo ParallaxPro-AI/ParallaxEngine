@@ -23,7 +23,13 @@ export class Quat {
     Object.freeze(this);
   }
 
-  static from_euler(degrees: Vec3): Quat {
+  static from_euler(degrees: Vec3, ...rest: unknown[]): Quat {
+    // `Quat.from_euler(0, yaw, 0)` (three numbers) used to make a NaN rotation, which
+    // silently hides whatever it is given to.
+    if (!(degrees instanceof Vec3) || rest.length > 0) {
+      const got = rest.length > 0 ? `${rest.length + 1} arguments` : typeof degrees === 'object' && degrees !== null ? degrees.constructor.name : String(degrees);
+      fail('PP3022', `Quat.from_euler() takes one Vec3 of degrees, got ${got}`, { fix: 'Pass vec3(pitch, yaw, roll): Quat.from_euler(vec3(0, yaw, 0)).' });
+    }
     const p = rad(degrees.x) / 2;
     const y = rad(degrees.y) / 2;
     const r = rad(degrees.z) / 2;
@@ -103,6 +109,35 @@ export class Quat {
 
   inverse(): Quat {
     return new Quat(-this.x, -this.y, -this.z, this.w);
+  }
+
+  /** `a.slerp(b, t)`: the rotation `t` of the way from this one to `o` (0..1), the short way round. */
+  slerp(...args: unknown[]): Quat {
+    const a = bindArgs('slerp', args, { positional: ['o', 't'], required: ['o', 't'] }).args;
+    const o = a['o'];
+    const t = a['t'];
+    if (!(o instanceof Quat) || typeof t !== 'number' || !Number.isFinite(t)) {
+      fail('PP3022', 'slerp() takes a Quat and a finite number t', { fix: 'Pass the target rotation and how far to turn (0..1): a.slerp(b, 0.5).' });
+    }
+    let { x, y, z, w } = o;
+    let cos = this.x * x + this.y * y + this.z * z + this.w * w;
+    // q and -q are the same rotation: turn the short way.
+    if (cos < 0) {
+      x = -x; y = -y; z = -z; w = -w;
+      cos = -cos;
+    }
+    let s0 = 1 - t;
+    let s1 = t;
+    if (cos < 0.9995) {
+      const angle = Math.acos(Math.min(1, cos));
+      const sin = Math.sin(angle);
+      s0 = Math.sin((1 - t) * angle) / sin;
+      s1 = Math.sin(t * angle) / sin;
+    }
+    const qx = this.x * s0 + x * s1; const qy = this.y * s0 + y * s1;
+    const qz = this.z * s0 + z * s1; const qw = this.w * s0 + w * s1;
+    const len = Math.hypot(qx, qy, qz, qw) || 1;
+    return new Quat(qx / len, qy / len, qz / len, qw / len);
   }
 
   to_euler(): Vec3 {
