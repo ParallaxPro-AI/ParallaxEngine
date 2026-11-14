@@ -63,6 +63,7 @@ const DRIVER = {
   format: 'parallax.model', version: 1, provides: ['driver'],
   materials: { suit: { color: '#2040a0', metallic: 0, roughness: 0.8 } },
   parts: [{ name: 'torso', shape: 'box', size: [0.4, 0.6, 0.3], material: 'suit' }],
+  sockets: [{ name: 'handle', position: [0, 0.3, 0.1], rotation: [0, 90, 0] }],
 };
 
 function doc(json: unknown = KART, path = 'assets/models/kart.model.json'): ModelDocument {
@@ -399,6 +400,24 @@ describe('code models in a kernel', () => {
     expect(crate.transform.position.z).toBeCloseTo(1);
     leaveSocket(g.kernel, driver);
     expect(driver.components.has('socket')).toBe(false);
+  });
+
+  it('seat a child by its own grip socket when the socket names one', async () => {
+    const g = await garage();
+    const kart = g.record('kart');
+    const driver = g.kernel.spawn('driver');
+    attachToSocket(g.kernel, kart, driver, 'seat', undefined);
+    g.step();
+    close3([driver.transform.position.x, driver.transform.position.y, driver.transform.position.z], [0, 0.6, 0]);
+    driver.components.get('socket')!['grip'] = 'handle';
+    g.step();
+    // The driver's handle (0.3 up, 0.1 forward, turned 90° about y) now sits on the seat.
+    const handle = g.kernel.service(MODEL_RIG_SERVICE).socket(driver.id, 'handle', 'world')!.position;
+    close3([handle.x, handle.y, handle.z], [3, 0.6, 0]);
+    // Its origin is the handle's offset undone in the handle's frame: 0.3 down, and the
+    // 0.1 forward turned onto x.
+    const p = driver.transform.position;
+    close3([p.x, p.y, p.z], [0.1, 0.3, 0]);
   });
 
   it('give mesh colliders the model document\'s triangles, data-only runs included', async () => {
