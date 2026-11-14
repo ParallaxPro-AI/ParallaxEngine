@@ -107,7 +107,7 @@ class Vehicle(EngineComponent):
 @component("drivetrain")
 class Drivetrain(EngineComponent):
     """Engine → clutch → gearbox → final drive → driven wheels (cars and tracked). Engine
-    rpm follows the wheels through the gearing; below 2600 rpm the clutch slips; the
+    rpm follows the wheels through the gearing; below `launch_rpm` the clutch slips; the
     limiter cuts at the redline. Torque: 55% of peak at idle, peak at `peak_rpm`, 70% at
     the redline. The gearbox is automatic."""
     gears: list[float] = field([3.4, 2.1, 1.5, 1.15, 0.92, 0.78])
@@ -116,6 +116,7 @@ class Drivetrain(EngineComponent):
     idle_rpm: float = field(900, min=1)
     peak_rpm: float = field(4400, min=1)
     redline_rpm: float = field(6800, min=1)
+    launch_rpm: float = field(2600, min=1, doc="The clutch is fully engaged from these revs; a low-revving engine (redline near 2000) wants about 1100. Kept below the redline.")
     peak_torque: float = field(320, min=0, unit="N·m", modifiable=True)
     engine_braking: float = field(0.12, min=0, doc="Closed-throttle drag, a fraction of peak torque.")
     drive: Literal["all", "front", "rear"] = field("rear")

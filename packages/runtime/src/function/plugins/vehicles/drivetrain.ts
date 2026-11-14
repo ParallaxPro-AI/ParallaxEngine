@@ -4,9 +4,10 @@
  *
  * Engine speed is derived, never invented: with the clutch engaged the engine turns with
  * the wheels, `rpm = wheel rpm × gear ratio × final drive`, so an upshift drops the revs
- * and a climb lugs the engine. Below LAUNCH_RPM the clutch slips: the engine holds
- * between idle and LAUNCH_RPM by throttle while the car pulls away, and `clutch` (0..1)
- * says how far it has engaged. At `redline_rpm` the limiter cuts torque.
+ * and a climb lugs the engine. Below `launch_rpm` (default LAUNCH_RPM) the clutch slips:
+ * the engine holds between idle and launch_rpm by throttle while the car pulls away, and
+ * `clutch` (0..1) says how far it has engaged (a low-revving engine launches lower). At
+ * `redline_rpm` the limiter cuts torque.
  *
  * Torque at the crank is a smooth curve through three points the author gives: 55% of
  * `peak_torque` at idle, `peak_torque` at `peak_rpm`, 70% at the redline. Wheel force is
@@ -22,7 +23,7 @@
  */
 
 export const RPM_PER_RAD_S = 60 / (2 * Math.PI);
-/** The clutch is fully engaged from these revs (never below idle). */
+/** The default revs the clutch is fully engaged from (never below idle). */
 export const LAUNCH_RPM = 2600;
 /** Fraction of crank torque that reaches the wheels. */
 export const EFFICIENCY = 0.85;
@@ -34,6 +35,8 @@ export interface DrivetrainFields {
   readonly idle_rpm: number;
   readonly peak_rpm: number;
   readonly redline_rpm: number;
+  /** Revs the clutch is fully engaged from; absent: LAUNCH_RPM. */
+  readonly launch_rpm?: number;
   readonly peak_torque: number;
   readonly engine_braking: number;
   readonly shift_time: number;
@@ -137,7 +140,8 @@ export function stepDrivetrain(d: DrivetrainFields, s: DrivetrainState, demand: 
     s.rpm = d.idle_rpm + pedal * (d.redline_rpm - d.idle_rpm) * 0.9;
     return { force: 0, brake: wrongWay ? Math.max(brake, pedal) : brake };
   }
-  const launch = Math.max(LAUNCH_RPM, d.idle_rpm);
+  // Never at or past the redline either: the limiter would cut the drive while pulling away.
+  const launch = Math.max(Math.min(d.launch_rpm ?? LAUNCH_RPM, d.redline_rpm * 0.95), d.idle_rpm);
   const slipRpm = d.idle_rpm + pedal * (launch - d.idle_rpm);
   s.clutch = clamp(engaged / launch, 0, 1);
   s.rpm = Math.min(Math.max(engaged, s.clutch < 1 ? slipRpm : engaged), d.redline_rpm);

@@ -41,6 +41,7 @@ export const DRIVETRAIN_SCHEMA: Schema = {
   idle_rpm: t.number({ default: 900, min: 1 }),
   peak_rpm: t.number({ default: 4400, min: 1 }),
   redline_rpm: t.number({ default: 6800, min: 1 }),
+  launch_rpm: t.number({ default: 2600, min: 1 }),
   peak_torque: t.number({ default: 320, min: 0, modifiable: true }),
   engine_braking: t.number({ default: 0.12, min: 0 }),
   drive: t.enum(['all', 'front', 'rear'], { default: 'rear' }),
