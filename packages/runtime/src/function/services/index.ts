@@ -39,3 +39,4 @@ export * from './text.js';
 export * from './cameras.js';
 export * from './sync.js';
 export * from './audio.js';
+export * from './conveyors.js';

@@ -35,7 +35,7 @@
       "meaning": "engine-internal and platform failures: boot, jobs, bundles, net transport"
     }
   ],
-  "count": 875,
+  "count": 877,
   "codes": [
     {
       "code": "PP1001",
@@ -6937,6 +6937,7 @@
       "areas": [
         "ai",
         "city",
+        "conveyors",
         "nav",
         "screens",
         "water",
@@ -6949,6 +6950,7 @@
       "messages": [
         "This ai plugin is already installed in another kernel",
         "This city plugin is already installed in another kernel",
+        "This conveyors plugin is already installed in another kernel",
         "This nav plugin is already installed in another kernel",
         "This screens plugin is already installed in another kernel",
         "This water plugin is already installed in another kernel",
@@ -6957,6 +6959,7 @@
       "fixes": [
         "Call ai() once per game.",
         "Call city() once per game.",
+        "Call conveyors() once per game.",
         "Call nav() once per game.",
         "Call screens() once per game.",
         "Call water() once per kernel.",
@@ -6966,6 +6969,7 @@
       "sources": [
         "packages/runtime/src/function/plugins/ai/index.ts",
         "packages/runtime/src/function/plugins/city/index.ts",
+        "packages/runtime/src/function/plugins/conveyors/index.ts",
         "packages/runtime/src/function/plugins/nav/index.ts",
         "packages/runtime/src/function/plugins/screens/index.ts",
         "packages/runtime/src/function/plugins/water/index.ts",
@@ -13659,6 +13663,49 @@
         "packages/runtime/src/function/plugins/combat/state.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3905"
+    },
+    {
+      "code": "PP3910",
+      "range": "PP3xxx",
+      "areas": [
+        "conveyors"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [],
+      "fixes": [],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/function/plugins/conveyors/index.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3910"
+    },
+    {
+      "code": "PP3911",
+      "range": "PP3xxx",
+      "areas": [
+        "conveyors"
+      ],
+      "listed_in": [],
+      "severity": [
+        "error"
+      ],
+      "messages": [
+        "conveyors.lane() point {i} must be a Vec3, got {…}",
+        "conveyors.lane() points must be a list of Vec3, got {…}",
+        "conveyors.take() kinds must be a list of str, got {…}",
+        "conveyors.{where}() kind must be a non-empty str, got {…}",
+        "conveyors.{where}() lane must be a lane id from conveyors.lane(), got {…}",
+        "{what} must be a number, got {…}"
+      ],
+      "fixes": [],
+      "notes": [],
+      "sources": [
+        "packages/runtime/src/api/conveyors.ts"
+      ],
+      "docs": "https://parallaxpro.ai/docs/engine/errors/PP3911"
     },
     {
       "code": "PP3950",

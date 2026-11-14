@@ -160,3 +160,7 @@ def chat(*, max_length: int = 200, per_second: float = 1, burst: int = 5, histor
 def payments() -> Plugin:
     """In-game purchases through the host page or app (parallax.payments); products are
     content/product/*.json."""
+
+def conveyors() -> Plugin:
+    """Conveyor lanes and the thousands of items riding them, simulated and drawn
+    instanced by the engine (parallax.conveyors, `ctx.conveyors`)."""

@@ -21,6 +21,7 @@ Regenerate after changing a stub: `python3 tools/gen_api_docs.py`.
 | [`parallax.cinematics`](parallax.cinematics.md) | Cinematics (plugins.cinematics(skip=Controls.skip, advance=Controls.confirm)): cutscenes authored as data. |
 | [`parallax.city`](parallax.city.md) | Procedural cities (plugins.city()): a whole city from one scene block — streets with lanes, markings and signals, blocks with sidewalks, buildings by district with facades and enterable ground floors, parks, plazas, landmarks and a far skyline — with ambient traffic and pedestrians. |
 | [`parallax.combat`](parallax.combat.md) | Combat plugin: health, damage, death, sides, status effects, projectiles. |
+| [`parallax.conveyors`](parallax.conveyors.md) | Conveyors plugin: items riding conveyor lanes, simulated by the engine each fixed step and drawn as instanced copies of each kind's model. |
 | [`parallax.destruction`](parallax.destruction.md) | Destruction plugin (physics3d): breakable objects and impact damage. |
 | [`parallax.economy`](parallax.economy.md) | Economy (plugins.economy()): what games trade, carry and find. |
 | [`parallax.foliage`](parallax.foliage.md) | Foliage plugin: scattered trees, bushes, plants, rocks and models, and grass, declared on the scene (`"foliage": {"layers": [...]}` in scene.json). |

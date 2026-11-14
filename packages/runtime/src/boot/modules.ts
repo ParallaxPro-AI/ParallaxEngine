@@ -45,6 +45,7 @@ export const ENGINE_MODULES: Readonly<Record<string, string>> = {
   'parallax/voice': 'api/voice.ts',
   'parallax/chat': 'api/chat.ts',
   'parallax/payments': 'api/payments.ts',
+  'parallax/conveyors': 'api/conveyors.ts',
 };
 
 /** The generated handles module (`parallax check`'s codegen): `<build>/project.js`. */
