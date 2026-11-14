@@ -11494,6 +11494,10 @@
         "error"
       ],
       "messages": [
+        "pose_bone weight is {weight}; it must be from 0 to 1",
+        "pose_bone() rotation must be a Vec3 (Euler degrees), a Quat or None, got {…}",
+        "pose_bone() rotation must be finite",
+        "pose_bone(): the bone must be a bone name, got {…}",
         "reach() rotation must be a Quat, True (the target entity's rotation) or None, got {…}",
         "set_color(\"{material}\") color must be a Color, got {…}",
         "set_layer_weight weight is {weight}; it must be from 0 to 1",
