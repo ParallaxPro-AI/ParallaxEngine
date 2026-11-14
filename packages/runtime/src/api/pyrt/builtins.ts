@@ -275,8 +275,24 @@ function extreme(name: string, args: unknown[], better: (a: unknown, b: unknown)
   return best;
 }
 
-export const max = (...args: unknown[]): unknown => extreme('max', args, gt);
-export const min = (...args: unknown[]): unknown => extreme('min', args, lt);
+// Two plain numbers (`max(0.0, x)` in a game's inner loop) skip argument binding; the
+// result is the one CPython picks: the later argument only when strictly better.
+export function max(...args: unknown[]): unknown {
+  if (args.length === 2) {
+    const a = args[0];
+    const b = args[1];
+    if (typeof a === 'number' && typeof b === 'number') return b > a ? b : a;
+  }
+  return extreme('max', args, gt);
+}
+export function min(...args: unknown[]): unknown {
+  if (args.length === 2) {
+    const a = args[0];
+    const b = args[1];
+    if (typeof a === 'number' && typeof b === 'number') return b < a ? b : a;
+  }
+  return extreme('min', args, lt);
+}
 
 const SUM = sig('sum', ['iterable', 'start'], 1, [0], [], [], null, null, false);
 

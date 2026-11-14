@@ -110,7 +110,10 @@ export const math = Object.freeze({
   sinh: (x: unknown): number => { const v = num(x, 'x'); return checked(Math.sinh(v), v); },
   cosh: (x: unknown): number => { const v = num(x, 'x'); return checked(Math.cosh(v), v); },
   tanh: (x: unknown): number => Math.tanh(num(x, 'x')),
-  hypot: (...xs: unknown[]): number => Math.hypot(...xs.map((x) => num(x, 'x'))),
+  hypot: (...xs: unknown[]): number => {
+    if (xs.length === 2 && typeof xs[0] === 'number' && typeof xs[1] === 'number') return Math.hypot(xs[0], xs[1]);
+    return Math.hypot(...xs.map((x) => num(x, 'x')));
+  },
   dist: (p: unknown, q: unknown): number => {
     const a = [...iterate(p)].map((x) => num(x, 'x'));
     const b = [...iterate(q)].map((x) => num(x, 'x'));
