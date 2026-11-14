@@ -160,4 +160,18 @@ describe('the wardrobe', () => {
     expect(live().map((r) => r.prefab)).toEqual(['coat']);
     expect(model['parts']).toEqual({ skin_mesh: false });
   });
+
+  it('dresses from prefab references assigned by code, not only prefab ids', async () => {
+    const { kernel, body } = await world();
+    kernel.step(DT);
+    const wardrobe = body.components.get('wardrobe') as Wardrobe;
+    // A PrefabRef as compiled code holds it: an object whose JSON form is the prefab id.
+    const ref = (id: string) => ({ toJSON: () => id, toString: () => `PrefabRef(${id})` });
+    wardrobe['outfit'] = { torso: ref('coat'), head: ref('hat') };
+    kernel.step(DT);
+    kernel.step(DT);
+    const live = body.children.flatMap((c) => { const r = kernel.world.get(c); return r === undefined ? [] : [r]; });
+    expect(live.map((r) => r.prefab).sort()).toEqual(['coat', 'hat']);
+    expect(wardrobe.slots()).toEqual(['head', 'torso']);
+  });
 });
