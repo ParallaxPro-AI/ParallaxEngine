@@ -72,6 +72,8 @@ export interface VehicleFields {
   readonly steering: number;
   readonly turn_rate: number;
   readonly grip: number;
+  /** The chassis box's bottom above the ground at rest (m); the wheels reach down to it. */
+  readonly ground_clearance?: number;
 }
 
 export interface StepResult {
@@ -105,12 +107,12 @@ export function stallSpeed(v: VehicleFields, flaps: number): number {
 
 // ── Wheels (car, tracked) ──────────────────────────────────────────────────────
 
-export function wheelLayout(bounds: LocalBounds, gravity: number, mass: number): WheelSpec[] {
+export function wheelLayout(bounds: LocalBounds, gravity: number, mass: number, clearance = GROUND_CLEARANCE): WheelSpec[] {
   const { center: c, halfExtents: h } = bounds;
   const radius = clamp(0.3 * 2 * h.y, 0.2, 0.5);
   const restLength = radius;
   const sag = Math.abs(gravity) / (4 * SUSPENSION_STIFFNESS);
-  const y = c.y - h.y - GROUND_CLEARANCE + restLength - sag + radius;
+  const y = c.y - h.y - clearance + restLength - sag + radius;
   const x = Math.max(h.x - 0.6 * radius, 0.1);
   const z = Math.max(h.z - 1.2 * radius, 0.2);
   const maxForce = mass * Math.max(Math.abs(gravity), 1) * 3;
@@ -159,7 +161,7 @@ export function stepWheeled(
   const { forward, up } = axes(body.rotation);
   const speed = body.velocity.dot(forward);
   const m = body.mass;
-  const layout = wheelLayout(bounds, service.gravity, m);
+  const layout = wheelLayout(bounds, service.gravity, m, v.ground_clearance ?? GROUND_CLEARANCE);
   const radius = layout[0]!.radius;
   let engine = 0;
   let brake = clamp(input.brake, 0, 1);
@@ -379,14 +381,14 @@ export function stepSimple(
   const brake = Math.max(clamp(input.brake, 0, 1), t > 0 && along < -0.5 ? t : t < 0 && along > 0.5 ? -t : 0);
   const decel = brake * v.braking + (t === 0 && brake === 0 ? ROLLING_RESISTANCE : 0);
   along -= Math.sign(along) * Math.min(Math.abs(along), decel * dt);
-  const layout = wheelLayout(bounds, service.gravity, body.mass);
+  const layout = wheelLayout(bounds, service.gravity, body.mass, v.ground_clearance ?? GROUND_CLEARANCE);
   const wheelbase = Math.max(layout[0]!.connection.z - layout[2]!.connection.z, 0.5);
   const lock = v.steering * (1 - 0.65 * clamp(Math.abs(along) / v.max_speed, 0, 1));
   const yawRate = v.kind === 'tracked'
     ? clamp(input.steer, -1, 1) * v.turn_rate
     : deg((along * Math.tan((clamp(input.steer, -1, 1) * lock * Math.PI) / 180)) / wheelbase);
   const newYaw = yaw + yawRate * dt;
-  const rideHeight = -(bounds.center.y - bounds.halfExtents.y) + GROUND_CLEARANCE;
+  const rideHeight = -(bounds.center.y - bounds.halfExtents.y) + (v.ground_clearance ?? GROUND_CLEARANCE);
   const hit = service.raycast(body.position.__add__(new Vec3(0, 2, 0)), Vec3.DOWN, 6, { ignore: [entity] });
   const y = hit === undefined ? body.position.y : hit.point.y + rideHeight;
   service.teleport(entity, body.position.with_y(y), Quat.from_euler(new Vec3(0, newYaw, 0)), false);
