@@ -65,6 +65,7 @@ export const POST_FIELDS: readonly FieldSpec[] = [
   { key: 'antialias', prop: 'antialias', kind: 'bool', doc: 'smooth jagged edges' },
   { key: 'pixelate', prop: 'pixelate', kind: 'number', group: 'stylize', min: 1, max: 64, whole: true, doc: 'screen pixels per image pixel (1: none)' },
   { key: 'posterize', prop: 'posterize', kind: 'number', group: 'stylize', min: 0, max: 256, whole: true, doc: 'levels per color channel (0: none)' },
+  { key: 'halftone', prop: 'halftone', kind: 'number', group: 'stylize', min: 0, max: 32, doc: 'comic-print ink dots over the darker tones: dot spacing in screen pixels (0: none)' },
   { key: 'toon', prop: 'toon', kind: 'number', group: 'stylize', min: 0, max: 16, whole: true, doc: 'bands of cel-shaded light (0: smooth)' },
   { key: 'edges', prop: 'edges', kind: 'number', group: 'stylize', min: 0, max: 8, doc: 'ink line thickness in pixels (0: none)' },
   { key: 'edge_color', prop: 'edgeColor', kind: 'color', group: 'stylize', doc: 'ink line color' },
@@ -76,7 +77,7 @@ export const POST_KEYS: readonly string[] = ['preset', ...POST_FIELDS.filter((f)
 export const DEFAULT_POST: PostSettings = {
   // A little bloom by default: the sun and bright highlights glow.
   preset: null, exposure: 1, bloom: 0.1, bloomThreshold: 1, saturation: 1, contrast: 1, tint: Color.WHITE, temperature: 0, grain: 0, vignette: 0,
-  chromaticAberration: 0, pixelate: 1, posterize: 0, toon: 0, edges: 0, edgeColor: Color.BLACK, ambientOcclusion: 1,
+  chromaticAberration: 0, pixelate: 1, posterize: 0, halftone: 0, toon: 0, edges: 0, edgeColor: Color.BLACK, ambientOcclusion: 1,
   reflections: true, godRays: 0, mode: 'standard', wireColor: null, wireBackground: null, antialias: true,
 };
 

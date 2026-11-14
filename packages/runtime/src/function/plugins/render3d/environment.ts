@@ -51,6 +51,7 @@ export function postOf(p: PostSettings): Post3d {
     chromaticAberration: p.chromaticAberration,
     pixelate: p.pixelate,
     posterize: p.posterize,
+    halftone: p.halftone,
     toon: p.toon,
     edges: p.edges,
     edgeColor: rgb(p.edgeColor),

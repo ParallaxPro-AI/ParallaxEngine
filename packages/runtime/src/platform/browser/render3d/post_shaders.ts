@@ -532,6 +532,21 @@ fn hazeOffset(p: vec2<f32>) -> vec2<f32> {
   return shift;
 }
 
+// Comic-print halftone: a 45-degree grid of ink dots whose radius grows as the tone darkens,
+// so lit faces stay clean and shade turns to dots (frame.gradeNoise.z: the grid cell in px).
+fn halftoneAt(p: vec2<f32>, c: vec3<f32>) -> vec3<f32> {
+  let cell: f32 = frame.gradeNoise.z;
+  let luma: f32 = dot(c, vec3<f32>(0.299, 0.587, 0.114));
+  let ink: f32 = clamp((0.55 - luma) / 0.45, 0.0, 1.0);
+  if (ink <= 0.0) { return c; }
+  let q: vec2<f32> = (p - frame.viewport.xy) * 0.70710678;
+  let r: vec2<f32> = vec2<f32>(q.x - q.y, q.x + q.y) / cell;
+  let d: f32 = length(fract(r) - vec2<f32>(0.5));
+  let radius: f32 = 0.56 * sqrt(ink);
+  let dotMask: f32 = 1.0 - smoothstep(radius - 0.06, radius + 0.06, d);
+  return c * (1.0 - 0.38 * dotMask);
+}
+
 fn fragment(p0: vec2<f32>) -> vec4<f32> {
   let size: f32 = frame.postB.y;
   var p: vec2<f32> = p0;
@@ -561,6 +576,9 @@ fn fragment(p0: vec2<f32>) -> vec4<f32> {
   let levels: f32 = frame.postB.z;
   if (levels > 1.5) {
     c = floor(c * (levels - 1.0) + vec3<f32>(0.5)) / (levels - 1.0);
+  }
+  if (frame.gradeNoise.z > 0.5) {
+    c = halftoneAt(p0, c);
   }
   if (frame.postB.w > 0.0) {
     c = mix(c, toDisplay(frame.edgeColor.rgb), edgeAt(p, frame.postB.w));

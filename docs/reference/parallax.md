@@ -4259,6 +4259,7 @@ stylize              the stylization effects, together:
                      {"pixelate": 4, "posterize": 6, "toon": 3, "edges": 1.5, "edge_color": "#000"}
   pixelate, posterize  screen pixels per image pixel (1); levels per channel (0 = off)
   toon, edges, edge_color   cel bands of light (0); ink line px (0); ink color (black)
+  halftone             comic-print ink dots over the darker tones: dot spacing px (0)
 ```
 
 "debug": {"wireframe": true, "wire_color": "#00ff66", "wire_background": null} draws every

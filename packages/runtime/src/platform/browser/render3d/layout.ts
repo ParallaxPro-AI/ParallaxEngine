@@ -91,7 +91,7 @@ export const FRAME_FIELDS: readonly UniformField[] = [
   vec4('gradeTint'),
   /** rgb: white balance on scene light (linear multipliers, post temperature); w: film grain 0..1. */
   vec4('gradeBalance'),
-  /** x: a per-frame noise seed (grain), y: dither amplitude in display levels, unused × 2. */
+  /** x: a per-frame noise seed (grain), y: dither amplitude in display levels, z: halftone dot cell (px, 0: none), unused. */
   vec4('gradeNoise'),
   /** rgb edge (ink) color. */
   vec4('edgeColor'),

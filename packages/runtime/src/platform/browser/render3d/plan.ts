@@ -459,7 +459,7 @@ function packFrame(frame: Frame3d, view: View3d, out: Float32Array, slot: number
   set('postC', post.grade.saturation, post.grade.contrast, plan.flags.ao === 'off' ? 0 : post.ambientOcclusion, plan.flags.godRays ? post.godRays : 0);
   set('gradeTint', ...post.grade.tint, 1);
   set('gradeBalance', ...temperatureShift(post.grade.temperature ?? 0), post.grain ?? 0);
-  set('gradeNoise', frame.frame % 4096, 1, 0, 0);
+  set('gradeNoise', frame.frame % 4096, 1, post.halftone ?? 0, 0);
   set('edgeColor', ...linearRgb(post.edgeColor), 1);
   set('sunScreen', ...(env.sun === null ? [0.5, 0.5, 0] : sunOnScreen(view, env.sun.direction)), 0);
   const cv = colorVisionMatrix(view.colorVision);

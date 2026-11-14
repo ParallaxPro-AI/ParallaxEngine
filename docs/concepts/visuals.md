@@ -440,7 +440,8 @@ The presets are `cinematic`, `warm`, `cool`, `vivid`, `noir`, `vintage`, `dreamy
 `retro`, `comic`, `toon`, `horror`, `cyberpunk_neon`, `underwater` and
 `night_vision`, as in `"post": {"preset": "cinematic", "bloom": 0.15}`.
 `"stylize": {"pixelate": 4, "posterize": 6, "toon": 3, "edges": 1.5}` gives
-pixel-art or cel-shaded looks. Other keys include `ambient_occlusion`,
+pixel-art or cel-shaded looks. More stylize keys: `"halftone": 6` lays
+comic-print ink dots (6 px apart) over the darker tones. Other keys include `ambient_occlusion`,
 `reflections`, `grain` and `chromatic_aberration`. Switch looks at runtime with
 `ctx.environment.post("night_vision", seconds=0.3)`. A `depth_of_field`
 component on a camera blurs by distance. The values above come from

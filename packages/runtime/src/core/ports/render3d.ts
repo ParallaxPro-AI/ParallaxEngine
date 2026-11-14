@@ -411,6 +411,8 @@ export interface Post3d {
   readonly pixelate: number;
   /** Levels per color channel (0: none). */
   readonly posterize: number;
+  /** Comic-print dots over the darker tones: the dot grid's cell in screen pixels (absent or 0: none). */
+  readonly halftone?: number;
   /** Cel shading: bands of direct light (0: smooth shading). */
   readonly toon: number;
   /** Ink lines where depth or facing changes sharply: thickness in pixels (0: none). */

@@ -657,4 +657,10 @@ describe('post settings', () => {
     expect(noir).toMatchObject({ bloom: 0.5, vignette: 0.45, grade: { saturation: 0 } });
     expect(postOf(DEFAULT_POST)).toMatchObject({ exposure: 1, bloom: 0.1, bloomThreshold: 0.5, ambientOcclusion: 1, reflections: true, mode: 'standard', antialias: true });
   });
+
+  it('passes the halftone dot grid through to the port (off by default)', async () => {
+    const { DEFAULT_POST, resolvePost } = await import('../environment/index.js');
+    expect(postOf(DEFAULT_POST).halftone).toBe(0);
+    expect(postOf(resolvePost({ preset: 'comic', fields: { halftone: 5 } }, null))).toMatchObject({ halftone: 5, edges: 1.5 });
+  });
 });
