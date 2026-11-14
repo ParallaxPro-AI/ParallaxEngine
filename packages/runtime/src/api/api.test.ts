@@ -296,6 +296,11 @@ describe('systems, config, content, text', () => {
     expect(code(() => { (r.ctx.content(StageDef).get('zeta').data as { number: number }).number = 1; })).toBe('PP3018');
     expect(code(() => r.ctx.content(StageDef).get('zetta'))).toBe('PP2050');
     expect(r.ctx.text(new TextRef('greet'), kw({ who: 'you' }))).toBe('Hi you');
+    // A locale key written as a plain string is the common slip: the error names the fix.
+    let slip: { code?: string; fix?: string } = {};
+    try { r.ctx.text('greet'); } catch (e) { slip = (e as { diagnostic: { code: string; fix?: string } }).diagnostic; }
+    expect(slip.code).toBe('PP3014');
+    expect(slip.fix).toContain('ctx.text(Text.greet)');
 
     log.length = 0;
     const Go_ = GoE as unknown as new (...a: unknown[]) => object;
