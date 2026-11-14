@@ -10,7 +10,7 @@ import { foliage } from '../foliage/index.js';
 import { terrain } from '../terrain/index.js';
 import { visuals } from '../visuals/index.js';
 import { wind } from '../wind/index.js';
-import { FrameGovernor, levelsAt, swayMatrix } from './foliage.js';
+import { FrameGovernor, levelsAt, NEAR_CAMERA_MIN, nearCameraFade, swayMatrix } from './foliage.js';
 import { foliageImpostor, foliageLook, LOOK_VARIANTS, NOMINAL_HEIGHT } from './foliage_meshes.js';
 import { barkTexture, encodePng, leafSprayTexture, stoneTexture } from './foliage_textures.js';
 import { growSkeleton, meshTree, TREE_SPECS } from './foliage_tree.js';
@@ -372,6 +372,19 @@ describe('foliage drawing parts', () => {
     levelsAt(45, 20, Infinity, 50, out);
     expect(out.map((l) => l[0])).toEqual([1]);
     expect(out[0]![1]).toBeLessThan(1);
+  });
+
+  it('a tree or bush the camera stands inside dithers out, and is whole once the camera is clear of its crown', () => {
+    expect(nearCameraFade(5, 3)).toBe(1);
+    expect(nearCameraFade(3, 3)).toBe(1);
+    expect(nearCameraFade(0, 3)).toBeCloseTo(NEAR_CAMERA_MIN, 9);
+    expect(nearCameraFade(1.2, 3)).toBeCloseTo(NEAR_CAMERA_MIN, 9);
+    const mid = nearCameraFade(2.1, 3);
+    expect(mid).toBeGreaterThan(NEAR_CAMERA_MIN);
+    expect(mid).toBeLessThan(1);
+    expect(nearCameraFade(2.5, 3)).toBeGreaterThan(mid);
+    // Kinds without a crown (rocks, plants) pass radius 0: never faded.
+    expect(nearCameraFade(0, 0)).toBe(1);
   });
 
   it('the sway matrix bends the top and keeps the base', () => {

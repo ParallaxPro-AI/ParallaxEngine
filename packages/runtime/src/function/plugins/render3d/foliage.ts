@@ -184,6 +184,20 @@ export function levelsAt(d: number, d0: number, d1: number, end: number, out: [n
   out.push([2, d < end - b ? 1 : Math.max(0.001, (end - d) / b)]);
 }
 
+/** The least a tree or bush dithers down to with the camera at its heart (it never quite vanishes). */
+export const NEAR_CAMERA_MIN = 0.08;
+
+/**
+ * Trees and bushes the camera stands inside — a third-person view backed into a forest — dither
+ * out so their crowns don't wall off the view: 1 from `radius` (metres, on the ground plane, from
+ * the trunk) outwards, easing down to NEAR_CAMERA_MIN within 40% of it.
+ */
+export function nearCameraFade(horizontal: number, radius: number): number {
+  if (!(radius > 0) || horizontal >= radius) return 1;
+  const t = Math.max(0, (horizontal - radius * 0.4) / (radius * 0.6));
+  return NEAR_CAMERA_MIN + (1 - NEAR_CAMERA_MIN) * t * t * (3 - 2 * t);
+}
+
 export interface FoliageFrameStats {
   readonly near: number;
   readonly mid: number;
@@ -286,6 +300,8 @@ export class FoliageDraws {
         return list;
       };
       const top = layer.height * 1.4;
+      // Crown radius per unit of scale, for the near-camera dither: trees and bushes only.
+      const crown = layer.kind === 'tree' ? layer.height * 0.3 : layer.kind === 'bush' ? layer.height * 0.6 : 0;
       for (const cell of layer.cells) {
         cells++;
         let d = Infinity;
@@ -308,6 +324,12 @@ export class FoliageDraws {
           levelsAt(dist, d0, layer.kind === 'plant' ? Infinity : near, far, levels);
           if (levels.length === 0) continue;
           const s = layer.scale[k]! * sizeScale;
+          let nearFade = 1;
+          if (crown > 0 && dist < crown * s * 2 + 4) {
+            let horizontal = Infinity;
+            for (const c of cameras) horizontal = Math.min(horizontal, Math.hypot(x - c[0], z - c[2]));
+            nearFade = nearCameraFade(horizontal, crown * s);
+          }
           const variant = look === null ? 0 : Math.floor(hash2(k, 11, seed) * LOOK_VARIANTS);
           const shade = 0.88 + 0.2 * hash2(k, 7, 0x0f01);
           let swayed = false;
@@ -342,10 +364,12 @@ export class FoliageDraws {
               swayMatrix(x, y, z, layer.yaw[k]!, s, kx + flutterX, kz + flutterZ, leafM, 0);
             }
             const tint: Rgba = [shade, shade, shade, 1];
+            // A positive fade is coverage (a negative one is a cross-fade's complement: left alone).
+            const drawn = fade > 0 ? Math.max(0.001, fade * nearFade) : fade;
             for (const b of batchesFor(variant, modelParts === null ? level : 0)) {
               const base = b.part.leaves ? leafM : m;
               const node = 'node' in b.part ? b.part.node : null;
-              b.push(node === null ? base : multiply(base, node, placed), tint, fade);
+              b.push(node === null ? base : multiply(base, node, placed), tint, drawn);
             }
             if (level === 0) nearCount++;
             else midCount++;
