@@ -57,7 +57,9 @@ export interface TestResult {
 export type SessionMessage =
   | { readonly kind: 'begin'; readonly test: Pick<TestResult, 'id' | 'file' | 'name' | 'title' | 'kind'> }
   | { readonly kind: 'result'; readonly result: TestResult }
-  | { readonly kind: 'end' };
+  | { readonly kind: 'end' }
+  /** The child's heap is filling up: it stops here, and a fresh process runs the rest. */
+  | { readonly kind: 'recycle' };
 
 /** Parent → child: one project's test run. */
 export interface SessionJob {

@@ -52,6 +52,13 @@ Read the traceback before changing the game or the test. The
 [test harness reference](../reference/parallax.test.md) lists commands and their
 input semantics; the [CLI reference](../cli.md) covers runner options.
 
+Each playtest starts the game fresh, and one process runs a project's tests in
+order. When that process has used more than 45% of its heap after a test, the
+runner continues the remaining tests in a new process, so a long run of a large
+game does not run out of memory; no test is skipped or run twice. Set
+`PARALLAX_TEST_RECYCLE_SHARE` to another fraction to change the threshold (`0`
+starts a new process after every test).
+
 ## What headless tests establish
 
 Playtests check simulation behavior and panel state without requiring asset

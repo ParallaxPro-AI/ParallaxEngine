@@ -87,6 +87,8 @@ interface SessionEnd {
   /** The test that was running when the process stopped early, if any. */
   readonly running: Running | null;
   readonly problem: Diagnostic | null;
+  /** The child handed the rest of the run to a fresh process (its heap was filling up). */
+  readonly recycled?: boolean;
 }
 
 /** One child process over the job; resolves when it ends, finishes, hangs or crashes. */
@@ -102,6 +104,7 @@ function runChild(job: ChildJob, timeoutMs: number, onResult: (result: TestResul
     child.stdout?.on('data', () => { /* engine console output is not part of the report */ });
     let running: Running | null = null;
     let finished = false;
+    let recycled = false;
     let settled = false;
     let timer: ReturnType<typeof setTimeout> | undefined;
     const settle = (end: SessionEnd): void => {
@@ -126,9 +129,11 @@ function runChild(job: ChildJob, timeoutMs: number, onResult: (result: TestResul
       const m = message as SessionMessage;
       if (m.kind === 'begin') { running = m.test; arm(); }
       else if (m.kind === 'result') { running = null; onResult(m.result); arm(); }
+      else if (m.kind === 'recycle') { recycled = true; finished = true; child.kill('SIGKILL'); }
       else finished = true;
     });
     child.on('exit', (code, signal) => {
+      if (recycled) { settle({ running: null, problem: null, recycled: true }); return; }
       if (finished && code === 0) { settle({ running: null, problem: null }); return; }
       const detail = stderr.trim().split('\n').slice(-6).join('\n');
       settle({
@@ -212,6 +217,7 @@ async function run(projectDir: string, buildDir: string, options: RunOptions): P
       reported.add(result.id);
       add(result);
     });
+    if (end.recycled === true) continue;
     if (end.problem === null) break;
     if (end.running === null) {
       // Not inside a test: loading failed, and a new process would fail the same way.

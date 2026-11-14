@@ -222,6 +222,23 @@ export class GameHarness {
     return out;
   }
 
+  /**
+   * Free the game this harness started (runner-internal, after the test): the kernel's
+   * plugins release what they hold, so one playtest process can run many big games.
+   */
+  dispose(): void {
+    const started = this.#started;
+    this.#started = undefined;
+    this.#commands.length = 0;
+    this.#held.clear();
+    if (started === undefined) return;
+    try {
+      started.runtime.kernel.dispose();
+    } catch {
+      // A kernel stopped mid-step by a failed test is left for the collector.
+    }
+  }
+
   /** Forget commands that have run (the driver calls this as it goes). */
   settle(): void {
     for (let i = this.#commands.length - 1; i >= 0; i--) if (!this.#commands[i]!.pending) this.#commands.splice(i, 1);
