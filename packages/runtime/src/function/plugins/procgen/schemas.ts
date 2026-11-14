@@ -21,6 +21,8 @@ import { BUILTIN_PROFILES } from './sweep.js';
 import type { BarrierKind, CrowdSide, KerbMode, RunoffKind, TrackSpec } from './track.js';
 import { trackProblem } from './track.js';
 import { TRACK_DEFAULTS } from './track_grade.js';
+import type { CrowdSpec } from './crowd.js';
+import { crowdProblem } from './crowd.js';
 
 export const SPLINE = 'spline';
 export const SWEEP = 'sweep';
@@ -28,6 +30,7 @@ export const STRUCTURE = 'structure';
 export const DUNGEON = 'dungeon';
 export const PIECE = 'generated_piece';
 export const TRACK = 'track';
+export const CROWD = 'crowd';
 export const PROFILE_KIND = 'profile';
 export const PROP_KIT_KIND = 'prop_kit';
 
@@ -295,6 +298,28 @@ export const TRACK_SCHEMA: Schema = {
   collide: t.bool({ default: true }),
 };
 
+/** Rows of spectators along a straight run, on optional stepped stands (sdk Crowd; crowd.ts builds it). */
+export const CROWD_SCHEMA: Schema = {
+  length: t.number({ default: 20 }),
+  rows: t.int({ default: 6 }),
+  row_gap: t.number({ default: 0.8 }),
+  row_rise: t.number({ default: 0.4 }),
+  density: t.number({ default: 1.6 }),
+  fill: t.number({ default: 1 }),
+  arms_up: t.number({ default: 0.25 }),
+  scarves: t.number({ default: 0 }),
+  colors: t.list({ kind: 'color' }, { default: [] }),
+  scarf_colors: t.list({ kind: 'color' }, { default: [] }),
+  stands: t.bool({ default: true }),
+  stand_color: t.color({ default: Color.hex('#8d8a84') }),
+  stand_depth: t.number({ default: 0.3 }),
+  groups: t.int({ default: 1 }),
+  group: t.int({ default: 0 }),
+  max: t.int({ default: 4000 }),
+  seed: t.int({ default: 0 }),
+  collide: t.bool({ default: true }),
+};
+
 /** On every entity a Structure or Dungeon spawns (kept by the engine). */
 export const PIECE_SCHEMA: Schema = {
   source: { type: { kind: 'optional', of: { kind: 'entity' } }, default: null },
@@ -305,7 +330,7 @@ export const PIECE_SCHEMA: Schema = {
 
 export const PROCGEN_SCHEMAS: Readonly<Record<string, Schema>> = {
   [SPLINE]: SPLINE_SCHEMA, [SWEEP]: SWEEP_SCHEMA,[STRUCTURE]: STRUCTURE_SCHEMA, [DUNGEON]: DUNGEON_SCHEMA,
-  [PIECE]: PIECE_SCHEMA, [TRACK]: TRACK_SCHEMA,
+  [PIECE]: PIECE_SCHEMA, [TRACK]: TRACK_SCHEMA, [CROWD]: CROWD_SCHEMA,
 };
 
 // ── Readers ─────────────────────────────────────────────────────────────────────
@@ -667,6 +692,35 @@ export function trackSpec(fields: Fields, where: Where): TrackSpec {
   const problem = trackProblem(spec);
   if (problem !== undefined) {
     fail('PP3645', `${where}: ${problem}`, { fix: 'See sdk/parallax/procgen.pyi Track for each field\'s meaning and range.' });
+  }
+  return spec;
+}
+
+export function crowdSpec(fields: Fields, where: Where): CrowdSpec {
+  const list = (key: string): [number, number, number, number][] => (fields[key] as unknown[]).map(rgba);
+  const spec: CrowdSpec = {
+    length: fields['length'] as number,
+    rows: fields['rows'] as number,
+    rowGap: fields['row_gap'] as number,
+    rowRise: fields['row_rise'] as number,
+    density: fields['density'] as number,
+    fill: fields['fill'] as number,
+    armsUp: fields['arms_up'] as number,
+    scarves: fields['scarves'] as number,
+    colors: list('colors'),
+    scarfColors: list('scarf_colors'),
+    stands: fields['stands'] as boolean,
+    standColor: rgba(fields['stand_color']),
+    standDepth: fields['stand_depth'] as number,
+    groups: fields['groups'] as number,
+    group: fields['group'] as number,
+    max: fields['max'] as number,
+    seed: fields['seed'] as number,
+    collide: fields['collide'] as boolean,
+  };
+  const problem = crowdProblem(spec);
+  if (problem !== undefined) {
+    fail('PP3657', `${where}: ${problem}`, { fix: 'See sdk/parallax/procgen.pyi Crowd for each field\'s meaning and range.' });
   }
   return spec;
 }

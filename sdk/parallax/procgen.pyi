@@ -241,6 +241,44 @@ class Track(EngineComponent):
     def corners(self) -> list[Vec2]:
         """Each corner's (start, end) meters along the spline (start can be negative across the start line)."""
 
+@component("crowd")
+class Crowd(EngineComponent):
+    """Rows of seeded, code-built spectators along a straight run (stadium terraces, a
+    grandstand's seats, a sideline, a concert pit), with an optional stepped stand under
+    them: the spectators a Track's stands carry, for venues that aren't circuits.
+
+        {"crowd": {"length": 60, "rows": 12, "row_gap": 0.8, "row_rise": 0.4,
+                   "colors": ["#c8102e", "#f2ece0"], "arms_up": 0.3, "scarves": 0.4}}
+
+    Entity-local: the run is `length` meters along x, centred on the origin, and everyone
+    faces +z (turn the entity to face the pitch). Row k stands at y = k × `row_rise`, its
+    centre at z = −(k + 0.5) × `row_gap`; with `stands`, a block per row fills from its floor
+    down to −`stand_depth`, so the rows read as steps (leave `stands` off to fill a modelled
+    stand's own seating). Variety (place, turn, size, shirt, skin, arms, scarf) is seeded by
+    `seed`: same data, same crowd, built once and free per frame.
+
+    `groups` > 1 deals the spectators into that many seeded groups and builds only `group`'s:
+    place one entity per group and move each one (a few centimetres up and down) to make the
+    crowd bounce, out of step, when a goal goes in."""
+    length: float = field(20, unit="m")
+    rows: int = field(6, min=1, max=60)
+    row_gap: float = field(0.8, unit="m", doc="Depth of one row.")
+    row_rise: float = field(0.4, unit="m", doc="Step height between rows.")
+    density: float = field(1.6, doc="Spectators per meter per row, before `fill`.")
+    fill: float = field(1, min=0, max=1, doc="Share of the places taken.")
+    arms_up: float = field(0.25, min=0, max=1, doc="Share with their arms raised.")
+    scarves: float = field(0, min=0, max=1, doc="Share of those with arms up who hold a scarf over their head.")
+    colors: list[Color] = field([], doc="Shirt colors; empty: a ten-color palette.")
+    scarf_colors: list[Color] = field([], doc="Scarf colors; empty: each fan's shirt color.")
+    stands: bool = field(True, doc="Build the stepped block under the rows.")
+    stand_color: Color = field(Color.hex("#8d8a84"))
+    stand_depth: float = field(0.3, unit="m", doc="How far the steps reach below y = 0.")
+    groups: int = field(1, min=1, doc="Seeded groups the spectators are dealt into.")
+    group: int = field(0, min=0, doc="The group this entity builds (0 .. groups - 1).")
+    max: int = field(4000, min=0, doc="At most this many spectators.")
+    seed: int = field(0, doc="Crowd variety.")
+    collide: bool = field(True, doc="The stands are solid (spectators never are).")
+
 @content("profile")
 class ProfileDef:
     """A custom sweep outline (content/profile/<id>.json): x right, y up, meters (scaled by

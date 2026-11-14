@@ -145,7 +145,7 @@ const STEEL: Rgba4 = [0.55, 0.57, 0.6, 1];
 const WHITE: Rgba4 = [0.95, 0.93, 0.88, 1];
 const BLACK: Rgba4 = [0.08, 0.08, 0.09, 1];
 const LAMP: Rgba4 = [1, 0.16, 0.1, 1];
-const SKIN: readonly Rgba4[] = [[0.93, 0.76, 0.62, 1], [0.78, 0.57, 0.42, 1], [0.55, 0.38, 0.27, 1], [0.36, 0.25, 0.18, 1]];
+export const SKIN: readonly Rgba4[] = [[0.93, 0.76, 0.62, 1], [0.78, 0.57, 0.42, 1], [0.55, 0.38, 0.27, 1], [0.36, 0.25, 0.18, 1]];
 export const CROWD_PALETTE: readonly Rgba4[] = [
   [0.88, 0.27, 0.25, 1], [0.95, 0.93, 0.88, 1], [0.31, 0.76, 1, 1], [1, 0.62, 0.18, 1], [0.75, 0.36, 1, 1],
   [0.25, 0.66, 0.36, 1], [0.96, 0.89, 0.69, 1], [0.18, 0.5, 0.85, 1], [0.91, 0.65, 0.63, 1], [0.25, 0.28, 0.34, 1],
@@ -187,7 +187,7 @@ export function trackProblem(spec: TrackSpec): string | undefined {
 // ── Small helpers ───────────────────────────────────────────────────────────────
 
 /** Deterministic 0..1 from integers (seeded variety without a stream to keep in order). */
-function hash01(...n: number[]): number {
+export function hash01(...n: number[]): number {
   let h = 0x811c9dc5;
   for (const v of n) {
     h = Math.imul(h ^ (v | 0), 0x01000193);
@@ -241,7 +241,7 @@ function spans(line: Centerline, a: number, b: number): [number, number][] {
 }
 
 /** Vertex-colored geometry built from oriented quads, boxes and transformed prototypes. */
-class Painter {
+export class Painter {
   readonly mesh = new MeshBuilder();
   readonly colors: number[] = [];
 
@@ -297,7 +297,7 @@ class Painter {
 }
 
 /** Merge surfaces (all with or all without vertex colors) into one. */
-function merge(surfaces: readonly Surface[]): Surface {
+export function merge(surfaces: readonly Surface[]): Surface {
   const out = new MeshBuilder();
   const colors: number[] = [];
   let colored = false;

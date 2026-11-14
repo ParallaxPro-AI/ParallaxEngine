@@ -18,7 +18,7 @@ import { instantiate } from '@parallax/runtime/kernel';
 import type { Fields } from '@parallax/runtime/kernel';
 import {
   BUILTIN_PROFILES, checkLayer, DUNGEON, dungeonSpec, problemSite, PROCGEN_SCHEMAS, profileOf, readKits, readProfiles, SPLINE,
-  splineSpec, STRUCTURE, structureProblems, structureSpec, SWEEP, TRACK, trackSpec,
+  splineSpec, STRUCTURE, structureProblems, structureSpec, SWEEP, TRACK, trackSpec, CROWD, crowdSpec,
 } from '@parallax/runtime/plugins/procgen';
 import type { Profile } from '@parallax/runtime/plugins/procgen';
 import type { JsonObject, Origin, SceneDoc } from '@parallax/runtime/resource';
@@ -115,6 +115,8 @@ export function checkProcgen(ctx: CheckContext): void {
         });
       }
     }
+    const crowd = fieldsOf(CROWD);
+    if (crowd !== undefined) raised(() => crowdSpec(crowd, `${at.path} crowd`), where(CROWD));
     const structure = fieldsOf(STRUCTURE);
     if (structure !== undefined && ((structure['floors'] as unknown[]).length > 0 || structure['plan'] !== null)) {
       raised(() => {

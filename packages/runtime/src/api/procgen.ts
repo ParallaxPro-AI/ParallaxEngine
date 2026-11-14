@@ -1,5 +1,5 @@
 /**
- * `parallax.procgen` (sdk/parallax/procgen.pyi): the Spline, Sweep, Track, Structure,
+ * `parallax.procgen` (sdk/parallax/procgen.pyi): the Spline, Sweep, Track, Crowd, Structure,
  * Dungeon and GeneratedPiece component handles, their records (SweepPart, ProcMaterial,
  * StructureFloor, RoomStyle, Roof, Facade, Shutters, Mullions, Awnings, Balconies, and the Track's
  * TrackSurface, TrackEdgeLines, TrackKerbs, TrackRunoff, TrackBarrier, TrackCrowd, TrackGantry, TrackSigns, TrackGrade), the built-in `profile` and `prop_kit` content kinds, the
@@ -11,7 +11,7 @@ import { Color, Vec2 } from '../core/index.js';
 import type { KernelPlugin } from '../function/kernel/index.js';
 import {
   DUNGEON, DUNGEON_SCHEMA, PIECE, PIECE_SCHEMA, procgen as procgenPlugin, SPLINE, SPLINE_SCHEMA, STRUCTURE,
-  STRUCTURE_SCHEMA, SWEEP, SWEEP_SCHEMA, TRACK, TRACK_SCHEMA,
+  STRUCTURE_SCHEMA, SWEEP, SWEEP_SCHEMA, TRACK, TRACK_SCHEMA, CROWD, CROWD_SCHEMA,
 } from '../function/plugins/procgen/index.js';
 import { content, declareBuiltIns, record } from './declarations.js';
 import { componentHandle } from './handles.js';
@@ -26,6 +26,8 @@ export const Spline = componentHandle({ id: SPLINE, schema: SPLINE_SCHEMA }, 'Sp
 export const Sweep = componentHandle({ id: SWEEP, schema: SWEEP_SCHEMA }, 'Sweep');
 /** A race track along the entity's Spline (road, kerbs, run-off, barriers, stands, gantry): `racing_line`, `surface_at`, `corners`. */
 export const Track = componentHandle({ id: TRACK, schema: TRACK_SCHEMA }, 'Track');
+/** Rows of spectators along a straight run, on optional stepped stands (terraces, grandstands, sidelines). */
+export const Crowd = componentHandle({ id: CROWD, schema: CROWD_SCHEMA }, 'Crowd');
 /** A building from character-grid floor plans: `rooms`, `doors`, `stairs`, `room_at`. */
 export const Structure = componentHandle({ id: STRUCTURE, schema: STRUCTURE_SCHEMA }, 'Structure');
 /** A seeded dungeon (mission → layout → geometry → pieces): `rooms`, `doors`, `entrance`, `room_at`. */
