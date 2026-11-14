@@ -149,8 +149,61 @@ fn gradientSky(dir: vec3<f32>) -> vec3<f32> {
   return mix(nat.horizon.xyz, nat.zenith.xyz, sqrt(clamp(dir.y, 0.0, 1.0)));
 }
 
+fn fbm3(p: vec3<f32>) -> f32 {
+  var q: vec3<f32> = p;
+  var total: f32 = 0.0;
+  var amp: f32 = 0.5;
+  for (var i = 0; i < 5; i = i + 1) {
+    total = total + vnoise3(q) * amp;
+    q = q * 2.07 + vec3<f32>(13.7, 7.3, 21.1);
+    amp = amp * 0.5;
+  }
+  return total / 0.96875;
+}
+
+/** Open space (model 2): how near dir is to the galactic plane, 0..1 (fixed in the world, so it never moves with the sun). */
+fn galacticBand(dir: vec3<f32>) -> f32 {
+  let d: f32 = dot(dir, normalize(vec3<f32>(0.32, 0.86, 0.4)));
+  return exp(-d * d / 0.03);
+}
+
+/** Open space's own light toward dir: the palette's near-black with a faint nebula and the galactic band's glow. */
+fn spaceGlow(dir: vec3<f32>) -> vec3<f32> {
+  let band: f32 = galacticBand(dir);
+  let dust: f32 = fbm3(dir * 3.1 + vec3<f32>(4.0, 1.0, 9.0));
+  let lanes: f32 = smoothstep(0.42, 0.7, fbm3(dir * 7.5 + vec3<f32>(2.0, 8.0, 3.0)));
+  let milky: vec3<f32> = vec3<f32>(0.55, 0.6, 0.8) * (band * (0.35 + 0.65 * dust) * (1.0 - 0.7 * lanes) * 0.09);
+  let a: f32 = smoothstep(0.48, 0.85, fbm3(dir * 1.6 + vec3<f32>(11.0, 3.0, 5.0)));
+  let b: f32 = smoothstep(0.5, 0.88, fbm3(dir * 2.3 + vec3<f32>(1.0, 17.0, 7.0)));
+  let wisps: f32 = 0.55 + 0.45 * fbm3(dir * 9.0);
+  let nebula: vec3<f32> = (vec3<f32>(0.42, 0.12, 0.55) * a + vec3<f32>(0.05, 0.3, 0.45) * b) * (wisps * 0.06);
+  return nat.zenith.xyz + milky + nebula;
+}
+
+/** One layer of point stars, cell size 1/scale radians: round, sized to stay a soft point, coloured by temperature. */
+fn starLayer(dir: vec3<f32>, scale: f32, threshold: f32, gain: f32) -> vec3<f32> {
+  let p: vec3<f32> = dir * scale;
+  let cell: vec3<f32> = floor(p);
+  let h: f32 = hash13(cell);
+  if (h < threshold) { return vec3<f32>(0.0); }
+  let jitter: vec3<f32> = vec3<f32>(hash13(cell + vec3<f32>(11.7)), hash13(cell + vec3<f32>(23.1)), hash13(cell + vec3<f32>(37.9)));
+  let center: vec3<f32> = normalize(cell + vec3<f32>(0.25) + jitter * 0.5);
+  let off: f32 = length(dir - center) * scale;
+  let k: f32 = (h - threshold) / (1.0 - threshold);
+  let warm: f32 = hash13(cell + vec3<f32>(5.3));
+  let tint: vec3<f32> = mix(vec3<f32>(1.0, 0.78, 0.58), vec3<f32>(0.68, 0.82, 1.0), warm);
+  return tint * (gain * (0.12 + k * k * k * k * 6.0) * exp(-off * off / 0.045));
+}
+
+/** Open space's stars: everywhere round (no horizon), thicker along the galactic band. */
+fn spaceStars(dir: vec3<f32>) -> vec3<f32> {
+  let band: f32 = galacticBand(dir);
+  return (starLayer(dir, 240.0, 0.992, 2.2) + starLayer(dir, 560.0, 0.993 - band * 0.02, 0.6)) * nat.horizon.w;
+}
+
 /** The sky's own light toward dir (no sun disc, stars or clouds). */
 fn skyLight(dir: vec3<f32>, steps: i32, lightSteps: i32) -> vec3<f32> {
+  if (nat.zenith.w > 1.5) { return spaceGlow(dir); }
   var c: vec3<f32> = gradientSky(dir);
   if (nat.zenith.w > 0.5) {
     let up: vec3<f32> = vec3<f32>(dir.x, max(dir.y, 0.0), dir.z);
@@ -273,6 +326,7 @@ fn flatClouds(origin: vec3<f32>, dir: vec3<f32>, steps: i32, maxDist: f32) -> ve
 }
 
 fn starsToward(dir: vec3<f32>) -> vec3<f32> {
+  if (nat.zenith.w > 1.5) { return spaceStars(dir); }
   if (nat.horizon.w <= 0.0 || dir.y <= 0.0) { return vec3<f32>(0.0); }
   let cell: vec3<f32> = floor(dir * 420.0);
   let h: f32 = hash13(cell);
@@ -296,10 +350,12 @@ fn sunDisc(dir: vec3<f32>) -> vec3<f32> {
   let corona: f32 = exp(-theta / (r * 0.9)) * 4.0 + exp(-theta / (r * 3.5)) * 1.0;
   // The aureole: glare a few degrees out and a broad warm glow on the sun's side of the sky.
   let aureole: f32 = exp(-theta / 0.09) * 0.3 + pow(max(mu, 0.0), 8.0) * 0.08;
-  let ground: f32 = smoothstep(-0.012, 0.004, dir.y);
+  // Open space has no ground to hide the sun or horizon for it to set behind.
+  let space: f32 = step(1.5, nat.zenith.w);
+  let ground: f32 = max(smoothstep(-0.012, 0.004, dir.y), space);
   // The sun stays blinding low in the sky (its light is already reddened in sunColor); it fades once it sets.
-  let strength: f32 = max(nat.toSun.w, 0.9) * smoothstep(-0.06, 0.01, nat.toSun.y);
-  return nat.sunColor.xyz * (strength * ((disc + corona) * ground + aureole * smoothstep(-0.12, 0.02, dir.y)));
+  let strength: f32 = max(nat.toSun.w, 0.9) * max(smoothstep(-0.06, 0.01, nat.toSun.y), space);
+  return nat.sunColor.xyz * (strength * ((disc + corona) * ground + aureole * max(smoothstep(-0.12, 0.02, dir.y), space)));
 }
 
 /** The whole sky toward dir as the eye at origin sees it. */
@@ -320,6 +376,7 @@ fn cloudShadow(p: vec3<f32>) -> f32 {
 
 /** Aerial perspective over dist meters along dir: rgb in-scattered light, a = transmittance (luminance). */
 fn aerial(dir: vec3<f32>, dist: f32, height: f32) -> vec4<f32> {
+  if (nat.zenith.w > 1.5) { return vec4<f32>(0.0, 0.0, 0.0, 1.0); }
   let dens: vec3<f32> = densityAt(max(height, 0.0));
   let beta: vec3<f32> = nat.rayleigh.xyz * dens.x + vec3<f32>(nat.mieParams.x / 0.9 * dens.y);
   let tr: vec3<f32> = exp(-beta * dist);
@@ -492,7 +549,7 @@ fn environmentFace(pixel: vec2<f32>) -> vec4<f32> {
   var c: vec3<f32> = skyLight(dir, 6, 3);
   let clouds: vec4<f32> = CLOUDS_TOWARD(nat.cameraPos.xyz, dir, 6, 80000.0);
   c = c * clouds.w + clouds.xyz;
-  c = mix(c, nat.horizon.xyz * 0.5, smoothstep(0.0, -0.15, dir.y));
+  if (nat.zenith.w < 1.5) { c = mix(c, nat.horizon.xyz * 0.5, smoothstep(0.0, -0.15, dir.y)); }
   return vec4<f32>(c, 1.0);
 }
 `;

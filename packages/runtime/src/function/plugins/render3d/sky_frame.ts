@@ -51,7 +51,7 @@ function skyOf(kernel: Kernel, environment: Environment3d, outdoors: boolean): S
     : { coverage: c.coverage, density: c.density, base: c.base, thickness: c.thickness, offset: [c.offsetX, c.offsetZ], scale: c.scale, darkness: c.darkness };
   const sun = environment.sun;
   return {
-    model: r.atmosphere === null ? 'gradient' : 'atmosphere',
+    model: r.atmosphere !== null ? 'atmosphere' : r.sky === 'space' ? 'space' : 'gradient',
     zenith: environment.sky.zenith,
     horizon: environment.sky.horizon,
     toSun: [r.toSun.x, r.toSun.y, r.toSun.z],

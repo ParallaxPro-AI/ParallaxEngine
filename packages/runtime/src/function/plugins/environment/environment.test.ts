@@ -171,6 +171,18 @@ describe('environment block: height fog, white balance, grain, skybox', () => {
     expect(r.skybox).toEqual({ texture: 'images/sky', rotation: 0, intensity: 1 });
     expect(r.stars).toBe(0);
   });
+
+  it('open space: a black sky full of stars at any hour, no air, and the scene still lit by its sun', () => {
+    expect(readEnvironmentSpec(sceneDoc('s', { sky: 'space' })).sky).toBe('space');
+    const { kernel } = start([sceneDoc('a', { sky: 'space', time_of_day: 12, sun: { direction: [0.4, -0.3, 0.8] } })], 'a');
+    const r = kernel.service(ENVIRONMENT_SERVICE).resolve();
+    expect(r.sky).toBe('space');
+    expect(r.stars).toBe(1);
+    expect(r.atmosphere).toBeNull();
+    expect(r.zenith.r + r.zenith.g + r.zenith.b).toBeLessThan(0.05);
+    expect(r.sunIntensity).toBeGreaterThan(1);
+    expect(r.sunDirection.is_close(new Vec3(0.4, -0.3, 0.8).normalized())).toBe(true);
+  });
 });
 
 describe('environment plugin', () => {

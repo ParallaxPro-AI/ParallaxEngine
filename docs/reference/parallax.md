@@ -4275,6 +4275,8 @@ as the sky and lights reflections from it; rotation turns it (compass degrees).
 the sun's position (blue noon, red sunsets, dark nights with stars, distant hills hazed
 by aerial perspective); "atmosphere": {"haze": 1, "sun_size": 1} tunes its air (haze 0
 crisp .. 4 hazy). The sky's light also lights reflections (the environment cube).
+"sky": "space" is open space: no air, horizon or haze — stars all round, a faint nebula
+and galactic band, and a sun that never sets (aim it with "sun": {"direction": ...}).
 "clouds": {"coverage": 0.4, "density": 0.6, "height": 1500, "thickness": 800,
 "scale": 2500, "speed": 6, "direction": 60} is a drifting cloud layer (meters, m/s,
 compass degrees it drifts toward). "weather" names the weather (parallax.weather;
@@ -4323,7 +4325,7 @@ Exponential (density) or linear (near/far meters) fog; `volumetric` 0..1 light s
 def sky(preset: str, *, seconds: float = 1) -> None
 ```
 
-Blend to a sky preset: "clear_day", "atmosphere", "sunset", "dusk" or "night".
+Blend to a sky preset: "clear_day", "atmosphere", "sunset", "dusk", "night" or "space".
 Grey, rainy and stormy skies are weather (`ctx.weather.set("storm")`).
 
 ```python

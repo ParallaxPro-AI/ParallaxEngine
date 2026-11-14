@@ -615,7 +615,7 @@ class EnvironmentState implements EnvironmentControl, EnvironmentService {
       clouds: this.#resolvedClouds(now, weather),
       // Stars come out in twilight, once the sun is below the horizon (not while it still sets).
       skybox: spec.skybox,
-      stars: spec.skybox !== null ? 0 : this.#sky === 'night' ? 1 : this.#sky === 'atmosphere' || cycle ? starlight(toSun.y) : 0,
+      stars: spec.skybox !== null ? 0 : this.#sky === 'night' || this.#sky === 'space' ? 1 : this.#sky === 'atmosphere' || cycle ? starlight(toSun.y) : 0,
       flash,
     };
     this.#cache = { frame, revision: this.#revision, value };

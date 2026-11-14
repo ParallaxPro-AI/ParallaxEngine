@@ -65,6 +65,19 @@ describe('planNature', () => {
     expect(plan.uniforms[at(0, 'ambientLight') + 3]).toBe(2);
   });
 
+  it('tells the shaders which sky to draw, and rebuilds the environment cube when it changes', () => {
+    const plan = (sky: Sky3d) => planNature(frame({ sky, water: null, weather: null }), [view(2)], 320, 180)!;
+    const space: Sky3d = { ...SKY, model: 'space', clouds: null, stars: 1 };
+    const at = offsetOf(NATURE_FIELDS, 'zenith') + 3;
+    expect(plan({ ...SKY, model: 'gradient' }).uniforms[at]).toBe(0);
+    expect(plan(SKY).uniforms[at]).toBe(1);
+    expect(plan(space).uniforms[at]).toBe(2);
+    expect(plan(space).environmentKey).not.toBe(plan({ ...space, model: 'gradient' }).environmentKey);
+    // The space sky's stars, nebula and unclipped sun are in the shared code both languages draw from.
+    for (const fn of ['fn spaceGlow(', 'fn spaceStars(', 'fn galacticBand(']) expect(NATURE_COMMON).toContain(fn);
+    expect(glslSky(1, false, 'flat').fragment).toContain('spaceStars(');
+  });
+
   it('keys the environment cube on the sun and the clouds, quantized', () => {
     const key = (sky: Sky3d): string => planNature(frame({ sky, water: null, weather: null }), [view(2)], 320, 180)!.environmentKey;
     expect(key(SKY)).toBe(key({ ...SKY, toSun: [0, 0.801, 0.6] }));

@@ -72,6 +72,14 @@ describe('the sky in a frame', () => {
     expect(g.build(view(0, 2, 0)).frame!.sky!.clouds!.offset[0]).toBeGreaterThan(first.clouds!.offset[0] + 5);
   });
 
+  it('open space draws the space model with all its stars, even with nothing else outdoors', () => {
+    const g = scene({ sky: 'space' }, [], {});
+    const sky = g.build(view(0, 2, 0)).frame!.sky!;
+    expect(sky.model).toBe('space');
+    expect(sky.stars).toBe(1);
+    expect(sky.clouds).toBeNull();
+  });
+
   it('a plain gradient day with nothing outdoors adds no nature at all', () => {
     const project = loadProject(files({ 'scenes/main/scene.json': { environment: { sky: 'clear_day' }, entities: [] } }));
     const kernel = new Kernel({
