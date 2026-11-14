@@ -1375,6 +1375,12 @@ top-level `"z": 2`; there is no second ordering knob.
   adds its colors, so overlaps glow toward white and black pixels vanish (glows, lasers,
   muzzle flashes, magic).
 
+- `flash: Color = ...`
+
+  A hit flash: the image is mixed toward this color by its alpha, keeping its shape
+  (default transparent: none). `sprite.flash = Color.WHITE` on a hit, then fade the
+  alpha back to 0 (`Color.WHITE.with_alpha(0.5)` halfway).
+
 - `animation: str | None  # read-only`
 
 **Methods**

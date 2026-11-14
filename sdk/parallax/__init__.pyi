@@ -815,6 +815,10 @@ class Sprite(EngineComponent):
     """How it combines with what is under it: "normal" (default) paints over; "additive"
     adds its colors, so overlaps glow toward white and black pixels vanish (glows, lasers,
     muzzle flashes, magic)."""
+    flash: Color = ...
+    """A hit flash: the image is mixed toward this color by its alpha, keeping its shape
+    (default transparent: none). `sprite.flash = Color.WHITE` on a hit, then fade the
+    alpha back to 0 (`Color.WHITE.with_alpha(0.5)` halfway)."""
     def play(self, animation: str, *, restart: bool = False) -> None:
         """Animation names are checked against this prefab's `animations`."""
     @property

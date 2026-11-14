@@ -64,6 +64,8 @@ export const SPRITE_SCHEMA: Schema = {
   flip_y: t.bool({ default: false }),
   /** "additive": its colors add to what is under it (glows, lasers, magic); "normal" paints over. */
   blend: t.enum(['normal', 'additive'], { default: 'normal' }),
+  /** A hit flash: the image's pixels mixed toward this color by its alpha (0: none, 1: a solid silhouette). */
+  flash: t.color({ default: new Color(1, 1, 1, 0) }),
   /** Documented prefab data (SDK Sprite docstring): animation name → frames. */
   animations: { type: { kind: 'dict', of: SPRITE_ANIMATION }, default: {} },
   /** The playing animation (None: `image`). Set by `play()`; read-only by convention. */

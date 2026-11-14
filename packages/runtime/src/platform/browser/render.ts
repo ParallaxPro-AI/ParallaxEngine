@@ -534,7 +534,7 @@ export class CanvasSurface2d implements RenderSurface2d {
         if (image === undefined) return;
         // Images are stored y-down; the world is y-up.
         this.#set(mul(mul(view, d.transform), [d.flipX ? -1 : 1, 0, 0, d.flipY ? 1 : -1, 0, 0]));
-        this.#image(image, d.image, d.tint, d.size[0], d.size[1]);
+        this.#image(image, d.image, d.tint, d.size[0], d.size[1], d.flash);
         return;
       }
       case 'text':
@@ -589,17 +589,19 @@ export class CanvasSurface2d implements RenderSurface2d {
   }
 
   /** Draw an image centered on the current origin, tinted (RGB multiplied, alpha as opacity). */
-  #image(image: DecodedImage, path: string, tint: Rgba, w: number, h: number): void {
+  #image(image: DecodedImage, path: string, tint: Rgba, w: number, h: number, flash?: Rgba): void {
     const ctx = this.#ctx;
-    const plain = tint[0] === 1 && tint[1] === 1 && tint[2] === 1;
-    const source = plain ? image : this.#tint(image, path, tint);
+    // A flash's strength in eighths, so a fading flash reuses a handful of cached copies.
+    const strength = flash === undefined ? 0 : Math.round(Math.min(1, Math.max(0, flash[3])) * 8) / 8;
+    const plain = tint[0] === 1 && tint[1] === 1 && tint[2] === 1 && strength === 0;
+    const source = plain ? image : this.#tint(image, path, tint, strength > 0 ? [flash![0], flash![1], flash![2], strength] : undefined);
     ctx.globalAlpha = Math.min(1, Math.max(0, tint[3]));
     ctx.drawImage(source, -w / 2, -h / 2, w, h);
     ctx.globalAlpha = 1;
   }
 
-  #tint(image: DecodedImage, path: string, tint: Rgba): DecodedImage {
-    const key = `${path}|${tint[0]},${tint[1]},${tint[2]}`;
+  #tint(image: DecodedImage, path: string, tint: Rgba, flash?: Rgba): DecodedImage {
+    const key = `${path}|${tint[0]},${tint[1]},${tint[2]}${flash === undefined ? '' : `|${flash.join(',')}`}`;
     const cached = this.#tinted.get(key);
     if (cached !== undefined) return cached;
     const canvas = this.#scratch(image.width, image.height);
@@ -608,6 +610,12 @@ export class CanvasSurface2d implements RenderSurface2d {
     g.globalCompositeOperation = 'multiply';
     g.fillStyle = css([tint[0], tint[1], tint[2], 1]);
     g.fillRect(0, 0, image.width, image.height);
+    if (flash !== undefined) {
+      // The flash paints over the tinted pixels by its strength (alpha restored below).
+      g.globalCompositeOperation = 'source-over';
+      g.fillStyle = css(flash);
+      g.fillRect(0, 0, image.width, image.height);
+    }
     // multiply fills transparent pixels too; keep only the image's own alpha.
     g.globalCompositeOperation = 'destination-in';
     g.drawImage(image, 0, 0);

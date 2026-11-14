@@ -41,6 +41,7 @@ const STAND_INS: readonly ComponentDef[] = [
       flip_x: t.bool({ default: false }),
       flip_y: t.bool({ default: false }),
       blend: t.enum(['normal', 'additive'], { default: 'normal' }),
+      flash: t.color({ default: new Color(1, 1, 1, 0) }),
       animations: t.json({ default: {} }),
       animation: { type: opt({ kind: 'string' }), default: null },
       animation_started: t.number({ default: 0 }),
@@ -390,6 +391,15 @@ describe('render2d frames', () => {
     expect(rect).toMatchObject({ kind: 'rect', blend: 'additive' });
     expect(plain).toMatchObject({ kind: 'image' });
     expect('blend' in plain!).toBe(false);
+  });
+
+  it('carries a sprite\'s flash on its image only while it shows', () => {
+    const flashing = { 'prefabs/flashing.prefab.json': { z: 3, components: { sprite: { image: 'images/hero', flash: '#ff000080' } } } };
+    const { kernel, surface } = started([{ prefab: 'camera' }, { prefab: 'flashing' }, { prefab: 'hero' }], flashing);
+    kernel.step(1 / 60);
+    const [lit, plain] = surface.last!.commands;
+    expect(lit).toMatchObject({ kind: 'image', flash: [1, 0, 0, 128 / 255] });
+    expect('flash' in plain!).toBe(false);
   });
 
   it('hides invisible entities and their children', () => {

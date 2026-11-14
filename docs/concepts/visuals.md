@@ -766,7 +766,9 @@ For a continuous effect (pollen, rain, embers) put `"particles": {"effect":
 
 Juice that works in 2D: `camera.shake`, `ctx.time.hitstop(0.05)`,
 `ctx.time.ramp` for slow motion, the `move_to`, `rotate_to` and `scale_to`
-tweens on a transform, and changing `sprite.color`. `bullet_hell` sizes its
+tweens on a transform, changing `sprite.color`, and a hit flash with
+`sprite.flash = Color.WHITE` (its alpha is how far the image mixes toward the
+color; fade it back to 0). `bullet_hell` sizes its
 shake to the moment (`game/systems/feedback.py`): small for a broken shield,
 big for a boss.
 
