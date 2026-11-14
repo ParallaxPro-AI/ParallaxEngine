@@ -4210,7 +4210,8 @@ edits (retry, New Game).
 ```
 
 ```text
-init         -- resource instances applied after the reset (`init=[Run(level=3)]`).
+init         -- resource instances applied after the reset (`init=[Run(level=3)]`): the
+                fields each was constructed with or has had set since (`r = Run(); r.level = 3`).
 seed         -- seed for `random` and `ctx.seed` (default: new random seed).
 Panels listed in the scene's "ui" open; modals and other panels close.
 `ctx.time.scene_time` restarts at 0; `ctx.time.now` keeps counting.

@@ -34,7 +34,7 @@ import { truthy } from './py.js';
 import { isRpc, rpcPanelAction } from './net.js';
 import { AssetRef, coerce, resolveType, rt, schemaOf, SceneRef } from './types.js';
 import type { AnyClass, CoerceEnv } from './types.js';
-import { GIVEN } from './declarations.js';
+import { givenFields } from './declarations.js';
 import { newRunArg, SCENE_KEYWORDS } from './scenes.js';
 
 // ── Commands ───────────────────────────────────────────────────────────────────
@@ -56,7 +56,7 @@ export function open_panel(...args: unknown[]): PanelCommand {
   return new PanelCommand({ kind: 'open', panel: panelClass(panel, 'open_panel()') });
 }
 
-/** `init=[Run(level=3)]` → resource id → the fields each instance was constructed with. */
+/** `init=[Run(level=3)]` → resource id → the fields each instance gives (constructed with or set since). */
 function initOf(value: unknown, where: string): Record<string, Fields> | undefined {
   if (value === undefined || value === null) return undefined;
   if (typeof value !== 'object' || !(Symbol.iterator in value)) fail('PP4424', `${where} init= takes a list of resource instances`);
@@ -64,7 +64,7 @@ function initOf(value: unknown, where: string): Record<string, Fields> | undefin
   for (const item of value as Iterable<unknown>) {
     const id = (item as { constructor?: { __resource_id__?: unknown } } | null)?.constructor?.__resource_id__;
     if (typeof id !== 'string') fail('PP4424', `${where} init= takes resource instances (Run(level=3)), got ${String(item)}`);
-    const given = (item as { [GIVEN]?: ReadonlySet<string> })[GIVEN] ?? new Set<string>();
+    const given = givenFields(item as object);
     init[id] = Object.fromEntries([...given].map((name) => [name, (item as Record<string, unknown>)[name]]));
   }
   return init;

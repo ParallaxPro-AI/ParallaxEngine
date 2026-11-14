@@ -5,7 +5,7 @@
  */
 
 import type { ComponentDef } from '../function/kernel/index.js';
-import { GIVEN } from './declarations.js';
+import { GIVEN, markInitial } from './declarations.js';
 import { bindArgs } from './kwargs.js';
 
 export interface ComponentHandle {
@@ -21,6 +21,7 @@ export function componentHandle(def: ComponentDef, name: string): ComponentHandl
       const { args: bound } = bindArgs(name, args, { positional: fields });
       Object.assign(this, bound);
       Object.defineProperty(this, GIVEN, { value: new Set(Object.keys(bound)), enumerable: false });
+      markInitial(this, Object.keys(bound));
     }
   };
   Object.defineProperty(handle, 'name', { value: name });

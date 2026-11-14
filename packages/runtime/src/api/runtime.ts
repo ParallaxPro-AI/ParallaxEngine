@@ -47,7 +47,7 @@ import './builtins.js';
 import { ContentList, ContentRef } from './content.js';
 import { Context } from './context.js';
 import {
-  Behavior, behaviorOptions, contentPlugin, declarations, eventDefOf, GIVEN, HANDLERS, SIGNIFICANCE_RATES, System, systemOptions,
+  Behavior, behaviorOptions, contentPlugin, declarations, eventDefOf, GIVEN, givenFields, HANDLERS, SIGNIFICANCE_RATES, System, systemOptions,
 } from './declarations.js';
 import type { BehaviorTick, HandlerMark } from './declarations.js';
 import { componentIdOf, Entity } from './entity.js';
@@ -641,7 +641,7 @@ export class GameRuntime {
   /** Field values of a component instance: every field, or only those passed to its constructor. */
   componentValues(id: string, instance: object, which: 'all' | 'given'): Fields {
     const given = (instance as Record<symbol, Set<string> | undefined>)[GIVEN];
-    const names = which === 'given' && given !== undefined ? [...given] : Object.keys(instance);
+    const names = which === 'given' && given !== undefined ? [...givenFields(instance)] : Object.keys(instance);
     const schema = this.kernel.registry.component(id, 'component instance').schema;
     const values: Fields = {};
     const refs = this.#gameComponents.has(id) ? undefined : this.#engineRefs(id);
