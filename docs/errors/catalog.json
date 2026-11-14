@@ -511,22 +511,34 @@
         "error"
       ],
       "messages": [
+        "@resource(\"{id}\") is already {…}'s {engine.module}.{engine.name}",
         "Config id \"{id}\" is already defined in {existing.path}",
         "Content \"{kind}/{id}\" is already defined in {existing.path}",
         "Dialogue id \"{id}\" is already defined in {existing.path}",
+        "Event id \"{id}\" is already {…}'s {engine.module}.{engine.name}",
         "Prefab id \"{id}\" is already defined in {existing.path}",
         "System {…} is listed twice",
         "There is already a scene \"{id}\"",
+        "Two component definitions are named \"{id}\": {component.name} and the engine's {engine.name}{…}",
         "Two configs are named \"{id}\"",
         "Two {what} definitions are named \"{def.id}\"",
         "{existing.name} and {cls.name} both declare content \"{kind}\""
       ],
       "fixes": [
         "Choose another name.",
+        "Give it another id, such as @resource(\"{…}_{id}\"). The engine's {engine.name} is readable as is.",
+        "Rename this one (say \"{…}_{id}\"), or listen for {engine.name} from {engine.module}.",
+        "Rename yours, e.g. @component(\"{…}_{id}\"), and use that key in prefabs.",
         "To extend a kind, subclass it: class {cls.name}({existing.name})."
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "a @component, @event or @resource id that is already the engine's, from core or",
+          "source": "packages/check/src/name_checks.ts"
+        }
+      ],
       "sources": [
+        "packages/check/src/name_checks.ts",
         "packages/editor/src/session/entity_ops.ts",
         "packages/runtime/src/api/game.ts",
         "packages/runtime/src/api/runtime.ts",
@@ -15771,6 +15783,7 @@
       "code": "PP4420",
       "range": "PP4xxx",
       "areas": [
+        "core",
         "ui"
       ],
       "listed_in": [],
@@ -15778,13 +15791,21 @@
         "error"
       ],
       "messages": [
+        "Panel \"{id}\" is the id of an engine panel",
         "Two panels are named \"{decl.id}\""
       ],
       "fixes": [
-        "Give each @ui panel its own id."
+        "Give each @ui panel its own id.",
+        "Give {panel.name} another id, e.g. @ui(\"my_{id}\", ...); to restyle the engine's panel, subclass it under a new id."
       ],
-      "notes": [],
+      "notes": [
+        {
+          "text": "a @ui panel id that is one of the engine's built-in panels (`settings`,",
+          "source": "packages/check/src/name_checks.ts"
+        }
+      ],
       "sources": [
+        "packages/check/src/name_checks.ts",
         "packages/runtime/src/function/plugins/ui/engine.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP4420"

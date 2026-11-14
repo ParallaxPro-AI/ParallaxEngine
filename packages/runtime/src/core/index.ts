@@ -37,6 +37,7 @@ export { SeededRandom } from './random.js';
 export { closestMatch } from './suggest.js';
 export { RTL_LANGUAGES, textDirectionOf, type TextDirection } from './text_direction.js';
 export { UI_ICON_NAMES, UI_ICONS } from './ui_icons.js';
+export { BUILTIN_PANEL_IDS } from './builtin_panels.js';
 export { bindArgs, kw, Kwargs, splitArgs } from './kwargs.js';
 export type { Bound, Signature } from './kwargs.js';
 export type { RandomState } from './random.js';

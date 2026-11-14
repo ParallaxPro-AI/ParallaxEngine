@@ -3,5 +3,5 @@
     "particles": { "effect": "vfx/smoke_cloud" },
     "smoke_cloud": {}
   },
-  "behaviors": { "smoke_cloud": {} }
+  "behaviors": { "smoke_drift": {} }
 }

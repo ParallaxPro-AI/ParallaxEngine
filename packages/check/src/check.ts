@@ -26,6 +26,7 @@ import { checkHud } from './hud_checks.js';
 import { checkEconomy } from './economy_checks.js';
 import { checkCinematics } from './cinematics_checks.js';
 import { checkVehiclesCombat } from './vehicle_combat_checks.js';
+import { checkNames } from './name_checks.js';
 import { checkNiche } from './niche_checks.js';
 import { directoryFiles } from './files.js';
 import type { ProjectTree } from './files.js';
@@ -77,6 +78,7 @@ export function checkFiles(files: ProjectTree, declarations: Declarations, optio
   checkCinematics(ctx);
   checkVehiclesCombat(ctx);
   checkNiche(ctx);
+  checkNames(ctx);
   checkTilemaps(ctx);
   checkShapes2d(ctx);
   checkEffects(ctx);
