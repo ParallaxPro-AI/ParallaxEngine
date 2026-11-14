@@ -7,8 +7,8 @@
  * lays out identically under WGSL's uniform rules and GLSL's std140.
  */
 
-import { hasEffects } from '../../../core/index.js';
-import type { Light3d, Material3d, MaterialEffects3d, Rgb } from '../../../core/index.js';
+import { hasEffects, MAX_PAINT_LAYERS } from '../../../core/index.js';
+import type { Light3d, Material3d, MaterialEffects3d, MaterialPaint3d, Rgb } from '../../../core/index.js';
 
 export interface UniformField {
   readonly name: string;
@@ -152,6 +152,17 @@ export const MATERIAL_FIELDS: readonly UniformField[] = [
   vec4('fxUv'),
   /** Hologram scanlines per meter, unused × 3. */
   vec4('fxLines'),
+  // ── Surface mask layers (Material3d.paint; paint_shaders.ts) ──
+  /** World → mask volume (0..1 per axis). */
+  mat4('paintVolume'),
+  /** Cells along x, y, z (x 0: no paint), slices per atlas row. */
+  vec4('paintGrid'),
+  /** 1 / atlas width, 1 / atlas height (texels), meters per cell, layer count. */
+  vec4('paintAtlas'),
+  /** Per layer: rgb linear color, w noise blotches per meter. */
+  { name: 'paintColor', kind: 'vec4', count: MAX_PAINT_LAYERS },
+  /** Per layer: roughness, metallic, breakup 0..1, unused. */
+  { name: 'paintSurface', kind: 'vec4', count: MAX_PAINT_LAYERS },
 ];
 
 /** The terrain pass's block (terrain_shaders.ts), one slot per tile palette and level. */
@@ -210,6 +221,8 @@ export const FRAME_SLOT = slotFloats(FRAME_FIELDS);
 export const MATERIAL_SLOT = slotFloats(MATERIAL_FIELDS);
 /** Float offset of the surface-effect fields in a material slot. */
 const FX_OFFSET = offsetOf(MATERIAL_FIELDS, 'fxRim');
+/** Float offset of the surface-mask fields in a material slot. */
+const PAINT_OFFSET = offsetOf(MATERIAL_FIELDS, 'paintVolume');
 export const CASTER_SLOT = slotFloats(CASTER_FIELDS);
 
 export function wgslStruct(name: string, fields: readonly UniformField[]): string {
@@ -296,6 +309,28 @@ export function packMaterial(m: Material3d, out: Float32Array, slot: number, tim
   out[o + 30] = m.wind?.height ?? 0;
   out[o + 31] = m.wind === undefined ? 0 : time % 3600;
   packEffects(m.effects, out, o + FX_OFFSET, time);
+  packPaint(m.paint, out, o + PAINT_OFFSET);
+}
+
+/** A material's surface mask into its slot's paint fields (at `o`, the paintVolume offset); grid x 0 when it has none. */
+export function packPaint(p: MaterialPaint3d | undefined, out: Float32Array, o: number): void {
+  const floats = 16 + 8 + MAX_PAINT_LAYERS * 8;
+  out.fill(0, o, o + floats);
+  if (p === undefined || p.layers.length === 0) return;
+  out.set(p.worldToVolume, o);
+  out[o + 16] = p.grid[0]; out[o + 17] = p.grid[1]; out[o + 18] = p.grid[2]; out[o + 19] = p.tiles;
+  const source = p.texture.source;
+  const width = source.kind === 'pixels' ? source.width : p.tiles * p.grid[0];
+  const height = source.kind === 'pixels' ? source.height : Math.ceil(p.grid[2] / p.tiles) * p.grid[1];
+  out[o + 20] = 1 / width; out[o + 21] = 1 / height; out[o + 22] = p.cell; out[o + 23] = Math.min(MAX_PAINT_LAYERS, p.layers.length);
+  p.layers.slice(0, MAX_PAINT_LAYERS).forEach((layer, k) => {
+    out.set(linearRgb(layer.color), o + 24 + k * 4);
+    out[o + 27 + k * 4] = Math.max(0.01, layer.pattern);
+    const at = o + 24 + MAX_PAINT_LAYERS * 4 + k * 4;
+    out[at] = Math.min(1, Math.max(0.04, layer.roughness));
+    out[at + 1] = Math.min(1, Math.max(0, layer.metallic));
+    out[at + 2] = Math.min(1, Math.max(0, layer.breakup));
+  });
 }
 
 /** A material's surface effects into its slot's fx fields (at `o`, the fxRim offset); all zero when it has none. */

@@ -143,6 +143,8 @@ export class BrowserSurface3d implements RenderSurface3d {
    * submitted makes the GPU drop the whole frame.
    */
   #retiredScreens: BackendTexture[] = [];
+  /** Run-time texel textures (`pixels` sources: surface masks) by id, with the version uploaded and the frame last drawn. */
+  readonly #pixels = new Map<string, { texture: BackendTexture; version: number; used: number }>();
   readonly #decals: DecalArrays = { current: null, building: null };
   readonly #terrainArrays: TerrainArrays;
   readonly #now: () => number;
@@ -182,6 +184,7 @@ export class BrowserSurface3d implements RenderSurface3d {
       load: async (texture, size) => {
         const source = texture.source;
         if (source.kind === 'target') throw new Error('a render target is not an image');
+        if (source.kind === 'pixels') return new ImageData(new Uint8ClampedArray(source.data) as Uint8ClampedArray<ArrayBuffer>, source.width, source.height) as unknown as TextureImage;
         const bytes = source.kind === 'file' ? await this.#fetchBytes(source.path) : source.bytes;
         return this.#resize(blobOf(bytes, source.kind === 'file' ? imageMime(source.path) : source.mimeType), size);
       },
@@ -237,6 +240,11 @@ export class BrowserSurface3d implements RenderSurface3d {
   draw(frame: Frame3d): void {
     for (const texture of this.#retiredScreens) this.#backend.destroyTexture(texture);
     this.#retiredScreens = [];
+    for (const [id, entry] of this.#pixels) {
+      if (this.#frames - entry.used <= 120) continue;
+      this.#backend.destroyTexture(entry.texture);
+      this.#pixels.delete(id);
+    }
     const { width, height } = this.size();
     if (width === 0 || height === 0) return;
     const quality = frame.quality;
@@ -326,12 +334,15 @@ export class BrowserSurface3d implements RenderSurface3d {
   dispose(): void {
     for (const texture of this.#retiredScreens) this.#backend.destroyTexture(texture);
     this.#retiredScreens = [];
+    for (const entry of this.#pixels.values()) this.#backend.destroyTexture(entry.texture);
+    this.#pixels.clear();
     this.#textures.dispose();
     this.#terrainArrays.dispose();
     this.#backend.dispose();
   }
 
   #ready(texture: Texture3d): boolean {
+    if (texture.source.kind === 'pixels') return true;
     if (texture.source.kind === 'target') {
       const name = texture.source.target;
       if (name.startsWith('screen:')) return this.#screen(name) !== null;
@@ -356,6 +367,21 @@ export class BrowserSurface3d implements RenderSurface3d {
     return texture;
   }
 
+  /** A `pixels` texture on the GPU, uploaded again whenever its version moves (the old copy retired after this frame). */
+  #texels(texture: Texture3d): BackendTexture {
+    const source = texture.source as Extract<Texture3d['source'], { kind: 'pixels' }>;
+    const known = this.#pixels.get(texture.id);
+    if (known !== undefined && known.version === source.version) {
+      known.used = this.#frames;
+      return known.texture;
+    }
+    if (known !== undefined) this.#retiredScreens.push(known.texture);
+    const image = new ImageData(new Uint8ClampedArray(source.data.buffer, source.data.byteOffset, source.data.byteLength) as Uint8ClampedArray<ArrayBuffer>, source.width, source.height);
+    const made = this.#backend.createTexture(image as unknown as TextureImage, { colorSpace: texture.colorSpace, wrapU: texture.wrapU, wrapV: texture.wrapV, filter: texture.filter });
+    this.#pixels.set(texture.id, { texture: made, version: source.version, used: this.#frames });
+    return made;
+  }
+
   /**
    * The layer of each decal image in the current array; when the frame's set of images
    * differs, a new array is built in the background (each image decoded at the layer size)
@@ -372,7 +398,7 @@ export class BrowserSurface3d implements RenderSurface3d {
       for (const texture of images) {
         building.images.set(texture.id, 'loading');
         const source = texture.source;
-        const bytes = source.kind === 'file' ? this.#fetchBytes(source.path) : source.kind === 'bytes' ? Promise.resolve(source.bytes) : Promise.reject(new Error('a render target is not an image'));
+        const bytes = source.kind === 'file' ? this.#fetchBytes(source.path) : source.kind === 'bytes' ? Promise.resolve(source.bytes) : Promise.reject(new Error('a render target or texel source is not an image file'));
         const type = source.kind === 'bytes' ? source.mimeType : source.kind === 'file' ? imageMime(source.path) : 'image/png';
         bytes.then((b) => this.#resize(blobOf(b, type), DECAL_LAYER_SIZE)).then(
           (image) => building.images.set(texture.id, image),
@@ -412,6 +438,7 @@ export class BrowserSurface3d implements RenderSurface3d {
       entry.used = this.#frames;
       return entry.texture;
     }
+    if (ref.source.kind === 'pixels') return this.#texels(ref);
     if (ref.source.kind === 'target') {
       const name = ref.source.target;
       return name.startsWith('screen:') ? this.#screen(name)! : this.#backend.target(name)!;

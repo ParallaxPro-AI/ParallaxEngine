@@ -46,6 +46,7 @@ import { ModelDraws } from './model_draw.js';
 import { StaticMerge, StaticRoots } from './static_merge.js';
 import { RenderTargets, surfaceSwap } from './render_targets.js';
 import { effectsHideShadow, effectsOf, effectsSwap, HEAT_HAZE, hazesOf, SURFACE_FX } from './surface_fx.js';
+import { paintOf, paintSwap, SURFACE_MASK } from './surface_mask.js';
 import { ParticleSystem3d, particlesState } from './particles.js';
 import type { EffectEvent, EmitterSource, ParticleDraw } from './particles.js';
 import { FIRE_FLIPBOOK, SMOKE_FLIPBOOK } from './flipbook.js';
@@ -565,10 +566,14 @@ export class Render3dEngine {
       const fx = record.components.get(SURFACE_FX);
       const effects = fx === undefined ? null : effectsOf(record, fx, now);
       const targetSwap = surfaceSwap(record, targets);
-      const swap = effects === null ? targetSwap : effectsSwap(fx!, effects, targetSwap);
+      // A surface mask's layers (surface_mask.ts) go on under the surface effects.
+      const mask = record.components.get(SURFACE_MASK);
+      const paint = mask === undefined ? null : paintOf(kernel, record, mask, at.m);
+      const painted = paint === null ? targetSwap : paintSwap(record, mask!, paint, targetSwap);
+      const swap = effects === null ? painted : effectsSwap(fx!, effects, painted);
       const drawn = effectsHideShadow(effects) ? { ...style, shadows: false } : style;
       // Static entities' meshes merge into world chunks (static_merge.ts), unless they are on a layer, outlined or have effects.
-      const chunk = style === WORLD_DRAW && lod === undefined && !record.components.has(OUTLINE) && fx === undefined ? statics.chunkOf(record) : null;
+      const chunk = style === WORLD_DRAW && lod === undefined && !record.components.has(OUTLINE) && fx === undefined && mask === undefined ? statics.chunkOf(record) : null;
       if (chunk !== null) merge.chunk = chunk;
       const sink: BatchSink = chunk === null ? batches : merge;
       if (lod === undefined || style.layer === 'viewmodel') {

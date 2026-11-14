@@ -281,6 +281,8 @@ export interface ModelGeometry {
   readonly vertices: Float32Array;
   /** Three vertex indices per triangle. */
   readonly indices: Uint32Array;
+  /** Which material each run of `indices` is drawn with (a primitive's material name; null: unnamed). Absent: unknown. */
+  readonly groups?: readonly { readonly material: string | null; readonly first: number; readonly count: number }[];
 }
 
 /**

@@ -23,6 +23,7 @@ export function modelGeometry(model: ModelAsset): ModelGeometry {
   const hidden = doc === undefined ? null : lookOf(model, {}, model.path).hidden;
   const vertices: number[] = [];
   const indices: number[] = [];
+  const groups: { material: string | null; first: number; count: number }[] = [];
   const palettes = new Map<number, Float32Array>();
   for (const n of model.order) {
     const node = model.nodes[n]!;
@@ -63,8 +64,9 @@ export function modelGeometry(model: ModelAsset): ModelGeometry {
           vertices.push(m[0]! * x + m[4]! * y + m[8]! * z + m[12]!, m[1]! * x + m[5]! * y + m[9]! * z + m[13]!, m[2]! * x + m[6]! * y + m[10]! * z + m[14]!);
         }
       }
+      groups.push({ material: primitive.materialName ?? null, first: indices.length, count: g.indices.length });
       for (const i of g.indices) indices.push(first + i);
     }
   }
-  return { vertices: new Float32Array(vertices), indices: new Uint32Array(indices) };
+  return { vertices: new Float32Array(vertices), indices: new Uint32Array(indices), groups };
 }

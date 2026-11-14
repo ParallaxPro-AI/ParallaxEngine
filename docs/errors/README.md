@@ -540,7 +540,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3782 | visuals | The {rig} rig has no bone "{bone}" |
 | PP3783 | visuals | keys\[{i}\].time must be from 0 to {duration}, got {…} |
 | PP3784 | visuals | {where} animator: set\_morph names "{m.name}", which {model.path} has no morph target for |
-| PP3800 | visuals | flash(color=) must be a Color |
+| PP3800 | visuals | A surface\_mask volume of {this.nx}×{this.ny}×{this.nz} cells is too large to draw |
 | PP3801 | visuals | {path}: {message} |
 | PP3802 | visuals | {path} requires the glTF extension {ext}, which this loader doesn't read |
 | PP3803 | visuals | {…}: {message} |

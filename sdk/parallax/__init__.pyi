@@ -1374,6 +1374,85 @@ class SurfaceFx(EngineComponent):
     def dissolve_to(self, amount: float, seconds: float = 1.0) -> None:
         """Move `dissolve` to `amount` (0 whole, 1 gone) over `seconds`, from where it is now."""
 
+@record
+class MaskLayer:
+    """One paintable layer of a SurfaceMask: how it looks where it lies, and how much of
+    the surface it covers at the start. `MaskLayer(name="mud", color=Color.hex("#5b4630"),
+    roughness=0.95, coverage=0.8, below=0.6)`."""
+    name: str = ""
+    color: Color = ...
+    roughness: float = 0.9
+    metallic: float = 0
+    coverage: float = 1
+    """0..1 of the surface covered at the start (1: all of it; 0: none until painted)."""
+    pattern: float = 4
+    """Blotches per meter: of the starting coverage, the layer's tone and its broken-up edge."""
+    breakup: float = 0.5
+    """0..1: how far noise eats into the layer's edge (0: a smooth fade)."""
+    below: float = 0
+    """-1..1: more of the starting coverage low down on the entity (mud splashes), or high up."""
+    up: float = 0
+    """-1..1: more of it on faces that look up (dust, moss, droppings), or down."""
+
+@component("surface_mask")
+class SurfaceMask(EngineComponent):
+    """Paintable layers — dirt, rust, moss, soot, foam, paint — lying on the entity's Model or
+    Shape (3D), that game code erases and paints at world points and reads back as coverage
+    (cleaning, restoring, graffiti, painting). Layers draw bottom to top (at most 4), each
+    replacing the surface's color, roughness and metalness where it lies (on glass it also
+    stops the light passing through), with noise-broken edges.
+
+    The layers live in a volume of `resolution` cubic cells along its longest side, around
+    the entity in its own space: it needs no texture coordinates and follows the entity as
+    it moves. A brush is a sphere in world meters that changes every cell inside it, so it
+    cleans whatever surface passes through it (both faces of a thin blade). Coverage
+    averages over the cells the outer surface passes through, found from the Model's
+    triangles (or the Shape's or collider's box in a run without model files). The amounts are run-time
+    state: a respawn or scene load starts the mask afresh from its layers.
+
+    `hit = ctx.physics.raycast(*ctx.camera.main.ray(ctx.input.pointer.screen))`, then
+    `mask.clean(hit.point, 0.15, "mud", strength=3 * dt)`; `1 - mask.coverage(["mud", "grime"])`
+    is how clean it is."""
+    layers: list[MaskLayer] = ...
+    resolution: int = ...
+    """Cells along the volume's longest side (2..256)."""
+    size: Vec3 = ...
+    """The box the volume covers in the entity's own space (zero: the Model's bounds, else
+    the Shape's or collider's), centered on `offset`."""
+    offset: Vec3 = ...
+    material: str | None = ...
+    """The Model material the layers draw on (None: every material, or the Shape)."""
+    seed: int = ...
+    inside: bool = ...
+    """Count surfaces sealed inside the model (the inside of a closed box) in coverage too.
+    False (default): only the surface reachable from the air around it."""
+    def clean(self, point: Vec3, radius: float, layer: str | None = None, *, strength: float = 1.0,
+              hardness: float = 0.5, exposed: bool = True) -> float:
+        """Erase a layer (None: every layer, top first) within `radius` meters of a world
+        point: by `strength` at the middle (out to `radius × hardness`), fading to nothing at
+        the edge. With `exposed`, a layer is reached only where the layers above it are gone
+        (rust under oil, haze under rust). Returns the share 0..1 of the surface it cleaned
+        (drive spray, debris and sound from it)."""
+    def paint(self, point: Vec3, radius: float, layer: str, *, strength: float = 1.0,
+              hardness: float = 0.5) -> float:
+        """Add to a layer around a world point (foam, soap, paint, graffiti); returns the share
+        of the surface painted."""
+    def coverage(self, layer: str | Sequence[str] | None = None) -> float:
+        """0..1 of the surface the layer covers (a list: the most of those layers at each
+        point; None: any layer). 1 while the mask's model is still loading."""
+    def amount_at(self, point: Vec3, layer: str | None = None) -> float:
+        """A layer's amount 0..1 at a world point (None: the most of any layer)."""
+    def fill(self, layer: str | None = None, amount: float = 1.0) -> None:
+        """One amount everywhere (None: every layer)."""
+    def reset(self, layer: str | None = None) -> None:
+        """Back to the layers' starting coverage."""
+    @property
+    def ready(self) -> bool:
+        """False while the entity's model is still loading (strokes do nothing yet)."""
+    @property
+    def cells(self) -> int:
+        """How many cells the surface passes through."""
+
 @component("heat_haze")
 class HeatHaze(EngineComponent):
     """The image around the entity bends like air over a fire (3D): a steady shimmer

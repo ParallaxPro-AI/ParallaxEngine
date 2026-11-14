@@ -954,6 +954,7 @@ export class WebGl2Backend implements Backend3d {
       this.#bind(GLSL_UNITS.emissiveTexture, handle(m.emissiveTexture));
       this.#bind(GLSL_UNITS.normalTexture, handle(m.normalTexture));
       this.#bind(GLSL_UNITS.occlusionTexture, handle(m.occlusionTexture));
+      this.#bind(GLSL_UNITS.paintTexture, handle(m.paint?.texture));
     };
     const drawBillboards = (items: readonly BillboardItem[], overlay: boolean): void => {
       state(true, false, 'alpha', false);

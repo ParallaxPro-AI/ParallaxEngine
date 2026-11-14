@@ -9,10 +9,10 @@
  */
 
 import type { EntityId } from '../core/index.js';
-import { Vec2 } from '../core/index.js';
+import { Color, Vec2 } from '../core/index.js';
 import {
   ANIMATOR, AUDIO_SOURCE, CAMERA, DECAL, DEPTH_OF_FIELD, ENVIRONMENT_ZONE, FOG_OVERLAY, HEAT_HAZE, LIGHT, LOD, LOD_LEVEL_RECORD, MARKER, MIRROR, MODEL, MONITOR, OUTLINE, TILEMAP,
-  PARTICLES, PLAYER_START, RENDER_TEXTURE, SHAPE, SOCKET, SPRITE, STATIC_MESH, SURFACE_FX, TEXT_MESH, VISUAL_SCHEMAS, visuals, WORLD_BAR,
+  PARTICLES, PLAYER_START, RENDER_TEXTURE, SHAPE, SOCKET, SPRITE, STATIC_MESH, SURFACE_FX, SURFACE_MASK, TEXT_MESH, VISUAL_SCHEMAS, visuals, WORLD_BAR,
 } from '../function/plugins/visuals/index.js';
 import { record } from './declarations.js';
 import { ModelRef, rt } from './types.js';
@@ -67,6 +67,26 @@ export const FogOverlay = handle(FOG_OVERLAY, 'FogOverlay');
 export const SurfaceFx = handle(SURFACE_FX, 'SurfaceFx');
 export const HeatHaze = handle(HEAT_HAZE, 'HeatHaze');
 export const DepthOfField = handle(DEPTH_OF_FIELD, 'DepthOfField');
+/** Paintable layers on an entity's surface: `clean`, `paint`, `coverage`, `amount_at` (visuals' surface_mask.ts). */
+export const SurfaceMask = handle(SURFACE_MASK, 'SurfaceMask');
+
+class MaskLayerFields {
+  static readonly __annotations__ = {
+    name: () => rt.str, color: () => Color, roughness: () => rt.float, metallic: () => rt.float, coverage: () => rt.float,
+    pattern: () => rt.float, breakup: () => rt.float, below: () => rt.float, up: () => rt.float,
+  };
+  static readonly name = '';
+  static readonly color = new Color(0.35, 0.27, 0.18);
+  static readonly roughness = 0.9;
+  static readonly metallic = 0;
+  static readonly coverage = 1;
+  static readonly pattern = 4;
+  static readonly breakup = 0.5;
+  static readonly below = 0;
+  static readonly up = 0;
+}
+/** One layer of a SurfaceMask (fields: visuals' `MASK_LAYER_RECORD`). */
+export const MaskLayer = record(MaskLayerFields);
 
 export { AnimationEvent, ClipFinished, RootMotion } from './animation.js';
 

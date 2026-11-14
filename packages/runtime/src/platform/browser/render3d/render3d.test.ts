@@ -41,7 +41,11 @@ describe('uniform and data layout', () => {
   it('fits every block in whole 256-byte slots', () => {
     expect((FRAME_SLOT * 4) % UNIFORM_ALIGN).toBe(0);
     expect(FRAME_SLOT).toBeGreaterThanOrEqual(floatsOf(FRAME_FIELDS));
-    for (const fields of [MATERIAL_FIELDS, TERRAIN_FIELDS, OUTLINE_FIELDS, ENV_FIELDS]) expect(floatsOf(fields) * 4).toBeLessThanOrEqual(UNIFORM_ALIGN);
+    for (const fields of [TERRAIN_FIELDS, OUTLINE_FIELDS, ENV_FIELDS]) expect(floatsOf(fields) * 4).toBeLessThanOrEqual(UNIFORM_ALIGN);
+    // The material block (surface effects and surface-mask layers) takes two slots' worth; terrain and outline blocks share its stride.
+    expect((MATERIAL_SLOT * 4) % UNIFORM_ALIGN).toBe(0);
+    expect(MATERIAL_SLOT).toBeGreaterThanOrEqual(floatsOf(MATERIAL_FIELDS));
+    expect(MATERIAL_SLOT * 4).toBeLessThanOrEqual(2 * UNIFORM_ALIGN);
     expect((CASTER_SLOT * 4) % UNIFORM_ALIGN).toBe(0);
     for (const f of FRAME_FIELDS) expect(offsetOf(FRAME_FIELDS, f.name) % 4).toBe(0);
   });

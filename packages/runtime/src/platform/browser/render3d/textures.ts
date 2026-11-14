@@ -125,7 +125,7 @@ export class TextureStore {
 
   #load(texture: Texture3d): void {
     const source = texture.source;
-    if (source.kind === 'target') return;
+    if (source.kind === 'target' || source.kind === 'pixels') return;
     this.#slots.set(texture.id, { state: 'loading' });
     const where = source.kind === 'file' ? source.path : texture.id;
     const maxSize = this.maxSize;
