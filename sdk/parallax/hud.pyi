@@ -55,7 +55,9 @@ class Minimap(EngineComponent):
     move and are left out), the terrain, and MapFeature placements. MapIcon entities are drawn
     on it; set `range` to zoom."""
     range: float = field(40, min=1, unit="m", doc="Center to rim.")
+    center: Vec3 | None = field(None, doc="A fixed world point to center the map on (a whole-arena map; the viewer's arrow moves instead); None: the viewer.")
     rotate: bool = field(True, doc="Turn with this entity's heading (player-up); False: north-up.")
+    heading: float | None = field(None, unit="deg", doc="A fixed heading that is up on the map (an isometric camera's yaw), over `rotate`; None: `rotate` decides.")
     shape: Literal["circle", "square"] = field("circle")
     route: list[Vec3] = field([], doc="A route line in world points (e.g. ctx.nav.path(...)); empty: none.")
     shown: bool = field(True)
@@ -231,7 +233,7 @@ class HudApi:
 
 class MinimapPanel(PlayerPanel):
     """{shown, round, base, base_left, base_top, base_width, base_height, turn, player_turn,
-    icons: [{icon, glyph, x, y, color, size, turn, label, edge}], has_route, route, range, a11y}"""
+    player_x, player_y, icons: [{icon, glyph, x, y, color, size, turn, label, edge}], has_route, route, range, a11y}"""
 class CompassPanel(PlayerPanel):
     """{shown, heading, ticks: [{label, x, major}], marks: [{glyph, color, x, distance, label}], a11y}
 

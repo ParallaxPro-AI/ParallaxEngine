@@ -172,7 +172,7 @@ export const HUD_PANEL_MARKUP: Readonly<Record<string, string>> = {
     <div data-each="icons"><template>
       <span class="icon" data-class-edge="edge" data-style-left="x" data-style-top="y" data-style-color="color" data-style-font-size="size"><i data-style-transform="turn" data-bind="glyph"></i></span>
     </template></div>
-    <span class="me"><b data-style-transform="player_turn">▲</b></span>
+    <span class="me" data-style-left="player_x" data-style-top="player_y"><b data-style-transform="player_turn">▲</b></span>
   </div>
 </div>`),
 

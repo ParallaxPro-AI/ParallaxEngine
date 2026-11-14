@@ -304,7 +304,7 @@ abstract class HudPanelBase extends PlayerPanel {
   }
 }
 
-/** Minimap: state {shown, round, base, base_left/top/width/height, turn, player_turn, icons, has_route, route, range, a11y}. */
+/** Minimap: state {shown, round, base, base_left/top/width/height, turn, player_turn, player_x/y, icons, has_route, route, range, a11y}. */
 export class MinimapPanel extends HudPanelBase { static override readonly panel: HudPanel = 'minimap'; }
 /** Compass strip: {shown, heading, ticks: [{label, x, major}], marks: [{glyph, color, x, distance, label}], a11y}. */
 export class CompassPanel extends HudPanelBase { static override readonly panel: HudPanel = 'compass'; }
