@@ -9406,6 +9406,8 @@
       ],
       "messages": [
         "click() action must be the action's name (a str), got {…}",
+        "drag() takes two screen points (Vec2), got {…} and {…}",
+        "drag_world() takes Vec2 or Vec3 points, got {…}",
         "move() direction must be a Vec2, got {…}",
         "press() has no index=: a slot of a button_group is pressed with press_index()",
         "press_index() index must be an int, got {…}",

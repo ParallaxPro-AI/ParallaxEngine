@@ -106,6 +106,23 @@ on the play plane in 2D, and the ground point (x, z) in 3D (on the terrain there
 
 ```python
 async def tap_entity(entity: Entity) -> None
+```
+
+```python
+async def drag(start: Vec2, end: Vec2, *, seconds: float = 0.25) -> None
+```
+
+Press the left button at screen point `start`, move it to `end` over `seconds`
+(one even step per frame, held), then release there. Slingshots, swipes, sliders.
+
+```python
+async def drag_world(start: Vec3 | Vec2, end: Vec3 | Vec2, *, seconds: float = 0.25) -> None
+```
+
+`drag` between two world points (a Vec2 is a play-plane point in 2D, the ground
+point (x, z) in 3D), seen through the active camera.
+
+```python
 async def type_text(text: str) -> None
 async def click(panel: type[Panel], action: str, *, player: int = 0, **data: Any) -> None
 async def advance(*, seconds: float = 0, frames: int = 0) -> None
