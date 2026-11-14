@@ -25,7 +25,7 @@ import { Cell, Cell3, Color, fail, Vec2, Vec3 } from '../core/index.js';
 import type { FieldSpec, FieldType, Keep, Schema } from '../function/kernel/index.js';
 import { bindArgs } from './kwargs.js';
 import { PyDict, PyFrozenSet, PySet, SetBase } from './pyrt/collections.js';
-import { Ellipsis, eq, NotImplemented } from './pyrt/values.js';
+import { Ellipsis, eq, NotImplemented, PY_TYPE } from './pyrt/values.js';
 import { hashString } from './py.js';
 
 export { Color, Quat, Vec2, Vec3 } from '../core/index.js';
@@ -439,6 +439,14 @@ const CORE_VALUES = new Map<unknown, FieldType>([
   [Cell3, { kind: 'cell3' }],
 ]);
 
+/** The builtin types, as runtime values (`str`, tagged with PY_TYPE), and the fields they declare. */
+const BUILTIN_VALUES = new Map<string, FieldType>([
+  ['float', { kind: 'number' }],
+  ['int', { kind: 'int' }],
+  ['str', { kind: 'string' }],
+  ['bool', { kind: 'bool' }],
+]);
+
 function describe(annotation: unknown): string {
   if (typeof annotation === 'function') return annotation.name;
   if (isMarker(annotation)) return `rt.${annotation.__marker__}`;
@@ -536,6 +544,9 @@ export function resolveType(annotation: unknown, where: string): ApiType {
     }
   }
   if (typeof annotation !== 'function') return notAFieldType(annotation, where);
+  // The builtin types passed as values (`args={"kind": str}`), not written as annotations.
+  const builtin = BUILTIN_VALUES.get((annotation as { [PY_TYPE]?: string })[PY_TYPE] ?? '');
+  if (builtin !== undefined) return { kind: 'value', field: builtin };
 
   const core = CORE_VALUES.get(annotation);
   if (core !== undefined) return { kind: 'value', field: core };

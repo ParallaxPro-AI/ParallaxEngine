@@ -6,6 +6,7 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import { copy } from '../function/kernel/index.js';
 import { PyDict, PyFrozenSet, PySet } from './pyrt/collections.js';
+import { bool, float, int, str } from './pyrt/builtins.js';
 import { Ellipsis } from './pyrt/values.js';
 import {
   Color, content, ContentRef, Entity, Enum, enum_class, field, PrefabRef, record, resetDeclarations, rt, Tag, tag, toFieldType, Vec2,
@@ -91,6 +92,15 @@ describe('rt markers', () => {
     }
     const Pad = record(PadC);
     expect(Object.keys(schemaOf(Pad, 'record Pad').schema)).toEqual(['width']);
+  });
+});
+
+describe('builtin types passed as values', () => {
+  it('str, int, float and bool given as runtime values (a quest verb\'s args={"kind": str}) are field types', () => {
+    expect(resolveType(str, 'args["kind"]').field).toEqual({ kind: 'string' });
+    expect(resolveType(int, 'args["n"]').field).toEqual({ kind: 'int' });
+    expect(resolveType(float, 'args["x"]').field).toEqual({ kind: 'number' });
+    expect(resolveType(bool, 'args["b"]').field).toEqual({ kind: 'bool' });
   });
 });
 
