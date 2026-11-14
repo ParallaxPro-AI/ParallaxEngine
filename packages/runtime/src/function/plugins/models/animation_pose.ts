@@ -81,10 +81,58 @@ export interface PlaybackView {
   };
 }
 
+/**
+ * What a pose was made from: the model, root-motion lock and every layer's clips, times and
+ * weights. An animator whose playback reads the same next frame (paused at `speed` 0, a
+ * frozen statue, a held still frame) poses exactly as before, so its last pose is reused.
+ */
+interface StillPose {
+  readonly model: ModelAsset;
+  readonly numbers: number[];
+  readonly names: (string | null)[];
+  readonly masks: (readonly string[] | null)[];
+  readonly worlds: Float32Array;
+}
+
+/** Entities whose still pose is remembered before the oldest are forgotten (entities come and go). */
+const STILL_POSES = 4096;
+
+function hasIk(playback: PlaybackView): boolean {
+  const { feet, reach, look } = playback.ik;
+  return (feet !== null && feet.weight > 0) || reach.length > 0 || look !== null;
+}
+
+/** Flatten a playback into comparable parts (numbers, clip and root names, masks). */
+function stillKey(playback: PlaybackView): Pick<StillPose, 'numbers' | 'names' | 'masks'> {
+  const numbers: number[] = [];
+  const names: (string | null)[] = [playback.rootMotion, playback.rootBone];
+  const masks: (readonly string[] | null)[] = [];
+  for (const layer of playback.layers) {
+    numbers.push(layer.weight, layer.additive ? 1 : 0, layer.samples.length);
+    names.push(layer.name);
+    masks.push(layer.mask);
+    for (const s of layer.samples) {
+      numbers.push(s.time, s.weight, s.loop ? 1 : 0);
+      names.push(s.clip);
+    }
+  }
+  return { numbers, names, masks };
+}
+
+function sameKey(held: StillPose, key: Pick<StillPose, 'numbers' | 'names' | 'masks'>): boolean {
+  if (held.numbers.length !== key.numbers.length || held.names.length !== key.names.length || held.masks.length !== key.masks.length) return false;
+  for (let i = 0; i < key.numbers.length; i++) if (held.numbers[i] !== key.numbers[i]) return false;
+  for (let i = 0; i < key.names.length; i++) if (held.names[i] !== key.names[i]) return false;
+  for (let i = 0; i < key.masks.length; i++) if (held.masks[i] !== key.masks[i]) return false;
+  return true;
+}
+
 export class Poses {
   readonly #clips: ClipLibrary;
   readonly #kernel: Kernel;
   readonly #rest = new Map<ModelAsset, Float32Array>();
+  /** Each animated entity's last pose and what made it, reused while its playback stands still. */
+  readonly #still = new Map<EntityId, StillPose>();
   readonly #bind = new WeakMap<ModelAsset, Q[]>();
   readonly #masks = new WeakMap<ModelAsset, Map<string, Uint8Array>>();
 
@@ -128,13 +176,27 @@ export class Poses {
         fix: 'render3d reads clip playback from the visuals plugin; build the game with it (createRuntime does).',
       });
     }
+    const ragdoll = this.#kernel.tryService(RAGDOLL_POSE_SERVICE)?.pose(entity);
+    // Without IK (world goals, ground probes) or physics bones, a pose depends on its playback alone.
+    const steady = (ragdoll === undefined || ragdoll.weight <= 0) && !hasIk(playback);
+    const key = steady ? stillKey(playback) : null;
+    if (key !== null) {
+      const held = this.#still.get(entity);
+      if (held !== undefined && held.model === model && sameKey(held, key)) return held.worlds;
+    }
     const pose = this.pose(model, playback, `${where} animator`);
     if (playback.rootMotion !== 'off') this.#lockRoot(model, pose, playback.rootBone, `${where} animator`);
-    const ragdoll = this.#kernel.tryService(RAGDOLL_POSE_SERVICE)?.pose(entity);
     // A limp ragdoll's bones are all physics: IK goals would only fight them.
     if (ragdoll === undefined || ragdoll.weight < 1) this.#ik(model, pose, playback, `${where} animator`, toWorld, entity);
     if (ragdoll !== undefined && ragdoll.weight > 0) applyRagdoll(model, pose, ragdoll.bones, ragdoll.weight);
-    return nodeMatrices(model, pose);
+    const worlds = nodeMatrices(model, pose);
+    if (key !== null) {
+      if (this.#still.size >= STILL_POSES && !this.#still.has(entity)) this.#still.clear();
+      this.#still.set(entity, { model, ...key, worlds });
+    } else {
+      this.#still.delete(entity);
+    }
+    return worlds;
   }
 
   /** The layered pose (local transforms) before root motion and IK. */

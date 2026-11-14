@@ -267,6 +267,30 @@ describe('layers', () => {
     const forward = [locked[hips * 16 + 8]!, locked[hips * 16 + 9]!, locked[hips * 16 + 10]!];
     close(forward, [0, 0, 1]);
   });
+
+  it('a paused animator (the same playback next frame) reuses its pose; any change poses it again', () => {
+    const p = new Poses(lib, NO_KERNEL);
+    const animator = (time: number, clip = 'clips/walk', ik: PlaybackView['ik'] = NO_IK): Fields => ({
+      __playback__: { layers: [layer('base', [[clip, time, 1]])], rootMotion: 'off', rootBone: null, ik },
+    }) as unknown as Fields;
+    const id = 7 as EntityId;
+    const first = p.of(HUMANOID, animator(0.25), 'test', identity(), id);
+    // Speed 0: the clip time doesn't move, so nothing is sampled again.
+    expect(p.of(HUMANOID, animator(0.25), 'test', identity(), id)).toBe(first);
+    // Another entity in the same pose has its own.
+    expect(p.of(HUMANOID, animator(0.25), 'test', identity(), 8 as EntityId)).not.toBe(first);
+    // The clip moves on, or another clip plays: posed again, and correctly.
+    const later = p.of(HUMANOID, animator(0.5), 'test', identity(), id);
+    expect(later).not.toBe(first);
+    const leg = HUMANOID.nodeByName.get('LeftUpLeg')!;
+    const fresh = new Poses(lib, NO_KERNEL).of(HUMANOID, animator(0.5), 'test', identity(), id);
+    for (let i = 0; i < 16; i++) expect(later[leg * 16 + i]).toBeCloseTo(fresh[leg * 16 + i]!, 6);
+    expect(p.of(HUMANOID, animator(0.5, 'clips/wave'), 'test', identity(), id)).not.toBe(later);
+    // IK reads the world (goals, the ground) every frame: never reused.
+    const looking: PlaybackView['ik'] = { reach: [], look: { point: [0, 1.6, 2], entity: null, weight: 1, bones: ['Head'], maxAngle: 60 }, feet: null };
+    const a = p.of(HUMANOID, animator(0.5, 'clips/walk', looking), 'test', identity(), id);
+    expect(p.of(HUMANOID, animator(0.5, 'clips/walk', looking), 'test', identity(), id)).not.toBe(a);
+  });
 });
 
 // ── IK ────────────────────────────────────────────────────────────────────────
