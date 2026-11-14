@@ -423,6 +423,25 @@ function poseMoved(was: Pose, now: Pose, threshold: number): boolean {
   return Math.abs(now.sx - was.sx) + Math.abs(now.sy - was.sy) + Math.abs(now.sz - was.sz) > 1e-6;
 }
 
+function sameFoot(a: Footprint, b: Footprint): boolean {
+  if (a.kind === 'rect' && b.kind === 'rect') return a.cx === b.cx && a.cz === b.cz && a.ux === b.ux && a.uz === b.uz && a.hx === b.hx && a.hz === b.hz;
+  if (a.kind === 'circle' && b.kind === 'circle') return a.cx === b.cx && a.cz === b.cz && a.r === b.r;
+  if (a.kind === 'tri' && b.kind === 'tri') return a.floor === b.floor && a.p.length === b.p.length && a.p.every((v, i) => v === b.p[i]);
+  return false;
+}
+
+/** Whether two shape lists occupy exactly the same space (in the same order). */
+function sameShapes(a: readonly StaticShape[], b: readonly StaticShape[]): boolean {
+  if (a.length !== b.length) return false;
+  for (let i = 0; i < a.length; i++) {
+    const x = a[i]!;
+    const y = b[i]!;
+    if (x.part !== y.part || x.layer !== y.layer || x.yMin !== y.yMin || x.yMax !== y.yMax || x.minX !== y.minX
+      || x.maxX !== y.maxX || x.minZ !== y.minZ || x.maxZ !== y.maxZ || !sameFoot(x.foot, y.foot)) return false;
+  }
+  return true;
+}
+
 /** Static shapes (and NavObstacle shapes) in a spatial hash, with a log of where they changed. */
 export class Obstacles {
   readonly #shapes = new Map<EntityId, StaticShape[]>();
@@ -469,6 +488,17 @@ export class Obstacles {
 
   /** Index (or re-index) a record: kept when it holds a static collider (or a NavObstacle's collider). */
   update(record: EntityRecord): void {
+    // A change that leaves a static collider's shapes as they were (a model's pose or colour,
+    // a light, a sound on the same entity) is no change to nav: no rebuilt tiles, no stale paths.
+    const before = this.#shapes.get(record.id);
+    if (before !== undefined && isStaticCollider(record) && !record.components.has(NAV_OBSTACLE)) {
+      const collider = record.components.get('collider')!;
+      const layer = typeof collider['layer'] === 'string' ? collider['layer'] : 'default';
+      if (this.layers === null || this.layers.includes(layer)) {
+        const shapes = shapesOf(record, collider, this.#geometry);
+        if (shapes !== 'unsupported' && shapes !== 'pending' && sameShapes(before, shapes)) return;
+      }
+    }
     this.remove(record.id);
     if (!isStaticCollider(record)) return;
     if (record.components.has(NAV_OBSTACLE)) {

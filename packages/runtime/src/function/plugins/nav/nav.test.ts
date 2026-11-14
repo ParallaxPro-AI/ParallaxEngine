@@ -26,6 +26,7 @@ const COLLIDER: ComponentDef = {
 };
 const RIGIDBODY: ComponentDef = { id: 'rigidbody', schema: { kind: t.string({ default: 'dynamic' }) } };
 const CHARACTER: ComponentDef = { id: 'character', schema: {} };
+const LABEL: ComponentDef = { id: 'label', schema: { text: t.string({ default: '' }) } };
 
 const arrivals: unknown[] = [];
 const listener: SystemDef = {
@@ -66,7 +67,7 @@ function project(scenes: SceneDoc[]): Project {
 }
 
 function game(): GameDefinition {
-  return { components: [COLLIDER, RIGIDBODY, CHARACTER], resources: [], events: [], behaviors: [], systems: [listener] };
+  return { components: [COLLIDER, RIGIDBODY, CHARACTER, LABEL], resources: [], events: [], behaviors: [], systems: [listener] };
 }
 
 interface Started { kernel: Kernel; plugin: NavPlugin; byPrefab(id: string): EntityId[] }
@@ -444,6 +445,28 @@ describe('ctx.nav queries', () => {
     expect(q.reachable(new Vec3(-5, 0, 0), first)).toBe(true);
     // Inside the wall the nearest standable surface is its top, and points stay up there.
     expect(q.randomPoint(new Vec3(0, 0, 0), 0.2, seeded())!.y).toBe(3);
+  });
+
+  it("a static collider's other components changing is no change to the grid (no rebuilt tiles, no stale paths)", () => {
+    const { kernel, byPrefab } = start([WALLED]);
+    const [walker] = byPrefab('walker');
+    const [wall] = byPrefab('wall');
+    const a = agent(kernel, walker!);
+    const routes = vi.spyOn(Pathfinder.prototype, 'route');
+    expect(a.move_to(new Vec3(5, 0, 0))).toBe(true);
+    kernel.step(1 / 60);
+    // A sound, a light, a label on the wall: its collider is as it was, the path stands.
+    kernel.addComponent(wall!, 'label', { text: 'hello' });
+    kernel.mergeComponent(wall!, 'label', { text: 'again' });
+    kernel.step(1 / 60);
+    expect(a.move_to(new Vec3(5, 0, 0))).toBe(true);
+    expect(routes).toHaveBeenCalledTimes(1);
+    // The wall grows: the world changed, and the agent replans.
+    kernel.mergeComponent(wall!, 'collider', { size: new Vec3(1, 3, 20) });
+    kernel.step(1 / 60);
+    expect(a.move_to(new Vec3(5, 0, 0))).toBe(true);
+    expect(routes).toHaveBeenCalledTimes(2);
+    routes.mockRestore();
   });
 
   it('can_see: distance, field of view, walls and terrain', () => {
