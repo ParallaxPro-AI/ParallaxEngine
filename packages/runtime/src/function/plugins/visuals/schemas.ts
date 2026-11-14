@@ -143,6 +143,12 @@ export const MODEL_SCHEMA: Schema = {
 export const SOCKET_SCHEMA: Schema = {
   /** Required: the socket (a declared socket, or a part, bone or node name). */
   name: t.string(),
+  /**
+   * A socket of the child's own Model to seat on the parent's (a sword's `grip_r`): the
+   * child is placed so that socket, not its origin, sits on the parent's socket, turned
+   * to match. None: the child's origin sits there.
+   */
+  grip: { type: optional({ kind: 'string' }), default: null },
 };
 
 export const LIGHT_SCHEMA: Schema = {

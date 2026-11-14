@@ -1012,8 +1012,16 @@ class Socket(EngineComponent):
     `parent.attach(child, socket="grip_r")` (or written on a prefab child); every frame the
     entity's position and rotation become the socket's, posed — its scale stays its own.
     `detach()` removes it. A declared socket's `accepts` and `limit` are checked when
-    attaching: the child's model must `provide` an accepted tag."""
+    attaching: the child's model must `provide` an accepted tag.
+
+        sword = ctx.world.spawn(Prefabs.longsword)
+        knight.attach(sword, socket="grip_r")
+        sword.get(Socket).grip = "grip_r"     # the sword's own grip lands in the hand"""
     name: str = ...
+    grip: str | None = ...
+    """A socket of this entity's own Model (a sword's `grip_r`) to seat on the parent's
+    socket, turned to match; None: this entity's origin sits there. Its own scale is not
+    applied to the offset."""
 
 @component("animator")
 class Animator(EngineComponent):

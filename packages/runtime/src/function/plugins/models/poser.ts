@@ -171,8 +171,16 @@ export class ModelPoser {
           fix: 'Attach it with parent.attach(child, socket=...) to an entity with a Model, or remove the socket component.',
         });
       }
-      const local = this.socketLocal(parent, name);
+      let local = this.socketLocal(parent, name);
       if (local === undefined) continue;
+      const grip = socket!['grip'];
+      if (typeof grip === 'string' && grip !== '' && record.components.has(MODEL)) {
+        // The child's own grip lands on the parent's socket: socket × inverse(grip).
+        const own = this.socketLocal(record, grip);
+        if (own === undefined) continue;
+        const back = invert(own);
+        if (back !== null) local = multiply(local, back);
+      }
       const { t, r } = decompose(Array.from(local));
       record.transform.position = new Vec3(t[0], t[1], t[2]);
       record.transform.rotation = new Quat(r[0], r[1], r[2], r[3]);

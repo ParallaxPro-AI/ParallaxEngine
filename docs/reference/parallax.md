@@ -1718,9 +1718,20 @@ entity's position and rotation become the socket's, posed — its scale stays it
 `detach()` removes it. A declared socket's `accepts` and `limit` are checked when
 attaching: the child's model must `provide` an accepted tag.
 
+```text
+sword = ctx.world.spawn(Prefabs.longsword)
+knight.attach(sword, socket="grip_r")
+sword.get(Socket).grip = "grip_r"     # the sword's own grip lands in the hand
+```
+
 **Fields**
 
 - `name: str = ...`
+- `grip: str | None = ...`
+
+  A socket of this entity's own Model (a sword's `grip_r`) to seat on the parent's
+  socket, turned to match; None: this entity's origin sits there. Its own scale is not
+  applied to the offset.
 
 ### `Animator`
 
