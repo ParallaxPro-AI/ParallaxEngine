@@ -9,6 +9,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from parallax_transpiler.diagnostics import Diagnostic
+from parallax_transpiler.project import is_authoring_tool
 
 # Folders that hold no game declarations: playtests use `parallax.test`, the rest is output.
 SKIPPED_DIRS = frozenset({"tests", "build", "node_modules", "__pycache__"})
@@ -60,11 +61,14 @@ def _parse(source: str, path: str, diagnostics: list[Diagnostic]) -> ast.Module 
 
 
 def load_project_modules(root: Path, diagnostics: list[Diagnostic]) -> dict[str, Module]:
-    """Every `.py` file under the project root except playtests and generated output."""
+    """Every `.py` file under the project root except playtests, authoring tools and
+    generated output."""
     modules: dict[str, Module] = {}
     for file in sorted(root.rglob("*.py")):
         relative = file.relative_to(root)
         if any(part in SKIPPED_DIRS or part.startswith(".") for part in relative.parts[:-1]):
+            continue
+        if is_authoring_tool(relative.parts):
             continue
         path = relative.as_posix()
         source = file.read_text(encoding="utf-8")

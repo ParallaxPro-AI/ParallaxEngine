@@ -249,7 +249,7 @@ function plural(n: number, one: string): string {
 
 /** Python sources of the game (not its playtests). */
 function code(ctx: CheckContext): string {
-  return ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/')).map((p) => ctx.files.read(p)).join('\n');
+  return ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/') && !p.startsWith('tools/')).map((p) => ctx.files.read(p)).join('\n');
 }
 
 /** Every named thing that draws: prefabs (by id) and placements that override the look (by placed id). */
@@ -309,7 +309,7 @@ const EXPLOSIVE = new Set(['bomb', 'bombs', 'grenade', 'rocket', 'missile', 'min
 function explosions(ctx: CheckContext, source: string): void {
   const game = ctx.decl.game!;
   if (game.plugins.some((p) => p.id === 'combat' || p.id === 'vehicles')) return;
-  const py = ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/'));
+  const py = ctx.files.all().filter((p) => p.endsWith('.py') && !p.startsWith('tests/') && !p.startsWith('tools/'));
   const site = py.map((path) => ({ path, line: ctx.files.read(path).split('\n').findIndex((l) => /\bEffect\.explosion\b/.test(l) && !l.trim().startsWith('#')) }))
     .find((s) => s.line >= 0);
   const data = ctx.files.list().find((p) => p.endsWith('.json') && /"effect\/explosion"/.test(ctx.files.read(p)));

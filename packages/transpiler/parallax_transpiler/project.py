@@ -14,6 +14,15 @@ from pathlib import Path
 
 SDK_PACKAGES = frozenset({"parallax", "project"})
 
+AUTHORING_DIRS = frozenset({"tools"})
+"""Top-level folders of offline authoring scripts (CPython generators that write a game's
+JSON, art or audio): run by the author, never part of the game."""
+
+
+def is_authoring_tool(parts: tuple[str, ...]) -> bool:
+    """Whether a project-relative path (its parts) lies in a top-level authoring folder."""
+    return len(parts) > 1 and parts[0] in AUTHORING_DIRS
+
 # The SDK's submodules — one per `sdk/parallax/<name>.pyi`, read from the SDK itself so the
 # list can't drift: `from parallax import physics` binds the module `parallax/physics`, not a
 # name exported by `parallax`.
@@ -61,7 +70,8 @@ class ProjectIndex:
     def scan(cls, root: Path) -> "ProjectIndex":
         paths = sorted(p.relative_to(root).as_posix() for p in root.rglob("*.py")
                        if not any(part.startswith(".") or part in ("build", "__pycache__")
-                                  for part in p.relative_to(root).parts))
+                                  for part in p.relative_to(root).parts)
+                       and not is_authoring_tool(p.relative_to(root).parts))
         index = cls.from_paths(paths)
         for path in paths:
             if path.endswith("__init__.py"):
