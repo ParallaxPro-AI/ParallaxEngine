@@ -57,6 +57,17 @@ describe('a passing project (fixtures/tally)', async () => {
     const only = await runProjectTests(fixture('tally'), { filter: 'pointer' });
     expect(only.results.map((r) => r.name)).toEqual(['test_pointer_and_text']);
   });
+
+  it('a child whose heap fills up hands the rest of the run to a fresh one, with nothing lost or repeated', async () => {
+    process.env['PARALLAX_TEST_RECYCLE_SHARE'] = '0';
+    try {
+      const recycled = await runProjectTests(fixture('tally'), { filter: 'test_hold' });
+      expect(recycled.results.map((r) => [r.name, r.status])).toEqual([['test_hold', 'passed'], ['test_hold_while_moving', 'passed']]);
+      expect(recycled.ok).toBe(true);
+    } finally {
+      delete process.env['PARALLAX_TEST_RECYCLE_SHARE'];
+    }
+  }, 120_000);
 });
 
 const BROKEN = `from parallax.test import playtest

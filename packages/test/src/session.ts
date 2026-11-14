@@ -7,6 +7,7 @@
  */
 
 import { readFileSync, realpathSync } from 'node:fs';
+import { getHeapStatistics } from 'node:v8';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { directoryFiles } from '@parallax/check';
@@ -181,7 +182,27 @@ export async function runSession(job: SessionJob, send: (message: SessionMessage
         outcome = outcomeOf(error);
       }
       send({ kind: 'result', result: result(base, outcome, performance.now() - begin, harness) });
+      harness?.dispose();
+      harness = undefined;
+      if (heapIsFull()) {
+        // Every test loads the game into a fresh realm, and module instances are never
+        // unloaded: a long run of big games is handed on to a fresh process (the runner
+        // resumes after the tests already reported) before the heap runs out.
+        send({ kind: 'recycle' });
+        return;
+      }
     }
   }
   send({ kind: 'end' });
+}
+
+/**
+ * Above this share of the heap limit after a test, the process recycles itself
+ * (`PARALLAX_TEST_RECYCLE_SHARE` overrides it: 0 recycles after every test).
+ */
+export const RECYCLE_HEAP_SHARE = 0.45;
+
+export function heapIsFull(share = Number(process.env['PARALLAX_TEST_RECYCLE_SHARE'] ?? RECYCLE_HEAP_SHARE)): boolean {
+  const heap = getHeapStatistics();
+  return heap.used_heap_size > share * heap.heap_size_limit;
 }
