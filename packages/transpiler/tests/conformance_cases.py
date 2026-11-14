@@ -894,6 +894,9 @@ case("numbers_more", r'''
 print(10 / 4, 9 / 3, -9 // 4, 2 ** 0.5, 0.1 + 0.7, 1.1 * 3, 1e-7 * 1, 123456.789e3, 5e-324, 1.7976931348623157e308)
 print(int(2.5e3), int(-0.9), abs(-0.5), round(-0.5), round(1.25, 1), round(1.35, 1), round(2.5e-3, 3))
 print(max(1, 2.5), min(-1, -1.5), sorted([3, 1.5, 2]), 7 // 2.0, 7 % 2.5, (-7) % 2.5)
+nan = float("nan")
+print(max(2, 3), min(7, 3), max(0.5, 0.25), min(-0.5, 0.25), max(nan, 1), max(1, nan), min(nan, 1), min(1, nan))
+print(max(True, 0), min(1, False), max(3, 1, key=lambda v: -v), min(-1.5, 4), max(-5, float("-inf")))
 print(f"{1/3:.3f} {2/3:.1%} {1e6:,.2f} {1234.5678:.2e} {0.000123:.2g} {1e20:.3g} {100:.2f}")
 x = 5
 x //= 2
