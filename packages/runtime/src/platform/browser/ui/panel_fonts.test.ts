@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { MarkupElement } from './markup.js';
-import { registerPanelFonts, renameFontFamilies, renameNodeFonts, resolvePanelFonts, scopePanelFonts } from './panel_fonts.js';
+import { registerPanelFonts, renameFontFamilies, renameNodeFonts, resolvePanelFonts, scopedFontList, scopePanelFonts } from './panel_fonts.js';
 
 const PANEL = `
 @font-face { font-family: 'Orbitron'; font-weight: 400; src: url("data:font/woff2;base64,AAA") format("woff2"); }
@@ -48,6 +48,15 @@ describe('scopePanelFonts', () => {
     expect(renameFontFamilies("font-family: 'Press Start 2P'", fonts.families)).toBe(`font-family: "${scoped}"`);
     const nodes = renameNodeFonts([{ kind: 'element', tag: 'b', attrs: [['style', 'font: 12px Press Start 2P']], children: [] }], fonts.families);
     expect((nodes[0] as MarkupElement).attrs[0]![1]).toBe(`font: 12px "${scoped}"`);
+  });
+
+  it('renames a font list set from code (a FloatStyle font naming a feedback.html family)', () => {
+    const fonts = scopePanelFonts('@font-face { font-family: "Fredoka"; src: url(f.woff2); }');
+    const scoped = fonts.families.get('fredoka')!;
+    expect(scopedFontList('Fredoka', fonts.families)).toBe(`"${scoped}"`);
+    expect(scopedFontList("'Fredoka', sans-serif", fonts.families)).toBe(`"${scoped}", sans-serif`);
+    expect(scopedFontList('Georgia, serif', fonts.families)).toBe('Georgia, serif');
+    expect(scopedFontList('Fredoka', new Map())).toBe('Fredoka');
   });
 });
 

@@ -58,6 +58,14 @@ function renameIn(value: string, families: ReadonlyMap<string, string>): string 
   return out;
 }
 
+/**
+ * A font list (`"Fredoka", sans-serif`) with each family the game declared renamed to its
+ * scoped name: for a font set from code, such as a `FloatStyle`'s.
+ */
+export function scopedFontList(value: string, families: ReadonlyMap<string, string>): string {
+  return families.size === 0 ? value : renameIn(value, families);
+}
+
 /** References to declared families in `css` (declarations or an inline style) renamed. */
 export function renameFontFamilies(css: string, families: ReadonlyMap<string, string>): string {
   if (families.size === 0) return css;

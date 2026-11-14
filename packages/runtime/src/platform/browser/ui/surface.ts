@@ -44,7 +44,7 @@ import { BUILTIN_PANELS, DEFAULT_PANEL_CSS, FEEDBACK_CSS, PASS_THROUGH_CSS } fro
 import { ClaimedKeys } from './claimed_keys.js';
 import { inlineStyle, scopeCss } from './css.js';
 import { fontFaceCss, installFonts } from './fonts.js';
-import { registerPanelFonts, renameFontFamilies, renameNodeFonts, scopePanelFonts } from './panel_fonts.js';
+import { registerPanelFonts, renameFontFamilies, renameNodeFonts, scopedFontList, scopePanelFonts } from './panel_fonts.js';
 import { frameDocument, PanelFrame, scriptCode } from './frame_host.js';
 import type { FrameFiles } from './frame_host.js';
 import { expandIcons } from './icons.js';
@@ -61,15 +61,28 @@ const FLOAT_SECONDS = 1;
 /** The game's own look for toasts and announcements (optional). */
 export const FEEDBACK_THEME = 'ui/feedback.html';
 
+/**
+ * Whether a frame draws anything `ui/feedback.html` styles: an effect (toast, announcement,
+ * floating text) or a world label. Labels count on their own, so name tags drawn before the
+ * first toast already wear the game's look.
+ */
+export function needsFeedbackTheme(frame: Pick<UiFrame, 'effects' | 'labels'>): boolean {
+  return frame.effects.length > 0 || frame.labels.length > 0;
+}
+
 const cssRgba = ([r, g, b, a]: readonly number[]): string =>
   `rgba(${Math.round(r! * 255)}, ${Math.round(g! * 255)}, ${Math.round(b! * 255)}, ${a})`;
 
-/** A `FloatStyle` as the element's own style: its keyframes (pp-float) read the custom properties. */
-export function applyFloatStyle(el: HTMLElement, style: UiFloatStyle): void {
+/**
+ * A `FloatStyle` as the element's own style: its keyframes (pp-float) read the custom properties.
+ * `families` are the font families `ui/feedback.html` declares, so a style may name one of them.
+ */
+export function applyFloatStyle(el: HTMLElement, style: UiFloatStyle,
+  families: ReadonlyMap<string, string> = new Map()): void {
   const s = el.style;
   s.fontSize = `${style.size}px`;
   s.fontWeight = style.bold ? '800' : '500';
-  if (style.font !== null) s.fontFamily = style.font;
+  if (style.font !== null) s.fontFamily = scopedFontList(style.font, families);
   if (style.outline !== null && style.outlineWidth > 0) {
     // Stroke behind the fill (paint-order), so a thick outline doesn't eat the glyphs.
     s.setProperty('-webkit-text-stroke', `${style.outlineWidth * 2}px ${cssRgba(style.outline)}`);
@@ -691,7 +704,7 @@ export class DomUiSurface implements UiSurface {
       if (t.until - now < 0.25) t.element.classList.add('leaving');
       return true;
     });
-    if (frame.effects.length > 0) this.#loadTheme();
+    if (needsFeedbackTheme(frame)) this.#loadTheme();
     for (const effect of frame.effects) this.#effect(effect, now, frame);
 
     const seen = new Set<number>();
@@ -786,7 +799,7 @@ export class DomUiSurface implements UiSurface {
         el.style.top = `${effect.at[1] * 100}%`;
         const fill = effect.color ?? style?.color ?? null;
         if (fill !== null) el.style.color = cssRgba(fill);
-        if (style !== undefined) applyFloatStyle(el, style);
+        if (style !== undefined) applyFloatStyle(el, style, this.#theme?.families);
         this.#floats.append(el);
         this.#timed.push({ element: el, until: now + (style?.seconds ?? FLOAT_SECONDS) });
       }
