@@ -55,6 +55,12 @@ const PROJECT_EXTENSIONS = new Set([
   'glb', 'gltf', 'bin', 'ktx2', 'woff', 'woff2', 'ttf', 'otf',
 ]);
 
+/**
+ * Files a sandboxed (opaque-origin) panel frame fetches with CORS: fonts (@font-face) and
+ * images a stylesheet uses as a CSS mask (mask-image is a CORS request). Served to it too.
+ */
+const CORS_EXTENSIONS = new Set(['woff', 'woff2', 'ttf', 'otf', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'svg']);
+
 /** Top-level project folders that are never served (generated output, playtests, dependencies). */
 const PRIVATE_DIRS = new Set(['build', 'tests', 'node_modules', '__pycache__']);
 
@@ -437,6 +443,9 @@ export function startDevServer(options: DevServerOptions): Promise<DevServer> {
       } else if (path.startsWith('/project/')) {
         const rel = path.slice('/project/'.length);
         if (!servableProjectFile(rel)) throw new Refusal(404, 'Not found');
+        // A scripted panel runs in a sandboxed (opaque-origin) frame, and browsers fetch fonts and
+        // CSS mask images with CORS: without this header they never load there.
+        if (CORS_EXTENSIONS.has(extension(rel))) res.setHeader('Access-Control-Allow-Origin', '*');
         send(res, 200, TYPES[extension(rel)]!, readInside(options.projectDir, rel, servableProjectFile), head);
       } else {
         throw new Refusal(404, 'Not found');

@@ -33,6 +33,8 @@ beforeAll(async () => {
     writeFileSync(`${project}/${path}`, tree.bytes(path));
   }
   symlinkSync('../game/main.py', `${project}/prefabs/sneaky.json`);
+  mkdirSync(`${project}/ui/fonts`, { recursive: true });
+  writeFileSync(`${project}/ui/fonts/face.woff2`, new Uint8Array([0x77, 0x4f, 0x46, 0x32]));
   build = buildProject(project);
   engine = await bundleEngine();
   server = await startDevServer({
@@ -97,6 +99,21 @@ describe('parallax edit server', () => {
     expect(await (await get('/')).text()).toContain("panelFrame: '/engine/panel_frame.js'");
   });
 
+  it('serves project fonts and images to sandboxed panel frames, which fetch them with CORS', async () => {
+    const font = await get('/project/ui/fonts/face.woff2', { headers: { Origin: 'null' } });
+    expect(font.status).toBe(200);
+    expect(font.headers.get('content-type')).toBe('font/woff2');
+    expect(font.headers.get('access-control-allow-origin')).toBe('*');
+    // So are images, which a scripted panel's CSS may use as a mask (also a CORS fetch).
+    const image = await get('/project/assets/images/dot.png', { headers: { Origin: 'null' } });
+    expect(image.status).toBe(200);
+    expect(image.headers.get('access-control-allow-origin')).toBe('*');
+    // Other project files stay same-origin.
+    const data = await get('/project/prefabs/ball.prefab.json');
+    expect(data.status).toBe(200);
+    expect(data.headers.get('access-control-allow-origin')).toBeNull();
+  });
+
   it('serves the build: manifest, project module and compiled modules only', async () => {
     expect((await get('/build/manifest.json')).status).toBe(200);
     expect((await get('/build/project.js')).status).toBe(200);
@@ -152,7 +169,7 @@ describe('parallax edit server', () => {
     const png = await get('/project/assets/images/dot.png');
     expect(png.headers.get('content-type')).toBe('image/png');
     const { files } = (await (await get('/project-files.json')).json()) as { files: string[] };
-    expect(files).toEqual(['assets/images/dot.png', 'prefabs/ball.prefab.json', 'prefabs/camera.prefab.json', 'prefabs/floor.prefab.json', 'scenes/main/scene.json']);
+    expect(files).toEqual(['assets/images/dot.png', 'prefabs/ball.prefab.json', 'prefabs/camera.prefab.json', 'prefabs/floor.prefab.json', 'scenes/main/scene.json', 'ui/fonts/face.woff2']);
     for (const file of files) expect((await get(`/project/${file}`)).status).toBe(200);
   });
 
