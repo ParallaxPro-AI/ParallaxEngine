@@ -12,7 +12,10 @@
  *               "lane_width": 3.3, "sidewalk": 3.5, "curb": 0.15, "angle": 0, "curviness": 0.15,
  *               "merge": 0.12},
  *     "buildings": {"density": 0.85, "height": [8, 160], "falloff": 1.4, "floor_height": 3.4,
- *                   "interiors": 0.15},
+ *                   "interiors": 0.15, "walls": ["#e8b796", "#9fc7d6"], "roofs": ["#a8473a"]},
+ *                                       walls: the colors shop, apartment and house walls are
+ *                                       picked from (default: the style's brick, stucco and
+ *                                       siding); roofs: the colors of pitched roofs
  *     "districts": [{"name": "harbor", "kind": "industrial", "at": [-400, 200], "radius": 180}],
  *     "parks": 0.06,
  *     "exclude": [{"center": [x, z], "size": [w, d]}],  footprints the city leaves alone (hand-built places)
@@ -82,6 +85,10 @@ export interface BuildingSpec {
   readonly floorHeight: number;
   /** Share of buildings with an enterable ground floor. */
   readonly interiors: number;
+  /** Wall colors for shops, apartments and houses (sRGB 0..1, like the built-in palettes); null: the built-in palettes. */
+  readonly walls: readonly (readonly [number, number, number])[] | null;
+  /** Pitched-roof colors; null: the built-in palette. */
+  readonly roofs: readonly (readonly [number, number, number])[] | null;
 }
 
 export interface DistrictSpec {
@@ -171,7 +178,7 @@ export interface CitySpec {
 
 interface StylePreset {
   readonly roads: Omit<RoadSpec, 'laneWidth' | 'sidewalk' | 'curb' | 'angle'>;
-  readonly buildings: Omit<BuildingSpec, 'floorHeight' | 'interiors'>;
+  readonly buildings: Omit<BuildingSpec, 'floorHeight' | 'interiors' | 'walls' | 'roofs'>;
   readonly parks: number;
   /** The district every block outside downtown's reach becomes. */
   readonly base: DistrictKind;
@@ -330,7 +337,19 @@ export function readCitySpec(raw: Json, where = 'city'): CitySpec {
     merge: r.number(roadsObj, 'merge', '/roads', preset.roads.merge, 0, 0.6),
   };
 
-  const bObj = r.object(obj['buildings'], '/buildings', ['density', 'height', 'falloff', 'floor_height', 'interiors']);
+  const bObj = r.object(obj['buildings'], '/buildings', ['density', 'height', 'falloff', 'floor_height', 'interiors', 'walls', 'roofs']);
+  const palette = (key: 'walls' | 'roofs'): (readonly [number, number, number])[] | null => {
+    const raw = bObj[key];
+    if (raw === undefined || raw === null) return null;
+    const fix = `Write "${key}": ["#e8b796", "#9fc7d6"].`;
+    if (!Array.isArray(raw) || raw.length === 0) r.bad(`/buildings/${key}`, 'must be a non-empty list of "#rrggbb" colors', fix);
+    return (raw as Json[]).map((c, i) => {
+      const m = typeof c === 'string' ? /^#([0-9a-fA-F]{6})$/.exec(c) : null;
+      if (m === null) r.bad(`/buildings/${key}/${i}`, `${JSON.stringify(c)} is not a "#rrggbb" color`, fix);
+      const n = parseInt(m![1]!, 16);
+      return [((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255] as const;
+    });
+  };
   const height = r.pair(bObj['height'], '/buildings/height', preset.buildings.height, 'edge, downtown');
   if (height[0] < 3 || height[1] < height[0] || height[1] > 600) r.bad('/buildings/height', 'must be [edge, downtown] with 3 <= edge <= downtown <= 600', 'Write "height": [10, 150].');
   const buildings: BuildingSpec = {
@@ -339,6 +358,8 @@ export function readCitySpec(raw: Json, where = 'city'): CitySpec {
     falloff: r.number(bObj, 'falloff', '/buildings', preset.buildings.falloff, 0.2, 5),
     floorHeight: r.number(bObj, 'floor_height', '/buildings', 3.4, 2.6, 6),
     interiors: r.number(bObj, 'interiors', '/buildings', 0.12, 0, 1),
+    walls: palette('walls'),
+    roofs: palette('roofs'),
   };
 
   const districts = r.list(obj, 'districts', '').map((raw, i): DistrictSpec => {

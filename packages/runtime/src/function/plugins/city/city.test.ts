@@ -75,6 +75,24 @@ describe('city plan', () => {
     expect(gap).toBeLessThan(12);
   });
 
+  it('paints shops, flats and houses from the block\'s wall colors, and pitched roofs from its roof colors', () => {
+    const walls = ['#ff0000', '#00ff00'];
+    const painted = generateCity(spec({ style: 'old_town', buildings: { walls, roofs: ['#0000ff'] },
+      districts: [{ name: 'hill', kind: 'suburban', at: [150, 100], radius: 120 }] }), 0);
+    const red: readonly number[] = [1, 0, 0];
+    const green: readonly number[] = [0, 1, 0];
+    const kinds = new Set(['commercial', 'residential', 'suburban']);
+    const colored = painted.buildings.filter((b) => kinds.has(b.district) && b.archetype !== 'spire');
+    expect(colored.length).toBeGreaterThan(20);
+    for (const b of colored) expect([red, green]).toContainEqual([...b.wall]);
+    const houses = painted.buildings.filter((b) => b.archetype === 'house');
+    expect(houses.length).toBeGreaterThan(0);
+    for (const b of houses) expect([...b.roofColor]).toEqual([0, 0, 1]);
+    // the default palettes stay when the block names none
+    expect(generateCity(spec({ style: 'old_town' }), 0).buildings.some((b) => b.wall[0] !== 1 && b.wall[1] !== 1)).toBe(true);
+    expect(() => readCitySpec({ seed: 1, area: AREA, buildings: { walls: ['red'] } } as never)).toThrow(/walls\/0/);
+  });
+
   it('is deterministic from the seed', () => {
     expect(digest(generateCity(s, 0))).toBe(digest(layout));
     expect(digest(generateCity({ ...s, seed: 12 }, 0))).not.toBe(digest(layout));
