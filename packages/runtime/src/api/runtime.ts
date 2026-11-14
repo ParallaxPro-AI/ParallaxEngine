@@ -203,7 +203,17 @@ function engineView(fields: Fields, refs: ReadonlyMap<string, EngineRef>, dicts:
     get(target, key) {
       if (key === 'entity' && !('entity' in target)) return wrap(componentEntity(target));
       const ref = typeof key === 'string' ? refs.get(key) : undefined;
-      const value = Reflect.get(target, key, target) as unknown;
+      let value = Reflect.get(target, key, target) as unknown;
+      // A method named like a field (`Dungeon.rooms` the count, `Dungeon.rooms()` the rooms):
+      // a Python class has one attribute per name, and the SDK's is the method. The field is
+      // still written by assignment, prefab data and the component's constructor.
+      if (typeof value !== 'function' && typeof key === 'string') {
+        const methods = Object.getPrototypeOf(target) as object | null;
+        if (methods !== null && methods !== Object.prototype && Object.prototype.hasOwnProperty.call(methods, key)) {
+          const method = Reflect.get(methods, key, target) as unknown;
+          if (typeof method === 'function') value = method;
+        }
+      }
       // A dict field (stored as a JSON object) reads as a Python dict: a new one each time,
       // like lists, so change one by assigning a dict.
       if (typeof key === 'string' && dicts.has(key) && isPlainRecord(value)) return PyDict.from(Object.entries(value));
