@@ -293,7 +293,7 @@ export class DeviceState {
       if (Math.hypot(pad.axes.leftX, pad.axes.leftY) > 0.5 || Math.hypot(pad.axes.rightX, pad.axes.rightY) > 0.5) return 'gamepad';
     }
     if (seat.keyboard && (s.keysPressed.length > 0 || s.keys.size > 0)) return 'keyboard';
-    if (seat.mouse && s.pointer.pressed.length > 0) return 'keyboard';
+    if (seat.mouse && s.pointer.pressed.length > 0) return s.pointer.touch === true && seat.touch ? 'touch' : 'keyboard';
     return undefined;
   }
 }

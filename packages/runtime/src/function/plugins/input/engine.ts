@@ -432,7 +432,9 @@ export class InputEngine {
   }
 
   device(reader: Reader = SYSTEM_READER): Device {
-    return this.#lastDevice.get(reader.seat) ?? (this.#seat(reader.seat).gamepad !== null && !this.#seat(reader.seat).keyboard ? 'gamepad' : 'keyboard');
+    const seat = this.#seat(reader.seat);
+    const fallback: Device = this.#state.snapshot.touchScreen === true && seat.touch ? 'touch' : seat.gamepad !== null && !seat.keyboard ? 'gamepad' : 'keyboard';
+    return this.#lastDevice.get(reader.seat) ?? fallback;
   }
 
   rumble(strength: number, seconds: number, reader: Reader = SYSTEM_READER, pattern?: readonly (readonly [number, number])[]): void {

@@ -70,6 +70,8 @@ export interface PointerSnapshot {
   readonly wheel: number;
   /** The last press landed on a UI panel (the adapter hit-tests panels). */
   readonly pressedOverUi: boolean;
+  /** The pointer is a finger (its last press was a touch, not a mouse). */
+  readonly touch?: boolean;
 }
 
 /**
@@ -95,6 +97,11 @@ export interface InputSnapshot {
   readonly gamepads: readonly (GamepadSnapshot | null)[];
   readonly pointer: PointerSnapshot;
   readonly touch: ReadonlyMap<string, TouchControlSnapshot>;
+  /**
+   * The screen takes touches (the platform draws touch controls there): a seat that can
+   * touch reads as on a touch device until it uses keys, a pad or the mouse.
+   */
+  readonly touchScreen?: boolean;
   /** Characters typed since the last poll. */
   readonly text: string;
 }
