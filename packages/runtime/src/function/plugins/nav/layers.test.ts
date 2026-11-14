@@ -315,6 +315,28 @@ describe('tiled rebuilds and dynamic obstacles', () => {
     expect(grid.dirtySince(generation, { minX: -20, maxX: -18, minZ: -20, maxZ: -18 })).toBe(false);
   });
 
+  it('re-indexing a static collider that has not changed (another component changed) logs nothing and rebuilds nothing', () => {
+    const { kernel } = start(sceneDoc('open', [place('floor', [0, 0, 0])]));
+    const obstacles = new Obstacles();
+    for (const record of kernel.world.live()) obstacles.update(record);
+    const wall = kernel.spawn('wall', { at: [10, 0, 10], rotation: [0, 90, 0] });
+    obstacles.update(kernel.world.require(wall.id));
+    const grid = new NavGrid(0.25, obstacles, () => null);
+    grid.columns(40, 40);
+    const revision = obstacles.revision;
+    const generation = grid.generation;
+    const before = grid.rebuilt;
+    for (let i = 0; i < 5; i++) obstacles.update(kernel.world.require(wall.id));
+    expect(obstacles.revision).toBe(revision);
+    expect(grid.generation).toBe(generation);
+    expect(grid.rebuilt).toBe(before);
+    // Moving it is still a change.
+    kernel.world.require(wall.id).transform.position = new Vec3(12, 0, 10);
+    obstacles.update(kernel.world.require(wall.id));
+    expect(obstacles.revision).toBeGreaterThan(revision);
+    expect(grid.dirtySince(generation, { minX: 11, maxX: 13, minZ: 9, maxZ: 11 })).toBe(true);
+  });
+
   it('a NavObstacle (a kinematic crate) moved across a walking agent\'s path: the agent re-plans around it', () => {
     const { kernel, byPrefab } = start(sceneDoc('yard', [place('floor', [0, 0, 0]), place('crate', [0, 0, 30]), place('walker', [-8, 0, 0])]));
     const [crate] = byPrefab('crate');
