@@ -281,8 +281,9 @@ const DEFAULT_MATERIALS: Readonly<Record<string, Partial<MaterialSpec>>> = {
 function material(id: string, spec: MaterialSpec, extra: { blend?: boolean; doubleSided?: boolean; unlit?: boolean } = {}): GeneratedMaterial {
   const normal = spec.normal ?? null;
   return {
-    id: `procgen|${id}|${spec.color.join(',')}|${spec.texture ?? ''}|${normal ?? ''}|${spec.roughness}|${spec.metallic}|${extra.doubleSided === true}|${extra.unlit === true}`,
+    id: `procgen|${id}|${spec.color.join(',')}|${spec.texture ?? ''}|${normal ?? ''}|${spec.roughness}|${spec.metallic}|${extra.doubleSided === true}|${extra.unlit === true}|${spec.emissive?.join(',') ?? ''}`,
     color: spec.color, texture: spec.texture, ...(normal !== null && { normal }), roughness: spec.roughness, metallic: spec.metallic,
+    ...(spec.emissive !== undefined && { emissive: spec.emissive }),
     blend: extra.blend ?? spec.color[3] < 1, doubleSided: extra.doubleSided ?? false, unlit: extra.unlit ?? false,
   };
 }
@@ -442,7 +443,8 @@ export function procgen(): ProcgenPlugin {
           start: layer['start'] as number, end: (layer['end'] as number | null) ?? undefined, caps: layer['caps'] as boolean,
           stripe: stripe ?? undefined, colors: stripe === null ? [rgba(layer['color'])] : colors,
         };
-        const spec = materialOf({ color: { r: 1, g: 1, b: 1, a: 1 }, texture: layer['texture'], roughness: layer['roughness'], metallic: layer['metallic'] });
+        const spec = materialOf({ color: { r: 1, g: 1, b: 1, a: 1 }, texture: layer['texture'], roughness: layer['roughness'], metallic: layer['metallic'],
+          emissive: layer['emissive'], emissive_strength: layer['emissive_strength'] });
         const opts = { collide: layer['collide'] as boolean, shadows: layer['shadows'] as boolean, doubleSided: layer['double_sided'] as boolean,
           blend: base.colors.some((c) => c[3] < 1) };
         add(`sweep:${i}`, sweepLayer(line, { ...base, offset: [offset.x, offset.y] }), spec, opts);

@@ -36,6 +36,7 @@ export const GeneratedPiece = componentHandle({ id: PIECE, schema: PIECE_SCHEMA 
 class ProcMaterialFields {
   static readonly __annotations__ = {
     color: () => Color, texture: () => rt.str, normal_map: () => rt.str, tile: () => rt.float, roughness: () => rt.float, metallic: () => rt.float,
+    emissive: () => Color, emissive_strength: () => rt.float,
   };
   static readonly color = Color.hex('#9a9a9a');
   static readonly texture = '';
@@ -43,6 +44,8 @@ class ProcMaterialFields {
   static readonly tile = 1;
   static readonly roughness = 0.85;
   static readonly metallic = 0;
+  static readonly emissive = Color.hex('#000000');
+  static readonly emissive_strength = 1;
 }
 /** How a generated part looks: `ProcMaterial(color=Color.hex("#d8cfc0"), texture="assets/images/brick.png", tile=2)`. */
 export const ProcMaterial = record(ProcMaterialFields);
@@ -53,6 +56,7 @@ class SweepPartFields {
     color: () => Color, colors: () => rt.list(Color), stripe: () => rt.optional(rt.float), texture: () => rt.str, uv_length: () => rt.float,
     uv_width: () => rt.optional(rt.float), start: () => rt.float, end: () => rt.optional(rt.float), caps: () => rt.bool, collide: () => rt.bool,
     shadows: () => rt.bool, double_sided: () => rt.bool, roughness: () => rt.float, metallic: () => rt.float,
+    emissive: () => Color, emissive_strength: () => rt.float,
   };
   static readonly profile = 'road';
   static readonly width = null;
@@ -73,6 +77,8 @@ class SweepPartFields {
   static readonly double_sided = false;
   static readonly roughness = 0.85;
   static readonly metallic = 0;
+  static readonly emissive = Color.hex('#000000');
+  static readonly emissive_strength = 1;
 }
 /** One profile of a Sweep: `SweepPart(profile="kerb", offset=Vec2(5.5, 0), mirror=True, stripe=2, colors=[...])`. */
 export const SweepPart = record(SweepPartFields);

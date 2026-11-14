@@ -44,6 +44,8 @@ export const MATERIAL_RECORD: Schema = {
   tile: t.number({ default: 1, min: 0 }),
   roughness: t.number({ default: 0.85, min: 0, max: 1 }),
   metallic: t.number({ default: 0, min: 0, max: 1 }),
+  emissive: t.color({ default: Color.hex('#000000') }),
+  emissive_strength: t.number({ default: 1, min: 0 }),
 };
 
 export const SPLINE_SCHEMA: Schema = {
@@ -80,6 +82,8 @@ export const SWEEP_PART_RECORD: Schema = {
   double_sided: t.bool({ default: false }),
   roughness: t.number({ default: 0.85, min: 0, max: 1 }),
   metallic: t.number({ default: 0, min: 0, max: 1 }),
+  emissive: t.color({ default: Color.hex('#000000') }),
+  emissive_strength: t.number({ default: 1, min: 0 }),
 };
 
 export const SWEEP_SCHEMA: Schema = {
@@ -318,6 +322,8 @@ export interface MaterialSpec {
   readonly tile: number;
   readonly roughness: number;
   readonly metallic: number;
+  /** Light it gives off (emissive color × emissive_strength, linear, unbounded); absent: none. */
+  readonly emissive?: readonly [number, number, number];
 }
 
 export function rgba(value: unknown): [number, number, number, number] {
@@ -336,7 +342,16 @@ export function materialOf(fields: Fields | undefined, fallback: Partial<Materia
     tile: (f['tile'] as number | undefined) ?? fallback.tile ?? 1,
     roughness: (f['roughness'] as number | undefined) ?? fallback.roughness ?? 0.85,
     metallic: (f['metallic'] as number | undefined) ?? fallback.metallic ?? 0,
+    ...emissiveSpec(f, fallback.emissive),
   };
+}
+
+/** `emissive` × `emissive_strength` from a material's fields; a black (or absent) emissive keeps the fallback's. */
+function emissiveSpec(f: Fields, fallback: MaterialSpec['emissive']): { emissive?: readonly [number, number, number] } {
+  const c = f['emissive'] as Color | undefined;
+  const k = (f['emissive_strength'] as number | undefined) ?? 1;
+  if (c === undefined || (c.r === 0 && c.g === 0 && c.b === 0) || k === 0) return fallback === undefined ? {} : { emissive: fallback };
+  return { emissive: [c.r * k, c.g * k, c.b * k] };
 }
 
 /** Where a spec came from, for messages: "entity 12 spline". */
