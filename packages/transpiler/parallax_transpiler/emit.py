@@ -959,6 +959,15 @@ class ModuleEmitter:
         attr = self.attr_name(node)
         if receiver and attr not in N.JS_PROTOTYPE_NAMES:
             return f"{obj}.{attr}"
+        if attr not in N.JS_PROTOTYPE_NAMES and not attr.startswith("__") and _is_identifier(attr):
+            # A data field of a compiled Python class's instance is read in place, where the JS
+            # engine can cache the lookup (`self.x` in a game's inner loop). Everything else
+            # (engine objects, lists, strings, None, methods to bind, class attributes, missing
+            # names to report) takes $rt.attr, which gives the same value or error.
+            o, v = self.temp(), self.temp()
+            return (f"(({o} = {obj}) !== null && typeof {o} === \"object\" && {o}[{RT}.PY_INSTANCE] === true && "
+                    f"({v} = {o}.{attr}) !== undefined && typeof {v} !== \"function\" ? {v} : "
+                    f"{RT}.attr({o}, {json.dumps(attr)}))")
         return f"{RT}.attr({obj}, {json.dumps(attr)})"
 
     def check_renamed(self, node: ast.AST, module: str, name: str) -> None:
@@ -1347,6 +1356,11 @@ def _is_super_call(node: ast.expr) -> bool:
 
 def _is_none(node: ast.expr) -> bool:
     return isinstance(node, ast.Constant) and node.value is None
+
+
+def _is_identifier(name: str) -> bool:
+    """Usable as a JS dotted property name as it is."""
+    return name.isidentifier() and name.isascii()
 
 
 def _is_str_literal(node: ast.expr) -> bool:

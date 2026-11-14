@@ -318,8 +318,16 @@ export function class_attr(cls: Any, name: string, value: unknown): void {
   });
 }
 
+/**
+ * Marks instances of compiled Python classes (set on each class's prototype by `class_info`):
+ * an attribute read `o.x` on one is tried in place before `attr` (emit.py), since its own
+ * data fields are exactly what Python sees.
+ */
+export const PY_INSTANCE: unique symbol = Symbol('parallax.py_instance');
+
 export function class_info(cls: Any, qualname: string): void {
   Object.defineProperty(cls, '__qualname__', { value: qualname, writable: true, enumerable: false, configurable: true });
+  if (cls.prototype[PY_INSTANCE] !== true) Object.defineProperty(cls.prototype, PY_INSTANCE, { value: true, enumerable: false });
 }
 
 /** A class that defines `__eq__` without `__hash__` is unhashable, as in Python. */

@@ -80,6 +80,19 @@ class Imports(unittest.TestCase):
 
 
 class Classes(unittest.TestCase):
+    def test_attribute_reads_try_a_compiled_instance_in_place(self) -> None:
+        out = js("""
+            def f(o):
+                return o.speed
+        """)
+        # A compiled class's instance (marked by $rt.class_info) has its data field read in
+        # place; anything else, or a method, a missing name or undefined, goes through $rt.attr.
+        self.assertRegex(out, r'\(\(\$t\d+ = o\) !== null && typeof \$t\d+ === "object" && \$t\d+\[\$rt\.PY_INSTANCE\] === true && '
+                              r'\(\$t\d+ = \$t\d+\.speed\) !== undefined && typeof \$t\d+ !== "function" \? \$t\d+ : '
+                              r'\$rt\.attr\(\$t\d+, "speed"\)\)')
+        # Names JS objects already have always take $rt.attr.
+        self.assertIn('$rt.attr(o, "name")', js("def f(o):\n    return o.name"))
+
     def test_annotations_statics_and_decorators(self) -> None:
         out = js("""
             from parallax import Behavior, ContentRef, behavior, param, state

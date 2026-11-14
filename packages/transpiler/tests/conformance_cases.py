@@ -399,6 +399,43 @@ for call in (lambda: f(), lambda: f(1, 2, 3, c=1, b=2), lambda: kwonly(1), lambd
         print("TypeError", e)
 ''')
 
+case("attribute_reads", r'''
+class Base:
+    kind = "base"
+
+    def __init__(self):
+        self.speed = 2.5
+        self.target = None
+        self.on_hit = lambda n: n * 2
+
+    def describe(self):
+        return f"{self.kind} at {self.speed}"
+
+    @property
+    def doubled(self):
+        return self.speed + 1
+
+
+class Fast(Base):
+    kind = "fast"
+
+
+b = Base()
+f = Fast()
+print(b.speed, b.target, b.on_hit(4), b.kind, f.kind, b.doubled, f.speed)
+m = b.describe
+print(m(), f.describe())
+b.kind = "own"
+b.speed = 0
+print(b.kind, Base.kind, b.speed, b.describe())
+for receiver in (b, None, [1, 2], "ab", 3):
+    try:
+        print(receiver.missing)
+    except AttributeError as e:
+        print("AttributeError", e)
+print([1, 2].append is not None, "ab".upper(), "x".join(["a", "b"]))
+''')
+
 case("classes", r'''
 class Animal:
     kind = "animal"
