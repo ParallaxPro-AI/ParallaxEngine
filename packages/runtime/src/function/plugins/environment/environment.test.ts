@@ -113,6 +113,17 @@ describe('environment block', () => {
     expect(fails({ fog: { density: 0.01, volumetric: 1.5 } }).diagnostic.pointer).toBe('/environment/fog');
   });
 
+  it('reads a stylize halftone and refuses one out of range', () => {
+    const spec = readEnvironmentSpec(sceneDoc('h', { post: { preset: 'comic', stylize: { halftone: 6 } } }));
+    expect(spec.post.fields).toMatchObject({ halftone: 6 });
+    const fails = (block: JsonObject): ParallaxError => {
+      try { readEnvironmentSpec(sceneDoc('s', block)); } catch (e) { return e as ParallaxError; }
+      throw new Error('accepted');
+    };
+    expect(fails({ post: { stylize: { halftone: 64 } } }).diagnostic.pointer).toBe('/environment/post/stylize/halftone');
+    expect(fails({ post: { halftone: 4 } }).diagnostic.fix).toContain('"stylize"');
+  });
+
   it('reads every post setting and fog volumetric', () => {
     const spec = readEnvironmentSpec(sceneDoc('p', {
       fog: { density: 0.01, volumetric: 0.6 },

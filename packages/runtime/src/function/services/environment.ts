@@ -58,6 +58,8 @@ export interface PostSettings {
   readonly chromaticAberration: number;
   readonly pixelate: number;
   readonly posterize: number;
+  /** Halftone dot cell in pixels (0: none). */
+  readonly halftone: number;
   readonly toon: number;
   readonly edges: number;
   readonly edgeColor: Color;
