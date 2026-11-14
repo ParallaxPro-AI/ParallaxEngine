@@ -193,6 +193,12 @@ describe('hud models', () => {
     expect(behind.on_screen).toBe(false);
   });
 
+  it('marker distances read from the player, not from a camera hanging far behind it', () => {
+    const r = rig(WORLD, { camera: new Vec3(0, 40, -60) });
+    r.kernel.world.get(r.id('goal'))!.transform.position = new Vec3(0, 0, 12);
+    expect(r.plugin.engine.markers(0).markers[0]!.distance).toBe('12 m');
+  });
+
   it('distances read in metres then kilometres past 1000 m (or feet then miles)', () => {
     expect([12.4, 999.4, 999.6, 1234, 9940, 12_600].map((m) => formatDistance(m))).toEqual(['12 m', '999 m', '1.0 km', '1.2 km', '9.9 km', '13 km']);
     expect([10, 304, 1609.344, 20_000].map((m) => formatDistance(m, 'imperial'))).toEqual(['33 ft', '997 ft', '1.0 mi', '12 mi']);
