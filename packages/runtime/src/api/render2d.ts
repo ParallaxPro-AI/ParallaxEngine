@@ -61,11 +61,16 @@ export class VfxApi {
     });
   }
 
-  /** beam(start, end, *, color=None, width=0.05, seconds=0.1) — a short-lived line (tracers, lasers). */
+  /**
+   * beam(start, end, *, color=None, width=0.05, seconds=0.1, intensity=1) — a short-lived line (tracers,
+   * lasers). `intensity` is the SDK's 3D bloom knob: checked, then ignored by the 2D line, so one call
+   * works in both modes.
+   */
   beam(...args: unknown[]): void {
     const a = bindArgs('beam', args, {
-      positional: ['start', 'end'], keyword: ['color', 'width', 'seconds'], required: ['start', 'end'],
+      positional: ['start', 'end'], keyword: ['color', 'width', 'seconds', 'intensity'], required: ['start', 'end'],
     }).args;
+    if (!(number(a['intensity'], 1, 'vfx.beam intensity') >= 0)) fail('PP3600', 'vfx.beam intensity can\'t be negative');
     this.#engine.beam(point(a['start'], 'vfx.beam start'), point(a['end'], 'vfx.beam end'), {
       color: color(a['color'], 'vfx.beam color'),
       width: number(a['width'], 0.05, 'vfx.beam width'),

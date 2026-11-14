@@ -72,16 +72,20 @@ describe('ctx.vfx', () => {
     expect(error(() => vfx.play(sparks, kw({ at: new Vec2(), direction: Vec2.ZERO })))).toBe('PP3600');
     expect(error(() => vfx.play(new EffectRef('vfx/nope'), kw({ at: new Vec2() })))).toBe('PP2063');
     expect(error(() => vfx.trail(block(kernel), kw({ width: 0 })))).toBe('PP3600');
+    expect(error(() => vfx.beam(new Vec2(0, 0), new Vec2(2, 0), kw({ intensity: -1 })))).toBe('PP3600');
   });
 
   it('draws beams and returns a trail handle', () => {
     const { kernel, surface, vfx } = game();
     vfx.beam(new Vec2(0, 0), new Vec3(1, 1, 0), kw({ color: Color.YELLOW, width: 0.1 }));
+    // The SDK's intensity= (a 3D bloom knob) is accepted in 2D too, so one call serves both modes.
+    vfx.beam(new Vec2(0, 0), new Vec2(2, 0), kw({ width: 0.2, intensity: 2 }));
     const trail = vfx.trail(block(kernel));
     expect(trail).toBeInstanceOf(Handle);
     kernel.step(1 / 60);
     expect(surface.last!.commands.filter((c) => c.kind === 'line')).toEqual([
       expect.objectContaining({ points: [0, 0, 1, 1], width: 0.1, color: [1, 1, 0, 1] }),
+      expect.objectContaining({ points: [0, 0, 2, 0], width: 0.2 }),
     ]);
     trail.cancel();
     expect(trail.active).toBe(false);
