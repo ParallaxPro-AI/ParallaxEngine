@@ -136,6 +136,19 @@ describe('drivetrain (pure)', () => {
     stepDrivetrain(d, back, { throttle: -1, speed: 0, radius: 0.33, dt: d.shift_time });
     expect(stepDrivetrain(d, back, { throttle: -1, speed: 0, radius: 0.33, dt: DT }).force).toBeLessThan(0);
   });
+
+  it('a low-revving engine launches at its own launch_rpm, below its redline', () => {
+    const lowRev = { ...d, idle_rpm: 600, peak_rpm: 1300, redline_rpm: 2100, launch_rpm: 1100 } as DrivetrainFields;
+    const s = freshDrivetrain(lowRev);
+    const out = stepDrivetrain(lowRev, s, { throttle: 1, speed: 0, radius: 0.5, dt: DT });
+    expect(s.rpm).toBeCloseTo(1100, 6);
+    expect(out.force).toBeGreaterThan(0);
+    // Without launch_rpm the default (2600) is past this redline: the clutch still bites below it.
+    const legacy = { ...lowRev, launch_rpm: undefined } as DrivetrainFields;
+    const t = freshDrivetrain(legacy);
+    expect(stepDrivetrain(legacy, t, { throttle: 1, speed: 0, radius: 0.5, dt: DT }).force).toBeGreaterThan(0);
+    expect(t.rpm).toBeLessThan(legacy.redline_rpm);
+  });
 });
 
 describe('cars with a drivetrain', () => {
