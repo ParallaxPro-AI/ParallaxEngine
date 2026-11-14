@@ -208,6 +208,23 @@ describe('rivers', () => {
     expect(g.control.heightAt(10, 50)).toBeUndefined();
   });
 
+  it('end where their course ends: no water, and no current, past the source or the mouth', () => {
+    const straight = riverCourse([new Vec3(0, 0, 0), new Vec3(0, 0, 10), new Vec3(0, 0, 20)]);
+    // Past the mouth or the source, even on the river's own line, is off the river (it ends square).
+    expect(riverSpot(straight, 0, 35).across).toBe(Infinity);
+    expect(riverSpot(straight, 0.5, -0.5).across).toBe(Infinity);
+    // Inside, across is the distance to the course, signed by side.
+    expect(riverSpot(straight, -1.5, 19.5).across).toBeCloseTo(-1.5, 6);
+    const g = game({ river }, [{ prefab: 'river', at: [0, 0, 0] }]);
+    expect(g.control.heightAt(0, 50)).toBeCloseTo(-2, 1);
+    expect(g.control.heightAt(0, 130)).toBeUndefined();
+    expect(g.control.heightAt(0, -30)).toBeUndefined();
+    expect(g.control.heightAt(1, -2)).toBeUndefined();
+    expect(g.control.flowAt(new Vec3(0, -4, 130)).length()).toBe(0);
+    // Just inside the mouth it is still water.
+    expect(g.control.heightAt(0, 99)).toBeCloseTo(-4, 1);
+  });
+
   it('carry a floating crate downstream toward the current', () => {
     const crate = { components: { rigidbody: { mass: 200 }, collider: { shape: 'box', size: [1, 1, 1] }, buoyancy: { drag: 1.5 } } };
     const g = game({ river, crate }, [{ prefab: 'river', at: [0, 0, 0] }, { prefab: 'crate', id: 'crate', at: [0, -1, 10] }]);
