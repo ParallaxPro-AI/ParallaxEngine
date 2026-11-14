@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { ParallaxError, Vec3 } from '../core/index.js';
+import { Color, ParallaxError, Vec3 } from '../core/index.js';
+import { TERRAIN_SERVICE } from '../function/services/index.js';
 import type { JsonObject, Project, SceneDoc } from '../resource/index.js';
 import { Kernel } from '../function/kernel/index.js';
 import type { GameDefinition, KernelPlugin } from '../function/kernel/index.js';
@@ -57,6 +58,29 @@ describe('ctx.terrain', () => {
     expect(t.is_hole(new Vec3(30.5, 0, -30.5))).toBe(true);
     expect(code(() => t.crater(new Vec3(0, 0, 0), -1))).toBe('PP3205');
     expect(code(() => t.crater(new Vec3(0, 0, 0), 2, kw({ layer: 'lava' })))).toBe('PP3206');
+  });
+
+  it('tints a layer over game time, and saves the tint by layer name', () => {
+    const { kernel, ns } = run([terrain()], [scene('t', { terrain: { ...GROUND, layers: ['grass', { name: 'scorch', tint: [0.5, 0.5, 0.5] }, 'road'] } })]);
+    const t = ns['terrain'] as TerrainApi;
+    const service = kernel.service(TERRAIN_SERVICE);
+    expect(service.tintAt!(1, kernel.time.now)).toEqual([0.5, 0.5, 0.5]);
+    expect(service.tintAt!(0, kernel.time.now)).toEqual([1, 1, 1]);
+    t.tint('scorch', new Color(1, 1.5, 1), kw({ seconds: 2 }));
+    const start = kernel.time.now;
+    expect(service.tintAt!(1, start)).toEqual([0.5, 0.5, 0.5]);
+    const mid = service.tintAt!(1, start + 1);
+    expect(mid[1]).toBeGreaterThan(0.5);
+    expect(mid[1]).toBeLessThan(1.5);
+    expect(service.tintAt!(1, start + 2)).toEqual([1, 1.5, 1]);
+    t.crater(new Vec3(-20, 0, 20), 5, kw({ depth: 2, layer: 'scorch' }));
+    const snapshot = kernel.snapshot();
+    expect(snapshot.plugins['terrain']).toMatchObject({ tints: { scorch: [1, 1.5, 1] } });
+    kernel.restore(snapshot);
+    expect(service.tintAt!(1, kernel.time.now)).toEqual([1, 1.5, 1]);
+    expect(t.height_at(new Vec3(-20, 0, 20))).toBeCloseTo(0, 5);
+    expect(code(() => t.tint('lava', new Color(1, 1, 1)))).toBe('PP3206');
+    expect(code(() => t.tint('scorch', 'green'))).toBe('PP3202');
   });
 });
 

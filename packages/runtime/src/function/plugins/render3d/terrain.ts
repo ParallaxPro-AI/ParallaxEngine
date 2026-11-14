@@ -95,14 +95,14 @@ function morphMax(tile: TerrainTile): number {
   return hi;
 }
 
-export function terrainMaterials(field: TerrainField, texture: (path: string) => Texture3d): TerrainMaterial3d[] {
+export function terrainMaterials(field: TerrainField, texture: (path: string) => Texture3d, tintOf?: (layer: number) => Rgb): TerrainMaterial3d[] {
   return field.layers.map((layer, i) => ({
     texture: layer.texture === null ? null : texture(layer.texture),
     normal: layer.texture === null || layer.normal === null ? null : texture(layer.normal),
     recolor: layer.texture !== null && layer.color !== null,
     tile: layer.tile,
     color: layer.color ?? NAMED_LAYER_COLORS[layer.name] ?? UNTEXTURED_LAYER_COLORS[i]!,
-    tint: layer.tint,
+    tint: tintOf?.(i) ?? layer.tint,
     roughness: layer.roughness,
     detail: layer.detail === null ? null : texture(layer.detail.texture),
     detailTile: layer.detail?.tile ?? 1,
@@ -139,7 +139,7 @@ export class TerrainDraws {
   }
 
   draw(field: TerrainField, tiles: TerrainTiles, views: readonly View3d[], quality: Quality3d, texture: (path: string) => Texture3d,
-    splatMap: TerrainSplatMap | null = null): Terrain3d {
+    splatMap: TerrainSplatMap | null = null, tintOf?: (layer: number) => Rgb): Terrain3d {
     const selected = selectTiles({
       levels: tiles.levels,
       originX: tiles.originX,
@@ -170,7 +170,7 @@ export class TerrainDraws {
     });
     const st = tiles.stats;
     this.#stats = { tiles: out.length, byLevel, resident: st.resident, pending: st.pending };
-    return { tiles: out, materials: terrainMaterials(field, texture), waterLevel: field.waterLevel, splat: this.#splat(field, splatMap) };
+    return { tiles: out, materials: terrainMaterials(field, texture, tintOf), waterLevel: field.waterLevel, splat: this.#splat(field, splatMap) };
   }
 
   #splat(field: TerrainField, s: TerrainSplatMap | null): TerrainSplat3d | null {

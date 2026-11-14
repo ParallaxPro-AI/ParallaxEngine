@@ -649,7 +649,9 @@ export class Render3dEngine {
     const meshes = [...batches.close(), ...merge.close()];
     if (field !== null) {
       const service = kernel.service(TERRAIN_SERVICE);
-      terrain = this.terrain.draw(field, service.tiles()!, views, quality, (ref) => this.#imageTexture(this.#authoredImage(ref, `Scene "${field.scene}" terrain texture`), 'repeat'), service.splatMap());
+      const tintAt = service.tintAt;
+      terrain = this.terrain.draw(field, service.tiles()!, views, quality, (ref) => this.#imageTexture(this.#authoredImage(ref, `Scene "${field.scene}" terrain texture`), 'repeat'), service.splatMap(),
+        tintAt === undefined ? undefined : (layer) => tintAt(layer, now));
       if (this.terrain.takeDropped()) {
         this.#warnOnce(`terrain-palette:${field.scene}`, 'PP3830',
           `Scene "${field.scene}" terrain: some tiles blend more than 4 layers; each draws its 4 strongest and folds the rest in`,

@@ -300,6 +300,14 @@ export interface TerrainService {
   /** The edits applied since the field was built, in order. */
   edits(): readonly TerrainEdit[];
   /**
+   * Blend layer `layer`'s tint (multiplying its color or texture) to `tint` over `seconds`
+   * of game time (`ctx.terrain.tint`): ground that turns green, scorches or ices over.
+   * Saved with the game. No terrain: PP3204.
+   */
+  tint?(layer: number, tint: Rgb3, seconds: number): void;
+  /** Layer `layer`'s tint at game time `now`: the authored one until `tint` changes it. */
+  tintAt?(layer: number, now: number): Rgb3;
+  /**
    * Bake every scene's terrain in the job runner (workers in a browser) ahead of time; boot
    * awaits it before the first frame, and scenes then load from those bakes (the same bits
    * as baking on this thread). Without a job runner it does nothing: scenes bake as they load.

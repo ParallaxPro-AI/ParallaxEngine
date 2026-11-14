@@ -49,7 +49,7 @@ rules, then paint, then paths, each blending over what is there (later wins). Ba
 deterministically: the same block gives the same ground on every machine.
 """
 
-from parallax import Vec3
+from parallax import Color, Vec3
 
 class TerrainApi:
     # Point queries read the column under `point` (its y is ignored).
@@ -70,6 +70,12 @@ class TerrainApi:
         """The id of the brush volume `point` is hidden in (inside its footprint, below its top), or None."""
     def hidden_by_brush(self, viewer: Vec3, target: Vec3) -> bool:
         """True when `target` is in a brush volume the `viewer` is not in (MOBA brush)."""
+
+    # Look: saved with the game.
+    def tint(self, layer: str, tint: Color, *, seconds: float = 0) -> None:
+        """Blend a material layer's tint (which multiplies its color or texture) to `tint` over
+        `seconds`: ground that greens as it heals, browns in a drought or scorches. White shows the
+        layer untinted; a layer's starting tint is its `"tint"` in the scene."""
 
     # Deformation: saved and replayed with the game; colliders, navigation and drawing follow.
     def crater(self, center: Vec3, radius: float, *, depth: float | None = None, rim: float = 0.0, layer: str | None = None) -> None:

@@ -16,7 +16,7 @@ import { barkTexture, encodePng, leafSprayTexture, stoneTexture } from './foliag
 import { growSkeleton, meshTree, TREE_SPECS } from './foliage_tree.js';
 import { meshRock, ROCK_SPECS } from './foliage_rock.js';
 import { bladeRamp, GRASS_REACH, patchGeometry, SEGMENTS, VARIANTS, variantFor } from './grass.js';
-import { FOLIAGE_SPECIES } from '../../services/index.js';
+import { FOLIAGE_SPECIES, TERRAIN_SERVICE } from '../../services/index.js';
 import { models } from '../models/index.js';
 import { render3d } from './index.js';
 import { windVisuals } from './wind_streaks.js';
@@ -163,6 +163,18 @@ describe('terrain, foliage, grass and wind in a frame', () => {
       }
     }
     expect(s.plugin.engine.grass.stats.brushPatches).toBeGreaterThan(20);
+  });
+
+  it('draws a layer with the tint ctx.terrain.tint blends it to', async () => {
+    const s = await world([0, 30, -150], [10, 0, 0]);
+    s.kernel.service(TERRAIN_SERVICE).tint!(1, [0.2, 0.9, 0.3], 1);
+    s.steps(30);
+    const mid = s.surface.last!.terrain!.materials[1]!.tint;
+    expect(mid[1]).toBeGreaterThan(0.95 - 0.5);
+    expect(mid[1]).toBeLessThan(1);
+    s.steps(40);
+    expect(s.surface.last!.terrain!.materials[1]!.tint).toEqual([0.2, 0.9, 0.3]);
+    expect(s.surface.last!.terrain!.materials[0]!.tint).toEqual([1, 1, 1]);
   });
 });
 
