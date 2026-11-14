@@ -3,6 +3,7 @@ from parallax.plugins import characters, hud, physics3d, screens, terrain
 from project import Scenes
 
 from game.systems.ball_in_air import BallInAir
+from game.lib.babble import Babble
 from game.lib.barks import Barks
 from game.systems.commentary import Commentary
 from game.systems.crew_barks import CrewBarks
@@ -34,6 +35,7 @@ game = Game(
         Commentary,
         CrewBarks,
         Barks,
+        Babble,
     ],
     start_scene=Scenes.court,
 )

@@ -1,0 +1,10 @@
+{
+  "id": "babble",
+  "summary": "Speech-like gibberish voices for any line of text in any script: synthesized syllables (formant vowels after plosive, nasal, fricative or liquid onsets) chosen by the text itself, with intonation from punctuation (questions rise, exclamations start high), moods, tone-language pitch, and a mouth-flap event per syllable.",
+  "version": "2026.11.01",
+  "setup": [
+    "List Babble in Game(systems=[...]) (from game.lib.babble import Babble).",
+    "Call speak(ctx, npc, \"Bonjour, ça va ?\", voice=\"hi\", mood=\"excited\") from game.lib.babble; it returns the line's seconds. Options: voice \"lo\"/\"hi\", pitch, rate, volume, mood (calm, excited, frustrated, sad, pleading, shout), tonal=True for tone languages.",
+    "Flap a mouth on Babbled(speaker, openness, loud); BabbleFinished(speaker) follows the last syllable. stop(ctx, npc) cuts a line off."
+  ]
+}

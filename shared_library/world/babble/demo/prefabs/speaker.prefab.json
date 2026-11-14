@@ -1,0 +1,6 @@
+{
+  "components": {
+    "shape": { "kind": "capsule", "size": [0.6, 1.7, 0.6] },
+    "particles": { "effect": "effect/sparkle", "emitting": false }
+  }
+}
