@@ -149,6 +149,23 @@ export interface Material3d {
    * `amount`, weighted by (local y ÷ `height`)². Absent: none. (Render3d foliage and grass.)
    */
   readonly wind?: { readonly amount: number; readonly height: number };
+  /**
+   * Screen-space refraction for a transmissive material (`layers.transmission` above 0,
+   * alphaMode 'blend'): instead of fading to alpha, the surface shows the scene's opaque
+   * color (copied at the start of the transparent pass) where `world + refract(-view,
+   * normal, 1 / ior) × thickness` lands on screen. `dispersion` (0..1) spreads the ior per
+   * channel (red bends less, blue more) so edges fringe. Transmitted light is tinted by the
+   * base color, more strongly at grazing angles (a longer path), and the lit specular is
+   * added on top. Absent: none (plain alpha transmission).
+   */
+  readonly refraction?: { readonly ior: number; readonly dispersion: number; readonly thickness: number };
+  /**
+   * Incandescence: the vertex color's alpha is temperature (0 cold .. 1 white-hot) instead
+   * of opacity. The surface glows blackbody colors (none below ~0.2, dark red, orange, then
+   * yellow-white) × this (linear; 4–12 blooms), and hot surfaces turn opaque (their
+   * refracted light fades out). Alpha is 1. Absent or 0: off.
+   */
+  readonly incandescence?: number;
 }
 
 /**

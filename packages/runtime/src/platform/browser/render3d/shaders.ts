@@ -572,6 +572,50 @@ ${mrt ? '  out.surface = vec4<f32>(0.0, 0.0, 1.0, 0.0);' : ''}
 `;
 }
 
+/**
+ * Glass (MATERIAL_FIELDS `glass`: ior, dispersion, thickness, incandescence; Material3d
+ * `refraction` and `incandescence`). `blackbody`: a heat 0..1 as emitted light — none
+ * below 0.2, then dark red, orange and yellow-white, growing steeply. `behindAt`: the
+ * scene copy (bound as the base texture for refractive materials) where the ray bent
+ * through the surface lands `thickness` meters on, projected into this view.
+ */
+const WGSL_GLASS = `
+fn blackbody(heat: f32) -> vec3<f32> {
+  let t = clamp((heat - 0.2) / 0.8, 0.0, 1.0);
+  var c = mix(vec3<f32>(1.0, 0.07, 0.01), vec3<f32>(1.0, 0.42, 0.07), smoothstep(0.0, 0.55, t));
+  c = mix(c, vec3<f32>(1.0, 0.86, 0.6), smoothstep(0.55, 1.0, t));
+  return c * t * t * (0.25 + 0.75 * t);
+}
+fn behindAt(world: vec3<f32>, n: vec3<f32>, v: vec3<f32>, ior: f32, thickness: f32) -> vec3<f32> {
+  var dir = refract(-v, n, 1.0 / ior);
+  if (dot(dir, dir) < 1e-6) { dir = -v; }
+  let clip = frame.viewProjection * vec4<f32>(world + dir * thickness, 1.0);
+  let ndc = clip.xy / max(clip.w, 1e-4);
+  var px = frame.viewport.xy + vec2<f32>(ndc.x + 1.0, 1.0 - ndc.y) * 0.5 * frame.viewport.zw;
+  px = clamp(px, frame.viewport.xy + vec2<f32>(0.5), frame.viewport.xy + frame.viewport.zw - vec2<f32>(0.5));
+  return textureSampleLevel(baseTexture, baseSampler, px * frame.targetSize.zw, 0.0).rgb;
+}
+`;
+
+const GLSL_GLASS = `
+vec3 blackbody(float heat) {
+  float t = clamp((heat - 0.2) / 0.8, 0.0, 1.0);
+  vec3 c = mix(vec3(1.0, 0.07, 0.01), vec3(1.0, 0.42, 0.07), smoothstep(0.0, 0.55, t));
+  c = mix(c, vec3(1.0, 0.86, 0.6), smoothstep(0.55, 1.0, t));
+  return c * t * t * (0.25 + 0.75 * t);
+}
+vec3 behindAt(vec3 world, vec3 n, vec3 v, float ior, float thickness) {
+  vec3 dir = refract(-v, n, 1.0 / ior);
+  if (dot(dir, dir) < 1e-6) dir = -v;
+  vec4 clip = viewProjection * vec4(world + dir * thickness, 1.0);
+  vec2 ndc = clip.xy / max(clip.w, 1e-4);
+  vec2 px = viewport.xy + vec2(ndc.x + 1.0, 1.0 - ndc.y) * 0.5 * viewport.zw;
+  px = clamp(px, viewport.xy + vec2(0.5), viewport.xy + viewport.zw - vec2(0.5));
+  // The copy was drawn through a framebuffer: its row 0 is the bottom.
+  return textureLod(baseTexture, vec2(px.x, targetSize.y - px.y) * targetSize.zw, 0.0).rgb;
+}
+`;
+
 function wgslMesh(skinned: boolean, mrt: boolean): string {
   return `${WGSL_FRAME}${WGSL_COMMON}${WGSL_SHADOWS}${WGSL_LIGHTING}${skinned ? WGSL_SKIN : ''}${wgslOutputs(mrt)}
 ${wgslStruct('Material', MATERIAL_FIELDS)}
@@ -588,7 +632,7 @@ ${WGSL_FOLIAGE_SWAY}
 @group(1) @binding(9) var occlusionTexture: texture_2d<f32>;
 @group(1) @binding(10) var occlusionSampler: sampler;
 ${WGSL_MATERIAL_FX}
-
+${WGSL_GLASS}
 struct VertexIn {
   @location(${L.position}) position: vec3<f32>,
   @location(${L.normal}) normal: vec3<f32>,
@@ -641,6 +685,14 @@ ${skinned ? `  let skin = skinMatrix(u32(v.n0.w), v.joints, v.weights);
   if (material.extra.x > 0.5) { baseUv = (in.clip.xy - frame.viewport.xy) / frame.viewport.zw; }
   var base = material.baseColor * in.color * textureSample(baseTexture, baseSampler, baseUv);
   if (material.fxUv.z > 0.0) { base = material.baseColor * in.color * fxTriplanar(baseTexture, baseSampler, in.world, normalize(in.normal), dpx, dpy); }
+  // Glass: the base texture is the scene behind (refraction); vertex alpha is heat (incandescence).
+  var heat = 0.0;
+  if (material.glass.x > 0.5) { base = material.baseColor * in.color; }
+  if (material.glass.w > 0.0) {
+    heat = clamp(in.color.a, 0.0, 1.0);
+    base.a = material.baseColor.a;
+  }
+  let hot = select(0.0, smoothstep(0.2, 0.7, heat), material.glass.w > 0.0);
   let surface = textureSample(surfaceTexture, surfaceSampler, uv);
   let emissive = material.emissive.rgb * textureSample(emissiveTexture, emissiveSampler, uv).rgb;
   let mapped = textureSample(normalTexture, normalSampler, uv).xyz * 2.0 - vec3<f32>(1.0);
@@ -674,13 +726,31 @@ ${mrt ? '    out.surface = vec4<f32>(0.0, 0.0, 1.0, 0.0);' : ''}
   let transmission = material.coat.z;
   var lit = vec4<f32>(base.rgb, 0.0);
   if (material.surface.w < 0.5) {
-    lit = lighting(in.world, n, base.rgb * (1.0 - transmission), metallic, roughness, occlusion, in.clip.xy, layers);
+    lit = lighting(in.world, n, base.rgb * (1.0 - transmission * (1.0 - hot)), metallic, roughness, occlusion, in.clip.xy, layers);
   }
   var alpha = select(lit.a, base.a, material.surface.z > 1.5);
   if (transmission > 0.0) {
     alpha = 1.0 - transmission * (1.0 - (0.04 + 0.96 * pow(1.0 - max(dot(n, v), 0.0), 5.0)));
   }
-  let shaded = fxShade(lit.rgb + emissive, alpha, n, v, in.world, cut);
+  var glow = emissive;
+  if (material.glass.x > 0.5) {
+    let nv = max(dot(n, v), 0.0);
+    let fresnel = 0.04 + 0.96 * pow(1.0 - nv, 5.0);
+    let spread = material.glass.y * 0.06;
+    var behind = behindAt(in.world, n, v, material.glass.x, material.glass.z);
+    if (spread > 0.0) {
+      behind.r = behindAt(in.world, n, v, max(1.0, material.glass.x - spread), material.glass.z).r;
+      behind.b = behindAt(in.world, n, v, material.glass.x + spread, material.glass.z).b;
+    }
+    let absorb = pow(max(base.rgb, vec3<f32>(1e-4)), vec3<f32>(1.0 / max(nv, 0.15)));
+    lit = vec4<f32>(lit.rgb + behind * absorb * transmission * (1.0 - fresnel) * (1.0 - hot), lit.a);
+    alpha = 1.0;
+  }
+  if (material.glass.w > 0.0) {
+    glow = glow + blackbody(heat) * material.glass.w;
+    alpha = 1.0;
+  }
+  let shaded = fxShade(lit.rgb + glow, alpha, n, v, in.world, cut);
   out.color = vec4<f32>(applyFog(shaded.rgb, in.world), shaded.a);
 ${mrt ? '  out.surface = vec4<f32>(octEncode(n), roughness, select(luminance(mix(vec3<f32>(0.04), base.rgb, metallic)), 0.0, material.surface.w > 0.5));' : ''}
   return out;
@@ -1314,6 +1384,7 @@ uniform sampler2D emissiveTexture;
 uniform sampler2D normalTexture;
 uniform sampler2D occlusionTexture;
 ${GLSL_MATERIAL_FX}
+${GLSL_GLASS}
 in vec3 vWorld;
 in vec3 vNormal;
 in vec2 vUv;
@@ -1332,6 +1403,14 @@ void main() {
   vec2 baseUv = extra.x > 0.5 ? (${GLSL_PIXEL} - viewport.xy) / viewport.zw : uv;
   vec4 base = baseColor * vColor * texture(baseTexture, baseUv);
   if (fxUv.z > 0.0) base = baseColor * vColor * fxTriplanar(baseTexture, vWorld, normalize(vNormal), dpx, dpy);
+  // Glass: the base texture is the scene behind (refraction); vertex alpha is heat (incandescence).
+  float heat = 0.0;
+  if (glass.x > 0.5) base = baseColor * vColor;
+  if (glass.w > 0.0) {
+    heat = clamp(vColor.a, 0.0, 1.0);
+    base.a = baseColor.a;
+  }
+  float hot = glass.w > 0.0 ? smoothstep(0.2, 0.7, heat) : 0.0;
   vec4 surfaceMap = texture(surfaceTexture, uv);
   vec3 glow = emissive.rgb * texture(emissiveTexture, uv).rgb;
   vec3 mapped = texture(normalTexture, uv).xyz * 2.0 - vec3(1.0);
@@ -1364,11 +1443,28 @@ ${mrt ? '    fragSurface = vec4(0.0, 0.0, 1.0, 0.0);' : ''}
   float transmission = coat.z;
   vec4 lit = vec4(base.rgb, 0.0);
   if (surface.w < 0.5) {
-    lit = lighting(vWorld, n, base.rgb * (1.0 - transmission), metallic, roughness, occlusion, ${GLSL_PIXEL}, layers);
+    lit = lighting(vWorld, n, base.rgb * (1.0 - transmission * (1.0 - hot)), metallic, roughness, occlusion, ${GLSL_PIXEL}, layers);
   }
   float alpha = surface.z > 1.5 ? base.a : lit.a;
   if (transmission > 0.0) {
     alpha = 1.0 - transmission * (1.0 - (0.04 + 0.96 * pow(1.0 - max(dot(n, v), 0.0), 5.0)));
+  }
+  if (glass.x > 0.5) {
+    float nv = max(dot(n, v), 0.0);
+    float fresnel = 0.04 + 0.96 * pow(1.0 - nv, 5.0);
+    float spread = glass.y * 0.06;
+    vec3 behind = behindAt(vWorld, n, v, glass.x, glass.z);
+    if (spread > 0.0) {
+      behind.r = behindAt(vWorld, n, v, max(1.0, glass.x - spread), glass.z).r;
+      behind.b = behindAt(vWorld, n, v, glass.x + spread, glass.z).b;
+    }
+    vec3 absorb = pow(max(base.rgb, vec3(1e-4)), vec3(1.0 / max(nv, 0.15)));
+    lit.rgb += behind * absorb * transmission * (1.0 - fresnel) * (1.0 - hot);
+    alpha = 1.0;
+  }
+  if (glass.w > 0.0) {
+    glow += blackbody(heat) * glass.w;
+    alpha = 1.0;
   }
   vec4 shaded = fxShade(lit.rgb + glow, alpha, n, v, vWorld, cut);
   fragColor = vec4(applyFog(shaded.rgb, vWorld), shaded.a);
