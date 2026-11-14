@@ -28,6 +28,10 @@ class Counter(System):
         if ctx.input.pointer.pressed:
             tally.tap_x = ctx.input.pointer.screen.x
             tally.tap_world_x = ctx.input.pointer.world.x
+        if ctx.input.pointer.held:
+            tally.dragged_frames += 1
+        if ctx.input.pointer.released:
+            tally.release_world_x = ctx.input.pointer.world.x
         if ctx.input.text != "":
             tally.typed += ctx.input.text
 

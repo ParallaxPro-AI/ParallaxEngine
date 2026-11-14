@@ -134,6 +134,11 @@ async def test_pointer_and_text(game):
     assert abs(game.get(Tally).tap_world_x - 3) < 1e-9
     await game.type_text("hi")
     assert game.get(Tally).typed == "hi"
+    held = game.get(Tally).dragged_frames
+    await game.drag_world(vec2(-2, 0), vec2(3, 0), seconds=0.1)
+    assert abs(game.get(Tally).tap_world_x + 2) < 1e-9
+    assert abs(game.get(Tally).release_world_x - 3) < 1e-9
+    assert game.get(Tally).dragged_frames - held == 7
 
 
 @playtest("print output is captured")

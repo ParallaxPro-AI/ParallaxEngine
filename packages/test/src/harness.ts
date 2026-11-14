@@ -479,6 +479,49 @@ export class GameHarness {
     });
   }
 
+  drag(...args: unknown[]): Command {
+    const a = bindArgs('drag', args, { positional: ['start', 'end'], keyword: ['seconds'], required: ['start', 'end'] }).args;
+    return this.#command('drag()', () => {
+      const start = a['start'];
+      const end = a['end'];
+      if (!(start instanceof Vec2) || !(end instanceof Vec2)) fail('PP3449', `drag() takes two screen points (Vec2), got ${String(start)} and ${String(end)}`);
+      this.#dragScreen(start, end, seconds(a['seconds'] ?? 0.25, 'drag(seconds=)', true));
+      return null;
+    });
+  }
+
+  drag_world(...args: unknown[]): Command {
+    const a = bindArgs('drag_world', args, { positional: ['start', 'end'], keyword: ['seconds'], required: ['start', 'end'] }).args;
+    return this.#command('drag_world()', () => {
+      const ends = [a['start'], a['end']].map((point) => {
+        if (!(point instanceof Vec2) && !(point instanceof Vec3)) fail('PP3449', `drag_world() takes Vec2 or Vec3 points, got ${String(point)}`);
+        return this.#screenOf(point instanceof Vec2 ? this.#groundPoint(point) : point, 'drag_world()');
+      });
+      this.#dragScreen(ends[0]!, ends[1]!, seconds(a['seconds'] ?? 0.25, 'drag_world(seconds=)', true));
+      return null;
+    });
+  }
+
+  /**
+   * Press the left button over `start`, move to `end` in even steps over `seconds` (one per
+   * frame, the button held), then release there: the press frame, the moving frames, and a
+   * release frame.
+   */
+  #dragScreen(start: Vec2, end: Vec2, secs: number): void {
+    const g = this.#game('drag()');
+    g.devices.pointerMove(start.x, start.y);
+    g.devices.pointerDown('left');
+    this.#frames(1);
+    const steps = Math.max(1, framesFor(secs));
+    for (let i = 1; i <= steps; i++) {
+      const t = i / steps;
+      g.devices.pointerMove(start.x + (end.x - start.x) * t, start.y + (end.y - start.y) * t);
+      this.#frames(1);
+    }
+    g.devices.pointerUp('left');
+    this.#frames(1);
+  }
+
   tap_entity(...args: unknown[]): Command {
     const a = bindArgs('tap_entity', args, { positional: ['entity'], required: ['entity'] }).args;
     return this.#command('tap_entity()', () => {

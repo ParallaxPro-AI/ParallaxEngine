@@ -12,5 +12,7 @@ class Tally:
     roll: int = field(0)
     tap_x: float = field(-1.0)
     tap_world_x: float = field(-100.0)
+    release_world_x: float = field(-100.0)
+    dragged_frames: int = field(0)
     typed: str = field("")
     explode: bool = field(False)
