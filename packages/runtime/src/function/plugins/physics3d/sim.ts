@@ -1674,6 +1674,19 @@ export class Physics3dSim {
     } else if (t.position !== body.position || t.rotation !== body.rotation) {
       body.body.setTranslation(t.worldPosition(), true);
       body.body.setRotation(this.#bodyRotation(body.entity, t.worldRotation()), true);
+    } else if (body.kind === 'fixed' && t.parent !== null) {
+      // A collider without a rigidbody keeps its local pose under a parent that moves (a
+      // deck on a raft, a wall on a lift): follow the parent's world pose.
+      const at = t.worldPosition();
+      const now = body.body.translation();
+      const turn = this.#bodyRotation(body.entity, t.worldRotation());
+      const was = body.body.rotation();
+      const d = Math.abs(at.x - now.x) + Math.abs(at.y - now.y) + Math.abs(at.z - now.z)
+        + Math.abs(turn.x - was.x) + Math.abs(turn.y - was.y) + Math.abs(turn.z - was.z) + Math.abs(turn.w - was.w);
+      if (d > 1e-6) {
+        body.body.setTranslation(at, false);
+        body.body.setRotation(turn, false);
+      }
     }
     body.position = t.position;
     body.rotation = t.rotation;
