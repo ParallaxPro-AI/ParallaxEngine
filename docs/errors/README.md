@@ -464,8 +464,8 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3608 | render2d | A "polygon" shape needs at least 3 points, got {count} |
 | PP3609 | render2d | {where} animation "{name}" needs a non-empty "frames" list and an "fps" above 0 |
 | PP3610 | core | The image {image} could not be loaded |
-| PP3615 | core | tilemap.rows\[{i}\] uses "{ch}", which is not in tiles |
-| PP3616 | core | {where}.rows must be a list of strings (top row first, one character per tile) |
+| PP3615 | core, render2d | tilemap.rows\[{i}\] uses "{ch}", which is not in tiles |
+| PP3616 | core, render2d | {where}.cell\_size is ({cellWidth}, {cellHeight}); both must be above 0 |
 | PP3617 | core | tilemap.collide is on, but the game has no physics2d plugin to build its colliders |
 | PP3620 | voxels | Scene "{…}" voxels: {message} |
 | PP3621 | voxels | This voxels plugin is already installed in another kernel |

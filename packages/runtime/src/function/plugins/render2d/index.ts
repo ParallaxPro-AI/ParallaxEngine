@@ -27,7 +27,7 @@ export { parseEffect } from './effects.js';
 export type { EffectDef } from './effects.js';
 export { PARTICLES, Render2dEngine, TRAIL_SECONDS } from './engine.js';
 export type { BeamOptions, EffectAt, PlayOptions, TrailOptions } from './engine.js';
-export { DEFAULT_AMBIENT_2D, LIGHT, lightAt, lightFalloff, lighting2d } from './lighting.js';
+export { DEFAULT_AMBIENT_2D, gridLightAt, LIGHT, LIGHT_GRID, lightAt, lightFalloff, lighting2d } from './lighting.js';
 export { parseMarkup } from './text.js';
 export { CAMERA, GRID, firstCameraRig } from './view.js';
 export type { CameraRig2d } from './view.js';

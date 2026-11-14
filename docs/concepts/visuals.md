@@ -610,7 +610,7 @@ blank-2d`, or from a 2D example (`auto_runner`, `bullet_hell`,
 | Framing a board or arena; following the player | [2D camera](#2d-camera) | `camera` component | `bullet_hell`, `match_three` (fixed `fit`); no follow example yet |
 | Bursts, sparks, petals, dust, trails | [2D effects](#2d-effects-and-juice) | `.vfx.json`, `ctx.vfx`, `particles` | `tic_tac_toe`, `number_merge`, `bullet_hell` |
 | Screen shake, hit-stop, tweens | [Juice](#2d-effects-and-juice) | `camera.shake`, `ctx.time.hitstop`, `move_to` | `bullet_hell`, `number_merge` |
-| Torches, night, glow | [2D light and post](#2d-light-and-post) | `light` component, scene `"post"` | none yet |
+| Torches, night, glow, tile-world light | [2D light and post](#2d-light-and-post) | `light` and `light_grid` components, scene `"post"` | none yet |
 | Falling, bouncing, colliding, triggers | 2D physics | `physics2d()`, `rigidbody`, `collider` (`box`, `circle`, `capsule`) ([ref](../reference/parallax.physics.md)) | `auto_runner` (triggers) |
 
 ### Art for a 2D game
@@ -787,6 +787,18 @@ along the entity's +x; a directional light raises the ambient.
     { "prefab": "torch", "at": [3, 1], "components": { "light": { "kind": "point", "color": "#ffb060", "intensity": 2, "range": 4 } } }
   ]
 }
+```
+
+A tile world whose light the game works out itself (sunlight down shafts,
+torchlight spreading through tunnels) adds a `light_grid`: rows of characters
+like a tilemap's, each naming a `levels` color added to the light map over its
+cell and blended smoothly between cells. Keep one grid over the view, move it
+with the camera, and replace its `rows` when the light changes; `light`s still
+add their pools on top.
+
+```json
+"light_grid": { "cell_size": [1, 1], "levels": { "a": "#05060a", "m": "#806850", "z": "#fff4e0" },
+                "rows": ["zzzzmma", "zzmma..", "mma...."] }
 ```
 
 2D `post` draws `bloom` and `vignette` only. `bloom_threshold` is a drawn color

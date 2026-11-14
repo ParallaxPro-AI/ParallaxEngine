@@ -10698,7 +10698,8 @@
       "code": "PP3615",
       "range": "PP3xxx",
       "areas": [
-        "core"
+        "core",
+        "render2d"
       ],
       "listed_in": [],
       "severity": [
@@ -10706,16 +10707,19 @@
       ],
       "messages": [
         "tilemap.rows[{i}] uses \"{ch}\", which is not in tiles",
+        "{where}.rows[{row}] column {col} is \"{ch}\", which is not in levels",
         "{where}.rows[{row}] column {col} is \"{key}\", which is not in tiles"
       ],
       "fixes": [
         "Add \"{ch}\" to tiles, or use \" \" / \".\" for an empty cell. Tiles: {…}.",
+        "Levels: {…}; use \" \" or \".\" for an unlit cell.",
         "Tiles: {…}; use \" \" or \".\" for an empty cell."
       ],
       "notes": [],
       "sources": [
         "packages/check/src/tilemap_checks.ts",
-        "packages/runtime/src/core/values/tilemap.ts"
+        "packages/runtime/src/core/values/tilemap.ts",
+        "packages/runtime/src/function/plugins/render2d/lighting.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3615"
     },
@@ -10723,20 +10727,24 @@
       "code": "PP3616",
       "range": "PP3xxx",
       "areas": [
-        "core"
+        "core",
+        "render2d"
       ],
       "listed_in": [],
       "severity": [
         "error"
       ],
       "messages": [
+        "{where}.cell_size is ({cellWidth}, {cellHeight}); both must be above 0",
+        "{where}.rows must be a list of strings (top row first, one character per cell)",
         "{where}.rows must be a list of strings (top row first, one character per tile)",
         "{where}.tile_size is ({width}, {height}); both must be above 0"
       ],
       "fixes": [],
       "notes": [],
       "sources": [
-        "packages/runtime/src/core/values/tilemap.ts"
+        "packages/runtime/src/core/values/tilemap.ts",
+        "packages/runtime/src/function/plugins/render2d/lighting.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3616"
     },

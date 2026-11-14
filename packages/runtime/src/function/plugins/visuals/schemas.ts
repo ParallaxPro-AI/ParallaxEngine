@@ -37,6 +37,7 @@ export const ENVIRONMENT_ZONE = 'environment_zone';
 export const CAMERA = 'camera';
 export const OUTLINE = 'outline';
 export const TILEMAP = 'tilemap';
+export const LIGHT_GRID = 'light_grid';
 
 /** Components read from other plugins by id and SDK field names (never imported). */
 export const COLLIDER = 'collider';
@@ -295,6 +296,19 @@ export const TILEMAP_SCHEMA: Schema = {
   friction: t.number({ default: 0.5, min: 0 }),
 };
 
+/**
+ * 2D light per cell (render2d's lighting reads it): `rows` of characters, top row first,
+ * like a tilemap's; each character names a `levels` color added to the light map over its
+ * cell, smoothly blended between cell centers. " " and "." add none. The entity's position
+ * plus `offset` is the grid's bottom-left corner (not rotated).
+ */
+export const LIGHT_GRID_SCHEMA: Schema = {
+  cell_size: t.vec2({ default: Vec2.ONE }),
+  offset: t.vec2({ default: Vec2.ZERO }),
+  rows: t.list({ kind: 'string' }, { default: [] }),
+  levels: { type: { kind: 'dict', of: { kind: 'color' } }, default: {} },
+};
+
 /** Every visuals component id → its schema, in SDK order. */
 export const VISUAL_SCHEMAS: Readonly<Record<string, Schema>> = {
   [SPRITE]: SPRITE_SCHEMA,
@@ -312,6 +326,7 @@ export const VISUAL_SCHEMAS: Readonly<Record<string, Schema>> = {
   [ENVIRONMENT_ZONE]: ENVIRONMENT_ZONE_SCHEMA,
   [OUTLINE]: OUTLINE_SCHEMA,
   [TILEMAP]: TILEMAP_SCHEMA,
+  [LIGHT_GRID]: LIGHT_GRID_SCHEMA,
   [CAMERA]: CAMERA_SCHEMA,
   ...RENDER_SCHEMAS,
 };

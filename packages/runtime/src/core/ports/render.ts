@@ -164,12 +164,34 @@ export interface Light2d {
 }
 
 /**
+ * Light per cell over a world rectangle (a `light_grid`): one color per cell, added to the
+ * light map and blended smoothly between cell centers (bilinear, clamped at the edges).
+ */
+export interface LightGrid2d {
+  /** Differs whenever the cells or the rectangle do. */
+  readonly key: string;
+  /** World x, y of the grid's bottom-left corner. */
+  readonly minX: number;
+  readonly minY: number;
+  readonly cellWidth: number;
+  readonly cellHeight: number;
+  readonly cols: number;
+  readonly rows: number;
+  /** RGBA bytes, row-major from the TOP row (image order); alpha is always 255. */
+  readonly cells: Uint8ClampedArray;
+  readonly entity: number;
+}
+
+/**
  * 2D lighting: the drawn scene is multiplied by a light map — `ambient` everywhere, plus
- * each light added with its falloff. Present when the scene has at least one Light.
+ * each light grid and each light added with its falloff. Present when the scene has at
+ * least one Light or LightGrid.
  */
 export interface Lighting2d {
   readonly ambient: readonly [r: number, g: number, b: number];
   readonly lights: readonly Light2d[];
+  /** Absent or empty: none. */
+  readonly grids?: readonly LightGrid2d[];
 }
 
 /** Gradient stops (offset along the radius, strength) of a 2D light's `(1 - d / radius)²` falloff. */

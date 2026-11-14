@@ -14,6 +14,7 @@ function fakeCanvas(width: number, height: number): { canvas: CanvasLike; calls:
     get(target, prop: string) {
       if (prop in target) return target[prop];
       if (prop === 'measureText') return (text: string) => ({ width: text.length * 10 });
+      if (prop === 'createImageData') return (w: number, h: number) => ({ width: w, height: h, data: new Uint8ClampedArray(w * h * 4) });
       if (prop === 'createRadialGradient') {
         return (...args: unknown[]) => {
           calls.push(['createRadialGradient', ...args]);
@@ -82,6 +83,29 @@ describe('CanvasSurface2d lighting', () => {
     expect(arc[5] as number).toBeCloseTo(-Math.PI / 2 + Math.PI / 6, 9);
     expect(calls).toContainEqual(['=globalCompositeOperation', 'multiply']);
     expect(named(calls, 'drawImage')).toHaveLength(1);
+  });
+
+  it('paints a light grid once (one pixel per cell) and adds it, smoothed, over its world rectangle', () => {
+    const { s, scratches } = surface();
+    const cells = new Uint8ClampedArray([255, 255, 255, 255, 0, 0, 0, 255]);
+    const lighting = {
+      ambient: [0, 0, 0] as const, lights: [],
+      grids: [{ key: 'k1', minX: -1, minY: 2, cellWidth: 1, cellHeight: 1, cols: 2, rows: 1, cells, entity: 7 }],
+    };
+    s.draw(frame([], {}, lighting));
+    // Scratches: the light map, then the grid's 2 × 1 image.
+    const image = scratches.find((c) => named(c, 'putImageData').length > 0)!;
+    const put = named(image, 'putImageData')[0]![1] as { data: Uint8ClampedArray };
+    expect([...put.data]).toEqual([...cells]);
+    const map = scratches[0]!;
+    expect(map).toContainEqual(['=imageSmoothingEnabled', true]);
+    // Flipped (+y up): the image's top edge at y = 3, 2 m wide and 1 m tall from x = -1.
+    expect(named(map, 'drawImage')[0]!.slice(2)).toEqual([-1, -3, 2, 1]);
+    const painted = scratches.length;
+    s.draw(frame([], {}, lighting));
+    expect(scratches.length).toBe(painted);
+    s.draw(frame([], {}, { ...lighting, grids: [{ ...lighting.grids[0]!, key: 'k2' }] }));
+    expect(named(scratches.find((c) => named(c, 'putImageData').length > 0)!, 'putImageData')).toHaveLength(2);
   });
 
   it('draws no light map without lighting', () => {

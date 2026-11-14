@@ -11,7 +11,7 @@
 import type { EntityId } from '../core/index.js';
 import { Vec2 } from '../core/index.js';
 import {
-  ANIMATOR, AUDIO_SOURCE, CAMERA, DECAL, DEPTH_OF_FIELD, ENVIRONMENT_ZONE, FOG_OVERLAY, HEAT_HAZE, LIGHT, LOD, LOD_LEVEL_RECORD, MARKER, MIRROR, MODEL, MONITOR, OUTLINE, TILEMAP,
+  ANIMATOR, AUDIO_SOURCE, CAMERA, DECAL, DEPTH_OF_FIELD, ENVIRONMENT_ZONE, FOG_OVERLAY, HEAT_HAZE, LIGHT, LOD, LOD_LEVEL_RECORD, MARKER, MIRROR, MODEL, MONITOR, OUTLINE, TILEMAP, LIGHT_GRID,
   PARTICLES, PLAYER_START, RENDER_TEXTURE, SHAPE, SOCKET, SPRITE, STATIC_MESH, SURFACE_FX, TEXT_MESH, VISUAL_SCHEMAS, visuals, WORLD_BAR,
 } from '../function/plugins/visuals/index.js';
 import { record } from './declarations.js';
@@ -44,6 +44,7 @@ export const PlayerStart = handle(PLAYER_START, 'PlayerStart');
 export const EnvironmentZone = handle(ENVIRONMENT_ZONE, 'EnvironmentZone');
 export const Outline = handle(OUTLINE, 'Outline');
 export const Tilemap = handle(TILEMAP, 'Tilemap');
+export const LightGrid = handle(LIGHT_GRID, 'LightGrid');
 export const Camera = handle(CAMERA, 'Camera');
 
 // Render scale and render to texture (render3d draws them; render2d draws FogOverlay).
