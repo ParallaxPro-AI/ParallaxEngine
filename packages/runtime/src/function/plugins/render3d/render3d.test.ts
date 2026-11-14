@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BILLBOARD_STRIDE, MESH_INSTANCE_STRIDE, ParallaxError, RIBBON_STRIDE, Vec3 } from '../../../core/index.js';
+import { BILLBOARD_STRIDE, MESH_INSTANCE_STRIDE, ParallaxError, RIBBON_STRIDE, Vec2, Vec3 } from '../../../core/index.js';
 import type { BinaryFiles, EntityId, Frame3d, Geometry3d, ProjectFiles } from '../../../core/index.js';
 import { loadProject } from '../../../resource/index.js';
 import { Kernel } from '../../kernel/index.js';
@@ -557,17 +557,51 @@ describe('render3d in a kernel', () => {
     expect(s.plugin.clipLength('walk')).toBe(1);
   });
 
-  it('reports a missing clip, a 2D shape kind and a model that is not in the project', async () => {
+  it('lays a polygon shape flat on x/z, fanned from its first point, and rewrites it in place as its points move', async () => {
+    const s = await scene({
+      prefabs: {
+        cam: CAMERA,
+        fan: { components: { shape: { kind: 'polygon', points: [[0, 0], [-1, 2], [0, 2.5], [1, 2]], size: [2, 1, 2], color: '#ff000080' } } },
+        empty: { components: { shape: { kind: 'polygon' } } },
+      },
+      entities: [{ id: 'cam', prefab: 'cam', at: [0, 5, -6] }, { id: 'fan', prefab: 'fan' }, { id: 'none', prefab: 'empty' }],
+    });
+    const drawn = () => s.frame().meshes.filter((m) => m.geometry.id.startsWith('shape:polygon'));
+    expect(drawn()).toHaveLength(1);
+    const first = drawn()[0]!;
+    const g = first.geometry;
+    expect([...g.positions]).toEqual([0, 0, 0, -1, 0, 2, 0, 0, 2.5, 1, 0, 2]);
+    expect(g.indices).toHaveLength(6);
+    // Every triangle faces up: cross(b - a, c - a).y > 0.
+    for (let t = 0; t < 2; t++) {
+      const [a, b, c] = [g.indices[t * 3]!, g.indices[t * 3 + 1]!, g.indices[t * 3 + 2]!].map((i) => [g.positions[i * 3]!, g.positions[i * 3 + 2]!]);
+      expect((b![1]! - a![1]!) * (c![0]! - a![0]!) - (b![0]! - a![0]!) * (c![1]! - a![1]!)).toBeGreaterThan(0);
+    }
+    expect(g.max).toEqual([1, 0, 2.5]);
+    expect([...first.instances.subarray(0, 16)]).toEqual([2, 0, 0, 0, 0, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1]);
+    expect(first.material.alphaMode).toBe('blend');
+    // A wall cuts the fan short: the same mesh, rewritten, its version grown.
+    const shape = s.kernel.world.require(s.id('fan')).components.get('shape') as Record<string, unknown>;
+    const before = g.version!;
+    shape['points'] = [new Vec2(0, 0), new Vec2(-1, 2), new Vec2(0, 1), new Vec2(1, 2)];
+    s.steps(1);
+    expect(drawn()[0]!.geometry).toBe(g);
+    expect(g.version).toBeGreaterThan(before);
+    expect(g.positions[8]).toBe(1);
+    // Another count builds another mesh.
+    shape['points'] = [new Vec2(0, 0), new Vec2(-1, 2), new Vec2(1, 2)];
+    s.steps(1);
+    expect(drawn()[0]!.geometry).not.toBe(g);
+    expect(drawn()[0]!.geometry.indices).toHaveLength(3);
+  });
+
+  it('reports a missing clip and a model that is not in the project', async () => {
     const s = await scene({
       prefabs: { cam: CAMERA, hero: { components: { model: { model: 'models/hero' }, animator: { default_clip: 'run' } } } },
       entities: [{ id: 'cam', prefab: 'cam' }],
     }, { 'assets/models/hero.glb': standInCharacter(['walk'], 1) });
     s.kernel.spawn('hero');
     expect(code(() => s.steps(1))).toBe('PP3805');
-
-    const flat = await scene({ prefabs: { cam: CAMERA, star: { components: { shape: { kind: 'polygon' } } } }, entities: [{ id: 'cam', prefab: 'cam' }] });
-    flat.kernel.spawn('star');
-    expect(code(() => flat.steps(1))).toBe('PP3812');
 
     const none = await scene({ prefabs: { cam: CAMERA, ghost: { components: { model: { model: 'models/ghost' } } } }, entities: [{ id: 'cam', prefab: 'cam' }] })
       .catch((e: unknown) => e);

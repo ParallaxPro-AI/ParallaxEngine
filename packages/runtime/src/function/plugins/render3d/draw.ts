@@ -4,7 +4,8 @@
  *
  *   shape       kind (box, sphere, capsule, cylinder, cone, plane; circle and rect lie
  *               flat on x/z facing up; ring: a torus `thickness` thick, or a flat annulus
- *               `thickness` wide when size.y is 0), size (full extents; flat kinds use x and z),
+ *               `thickness` wide when size.y is 0; polygon: `points` laid flat, (x, y) at
+ *               (x, 0, y), fanned from the first point), size (full extents; flat kinds use x and z),
  *               offset, color, emissive (× emissive_strength), metallic, roughness, texture, uv_scale (repeats),
  *               normal_map + normal_strength, cast_shadows
  *   model       drawn by `model_draw.ts` (posed by the models plugin)
@@ -27,7 +28,7 @@ import { skinPalette } from '../../../resource/index.js';
 import type { ModelAsset } from '../../../resource/index.js';
 import { compose, identity, multiply, normalize3, transformDirection } from '../../../resource/index.js';
 import type { M4 } from '../../../resource/index.js';
-import { capsule, ring, unitShape } from '../../../resource/index.js';
+import { capsule, PolygonGeometry, ring, unitShape } from '../../../resource/index.js';
 import type { UnitShape } from '../../../resource/index.js';
 
 export const SHAPE = 'shape';
@@ -40,8 +41,6 @@ export const PARTICLES = 'particles';
 export const CAMERA = 'camera';
 export const OUTLINE = 'outline';
 
-/** Shape kinds with no 3D meaning (a polygon's points are 2D). */
-const SHAPES_2D = ['polygon'];
 /** A world bar's size in meters (the SDK gives it no size field), as in 2D. */
 export const BAR_SIZE = [1, 0.12] as const;
 const BAR_BACK: Rgba = [0, 0, 0, 0.6];
@@ -284,6 +283,32 @@ export class Batches implements BatchSink {
 
 const capsules = new Map<string, Geometry3d>();
 const rings = new Map<string, Geometry3d>();
+/** Each polygon shape's mesh, by entity: rewritten in place while its point count holds. */
+const polygons = new Map<EntityId, { key: string; mesh: PolygonGeometry }>();
+const POLYGONS_KEPT = 1024;
+
+function polygonMesh(entity: EntityId, value: unknown, where: string, textured: boolean): PolygonGeometry | null {
+  if (!Array.isArray(value)) fail('PP3800', `${where}.points must be a list of Vec2, got ${describe(value)}`);
+  const points = (value as unknown[]).map((p, i): [number, number] => {
+    if (p instanceof Vec2) return [p.x, p.y];
+    return fail('PP3800', `${where}.points[${i}] must be a Vec2, got ${describe(p)}`, { fix: 'Pass vec2(x, y): x across, y forward (+z).' });
+  });
+  if (points.length < 3) return null;
+  let key = '';
+  for (const [x, y] of points) key += `${x},${y};`;
+  const kept = polygons.get(entity);
+  if (kept !== undefined && kept.key === key) return kept.mesh;
+  // Same count: rewrite in place (the surface refreshes positions); a flipped winding or a
+  // texture (uvs aren't refreshed) needs a fresh mesh.
+  if (kept !== undefined && kept.mesh.positions.length === points.length * 3 && !textured && kept.mesh.rewrite(points)) {
+    kept.key = key;
+    return kept.mesh;
+  }
+  if (polygons.size >= POLYGONS_KEPT) polygons.clear();
+  const mesh = new PolygonGeometry(`shape:polygon:${entity}:${points.length}`, points);
+  polygons.set(entity, { key, mesh });
+  return mesh;
+}
 
 export function shapeDraw(
   batches: BatchSink, materials: Materials, record: EntityRecord, shape: Fields, at: Placed3d,
@@ -292,20 +317,21 @@ export function shapeDraw(
 ): void {
   const where = `${nameOf(record)} shape`;
   const kind = String(shape['kind']);
-  if (SHAPES_2D.includes(kind)) {
-    fail('PP3812', `${where} kind "${kind}" can't be drawn in 3D: a polygon's points are 2D`, {
-      fix: 'Use box, sphere, capsule, cylinder, cone, plane, circle, rect or ring (circle and rect lie flat on the ground), or a model.',
-    });
-  }
   const [sx, sy, sz] = vec3(shape['size'], `${where}.size`);
   if (!(sx >= 0 && sy >= 0 && sz >= 0)) fail('PP3800', `${where}.size is (${sx}, ${sy}, ${sz}); sizes can't be negative`);
-  const flatKind = kind === 'plane' || kind === 'rect' || kind === 'circle' || kind === 'ring';
+  const flatKind = kind === 'plane' || kind === 'rect' || kind === 'circle' || kind === 'ring' || kind === 'polygon';
   if (sx === 0 || sz === 0 || (sy === 0 && !flatKind)) return;
   const [ox, oy, oz] = vec3(shape['offset'], `${where}.offset`);
   const color = rgba(shape['color'], `${where}.color`);
   let geometry: Geometry3d;
   let local: M4;
-  if (kind === 'capsule') {
+  if (kind === 'polygon') {
+    // Flat on x/z facing up, point (x, y) at (x, 0, y) × size: ground zones, sight fans.
+    const mesh = polygonMesh(record.id, shape['points'], where, shape['texture'] !== null && shape['texture'] !== undefined);
+    if (mesh === null) return;
+    geometry = mesh;
+    local = compose(ox, oy, oz, 0, 0, 0, 1, sx, 1, sz);
+  } else if (kind === 'capsule') {
     const radius = sx / 2;
     const height = Math.max(sy, sx);
     const key = `${radius}:${height}`;

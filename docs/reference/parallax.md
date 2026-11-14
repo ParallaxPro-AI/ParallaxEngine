@@ -1456,6 +1456,12 @@ Shape(kind="ring", size=Vec3(3, 3, 1), thickness=0.2, color=Color.WHITE)
 Shape(kind="rect", size=Vec3(2, 1, 1), corner_radius=0.2, stroke_width=0.05)
 ```
 
+In 3D, `circle`, `rect` and `polygon` lie flat on x/z facing up. A 3D polygon's point
+(x, y) sits at (x, 0, y) times `size` (+y points forward, +z), fanned from its first
+point (convex outlines, or ones the first point sees whole: a sight cone cut short by
+walls, a capture zone). Assigning new `points` every frame is cheap while their count
+holds: `fan.points = [Vec2(0, 0)] + [Vec2(sin(a) * r, cos(a) * r) for a, r in rays]`.
+
 **Fields**
 
 - `kind: Literal['box', 'sphere', 'capsule', 'cylinder', 'cone', 'plane', 'circle', 'rect', 'polygon', 'ring'] = ...`
