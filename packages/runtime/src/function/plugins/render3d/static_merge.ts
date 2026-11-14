@@ -124,6 +124,11 @@ function toLinear(c: number): number {
   return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
 }
 
+function toSrgb(c: number): number {
+  const v = Math.min(1, Math.max(0, c));
+  return v <= 0.0031308 ? v * 12.92 : 1.055 * v ** (1 / 2.4) - 0.055;
+}
+
 /** One instance record: the identity matrix, white tint. */
 const IDENTITY_INSTANCE = new Float32Array([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 1]);
 
@@ -140,8 +145,8 @@ function sameMembers(a: readonly Member[], b: readonly Member[]): boolean {
 
 /**
  * Members' geometry in world space, end to end: positions by each matrix, normals by its
- * inverse-transpose (renormalized), the tint baked into the vertex colors (in linear light,
- * as surfaces apply it). A member whose
+ * inverse-transpose (renormalized), the tint baked into the vertex colors (applied in linear
+ * light as surfaces apply it, and stored as sRGB like every vertex color). A member whose
  * matrix mirrors (negative determinant) has its winding reversed so front faces stay front.
  */
 export function mergeGeometry(id: string, members: readonly Member[]): Geometry3d {
@@ -190,7 +195,10 @@ export function mergeGeometry(id: string, members: readonly Member[]): Geometry3
       normals[o] = wx / l; normals[o + 1] = wy / l; normals[o + 2] = wz / l;
       uvs[(v0 + v) * 2] = g.uvs[v * 2]!;
       uvs[(v0 + v) * 2 + 1] = g.uvs[v * 2 + 1]!;
-      for (let ch = 0; ch < 4; ch++) colors[(v0 + v) * 4 + ch] = (g.colors?.[v * 4 + ch] ?? 1) * linearTint[ch]!;
+      // Vertex colors are sRGB (the mesh shader linearizes them): tint in linear light, store sRGB.
+      const o4 = (v0 + v) * 4;
+      for (let ch = 0; ch < 3; ch++) colors[o4 + ch] = toSrgb(toLinear(g.colors?.[v * 4 + ch] ?? 1) * linearTint[ch]!);
+      colors[o4 + 3] = (g.colors?.[v * 4 + 3] ?? 1) * linearTint[3]!;
     }
     const flip = det < 0;
     for (let t = 0; t < g.indices.length; t += 3) {
