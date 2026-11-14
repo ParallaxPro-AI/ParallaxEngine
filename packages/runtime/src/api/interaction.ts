@@ -67,8 +67,9 @@ export class InteractionApi {
     const record = who === null ? undefined : kernel.world.get(who);
     const focus = record?.components.get(INTERACTOR)?.['focus'];
     const target = focus === null || focus === undefined ? undefined : kernel.world.get(kernel.handles.unwrap(focus)!);
-    if (record === undefined || target === undefined) return hidden;
-    const it = target.components.get(INTERACTABLE)!;
+    // The focus is last frame's: its Interactable may since have been removed (a door used up).
+    const it = target?.components.get(INTERACTABLE);
+    if (record === undefined || target === undefined || it === undefined) return hidden;
     const actions = kernel.service(ACTIONS_SERVICE);
     const keys = actions.glyphs(engine.action, actions.device(seat)).map((g) => ({ text: g.text, code: g.code, device: g.device, pad: g.device === 'gamepad', touch: g.device === 'touch' }));
     const cameras = kernel.world.query(['camera']).map(([id]) => id);
