@@ -4436,6 +4436,33 @@ sounds: clients in range; `to=` one player). Loops: `AudioSource`.
 (sample-accurate; PP3514 without a clock).
 
 ```python
+def speak(
+    text: str,
+    *,
+    voice: str | None = None,
+    pitch: float = 1,
+    rate: float = 1,
+    volume: float = 1,
+    interrupt: bool = True,
+    group: str | None = None,
+) -> None
+```
+
+Say a line aloud with the platform's text-to-speech (the browser's speech voices):
+`ctx.audio.speak("Hello there.", voice="en-GB|male", pitch=0.7, rate=0.9)`.
+`voice` is a hint: the first installed voice whose name or language contains it
+("|" separates fallbacks); `pitch` 0..2 and `rate` 0.1..4 (1 = the voice's own);
+`interrupt=False` queues after the current line; `group` scales it like an audio.json
+mix group (`set_group`). Not every player has voices: show the line as text too.
+Playtests record it (no sound); the Settings master and sfx volumes apply.
+
+```python
+def stop_speaking() -> None
+```
+
+Cut the line being spoken and drop queued ones.
+
+```python
 def music(
     track: MusicRef | None,
     *,

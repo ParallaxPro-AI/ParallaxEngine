@@ -145,6 +145,32 @@ export class AudioApi {
     this.#engine.play(request);
   }
 
+  /**
+   * `speak(text, *, voice=None, pitch=1, rate=1, volume=1, interrupt=True, group=None)`: say
+   * a line with the platform's text-to-speech (the browser's speech voices). Not every player
+   * has voices, so show the line as a subtitle as well.
+   */
+  speak(...args: unknown[]): void {
+    const a = bindArgs('audio.speak', args, {
+      positional: ['text'], keyword: ['voice', 'pitch', 'rate', 'volume', 'interrupt', 'group'], required: ['text'],
+    }).args;
+    const voice = a['voice'] ?? null;
+    if (voice !== null && typeof voice !== 'string') fail('PP3518', `audio.speak voice= must be a str or None, got ${String(voice)}`, { fix: 'A voice name or language hint: voice="en-GB".' });
+    const group = a['group'] ?? null;
+    if (group !== null && typeof group !== 'string') fail('PP3518', `audio.speak group= must be a str or None, got ${String(group)}`, { fix: 'An assets/audio.json mix group: group="voice".' });
+    const interrupt = a['interrupt'] ?? true;
+    if (typeof interrupt !== 'boolean') fail('PP3511', `audio.speak interrupt= must be True or False, got ${String(interrupt)}`);
+    this.#engine.speak({
+      text: a['text'] as string, voice, pitch: (a['pitch'] ?? 1) as number, rate: (a['rate'] ?? 1) as number,
+      volume: (a['volume'] ?? 1) as number, interrupt, group,
+    });
+  }
+
+  /** Stop the line being spoken and drop queued ones. */
+  stop_speaking(): void {
+    this.#engine.stopSpeaking();
+  }
+
   /** Play surface materials' impact sounds (physics `material(sound=...)`); False: the game plays its own. */
   get impact_sounds(): boolean {
     return this.#engine.impactSounds;

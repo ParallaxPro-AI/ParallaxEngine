@@ -11,7 +11,7 @@ PP2041  Unknown prefab "brik"
   Docs: https://parallaxpro.ai/docs/engine/errors/PP2041
 ```
 
-This index lists all 875 codes the engine's sources raise, grouped by range. The
+This index lists all 876 codes the engine's sources raise, grouped by range. The
 machine-readable form is [`catalog.json`](catalog.json): for each code, its range, the area that
 raises it, the message and fix texts found at its raise sites (interpolated values are written
 `{name}`), notes, and the source files. Search the sources for a code to find every place that
@@ -24,7 +24,7 @@ Regenerate after adding or changing a code: `python3 tools/gen_error_catalog.py`
 |---|---|---|
 | [PP1xxx](#pp1xxx) | data files that don't parse or don't have the right shape (resource loader) | 16 |
 | [PP2xxx](#pp2xxx) | project data that is well formed but wrong: names, references, assets, panels (also `parallax check`) | 124 |
-| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 420 |
+| [PP3xxx](#pp3xxx) | runtime API misuse and plugin data errors, one hundred (or a decade) per plugin | 421 |
 | [PP4xxx](#pp4xxx) | declarations and types: `@component` / `@resource` / field schemas, actions, net declarations | 65 |
 | [PP5xxx](#pp5xxx) | values and conversions in core | 3 |
 | [PP6xxx](#pp6xxx) | Parallax Python: syntax, unsupported constructs and sandbox rules (the transpiler) | 17 |
@@ -438,6 +438,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3515 | audio | audio.max\_voices must be a whole number 1..256, got {…} |
 | PP3516 | audio | MusicLayer at= must be an intensity 0..1, got {…} |
 | PP3517 | audio | audio.set\_group() mute= must be True or False, got {…} |
+| PP3518 | audio | audio.speak group= must be a str or None, got {…} |
 | PP3551 | hud | {where} must be a number, got {…} |
 | PP3552 | hud | {where} reads "{path}", but "{component}" has no field "{field}" |
 | PP3553 | hud | slow\_motion() eases ({easeIn} + {easeOut} s) must fit in its {seconds} s |

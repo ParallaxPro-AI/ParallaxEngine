@@ -586,6 +586,7 @@ graph (states, blends and transitions in prefab data) gives full control;
 | Ambience | `Synth.bed_air`, `bed_deep` and `bed_thicket` loops. Weather, wind and water sound by themselves (`ctx.audio.ambience`) |
 | Music | `"music": "music/theme"` in the scene, `ctx.audio.music(...)`, and layered stems with `MusicLayer` |
 | Reverb | A `reverb_zone` component (`cave`, `hall`, `forest`, ...) |
+| Spoken lines | `ctx.audio.speak(text, voice="en-GB", pitch=0.8, rate=0.9)`: the browser's text-to-speech voices; show the line as a subtitle too |
 
 See [assets](assets.md#sound-and-effects) and
 [`Synth`](../reference/parallax.md#synth).

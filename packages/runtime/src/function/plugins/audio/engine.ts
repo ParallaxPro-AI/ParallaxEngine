@@ -134,6 +134,18 @@ export interface PlayRequest {
   readonly quantize?: number | null;
 }
 
+/** `ctx.audio.speak(...)`: a line for the platform's text-to-speech. */
+export interface SpeakRequest {
+  readonly text: string;
+  readonly voice?: string | null;
+  readonly pitch?: number;
+  readonly rate?: number;
+  readonly volume?: number;
+  readonly interrupt?: boolean;
+  /** An audio.json mix group whose level scales it (`set_group`). */
+  readonly group?: string | null;
+}
+
 export interface AudioEngineOptions {
   readonly output: AudioOutput;
   readonly assets: readonly string[] | null;
@@ -431,6 +443,38 @@ export class AudioEngine implements AudioService {
       voice: this.#nextVoice++, sound, bus, volume: drawn.volume * volume, pitch: drawn.pitch * pitch, position: at, to,
       duck: (request.duck ?? this.defaults.get(sound.handle).duck) === true, delay,
     });
+  }
+
+  /**
+   * `ctx.audio.speak`: say a line with the platform's text-to-speech. Sent with the frame's
+   * commands; outputs without speech ignore it. `group` scales it like a sound of that
+   * audio.json group (`set_group("voice", ...)`).
+   */
+  speak(request: SpeakRequest): void {
+    const where = 'ctx.audio.speak';
+    if (typeof request.text !== 'string') fail('PP3518', `${where} text must be a str, got ${String(request.text)}`, { fix: 'ctx.audio.speak("Hello there.")' });
+    const text = request.text.trim();
+    if (text.length === 0) return;
+    const pitch = finite(request.pitch ?? 1, `${where} pitch`, (n) => n >= 0 && n <= 2, 'from 0 to 2 (1 = the voice\'s own)');
+    const rate = finite(request.rate ?? 1, `${where} rate`, (n) => n >= 0.1 && n <= 4, 'from 0.1 to 4 (1 = normal speed)');
+    const group = request.group ?? null;
+    if (group !== null && !this.defaults.groups().includes(group)) {
+      const guess = closestMatch(group, this.defaults.groups());
+      fail('PP3518', `${where}: no sound in assets/audio.json is in group "${group}"`, {
+        fix: guess !== undefined ? `Did you mean "${guess}"?` : 'Give sounds a group in assets/audio.json: {"sfx/line_1": {"group": "voice"}}.',
+      });
+    }
+    const level = group === null ? 1 : this.group(group).muted ? 0 : this.group(group).volume;
+    const volume = checkVolume(request.volume ?? 1, `${where} volume`) * level;
+    if (!this.kernel.logic) return;
+    this.#commands.push({
+      kind: 'speak', text, voice: request.voice ?? null, pitch, rate, volume, interrupt: request.interrupt ?? true,
+    });
+  }
+
+  /** `ctx.audio.stop_speaking()`: cut the current line and drop queued ones. */
+  stopSpeaking(): void {
+    this.#commands.push({ kind: 'speech_stop' });
   }
 
   // ── Plugin loops (AUDIO_SERVICE) ───────────────────────────────────────────
@@ -801,7 +845,7 @@ export class AudioEngine implements AudioService {
     this.#commands = [];
     this.#output.submit({
       frame: this.kernel.time.frame, time: this.kernel.time.realNow, listener: null,
-      commands: [{ kind: 'stop_all' }, { kind: 'music', track: null, volume: 0, pitch: 1, fade: 0 }],
+      commands: [{ kind: 'stop_all' }, { kind: 'speech_stop' }, { kind: 'music', track: null, volume: 0, pitch: 1, fade: 0 }],
     });
   }
 
@@ -821,7 +865,7 @@ export class AudioEngine implements AudioService {
     this.#voices.clear();
     this.#output.submit({
       frame: this.kernel.time.frame, time: this.kernel.time.realNow, listener: null,
-      commands: [{ kind: 'stop_all' }, { kind: 'music', track: null, volume: 0, pitch: 1, fade: 0 }],
+      commands: [{ kind: 'stop_all' }, { kind: 'speech_stop' }, { kind: 'music', track: null, volume: 0, pitch: 1, fade: 0 }],
     });
   }
 

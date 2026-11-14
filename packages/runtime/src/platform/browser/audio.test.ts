@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { AudioCommand, AudioPlay, AudioSound } from '../../core/index.js';
 import { WebAudioOutput } from './audio.js';
 import type { AudioContextLike } from './audio.js';
+import type { SpeechLike, UtteranceLike } from './speech.js';
 
 /** A Web Audio double: records the graph and parameter automation, plays nothing. */
 class FakeParam {
@@ -87,7 +88,7 @@ class FakeContext {
   resume(): Promise<void> { this.state = 'running'; return Promise.resolve(); }
 }
 
-function setup(options: { maxVoices?: number; maxPerSound?: number; stream?: (file: string) => string | undefined } = {}): { ctx: FakeContext; out: WebAudioOutput; loads: string[] } {
+function setup(options: { maxVoices?: number; maxPerSound?: number; stream?: (file: string) => string | undefined; speech?: SpeechLike | null } = {}): { ctx: FakeContext; out: WebAudioOutput; loads: string[] } {
   const ctx = new FakeContext();
   const loads: string[] = [];
   const out = new WebAudioOutput({
@@ -203,6 +204,23 @@ describe('WebAudioOutput', () => {
     expect(music!.connections).toEqual([duck]);
     expect(duck!.connections).toEqual([master]);
     expect([master!.gain.value, sfx!.gain.value, music!.gain.value]).toEqual([0.8, 0.25, 0.5]);
+  });
+
+  it('speak: says lines at volume × master × sfx, interrupt cancels first, and no speech is silent', () => {
+    const said: string[] = [];
+    const speech: SpeechLike = {
+      speak: (u: UtteranceLike) => { said.push(`${u.text}@${u.volume}x${u.rate}:${u.voice?.name ?? null}`); },
+      cancel: () => { said.push('<cancel>'); },
+      getVoices: () => [{ name: 'English (UK)', lang: 'en-GB' }],
+      utterance: (text) => ({ text, pitch: 1, rate: 1, volume: 1, voice: null, lang: '' }),
+    };
+    const { out } = setup({ speech });
+    const line = { kind: 'speak' as const, text: 'Hello there.', voice: null, rate: 1.2, pitch: 1, volume: 0.5, interrupt: false };
+    send(out, { kind: 'buses', master: 0.8, music: 1, sfx: 0.5 }, line);
+    send(out, { ...line, text: 'Next line.', voice: 'en-GB', interrupt: true }, { kind: 'speech_stop' });
+    expect(said).toEqual(['Hello there.@0.2x1.2:null', '<cancel>', 'Next line.@0.2x1.2:English (UK)', '<cancel>']);
+    const { out: mute } = setup({ speech: null });
+    expect(() => send(mute, line, { kind: 'speech_stop' })).not.toThrow();
   });
 
   it('a sound without a file (a data-only run) plays silently and fetches nothing', () => {

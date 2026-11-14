@@ -155,7 +155,32 @@ export interface AudioStopAll {
   readonly kind: 'stop_all';
 }
 
-export type AudioCommand = AudioPlay | AudioUpdate | AudioStop | AudioMusic | AudioMusicGains | AudioMusicPause | AudioBuses | AudioMix | AudioStopAll;
+/**
+ * Speak a line aloud with the platform's text-to-speech voices (`ctx.audio.speak`). The
+ * browser uses the Web Speech API when it has voices; an output without speech ignores it
+ * (the game shows the line as a subtitle anyway). `volume` is final (call × the sfx group's
+ * level) before the master and sfx buses.
+ */
+export interface AudioSpeak {
+  readonly kind: 'speak';
+  readonly text: string;
+  /** A voice-name or language hint ("en-GB", "Daniel", "female"); null: the platform default. */
+  readonly voice: string | null;
+  /** 0..2, 1 = the voice's own pitch. */
+  readonly pitch: number;
+  /** 0.1..4, 1 = normal speed. */
+  readonly rate: number;
+  readonly volume: number;
+  /** Cut off whatever is being said first (true), or queue after it (false). */
+  readonly interrupt: boolean;
+}
+
+/** Stop speaking at once and drop queued lines. */
+export interface AudioSpeechStop {
+  readonly kind: 'speech_stop';
+}
+
+export type AudioCommand = AudioPlay | AudioUpdate | AudioStop | AudioMusic | AudioMusicGains | AudioMusicPause | AudioBuses | AudioMix | AudioStopAll | AudioSpeak | AudioSpeechStop;
 
 /** Where the sound is heard from (the active camera), for outputs that want it. */
 export interface AudioListener {

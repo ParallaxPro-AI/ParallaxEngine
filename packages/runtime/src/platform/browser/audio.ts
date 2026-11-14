@@ -50,6 +50,8 @@ import type {
   AudioCommand, AudioFrame, AudioListener, AudioMix, AudioMusic, AudioMusicGains, AudioOutput, AudioPlay, AudioPosition, AudioSound,
   AudioUpdate, ReverbPreset, SynthSpec,
 } from '../../core/index.js';
+import { browserSpeech, SpeechOutput } from './speech.js';
+import type { SpeechLike } from './speech.js';
 
 /** What this adapter uses of an AudioContext (a real one, or a test double). */
 export type AudioContextLike = Pick<
@@ -81,6 +83,8 @@ export interface WebAudioOptions {
   readonly maxPerSound?: number;
   /** Called when a file fails to load or decode (boot shows it in the dev overlay). */
   readonly onError?: (file: string, error: unknown) => void;
+  /** Text-to-speech for `ctx.audio.speak` (default: the page's `speechSynthesis`; null: none). */
+  readonly speech?: SpeechLike | null;
 }
 
 const LATE_LIMIT = 0.15;
@@ -171,8 +175,12 @@ export class WebAudioOutput implements AudioOutput {
   #musicPaused = false;
   /** The track asked for last (a late-decoding track starts only if still wanted). */
   #wantedMusic: string | null = null;
+  readonly #speech: SpeechOutput;
+  /** Settings master × sfx volume, applied to spoken lines (speech bypasses the Web Audio graph). */
+  #busLevel = 1;
 
   constructor(options: WebAudioOptions) {
+    this.#speech = new SpeechOutput(options.speech === undefined ? browserSpeech() : options.speech);
     this.#ctx = options.context;
     this.#load = options.load;
     this.#stream = options.stream;
@@ -251,6 +259,7 @@ export class WebAudioOutput implements AudioOutput {
         if (this.#music !== null) this.#holdMusic(this.#music, command.paused);
         return;
       case 'buses': {
+        this.#busLevel = command.master * command.sfx;
         const now = this.#ctx.currentTime;
         this.#master.gain.setTargetAtTime(command.master, now, SMOOTHING);
         this.#sfx.gain.setTargetAtTime(command.sfx, now, SMOOTHING);
@@ -258,6 +267,8 @@ export class WebAudioOutput implements AudioOutput {
         return;
       }
       case 'mix': return this.#applyMix(command);
+      case 'speak': return this.#speech.speak(command, this.#busLevel);
+      case 'speech_stop': return this.#speech.stop();
     }
   }
 

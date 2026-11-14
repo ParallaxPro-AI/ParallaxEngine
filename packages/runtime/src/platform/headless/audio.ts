@@ -36,6 +36,18 @@ export interface RecordedPlay {
   readonly synth: SynthSpec | null;
 }
 
+/** A line given to text-to-speech (`ctx.audio.speak`), as a playtest reads it. */
+export interface RecordedSpeech {
+  readonly frame: number;
+  readonly time: number;
+  readonly text: string;
+  readonly voice: string | null;
+  readonly pitch: number;
+  readonly rate: number;
+  readonly volume: number;
+  readonly interrupt: boolean;
+}
+
 export interface RecordedMusic {
   readonly frame: number;
   readonly time: number;
@@ -74,6 +86,9 @@ export class HeadlessAudio implements AudioOutput {
   readonly frames: AudioFrame[] = [];
   readonly plays: RecordedPlay[] = [];
   readonly musicChanges: RecordedMusic[] = [];
+  /** Every spoken line, in order; `speechStops` counts `stop_speaking` (and silences). */
+  readonly speeches: RecordedSpeech[] = [];
+  speechStops = 0;
   /** Files fetched ahead: at startup and by `ctx.audio.preload`, minus those released since. */
   preloaded: readonly string[] = [];
   /** Every `release` call's files, in order. */
@@ -222,6 +237,14 @@ export class HeadlessAudio implements AudioOutput {
         this.#mix = { reverb, panning, duckLevel, duckRelease };
         return;
       }
+      case 'speak': {
+        const { text, voice, pitch, rate, volume, interrupt } = command;
+        this.speeches.push({ frame: frame.frame, time: frame.time, text, voice, pitch, rate, volume, interrupt });
+        return;
+      }
+      case 'speech_stop':
+        this.speechStops += 1;
+        return;
     }
   }
 }

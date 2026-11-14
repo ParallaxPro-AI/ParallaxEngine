@@ -30,7 +30,7 @@ export { AudioCatalog, audioHandle } from './catalog.js';
 export type { AudioFolder } from './catalog.js';
 export { AudioDefaultsTable, checkAudioDefaults } from './defaults.js';
 export { AUDIO_SOURCE, AudioEngine, BEAT_EVENT, CAMERA, THUNDER_EVENT, IMPACT_FULL_SPEED, IMPACT_LIMIT, IMPACT_WINDOW, checkFade, checkPitch, checkVolume, firstCamera, SCENE_MUSIC_FADE, SETTINGS } from './engine.js';
-export type { ForwardedSound, MusicLayerRequest, MusicOptions, PlayRequest } from './engine.js';
+export type { ForwardedSound, MusicLayerRequest, MusicOptions, PlayRequest, SpeakRequest } from './engine.js';
 export { AMBIENCE_KEYS, ambienceLoops, nearestOnArea, nearestOnCourse, sceneWeatherSounds, thunderClap } from './ambience.js';
 export { layerGain, layerGains, rampGain } from './stems.js';
 export { loadSynths, readSynth, SYNTH_FILE, synthPreset } from './synths.js';
