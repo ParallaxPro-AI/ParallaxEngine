@@ -11,7 +11,7 @@
 
 export { loadProject } from './load_project.js';
 export { resolvePrefab } from './variants.js';
-export { mergeJson, withoutDeletions } from './merge.js';
+export { mergeJson, notedKeys, withoutDeletions } from './merge.js';
 export type { ResolvedPrefab } from './variants.js';
 export type {
   AudioDefaults, AudioLevel, BehaviorUse, ConfigDoc, ContentEntry, FeatureId, InstanceFields, InstanceGrid,
