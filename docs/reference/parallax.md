@@ -2008,6 +2008,12 @@ an effect's light glows and its sound loops while it emits.
 - `effect: EffectRef = ...`
 - `emitting: bool = ...`
 - `rate_scale: float = ...`
+- `direction: Vec3 | None = ...`
+
+  3D: the emission axis in the entity's own space, turned with the entity (`Vec3(0, 0, -1)`:
+  out of a rocket's tail, wherever it points); None (default): the effect's own `direction`,
+  in world space. A moving emitter spreads each frame's particles along the way it moved, so
+  a fast one leaves an unbroken trail; a sudden jump (a teleport or respawn) leaves none.
 
 ### `TextMesh`
 

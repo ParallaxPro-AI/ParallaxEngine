@@ -164,6 +164,8 @@ export const PARTICLES_SCHEMA: Schema = {
   effect: t.ref('asset/vfx'),
   emitting: t.bool({ default: true }),
   rate_scale: t.number({ default: 1, min: 0 }),
+  /** 3D: the emission axis in the entity's own space, turned with it ([0, 0, -1]: out of a rocket's tail); null: the effect's own direction, in world space. */
+  direction: { type: { kind: 'optional', of: { kind: 'vec3' } }, default: null },
 };
 
 export const TEXT_MESH_SCHEMA: Schema = {

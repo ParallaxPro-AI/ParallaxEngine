@@ -19,8 +19,9 @@ import type { Render3dPlugin } from './index.js';
 import { EffectLibrary, parseEffect } from './effects.js';
 import { EFFECT_PRESETS } from './effect_presets.js';
 import { FIRE_FLIPBOOK, SMOKE_FLIPBOOK } from './flipbook.js';
-import { ParticleSystem3d } from './particles.js';
+import { jumped, ParticleSystem3d } from './particles.js';
 import type { EmitterSource } from './particles.js';
+import { localAxis } from './engine.js';
 import { lightningRibbons, smoothPath, trailRibbon } from './ribbons.js';
 
 const DT = 1 / 60;
@@ -213,6 +214,38 @@ describe('the 3D particle system', () => {
     expect(ps.hazes()).toEqual([]);
   });
 
+  it('a moving continuous emitter spreads a frame\'s particles along the way it moved, along its own axis', () => {
+    const ps = new ParticleSystem3d(new EffectLibrary(catalog({
+      'assets/vfx/trail.vfx.json': { rate: 600, lifetime: 5, speed: 1, spread: 0, max: 1000 },
+    })));
+    ps.reset(1);
+    ps.attach(1 as EntityId, 'vfx/trail', 'test');
+    let x = 0;
+    const source = (): EmitterSource => ({ position: [x, 0, 0], emitting: true, rateScale: 1, axis: [0, 0, -1] });
+    ps.step(DT, source);
+    // Under way at six metres a frame (the first move, from rest, reads as a jump).
+    x = 6;
+    ps.step(DT, source);
+    const first = ps.liveParticles;
+    // Six metres more in one frame: ten new particles, 0.6 m apart, not ten at the end.
+    x = 12;
+    ps.step(DT, source);
+    const data = ps.draws()[0]!.data;
+    const xs: number[] = [];
+    for (let i = first; i < ps.liveParticles; i++) xs.push(data[i * PARTICLE3D_STRIDE]!);
+    expect(xs.length).toBe(10);
+    expect(xs[0]).toBeCloseTo(6.6);
+    expect(xs[9]).toBeCloseTo(12);
+    for (let i = 1; i < xs.length; i++) expect(xs[i]! - xs[i - 1]!).toBeCloseTo(0.6);
+    // Emitted along the given axis (-z), not the effect's default (up).
+    const snap = ps.snapshot();
+    const p = snap.emitters[0]!.particles;
+    expect(p[3]).toBeCloseTo(0);
+    expect(p[4]).toBeCloseTo(0);
+    expect(p[5]).toBeCloseTo(-1);
+    expect(snap.emitters[0]!.axis).toEqual([0, 0, -1]);
+  });
+
   it('draws velocity-facing particles with their stretch, fades in, sorts alpha particles back to front', () => {
     const { ps, step } = system({
       'assets/vfx/spark.vfx.json': { burst: 1, lifetime: 1, speed: 10, direction: 0, spread: 0, facing: 'velocity', stretch: 0.1 },
@@ -341,6 +374,43 @@ describe('effects in a 3D game', () => {
     s.steps(240);
     expect(s.frame().particles).toBeUndefined();
     expect(s.frame().lights.filter((l) => l.entity === null)).toEqual([]);
+  });
+
+  it('a continuous emitter that jumps (teleport, respawn) draws no trail across the jump', () => {
+    const ps = new ParticleSystem3d(new EffectLibrary(catalog({
+      'assets/vfx/trail.vfx.json': { rate: 600, lifetime: 5, speed: 1, spread: 0, max: 1000 },
+    })));
+    ps.reset(1);
+    ps.attach(1 as EntityId, 'vfx/trail', 'test');
+    let x = 0;
+    const source = (): EmitterSource => ({ position: [x, 0, 0], emitting: true, rateScale: 1 });
+    for (let i = 0; i < 5; i++, x += 0.05) ps.step(DT, source); // walking pace: 3 m/s
+    const first = ps.liveParticles;
+    x = 50;
+    ps.step(DT, source);
+    const data = ps.draws()[0]!.data;
+    for (let i = first; i < ps.liveParticles; i++) expect(data[i * PARTICLE3D_STRIDE]!).toBeCloseTo(50);
+    expect(jumped(46, DT, 1, 3)).toBe(true);
+    expect(jumped(0.05, DT, 1, 3)).toBe(false);
+    // A fast mover is not a jump: its own speed last frame raises the bound.
+    expect(jumped(6, DT, 1, 360)).toBe(false);
+  });
+
+  it('a Particles direction turns with its entity: a rocket\'s exhaust leaves its tail wherever it points', async () => {
+    const s = await scene({
+      cam: CAMERA,
+      rocket: { components: { particles: { effect: 'vfx/jet', direction: [0, 0, -1] } } },
+    }, [{ id: 'cam', prefab: 'cam', at: [0, 2, -10] }, { id: 'rocket', prefab: 'rocket', at: [0, 5, 0], rotation: [0, 90, 0] }], {
+      'assets/vfx/jet.vfx.json': { rate: 60, lifetime: 2, speed: 10, spread: 0 },
+    });
+    s.steps(10);
+    const batch = s.frame().particles!.find((b) => b.entity === s.id('rocket'))!;
+    // Yawed 90°, the rocket faces +x: its tail, and the exhaust, point to -x.
+    const first = batch.data;
+    expect(first[0]!).toBeLessThan(-0.5);
+    expect(Math.abs(first[2]!)).toBeLessThan(1e-6);
+    expect(localAxis([2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 0, 0, 0, 1], new Vec3(0, 0, -1))).toEqual([0, 0, -1]);
+    expect(localAxis([1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1], null)).toBeNull();
   });
 
   it('a continuous built-in fire glows and loops its sound while it emits', async () => {
