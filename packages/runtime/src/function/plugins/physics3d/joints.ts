@@ -31,7 +31,7 @@
 import type RAPIER from '@dimforge/rapier3d-compat';
 import { deg, fail, Quat, rad, Vec3 } from '../../../core/index.js';
 import type { EntityId } from '../../../core/index.js';
-import { t } from '../../kernel/index.js';
+import { KERNEL_EVENTS, t } from '../../kernel/index.js';
 import type { EntityRecord, EventDef, Fields, FieldSpec, Kernel, Schema } from '../../kernel/index.js';
 import type { BodyKind } from '../../services/index.js';
 import { rapier } from './rapier.js';
@@ -42,7 +42,7 @@ export const JOINT_KINDS = ['fixed', 'hinge', 'slider', 'ball', 'rope', 'spring'
 export type JointKind = typeof JOINT_KINDS[number];
 
 /** Emitted on the joint's entity when it breaks under load (or loses one of its bodies). */
-export const JOINT_BROKEN: EventDef = { id: 'joint_broken', target: 'entity' };
+export const JOINT_BROKEN: EventDef = KERNEL_EVENTS.jointBroken;
 
 const optional = (of: FieldSpec['type']): FieldSpec => ({ type: { kind: 'optional', of }, default: null });
 

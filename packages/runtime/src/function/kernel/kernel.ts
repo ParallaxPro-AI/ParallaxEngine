@@ -57,6 +57,8 @@ export const KERNEL_EVENTS = {
   collisionEnded: { id: 'collision_ended', target: 'entity' },
   triggerEntered: { id: 'trigger_entered', target: 'entity' },
   triggerExited: { id: 'trigger_exited', target: 'entity' },
+  impact: { id: 'impact', target: 'entity' },
+  jointBroken: { id: 'joint_broken', target: 'entity' },
 } as const satisfies Record<string, EventDef>;
 
 /** Points in the frame where plugins run (physics steps inside the fixed loop). */

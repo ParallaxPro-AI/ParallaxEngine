@@ -23,7 +23,7 @@
 import type RAPIER from '@dimforge/rapier2d-compat';
 import { deg, fail, rad, Vec2, Vec3 } from '../../../core/index.js';
 import type { EntityId } from '../../../core/index.js';
-import { t } from '../../kernel/index.js';
+import { KERNEL_EVENTS, t } from '../../kernel/index.js';
 import type { EntityRecord, EventDef, Fields, FieldSpec, Kernel, Schema } from '../../kernel/index.js';
 import { rapier } from './rapier.js';
 import type { XY } from './values.js';
@@ -32,7 +32,7 @@ export const JOINT = 'joint';
 export const JOINT_KINDS_2D = ['fixed', 'hinge', 'slider', 'rope', 'spring'] as const;
 type JointKind = typeof JOINT_KINDS_2D[number];
 
-export const JOINT_BROKEN: EventDef = { id: 'joint_broken', target: 'entity' };
+export const JOINT_BROKEN: EventDef = KERNEL_EVENTS.jointBroken;
 
 const optional = (of: FieldSpec['type']): FieldSpec => ({ type: { kind: 'optional', of }, default: null });
 

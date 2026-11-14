@@ -8,6 +8,7 @@
  */
 
 import { closestMatch, fail } from '../../../core/index.js';
+import { KERNEL_EVENTS } from '../../kernel/index.js';
 import type { EventDef, FieldSpec } from '../../kernel/index.js';
 
 export interface MaterialSpec {
@@ -19,7 +20,8 @@ export interface MaterialSpec {
   readonly impact_speed: number;
 }
 
-export const IMPACT: EventDef = { id: 'impact', target: 'entity' };
+/** The kernel's shared definition: `@on(Impact)` matches events by identity, from 2D or 3D. */
+export const IMPACT: EventDef = KERNEL_EVENTS.impact;
 
 /** The Collider's `material` field: a declared material's name, or None. */
 export const MATERIAL_FIELD: FieldSpec = { type: { kind: 'optional', of: { kind: 'string' } }, default: null };

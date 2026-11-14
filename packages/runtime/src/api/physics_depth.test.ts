@@ -5,6 +5,7 @@ import { BreakableBroken, BreakableDamaged, Breakable, destruction } from './des
 import { kw } from './kwargs.js';
 import { ForceField, Impact, Joint, JointBroken, material, materialSpecs, Materials, physics2d, Ragdoll } from './physics.js';
 import { physics3d } from './physics3d.js';
+import { IMPACT as IMPACT_3D, JOINT_BROKEN as JOINT_BROKEN_3D } from '../function/plugins/physics3d/index.js';
 
 describe('parallax.physics depth', () => {
   it('names materials after their attributes and hands their specs to the plugin', () => {
@@ -25,5 +26,13 @@ describe('parallax.physics depth', () => {
     expect([Joint, ForceField, Ragdoll, Breakable].map((h) => h.__component_id__)).toEqual(['joint', 'force_field', 'ragdoll', 'breakable']);
     expect([JointBroken, Impact, BreakableDamaged, BreakableBroken].map((e) => e.__event_id__)).toEqual(['joint_broken', 'impact', 'breakable_damaged', 'breakable_broken']);
     expect(destruction().id).toBe('destruction');
+  });
+
+  it('@on(Impact) and @on(JointBroken) hear the 3D plugin too (events match by identity)', () => {
+    // The handles are built from one set of definitions; the 3D plugin must emit those same
+    // objects, or a 3D game's handlers never match (the kernel compares event types by identity).
+    expect((Impact as unknown as { __event_def__: unknown }).__event_def__).toBe(IMPACT_3D);
+    expect((JointBroken as unknown as { __event_def__: unknown }).__event_def__).toBe(JOINT_BROKEN_3D);
+    expect(physics3d(kw({})).events).toEqual(expect.arrayContaining([IMPACT_3D, JOINT_BROKEN_3D]));
   });
 });
