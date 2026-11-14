@@ -27,7 +27,7 @@ interface Rigidbody extends Fields {
   readonly speed: number;
   impulse(impulse: Vec3, options?: { at?: Vec3 }): void;
   force(force: Vec3): void;
-  teleport(position: Vec3, options?: { rotation?: Vec3; keep_velocity?: boolean }): void;
+  teleport(position: Vec3, options?: { rotation?: Vec3 | number; keep_velocity?: boolean }): void;
 }
 
 export interface World3d {
@@ -151,6 +151,15 @@ describe('rigidbody', () => {
     g.body('ball').velocity = new Vec3(5, 0, 0);
     g.body('ball').teleport(new Vec3(0, 0, 0), { keep_velocity: true });
     expect(g.body('ball').velocity.x).toBeCloseTo(5);
+  });
+
+  it('teleport takes a number as a yaw, as spawn(rotation=) does', () => {
+    const g = world({ prefabs: { ball: BALL }, entities: [{ prefab: 'ball', id: 'ball' }] });
+    g.body('ball').teleport(new Vec3(0, 1, 0), { rotation: 135 });
+    const euler = g.kernel.world.require(g.id('ball')).transform.rotation.to_euler();
+    expect(euler.y).toBeCloseTo(135);
+    expect(euler.x).toBeCloseTo(0);
+    expect(() => g.body('ball').teleport(new Vec3(0, 1, 0), { rotation: Number.NaN })).toThrow(/PP3153/);
   });
 
   it('kinematic bodies follow their transform and push dynamic ones', () => {

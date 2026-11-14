@@ -110,7 +110,8 @@ def teleport(
 ) -> None
 ```
 
-Move without sweeping through what's in between.
+Move without sweeping through what's in between. `rotation`: euler degrees (3D; a
+number is a yaw, as in `spawn`) or an angle (2D).
 
 ### `Collider`
 

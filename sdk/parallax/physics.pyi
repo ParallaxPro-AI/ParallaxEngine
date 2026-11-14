@@ -57,7 +57,8 @@ class Rigidbody(EngineComponent):
         """Applied for this physics step only."""
     def teleport(self, position: Vec3 | Vec2, *, rotation: Vec3 | float | None = None,
                  keep_velocity: bool = False) -> None:
-        """Move without sweeping through what's in between."""
+        """Move without sweeping through what's in between. `rotation`: euler degrees (3D; a
+        number is a yaw, as in `spawn`) or an angle (2D)."""
 
 
 @component("collider")

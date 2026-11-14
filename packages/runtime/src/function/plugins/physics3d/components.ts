@@ -57,13 +57,14 @@ export function colliderSchema(layers: LayerTable): Schema {
 
 type Sim = () => Physics3dSim;
 
-/** `teleport(rotation=)`: euler degrees (Vec3) or a Quat in 3D. */
+/** `teleport(rotation=)`: euler degrees (Vec3), a Quat, or a number — a yaw, as `spawn(rotation=90)` — in 3D. */
 function rotationArg(value: unknown): Quat | undefined {
   if (value === undefined || value === null) return undefined;
   if (value instanceof Quat) return value;
   if (value instanceof Vec3) return Quat.from_euler(value);
-  return fail('PP3153', `teleport(rotation=) must be euler degrees (Vec3) in 3D, got ${describe(value)}`, {
-    fix: 'Pass rotation=vec3(pitch, yaw, roll), e.g. vec3(0, 90, 0).',
+  if (typeof value === 'number' && Number.isFinite(value)) return Quat.from_euler(new Vec3(0, value, 0));
+  return fail('PP3153', `teleport(rotation=) must be euler degrees (Vec3) or a yaw in 3D, got ${describe(value)}`, {
+    fix: 'Pass rotation=vec3(pitch, yaw, roll), e.g. vec3(0, 90, 0), or a yaw: rotation=90.',
   });
 }
 
