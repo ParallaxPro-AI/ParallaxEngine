@@ -39,7 +39,7 @@ export { M } from './methods.js';
 export {
   async_fn, attr, await_, bind, call, callm, class_attr, class_info, class_method, decorate_method, delattr, fn_annotations,
   getattr,
-  hasattr, init_subclass, isCoroutine, kw_merge, mark_async, NO_DEFAULT, no_hash, PyObject, pyfn, set_method, setattr, sig, static_method,
+  hasattr, init_subclass, isCoroutine, kw_merge, mark_async, NO_DEFAULT, no_hash, PY_INSTANCE, PyObject, pyfn, set_method, setattr, sig, static_method,
 } from './objects.js';
 export type { Sig } from './objects.js';
 
