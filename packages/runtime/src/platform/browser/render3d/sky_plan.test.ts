@@ -9,7 +9,9 @@ import { EARTH_ATMOSPHERE, PLAIN_POST, WAVE_FLOATS } from '../../../core/index.j
 import type { Frame3d, Nature3d, Quality3d, Sky3d, View3d, WaterBody3d } from '../../../core/index.js';
 import { QUALITY_LADDER } from '../../../function/plugins/render3d/index.js';
 import { offsetOf } from './layout.js';
-import { BODY_VEC4S, faceSlot, natureFades, NATURE_FIELDS, NATURE_SLOT, planNature, skyFogAmount, viewFadeOf, WATER_FIELDS } from './sky_plan.js';
+import { BODY_VEC4S, faceSlot, natureFades, NATURE_FIELDS, NATURE_SLOT, planNature, riverSurfaceAt, skyFogAmount, viewFadeOf, WATER_FIELDS } from './sky_plan.js';
+import { riverRibbon } from '../../../function/plugins/render3d/water_frame.js';
+import type { WaterBodyInfo } from '../../../function/services/index.js';
 import { whiteBalance } from './plan.js';
 import { glslSky, NATURE_COMMON, wgslSky } from './sky_shaders.js';
 import { glslSurface, glslUnderwater, GLSL_WATER_COPY, OCEAN_HORIZON, wgslWater } from './water_shaders.js';
@@ -87,6 +89,27 @@ describe('planNature', () => {
     expect(below.uniforms[offsetOf(NATURE_FIELDS, 'waterAt') + 1]).toBeGreaterThan(-0.45);
     const tooDeep = planNature(frame({ sky: SKY, water, weather: null }, 'high', -60), [view(-60)], 320, 180)!;
     expect(at(tooDeep, 'waterAt')).toBe(-1);
+  });
+
+  it('knows when the camera is under a river: below its ribbon, above its bed, inside its banks', () => {
+    // A river 6 m wide running from z = -20 to z = 20, its surface falling from y = 1 to y = -1.
+    const course = { xs: Float64Array.from([0, 0, 0]), ys: Float64Array.from([1, 0, -1]), zs: Float64Array.from([-20, 0, 20]) };
+    const ribbon = riverRibbon({ course, width: 6, flow: 1, entity: 9, version: 1 } as unknown as WaterBodyInfo);
+    expect(riverSurfaceAt(ribbon, 0, 0)).toBeCloseTo(0, 5);
+    expect(riverSurfaceAt(ribbon, 2, 10)).toBeCloseTo(-0.5, 5);
+    expect(riverSurfaceAt(ribbon, 4, 0)).toBeNull();
+    const RIVER: WaterBody3d = { ...OCEAN, kind: 'river', entity: 9, depth: 2, waveCount: 0, ribbon };
+    const water = { time: 0, waves: new Float32Array(0), bodies: [RIVER], ripples: new Float32Array(4), rippleCount: 0 };
+    const at = (y: number, x = 0): number[] => {
+      const v = { ...view(y), position: [x, y, 10] as [number, number, number] };
+      const plan = planNature(frame({ sky: SKY, water, weather: null }, 'high', y), [v], 320, 180)!;
+      const o = offsetOf(NATURE_FIELDS, 'waterAt');
+      return [plan.uniforms[o]!, plan.uniforms[o + 1]!];
+    };
+    expect(at(-1)).toEqual([0, -0.5]);   // 0.5 m under the surface at z = 10
+    expect(at(0)[0]).toBe(-1);           // above it
+    expect(at(-3)[0]).toBe(-1);          // under the bed (2 m deep)
+    expect(at(-1, 5)[0]).toBe(-1);       // beside the river, past its bank
   });
 });
 
