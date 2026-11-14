@@ -13805,6 +13805,7 @@
       "code": "PP3955",
       "range": "PP3xxx",
       "areas": [
+        "core",
         "save"
       ],
       "listed_in": [],
@@ -13812,13 +13813,16 @@
         "error"
       ],
       "messages": [
+        "Behavior \"{use.use}\" has the name of {…} on this prefab (components and behaviors share one namespace in a save)",
         "{where} has two parts named \"{id}\" (components and behaviors share one namespace in a save)"
       ],
       "fixes": [
+        "Rename the behavior (e.g. \"{…}_brain\") or the component.",
         "Rename the behavior or the component, or use the behavior once per prefab."
       ],
       "notes": [],
       "sources": [
+        "packages/check/src/data_checks.ts",
         "packages/runtime/src/function/plugins/save/entities.ts"
       ],
       "docs": "https://parallaxpro.ai/docs/engine/errors/PP3955"

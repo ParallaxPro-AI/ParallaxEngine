@@ -102,7 +102,7 @@ export function checkData(ctx: CheckContext): void {
     // A variant's `null`s delete inherited values (the "extends" rule); what it sets is checked.
     const own = prefab.extends === undefined ? prefab.components : withoutDeletions(prefab.components);
     instance(ctx, own, prefab.tags, {}, { path: prefab.path, pointer: '' }, refs);
-    behaviorUses(ctx, prefab, refs);
+    behaviorUses(ctx, prefab, refs, placedPrefabs.has(prefab.id) && ctx.plugins.has('save'));
     prefab.children.forEach((child, i) => {
       const at = { path: prefab.path, pointer: pointerTo('/children', i) };
       instance(ctx, child.components, child.tags, child.params, at, refs);
@@ -224,8 +224,21 @@ function instance(ctx: CheckContext, components: Readonly<Record<string, JsonObj
   }
 }
 
-function behaviorUses(ctx: CheckContext, prefab: PrefabDoc, refs: RefIndex): void {
+/** Keys an entity's save entry reserves besides its components (runtime save/entities.ts). */
+const SAVE_ENTRY_KEYS = new Set(['transform', 'tags', 'visible', 'destroyed']);
+
+function behaviorUses(ctx: CheckContext, prefab: PrefabDoc, refs: RefIndex, saved: boolean): void {
   const validator = new Validator(refs, ctx.out);
+  // Components and behaviors share one namespace in a save: the save plugin refuses (PP3955)
+  // to snapshot a placed entity whose behavior is named like one of its components.
+  const components = new Set(saved ? Object.keys(resolved(ctx, prefab.id)?.components ?? prefab.components) : []);
+  for (const use of saved ? prefab.behaviors : []) {
+    if (components.has(use.use) || SAVE_ENTRY_KEYS.has(use.use)) {
+      ctx.report('PP3955', `Behavior "${use.use}" has the name of ${components.has(use.use) ? 'a component' : 'a saved entity field'} on this prefab (components and behaviors share one namespace in a save)`, {
+        path: use.origin.path, pointer: use.origin.pointer, fix: 'Rename the behavior (e.g. "' + use.use + '_brain") or the component.',
+      });
+    }
+  }
   for (const use of prefab.behaviors) {
     const behavior = ctx.decl.behaviors[use.use];
     if (behavior === undefined) {

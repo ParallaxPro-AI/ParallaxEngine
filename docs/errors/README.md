@@ -589,7 +589,7 @@ Runtime API misuse and plugin data errors, one hundred (or a decade) per plugin.
 | PP3952 | save | {where} is at save version {version}, and no migration starts there (the game is at {saveVersion}) |
 | PP3953 | save | {where} was written by save version {from}, newer than this game's {saveVersion} |
 | PP3954 | save | {where} has a bad "info" block |
-| PP3955 | save | {where} has two parts named "{id}" (components and behaviors share one namespace in a save) |
+| PP3955 | core, save | Behavior "{use.use}" has the name of {…} on this prefab (components and behaviors share one namespace in a save) |
 | PP3956 | save | Two entities in scene "{…}" have the save key "{key}" |
 | PP3957 | save | The save changes entity "{key}", which scene "{…}" doesn't place |
 | PP3958 | save | A save section can't be named "{section.key}": the save plugin uses that key |

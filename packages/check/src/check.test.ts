@@ -73,6 +73,23 @@ describe('data against declarations', () => {
     expect(found.map((d) => d.fix)).toEqual(['Did you mean "prism_brick"?', 'Did you mean "health"?', 'Did you mean "brick"?', 'Did you mean "hud"?']);
   });
 
+  it('a saved, placed prefab whose behavior is named like one of its components is PP3955 at check time', () => {
+    const rename = (d: Declarations, save: boolean): Declarations => ({
+      ...d,
+      behaviors: { ...d.behaviors, health: d.behaviors['prism_brick']! },
+      game: { ...d.game!, plugins: save ? [...d.game!.plugins, { ...d.game!.plugins[0]!, id: 'save' }] : d.game!.plugins },
+    });
+    const edits = {
+      'prefabs/brick.prefab.json': (t: string) => t.replace('"prism_brick": {', '"health": {'),
+      'scenes/arena/scene.json': (t: string) => t.replace('"entities": [', '"entities": [{ "id": "lone_brick", "prefab": "brick", "at": [0, 9] },'),
+    };
+    const found = run(brick, edits, (d) => rename(d, true));
+    expect(brief(found)).toEqual(['PP3955 prefabs/brick.prefab.json /behaviors/health']);
+    expect(found[0]!.severity).toBe('error');
+    // Without saving, the entity is never snapshotted: nothing to report.
+    expect(brief(run(brick, edits, (d) => rename(d, false)))).toEqual([]);
+  });
+
   it('a panel that opens by itself (when=) listed in a scene\'s ui is PP2081', () => {
     const found = run(brick, { 'scenes/arena/scene.json': (t) => t.replace('"ui": ["hud"]', '"ui": ["hud", "game_over"]') });
     expect(brief(found)).toEqual(['PP2081 scenes/arena/scene.json /ui/1']);
