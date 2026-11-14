@@ -9,6 +9,10 @@
  * what it would sound like (`synthStats`: peak, RMS, how much is not silence), and the
  * browser output renders exactly that buffer.
  *
+ * A spec may instead be a `song`: a tempo, instruments (layer templates) and tracks of
+ * note steps, which `expandSong` turns into one layer per note — music written as data,
+ * longer than one sound (up to MAX_SONG_SECONDS) and with as many notes as it needs.
+ *
  * Filters are the RBJ cookbook biquads — the formulas Web Audio's BiquadFilterNode uses — so
  * a synthesized sweep sounds as the same numbers would through a live filter.
  */
@@ -69,8 +73,9 @@ export interface SynthLayer {
 
 /** A whole sound. */
 export interface SynthSpec {
-  /** Seconds, MIN_SYNTH_SECONDS..MAX_SYNTH_SECONDS. */
+  /** Seconds, MIN_SYNTH_SECONDS..MAX_SYNTH_SECONDS; a song's defaults to its bars (up to MAX_SONG_SECONDS). */
   readonly duration: number;
+  /** A song may leave them out (an empty list). */
   readonly layers: readonly SynthLayer[];
   /** Level after peak normalization (default 0.9). */
   readonly gain?: number;
@@ -78,19 +83,58 @@ export interface SynthSpec {
   readonly seed?: number;
   /** Skip peak normalization (a sound meant to be quieter than full scale). */
   readonly normalize?: boolean;
+  /** Music as note steps; expanded into layers (after any written ones), lasting its bars. */
+  readonly song?: SynthSong;
+}
+
+/**
+ * A sequenced piece: `bars` of `beats_per_bar` beats at `bpm`, each beat cut into
+ * `steps_per_beat` grid steps. Each track plays one instrument from a step string of
+ * whitespace-separated tokens, one per step: a note (`C4`, `F#3`, `Bb2`), a chord
+ * (`C4+E4+G4`), `x` (a hit at the instrument's own `freq`: drums), `-` (hold the note before
+ * one more step) or `.` (rest); `|` is ignored (bar lines for the reader). The pattern starts
+ * at bar `at` and plays `repeat` times back to back (default: to the song's end),
+ * `transpose`d by semitones.
+ */
+export interface SynthSong {
+  readonly bpm: number;
+  readonly bars: number;
+  readonly beats_per_bar?: number;
+  readonly steps_per_beat?: number;
+  /** 0..0.5: off-beat steps are pushed later by this fraction of a step. */
+  readonly swing?: number;
+  /** Name → a layer template (or a stack of them) without delay/length; `freq` is used by `x` hits. */
+  readonly instruments: Readonly<Record<string, SynthLayer | readonly SynthLayer[]>>;
+  readonly tracks: readonly SynthTrack[];
+}
+
+export interface SynthTrack {
+  readonly instrument: string;
+  readonly steps: string;
+  /** Bar the pattern starts at (default 0). */
+  readonly at?: number;
+  /** Times the pattern plays back to back (default: enough to fill the song). */
+  readonly repeat?: number;
+  readonly transpose?: number;
+  /** Multiplies the instrument's gain (default 1). */
+  readonly gain?: number;
 }
 
 export const MIN_SYNTH_SECONDS = 0.005;
 export const MAX_SYNTH_SECONDS = 20;
 export const MAX_SYNTH_LAYERS = 24;
 export const SYNTH_SAMPLE_RATE = 48000;
+export const MAX_SONG_SECONDS = 300;
+export const MAX_SONG_NOTES = 20000;
 
 const LAYER_KEYS = [
   'wave', 'freq', 'freq_end', 'sweep', 'gain', 'delay', 'length', 'attack', 'decay', 'sustain', 'release', 'decay_curve',
   'detune_cents', 'ring_hz', 'lfo_depth', 'lfo_hz', 'drive', 'filter',
 ] as const;
 const FILTER_KEYS = ['type', 'freq', 'freq_end', 'q', 'gain_db', 'sweep'] as const;
-export const SYNTH_KEYS = ['duration', 'layers', 'gain', 'seed', 'normalize'] as const;
+export const SYNTH_KEYS = ['duration', 'layers', 'gain', 'seed', 'normalize', 'song'] as const;
+const SONG_KEYS = ['bpm', 'bars', 'beats_per_bar', 'steps_per_beat', 'swing', 'instruments', 'tracks'] as const;
+const TRACK_KEYS = ['instrument', 'steps', 'at', 'repeat', 'transpose', 'gain'] as const;
 
 const isNumber = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v);
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -105,61 +149,192 @@ export function synthProblems(spec: unknown): string[] {
   for (const key of Object.keys(spec)) {
     if (!(SYNTH_KEYS as readonly string[]).includes(key)) problems.push(`unknown key "${key}" (keys: ${SYNTH_KEYS.join(', ')})`);
   }
+  const song = spec['song'] !== undefined;
   const duration = spec['duration'];
-  if (!isNumber(duration)) problems.push('"duration" (seconds) is required and must be a number');
-  else if (duration < MIN_SYNTH_SECONDS || duration > MAX_SYNTH_SECONDS) {
-    problems.push(`"duration" ${duration} is outside ${MIN_SYNTH_SECONDS}..${MAX_SYNTH_SECONDS} seconds`);
+  const longest = song ? MAX_SONG_SECONDS : MAX_SYNTH_SECONDS;
+  if (song && duration === undefined) {
+    // A song lasts its bars.
+  } else if (!isNumber(duration)) problems.push('"duration" (seconds) is required and must be a number');
+  else if (duration < MIN_SYNTH_SECONDS || duration > longest) {
+    problems.push(`"duration" ${duration} is outside ${MIN_SYNTH_SECONDS}..${longest} seconds`);
   }
   for (const key of ['gain', 'seed'] as const) {
     if (spec[key] !== undefined && !isNumber(spec[key])) problems.push(`"${key}" must be a number`);
   }
   if (isNumber(spec['gain']) && (spec['gain'] < 0 || spec['gain'] > 4)) problems.push(`"gain" ${spec['gain']} is outside 0..4`);
   if (spec['normalize'] !== undefined && typeof spec['normalize'] !== 'boolean') problems.push('"normalize" must be true or false');
+  if (song) songProblems(spec['song'], problems);
   const layers = spec['layers'];
+  if (song && (layers === undefined || (Array.isArray(layers) && layers.length === 0))) return problems;
   if (!Array.isArray(layers) || layers.length === 0) {
     problems.push('"layers" must be a non-empty list (no layers is silence)');
     return problems;
   }
   if (layers.length > MAX_SYNTH_LAYERS) problems.push(`${layers.length} layers; at most ${MAX_SYNTH_LAYERS}`);
-  layers.forEach((layer: unknown, i) => {
-    const at = `layers[${i}]`;
-    if (!isObject(layer)) { problems.push(`${at} must be an object`); return; }
-    for (const key of Object.keys(layer)) {
-      if (!(LAYER_KEYS as readonly string[]).includes(key)) problems.push(`${at}: unknown key "${key}"`);
+  layers.forEach((layer: unknown, i) => layerProblems(layer, `layers[${i}]`, problems));
+  return problems;
+}
+
+function layerProblems(layer: unknown, at: string, problems: string[], template = false): void {
+  if (!isObject(layer)) { problems.push(`${at} must be an object`); return; }
+  for (const key of Object.keys(layer)) {
+    if (!(LAYER_KEYS as readonly string[]).includes(key)) problems.push(`${at}: unknown key "${key}"`);
+    else if (template && (key === 'delay' || key === 'length')) problems.push(`${at}: "${key}" comes from the track's steps, not the instrument`);
+  }
+  if (!(SYNTH_WAVES as readonly unknown[]).includes(layer['wave'])) {
+    problems.push(`${at}.wave ${JSON.stringify(layer['wave']) ?? 'missing'} is not one of ${SYNTH_WAVES.join(', ')}`);
+  }
+  for (const key of LAYER_KEYS) {
+    if (key === 'wave' || key === 'sweep' || key === 'filter') continue;
+    const value = layer[key];
+    if (value !== undefined && !isNumber(value)) problems.push(`${at}.${key} must be a number`);
+    else if (isNumber(value) && value < 0 && key !== 'detune_cents') problems.push(`${at}.${key} must be at least 0`);
+  }
+  if (isNumber(layer['sustain']) && layer['sustain'] > 1) problems.push(`${at}.sustain is a level, 0..1`);
+  if (isNumber(layer['lfo_depth']) && layer['lfo_depth'] > 1) problems.push(`${at}.lfo_depth is 0..1`);
+  if (layer['sweep'] !== undefined && layer['sweep'] !== 'linear' && layer['sweep'] !== 'exponential') {
+    problems.push(`${at}.sweep must be "linear" or "exponential"`);
+  }
+  const filter = layer['filter'];
+  if (filter === undefined) return;
+  if (!isObject(filter)) { problems.push(`${at}.filter must be an object`); return; }
+  for (const key of Object.keys(filter)) {
+    if (!(FILTER_KEYS as readonly string[]).includes(key)) problems.push(`${at}.filter: unknown key "${key}"`);
+  }
+  if (!(SYNTH_FILTERS as readonly unknown[]).includes(filter['type'])) {
+    problems.push(`${at}.filter.type ${JSON.stringify(filter['type']) ?? 'missing'} is not one of ${SYNTH_FILTERS.join(', ')}`);
+  }
+  if (!isNumber(filter['freq']) || filter['freq'] <= 0) problems.push(`${at}.filter.freq must be a frequency above 0 Hz`);
+  for (const key of ['freq_end', 'q', 'gain_db'] as const) {
+    if (filter[key] !== undefined && !isNumber(filter[key])) problems.push(`${at}.filter.${key} must be a number`);
+  }
+}
+
+const NOTE = /^([A-Ga-g])([#b]?)(-?\d)$/;
+const SEMITONES: Record<string, number> = { c: 0, d: 2, e: 4, f: 5, g: 7, a: 9, b: 11 };
+
+/** A note name's frequency (A4 = 440 Hz, `transpose` semitones up), or undefined when it isn't one. */
+export function noteFrequency(name: string, transpose = 0): number | undefined {
+  const m = NOTE.exec(name);
+  if (m === null) return undefined;
+  const semis = SEMITONES[m[1]!.toLowerCase()]! + (m[2] === '#' ? 1 : m[2] === 'b' ? -1 : 0) + (Number(m[3]) + 1) * 12 + transpose;
+  return 440 * 2 ** ((semis - 69) / 12);
+}
+
+function stepTokens(steps: string): string[] {
+  return steps.split(/\s+/).filter((t) => t !== '' && t !== '|');
+}
+
+function songProblems(song: unknown, problems: string[]): void {
+  if (!isObject(song)) { problems.push('"song" must be an object with "bpm", "bars", "instruments" and "tracks"'); return; }
+  const before = problems.length;
+  for (const key of Object.keys(song)) {
+    if (!(SONG_KEYS as readonly string[]).includes(key)) problems.push(`song: unknown key "${key}" (keys: ${SONG_KEYS.join(', ')})`);
+  }
+  if (!isNumber(song['bpm']) || song['bpm'] < 20 || song['bpm'] > 400) problems.push('song.bpm must be a tempo from 20 to 400');
+  if (!isNumber(song['bars']) || song['bars'] < 1 || !Number.isInteger(song['bars'])) problems.push('song.bars must be a whole number of bars, at least 1');
+  for (const key of ['beats_per_bar', 'steps_per_beat'] as const) {
+    const v = song[key];
+    if (v !== undefined && (!isNumber(v) || v < 1 || v > 16 || !Number.isInteger(v))) problems.push(`song.${key} must be a whole number from 1 to 16`);
+  }
+  if (song['swing'] !== undefined && (!isNumber(song['swing']) || song['swing'] < 0 || song['swing'] > 0.5)) problems.push('song.swing is 0..0.5');
+  if (problems.length === before && songSeconds(song as unknown as SynthSong) > MAX_SONG_SECONDS) {
+    problems.push(`song lasts ${songSeconds(song as unknown as SynthSong).toFixed(1)} s; at most ${MAX_SONG_SECONDS}`);
+  }
+  const instruments = song['instruments'];
+  if (!isObject(instruments) || Object.keys(instruments).length === 0) {
+    problems.push('song.instruments must name at least one instrument');
+  } else {
+    for (const [name, value] of Object.entries(instruments)) {
+      const stack: unknown[] = Array.isArray(value) ? value : [value];
+      if (stack.length === 0) problems.push(`song.instruments.${name} has no layers`);
+      stack.forEach((layer, i) => layerProblems(layer, Array.isArray(value) ? `song.instruments.${name}[${i}]` : `song.instruments.${name}`, problems, true));
     }
-    if (!(SYNTH_WAVES as readonly unknown[]).includes(layer['wave'])) {
-      problems.push(`${at}.wave ${JSON.stringify(layer['wave']) ?? 'missing'} is not one of ${SYNTH_WAVES.join(', ')}`);
+  }
+  const tracks = song['tracks'];
+  if (!Array.isArray(tracks) || tracks.length === 0) { problems.push('song.tracks must be a non-empty list'); return; }
+  tracks.forEach((track: unknown, i) => {
+    const at = `song.tracks[${i}]`;
+    if (!isObject(track)) { problems.push(`${at} must be an object`); return; }
+    for (const key of Object.keys(track)) {
+      if (!(TRACK_KEYS as readonly string[]).includes(key)) problems.push(`${at}: unknown key "${key}" (keys: ${TRACK_KEYS.join(', ')})`);
     }
-    for (const key of LAYER_KEYS) {
-      if (key === 'wave' || key === 'sweep' || key === 'filter') continue;
-      const value = layer[key];
-      if (value !== undefined && !isNumber(value)) problems.push(`${at}.${key} must be a number`);
-      else if (isNumber(value) && value < 0 && key !== 'detune_cents') problems.push(`${at}.${key} must be at least 0`);
+    if (typeof track['instrument'] !== 'string' || !isObject(instruments) || !(track['instrument'] in instruments)) {
+      problems.push(`${at}.instrument ${JSON.stringify(track['instrument']) ?? 'missing'} is not one of the song's instruments`);
     }
-    if (isNumber(layer['sustain']) && layer['sustain'] > 1) problems.push(`${at}.sustain is a level, 0..1`);
-    if (isNumber(layer['lfo_depth']) && layer['lfo_depth'] > 1) problems.push(`${at}.lfo_depth is 0..1`);
-    if (layer['sweep'] !== undefined && layer['sweep'] !== 'linear' && layer['sweep'] !== 'exponential') {
-      problems.push(`${at}.sweep must be "linear" or "exponential"`);
+    if (typeof track['steps'] !== 'string' || stepTokens(track['steps']).length === 0) { problems.push(`${at}.steps must be a string of steps`); return; }
+    for (const token of stepTokens(track['steps'])) {
+      if (token === '.' || token === '-' || token === 'x') continue;
+      if (token.split('+').some((note) => noteFrequency(note) === undefined)) {
+        problems.push(`${at}.steps: "${token}" is not a note (C4, F#3, Bb2), a chord (C4+E4), x, - or .`);
+      }
     }
-    const filter = layer['filter'];
-    if (filter === undefined) return;
-    if (!isObject(filter)) { problems.push(`${at}.filter must be an object`); return; }
-    for (const key of Object.keys(filter)) {
-      if (!(FILTER_KEYS as readonly string[]).includes(key)) problems.push(`${at}.filter: unknown key "${key}"`);
-    }
-    if (!(SYNTH_FILTERS as readonly unknown[]).includes(filter['type'])) {
-      problems.push(`${at}.filter.type ${JSON.stringify(filter['type']) ?? 'missing'} is not one of ${SYNTH_FILTERS.join(', ')}`);
-    }
-    if (!isNumber(filter['freq']) || filter['freq'] <= 0) problems.push(`${at}.filter.freq must be a frequency above 0 Hz`);
-    for (const key of ['freq_end', 'q', 'gain_db'] as const) {
-      if (filter[key] !== undefined && !isNumber(filter[key])) problems.push(`${at}.filter.${key} must be a number`);
+    for (const key of ['at', 'repeat', 'transpose', 'gain'] as const) {
+      const v = track[key];
+      if (v !== undefined && !isNumber(v)) problems.push(`${at}.${key} must be a number`);
+      else if (isNumber(v) && key !== 'transpose' && v < 0) problems.push(`${at}.${key} must be at least 0`);
     }
   });
-  return problems;
+  if (problems.length === before && expandSong(song as unknown as SynthSong).length > MAX_SONG_NOTES) {
+    problems.push(`song has more than ${MAX_SONG_NOTES} notes`);
+  }
+}
+
+/** Seconds a song lasts: its bars at its tempo. */
+export function songSeconds(song: SynthSong): number {
+  return (song.bars * (song.beats_per_bar ?? 4) * 60) / song.bpm;
+}
+
+/** One layer per note (per instrument layer) of a checked song, at its time, in track order. */
+export function expandSong(song: SynthSong): SynthLayer[] {
+  const perBar = (song.beats_per_bar ?? 4) * (song.steps_per_beat ?? 4);
+  const step = 60 / song.bpm / (song.steps_per_beat ?? 4);
+  const total = song.bars * perBar;
+  const swing = Math.max(0, Math.min(0.5, song.swing ?? 0));
+  const end = songSeconds(song);
+  const out: SynthLayer[] = [];
+  const time = (i: number): number => (i + (i % 2 === 1 ? swing : 0)) * step;
+  for (const track of song.tracks) {
+    const value = song.instruments[track.instrument];
+    if (value === undefined) continue;
+    const stack: readonly SynthLayer[] = Array.isArray(value) ? value : [value as SynthLayer];
+    const tokens = stepTokens(track.steps);
+    if (tokens.length === 0) continue;
+    const first = Math.max(0, Math.floor(num(track.at, 0))) * perBar;
+    const repeat = isNumber(track.repeat) ? Math.floor(track.repeat) : Math.ceil(Math.max(0, total - first) / tokens.length);
+    const last = Math.min(total, first + repeat * tokens.length);
+    const gain = num(track.gain, 1);
+    const transpose = num(track.transpose, 0);
+    for (let i = first; i < last; i++) {
+      const token = tokens[(i - first) % tokens.length]!;
+      if (token === '.' || token === '-') continue;
+      let held = 1;
+      while (i + held < last && tokens[(i + held - first) % tokens.length] === '-') held++;
+      const start = time(i);
+      if (start >= end) break;
+      const notes = token === 'x' ? [undefined] : token.split('+').map((n) => noteFrequency(n, transpose));
+      for (const freq of notes) {
+        for (const layer of stack) {
+          const own = num(layer.freq, 440);
+          const at = freq ?? own;
+          const ratio = isNumber(layer.freq_end) && own > 0 ? layer.freq_end / own : undefined;
+          out.push({
+            ...layer, delay: start, length: Math.min(held * step + num(layer.release, 0), end - start), freq: at,
+            ...(ratio !== undefined && { freq_end: at * ratio }),
+            gain: (num(layer.gain, 1) * gain) / notes.length,
+          });
+        }
+      }
+    }
+  }
+  return out;
 }
 
 /** Seconds the sound lasts (its duration, clamped as rendering clamps it). */
 export function synthSeconds(spec: SynthSpec): number {
+  if (spec.song !== undefined) {
+    return Math.max(MIN_SYNTH_SECONDS, Math.min(MAX_SONG_SECONDS, isNumber(spec.duration) ? spec.duration : songSeconds(spec.song)));
+  }
   return Math.max(MIN_SYNTH_SECONDS, Math.min(MAX_SYNTH_SECONDS, isNumber(spec.duration) ? spec.duration : 0.25));
 }
 
@@ -250,7 +425,9 @@ export function renderSynth(spec: SynthSpec, sampleRate = SYNTH_SAMPLE_RATE): Fl
   const duration = synthSeconds(spec);
   const n = Math.max(1, Math.floor(duration * sr));
   const out = new Float32Array(n);
-  const layers = spec.layers.slice(0, MAX_SYNTH_LAYERS);
+  const layers = spec.song !== undefined
+    ? [...(spec.layers ?? []).slice(0, MAX_SYNTH_LAYERS), ...expandSong(spec.song).slice(0, MAX_SONG_NOTES)]
+    : spec.layers.slice(0, MAX_SYNTH_LAYERS);
   // One noise stream per layer index: appending a layer never changes the earlier ones.
   const baseSeed = Math.floor(num(spec.seed, 1)) >>> 0;
   for (let li = 0; li < layers.length; li++) {

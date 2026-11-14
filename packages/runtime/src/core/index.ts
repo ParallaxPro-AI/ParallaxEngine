@@ -48,9 +48,9 @@ export type {
 export type * from './ports/audio.js';
 export {
   biquad, MAX_SYNTH_LAYERS, MAX_SYNTH_SECONDS, MIN_SYNTH_SECONDS, renderSynth, SYNTH_FILTERS, SYNTH_KEYS, SYNTH_SAMPLE_RATE, SYNTH_WAVES,
-  synthProblems, synthSeconds, synthStats,
+  synthProblems, synthSeconds, synthStats, expandSong, noteFrequency, songSeconds, MAX_SONG_NOTES, MAX_SONG_SECONDS,
 } from './synth.js';
-export type { Biquad, SynthFilter, SynthFilterType, SynthLayer, SynthSpec, SynthStats, SynthSweep, SynthWave } from './synth.js';
+export type { Biquad, SynthFilter, SynthFilterType, SynthLayer, SynthSong, SynthSpec, SynthStats, SynthSweep, SynthTrack, SynthWave } from './synth.js';
 export * from './ports/render.js';
 export * from './ports/render3d.js';
 export * from './ports/nature3d.js';
