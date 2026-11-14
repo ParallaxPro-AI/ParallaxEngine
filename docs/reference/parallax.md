@@ -1118,7 +1118,8 @@ def child(name: str) -> Entity
 ```
 
 A direct child by the name it has in the prefab's "children" (children only need
-a "name" when code looks them up; names are unique per prefab). Raises PP3012 if absent.
+a "name" when code looks them up; names are unique per prefab), or one spawned under
+it with `spawn(..., parent=this, name=...)`. Raises PP3012 if absent.
 
 ```python
 def attach(child: Entity, *, socket: str | None = None, keep_world: bool = False) -> None

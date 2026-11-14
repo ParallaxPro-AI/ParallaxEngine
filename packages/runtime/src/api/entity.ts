@@ -169,11 +169,15 @@ export class Entity {
 
   child(name: string): Entity {
     const record = this.#readable;
-    for (const id of record.children) {
+    // A prefab child's name, or the `name=` a child was spawned with under this entity.
+    const nameOf = (id: EntityId): string | undefined => {
       const child = this.#rt.kernel.world.get(id);
-      if (child?.childName === name) return this.#rt.wrap(id);
+      return child?.childName ?? child?.name ?? undefined;
+    };
+    for (const id of record.children) {
+      if (nameOf(id) === name) return this.#rt.wrap(id);
     }
-    const names = record.children.map((id) => this.#rt.kernel.world.get(id)?.childName).filter((n) => n !== undefined);
+    const names = record.children.map(nameOf).filter((n) => n !== undefined);
     return fail('PP3012', `This entity has no child named "${name}"`, {
       fix: names.length > 0 ? `Children: ${names.join(', ')}.` : 'Give the child a "name" in the prefab\'s "children".',
     });
