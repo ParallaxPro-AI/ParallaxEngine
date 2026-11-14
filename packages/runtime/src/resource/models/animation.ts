@@ -13,14 +13,27 @@ import { compose, multiply, slerp } from './matrix.js';
 
 export { POSE_STRIDE } from './animation_math.js';
 
+/** Each model's rest pose, built once (a model's nodes never change after loading). */
+const REST_POSES = new WeakMap<ModelAsset, Float32Array>();
+
+/**
+ * The model's rest pose: every node's own translation, rotation and scale. A fresh copy
+ * on every call (callers write into it), copied from one built per model, since it's
+ * asked for several times per animated model per frame.
+ */
 export function restPose(model: ModelAsset): Float32Array {
-  const pose = new Float32Array(model.nodes.length * POSE_STRIDE);
-  model.nodes.forEach((node, i) => {
-    pose.set(node.translation, i * POSE_STRIDE);
-    pose.set(node.rotation, i * POSE_STRIDE + 3);
-    pose.set(node.scale, i * POSE_STRIDE + 7);
-  });
-  return pose;
+  let rest = REST_POSES.get(model);
+  if (rest === undefined || rest.length !== model.nodes.length * POSE_STRIDE) {
+    rest = new Float32Array(model.nodes.length * POSE_STRIDE);
+    const built = rest;
+    model.nodes.forEach((node, i) => {
+      built.set(node.translation, i * POSE_STRIDE);
+      built.set(node.rotation, i * POSE_STRIDE + 3);
+      built.set(node.scale, i * POSE_STRIDE + 7);
+    });
+    REST_POSES.set(model, rest);
+  }
+  return rest.slice();
 }
 
 /**
