@@ -23,7 +23,7 @@ import {
 } from '../../services/index.js';
 import type { ModelPoseSource } from '../../services/index.js';
 import type { AssetCatalog } from '../../../resource/index.js';
-import { compose, modelOffsetMatrix, multiply, nodeMatrices, refString, restPose, skinPalette } from '../../../resource/index.js';
+import { compose, LookMaterials, lookOf, modelOffsetMatrix, multiply, nodeMatrices, refString, restPose, skinPalette } from '../../../resource/index.js';
 import type { M4, ModelAsset } from '../../../resource/index.js';
 import {
   barDraw, Batches, CAMERA, LIGHT, lightOf, Materials, MODEL, nameOf, OUTLINE, outlineOf, PARTICLES, Placements, shapeDraw, SHAPE, TEXT_MESH,
@@ -142,6 +142,8 @@ interface Trail {
 
 const WHITE: Rgba = [1, 1, 1, 1];
 const LIGHTNING_BLUE: Rgba = [0.72, 0.82, 1, 1];
+/** A Model with none of its fields set: a model at rest, in its default look. */
+const NO_MODEL_FIELDS: Fields = {};
 
 export interface Render3dEngineOptions {
   readonly surface: RenderSurface3d;
@@ -468,18 +470,23 @@ export class Render3dEngine {
         })));
       }
       const worlds = nodeMatrices(asset, restPose(asset));
+      // At rest is the model's default look: its hidden parts stay hidden and its options
+      // show their default choices (as a placed entity with no Model fields set would).
+      const look = lookOf(asset, NO_MODEL_FIELDS, 'portrait model');
+      const looks = new LookMaterials();
       for (const n of asset.order) {
         const node = asset.nodes[n]!;
-        if (node.mesh === null) continue;
+        if (node.mesh === null || look.hidden?.[n] === 1) continue;
         for (const primitive of asset.meshes[node.mesh] ?? []) {
+          const material = looks.of(asset, primitive, look);
           if (node.skin !== null && primitive.geometry.joints !== null) {
             const skin = asset.skins[node.skin]!;
             skinned.push({
-              geometry: primitive.geometry, material: primitive.material, model: origin.m, tint: [1, 1, 1, 1], palette: skinPalette(skin, worlds),
+              geometry: primitive.geometry, material, model: origin.m, tint: [1, 1, 1, 1], palette: skinPalette(skin, worlds),
               jointCount: skin.joints.length, entity: -1, castShadows: false,
             });
           } else {
-            batches.add(primitive.geometry, primitive.material, false, worlds.subarray(n * 16, n * 16 + 16), [1, 1, 1, 1], null);
+            batches.add(primitive.geometry, material, false, worlds.subarray(n * 16, n * 16 + 16), [1, 1, 1, 1], null);
           }
         }
       }
