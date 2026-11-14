@@ -274,7 +274,7 @@ export class GameHarness {
   // ── Starting ──────────────────────────────────────────────────────────────────
 
   start(...args: unknown[]): Command {
-    const a = bindArgs('start', args, { keyword: ['scene', 'seed', 'players'] }).args;
+    const a = bindArgs('start', args, { keyword: ['scene', 'seed', 'players', 'wall_clock'] }).args;
     return this.#command('start()', async () => {
       if (this.#started !== undefined || this.#starting) {
         fail('PP3441', 'game.start() was called twice', { fix: 'Start once per playtest; use reload or scene changes inside it.' });
@@ -289,6 +289,10 @@ export class GameHarness {
       if (typeof players !== 'number' || !Number.isInteger(players) || players < 1) {
         fail('PP3449', `start(players=) takes an int of 1 or more, got ${String(players)}`);
       }
+      const wallClock = a['wall_clock'] ?? null;
+      if (wallClock !== null && (typeof wallClock !== 'number' || !Number.isFinite(wallClock))) {
+        fail('PP3449', `start(wall_clock=) takes Unix seconds (a number), got ${String(wallClock)}`);
+      }
       this.#starting = true;
       const entry = await this.#host.loadEntry();
       const game = entry[GAME_EXPORT];
@@ -302,6 +306,7 @@ export class GameHarness {
         : game;
       const devices = new HeadlessInput();
       const audio = new HeadlessAudio();
+      let clockOf: { kernel: { time: { realNow: number } } } | undefined;
       const { runtime, warnings } = await startGame({
         entry: { ...entry, [GAME_EXPORT]: view },
         files: this.#host.files,
@@ -315,12 +320,15 @@ export class GameHarness {
         assets: this.#host.assets,
         seed,
         fixedStep: FRAME,
+        // The device clock starts at wall_clock= and runs with the game's real time.
+        ...(wallClock !== null && { wallClock: () => wallClock + (clockOf?.kernel.time.realNow ?? 0) }),
         // A net game in a playtest is a host with players= seats on this machine; its
         // ctx.net.lobby is an in-memory lobby (hosting a room, then starting, works here).
         ...(game instanceof Game && netPluginOf(game) !== undefined && {
           net: { role: 'host' as const, seats: players, lobby: new MemorySignalingHub().platform() },
         }),
       });
+      clockOf = runtime;
       this.warnings.push(...warnings);
       // The game decides its seats (local_players(seats=N), net): players= states how many the test drives.
       const seats = runtime.ctx.players.length;

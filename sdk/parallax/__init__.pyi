@@ -1638,6 +1638,13 @@ class Time:
     @property
     def real_now(self) -> float: ...
     @property
+    def wall_clock(self) -> float | None:
+        """The device's clock in Unix seconds (it keeps counting while the game is closed),
+        or None where the platform gives none (headless playtests unless started with
+        `wall_clock=`). For offline rewards and daily resets: keep the last value in a
+        `keep="profile"` resource and compare on the next launch. Never feed it into the
+        simulation's rules each frame; it is not deterministic."""
+    @property
     def frame(self) -> int: ...
     scale: float
     """Global time scale (slow motion). 1 = normal."""
