@@ -204,6 +204,9 @@ interface Built {
   mesh?: GeneratedMesh;
   /** The transform chain's values when `mesh.world` was taken (`samePose`). */
   pose?: readonly unknown[];
+  /** Cached world-space path (Spline.sample / nearest), rebuilt when the version or pose changes. */
+  path?: SampledPath;
+  pathPose?: readonly unknown[];
 }
 
 /**
@@ -665,7 +668,12 @@ export function procgen(): ProcgenPlugin {
   const pathOf = (record: EntityRecord): SampledPath | undefined => {
     if (!record.components.has(SPLINE)) return undefined;
     const b = ensure(record, record.components.has(SWEEP) ? SWEEP : record.components.has(TRACK) ? TRACK : SPLINE);
-    return sampledPath(record, b.line!, b.version);
+    // Reuse the world-space samples while neither the path nor the entity's pose has changed:
+    // a long spline is thousands of samples, and games ask for points along it every frame.
+    if (b.path !== undefined && b.path.version === b.version && b.pathPose !== undefined && samePose(record.transform, b.pathPose)) return b.path;
+    b.path = sampledPath(record, b.line!, b.version);
+    b.pathPose = poseOf(record.transform);
+    return b.path;
   };
 
   const service: ProcgenService = {
