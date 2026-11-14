@@ -73,6 +73,18 @@ describe('uniform and data layout', () => {
     expect(out[24]).toBeCloseTo(Math.PI / 2);
   });
 
+  it('packs glass: ior, dispersion, thickness for refractive materials, incandescence; zeros without', () => {
+    const out = new Float32Array(MATERIAL_SLOT);
+    const o = offsetOf(MATERIAL_FIELDS, 'glass');
+    packMaterial({ ...MATERIAL, layers: { ...GLASS_LAYERS, transmission: 1 }, refraction: { ior: 1.5, dispersion: 0.4, thickness: 0.05 }, incandescence: 6 }, out, 0);
+    expect([...out.subarray(o, o + 4)].map((v) => +v.toFixed(3))).toEqual([1.5, 0.4, 0.05, 6]);
+    // Refraction needs transmission (nothing would show through); incandescence stands alone.
+    packMaterial({ ...MATERIAL, refraction: { ior: 1.5, dispersion: 0.4, thickness: 0.05 }, incandescence: 2 }, out, 0);
+    expect([...out.subarray(o, o + 4)]).toEqual([0, 0, 0, 2]);
+    packMaterial(MATERIAL, out, 0);
+    expect([...out.subarray(o, o + 4)]).toEqual([0, 0, 0, 0]);
+  });
+
   it('packs lights four texels each, with their shadow tile and spot cone', () => {
     const spot = light('spot', [1, 2, 3], 5);
     const data = packLights([light('point', [0, 0, 0], 4), spot], new Map([[spot, 7]]));
@@ -151,6 +163,25 @@ describe('scene shaders: WGSL and GLSL parity', () => {
     expect(g.match(/0\.5 \+ ndc\.y \* 0\.5/g)).toHaveLength(2);
     const statements = (s: string): string[] => [...s.matchAll(/(?:let|var|float|vec[234]|int|uvec2) (\w+) = /g)].map((m) => m[1]!);
     for (const fn of ['brdf', 'localShadow', 'shadeLight', 'lighting', 'cascadeShadow', 'sunShadow', 'perturb', 'envBrdf', 'clusterOf']) {
+      const wb = new RegExp(`fn ${fn}\\([\\s\\S]*?\\n}`).exec(w)![0];
+      const gb = new RegExp(`\\w+ ${fn}\\([^)]*\\) \\{[\\s\\S]*?\\n}`).exec(g)![0];
+      expect(statements(gb), fn).toEqual(statements(wb));
+    }
+  });
+
+  it('glass: the mesh shaders refract through the base texture and glow by vertex heat, gated on the glass field', () => {
+    const w = wgsl('mesh');
+    const g = glsl('mesh').fragment;
+    for (const s of [w, g]) {
+      expect(s).toMatch(/glass\.x > 0\.5/);
+      expect(s).toMatch(/glass\.w > 0\.0/);
+      expect(s).toContain('blackbody(heat)');
+    }
+    // The scene copy is sampled at mip 0 (no derivatives in branches); GLSL flips rows (its copy's row 0 is the bottom).
+    expect(w).toContain('textureSampleLevel(baseTexture, baseSampler, px * frame.targetSize.zw, 0.0)');
+    expect(g).toContain('textureLod(baseTexture, vec2(px.x, targetSize.y - px.y) * targetSize.zw, 0.0)');
+    const statements = (s: string): string[] => [...s.matchAll(/(?:let|var|float|vec[234]) (\w+) = /g)].map((m) => m[1]!);
+    for (const fn of ['blackbody', 'behindAt']) {
       const wb = new RegExp(`fn ${fn}\\([\\s\\S]*?\\n}`).exec(w)![0];
       const gb = new RegExp(`\\w+ ${fn}\\([^)]*\\) \\{[\\s\\S]*?\\n}`).exec(g)![0];
       expect(statements(gb), fn).toEqual(statements(wb));
@@ -238,6 +269,13 @@ const MATERIAL: Material3d = {
   emissive: [0, 0, 0], emissiveTexture: null, alphaMode: 'opaque', alphaCutoff: 0.5, doubleSided: false, unlit: false,
 };
 const GLASS: Material3d = { ...MATERIAL, id: 'glass', alphaMode: 'blend' };
+const GLASS_LAYERS = { clearcoat: 0, clearcoatRoughness: 0, transmission: 0, subsurface: 0, subsurfaceColor: [1, 1, 1] as const, anisotropy: 0, anisotropyRotation: 0 };
+/** A refracting glass material (Material3d.refraction). */
+const CRYSTAL: Material3d = { ...GLASS, id: 'crystal', layers: { ...GLASS_LAYERS, transmission: 1 }, refraction: { ior: 1.5, dispersion: 0.5, thickness: 0.1 } };
+/** The default frame plus one refracting box in front of the first view. */
+const withCrystal = (f: Frame3d): Frame3d => ({
+  ...f, meshes: [...f.meshes, { geometry: unitShape('box'), material: CRYSTAL, count: 1, instances: instances([0, 0, 0]), entities: [30], castShadows: false }],
+});
 const BRICKS: Texture3d = { id: 'bricks', source: { kind: 'file', path: 'assets/images/bricks.png' }, colorSpace: 'srgb', wrapU: 'repeat', wrapV: 'repeat', filter: 'linear' };
 const BUMPS: Texture3d = { ...BRICKS, id: 'bumps', colorSpace: 'linear' };
 
@@ -772,6 +810,31 @@ describe('backends execute a plan (recorded, no GPU)', () => {
     // bloom prefilter + 2 down + 2 up (BLOOM_LEVELS 3); present.
     expect(count(calls, 'beginRenderPass')).toBe(2 + 2 * 11 + 5 + 1);
     expect(count(calls, 'queue.submit')).toBe(1);
+  });
+
+  it('both backends copy the scene for refraction only in views that draw a refractive material', () => {
+    const texture = (b: WebGl2Backend | WebGpuBackend): ReturnType<typeof b.createTexture> => b.createTexture({ width: 4, height: 4 }, BRICKS);
+    const { gl, calls } = fakeGl();
+    const gl2 = new WebGl2Backend(gl);
+    const t2 = texture(gl2);
+    gl2.render(plan(frame()), () => t2);
+    expect(count(calls, 'blitFramebuffer')).toBe(0);
+    calls.length = 0;
+    const p = plan(withCrystal(frame()));
+    const drawing = p.views.filter((v) => v.transparent.some((i) => i.material.id === 'crystal')).length;
+    expect(drawing).toBeGreaterThan(0);
+    gl2.render(p, () => t2);
+    expect(count(calls, 'blitFramebuffer')).toBe(drawing);
+
+    const gpu = fakeGpu();
+    const context = { configure: () => {}, getCurrentTexture: () => ({ createView: () => ({}), width: 800, height: 400, destroy: () => {} }) };
+    const backend = new WebGpuBackend(gpu.device, context, 'bgra8unorm');
+    const t = texture(backend);
+    backend.render(plan(frame()), () => t);
+    const copies = (): number => gpu.calls.filter((c) => c === 'encoder.copyTextureToTexture').length;
+    expect(copies()).toBe(0);
+    backend.render(p, () => t);
+    expect(copies()).toBe(drawing);
   });
 
   it('WebGPU: an empty frame still presents', () => {

@@ -30,7 +30,7 @@ import type {
 import { environmentMips } from './ibl.js';
 import {
   BILLBOARD_INSTANCE_FLOATS, CASTER_FIELDS, CASTER_SLOT, DATA_ROW, FRAME_FIELDS, FRAME_SLOT, floatsOf, LINE_VERTEX_FLOATS, LOCATION as L,
-  bindingId, MATERIAL_FIELDS, MATERIAL_SLOT, MESH_INSTANCE_FLOATS, OUTLINE_FIELDS, SHADOW_FIELDS, TERRAIN_FIELDS, transmissive,
+  bindingId, MATERIAL_FIELDS, MATERIAL_SLOT, MESH_INSTANCE_FLOATS, OUTLINE_FIELDS, SHADOW_FIELDS, refractive, TERRAIN_FIELDS, transmissive,
 } from './layout.js';
 import { visitPasses } from './plan.js';
 import type { BillboardItem, EnvironmentPlan, FramePlan, MeshItem, OcclusionPlan, ShadowTile, TerrainItem, TextureRef, ViewPlan } from './plan.js';
@@ -107,6 +107,8 @@ interface Targets {
   readonly ldr: GpuTexture;
   readonly bloom: readonly GpuTexture[];
   readonly version: number;
+  /** The scene's color as the transparent pass began (refractive materials sample it); made on first use. */
+  behind: GpuTextureHandle | null;
 }
 
 const WRAP: Record<Wrap, string> = { repeat: 'repeat', clamp: 'clamp-to-edge', mirror: 'mirror-repeat' };
@@ -533,6 +535,7 @@ export class WebGpuBackend implements Backend3d {
     const t = this.#targetSets.get(use) ?? null;
     if (t !== null && t.width === width && t.height === height && t.aoScale === aoScale && t.bloom.length === bloomLevels) return t;
     if (t !== null) for (const x of [...t.hdr, t.gbuf, t.depth, ...t.ao, t.ssr, t.mask, t.ldr, ...t.bloom]) x.destroy();
+    t?.behind?.texture.destroy();
     const bloom: GpuTexture[] = [];
     for (let i = 0, w = Math.ceil(width / 2), h = Math.ceil(height / 2); i < bloomLevels; i++, w = Math.ceil(w / 2), h = Math.ceil(h / 2)) {
       bloom.push(this.#texture(w, h, HDR));
@@ -541,7 +544,11 @@ export class WebGpuBackend implements Backend3d {
     const aoH = Math.ceil(height / aoScale);
     const made: Targets = {
       width, height, aoScale,
-      hdr: [this.#texture(width, height, HDR), this.#texture(width, height, HDR)],
+      // COPY_SRC: refractive materials sample a copy of the scene (`behind`).
+      hdr: [
+        this.#texture(width, height, HDR, TEXTURE.RENDER_ATTACHMENT | TEXTURE.TEXTURE_BINDING | TEXTURE.COPY_SRC),
+        this.#texture(width, height, HDR, TEXTURE.RENDER_ATTACHMENT | TEXTURE.TEXTURE_BINDING | TEXTURE.COPY_SRC),
+      ],
       gbuf: this.#texture(width, height, HDR),
       depth: this.#texture(width, height, DEPTH),
       ao: [this.#texture(aoW, aoH, 'r8unorm'), this.#texture(aoW, aoH, 'r8unorm')],
@@ -550,6 +557,7 @@ export class WebGpuBackend implements Backend3d {
       ldr: this.#texture(width, height, LDR, TEXTURE.RENDER_ATTACHMENT | TEXTURE.TEXTURE_BINDING | TEXTURE.COPY_SRC),
       bloom,
       version: ++this.#targetVersion,
+      behind: null,
     };
     this.#targetSets.set(use, made);
     return made;
@@ -1041,6 +1049,8 @@ export class WebGpuBackend implements Backend3d {
     const materialGroup = (item: MeshItem): unknown => {
       const m = item.material;
       const maps = [m.baseColorTexture, m.metallicRoughnessTexture, m.emissiveTexture, m.normalTexture, m.occlusionTexture].map(handle);
+      // A refractive material's base texture is the scene behind it (a new copy, so a new group, after a resize).
+      if (refractive(m) && targets.behind !== null) maps[0] = targets.behind;
       // A material keeps its id while a texture behind it is replaced (a screen repaints into a
       // new texture), so the group is rebuilt whenever any of its handles changed.
       const key = `material|${bindingId(m)}`;
@@ -1268,6 +1278,15 @@ export class WebGpuBackend implements Backend3d {
       }),
       transparent: (vp) => {
         backFace = vp.mirrored ? 'front' : 'back';
+        if (vp.transparent.some((i) => refractive(i.material)) || vp.viewmodelTransparent.some((i) => refractive(i.material))) {
+          // What refractive surfaces see through themselves: the scene so far (opaque surfaces, sky, water).
+          if (targets.behind === null) {
+            const texture = this.#texture(targets.width, targets.height, HDR, TEXTURE.TEXTURE_BINDING | TEXTURE.COPY_DST);
+            targets.behind = { backend: 'webgpu', texture, view: texture.createView(), sampler: this.#linearSampler };
+          }
+          (encoder as unknown as { copyTextureToTexture(a: Desc, b: Desc, size: readonly number[]): void })
+            .copyTextureToTexture({ texture: current }, { texture: targets.behind.texture }, [targets.width, targets.height]);
+        }
         const pass = encoder.beginRenderPass({ colorAttachments: [colorAttachment(current, false)], depthStencilAttachment: depthAttachment(false) });
         viewport(pass, vp.viewport);
         const meshes = (items: readonly MeshItem[], blend: boolean): void => {
@@ -1418,6 +1437,7 @@ export class WebGpuBackend implements Backend3d {
     this.#edges.clear();
     for (const buffer of this.#buffers.values()) buffer.destroy();
     for (const t of this.#targetSets.values()) for (const x of [...t.hdr, t.gbuf, t.depth, ...t.ao, t.ssr, t.mask, t.ldr, ...t.bloom]) x.destroy();
+    for (const t of this.#targetSets.values()) t.behind?.texture.destroy();
     this.#atlas.sun?.destroy();
     this.#atlas.local?.destroy();
     if (this.#data !== null) for (const x of [this.#data.lights, this.#data.grid, this.#data.items]) x.destroy();

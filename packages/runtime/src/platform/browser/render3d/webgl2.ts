@@ -21,7 +21,7 @@ import type { BlockFormat, Ktx2Image } from './ktx2.js';
 import { environmentMips } from './ibl.js';
 import {
   BILLBOARD_INSTANCE_FLOATS, CASTER_FIELDS, CASTER_SLOT, DATA_ROW, FRAME_FIELDS, FRAME_SLOT, floatsOf, LINE_VERTEX_FLOATS, LOCATION as L,
-  MATERIAL_FIELDS, MATERIAL_SLOT, MESH_INSTANCE_FLOATS, OUTLINE_FIELDS, PALETTE_ROW_JOINTS, TERRAIN_FIELDS, transmissive, UNIFORM_ALIGN,
+  MATERIAL_FIELDS, MATERIAL_SLOT, MESH_INSTANCE_FLOATS, OUTLINE_FIELDS, PALETTE_ROW_JOINTS, refractive, TERRAIN_FIELDS, transmissive, UNIFORM_ALIGN,
 } from './layout.js';
 import { visitPasses } from './plan.js';
 import type { BillboardItem, EnvironmentPlan, FramePlan, MeshItem, OcclusionPlan, TerrainItem, TextureRef, ViewPlan } from './plan.js';
@@ -88,6 +88,8 @@ interface Targets {
   readonly ldr: WebGLTexture;
   readonly bloom: readonly { texture: WebGLTexture; width: number; height: number }[];
   readonly framebuffers: Map<string, WebGLFramebuffer>;
+  /** The scene's color as the transparent pass began (refractive materials sample it); made on first use. */
+  behind: WebGLTexture | null;
 }
 
 export class WebGl2Backend implements Backend3d {
@@ -636,6 +638,7 @@ export class WebGl2Backend implements Backend3d {
       ldr: this.#colorTexture(width, height, gl.RGBA8),
       bloom,
       framebuffers: new Map(),
+      behind: null,
     };
     this.#targetSets.set(use, made);
     return made;
@@ -644,6 +647,7 @@ export class WebGl2Backend implements Backend3d {
   #dropTargets(t: Targets): void {
     const gl = this.#gl;
     for (const x of [...t.hdr, t.gbuf, t.depth, ...t.ao, t.ssr, t.mask, t.ldr, ...t.bloom.map((b) => b.texture)]) gl.deleteTexture(x);
+    if (t.behind !== null) gl.deleteTexture(t.behind);
     for (const fb of t.framebuffers.values()) gl.deleteFramebuffer(fb);
   }
 
@@ -946,10 +950,12 @@ export class WebGl2Backend implements Backend3d {
         }
       }
     };
+    const refracts = (vp: ViewPlan): boolean => vp.transparent.some((i) => refractive(i.material)) || vp.viewmodelTransparent.some((i) => refractive(i.material));
     const bindMaterial = (item: MeshItem): void => {
       const m = item.material;
       bindSlot(item.materialSlot, floatsOf(MATERIAL_FIELDS));
-      this.#bind(GLSL_UNITS.baseTexture, handle(m.baseColorTexture));
+      // A refractive material's base texture is the scene behind it (copied as the transparent pass began).
+      this.#bind(GLSL_UNITS.baseTexture, refractive(m) && t.behind !== null ? t.behind : handle(m.baseColorTexture));
       this.#bind(GLSL_UNITS.surfaceTexture, handle(m.metallicRoughnessTexture));
       this.#bind(GLSL_UNITS.emissiveTexture, handle(m.emissiveTexture));
       this.#bind(GLSL_UNITS.normalTexture, handle(m.normalTexture));
@@ -1095,6 +1101,17 @@ export class WebGl2Backend implements Backend3d {
         plan: plan.nature!, view: vp.frameSlot, viewport: vp.viewport, color: current, depth: t.depth, cube: this.#env!.cube, width: t.width, height: t.height,
       }),
       transparent: (vp) => {
+        if (refracts(vp)) {
+          // What refractive surfaces see through themselves: the scene so far (opaque surfaces, sky, water).
+          t.behind ??= this.#colorTexture(t.width, t.height, gl.RGBA16F);
+          const read = this.#framebuffer(t, currentKey, [current], false);
+          const draw = this.#framebuffer(t, 'behind', [t.behind], false);
+          gl.bindFramebuffer(gl.READ_FRAMEBUFFER, read);
+          gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, draw);
+          gl.disable(gl.SCISSOR_TEST);
+          gl.blitFramebuffer(0, 0, t.width, t.height, 0, 0, t.width, t.height, gl.COLOR_BUFFER_BIT, gl.NEAREST);
+          gl.bindFramebuffer(gl.READ_FRAMEBUFFER, null);
+        }
         this.#framebuffer(t, `${currentKey}+depth`, [current], true);
         enterView(vp, t.height);
         gl.cullFace(vp.mirrored ? gl.FRONT : gl.BACK);

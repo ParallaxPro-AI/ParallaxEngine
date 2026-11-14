@@ -152,6 +152,8 @@ export const MATERIAL_FIELDS: readonly UniformField[] = [
   vec4('fxUv'),
   /** Hologram scanlines per meter, unused × 3. */
   vec4('fxLines'),
+  /** Glass (Material3d.refraction, incandescence): ior (0: no refraction), dispersion 0..1, thickness (m), incandescence (0: off). */
+  vec4('glass'),
 ];
 
 /** The terrain pass's block (terrain_shaders.ts), one slot per tile palette and level. */
@@ -210,6 +212,8 @@ export const FRAME_SLOT = slotFloats(FRAME_FIELDS);
 export const MATERIAL_SLOT = slotFloats(MATERIAL_FIELDS);
 /** Float offset of the surface-effect fields in a material slot. */
 const FX_OFFSET = offsetOf(MATERIAL_FIELDS, 'fxRim');
+/** Float offset of the glass field in a material slot. */
+const GLASS_OFFSET = offsetOf(MATERIAL_FIELDS, 'glass');
 export const CASTER_SLOT = slotFloats(CASTER_FIELDS);
 
 export function wgslStruct(name: string, fields: readonly UniformField[]): string {
@@ -296,6 +300,16 @@ export function packMaterial(m: Material3d, out: Float32Array, slot: number, tim
   out[o + 30] = m.wind?.height ?? 0;
   out[o + 31] = m.wind === undefined ? 0 : time % 3600;
   packEffects(m.effects, out, o + FX_OFFSET, time);
+  const r = refractive(m) ? m.refraction : undefined;
+  out[o + GLASS_OFFSET] = r === undefined ? 0 : Math.max(1, r.ior);
+  out[o + GLASS_OFFSET + 1] = r === undefined ? 0 : Math.min(1, Math.max(0, r.dispersion));
+  out[o + GLASS_OFFSET + 2] = r === undefined ? 0 : Math.max(0, r.thickness);
+  out[o + GLASS_OFFSET + 3] = Math.max(0, m.incandescence ?? 0);
+}
+
+/** Whether a material refracts the scene behind it (the backends copy the scene's color for it). */
+export function refractive(m: Material3d): boolean {
+  return m.refraction !== undefined && (m.layers?.transmission ?? 0) > 0;
 }
 
 /** A material's surface effects into its slot's fx fields (at `o`, the fxRim offset); all zero when it has none. */
