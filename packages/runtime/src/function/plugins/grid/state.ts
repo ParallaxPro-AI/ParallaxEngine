@@ -14,7 +14,7 @@ import type { EntityId } from '../../../core/index.js';
 import type { Json } from '../../../resource/index.js';
 import type { EntityRecord, EventDef, Fields, Kernel } from '../../kernel/index.js';
 import { cellArg, describe, tagId } from './args.js';
-import { boardFields, cellCenter, contains, GRID, GRID_CELL, GRID_MOVER, onPlane } from './board.js';
+import { adjacent, boardFields, cellCenter, contains, GRID, GRID_CELL, GRID_MOVER, isHex, onPlane } from './board.js';
 import type { Board } from './board.js';
 
 export const GRID_EVENTS = {
@@ -281,7 +281,10 @@ export class GridState {
   #open(id: EntityId, piece: Piece, from: Cell, step: Cell): boolean {
     const to = from.__add__(step);
     const grid = piece.grid!;
-    if (!contains(this.board(grid).fields, to)) return false;
+    const fields0 = this.board(grid).fields;
+    if (!contains(fields0, to)) return false;
+    // On a hex board a step must land on one of the cell's six neighbours.
+    if (isHex(fields0) && !adjacent(fields0, from, to)) return false;
     const fields = this.kernel.world.require(id).components.get(GRID_MOVER)!;
     const blocked = ((fields['blocked'] ?? []) as unknown[]).map((t) => tagId(t, 'GridMover.blocked'));
     return !this.blockedAt(grid, to, blocked, id);

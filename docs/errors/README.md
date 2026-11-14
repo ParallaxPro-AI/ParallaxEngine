@@ -780,7 +780,7 @@ Later gameplay plugins (economy, cinematics, vehicles, combat depth, grid, city)
 | PP7405 | combat | fire() prefab must be a prefab (Prefabs.&lt;id&gt;) |
 | PP7406 | combat | fire() direction is zero |
 | PP7407 | combat | fire("{prefab}"): prefab "{prefab}" has no "{PROJECTILE}" component |
-| PP7500 | grid | {where} must be True or False, got {…} |
+| PP7500 | grid | within() radius must be a whole number &gt;= 0, got {…} |
 | PP7501 | grid | A Grid needs at least one column and one row, got {board.cols} × {board.rows} |
 | PP7502 | grid | Layout line {i} has {chars.length} characters but the grid has {board.cols} columns |
 | PP7503 | grid | A GridCell needs a Grid, and there is none in the scene |

@@ -42,6 +42,13 @@ class Grid(EngineComponent)
   is the top (+z on the ground; +y on an "xy" board), rows run toward -z (-y), and columns
   run along +x. up: row 0 is the bottom.
 
+- `layout: str = field('square', choices=['square', 'hex'])`
+
+  square: square cells. hex: pointy-top hexagons in offset rows, every odd row shifted
+  half a cell along +x; `cell_size.x` is the distance between neighbouring centers in a
+  row and `cell_size.y` the distance between rows (x \* 0.866 for regular hexagons).
+  `neighbors`, `path`, `distance`, `within` and grid movers then use the six hex neighbours.
+
 **Methods**
 
 ```python
@@ -60,7 +67,29 @@ The cell containing a world point (e.g. `ctx.input.pointer.world`), None if off-
 
 ```python
 def contains(cell: Cell) -> bool
+```
+
+```python
 def neighbors(cell: Cell, *, diagonal: bool = False) -> list[Cell]
+```
+
+Adjacent cells on the board: up, down, left, right (then diagonals); on a hex board
+the six neighbours (left, right, the two above, the two below).
+
+```python
+def distance(a: Cell, b: Cell, *, diagonal: bool = False) -> int
+```
+
+Steps between two cells: hex distance on a hex board; on a square board Manhattan,
+or king's-move with `diagonal=True`.
+
+```python
+def within(cell: Cell, radius: int, *, diagonal: bool = False) -> list[Cell]
+```
+
+The board's cells at most `radius` steps from `cell` (itself included), row by row.
+
+```python
 def cells() -> Iterator[Cell]
 ```
 

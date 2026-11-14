@@ -33,6 +33,8 @@ interface GridApi extends Fields {
   first_at(...args: unknown[]): unknown;
   parse(...args: unknown[]): Map<Cell, string>;
   path(...args: unknown[]): Cell[];
+  distance(...args: unknown[]): number;
+  within(...args: unknown[]): Cell[];
 }
 
 interface MoverApi extends Fields {
@@ -407,5 +409,89 @@ describe('grid plugin', () => {
     const game: GameDefinition = { components: [], resources: [], events: [], behaviors: [], systems: [] };
     new Kernel({ project, game, plugins: [plugin] });
     expect(code(() => new Kernel({ project, game, plugins: [plugin] }))).toBe('PP9751');
+  });
+});
+
+describe('hex boards', () => {
+  const W = 2;
+  const H = Math.sqrt(3);
+  const HEX = { components: { grid: { cols: 4, rows: 3, cell_size: [W, H], layout: 'hex', plane: 'xz', origin: 'corner', row_order: 'up' } } };
+
+  it('shifts odd rows half a cell and reads every center back to its hex', () => {
+    const g = setup({ hex: HEX }, [{ id: 'board', prefab: 'hex' }]);
+    const b = g.board();
+    expect(b.center(new Cell(0, 0)).is_close(new Vec3(1, 0, H / 2))).toBe(true);
+    expect(b.center(new Cell(0, 1)).is_close(new Vec3(2, 0, H * 1.5))).toBe(true);
+    for (const cell of b.cells()) expect(b.cell_at(b.center(cell))!.__eq__(cell)).toBe(true);
+    // Near a hex's pointy top, the point belongs to the row above, not the square below it.
+    expect(b.cell_at(new Vec3(1.95, 0, H - 0.05))!.__eq__(new Cell(0, 1))).toBe(true);
+    expect(b.cell_at(new Vec3(0.05, 0, 1.0))!.__eq__(new Cell(0, 0))).toBe(true);
+    // Left of row 1's first hex, above row 0's slope: off the board.
+    expect(b.cell_at(new Vec3(0.05, 0, H - 0.05))).toBeNull();
+    // Off the board's shifted edge.
+    expect(b.cell_at(new Vec3(0.2, 0, H * 1.5))).toBeNull();
+  });
+
+  it('a centered hex board is centered on its entity, half a cell wider for the shifted rows', () => {
+    const g = setup({ hex: { components: { grid: { cols: 4, rows: 2, cell_size: [W, H], layout: 'hex', plane: 'xz' } } } },
+      [{ id: 'board', prefab: 'hex' }]);
+    const b = g.board();
+    const left = b.center(new Cell(0, 0)).x - W / 2;
+    const right = b.center(new Cell(3, 1)).x + W / 2;
+    expect(left + right).toBeCloseTo(0);
+    expect(right - left).toBeCloseTo(4.5 * W);
+  });
+
+  it('has six neighbours that depend on the row, and hex distances', () => {
+    const g = setup({ hex: { components: { grid: { cols: 6, rows: 6, cell_size: [W, H], layout: 'hex' } } } },
+      [{ id: 'board', prefab: 'hex' }]);
+    const b = g.board();
+    expect(b.neighbors(new Cell(2, 2)).map(String))
+      .toEqual(['Cell(1, 2)', 'Cell(3, 2)', 'Cell(1, 1)', 'Cell(2, 1)', 'Cell(1, 3)', 'Cell(2, 3)']);
+    expect(b.neighbors(new Cell(2, 3)).map(String))
+      .toEqual(['Cell(1, 3)', 'Cell(3, 3)', 'Cell(2, 2)', 'Cell(3, 2)', 'Cell(2, 4)', 'Cell(3, 4)']);
+    expect(b.neighbors(new Cell(0, 0)).map(String)).toEqual(['Cell(1, 0)', 'Cell(0, 1)']);
+    for (const c of b.neighbors(new Cell(2, 3))) expect(b.distance(new Cell(2, 3), c)).toBe(1);
+    // Neighbours are one cell-spacing apart in the world.
+    for (const c of b.neighbors(new Cell(2, 3))) {
+      const d = b.center(c).__sub__(b.center(new Cell(2, 3)));
+      expect(Math.hypot(d.x, d.y, d.z)).toBeCloseTo(W);
+    }
+    expect(b.distance(new Cell(0, 0), new Cell(5, 5))).toBe(8);
+    expect(b.distance(new Cell(0, 0), new Cell(0, 4))).toBe(4);
+    expect(b.within(new Cell(2, 2), 1).length).toBe(7);
+    expect(b.within(new Cell(2, 2), 2).length).toBe(19);
+    expect(b.within(new Cell(0, 0), 1).map(String)).toEqual(['Cell(0, 0)', 'Cell(1, 0)', 'Cell(0, 1)']);
+  });
+
+  it('paths step through hex neighbours around blockers', () => {
+    const g = setup({ hex: { components: { grid: { cols: 5, rows: 5, cell_size: [W, H], layout: 'hex' } } }, rock: { tags: ['rock'] } },
+      [{ id: 'board', prefab: 'hex' }], [], []);
+    const b = g.board();
+    const straight = b.path(new Cell(0, 2), new Cell(4, 2));
+    expect(straight.length).toBe(5);
+    g.spawn('rock', new Cell(2, 2));
+    const around = b.path(new Cell(0, 2), new Cell(4, 2), { blocked: [{ __tag_id__: 'rock' }] });
+    expect(around.length).toBe(6);
+    for (let i = 1; i < around.length; i++) expect(b.distance(around[i - 1], around[i])).toBe(1);
+  });
+
+  it('square boards keep Manhattan and king distances', () => {
+    const g = setup({ board: BOARD }, [{ id: 'board', prefab: 'board' }]);
+    const b = g.board();
+    expect(b.distance(new Cell(0, 0), new Cell(2, 1))).toBe(3);
+    expect(b.distance(new Cell(0, 0), new Cell(2, 1), { diagonal: true })).toBe(2);
+    expect(b.within(new Cell(0, 0), 1).map(String)).toEqual(['Cell(0, 0)', 'Cell(1, 0)', 'Cell(0, 1)']);
+  });
+
+  it('a mover on a hex board only steps onto neighbouring hexes', () => {
+    const g = setup({ hex: { components: { grid: { cols: 5, rows: 5, cell_size: [1, 1], layout: 'hex' } } },
+      walker: { components: { grid_mover: { speed: 10 } } } }, [{ id: 'board', prefab: 'hex' }]);
+    const w = g.spawn('walker', new Cell(2, 2));
+    // From an even row, (+1, -1) is not a neighbour; (0, -1) is.
+    expect(g.mover(w).step(new Cell(1, -1))).toBe(false);
+    expect(g.mover(w).step(new Cell(0, -1))).toBe(true);
+    g.steps(10);
+    expect((g.cellOf(w)['cell'] as Cell).__eq__(new Cell(2, 1))).toBe(true);
   });
 });

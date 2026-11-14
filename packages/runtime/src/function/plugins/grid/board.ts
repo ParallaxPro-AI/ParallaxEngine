@@ -8,6 +8,11 @@
  *
  * Moving a piece onto a cell changes only its in-plane coordinates: in 2D its z (draw
  * order) is kept, on the ground its height.
+ *
+ * `layout="hex"` lays pointy-top hexagons in offset rows ("odd-r"): every odd row is
+ * shifted half a cell along +x, `cell_size.x` is the distance between neighbouring
+ * centers in a row and `cell_size.y` the distance between rows (x · √3/2 for regular
+ * hexagons). A point belongs to the nearest center, so `cell_at` reads hexagons exactly.
  */
 
 import { Cell, fail, Vec2, Vec3 } from '../../../core/index.js';
@@ -27,6 +32,7 @@ export interface BoardFields {
   readonly plane: 'xy' | 'xz';
   readonly origin: 'center' | 'corner';
   readonly row_order: 'down' | 'up';
+  readonly layout: 'square' | 'hex';
 }
 
 /** A board: its fields and its entity's transform. */
@@ -55,15 +61,30 @@ export function contains(board: BoardFields, cell: Cell): boolean {
   return cell.col >= 0 && cell.row >= 0 && cell.col < board.cols && cell.row < board.rows;
 }
 
+export function isHex(board: BoardFields): boolean {
+  return board.layout === 'hex';
+}
+
+/** How wide the board is in cells: a hex board's shifted rows stick out half a cell. */
+function widthInCells(board: BoardFields): number {
+  return board.cols + (isHex(board) && board.rows > 1 ? 0.5 : 0);
+}
+
+/** The world-space width and depth of the board, in meters. */
+export function boardExtent(board: BoardFields): { width: number; depth: number } {
+  return { width: widthInCells(board) * board.cell_size.x, depth: board.rows * board.cell_size.y };
+}
+
 /** In-plane coordinates (u along columns, v along the rows' world direction) of a cell's center. */
 function cellUV(board: BoardFields, cell: Cell): { u: number; v: number } {
   const w = board.cell_size.x;
   const h = board.cell_size.y;
   const sign = board.row_order === 'down' ? -1 : 1;
-  let u = (cell.col + 0.5) * w;
+  const shift = isHex(board) && cell.row % 2 !== 0 ? 0.5 : 0;
+  let u = (cell.col + 0.5 + shift) * w;
   let v = sign * (cell.row + 0.5) * h;
   if (board.origin === 'center') {
-    u -= (board.cols * w) / 2;
+    u -= (widthInCells(board) * w) / 2;
     v -= (sign * board.rows * h) / 2;
   }
   return { u, v };
@@ -105,10 +126,74 @@ export function cellAt(board: Board, point: Vec3 | Vec2): Cell | undefined {
   const { u, v } = planeOf(board.fields, toLocal(board, world));
   const { cols, rows, cell_size: size, origin, row_order: order } = board.fields;
   const sign = order === 'down' ? -1 : 1;
-  const across = origin === 'center' ? u + (cols * size.x) / 2 : u;
+  const across = origin === 'center' ? u + (widthInCells(board.fields) * size.x) / 2 : u;
   const along = origin === 'center' ? sign * v + (rows * size.y) / 2 : sign * v;
-  const cell = new Cell(Math.floor(across / size.x), Math.floor(along / size.y));
+  const cell = isHex(board.fields)
+    ? nearestHex(across / size.x, along / size.y, size.y / size.x)
+    : new Cell(Math.floor(across / size.x), Math.floor(along / size.y));
   return contains(board.fields, cell) ? cell : undefined;
+}
+
+/**
+ * The hex whose center is nearest a point given in cells (`x` along columns, `y` along
+ * rows), measured as if the hexagons were regular: rows are rescaled from `aspect`
+ * (row spacing / column spacing) to √3/2, so the nearest center is the hexagon the point
+ * is in. Ties go to the lower row, then the lower column.
+ */
+function nearestHex(x: number, y: number, aspect: number): Cell {
+  const k = Math.sqrt(3) / 2 / aspect;
+  const row0 = Math.floor(y);
+  let best: Cell | undefined;
+  let bestD = Infinity;
+  for (let row = row0 - 1; row <= row0 + 1; row++) {
+    const shift = row % 2 !== 0 ? 0.5 : 0;
+    const col0 = Math.floor(x - shift);
+    for (let col = col0 - 1; col <= col0 + 1; col++) {
+      const du = x - (col + 0.5 + shift);
+      const dv = (y - (row + 0.5)) * aspect * k;
+      const d = du * du + dv * dv;
+      if (d < bestD - 1e-12) {
+        bestD = d;
+        best = new Cell(col, row);
+      }
+    }
+  }
+  return best!;
+}
+
+/** The six neighbours of a hex in offset rows: left, right, then the row above and below. */
+export function hexSteps(cell: Cell): Cell[] {
+  const odd = cell.row % 2 !== 0;
+  const a = odd ? 0 : -1;
+  const b = odd ? 1 : 0;
+  return [new Cell(-1, 0), new Cell(1, 0), new Cell(a, -1), new Cell(b, -1), new Cell(a, 1), new Cell(b, 1)];
+}
+
+function cube(cell: Cell): { x: number; z: number; y: number } {
+  const x = cell.col - (cell.row - (cell.row & 1)) / 2;
+  const z = cell.row;
+  return { x, z, y: -x - z };
+}
+
+/**
+ * Steps between two cells: on a hex board the hex distance; on a square board the
+ * Manhattan distance, or with `diagonal` the king's-move (Chebyshev) distance.
+ */
+export function cellDistance(board: BoardFields, a: Cell, b: Cell, diagonal: boolean): number {
+  if (isHex(board)) {
+    const p = cube(a);
+    const q = cube(b);
+    return Math.max(Math.abs(p.x - q.x), Math.abs(p.y - q.y), Math.abs(p.z - q.z));
+  }
+  const dc = Math.abs(a.col - b.col);
+  const dr = Math.abs(a.row - b.row);
+  return diagonal ? Math.max(dc, dr) : dc + dr;
+}
+
+/** True when `b` is one step from `a` on this board (any of the eight on a square board). */
+export function adjacent(board: BoardFields, a: Cell, b: Cell): boolean {
+  if (!isHex(board)) return Math.max(Math.abs(a.col - b.col), Math.abs(a.row - b.row)) === 1;
+  return cellDistance(board, a, b, false) === 1;
 }
 
 /**

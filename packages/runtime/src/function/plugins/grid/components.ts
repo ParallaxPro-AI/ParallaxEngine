@@ -12,7 +12,10 @@ import type { EntityId } from '../../../core/index.js';
 import { componentEntity, t } from '../../kernel/index.js';
 import type { ComponentDef, Fields, Schema } from '../../kernel/index.js';
 import { bind, boolArg, cellArg, componentFilter, describe, stepArg, tagFilter } from './args.js';
-import { boardCells, boardFields, cellAt, cellCenter, contains, DIAGONAL, GRID, GRID_CELL, GRID_MOVER, ORTHOGONAL, parseLayout } from './board.js';
+import {
+  boardCells, boardFields, cellAt, cellCenter, cellDistance, contains, DIAGONAL, GRID, GRID_CELL, GRID_MOVER, hexSteps, isHex,
+  ORTHOGONAL, parseLayout,
+} from './board.js';
 import type { BoardFields } from './board.js';
 import type { GridState } from './state.js';
 
@@ -24,6 +27,8 @@ export const GRID_SCHEMA: Schema = {
   plane: t.enum(['xy', 'xz'], { default: 'xy' }),
   origin: t.enum(['center', 'corner'], { default: 'center' }),
   row_order: t.enum(['down', 'up'], { default: 'down' }),
+  /** square cells, or pointy-top hexagons in offset rows (odd rows shifted half a cell along +x). */
+  layout: t.enum(['square', 'hex'], { default: 'square' }),
 };
 
 /** `cell` is a Cell in code and [col, row] in data. */
@@ -81,7 +86,30 @@ function gridMethods(state: State, host: GridHost): object {
       const cell = cellArg(a['cell'], 'neighbors() cell');
       const diagonal = a['diagonal'] === undefined ? false : boolArg(a['diagonal'], 'neighbors() diagonal');
       const b = boardFields(this);
-      return [...ORTHOGONAL, ...(diagonal ? DIAGONAL : [])].map((s) => cell.__add__(s)).filter((c) => contains(b, c));
+      return stepsFrom(b, cell, diagonal).map((s) => cell.__add__(s)).filter((c) => contains(b, c));
+    },
+    distance(this: Fields, ...args: unknown[]): number {
+      const a = bind('distance', args, ['a', 'b'], ['diagonal'], ['a', 'b']);
+      const diagonal = a['diagonal'] === undefined ? false : boolArg(a['diagonal'], 'distance() diagonal');
+      return cellDistance(boardFields(this), cellArg(a['a'], 'distance() a'), cellArg(a['b'], 'distance() b'), diagonal);
+    },
+    within(this: Fields, ...args: unknown[]): Cell[] {
+      const a = bind('within', args, ['cell', 'radius'], ['diagonal'], ['cell', 'radius']);
+      const cell = cellArg(a['cell'], 'within() cell');
+      const radius = a['radius'];
+      if (typeof radius !== 'number' || !Number.isInteger(radius) || radius < 0) {
+        fail('PP7500', `within() radius must be a whole number >= 0, got ${describe(radius)}`);
+      }
+      const diagonal = a['diagonal'] === undefined ? false : boolArg(a['diagonal'], 'within() diagonal');
+      const b = boardFields(this);
+      const out: Cell[] = [];
+      for (let row = Math.max(0, cell.row - radius); row <= Math.min(b.rows - 1, cell.row + radius); row++) {
+        for (let col = Math.max(0, cell.col - radius - 1); col <= Math.min(b.cols - 1, cell.col + radius + 1); col++) {
+          const c = new Cell(col, row);
+          if (cellDistance(b, cell, c, diagonal) <= radius) out.push(c);
+        }
+      }
+      return out;
     },
     cells(this: Fields, ...args: unknown[]): Generator<Cell> {
       bind('cells', args, []);
@@ -104,11 +132,18 @@ function gridMethods(state: State, host: GridHost): object {
       const blocked = tagFilter(a['blocked'], 'path() blocked');
       const diagonal = a['diagonal'] === undefined ? false : boolArg(a['diagonal'], 'path() diagonal');
       const open = (c: Cell): boolean => contains(b.fields, c) && !state().blockedAt(b.id, c, blocked);
-      return shortestPath(cellArg(a['start'], 'path() start'), cellArg(a['end'], 'path() end'), open, diagonal);
+      const steps = isHex(b.fields) ? hexSteps : undefined;
+      return shortestPath(cellArg(a['start'], 'path() start'), cellArg(a['end'], 'path() end'), open, diagonal, steps);
     },
   };
   Object.defineProperty(methods, 'entity', entityGetter(state));
   return methods;
+}
+
+/** The offsets a step from `cell` may take: the six hex neighbours, or up, down, left, right (and diagonals). */
+function stepsFrom(board: BoardFields, cell: Cell, diagonal: boolean): readonly Cell[] {
+  if (isHex(board)) return hexSteps(cell);
+  return [...ORTHOGONAL, ...(diagonal ? DIAGONAL : [])];
 }
 
 function piecesAt(state: State, fields: Fields, name: string, args: readonly unknown[]): EntityId[] {
@@ -121,22 +156,25 @@ function piecesAt(state: State, fields: Fields, name: string, args: readonly unk
  * Breadth-first shortest path from `start` to `end` through cells `open` accepts, start
  * and end included ([] when unreachable). Neighbours are tried up, down, left, right
  * (then the diagonals), so ties resolve the same way every run. A diagonal step may not
- * cut a corner past a closed orthogonal neighbour.
+ * cut a corner past a closed orthogonal neighbour. `hexSteps` (a hex board's
+ * neighbours of a cell, which depend on its row) replaces the square steps.
  */
-export function shortestPath(start: Cell, end: Cell, open: (cell: Cell) => boolean, diagonal: boolean): Cell[] {
+export function shortestPath(
+  start: Cell, end: Cell, open: (cell: Cell) => boolean, diagonal: boolean, hexSteps?: (cell: Cell) => readonly Cell[],
+): Cell[] {
   if (!open(end)) return [];
   if (start.__eq__(end)) return [start];
-  const steps = [...ORTHOGONAL, ...(diagonal ? DIAGONAL : [])];
+  const square = [...ORTHOGONAL, ...(diagonal ? DIAGONAL : [])];
   const key = (c: Cell): string => `${c.col},${c.row}`;
   const cameFrom = new Map<string, Cell | null>([[key(start), null]]);
   const queue: Cell[] = [start];
   for (let head = 0; head < queue.length; head++) {
     const cell = queue[head]!;
-    for (const step of steps) {
+    for (const step of hexSteps === undefined ? square : hexSteps(cell)) {
       const next = cell.__add__(step);
       const k = key(next);
       if (cameFrom.has(k) || !open(next)) continue;
-      if (step.col !== 0 && step.row !== 0
+      if (hexSteps === undefined && step.col !== 0 && step.row !== 0
         && (!open(cell.__add__(new Cell(step.col, 0))) || !open(cell.__add__(new Cell(0, step.row))))) continue;
       cameFrom.set(k, cell);
       if (next.__eq__(end)) {
