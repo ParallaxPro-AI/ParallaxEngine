@@ -4640,7 +4640,8 @@ gravity, size, color…), a 3D .vfx.json can set its look — `"blend": "additiv
 and blooms), `"flipbook": "fire" | "smoke"` (animated sheets), `"image"` + `"frames"`
 (your own sheet), `"shape": "glow" | "ring"`, `"facing": "velocity"` + `"stretch"`
 (streaking sparks) or `"up"` (flat on the ground), `"lit"` (sunlit smoke), `"soft"`
-(meters of fade where it meets the scene), `"intensity"`, `"turbulence"`, `"fade_in"` —
+(meters of fade where it meets the scene), `"intensity"`, `"turbulence"`, `"fade_in"`,
+`"vortex": {"spin": 120, "pull": 2}` (whirl about the emitter's vertical line: tornadoes, whirlpools) —
 and what plays with it: `"light"`, `"sound"`, `"shake"` (cameras nearby), `"haze"`
 (heat shimmer or a shockwave ring), `"children"` (more effects, with `"delay"`),
 `"on_death"` (an effect where each particle dies), `"extends"` (a base effect).

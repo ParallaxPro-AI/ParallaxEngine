@@ -428,9 +428,14 @@ export class ParticleSystem3d {
 
   #move(e: Emitter, dt: number, deaths: { emitter: Emitter; at: Point }[]): void {
     if (dt === 0 || e.count === 0) return;
-    const { gravity: [gx, gy], drag, turbulence, onDeath } = e.def;
+    const { gravity: [gx, gy], drag, turbulence, vortex, onDeath } = e.def;
     const keep = Math.max(0, 1 - drag * dt);
     const swirl = turbulence * e.scale * dt;
+    // A vortex turns positions and velocities about the vertical line through the emitter.
+    const turn = vortex === null ? 0 : (vortex.spin * Math.PI / 180) * dt;
+    const cosT = Math.cos(turn); const sinT = Math.sin(turn);
+    const pull = vortex === null ? 0 : vortex.pull * e.scale * dt;
+    const [ox, , oz] = e.position;
     const ps = e.particles;
     let write = 0;
     for (let read = 0; read < ps.length; read += P) {
@@ -452,9 +457,25 @@ export class ParticleSystem3d {
         vy += noise3(x + 31.7, y + a, z) * swirl;
         vz += noise3(x, y + 53.3, z + a) * swirl;
       }
-      ps[write] = ps[read]! + vx * dt;
+      let px = ps[read]!; let pz = ps[read + 2]!;
+      if (vortex !== null) {
+        let rx = px - ox; let rz = pz - oz;
+        const r = Math.hypot(rx, rz);
+        if (pull !== 0 && r > 1e-6) {
+          // Never pulled past the line in one step.
+          const k = Math.min(pull, r / Math.max(dt, 1e-6)) / r;
+          vx -= rx * k; vz -= rz * k;
+        }
+        // Counter-clockwise seen from above (+y): x toward -z.
+        const nx = rx * cosT + rz * sinT; const nz = -rx * sinT + rz * cosT;
+        rx = nx; rz = nz;
+        px = ox + rx; pz = oz + rz;
+        const wx = vx * cosT + vz * sinT; const wz = -vx * sinT + vz * cosT;
+        vx = wx; vz = wz;
+      }
+      ps[write] = px + vx * dt;
       ps[write + 1] = ps[read + 1]! + vy * dt;
-      ps[write + 2] = ps[read + 2]! + vz * dt;
+      ps[write + 2] = pz + vz * dt;
       ps[write + 3] = vx; ps[write + 4] = vy; ps[write + 5] = vz;
       ps[write + 6] = age;
       ps[write + 7] = ps[read + 7]!;
